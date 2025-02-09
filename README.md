@@ -27,8 +27,8 @@
   Banco de Dados: PostgreSQL.
 
 ## Integrantes
-Mayara: https://github.com/MayaraStorl
-Maria Eduarda Wolf: https://github.com/dudawl18
-Alejandra: https://github.com/rinmarys
-Nicholas: https://github.com/nicholas-sc-08
+Mayara: https://github.com/MayaraStorl <br>
+Maria Eduarda Wolf: https://github.com/dudawl18 <br>
+Alejandra: https://github.com/rinmarys <br>
+Nicholas: https://github.com/nicholas-sc-08 <br>
 Gabriel Lacerda: https://github.com/GabrielFerLacerda
