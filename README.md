@@ -7,11 +7,11 @@
   Com isso, estamos desenvolvendo o Vintage, um aplicativo pensado para conectar brechós a um público maior, incentivando o consumo consciente e valorizando peças cheias de história. Acreditamos que, com essa iniciativa, poderemos transformar a forma como as pessoas descobrem e interagem com o universo dos brechós.
 
 ## Funcionalidade
-  Cadastro usuario: O usuario pode personalizar seus gostos atraves do cadastro no nosso app.
-  Cadastro brechó: Através deste cadastro os brechós conseguem anunciar seus produtos.
-  Busca de produtos: O usuario pode buscar produtos por categorias, estilos e tamanhos.
-  Compras: O usuario pode realizar compras de forma segura e eficiente.
-  Avaliação: O usuario pode avaliar os produtos e os brechós.
+  Cadastro usuario: O usuario pode personalizar seus gostos atraves do cadastro no nosso app.<br>
+  Cadastro brechó: Através deste cadastro os brechós conseguem anunciar seus produtos.<br>
+  Busca de produtos: O usuario pode buscar produtos por categorias, estilos e tamanhos.<br>
+  Compras: O usuario pode realizar compras de forma segura e eficiente.<br>
+  Avaliação: O usuario pode avaliar os produtos e os brechós.<br>
   Compartilhamento: O usuario pode compartilhar produtos e brechós com amigos.
 
 ## Instrução de Instalação
@@ -21,8 +21,8 @@
   Este alicativo ainda está em processo de criação.
 
 ## Tecnologias Utilizadas
-  Front-end: 
-  Back-end:
+  Front-end:<br>
+  Back-end:<br>
   Banco de Dados: PostgreSQL.
 
 ## Integrantes
