@@ -29,3 +29,6 @@ Maria Eduarda Wolf: https://github.com/dudawl18 <br>
 Alejandra: https://github.com/rinmarys <br>
 Nicholas: https://github.com/nicholas-sc-08 <br>
 Gabriel Lacerda: https://github.com/GabrielFerLacerda
+
+## Contas Profissionais
+
