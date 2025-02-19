@@ -1,17 +1,28 @@
 {
   "name": "back_end",
   "version": "1.0.0",
+<<<<<<< HEAD
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon script.js"
+=======
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon watch script.js"
+>>>>>>> c86fe8adfac2e885c89caa8fccf4fce9b3493e61
   },
   "author": "nsc",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "body-parser": "^1.20.3",
+<<<<<<< HEAD
+    "cors": "^2.8.5",
+=======
     "express": "^4.21.2",
+>>>>>>> c86fe8adfac2e885c89caa8fccf4fce9b3493e61
     "nodemon": "^3.1.9"
   }
 }

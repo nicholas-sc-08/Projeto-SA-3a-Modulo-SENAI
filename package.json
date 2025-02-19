@@ -10,10 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "nodemon": "^3.1.9",
     "pg": "^8.13.3",
+=======
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+>>>>>>> e0bc2761b2958c2f18ebe5da7637f5b8d55ac6a4
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0"
