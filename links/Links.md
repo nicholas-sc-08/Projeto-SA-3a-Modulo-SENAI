@@ -2,11 +2,11 @@
 
 ## Instagram
 
-[fly.circular] (https://www.instagram.com/fly.circular/)
+[fly.circular](https://www.instagram.com/fly.circular/)
 
 ## LinkedIn
 
-[FlyCircular] (https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
+[FlyCircular](https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
 
 ## Integrantes
 
