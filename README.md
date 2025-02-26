@@ -85,40 +85,40 @@
 ## Protótipos das Telas
 ### Tela de Início do Cadastro:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Inicio_Cadastro.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Inicio_Cadastro.png">  <br/>
 ### Tela de Login:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Login.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Login.png">  <br/>
 ### Tela de Cadastro Brechó:
 ### Etapa Um:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Vendedores.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Vendedores.png">  <br/>
 
 ### Etapa Dois:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Brecho.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Brecho.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Brecho_Ende.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Brecho_Ende.png">  <br/>
 
 ### Tela Cadastro Cliente:
 ### Etapa Um: 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E1.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E1.png">  <br/>
 
 ### Etapa Dois: 
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E2.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E2.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="300" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E3.png">  <br/>
+<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E3.png">  <br/>
 
 ## Instrução de Instalação
   Este aplicativo ainda está em processo de crianção.
 
 ## Intrução de Uso
-  Este alicativo ainda está em processo de criação.
+  Este aplicativo ainda está em processo de criação.
 
 ## Tecnologias Utilizadas
   Front-end:<br>
