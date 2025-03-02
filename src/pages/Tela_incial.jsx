@@ -37,6 +37,9 @@ function Tela_incial() {
           <p>Nome: {usuario.nome}</p>
           <p>Email: {usuario.email}</p>
           <p>Senha: {usuario.senha}</p>
+          <p>Telefone: {usuario.telefone}</p>
+          <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
+          <p>CPF: {usuario.cpf}</p>
 
         </div>
       ))}

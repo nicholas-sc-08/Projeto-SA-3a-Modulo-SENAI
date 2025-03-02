@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 function Login() {
  
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
-    const [ email_ja_cadastrado, set_email_ja_cadastrado ] = useState(false);
     const navegar = useNavigate(); 
     
     useEffect(() => {
@@ -35,12 +34,13 @@ function Login() {
     const lidar_sucesso = async (res) => {
         
         const cliente_a_logar = jwtDecode(res.credential);
-      
+        let email_ja_cadastrado = false;
+
       for(let i = 0; i < array_clientes.length; i++){
   
         if(array_clientes[i].email == cliente_a_logar.email){
 
-            set_email_ja_cadastrado(true);
+           email_ja_cadastrado = true;
         };
       };
 

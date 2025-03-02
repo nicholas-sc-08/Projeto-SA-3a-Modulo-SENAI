@@ -36,11 +36,11 @@ app.get(`/usuarios`, async (req, res) => {
 
 app.post(`/usuarios`, async (req, res) => {
 
-    const { nome, email, senha } = req.body;
+    const { nome, email, senha, telefone, cpf, data_de_nascimento } = req.body;
 
     try{
 
-        const resultado = await pool.query(`INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING *`, [nome, email, senha]);
+        const resultado = await pool.query(`INSERT INTO usuarios (nome, email, senha, telefone, cpf, data_de_nascimento) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [nome, email, senha, telefone, cpf, data_de_nascimento]);
         res.status(200).json(resultado.rows[0]);
 
     } catch(erro){
