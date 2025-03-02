@@ -10,6 +10,17 @@ const porta = 3000;
 app.use(body_parser.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    next();
+  });
+  
+
+app.get('/', (req, res) => {
+    res.send('Servidor de Usuários');
+});
+
 app.get(`/usuarios`, async (req, res) => {
 
     try {
@@ -25,12 +36,11 @@ app.get(`/usuarios`, async (req, res) => {
 
 app.post(`/usuarios`, async (req, res) => {
 
-    const { nome, email, senha} = req.body;
+    const { nome, email, senha } = req.body;
 
     try{
 
-        const resultado = await pool.query(`INSERT INTO usuarios(nome, email, senha) values($1, $2, $3)`, [nome, email, senha]);
-
+        const resultado = await pool.query(`INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING *`, [nome, email, senha]);
         res.status(200).json(resultado.rows[0]);
 
     } catch(erro){

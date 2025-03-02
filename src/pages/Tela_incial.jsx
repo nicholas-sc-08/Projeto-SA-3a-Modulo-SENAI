@@ -4,20 +4,20 @@ import { GlobalContext } from '../contexts/GlobalContext';
 
 function Tela_incial() {
 
-  const { array_usuarios, set_array_usuarios } = useContext(GlobalContext);
+  const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   
   useEffect(() => {
 
-    fecth_usuarios();
+    informacoes_clientes();
   }, []);
 
-  const fecth_usuarios = async () => {
+  const informacoes_clientes = async () => {
     
     try {
       
       const resultado = await axios.get(`http://localhost:3000/usuarios`);
-      set_array_usuarios(resultado.data);  
+      set_array_clientes(resultado.data);  
 
     } catch (erro) {
       
@@ -29,7 +29,7 @@ function Tela_incial() {
     <div>
       <p>Sou a tela inicial</p>
 
-      {array_usuarios.map((usuario, i) => (
+      {array_clientes.map((usuario, i) => (
 
         <div key={i}>
 
