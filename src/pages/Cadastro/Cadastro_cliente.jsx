@@ -4,7 +4,8 @@ import Secao_inputs_um from '../../components/Cadastro_cliente_secao_inputs_um.j
 import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_dois.jsx';
 import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Cadastro_cliente.css';
 
 function Cadastro_cliente() {
 
@@ -16,6 +17,7 @@ function Cadastro_cliente() {
   const { cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente } = useContext(GlobalContext);
   const [exibir_botao_de_cadastro, set_exibir_botao_de_cadastro] = useState(false);
   const [mensagem_de_erro, set_mensagem_de_erro] = useState(``);
+  const [sub_titulo_cadastro_cliente, set_sub_titulo_cadastro_cliente] = useState(`Quase lá! Preencha abaixo e aproveite as ofertas!`);
   const mudar_de_pagina = useNavigate(``);
   const dia_de_hoje = new Date();
   const [idade, set_idade] = useState(``);
@@ -48,6 +50,35 @@ function Cadastro_cliente() {
       console.error(erro);
     };
   };
+
+  useEffect(() => {
+
+    informacoes_clientes();
+    
+  }, []);
+
+  useEffect(() => {
+
+    calcular_idade();
+
+  }, [form_de_cadastro_cliente.data_de_nascimento]);
+
+  const calcular_idade = () => {
+
+    set_idade(dia_de_hoje.getFullYear() - new Date(form_de_cadastro_cliente.data_de_nascimento).getFullYear());
+  };
+
+  useEffect(() => {
+
+    if(cadastro_parte_dois_cliente){
+
+      set_sub_titulo_cadastro_cliente(`Estamos a um passo de ter você conosco!`);
+    } else if(cadastro_parte_tres_cliente){
+
+      set_sub_titulo_cadastro_cliente(`Seu estilo está quase no ar!`);
+    };
+
+  }, [cadastro_parte_um_cliente, cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
 
   useEffect(() => {
 
@@ -109,7 +140,6 @@ function Cadastro_cliente() {
 
     } else if(cadastro_parte_dois_cliente == true && cadastro_parte_tres_cliente == false){
 
-
       for(let i = 0; i < array_clientes.length; i++){
 
         if(array_clientes[i].cpf == form_de_cadastro_cliente.cpf){
@@ -122,8 +152,6 @@ function Cadastro_cliente() {
           telefone_ja_cadastrado = true;
         };
       };
-
-      set_idade(dia_de_hoje.getFullYear() - new Date(form_de_cadastro_cliente.data_de_nascimento).getFullYear());
 
       switch(true){
 
@@ -188,12 +216,22 @@ function Cadastro_cliente() {
 };
 
   return (
-    <div>
+    <div className='container_cadastro_cliente'>
 
         <div className="container_ir_para_login_cliente">
 
+        <img src="./img/Estrela_um_cadastro.svg" alt="estrela" className='estrela_um_cadastro'/>
+
+          <div className="container_informacoes_para_o_login">
+
+          <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
+          <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível. </p>
           <button onClick={() => mudar_de_pagina(`/login`)}>Entrar</button>
 
+          <img src="./img/Estrela_dois_cadastro.svg" alt="estrela" />
+
+          </div>
+        
         </div>
 
         <div className="container_formulario_cliente">
@@ -202,13 +240,22 @@ function Cadastro_cliente() {
 
           <div className="container_logo_etapa_cliente">
 
-            <div className="container_etapa_cliente">
+            <div className="container_etapa_cliente_alinhamento">
+            
+              <div className="container_etapa_cliente">
 
+                <img src='./img/Elipse_verde.svg'/>
 
+                {cadastro_parte_dois_cliente || cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg'/> : <img src='./img/Elipse_amarela.svg'/>}
+                {cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg'/> : <img src='./img/Elipse_amarela.svg'/>}
 
-            </div>
+              </div>
 
-            <div className="container_logo_fly_cliente">
+              <div className="container_logo_fly_cliente">
+
+                <Link to={`/`}><img src="./img/logo-verdeCamadinha 2.svg" alt="" /></Link>
+
+              </div>
 
             </div>
 
@@ -217,17 +264,21 @@ function Cadastro_cliente() {
           <div className="container_cadastro_cliente_titulo">
 
             <h1>Cadastro de usuário</h1>
-            <p>asdasdasdasd</p>
+            <p>{sub_titulo_cadastro_cliente}</p>
           </div>
 
             {cadastro_parte_um_cliente && <Secao_inputs_um/>}
             {cadastro_parte_dois_cliente && <Secao_inputs_dois/>}
             {cadastro_parte_tres_cliente && <Secao_inputs_tres/>}
 
-              {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Seguinte</button>}
+              <div className="dv_formulario_botoes">
+
+              {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
               {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
+              <p>{mensagem_de_erro}</p>
+              
+              </div>
         </form>
-        {mensagem_de_erro}
         </div>
     </div>
   );

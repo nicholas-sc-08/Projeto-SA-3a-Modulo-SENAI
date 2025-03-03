@@ -1,0 +1,381 @@
+:root{
+
+    --cor_um: #466330;
+    --cor_um_v_um: #466330b5;
+    --cor_um_v_dois: #2d411f;
+    --cor_dois: #9DA650;
+    --cor_tres: #E7E8CE;
+    --cor_quatro: #FFFDF7;
+    --cor_cinco: #E4CD80;
+    --cor_seis: #3E2A21;
+    --cor_seis_v_um: #3e2a219e;
+    --cor_sete: #FF3333;
+    --cor_sete_v_um: #ff333399;
+
+    --tipografia_primaria: "Montserrat", serif;
+    --tipografia_secundaria: "Poppins", serif;
+}
+
+.container_cadastro_cliente{
+
+    transition: 0.3s;
+
+    display: flex;
+
+    height: 100vh;
+}
+
+.container_ir_para_login_cliente{
+
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    width: 80%;
+
+    background-color: var(--cor_quatro);
+}
+
+.container_informacoes_para_o_login{
+
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 85%;
+    height: 85%;
+
+    border: 1% solid var(--cor_tres);
+    border-radius: 3%;
+
+    background-color: var(--cor_tres);
+}
+
+.container_informacoes_para_o_login h1{
+
+    transition: 0.3s;
+
+    font-family: var(--tipografia_primaria);
+    font-weight: 700;
+    font-size: 2.2rem;
+
+    color: var(--cor_um);
+}
+
+.container_informacoes_para_o_login p{
+
+    transition: 0.3s;
+
+    width: 60%;
+
+    margin-top: 5%;
+    margin-bottom: 8%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_um_v_um);
+}
+
+.container_informacoes_para_o_login button{
+
+    width: 30%;
+    height: 8%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border-radius: 10vw;
+    border: 0.1vw solid var(--cor_um);
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}
+
+.container_informacoes_para_o_login button:hover{
+
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}
+
+.container_informacoes_para_o_login img{
+
+    transition: 0.3s;
+
+    left: 1%;
+    bottom: 20%;
+    position: absolute;
+}
+
+.estrela_um_cadastro{
+
+    transition: 0.3s;
+
+    right: 53.5%;
+    top: 20%;
+    position: absolute;
+}
+
+@media only screen and (min-width: 1201px) and (max-width: 1430px){
+
+    .container_cadastro_cliente{
+
+        transition: 0.3s;
+
+        display: flex;
+    
+        height: 100vh;
+    }
+    
+    .container_ir_para_login_cliente{
+    
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    
+        width: 85%;
+    
+        background-color: var(--cor_quatro);
+    }
+    
+    .container_informacoes_para_o_login{
+    
+        transition: 0.3s;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        width: 85%;
+        height: 90%;
+
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        border: 1% solid var(--cor_tres);
+        border-radius: 3%;
+    
+        background-color: var(--cor_tres);
+    }
+    
+    .container_informacoes_para_o_login h1{
+    
+        transition: 0.3s;
+
+        width: 80%;
+
+        font-family: var(--tipografia_primaria);
+        font-weight: 700;
+        font-size: 2.5rem;
+    
+        color: var(--cor_um);
+    }
+    
+    .container_informacoes_para_o_login p{
+    
+        transition: 0.3s;
+
+        width: 60%;
+    
+        margin-top: 5%;
+        margin-bottom: 8%;
+    
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+    
+        color: var(--cor_um_v_um);
+    }
+    
+    .container_informacoes_para_o_login button{
+    
+        width: 30%;
+        height: 7%;
+    
+        cursor: pointer;
+    
+        transition: 0.3s;
+    
+        border-radius: 10vw;
+        border: 0.1vw solid var(--cor_um);
+    
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+    
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+    
+    .container_informacoes_para_o_login button:hover{
+    
+        border: 0.1vw solid var(--cor_um_v_dois);
+        background-color: var(--cor_um_v_dois);
+    }
+    
+    .container_informacoes_para_o_login img{
+
+        transition: 0.3s;
+        
+        width: 8%;
+
+        left: 1%;
+        bottom: 20%;
+        position: absolute;
+    }
+    
+    .estrela_um_cadastro{
+    
+        transition: 0.3s;
+
+        right: 53%;
+        top: 20%;
+        position: absolute;
+    }
+
+    .container_formulario_cliente{
+
+        width: 90%;
+    }
+
+    .container_logo_etapa_cliente{
+
+        width: 90%;
+
+    }
+
+    .container_etapa_cliente_alinhamento{
+
+        margin-top: 6%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .container_etapa_cliente {
+
+        width: 20%;
+
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container_cadastro_cliente_titulo{
+
+        width: 70%;
+    }
+
+    .container_cadastro_cliente_titulo h1{
+
+        font-family: var(--tipografia_primaria);
+        font-size: 2.5rem;
+
+        color: var(--cor_seis);
+    }
+
+    .container_cadastro_cliente_titulo p{
+
+        width: 95%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois{
+
+        margin-top: 2%;
+
+        width: 70%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container_inputs_secao_um_e_dois label{
+
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois span{
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_inputs_secao_um_e_dois input{        
+
+        width: 90%;
+        height: 4vw;
+        padding-left: 1%;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 1vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        padding-right: 3%;
+    }
+
+    .container_formulario_cliente button{
+
+        width: 25%;
+        height: 6vh;
+
+        border: 0.1vw solid var(--cor_um);
+        border-radius: 15vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+
+    .dv_formulario_botoes{
+
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 4%;
+    }
+
+    .dv_formulario_botoes p{
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: bold;
+
+        margin-left: 3%;
+
+        color: var(--cor_sete);
+    }
+}

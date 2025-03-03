@@ -1,14 +1,14 @@
 import React from 'react'
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
-import { useMask } from '@react-input/mask';
+import '../pages/Cadastro/Cadastro_cliente.css';
 
 function Cadastro_cliente_secao_inputs_dois() {
 
   const { form_de_cadastro_cliente, set_form_de_cadastro_cliente } = useContext(GlobalContext);
   
   return (
-    <div>
+    <div className='container_inputs_secao_um_e_dois'>
 
         <label>Número de Telefone<span>*</span></label>
         <input type="text" required value={form_de_cadastro_cliente.telefone} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, telefone: e.target.value})}/>
