@@ -5,10 +5,12 @@ import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_do
 import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 function Cadastro_cliente() {
 
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
-  const { form_de_cadastro_cliente, set_form_de_cadastro_cliente } = useContext(GlobalContext);
+  const { form_de_cadastro_cliente } = useContext(GlobalContext);
+  const { endereco_do_cliente } = useContext(GlobalContext);
   const { cadastro_parte_um_cliente, set_cadastro_parte_um_cliente } = useContext(GlobalContext);
   const { cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente } = useContext(GlobalContext);
   const { cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente } = useContext(GlobalContext);
@@ -21,13 +23,6 @@ function Cadastro_cliente() {
   let cpf_ja_cadastrado = false;
   let telefone_ja_cadastrado = false;
   let senhas_iguais = false;
-
-  useEffect(() => {
-
-    informacoes_clientes();
-    console.log(idade);
-    
-  }, [form_de_cadastro_cliente]);
   
   const lidar_com_formulario = async e => {
 
@@ -35,10 +30,18 @@ function Cadastro_cliente() {
 
     try {
       
-      const resposta = axios.post(`http://localhost:3000/usuarios`, form_de_cadastro_cliente);
+      const resposta = await axios.post(`http://localhost:3000/usuarios`, form_de_cadastro_cliente);
       
-      set_form_de_cadastro_cliente({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, confirmar_senha: ``});
+      const endereco_do_cliente_com_fk = {
+
+        ...endereco_do_cliente,
+        fk_id: resposta.data.id
+      };
+      
+      const resposta_endereco = await axios.post(`http://localhost:3000/enderecos`, endereco_do_cliente_com_fk);
+      
       informacoes_clientes();
+      mudar_de_pagina(`/login`);
 
     } catch (erro) {
       
@@ -106,7 +109,6 @@ function Cadastro_cliente() {
 
     } else if(cadastro_parte_dois_cliente == true && cadastro_parte_tres_cliente == false){
 
-      // cpf, telefone e a data de nascimento
 
       for(let i = 0; i < array_clientes.length; i++){
 

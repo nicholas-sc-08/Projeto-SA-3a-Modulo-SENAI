@@ -10,6 +10,7 @@ function Tela_incial() {
   useEffect(() => {
 
     informacoes_clientes();
+    
   }, []);
 
   const informacoes_clientes = async () => {

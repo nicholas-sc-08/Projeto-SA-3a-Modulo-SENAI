@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
     next();
-  });
+});
   
 
 app.get('/', (req, res) => {
@@ -45,6 +45,34 @@ app.post(`/usuarios`, async (req, res) => {
 
     } catch(erro){
 
+        console.error(erro);
+    };
+});
+
+app.get(`/enderecos`, async (req, res) => {
+
+    try {
+        
+    const resultado = await pool.query(`SELECT * FROM enderecos`);
+    res.json(resultado.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/enderecos`, async (req, res) => {
+
+    const { cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id } = req.body;
+
+    try {
+
+        const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id) values($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id]);
+        res.status(200).json(resultado.rows[0]);
+        
+    } catch (erro) {
+      
         console.error(erro);
     };
 });
