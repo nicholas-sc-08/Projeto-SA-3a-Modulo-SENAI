@@ -1,9 +1,10 @@
 import React from 'react'
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
+import { useMask } from '@react-input/mask';
 
 function Cadastro_cliente_secao_inputs_dois() {
-  
+
   const { form_de_cadastro_cliente, set_form_de_cadastro_cliente } = useContext(GlobalContext);
   
   return (

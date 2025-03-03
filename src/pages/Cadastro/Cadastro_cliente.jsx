@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import Secao_inputs_um from '../../components/Cadastro_cliente_secao_inputs_um.jsx';
 import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_dois.jsx';
+import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 function Cadastro_cliente() {
@@ -13,7 +14,20 @@ function Cadastro_cliente() {
   const { cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente } = useContext(GlobalContext);
   const [exibir_botao_de_cadastro, set_exibir_botao_de_cadastro] = useState(false);
   const [mensagem_de_erro, set_mensagem_de_erro] = useState(``);
-  const mudar_de_página = useNavigate(``);
+  const mudar_de_pagina = useNavigate(``);
+  const dia_de_hoje = new Date();
+  const [idade, set_idade] = useState(``);
+  let email_ja_cadastrado = false;
+  let cpf_ja_cadastrado = false;
+  let telefone_ja_cadastrado = false;
+  let senhas_iguais = false;
+
+  useEffect(() => {
+
+    informacoes_clientes();
+    console.log(idade);
+    
+  }, [form_de_cadastro_cliente]);
   
   const lidar_com_formulario = async e => {
 
@@ -46,8 +60,6 @@ function Cadastro_cliente() {
 
   const etapa_seguinte = () => {
 
-    let email_ja_cadastrado = false;
-    let senhas_iguais = false;
 
     if(cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false){
 
@@ -94,8 +106,68 @@ function Cadastro_cliente() {
 
     } else if(cadastro_parte_dois_cliente == true && cadastro_parte_tres_cliente == false){
 
-      set_cadastro_parte_dois_cliente(false);
-      set_cadastro_parte_tres_cliente(true);
+      // cpf, telefone e a data de nascimento
+
+      for(let i = 0; i < array_clientes.length; i++){
+
+        if(array_clientes[i].cpf == form_de_cadastro_cliente.cpf){
+
+          cpf_ja_cadastrado = true;
+        };
+
+        if(array_clientes[i].telefone == form_de_cadastro_cliente.telefone){
+
+          telefone_ja_cadastrado = true;
+        };
+      };
+
+      set_idade(dia_de_hoje.getFullYear() - new Date(form_de_cadastro_cliente.data_de_nascimento).getFullYear());
+
+      switch(true){
+
+        case cpf_ja_cadastrado == false && telefone_ja_cadastrado == false && idade >= 18:
+
+        set_mensagem_de_erro(``);
+        set_cadastro_parte_dois_cliente(false);
+        set_cadastro_parte_tres_cliente(true);
+        break;
+
+        case cpf_ja_cadastrado == true && telefone_ja_cadastrado == false && idade >= 18:
+
+        set_mensagem_de_erro(`CPF já cadastrado!`);
+        break;
+
+        case cpf_ja_cadastrado == true && telefone_ja_cadastrado == true && idade >= 18:
+
+        set_mensagem_de_erro(`CPF e Telefone já cadastrados!`);
+        break;
+
+        case cpf_ja_cadastrado == true && telefone_ja_cadastrado == true && idade < 18:
+
+        set_mensagem_de_erro(`CPF e Telefone já cadastrados! Você deve ser maior de idade.`);
+        break;
+
+        case cpf_ja_cadastrado == true && telefone_ja_cadastrado == false && idade < 18:
+
+        set_mensagem_de_erro(`CPF já cadastrado! Você deve ser maior de idade!`);
+        break;
+
+        case cpf_ja_cadastrado == false && telefone_ja_cadastrado == true && idade < 18:
+
+        set_mensagem_de_erro(`Telefone já cadastrado! Você deve ser maior de idade!`);
+        break;
+
+        case cpf_ja_cadastrado == false && telefone_ja_cadastrado == false && idade < 18:
+
+        set_mensagem_de_erro(`Você deve ser maior de idade!`);
+        break;
+
+        default:
+
+        set_mensagem_de_erro(`Telefone já cadastrado!`);
+        break;
+      };
+
     };
   };
 
@@ -118,7 +190,7 @@ function Cadastro_cliente() {
 
         <div className="container_ir_para_login_cliente">
 
-          <button onClick={() => mudar_de_página(`/login`)}>Entrar</button>
+          <button onClick={() => mudar_de_pagina(`/login`)}>Entrar</button>
 
         </div>
 
@@ -148,7 +220,7 @@ function Cadastro_cliente() {
 
             {cadastro_parte_um_cliente && <Secao_inputs_um/>}
             {cadastro_parte_dois_cliente && <Secao_inputs_dois/>}
-            {cadastro_parte_tres_cliente && <Secao_inputs_um/>}
+            {cadastro_parte_tres_cliente && <Secao_inputs_tres/>}
 
               {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Seguinte</button>}
               {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
