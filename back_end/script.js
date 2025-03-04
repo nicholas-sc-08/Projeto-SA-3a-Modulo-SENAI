@@ -21,11 +21,11 @@ app.get('/', (req, res) => {
     res.send('Servidor de Usuários');
 });
 
-app.get(`/usuarios`, async (req, res) => {
+app.get(`/clientes`, async (req, res) => {
 
     try {
         
-        const resultado = await pool.query(`SELECT * FROM usuarios`);
+        const resultado = await pool.query(`SELECT * FROM clientes`);
         res.json(resultado.rows);
 
     } catch (erro) {
@@ -34,13 +34,13 @@ app.get(`/usuarios`, async (req, res) => {
     };
 });
 
-app.post(`/usuarios`, async (req, res) => {
+app.post(`/clientes`, async (req, res) => {
 
     const { nome, email, senha, telefone, cpf, data_de_nascimento } = req.body;
 
     try{
 
-        const resultado = await pool.query(`INSERT INTO usuarios (nome, email, senha, telefone, cpf, data_de_nascimento) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [nome, email, senha, telefone, cpf, data_de_nascimento]);
+        const resultado = await pool.query(`INSERT INTO clientes (nome, email, senha, telefone, cpf, data_de_nascimento) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [nome, email, senha, telefone, cpf, data_de_nascimento]);
         res.status(200).json(resultado.rows[0]);
 
     } catch(erro){

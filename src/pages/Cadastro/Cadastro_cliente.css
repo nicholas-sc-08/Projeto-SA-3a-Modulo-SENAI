@@ -347,6 +347,9 @@
 
     .container_formulario_cliente button{
 
+        transition: 0.3s;
+        cursor: pointer;
+
         width: 25%;
         height: 6vh;
 
@@ -360,6 +363,11 @@
         background-color: var(--cor_um);
     }
 
+    .container_formulario_cliente button:hover{
+
+        background-color: var(--cor_um_v_dois);
+    }
+
     .dv_formulario_botoes{
 
         display: flex;
@@ -370,6 +378,8 @@
 
     .dv_formulario_botoes p{
 
+        width: 40%;
+
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
         font-weight: bold;
@@ -377,5 +387,142 @@
         margin-left: 3%;
 
         color: var(--cor_sete);
+    }
+
+    .secao_inputs_tres_p_um{
+
+        margin-top: 2%;
+
+        width: 70%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .secao_inputs_tres_p_um label{
+
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .secao_inputs_tres_p_um span{
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .secao_inputs_tres_p_um input{        
+
+        width: 90%;
+        height: 4vw;
+        padding-left: 1%;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 1vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_alinhamento{
+
+        display: flex;
+        justify-content: space-between;
+
+        width: 66%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um{
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois{
+
+        display: flex;
+        flex-direction: column;
+
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um label{
+
+        margin-top: 4%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um span{
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input{        
+
+        width: 90%;
+        height: 4vw;
+        padding-left: 2%;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 1vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_seis);
+        background-color: transparent;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label{
+
+        margin-top: 4%;
+        margin-bottom: 2%;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        color: var(--cor_seis_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span{
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input{        
+
+        width: 90%;
+        height: 4vw;
+        padding-left: 2%;
+
+        outline: none;
+        border: 0.1vw solid var(--cor_dois);
+        border-radius: 1vw;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+
+        color: var(--cor_seis);
+        background-color: transparent;
     }
 }

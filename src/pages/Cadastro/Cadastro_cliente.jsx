@@ -15,41 +15,55 @@ function Cadastro_cliente() {
   const { cadastro_parte_um_cliente, set_cadastro_parte_um_cliente } = useContext(GlobalContext);
   const { cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente } = useContext(GlobalContext);
   const { cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente } = useContext(GlobalContext);
-  const [exibir_botao_de_cadastro, set_exibir_botao_de_cadastro] = useState(false);
-  const [mensagem_de_erro, set_mensagem_de_erro] = useState(``);
-  const [sub_titulo_cadastro_cliente, set_sub_titulo_cadastro_cliente] = useState(`Quase lá! Preencha abaixo e aproveite as ofertas!`);
+  const [ exibir_botao_de_cadastro, set_exibir_botao_de_cadastro ] = useState(false);
+  const [ mensagem_de_erro, set_mensagem_de_erro ] = useState(``);
+  const [ sub_titulo_cadastro_cliente, set_sub_titulo_cadastro_cliente ] = useState(`Quase lá! Preencha abaixo e aproveite as ofertas!`);
   const mudar_de_pagina = useNavigate(``);
   const dia_de_hoje = new Date();
-  const [idade, set_idade] = useState(``);
+  const [ idade, set_idade ] = useState(``);
   let email_ja_cadastrado = false;
   let cpf_ja_cadastrado = false;
   let telefone_ja_cadastrado = false;
   let senhas_iguais = false;
   
-  const lidar_com_formulario = async e => {
-
-    e.preventDefault();
-
-    try {
-      
-      const resposta = await axios.post(`http://localhost:3000/usuarios`, form_de_cadastro_cliente);
-      
-      const endereco_do_cliente_com_fk = {
-
-        ...endereco_do_cliente,
-        fk_id: resposta.data.id
+  const informacoes_clientes = async () => {
+        
+      try {
+          
+          const resultado = await axios.get(`http://localhost:3000/clientes`);
+          set_array_clientes(resultado.data);
+          console.log(resultado.data);
+          
+      } catch (erro) {
+          
+          console.log(erro);
       };
-      
-      const resposta_endereco = await axios.post(`http://localhost:3000/enderecos`, endereco_do_cliente_com_fk);
-      
-      informacoes_clientes();
-      mudar_de_pagina(`/login`);
-
-    } catch (erro) {
-      
-      console.error(erro);
-    };
   };
+
+    const lidar_com_formulario = async e => {
+
+      e.preventDefault();
+
+      try {      
+
+        const resposta = await axios.post(`http://localhost:3000/clientes`, form_de_cadastro_cliente);
+        
+        const endereco_do_cliente_com_fk = {
+
+          ...endereco_do_cliente,
+          fk_id: resposta.data.id
+        };
+        
+        const resposta_endereco = await axios.post(`http://localhost:3000/enderecos`, endereco_do_cliente_com_fk);
+        
+        informacoes_clientes();
+        mudar_de_pagina(`/login`);
+      
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
 
   useEffect(() => {
 
@@ -78,7 +92,7 @@ function Cadastro_cliente() {
       set_sub_titulo_cadastro_cliente(`Seu estilo está quase no ar!`);
     };
 
-  }, [cadastro_parte_um_cliente, cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
+  }, [cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
 
   useEffect(() => {
 
@@ -111,6 +125,12 @@ function Cadastro_cliente() {
       } else {
 
         senhas_iguais = false;
+      };
+
+      if(form_de_cadastro_cliente.nome == false || form_de_cadastro_cliente.email == false || form_de_cadastro_cliente.senha == false){
+
+        set_mensagem_de_erro(`Favor preencher todos os campos!`);
+        return
       };
       
       switch(true){
@@ -192,28 +212,19 @@ function Cadastro_cliente() {
         set_mensagem_de_erro(`Você deve ser maior de idade!`);
         break;
 
-        default:
+        case cpf_ja_cadastrado == false && telefone_ja_cadastrado == true && idade > 18:
 
         set_mensagem_de_erro(`Telefone já cadastrado!`);
+        break;
+
+        default:
+
+        set_mensagem_de_erro(`Favor preencher todos os campos!`);
         break;
       };
 
     };
   };
-
-  const informacoes_clientes = async () => {
-        
-    try {
-        
-        const resultado = await axios.get(`http://localhost:3000/usuarios`);
-        set_array_clientes(resultado.data);
-        console.log(resultado.data);
-        
-    } catch (erro) {
-        
-        console.log(erro);
-    };
-};
 
   return (
     <div className='container_cadastro_cliente'>

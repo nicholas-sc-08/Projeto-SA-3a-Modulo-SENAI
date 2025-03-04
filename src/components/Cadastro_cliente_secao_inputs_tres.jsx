@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
+import '../pages/Cadastro/Cadastro_cliente.css';
 
 function Cadastro_cliente_secao_inputs_tres() {
     
     const { endereco_do_cliente, set_endereco_do_cliente } = useContext(GlobalContext);
     useEffect(() => {
 
-        if(endereco_do_cliente.cep.length === 8){
+        if(endereco_do_cliente.cep.length === 9){
 
             buscar_cep();
         };
@@ -38,33 +40,41 @@ function Cadastro_cliente_secao_inputs_tres() {
     return (
     <div>
 
-        <label>CEP<span>*</span></label>
-        <input type="text" required value={endereco_do_cliente.cep} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}/>
+        <div className="secao_inputs_tres_p_um">
 
-        <label>Bairro<span>*</span></label>
-        <input type="text" value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
+            <label>CEP<span>*</span></label>
+            <input type="text" placeholder='00000-000' required value={endereco_do_cliente.cep} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}/>
 
-        <label>Logradouro<span>*</span></label>
-        <input type="text" required value={endereco_do_cliente.logradouro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, logradouro: e.target.value})}/>
+            <label>Bairro<span>*</span></label>
+            <input type="text" placeholder='Digite seu bairro' value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
+
+            <label>Logradouro<span>*</span></label>
+            <input type="text" placeholder='Digite sua rua, avenida, etc..' required value={endereco_do_cliente.logradouro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, logradouro: e.target.value})}/>
         
-        <div className="container_cadastro_cliente_secao_inputs_tres_coluna_um">
+       </div>
 
-            <label>Estado<span>*</span></label>
-            <input type="text" maxLength={2} value={endereco_do_cliente.estado} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, estado: e.target.value})}/>
+        <div className="container_cadastro_cliente_secao_inputs_tres_alinhamento">
+        
+            <div className="container_cadastro_cliente_secao_inputs_tres_coluna_um">
 
-            <label>Número<span>*</span></label>
-            <input type="text" required value={endereco_do_cliente.numero} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, numero: e.target.value})}/>
-            
-        </div>
+                <label>Estado<span>*</span></label>
+                <input type="text" placeholder='Digite o estado' maxLength={2} value={endereco_do_cliente.estado} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, estado: e.target.value})}/>
 
-        <div className="container_cadastro_cliente_secao_inputs_tres_coluna_um">
+                <label>Número<span>*</span></label>
+                <input type="text" placeholder='Número da residência' required value={endereco_do_cliente.numero} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, numero: e.target.value})}/>
+                
+            </div>
 
-            <label>Cidade<span>*</span></label>
-            <input type="text" value={endereco_do_cliente.cidade} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cidade: e.target.value})}/>
+            <div className="container_cadastro_cliente_secao_inputs_tres_coluna_dois">
 
-            <label>Complemento<span>*</span></label>
-            <input type="text" required value={endereco_do_cliente.complemento} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, complemento: e.target.value})}/>
-            
+                <label>Cidade<span>*</span></label>
+                <input type="text" placeholder='Digite sua cidade' value={endereco_do_cliente.cidade} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cidade: e.target.value})}/>
+
+                <label>Complemento</label>
+                <input type="text" placeholder='( Opcional )' value={endereco_do_cliente.complemento} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, complemento: e.target.value})}/>
+                
+            </div>
+
         </div>
     </div>
   )
