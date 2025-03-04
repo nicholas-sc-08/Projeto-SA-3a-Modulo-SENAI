@@ -17,7 +17,7 @@ function Tela_incial() {
     
     try {
       
-      const resultado = await axios.get(`http://localhost:3000/usuarios`);
+      const resultado = await axios.get(`http://localhost:3000/clientes`);
       set_array_clientes(resultado.data);  
 
     } catch (erro) {
