@@ -13,6 +13,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente] = useState(false);
     const [cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente] = useState(false);
     const [ inicio_dashboard, set_inicio_dashboard ] = useState(true);
+    const [ clientes_dashboard, set_clientes_dashboard ] = useState(false);
 
     return (
         <GlobalContext.Provider value={{
@@ -32,7 +33,9 @@ export const GlobalContextProvider = ({ children }) => {
             endereco_do_cliente,
             set_endereco_do_cliente,
             inicio_dashboard,
-            set_inicio_dashboard
+            set_inicio_dashboard,
+            clientes_dashboard,
+            set_clientes_dashboard
             }}>
             {children}
         </GlobalContext.Provider>
