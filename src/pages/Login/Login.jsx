@@ -21,7 +21,7 @@ function Login() {
         
         try {
             
-            const resultado = await axios.get(`http://localhost:3000/usuarios`);
+            const resultado = await axios.get(`http://localhost:3000/clientes`);
             set_array_clientes(resultado.data);
             console.log(resultado.data);
             
@@ -35,6 +35,8 @@ function Login() {
         
         const cliente_a_logar = jwtDecode(res.credential);
         let email_ja_cadastrado = false;
+        console.log(cliente_a_logar);
+        
 
       for(let i = 0; i < array_clientes.length; i++){
   
@@ -59,7 +61,7 @@ function Login() {
                 senha: `123`
             };
 
-            const cadastrar_cliente = await axios.post(`http://localhost:3000/usuarios`, novo_cliente);
+            const cadastrar_cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
             set_array_clientes([...array_clientes, novo_cliente]);
                   
             navegar('/'); 

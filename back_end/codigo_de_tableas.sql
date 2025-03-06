@@ -4,9 +4,9 @@ CREATE TABLE clientes(
 	nome VARCHAR(50) NOT NULL,
 	email VARCHAR(200) NOT NULL,
 	senha VARCHAR(12) NOT NULL,
-	telefone VARCHAR(14) NOT NULL,
-	cpf VARCHAR(14) NOT NULL,
-	data_de_nascimento DATE NOT NULL
+	telefone VARCHAR(14),
+	cpf VARCHAR(14),
+	data_de_nascimento DATE
 	
 );
 
