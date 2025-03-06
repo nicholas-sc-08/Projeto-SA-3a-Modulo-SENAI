@@ -30,10 +30,10 @@ function Cadastro_cliente_secao_inputs_um() {
         <input type="email" placeholder='exemplo@dominio.com' required value={form_de_cadastro_cliente.email} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, email: e.target.value})}/>
 
         <label>Senha<span>*</span></label>
-        <input type={tipo_do_inpt_senha} placeholder='Digite sua senha' required value={form_de_cadastro_cliente.senha} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, senha: e.target.value})}/>
+        <input type={tipo_do_inpt_senha} min={7} maxLength={12} placeholder='Digite sua senha' required value={form_de_cadastro_cliente.senha} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, senha: e.target.value})}/>
 
         <label>Confirmar senha:<span>*</span></label>
-        <input type={tipo_do_inpt_senha} placeholder='Confirme sua senha' required value={form_de_cadastro_cliente.confirmar_senha} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, confirmar_senha: e.target.value})}/>
+        <input type={tipo_do_inpt_senha} min={7} maxLength={12} placeholder='Confirme sua senha' required value={form_de_cadastro_cliente.confirmar_senha} onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, confirmar_senha: e.target.value})}/>
         {/* <button type='button' onClick={() => set_tipo_senha(!tipo_senha)}>Mostrar senha</button> */}
     </div>
   )
