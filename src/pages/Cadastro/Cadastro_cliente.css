@@ -127,7 +127,7 @@
     position: absolute;
 }
 
-@media only screen and (min-width: 1201px) and (max-width: 1430px){
+@media only screen and (min-width: 1201px){
 
     .container_cadastro_cliente{
 
@@ -259,7 +259,7 @@
 
     .container_etapa_cliente_alinhamento{
 
-        margin-top: 6%;
+        margin-top: 2%;
 
         display: flex;
         align-items: center;
@@ -281,8 +281,10 @@
 
     .container_cadastro_cliente_titulo h1{
 
+        margin-top: -3%;
+
         font-family: var(--tipografia_primaria);
-        font-size: 2.5rem;
+        font-size: 2.2rem;
 
         color: var(--cor_seis);
     }
@@ -292,7 +294,7 @@
         width: 95%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1rem;
 
         color: var(--cor_seis_v_um);
     }
@@ -313,7 +315,7 @@
         margin-bottom: 2%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: bold;
 
         color: var(--cor_seis_v_um);
@@ -327,7 +329,7 @@
     .container_inputs_secao_um_e_dois input{        
 
         width: 90%;
-        height: 4vw;
+        height: 3.5vw;
         padding-left: 1%;
 
         outline: none;
@@ -359,6 +361,8 @@
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
 
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
         color: var(--cor_quatro);
         background-color: var(--cor_um);
     }
@@ -373,7 +377,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 4%;
+        margin-top: 2%;
     }
 
     .dv_formulario_botoes p{
@@ -393,7 +397,7 @@
 
         margin-top: 2%;
 
-        width: 70%;
+        width: 59%;
 
         display: flex;
         flex-direction: column;
@@ -405,7 +409,7 @@
         margin-bottom: 2%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
 
         color: var(--cor_seis_v_um);
@@ -419,7 +423,7 @@
     .secao_inputs_tres_p_um input{        
 
         width: 90%;
-        height: 4vw;
+        height: 3.2vw;
         padding-left: 1%;
 
         outline: none;
@@ -436,9 +440,9 @@
     .container_cadastro_cliente_secao_inputs_tres_alinhamento{
 
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
 
-        width: 66%;
+        width: 70%;
     }
 
     .container_cadastro_cliente_secao_inputs_tres_coluna_um{
@@ -446,7 +450,7 @@
         display: flex;
         flex-direction: column;
 
-        width: 100%;
+        width: 40%;
     }
 
     .container_cadastro_cliente_secao_inputs_tres_coluna_dois{
@@ -454,8 +458,7 @@
         display: flex;
         flex-direction: column;
 
-
-        width: 100%;
+        width: 40%;
     }
 
     .container_cadastro_cliente_secao_inputs_tres_coluna_um label{
@@ -464,7 +467,7 @@
         margin-bottom: 2%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
 
         color: var(--cor_seis_v_um);
@@ -478,8 +481,8 @@
     .container_cadastro_cliente_secao_inputs_tres_coluna_um input{        
 
         width: 90%;
-        height: 4vw;
-        padding-left: 2%;
+        height: 3.2vw;
+        padding-left: 1%;
 
         outline: none;
         border: 0.1vw solid var(--cor_dois);
@@ -498,7 +501,7 @@
         margin-bottom: 2%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
 
         color: var(--cor_seis_v_um);
@@ -512,8 +515,8 @@
     .container_cadastro_cliente_secao_inputs_tres_coluna_dois input{        
 
         width: 90%;
-        height: 4vw;
-        padding-left: 2%;
+        height: 3.2vw;
+        padding-left: 1%;
 
         outline: none;
         border: 0.1vw solid var(--cor_dois);
