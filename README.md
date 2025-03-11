@@ -115,7 +115,7 @@
 <img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E3.png">  <br/>
 
 ## Instrução de Instalação
-  Este aplicativo ainda está em processo de crianção.
+  Este aplicativo ainda está em processo de criação.
 
 ## Intrução de Uso
   Este aplicativo ainda está em processo de criação.
