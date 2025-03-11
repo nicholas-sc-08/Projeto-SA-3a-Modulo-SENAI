@@ -10,8 +10,14 @@ function Inicio_dashboard() {
 
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+    const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { clientes_dashboard, set_clientes_dashboard } = useContext(GlobalContext);
+    const { brechos_dashboard, set_brechos_dashboard } = useContext(GlobalContext);
+    const { produtos_dashboard, set_produtos_dashboard } = useContext(GlobalContext);
+    const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
     const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
+    
     
     useEffect(() => {
 
@@ -35,19 +41,56 @@ function Inicio_dashboard() {
     const ir_para_clientes = () => {
 
         set_clientes_dashboard(true);
+        set_brechos_dashboard(false);
+        set_produtos_dashboard(false);
+        set_categorias_dashboard(false);
+        set_inicio_dashboard(false);
+        
+    };
+
+    const ir_para_brechos = () => {
+
+        set_clientes_dashboard(false);
+        set_brechos_dashboard(true);
+        set_produtos_dashboard(false);
+        set_categorias_dashboard(false);
+        set_inicio_dashboard(false);
+    };
+
+    const ir_para_produtos = () => {
+
+        set_clientes_dashboard(false);
+        set_brechos_dashboard(false);
+        set_produtos_dashboard(true);
+        set_categorias_dashboard(false);
+        set_inicio_dashboard(false);
+    };
+
+    const ir_para_categorias = () => {
+
+        set_clientes_dashboard(false);
+        set_brechos_dashboard(false);
+        set_produtos_dashboard(false);
+        set_categorias_dashboard(true);
         set_inicio_dashboard(false);
     };
 
   return (
 <div>
-    <p>Olá Administrador(a)!</p>
+    <h1 className='saudacoes_ao_admin'>Olá Administrador(a)!</h1>
 
-    <div className="container_alinhamento_botoes_dashboard">
+    <div className="container_alinhamento_botoes_dashboard" onClick={ir_para_brechos}>
 
         <div className="dashboard_container_brechos">
             
+            <div className="sombra_dashboard_container_brechos">
+
             <div className='dashboard_container_brechos_borda'>
+                <div className='dashboard_container_brechos_img'>
                 <img src="./img/icone_dashboard_brechos_v_um.svg" alt="Brechós" />
+                </div>
+            </div>
+
             </div>
 
             <h2>{array_brechos.length}</h2>
@@ -57,24 +100,51 @@ function Inicio_dashboard() {
 
         <div className="dashboard_container_clientes" onClick={ir_para_clientes}>
             
-            <img src="./img/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+            <div className="sombra_dashboard_container_clientes">
+
+            <div className='dashboard_container_clientes_borda'>
+                <div className='dashboard_container_clientes_img'>
+                <img src="./img/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+                </div>
+            </div>
+
+            </div>
+
             <h2>{array_clientes.length}</h2>
             <span>Clientes</span>
 
         </div>
 
-        <div className="dashboard_container_produtos">
+        <div className="dashboard_container_produtos" onClick={ir_para_produtos}>
             
-            <img src="./img/icone_dashboard_produtos_v_um.svg" alt="Produtos" />
-            <h2>{array_clientes.length}</h2>
+            <div className="sombra_dashboard_container_produtos">
+
+            <div className='dashboard_container_produtos_borda'>
+                <div className='dashboard_container_produtos_img'>
+                <img src="./img/icone_dashboard_produtos_v_um.svg" alt="Produtos" />
+                </div>
+            </div>
+
+            </div>
+
+            <h2>{array_produtos.length}</h2>
             <span>Produtos</span>
 
         </div>
 
-        <div className="dashboard_container_categorias">
+        <div className="dashboard_container_categorias" onClick={ir_para_categorias}>
             
-            <img src="./img/icone_dashboard_etiqueta_v_um.svg" alt="Categorias" />
-            <h2>{array_clientes.length}</h2>
+            <div className="sombra_dashboard_container_categorias">
+
+            <div className='dashboard_container_categorias_borda'>
+                <div className='dashboard_container_categorias_img'>
+                <img src="./img/icone_dashboard_etiqueta_v_um.svg" alt="categorias" />
+                </div>
+            </div>
+
+            </div>
+
+            <h2>{array_categorias.length}</h2>
             <span>Categorias</span>
 
         </div>
