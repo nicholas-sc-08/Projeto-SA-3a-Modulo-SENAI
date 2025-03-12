@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
+// import Footer from '../components/Footer';
 
 function Tela_incial() {
 
@@ -45,6 +46,8 @@ function Tela_incial() {
           <p>Telefone: {usuario.telefone}</p>
           <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
           <p>CPF: {usuario.cpf}</p>
+
+          {/* <Footer/> */}
 
         </div>
       ))}

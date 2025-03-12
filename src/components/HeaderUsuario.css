@@ -1,4 +1,4 @@
-:root{
+:root {
 
     --cor_um: #466330;
     --cor_um_v_um: #466330b5;
@@ -17,7 +17,7 @@
     --tipografia_secundaria: "Poppins", serif;
 }
 
-.alinhamento-navbar-usuario{
+.alinhamento-navbar-usuario {
     border: 1px solid red;
     width: 100vw;
     justify-content: center;
@@ -25,7 +25,7 @@
     display: flex;
 }
 
-.navbar-usuario{
+.navbar-usuario {
     border: 1px solid blue;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     justify-content: space-between;
 }
 
-.link-texto-navbar-usuario{
+.link-texto-navbar-usuario {
     border: 1px solid red;
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
@@ -42,10 +42,32 @@
     font-size: 100%;
 }
 
-.button-pesquisa-navbar{
-    border: 1px solid red;
-    width: 28vw;
-    background-color: var(--cor_oito);
-    border-radius: 1vw;
+.container-pesquisa-navbar {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
+.input-pesquisa-navbar {
+    border: none;
+    width: 27vw;
+    height: 4.5vh;
+    background-color: #FCF7E9;
+    border-radius: 1vw;
+    font-size: 100%;
+}
+
+.input-pesquisa-navbar::placeholder{
+    color: var(--cor_seis);
+    opacity: 70%;
+}
+
+.input-pesquisa-navbar:focus{
+    border: 1px solid red;
+}
+
+.img-lupa-pesquisa-navbar{
+    position: absolute;
+    margin-left: -24%;
+    width: 1%;
 }

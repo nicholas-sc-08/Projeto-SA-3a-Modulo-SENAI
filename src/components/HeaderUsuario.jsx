@@ -13,9 +13,13 @@ function HeaderUsuario() {
                     <Link to={'lancamentos'} className='link-texto-navbar-usuario'>Lançamentos</Link>
                     <Link to={'sobreNos'} className='link-texto-navbar-usuario'>Sobre nós</Link>
 
-                    <button className='button-pesquisa-navbar'>
-                        <img src="./public/img/icons/Pesquisa.svg" alt="icone de pesquisa" /> <p>O que você está procurando?</p>
-                    </button>
+                    <div className="container-pesquisa-navbar">
+                        <img src="./public/img/icons/Pesquisa.svg" alt="icone de pesquisa" className='img-lupa-pesquisa-navbar' />
+                        <input type="text"
+                            className='input-pesquisa-navbar'
+                            placeholder='           O que você está procurando?' />
+                    </div>
+
 
                     <button className='button-sacola-navbar'><img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Winxs" /></button>
                     <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="perfil" /></button>
