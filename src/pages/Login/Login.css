@@ -1,0 +1,30 @@
+.ladoEsquerdo-container{
+    margin-top: 9%;
+    margin-left: 15%;
+}
+
+.info-login{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.ladoEsquerdo-container img{
+    width: 150px;
+}
+
+.ladoEsquerdo-container input{
+    border-radius: 5px;
+    border-color: #9DA650;
+    width: 25%;
+    height: 35px;
+}
+
+.ladoEsquerdo-container label{
+    color: var(--cor_seis_v_um);
+}
+
+.ladoEsquerdo-container h1{
+    color: var(--cor_seis);
+
+}
