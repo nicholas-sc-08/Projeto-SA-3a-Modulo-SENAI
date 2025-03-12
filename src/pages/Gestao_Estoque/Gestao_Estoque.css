@@ -1,0 +1,154 @@
+body {
+  background-color: var(--cor_quatro);
+}
+
+:root {
+  --cor_um: #466330;
+  --cor_um_v_um: #466330b5;
+  --cor_um_v_dois: #2d411f;
+  --cor_dois: #9DA650;
+  --cor_tres: #E7E8CE;
+  --cor_quatro: #FFFDF7;
+  --cor_cinco: #E4CD80;
+  --cor_seis: #3E2A21;
+  --cor_seis_v_um: #3e2a219e;
+  --cor_sete: #FF3333;
+  --cor_sete_v_um: #ff333399;
+
+  --tipografia_primaria: "Montserrat", serif;
+  --tipografia_secundaria: "Poppins", serif;
+}
+
+.estoque-container {
+  width: 85%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--tipografia_secundaria);
+}
+
+h2 {
+  color: var(--cor_seis);
+  font-family: var(--tipografia_secundaria);
+}
+
+.estoque-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--cor_um);
+  padding: 15px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  background: #F0EEED;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: 60%;
+  
+  
+}
+
+.search-icon {
+  color: var(--cor_quatro);
+  margin-right: 8px;
+  padding-top: 4px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background-color: #F0EEED;
+}
+
+.novo-produto {
+  background: var(--cor_dois);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  margin-left: 28%;
+  width: 14%;
+  height: 45px;
+
+}
+
+.novo-produto:hover {
+  background: var(--cor_um_v_dois);
+}
+
+/* Estilização da tabela agora em divs */
+.estoque-tabela {
+  background: white;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+}
+
+.estoque-tabela-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 50px;
+  background: var(--cor_um);
+  color: white;
+  padding: 12px;
+  font-weight: 450;
+  padding-left: 20px;
+}
+
+.produto-linha {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 50px;
+  align-items: center;
+  padding: 14px;
+  padding-right: 7px;
+  border-bottom: 1px solid #ddd;
+}
+
+.produto-info {
+  display: flex;
+  align-items: center;
+}
+
+.produto-imagem {
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.produto-nome {
+  font-weight: bold;
+  margin: 0;
+}
+
+.produto-categoria {
+  font-size: 12px;
+  color: gray;
+}
+
+.produto-preco {
+  color: green;
+  font-weight: bold;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: var(--cor_sete);
+  font-size: 16px;
+  cursor: pointer;
+}
