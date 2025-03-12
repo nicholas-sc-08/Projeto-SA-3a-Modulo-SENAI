@@ -7,7 +7,7 @@ CREATE TABLE clientes(
 	telefone VARCHAR(14),
 	cpf VARCHAR(14),
 	data_de_nascimento DATE
-	
+	imagem_de_perfil VARCHAR(5000) NOT NULL,
 );
 
 CREATE TABLE enderecos(

@@ -15,7 +15,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "google-auth-library": "^9.15.1",
+    "jwt-decode": "^4.0.0",
     "nodemon": "^3.1.9",
-    "pg": "^8.13.3"
+    "pg": "^8.14.0"
   }
 }

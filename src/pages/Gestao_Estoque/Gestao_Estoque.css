@@ -82,8 +82,8 @@ h2 {
   font-size: 14px;
   display: flex;
   margin-left: 28%;
-  width: 14%;
-  height: 45px;
+  width: 15%;
+  margin-right: 5%;
 
 }
 
@@ -151,4 +151,5 @@ h2 {
   color: var(--cor_sete);
   font-size: 16px;
   cursor: pointer;
+  padding-right: 100%;
 }

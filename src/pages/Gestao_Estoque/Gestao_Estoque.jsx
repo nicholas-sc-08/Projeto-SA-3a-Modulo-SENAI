@@ -46,7 +46,7 @@ const GestaoEstoque = () => {
             <span>{produto.estoque} Uni</span>
             <span>{produto.conservacao}</span>
             <span>{produto.tamanho}</span>
-            <button className="delete-button">🗑</button>
+            <button className="delete-button"><img src="./img/Lixeiraicon.svg" alt="" /></button>
           </div>
         ))}
       </div>

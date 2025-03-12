@@ -58,7 +58,11 @@ function Login() {
 
                 nome: cliente_a_logar.name,
                 email: cliente_a_logar.email,
-                senha: `123`
+                senha: `123`,
+                telefone: ``,
+                cpf: ``,
+                data_de_nascimento: ``,
+                imagem_de_perfil: cliente_a_logar.picture
             };
 
             const cadastrar_cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
