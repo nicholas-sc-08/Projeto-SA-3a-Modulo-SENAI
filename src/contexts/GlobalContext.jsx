@@ -10,7 +10,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_categorias, set_array_categorias] = useState([]);
     const [usuario_logado, set_usuario_logado] = useState([]);
     const [endereco_do_cliente, set_endereco_do_cliente] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
-    const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, confirmar_senha: ``});
+    const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: ``, confirmar_senha: ``});
     const [cadastro_parte_um_cliente, set_cadastro_parte_um_cliente] = useState(true);
     const [cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente] = useState(false);
     const [cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente] = useState(false);
