@@ -1,7 +1,15 @@
 import React from "react";
 import "./Gestao_estoque.css";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
-const GestaoEstoque = () => {
+
+
+function Gestao_Estoque(){
+
+  
+
+
   const produtos = [
     { nome: "Nome do produto", preco: 20.0, estoque: 10, conservacao: "Usado", tamanho: "GG" },
     { nome: "Nome do produto", preco: 30.0, estoque: 3, conservacao: "Novo", tamanho: "P" },
@@ -10,17 +18,19 @@ const GestaoEstoque = () => {
     { nome: "Nome do produto", preco: 20.0, estoque: 2, conservacao: "Semi novo", tamanho: "GG" },
     { nome: "Nome do produto", preco: 5.0, estoque: 2, conservacao: "Usado", tamanho: "GG" },
   ];
+  const navigate = useNavigate('')
 
   return (
+  
     <div className="estoque-container">
       <h2>Estoque Produto</h2>
-
+      <div className="container-tabela-estoque">
       <div className="estoque-header">
         <div className="search-box">
           <span className="search-icon"><img src="./img/LupaIcon.svg" alt="" /></span>
           <input type="text" placeholder="Procurar produto" className="search-input" />
         </div>
-        <button className="novo-produto">Novo produto</button>
+        <button onClick={()=>navigate('/cadastro_produto')}className="novo-produto">Novo Produto</button>
       </div>
 
       <div className="estoque-tabela">
@@ -51,7 +61,8 @@ const GestaoEstoque = () => {
         ))}
       </div>
     </div>
+    </div>
   );
 };
 
-export default GestaoEstoque;
+export default Gestao_Estoque;
