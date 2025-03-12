@@ -1,20 +1,3 @@
-:root{
-
-    --cor_um: #466330;
-    --cor_um_v_um: #466330b5;
-    --cor_um_v_dois: #2d411f;
-    --cor_dois: #9DA650;
-    --cor_tres: #E7E8CE;
-    --cor_quatro: #FFFDF7;
-    --cor_cinco: #E4CD80;
-    --cor_seis: #3E2A21;
-    --cor_seis_v_um: #3e2a219e;
-    --cor_sete: #FF3333;
-    --cor_sete_v_um: #ff333399;
-
-    --tipografia_primaria: "Montserrat", serif;
-    --tipografia_secundaria: "Poppins", serif;
-}
 
 .container_cadastro_cliente{
 
