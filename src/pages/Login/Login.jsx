@@ -61,7 +61,7 @@ function Login() {
                 senha: `123`,
                 telefone: ``,
                 cpf: ``,
-                data_de_nascimento: ``,
+                data_de_nascimento: `2000-01-01`,
                 imagem_de_perfil: cliente_a_logar.picture
             };
 
