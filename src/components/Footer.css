@@ -3,11 +3,10 @@ body{
 }
 
 .footer-content {
-    background-color: var(--cor_um_v_um);
+    background-color: var(--cor_tres);
     width: 100%;
     height: 400px;
     position: fixed;
     left: 0;
     bottom: 0;
-    background-color: var();
 }
