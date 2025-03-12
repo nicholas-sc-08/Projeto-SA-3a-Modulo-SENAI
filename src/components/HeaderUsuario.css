@@ -18,28 +18,41 @@
 }
 
 .alinhamento-navbar-usuario {
-    border: 1px solid red;
     width: 100vw;
     justify-content: center;
     align-items: center;
     display: flex;
+    flex-direction: column;
 }
 
 .navbar-usuario {
-    border: 1px solid blue;
     display: flex;
     align-items: center;
     width: 80vw;
     justify-content: space-between;
 }
 
+.line-navbar{
+    border-bottom: 1px solid var(--cor_seis);
+    width: 90vw;
+    opacity: 30%;
+}
+
 .link-texto-navbar-usuario {
-    border: 1px solid red;
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     text-decoration: none;
-    font-weight: 450;
+    font-weight: 500;
     font-size: 100%;
+}
+
+.link-texto-navbar-usuario:hover{
+    color: var(--cor_um_v_dois);
+    transition: 0.2s;
+}
+
+.link-texto-navbar-usuario:not(:hover){
+    transition: 0.2s;
 }
 
 .container-pesquisa-navbar {
@@ -49,25 +62,58 @@
 }
 
 .input-pesquisa-navbar {
-    border: none;
-    width: 27vw;
+    border: transparent;
+    width: 590px;
     height: 4.5vh;
     background-color: #FCF7E9;
     border-radius: 1vw;
     font-size: 100%;
+    padding-left: 8%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+    color: var(--cor_seis);
 }
 
-.input-pesquisa-navbar::placeholder{
+.input-pesquisa-navbar:focus {
+    outline: none;
+    border: 1px solid var(--cor_seis);
+}
+
+.input-pesquisa-navbar::placeholder {
     color: var(--cor_seis);
     opacity: 70%;
 }
 
-.input-pesquisa-navbar:focus{
-    border: 1px solid red;
+.img-lupa-pesquisa-navbar {
+    position: absolute;
+    margin-left: -28%;
+    width: 1%;
 }
 
-.img-lupa-pesquisa-navbar{
-    position: absolute;
-    margin-left: -24%;
-    width: 1%;
+.button-sacola-navbar{
+    border: none;
+    background-color: transparent;
+}
+
+.button-sacola-navbar img{
+    width: 3vw;
+}
+
+.button-perfil-navbar{
+    border: none;
+    background-color: transparent;
+}
+
+.button-perfil-navbar img{
+    width: 2.1vw;
+}
+
+.buttons-container-navbar-alinhamento{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    justify-content: space-between;
+    width: 8%;
 }
