@@ -101,6 +101,7 @@
 
     font-family: var(--tipografia_primaria);
     font-size: 1.5rem;
+    padding-bottom: 0px;
 
     color: var(--cor_seis);
 }
