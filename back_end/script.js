@@ -126,3 +126,22 @@ app.post(`/enderecos`, async (req, res) => {
 });
 
 app.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+
+app.get("/produto", async (req, res)=> {
+    try {
+        const resultado = await pool.query('SELECT * FROM produto')
+        res.status(200).json(resultado.rows)
+    } catch (error) {
+        console.error(error)
+    }
+})
+app.delete("/produto/:id", async(req, res)=> {
+    const {id} = req.params
+    try {
+        const excluir = await pool.query("DELETE FROM produto WHERE id = $1", [id])
+        res.status(200).json(excluir.rows)
+    } catch (error) {
+        console.error(error)
+
+    }
+})
