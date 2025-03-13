@@ -1,6 +1,6 @@
 .ladoEsquerdo-container{
     margin-top: 9%;
-    margin-left: 15%;
+    margin-left: 25%;
 }
 
 .info-login{
@@ -26,5 +26,57 @@
 
 .ladoEsquerdo-container h1{
     color: var(--cor_seis);
+}
+
+.ladoEsquerdo-container button{
+    border: none;
+    border-radius: 17px;
+    background-color: var(--cor_um);
+    color: aliceblue;
+    width: 10%;
+    height: 35px;
+    margin-top: 1.5%;
+}
+
+.ladoDireito-container{
+    border-radius: 19px;
+    background-color: #E7E8CE;
+    width: 25%;
+    height: 67%;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+}
+.info-ladoDireito{
+    position: relative;
+    top: 30%;
+    left: 27%;
+    width: 50%;
+}
+
+.info-ladoDireito h1{
+    color: var(--cor_um_v_dois);
+}   
+
+.info-ladoDireito p{
+    color: var(--cor_um);
+    font-weight: 200;
+    margin-top: 9%;
+} 
+
+.info-ladoDireito button{
+    position: relative;
+    top: 26px;
+    left: 15%;
+    border: none;
+    border-radius: 19px;
+    background-color: var(--cor_dois);
+    color: aliceblue;
+    width: 50%;
+    height: 35px;
+}
+
+.info-ladoDireito button:hover{
+    transform: scale(1.1);
 
 }
