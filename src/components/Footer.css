@@ -51,14 +51,52 @@ body{
     height: 90%;
 }
 
+.logo-e-titulo {
+    display: flex;
+    align-items: center;
+    font-family: "Poppins";
+    font-size: 16px;
+}
+
+.logo-e-titulo h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_dois);
+    font-size: 36px;
+}
+
+.descricao-footer {
+    font-family: "Poppins";
+    font-size: 16px;
+    color: var(--cor_dez);
+    text-align: justify;
+}
+
+.logo-footer {
+    width: 117.35px;
+    height: 126.1px;
+    
+}
+
 .menu-content {
     border: 1px solid blue;
     display: flex;
     flex-direction: column;
     width: 18%;
     height: 90%;
-    align-items: center;
     justify-content: space-evenly;
+}
+
+.menu-content h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    
+}
+
+.menu-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
+    
 }
 
 .ajuda-content {
@@ -67,8 +105,18 @@ body{
     flex-direction: column;
     width: 18%;
     height: 90%;
-    align-items: center;
     justify-content: space-evenly;
+}
+
+.ajuda-content h3 {
+
+}
+
+.ajuda-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
+    font-size: 16px;
 }
 
 .FAQ-content {
@@ -77,6 +125,15 @@ body{
     flex-direction: column;
     width: 18%;
     height: 90%;
-    align-items: center;
     justify-content: space-evenly;
+}
+
+.FAQ-content h3 {
+
+}
+
+.FAQ-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
 }
