@@ -26,7 +26,7 @@ function Cadastro_cliente() {
   let telefone_ja_cadastrado = false;
   let senhas_iguais = false;
   
-  const informacoes_clientes = async () => {
+  async function informacoes_clientes(){
         
       try {
           
@@ -40,7 +40,7 @@ function Cadastro_cliente() {
       };
   };
 
-    const lidar_com_formulario = async e => {
+    async function lidar_com_formulario(e){
 
       e.preventDefault();
 
@@ -77,7 +77,7 @@ function Cadastro_cliente() {
 
   }, [form_de_cadastro_cliente.data_de_nascimento]);
 
-  const calcular_idade = () => {
+  function calcular_idade() {
 
     set_idade(dia_de_hoje.getFullYear() - new Date(form_de_cadastro_cliente.data_de_nascimento).getFullYear());
   };
@@ -106,7 +106,7 @@ function Cadastro_cliente() {
 
   }, [cadastro_parte_um_cliente, cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
 
-  const etapa_seguinte = () => {
+  function etapa_seguinte(){
 
 
     if(cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false){

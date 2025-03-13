@@ -8,6 +8,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_brechos, set_array_brechos] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
+    const [array_enderecos, set_array_enderecos] = useState([]);
     const [usuario_logado, set_usuario_logado] = useState([]);
     const [endereco_do_cliente, set_endereco_do_cliente] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
     const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
@@ -25,6 +26,8 @@ export const GlobalContextProvider = ({ children }) => {
 
             array_clientes,
             set_array_clientes,
+            array_enderecos,
+            set_array_enderecos,
             array_brechos,
             set_array_brechos,
             array_produtos,

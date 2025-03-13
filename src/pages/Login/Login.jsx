@@ -18,7 +18,7 @@ function Login() {
          informacoes_clientes();
      }, []);
     
-     const informacoes_clientes = async () => {
+     async function informacoes_clientes() {
         
          try {
             
