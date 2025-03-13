@@ -9,4 +9,74 @@ body{
     position: fixed;
     left: 0;
     bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo-geral-meio {
+    border: 1px solid purple;
+    width: 88%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.parte-de-cima-content {
+    border: 1px solid #ff0396;
+    width: 88%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.parte-de-baixo-content {
+    border: 1px solid #ff0396;
+    width: 88%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.logo-mais-descricao-content {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 90%;
+}
+
+.menu-content {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ajuda-content {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.FAQ-content {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    align-items: center;
+    justify-content: space-evenly;
 }
