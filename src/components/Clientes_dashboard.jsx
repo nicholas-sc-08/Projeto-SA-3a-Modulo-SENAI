@@ -19,6 +19,7 @@ function Clientes_dashboard() {
   const { id_do_cliente_a_excluir, set_id_do_cliente_a_excluir } = useContext(GlobalContext);
   const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
   const referencia_do_inpt = useRef(null);
+  const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState([]);
 
   function voltar_para_o_inicio(){
 
@@ -30,7 +31,7 @@ function Clientes_dashboard() {
 
     if(e.key === "Enter"){
 
-      alert("sadasd");
+      alert(`a pesquisar`);
     };
   };
 
@@ -193,7 +194,9 @@ function Clientes_dashboard() {
 
                     <div className="b">
 
-                    {array_clientes.map((cliente, i) => (
+                      {barra_de_pesquisa == `` && 
+
+                    array_clientes.map((cliente, i) => (
 
                       <div key={i} className='container_colunas_serie_a'>
 
@@ -207,19 +210,19 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_nome_cliente">
 
-                            <p>{cliente.nome}</p>
+                            <span>{cliente.nome}</span>
             
                           </div>
 
                           <div className="container_coluna_email_cliente">
 
-                            <p>{cliente.email}</p>
+                            <span>{cliente.email}</span>
             
                           </div>
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <p>{cliente.telefone}</p>
+                            <span>{cliente.telefone}</span>
             
                           </div>
 
@@ -240,7 +243,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_cep_cliente">
 
-                          <p>{endereco.cep}</p>
+                          <span>{endereco.cep}</span>
 
                         </div>
                       </div>
@@ -254,7 +257,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_senha_cliente">
 
-                          <p>{cliente.senha}</p>
+                          <span>{cliente.senha}</span>
 
                         </div>
 
