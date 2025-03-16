@@ -34,17 +34,8 @@ body{
     justify-content: space-evenly;
 }
 
-.parte-de-baixo-content {
-    border: 1px solid #ff0396;
-    width: 88%;
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .logo-mais-descricao-content {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     width: 20%;
@@ -62,6 +53,7 @@ body{
     font-family: "Montserrat", bold;
     color: var(--cor_dois);
     font-size: 36px;
+    cursor: default;
 }
 
 .descricao-footer {
@@ -69,6 +61,7 @@ body{
     font-size: 16px;
     color: var(--cor_dez);
     text-align: justify;
+    cursor: default;
 }
 
 .logo-footer {
@@ -78,18 +71,21 @@ body{
 }
 
 .menu-content {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     width: 18%;
     height: 90%;
     justify-content: space-evenly;
+    gap: 10px;
 }
 
 .menu-content h3 {
     font-family: "Montserrat", bold;
     color: var(--cor_um);
-    
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
 }
 
 .menu-content a {
@@ -100,16 +96,21 @@ body{
 }
 
 .ajuda-content {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     width: 18%;
     height: 90%;
     justify-content: space-evenly;
+    gap: 10px;
 }
 
 .ajuda-content h3 {
-
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
 }
 
 .ajuda-content a {
@@ -120,20 +121,42 @@ body{
 }
 
 .FAQ-content {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     width: 18%;
     height: 90%;
     justify-content: space-evenly;
+    gap: 10px;
 }
 
 .FAQ-content h3 {
-
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
 }
 
 .FAQ-content a {
     color: var(--cor_dez);
     text-decoration: none;
     font-family: "Poppins";
+}
+
+.parte-de-baixo-content {
+    border: 1px solid #ff0396;
+    width: 88%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.rede-social-footer-content {
+    border: 1px solid #00FF90;
+    width: 16%;
+    height: 79%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

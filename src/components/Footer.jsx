@@ -18,14 +18,14 @@ function Footer() {
             </div>
           </div>
           <div className="menu-content">
-            <h3>Menu</h3>
-            <Link>Início</Link>
+            <h3>MENU</h3>
+            <Link to={"/"}>Início</Link>
             <Link>Explorar brechós</Link>
             <Link>Doações</Link>
             <Link>Buscar</Link>
           </div>
           <div className="ajuda-content">
-            <h3>Ajuda</h3>
+            <h3>AJUDA</h3>
             <Link>Quem somos nós?</Link>
             <Link>Contato</Link>
             <Link>Termos & Condições </Link>
@@ -40,7 +40,13 @@ function Footer() {
           </div>
         </div>
         <div className="parte-de-baixo-content">
+          <div className="rede-social-footer-content">
+                <a href="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR">LinkeDin</a> 
+               
+                <a href="https://www.instagram.com/fly.circular/">Instagram</a>
 
+                <a href="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI">Github</a>
+          </div>
         </div>
       </div>
     </div>
