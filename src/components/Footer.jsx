@@ -41,11 +41,17 @@ function Footer() {
         </div>
         <div className="parte-de-baixo-content">
           <div className="rede-social-footer-content">
-                <a href="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR">LinkeDin</a> 
-               
-                <a href="https://www.instagram.com/fly.circular/">Instagram</a>
+            <a href="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR">
+              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
+            </a>
 
-                <a href="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI">Github</a>
+            <a href="https://www.instagram.com/fly.circular/">
+              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
+            </a>
+
+            <a href="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI">
+              <img src="./public/img/Github-icon.svg" alt="Github" />
+            </a>
           </div>
         </div>
       </div>
