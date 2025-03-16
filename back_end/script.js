@@ -82,6 +82,22 @@ app.put(`/clientes/:id`, async (req, res) => {
     };
 });
 
+app.delete(`/clientes/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const excluir = await pool.query(`DELETE FROM clientes WHERE id = $1`, [id]);
+        
+        res.status(200).json(`Usuário excluído: ${excluir.rows}`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.get(`/enderecos`, async (req, res) => {
 
     try {
@@ -119,6 +135,21 @@ app.post(`/enderecos`, async (req, res) => {
         const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id) values($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id]);
         res.status(200).json(resultado.rows[0]);
         
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/enderecos/:fk_id`, async (req, res) => {
+
+    const { fk_id } = req.params;
+
+    try {
+        
+        const endereco_a_excluir = await pool.query(`DELETE FROM enderecos WHERE fk_id = $1`, [fk_id]);
+        res.status(200).json(`Endereço excluído com sucesso: ${endereco_a_excluir.rows}`);
+
     } catch (erro) {
       
         console.error(erro);

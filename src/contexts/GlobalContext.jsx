@@ -20,6 +20,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [ brechos_dashboard, set_brechos_dashboard ] = useState(false);
     const [ produtos_dashboard, set_produtos_dashboard ] = useState(false);
     const [ categorias_dashboard, set_categorias_dashboard ] = useState(false);
+    const [ id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
+    const [ abrir_pop_up_dashboard, set_abrir_pop_up_dashboard ] = useState(false);
+    const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
 
     return (
         <GlobalContext.Provider value={{
@@ -53,7 +56,14 @@ export const GlobalContextProvider = ({ children }) => {
             brechos_dashboard,
             set_brechos_dashboard,
             categorias_dashboard,
-            set_categorias_dashboard
+            set_categorias_dashboard,
+            id_do_cliente_a_excluir,
+            set_id_do_cliente_a_excluir,
+            abrir_pop_up_dashboard,
+            set_abrir_pop_up_dashboard,
+            pop_up_notificacao_excluir_dashboard,
+            set_pop_up_notificacao_excluir_dashboard
+            
             }}>
             {children}
         </GlobalContext.Provider>
