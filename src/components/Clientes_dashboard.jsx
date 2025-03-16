@@ -207,19 +207,19 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_nome_cliente">
 
-                            <p>Nome:{cliente.nome}</p>
+                            <p>{cliente.nome}</p>
             
                           </div>
 
                           <div className="container_coluna_email_cliente">
 
-                            <p>Email:{cliente.email}</p>
+                            <p>{cliente.email}</p>
             
                           </div>
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <p>Telefone: {cliente.telefone}</p>
+                            <p>{cliente.telefone}</p>
             
                           </div>
 
@@ -240,7 +240,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_cep_cliente">
 
-                          <p>CEP:{endereco.cep}</p>
+                          <p>{endereco.cep}</p>
 
                         </div>
                       </div>
@@ -254,7 +254,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_senha_cliente">
 
-                          <p>Senha:{cliente.senha}</p>
+                          <p>{cliente.senha}</p>
 
                         </div>
 
@@ -262,7 +262,7 @@ function Clientes_dashboard() {
                         
                         <div className="container_coluna_excluir_cliente">
 
-                        <button onClick={() => armazenar_id_do_cliente(cliente.id)}><img src="./img/Lixeira_icon_v_dois.svg" alt="" /></button>
+                        <button onClick={() => armazenar_id_do_cliente(cliente.id)}><img src="./img/Lixeiraicon.svg" alt="" /></button>
 
                         </div>
                         }
@@ -275,12 +275,6 @@ function Clientes_dashboard() {
                 </div>
 
               </div>
-
-              <div className="container_scrollbar">
-
-                <p>as</p>
-              </div>
-
             </div>
 
           </div>
