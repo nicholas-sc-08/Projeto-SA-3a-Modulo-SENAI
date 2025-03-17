@@ -50,7 +50,7 @@ function Tela_incial() {
           <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
           <p>CPF: {usuario.cpf}</p>
 
-          {/* <Footer/> */}
+         
 
         </div>
       ))}
