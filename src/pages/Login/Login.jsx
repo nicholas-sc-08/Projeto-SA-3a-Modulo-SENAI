@@ -86,7 +86,7 @@ function Login() {
     return (
     <div className='container-corpo-login'>
         <div className='ladoEsquerdo-container'>
-          <img src="./img/logo-verdeCamadinha2.svg" alt="" />
+          <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
           <h1>Sua conta te espera</h1>
           <div className='info-login'>
           <label>Nome</label>
