@@ -32,9 +32,9 @@ function Tela_incial() {
   return (
     <div>
 
-      {/* <HeaderUsuario /> */}
+      <HeaderUsuario />
 
-      <HeaderBrecho />
+      {/* <HeaderBrecho /> */}
 
       {/* <p>Sou a tela inicial</p> */}
 
