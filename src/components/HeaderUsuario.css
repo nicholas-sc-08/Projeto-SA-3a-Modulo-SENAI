@@ -36,7 +36,7 @@
 .line-navbar {
     border-bottom: 1px solid var(--cor_seis);
     width: 90vw;
-    opacity: 30%;
+    opacity: 20%;
 }
 
 .link-texto-navbar-usuario {
