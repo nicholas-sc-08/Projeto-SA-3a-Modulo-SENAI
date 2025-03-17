@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
 
-    height: 15vh;
+    margin-top: 2%;
+    height: 100%;
 }
 
 .container_header_informacoes_tabela{
@@ -13,7 +14,8 @@
     justify-content: space-between;
     align-items: center;
 
-    width: 90%;
+    width: 80%;
+    height: 100%;
 }
 
 .sombra_dashboard_container_clientes_tabela{
@@ -22,10 +24,10 @@
     justify-content: center;
     align-items: center;
 
-    width: 35%;
-    height: 10vh;
+    width: 40%;
+    height: 100px;
 
-    border-radius: 100%;
+    border-radius: 14vw;
 
     background-color: var(--cor_oito);
 }
@@ -35,8 +37,8 @@
     display: flex;
     justify-content: center;
 
-    width: 4vw;
-    height: 8vh;
+    width: 80%;
+    height: 80%;
 
     border-radius: 100%;
 
@@ -138,11 +140,13 @@
 
 .container_tabela_clientes{
 
-    width: 90%;
+    width: 80%;
     height: 100%;
 
     border-top-left-radius: 2vw;
     border-top-right-radius: 2vw;
+
+    margin-top: 3%;
 }
 
 .container_tabela_clientes_header{
@@ -206,7 +210,7 @@
 
     cursor: pointer;
 
-    width: 50%;
+    width: 45%;
     height: 50%;
 
     border: 0px;
@@ -231,7 +235,7 @@
     display: flex;
     justify-content: space-between;
 
-    height: 40vw;
+    height: 30vw;
 
     border-bottom-left-radius: 2vw;
     border-bottom-right-radius: 2vw;
@@ -283,31 +287,32 @@
 
     color: var(--cor_nove);
     background-color: var(--cor_um);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .titulo_dashboard_nome{
 
-    margin-left: 16%;
+    margin-left: 16.5%;
 }
 
 .titulo_dashboard_email{
 
-    margin-left: 10.5%;
+    margin-left: 12.5%;
 }
 
 .titulo_dashboard_telefone{
 
-    margin-left: 13%;
+    margin-left: 13.8%;
 }
 
 .titulo_dashboard_cep{
 
-    margin-left: 13%;
+    margin-left: 13.5%;
 }
 
 .titulo_dashboard_senha{
 
-    margin-left: 11%;
+    margin-left: 13%;
 }
 
 .container_tabela_clientes_resultados{
@@ -329,7 +334,11 @@
 
     width: 100%;
     height: 25%;
-    margin-top: 5%;
+    margin-top: 2%;
+    border-top: 1px solid #0000003f;
+    border-left: 1px solid #0000003f;
+    border-bottom: 1px solid #0000003f;
+
     background-color: var(--cor_nove);
 }
 
@@ -340,8 +349,6 @@
     justify-content: center;
     width: 20%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
 }
 
 .container_colunas_serie_b{
@@ -365,8 +372,7 @@
     align-items: center;
     justify-content: center;
     width: 40%;
-    height: 100%;   
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    height: 100%;  
 }
 
 .container_coluna_email_cliente{
@@ -376,7 +382,6 @@
     justify-content: center;
     width: 35%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
 .container_coluna_telefone_cliente{
@@ -386,7 +391,7 @@
     justify-content: center;
     width: 35%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
 }
 
 .c{
@@ -395,10 +400,11 @@
 }
 
 .d{
-    width: 18%;
+    width: 20%;
     height: 100%;
 
 }
+
 
 .container_colunas_serie_c{
 
@@ -406,15 +412,18 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 24.8%;
+    height: 25%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--cor_seis);
 
-    margin-top: 21%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    margin-top: 8.2%;
+
+    border-top: 1px solid #0000003f;
+    border-bottom: 1px solid #0000003f;
+
     background-color:var(--cor_nove);
 }
 .container_colunas_serie_d{
@@ -431,17 +440,17 @@
     font-weight: 600;
     color: var(--cor_seis);
 
-    margin-top: 23%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-    background-color:var(--cor_nove);
-}
+    border-top: 1px solid #0000003f;
+    border-bottom: 1px solid #0000003f;
+    border-right: 1px solid #0000003f;
 
-.container_coluna_excluir_cliente{
+    margin-top: 8.2%;
+    background-color:var(--cor_nove);
 }
 
 .container_coluna_excluir_cliente button{
 
-    margin-right: -14vw;
+    margin-right: -13vw;
     cursor: pointer;
     border: 0;
     background-color: transparent;

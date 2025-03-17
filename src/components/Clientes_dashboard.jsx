@@ -112,7 +112,7 @@ function Clientes_dashboard() {
                       
                       <div className='dashboard_container_clientes_img_tabela'>
                       
-                      <img src="./img/icone_dashboard_clientes_v_um.svg"  alt="Clientes" />
+                      <img src="./img/icons/icone_dashboard_clientes_v_um.svg"  alt="Clientes" />
                         
                       </div>
                         
@@ -192,7 +192,12 @@ function Clientes_dashboard() {
 
                 <div className="container_tabela_clientes_resultados">
 
+                    <div className="container_sombreamento">
+
+                      
+                    </div>
                     <div className="b">
+                      
 
                       {barra_de_pesquisa == `` && 
 

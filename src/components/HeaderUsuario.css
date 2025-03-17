@@ -1,0 +1,119 @@
+:root {
+
+    --cor_um: #466330;
+    --cor_um_v_um: #466330b5;
+    --cor_um_v_dois: #2d411f;
+    --cor_dois: #9DA650;
+    --cor_tres: #E7E8CE;
+    --cor_quatro: #FFFDF7;
+    --cor_cinco: #E4CD80;
+    --cor_seis: #3E2A21;
+    --cor_seis_v_um: #3e2a219e;
+    --cor_sete: #FF3333;
+    --cor_sete_v_um: #ff333399;
+    --cor_oito: #FCF7E9;
+
+    --tipografia_primaria: "Montserrat", serif;
+    --tipografia_secundaria: "Poppins", serif;
+}
+
+.alinhamento-navbar-usuario {
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-usuario {
+    display: flex;
+    align-items: center;
+    width: 80vw;
+    justify-content: space-between;
+}
+
+.line-navbar{
+    border-bottom: 1px solid var(--cor_seis);
+    width: 90vw;
+    opacity: 30%;
+}
+
+.link-texto-navbar-usuario {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 100%;
+}
+
+.link-texto-navbar-usuario:hover{
+    color: var(--cor_um_v_dois);
+    transition: 0.2s;
+}
+
+.link-texto-navbar-usuario:not(:hover){
+    transition: 0.2s;
+}
+
+.container-pesquisa-navbar {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.input-pesquisa-navbar {
+    border: transparent;
+    width: 590px;
+    height: 4.5vh;
+    background-color: #FCF7E9;
+    border-radius: 1vw;
+    font-size: 100%;
+    padding-left: 8%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+    color: var(--cor_seis);
+}
+
+.input-pesquisa-navbar:focus {
+    outline: none;
+    border: 1px solid var(--cor_seis);
+}
+
+.input-pesquisa-navbar::placeholder {
+    color: var(--cor_seis);
+    opacity: 70%;
+}
+
+.img-lupa-pesquisa-navbar {
+    position: absolute;
+    margin-left: -28%;
+    width: 1%;
+}
+
+.button-sacola-navbar{
+    border: none;
+    background-color: transparent;
+}
+
+.button-sacola-navbar img{
+    width: 3vw;
+}
+
+.button-perfil-navbar{
+    border: none;
+    background-color: transparent;
+}
+
+.button-perfil-navbar img{
+    width: 2.1vw;
+}
+
+.buttons-container-navbar-alinhamento{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    justify-content: space-between;
+    width: 8%;
+}
