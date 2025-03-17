@@ -39,6 +39,7 @@ function Footer() {
             <Link>Pagamentos</Link>
           </div>
         </div>
+        <div className="linha-footer"></div>
         <div className="parte-de-baixo-content">
           <div className="rede-social-footer-content">
             <a href="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR">

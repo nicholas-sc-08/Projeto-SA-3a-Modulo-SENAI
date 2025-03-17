@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
 import HeaderBrecho from '../components/HeaderBrecho';
+import Footer from '../components/Footer';
 // import Footer from '../components/Footer';
 
 function Tela_incial() {
@@ -34,9 +35,7 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
-      {/* <HeaderBrecho /> */}
-
-      {/* <p>Sou a tela inicial</p> */}
+      <Footer />
 
       {array_clientes.map((usuario, i) => (
 
