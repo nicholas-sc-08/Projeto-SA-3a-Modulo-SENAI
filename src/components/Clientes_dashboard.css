@@ -206,7 +206,7 @@
 
     cursor: pointer;
 
-    width: 50%;
+    width: 45%;
     height: 50%;
 
     border: 0px;
@@ -231,7 +231,7 @@
     display: flex;
     justify-content: space-between;
 
-    height: 40vw;
+    height: 30vw;
 
     border-bottom-left-radius: 2vw;
     border-bottom-right-radius: 2vw;
@@ -287,27 +287,27 @@
 
 .titulo_dashboard_nome{
 
-    margin-left: 16%;
+    margin-left: 18%;
 }
 
 .titulo_dashboard_email{
 
-    margin-left: 10.5%;
+    margin-left: 13%;
 }
 
 .titulo_dashboard_telefone{
 
-    margin-left: 13%;
+    margin-left: 14.5%;
 }
 
 .titulo_dashboard_cep{
 
-    margin-left: 13%;
+    margin-left: 14%;
 }
 
 .titulo_dashboard_senha{
 
-    margin-left: 11%;
+    margin-left: 13%;
 }
 
 .container_tabela_clientes_resultados{
@@ -315,6 +315,7 @@
     display: flex;
     width: 90%;
     height: 100%;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .b{
@@ -329,7 +330,7 @@
 
     width: 100%;
     height: 25%;
-    margin-top: 5%;
+    margin-top: 2%;
     background-color: var(--cor_nove);
 }
 
@@ -340,8 +341,6 @@
     justify-content: center;
     width: 20%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
 }
 
 .container_colunas_serie_b{
@@ -365,8 +364,8 @@
     align-items: center;
     justify-content: center;
     width: 40%;
-    height: 100%;   
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    height: 100%;  
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em; 
 }
 
 .container_coluna_email_cliente{
@@ -376,7 +375,7 @@
     justify-content: center;
     width: 35%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .container_coluna_telefone_cliente{
@@ -386,7 +385,8 @@
     justify-content: center;
     width: 35%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .c{
@@ -395,10 +395,11 @@
 }
 
 .d{
-    width: 18%;
+    width: 20%;
     height: 100%;
 
 }
+
 
 .container_colunas_serie_c{
 
@@ -406,16 +407,17 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 24.8%;
+    height: 25%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--cor_seis);
 
-    margin-top: 21%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    margin-top: 8.2%;
+
     background-color:var(--cor_nove);
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .container_colunas_serie_d{
 
@@ -431,12 +433,9 @@
     font-weight: 600;
     color: var(--cor_seis);
 
-    margin-top: 23%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    margin-top: 8.2%;
     background-color:var(--cor_nove);
-}
-
-.container_coluna_excluir_cliente{
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .container_coluna_excluir_cliente button{

@@ -192,7 +192,12 @@ function Clientes_dashboard() {
 
                 <div className="container_tabela_clientes_resultados">
 
+                    <div className="container_sombreamento">
+
+                      
+                    </div>
                     <div className="b">
+                      
 
                       {barra_de_pesquisa == `` && 
 
