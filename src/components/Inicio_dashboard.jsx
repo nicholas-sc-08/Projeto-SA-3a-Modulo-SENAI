@@ -26,7 +26,7 @@ function Inicio_dashboard() {
     const [ mudar_icone_produtos, set_mudar_icone_produtos ] = useState(false);
     
     
-    const ir_para_clientes = () => {
+    function ir_para_clientes() {
 
         set_clientes_dashboard(true);
         set_brechos_dashboard(false);
@@ -36,7 +36,7 @@ function Inicio_dashboard() {
         
     };
 
-    const ir_para_brechos = () => {
+    function ir_para_brechos() {
 
         set_clientes_dashboard(false);
         set_brechos_dashboard(true);
@@ -45,7 +45,7 @@ function Inicio_dashboard() {
         set_inicio_dashboard(false);
     };
 
-    const ir_para_produtos = () => {
+    function ir_para_produtos() {
 
         set_clientes_dashboard(false);
         set_brechos_dashboard(false);
@@ -54,7 +54,7 @@ function Inicio_dashboard() {
         set_inicio_dashboard(false);
     };
 
-    const ir_para_categorias = () => {
+    function ir_para_categorias() {
 
         set_clientes_dashboard(false);
         set_brechos_dashboard(false);
@@ -96,7 +96,7 @@ function Inicio_dashboard() {
 
     }, [mudar_icone_brecho, mudar_icone_clientes, mudar_icone_produtos]);
 
-    const atualizar_clientes = async () => {
+    async function atualizar_clientes(){
 
         try {
             
@@ -147,7 +147,9 @@ function Inicio_dashboard() {
 
             <div className='dashboard_container_clientes_borda'>
                 <div className='dashboard_container_clientes_img'>
-                <img src="./img/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+                    
+                    <img src="./img/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+                
                 </div>
             </div>
 

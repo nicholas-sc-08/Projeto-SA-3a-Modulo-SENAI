@@ -6,8 +6,8 @@ CREATE TABLE clientes(
 	senha VARCHAR(12) NOT NULL,
 	telefone VARCHAR(14),
 	cpf VARCHAR(14),
-	data_de_nascimento DATE
-	imagem_de_perfil VARCHAR(5000) NOT NULL,
+	data_de_nascimento DATE,
+	imagem_de_perfil VARCHAR(5000) NOT NULL
 );
 
 CREATE TABLE enderecos(
@@ -23,4 +23,25 @@ CREATE TABLE enderecos(
 
 	fk_id INT,
 	FOREIGN KEY (fk_id) REFERENCES clientes(id)
+);
+
+	CREATE TABLE Produto (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(50) NOT NULL,
+		descricao VARCHAR(200) NOT NULL,
+		preco DECIMAL(10,2) NOT NULL, 
+		codigo VARCHAR(14) NULL, 
+		condicao VARCHAR(14) NULL, 
+		imagem TEXT NULL, 
+		tamanho VARCHAR(3) NOT NULL,
+		cor VARCHAR(50),
+		marca VARCHAR(50)
+	);
+
+	CREATE TABLE EstoqueProduto (
+    id SERIAL PRIMARY KEY,
+    quantidade INT NOT NULL,
+
+	produto_id INT NOT NULL,
+    FOREIGN KEY (produto_id) REFERENCES Produto(id) 
 );

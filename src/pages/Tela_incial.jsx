@@ -16,7 +16,7 @@ function Tela_incial() {
     
   }, []);
 
-  const informacoes_clientes = async () => {
+  async function informacoes_clientes(){
     
     try {
       
