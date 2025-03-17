@@ -86,21 +86,36 @@
 
 /* Responsividade Mobile*/
 @media (max-width: 768px) {
+    .logo-camadinha{
+        margin-left: 15%;
+    }
+
     .ladoEsquerdo-container {
         position: relative;
         bottom: 14px;
         right: 3%;
     }
+    
+    .info-login{
+        margin-top: 8%;
 
-    .ladoEsquerdo-container{
-        width: 1000px;
+    }
+
+    .info-login input{
+        width: 80%;
+    }
+
+    .ladoEsquerdo-container button{
+        width: 75%;
+        margin-top: 14%;
+        margin-left: 2.5%;
 
     }
 
     .ladoDireito-container {
         position: relative;
         width: 80%;
-        top: auto;
+        top: 30px;
         left: 10%;
     }
 
