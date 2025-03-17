@@ -2,28 +2,178 @@ body{
     margin: 0;
 }
 
-:root{
-    --cor_um: #466330;
-    --cor_um_v_um: #466330b5;
-    --cor_um_v_dois: #2d411f;
-    --cor_dois: #9DA650;
-    --cor_tres: #E7E8CE;
-    --cor_quatro: #FFFDF7;
-    --cor_cinco: #E4CD80;
-    --cor_seis: #3E2A21;
-    --cor_seis_v_um: #3e2a219e;
-    --cor_sete: #FF3333;
-    --cor_sete_v_um: #ff333399;
-
-    --tipografia_primaria: "Montserrat", serif;
-    --tipografia_secundaria: "Poppins", serif;
-}
-
 .footer-content {
-    background-color: var(--cor_um_v_um);
+    background-color: var(--cor_tres);
     width: 100%;
     height: 400px;
     position: fixed;
     left: 0;
     bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo-geral-meio {
+    /* border: 1px solid purple; */
+    width: 88%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.parte-de-cima-content {
+    /* border: 1px solid #ff0396; */
+    width: 88%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logo-mais-descricao-content {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 90%;
+}
+
+.logo-e-titulo {
+    display: flex;
+    align-items: center;
+    font-family: "Poppins";
+    font-size: 16px;
+}
+
+.logo-e-titulo h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_dois);
+    font-size: 36px;
+    cursor: default;
+}
+
+.descricao-footer {
+    font-family: "Poppins";
+    font-size: 16px;
+    color: var(--cor_dez);
+    text-align: justify;
+    cursor: default;
+}
+
+.logo-footer {
+    width: 117.35px;
+    height: 126.1px;
+    
+}
+
+.menu-content {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    justify-content: space-evenly;
+    gap: 7px;
+}
+
+.menu-content h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
+}
+
+.menu-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
+    
+}
+
+.ajuda-content {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    justify-content: space-evenly;
+    gap: 7px;
+}
+
+.ajuda-content h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
+}
+
+.ajuda-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
+    font-size: 16px;
+}
+
+.FAQ-content {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    height: 90%;
+    justify-content: space-evenly;
+    gap: 7px;
+}
+
+.FAQ-content h3 {
+    font-family: "Montserrat", bold;
+    color: var(--cor_um);
+    font-size: 16px;
+    letter-spacing: 3px;
+    cursor: default;
+}
+
+.FAQ-content a {
+    color: var(--cor_dez);
+    text-decoration: none;
+    font-family: "Poppins";
+}
+
+.parte-de-baixo-content {
+    /* border: 1px solid #ff0396; */
+    width: 88%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.rede-social-footer-content {
+    /* border: 1px solid #00FF90; */
+    width: 16%;
+    height: 79%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 3.5%;
+}
+
+.rede-social-footer-content a {
+    width: 35px; 
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:var(--cor_quatro); 
+    border-radius: 50%;
+    border: 1px solid #CCCAC6;
+}
+
+.rede-social-footer-content img {
+    width: 20px; 
+    height: 20px;
 }

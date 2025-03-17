@@ -8,9 +8,10 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_brechos, set_array_brechos] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
+    const [array_enderecos, set_array_enderecos] = useState([]);
     const [usuario_logado, set_usuario_logado] = useState([]);
     const [endereco_do_cliente, set_endereco_do_cliente] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
-    const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: ``, confirmar_senha: ``});
+    const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
     const [cadastro_parte_um_cliente, set_cadastro_parte_um_cliente] = useState(true);
     const [cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente] = useState(false);
     const [cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente] = useState(false);
@@ -19,12 +20,17 @@ export const GlobalContextProvider = ({ children }) => {
     const [ brechos_dashboard, set_brechos_dashboard ] = useState(false);
     const [ produtos_dashboard, set_produtos_dashboard ] = useState(false);
     const [ categorias_dashboard, set_categorias_dashboard ] = useState(false);
+    const [ id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
+    const [ abrir_pop_up_dashboard, set_abrir_pop_up_dashboard ] = useState(false);
+    const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
 
     return (
         <GlobalContext.Provider value={{
 
             array_clientes,
             set_array_clientes,
+            array_enderecos,
+            set_array_enderecos,
             array_brechos,
             set_array_brechos,
             array_produtos,
@@ -50,7 +56,14 @@ export const GlobalContextProvider = ({ children }) => {
             brechos_dashboard,
             set_brechos_dashboard,
             categorias_dashboard,
-            set_categorias_dashboard
+            set_categorias_dashboard,
+            id_do_cliente_a_excluir,
+            set_id_do_cliente_a_excluir,
+            abrir_pop_up_dashboard,
+            set_abrir_pop_up_dashboard,
+            pop_up_notificacao_excluir_dashboard,
+            set_pop_up_notificacao_excluir_dashboard
+            
             }}>
             {children}
         </GlobalContext.Provider>

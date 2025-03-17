@@ -18,7 +18,7 @@ function DashBoard() {
         
     }, []);
 
-    const atualizar_clientes = async () => {
+    async function atualizar_clientes(){
 
         try {
             

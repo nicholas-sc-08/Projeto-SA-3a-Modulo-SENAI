@@ -82,6 +82,22 @@ app.put(`/clientes/:id`, async (req, res) => {
     };
 });
 
+app.delete(`/clientes/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const excluir = await pool.query(`DELETE FROM clientes WHERE id = $1`, [id]);
+        
+        res.status(200).json(`Usuário excluído: ${excluir.rows}`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.get(`/enderecos`, async (req, res) => {
 
     try {
@@ -125,4 +141,38 @@ app.post(`/enderecos`, async (req, res) => {
     };
 });
 
+app.delete(`/enderecos/:fk_id`, async (req, res) => {
+
+    const { fk_id } = req.params;
+
+    try {
+        
+        const endereco_a_excluir = await pool.query(`DELETE FROM enderecos WHERE fk_id = $1`, [fk_id]);
+        res.status(200).json(`Endereço excluído com sucesso: ${endereco_a_excluir.rows}`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+
+app.get("/produto", async (req, res)=> {
+    try {
+        const resultado = await pool.query('SELECT * FROM produto')
+        res.status(200).json(resultado.rows)
+    } catch (error) {
+        console.error(error)
+    }
+})
+app.delete("/produto/:id", async(req, res)=> {
+    const {id} = req.params
+    try {
+        const excluir = await pool.query("DELETE FROM produto WHERE id = $1", [id])
+        res.status(200).json(excluir.rows)
+    } catch (error) {
+        console.error(error)
+
+    }
+})
