@@ -18,6 +18,7 @@
 }
 
 .alinhamento-navbar-usuario {
+    padding-top: 0.5vw;
     width: 100vw;
     justify-content: center;
     align-items: center;
@@ -32,7 +33,7 @@
     justify-content: space-between;
 }
 
-.line-navbar{
+.line-navbar {
     border-bottom: 1px solid var(--cor_seis);
     width: 90vw;
     opacity: 30%;
@@ -46,12 +47,12 @@
     font-size: 100%;
 }
 
-.link-texto-navbar-usuario:hover{
+.link-texto-navbar-usuario:hover {
     color: var(--cor_um_v_dois);
     transition: 0.2s;
 }
 
-.link-texto-navbar-usuario:not(:hover){
+.link-texto-navbar-usuario:not(:hover) {
     transition: 0.2s;
 }
 
@@ -73,6 +74,7 @@
     padding-bottom: 1%;
     padding-right: 1%;
     color: var(--cor_seis);
+    box-shadow: 0 4px 12px #c4bab1;
 }
 
 .input-pesquisa-navbar:focus {
@@ -91,25 +93,25 @@
     width: 1%;
 }
 
-.button-sacola-navbar{
+.button-sacola-navbar {
     border: none;
     background-color: transparent;
 }
 
-.button-sacola-navbar img{
+.button-sacola-navbar img {
     width: 3vw;
 }
 
-.button-perfil-navbar{
+.button-perfil-navbar {
     border: none;
     background-color: transparent;
 }
 
-.button-perfil-navbar img{
+.button-perfil-navbar img {
     width: 2.1vw;
 }
 
-.buttons-container-navbar-alinhamento{
+.buttons-container-navbar-alinhamento {
     align-items: center;
     justify-content: center;
     display: flex;
