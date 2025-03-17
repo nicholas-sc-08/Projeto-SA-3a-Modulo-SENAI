@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 function Tela_incial() {
 
@@ -29,7 +29,10 @@ function Tela_incial() {
 
   return (
     <div>
-      <p>Sou a tela inicial</p>
+
+      
+
+      <Footer />
 
       {array_clientes.map((usuario, i) => (
 
@@ -43,7 +46,7 @@ function Tela_incial() {
           <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
           <p>CPF: {usuario.cpf}</p>
 
-          {/* <Footer/> */}
+         
 
         </div>
       ))}
