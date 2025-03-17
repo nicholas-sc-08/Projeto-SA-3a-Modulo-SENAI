@@ -49,7 +49,6 @@
 }
 .info-ladoDireito{
     position: relative;
-    top: 30%;
     left: 27%;
     width: 50%;
 }
@@ -78,5 +77,35 @@
 
 .info-ladoDireito button:hover{
     transform: scale(1.1);
+}
+
+.estrelaMenor{
+    margin-left: 95%;
+    margin-top: 25%;
+}
+
+/* Responsividade Mobile*/
+@media (max-width: 768px) {
+    .ladoEsquerdo-container {
+        position: relative;
+        bottom: 14px;
+        right: 3%;
+    }
+
+    .ladoEsquerdo-container{
+        width: 1000px;
+
+    }
+
+    .ladoDireito-container {
+        position: relative;
+        width: 80%;
+        top: auto;
+        left: 10%;
+    }
+
+    .info-ladoDireito p {
+        margin-top: 5%;
+    }
 
 }

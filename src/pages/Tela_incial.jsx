@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
-import Footer from '../components/Footer';
+import HeaderUsuario from '../components/HeaderUsuario';
+import HeaderBrecho from '../components/HeaderBrecho';
+// import Footer from '../components/Footer';
 
 function Tela_incial() {
 
@@ -30,9 +32,11 @@ function Tela_incial() {
   return (
     <div>
 
-      
+      <HeaderUsuario />
 
-      <Footer />
+      {/* <HeaderBrecho /> */}
+
+      {/* <p>Sou a tela inicial</p> */}
 
       {array_clientes.map((usuario, i) => (
 

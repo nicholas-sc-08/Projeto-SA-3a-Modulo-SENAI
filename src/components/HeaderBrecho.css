@@ -1,0 +1,15 @@
+.button-chat-navbar {
+    border: none;
+    background-color: transparent;
+}
+
+.button-chat-navbar img {
+    width: 1.9vw;
+}
+
+.buttons-container-navbar-alinhamento-brecho{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
