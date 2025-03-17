@@ -6,6 +6,7 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import '../pages/DashBoard/DashBoard.css';
 import { useState } from 'react';
+import HeaderBrecho from "./HeaderBrecho.jsx";
 
 function Inicio_dashboard() {
 
@@ -111,6 +112,9 @@ function Inicio_dashboard() {
 
   return (
 <div>
+
+    <HeaderBrecho/>
+
     <h1 className='saudacoes_ao_admin'>Olá Administrador(a)!</h1>
 
     <div className="container_alinhamento_botoes_dashboard">
@@ -148,7 +152,7 @@ function Inicio_dashboard() {
             <div className='dashboard_container_clientes_borda'>
                 <div className='dashboard_container_clientes_img'>
                     
-                    <img src="./img/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+                    <img src="./img/icons/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
                 
                 </div>
             </div>
@@ -188,7 +192,7 @@ function Inicio_dashboard() {
 
             <div className='dashboard_container_categorias_borda'>
                 <div className='dashboard_container_categorias_img'>
-                <img src="./img/icone_dashboard_etiqueta_v_um.svg" alt="categorias" />
+                <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="categorias" />
                 </div>
             </div>
 
