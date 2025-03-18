@@ -1,0 +1,22 @@
+.container_categorias_dashboard{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 2%;
+}
+
+.container_header_categorias_dashboard{
+
+    display: flex;
+    width: 80%;
+    height: 50%;
+
+    background-color: red;
+}
+
+.container_contador_sombreamento_categorias{
+
+    background-color: blue;
+}

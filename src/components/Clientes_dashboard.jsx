@@ -20,6 +20,7 @@ function Clientes_dashboard() {
   const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
   const referencia_do_inpt = useRef(null);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState([]);
+  const [pesquisar, set_pesquisar] = useState(false);
 
   function voltar_para_o_inicio(){
 
@@ -31,9 +32,32 @@ function Clientes_dashboard() {
 
     if(e.key === "Enter"){
 
+      for(let i = 0; i < array_clientes.length; i++){
+
+        if(barra_de_pesquisa == array_clientes[i].nome){
+
+          
+        };
+      };
+
       alert(`a pesquisar`);
     };
   };
+
+  useEffect(() => {
+      
+      console.log(`res`, resultado_de_pesquisa);
+
+      for(let i = 0; i < array_clientes.length; i++){
+
+        if(barra_de_pesquisa == array_clientes[i].nome){
+
+          set_resultado_de_pesquisa([...resultado_de_pesquisa, array_clientes[i]]);
+          set_pesquisar(true);
+        };
+      };
+
+  }, [barra_de_pesquisa]);
 
   async function buscar_clientes(){
 
@@ -199,7 +223,7 @@ function Clientes_dashboard() {
                     <div className="b">
                       
 
-                      {barra_de_pesquisa == `` && 
+                      {!barra_de_pesquisa && 
 
                     array_clientes.map((cliente, i) => (
 
@@ -234,9 +258,42 @@ function Clientes_dashboard() {
                         </div>
 
                       </div>
-                    ))
-                    
-                    }
+                    ))}
+
+                    {barra_de_pesquisa && resultado_de_pesquisa.map((cliente, i) => {
+
+                      <div key={i} className='container_colunas_serie_a'>
+
+                        <div className="container_coluna_imagem_de_perfil_cliente">
+
+                          <img src={cliente.imagem_de_perfil} alt="" />
+
+                        </div>
+
+                        <div className='container_colunas_serie_b'>
+
+                          <div className="container_coluna_nome_cliente">
+
+                            <span>{cliente.nome}</span>
+            
+                          </div>
+
+                          <div className="container_coluna_email_cliente">
+
+                            <span>{cliente.email}</span>
+            
+                          </div>
+
+                          <div className="container_coluna_telefone_cliente">
+
+                            <span>{cliente.telefone}</span>
+            
+                          </div>
+
+                        </div>
+
+                      </div>
+                    })}
 
                     </div>
                     
