@@ -4,19 +4,260 @@
     flex-direction: column;
     align-items: center;
 
-    margin-top: 2%;
+    padding-top: 2%;
 }
 
 .container_header_categorias_dashboard{
 
     display: flex;
+    justify-content: space-between;
     width: 80%;
     height: 50%;
+}
 
-    background-color: red;
+.container_header_contador_categorias{
+
+    width: 20%;
+}
+
+.container_contador_categorias{
+
+    display: flex;
+    width: 100%;
 }
 
 .container_contador_sombreamento_categorias{
 
-    background-color: blue;
+    width: 25%;
+    height: 50%;
+
+    padding: 3%;
+    border-radius: 100vh;
+
+    background-color: var(--cor_oito);
+}
+
+.container_contador_img_categorias{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+    padding-top: 15%;
+    padding-bottom: 15%;
+
+    border-radius: 100vh;
+
+    background-color: var(--cor_um);
+}
+
+.container_contador_categorias_titulo{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    padding-left: 5%;
+}
+
+.container_contador_categorias_titulo h2{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: var(--cor_seis);
+}
+
+.container_contador_categorias_titulo span{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.4rem;
+    font-weight: 800;
+
+    color: var(--cor_um);
+}
+
+.container_header_voltar_para_inicio{
+
+    width: 15%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.container_header_voltar{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    width: 50%;
+}
+
+.container_header_voltar span{
+
+    font-family: var(--tipografia_primaria);
+    font-weight: 700;
+    font-size: 1.2rem;
+
+    color: var(--cor_um);
+}
+
+.container_tabela_categorias{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 80vh;
+
+    margin-top: 2%;
+
+    border-radius: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    background-color: var(--cor_quatro);
+}
+
+.container_tabela_categorias_header{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 15%;
+    border-top-right-radius: 2vw;
+    border-top-left-radius: 2vw;
+
+    background-color: var(--cor_um);
+}
+
+.container_tabela_categorias_header_barra_de_pesquisa{
+
+    display: flex;
+    align-items: center;
+
+    cursor: text;
+
+    width: 35%;
+    height: 40%;
+
+    margin-left: 3%;
+    padding-left: 1%;
+
+    border-radius: 100vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+    background-color: var(--cor_doze);
+}
+
+.container_tabela_categorias_header_barra_de_pesquisa input{
+
+    margin-left: 2%;
+    width: 90%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    outline: none;
+
+    border: none;
+    background-color: transparent;
+}
+
+.container_tabela_categorias_header_cadastrar_categoria{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90%;
+    margin-right: 5%;
+
+    height: 100%;
+}
+
+.container_tabela_categorias_header_cadastrar_categoria button{
+
+    width: 90%;
+    height: 40%;
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    border: 1% solid var(--cor_dois);
+    border-radius: 100vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    color: var(--cor_nove);
+    background-color: var(--cor_dois);
+}
+
+.container_tabela_categorias_header_cadastrar_categoria button:hover{
+
+    border: 1% solid var(--cor_dois_v_um);
+    background-color: var(--cor_dois_v_um);
+}
+
+.container_tabela_categorias_header_editar_categoria{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90%;
+
+    height: 100%;
+}
+
+.container_tabela_categorias_header_editar_categoria button{
+
+    width: 90%;
+    height: 40%;
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    border: 1% solid var(--cor_dois);
+    border-radius: 100vw;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    color: var(--cor_nove);
+    background-color: var(--cor_um_v_um);
+}
+
+.container_botoes_header_categorias{
+
+    display: flex;
+    width: 35%;
+    height: 100%;
+
+    padding-right: 5%;
+}
+
+.container_subtitulo_tabela_categorias{
+
+    display: flex;
+    width: 90%;
+    height: 10%;
+    align-items: center;
+
+    font-family: var(--tipografia_primaria);
+    font-weight: bold;
+    font-size: 1rem;
+
+    border-bottom: 1px solid var(--cor_oito_v_um);
+
+    color: var(--cor_seis);
 }
