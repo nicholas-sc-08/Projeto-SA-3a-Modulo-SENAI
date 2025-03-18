@@ -1,7 +1,29 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './Footer.css'
 
 function Footer() {
+
+  const [abrirMenuDiv, setAbrirMenuDiv] = useState(false)
+  const [abrirAjudaDiv, setAbrirAjudaDiv] = useState(false)
+  const [abrirFaqDiv, setAbrirFaqDiv] = useState(false)
+
+  const alternarDiv = (div) => {
+    setAbrirMenuDiv(div === 'menu' ? !abrirMenuDiv : false)
+    setAbrirAjudaDiv(div === 'ajuda' ? !abrirAjudaDiv : false)
+    setAbrirFaqDiv(div === 'faq' ? !abrirFaqDiv : false)
+  }
+
+  const [alturaTopicosFt, setAlturaTopicosFt] = useState({menu : '10%', ajuda : '10%', faq : '10%'})
+
+  useEffect(() => {
+
+    if(abrirMenuDiv){
+
+      setAlturaTopicosFt({...alturaTopicosFt, menu: '30%'});
+    };
+
+  }, [abrirMenuDiv]);
 
   return (
 
@@ -17,26 +39,42 @@ function Footer() {
               <p>Roupas com história, estilo com propósito. Encontre seu próximo garimpo!</p>
             </div>
           </div>
-          <div className="menu-content">
+          <div className="menu-content" onClick={() => alternarDiv('menu')} style={{height: alturaTopicosFt.menu}}>
             <h3>MENU</h3>
-            <Link to={"/"}>Início</Link>
-            <Link>Explorar brechós</Link>
-            <Link>Doações</Link>
-            <Link>Buscar</Link>
+            {abrirMenuDiv && (
+              <>
+                <Link to={"/"}>Início</Link>
+                <Link>Explorar brechós</Link>
+                <Link>Doações</Link>
+                <Link>Buscar</Link>
+              </>
+
+            )}
+
           </div>
-          <div className="ajuda-content">
+          <div className="ajuda-content" onClick={() => alternarDiv('ajuda')}>
             <h3>AJUDA</h3>
-            <Link>Quem somos nós?</Link>
-            <Link>Contato</Link>
-            <Link>Termos & Condições </Link>
-            <Link>Política de Privacidade</Link>
+            {abrirAjudaDiv && (
+              <>
+                <Link>Quem somos nós?</Link>
+                <Link>Contato</Link>
+                <Link>Termos & Condições </Link>
+                <Link>Política de Privacidade</Link>
+              </>
+            )}
+
           </div>
-          <div className="FAQ-content">
+          <div className="FAQ-content" onClick={() => alternarDiv('faq')}>
             <h3>FAQ</h3>
-            <Link>Vender no Fly</Link>
-            <Link>Como doar roupas</Link>
-            <Link>Comprar</Link>
-            <Link>Pagamentos</Link>
+            {abrirFaqDiv && (
+              <>
+                <Link>Vender no Fly</Link>
+                <Link>Como doar roupas</Link>
+                <Link>Comprar</Link>
+                <Link>Pagamentos</Link>
+              </>
+            )}
+          
           </div>
         </div>
         <div className="linha-footer"></div>
