@@ -1,10 +1,102 @@
-.container-ir-para-tela-login-alinhamento{
-    border: 1px solid red;
-    
+.container-ir-para-tela-login-alinhamento {
+    width: 45%;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
-.container-informacoes-login-cadastro-brecho{
-    border: 1px solid red;
-    width: fit-content;
+.container-informacoes-login-cadastro-brecho {
+    width: 80%;
+    height: 85vh;
+    border-radius: 25px;
     background-color: var(--cor_tres);
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.container-informacoes-login-cadastro-brecho h1 {
+    font-family: var(--tipografia_primaria);
+    font-size: 35px;
+    width: 65%;
+    color: var(--cor_um);
+    letter-spacing: 1px;
+    line-height: 45px;
+    font-weight: bold;
+    text-align: center;
+
+    padding-bottom: 4%;
+}
+
+.container-informacoes-login-cadastro-brecho p {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_um);
+    opacity: 75%;
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+
+    padding-bottom: 5%;
+}
+
+.container-informacoes-login-cadastro-brecho button {
+    width: 25%;
+    height: 7%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border-radius: 10vw;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_dois);
+}
+
+.container-informacoes-login-cadastro-brecho button:hover{
+    transition: 0.3s;
+    background-color: var(--cor_um);
+}
+
+.estrela-um-cadastro{
+    padding-left: 95%;
+    padding-bottom: 5%;
+}
+
+.estrela-dois-cadastro{
+    padding-right: 90%;
+}
+
+.alinhamento-fases-container-cadastro{
+    display: flex;
+}
+
+.alinhamento-elipses-logo{
+    display: flex;
+    height: fit-content;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 7vh;
+    width: 48vw;
+}
+
+.elipse-container{
+    height: fit-content;
+    width: 13%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
 }
