@@ -1,0 +1,10 @@
+.container-ir-para-tela-login-alinhamento{
+    border: 1px solid red;
+    
+}
+
+.container-informacoes-login-cadastro-brecho{
+    border: 1px solid red;
+    width: fit-content;
+    background-color: var(--cor_tres);
+}
