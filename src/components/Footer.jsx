@@ -14,16 +14,34 @@ function Footer() {
     setAbrirFaqDiv(div === 'faq' ? !abrirFaqDiv : false)
   }
 
-  const [alturaTopicosFt, setAlturaTopicosFt] = useState({menu : '10%', ajuda : '10%', faq : '10%'})
+  // const [alturaTopicosFt, setAlturaTopicosFt] = useState({menu : '10%', ajuda : '10%', faq : '10%'})
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if(abrirMenuDiv){
+  //   if(abrirMenuDiv){
 
-      setAlturaTopicosFt({...alturaTopicosFt, menu: '30%'});
-    };
+  //     setAlturaTopicosFt({...alturaTopicosFt, menu: '30%'});
+  //   };
 
-  }, [abrirMenuDiv]);
+  // }, [abrirMenuDiv]);
+
+  // useEffect(() => { 
+
+  //   if(abrirAjudaDiv){
+
+  //     setAlturaTopicosFt({...alturaTopicosFt, ajuda: '30%'});
+  //   };
+
+  // }, [abrirAjudaDiv]);
+
+  // useEffect(() => { 
+
+  //   if(abrirFaqDiv){
+
+  //     setAlturaTopicosFt({...alturaTopicosFt, faq: '30%'});
+  //   };
+  // }, [abrirFaqDiv])
+
 
   return (
 
@@ -39,7 +57,7 @@ function Footer() {
               <p>Roupas com história, estilo com propósito. Encontre seu próximo garimpo!</p>
             </div>
           </div>
-          <div className="menu-content" onClick={() => alternarDiv('menu')} style={{height: alturaTopicosFt.menu}}>
+          <div className="menu-content" onClick={() => alternarDiv('menu')} >  {/*style={{height: alturaTopicosFt.menu}} */}
             <h3>MENU</h3>
             {abrirMenuDiv && (
               <>
@@ -52,7 +70,7 @@ function Footer() {
             )}
 
           </div>
-          <div className="ajuda-content" onClick={() => alternarDiv('ajuda')}>
+          <div className="ajuda-content" onClick={() => alternarDiv('ajuda')}> {/* style={{height: alturaTopicosFt.ajuda}}*/}
             <h3>AJUDA</h3>
             {abrirAjudaDiv && (
               <>
@@ -64,7 +82,7 @@ function Footer() {
             )}
 
           </div>
-          <div className="FAQ-content" onClick={() => alternarDiv('faq')}>
+          <div className="FAQ-content" onClick={() => alternarDiv('faq')} > {/*style={{height: alturaTopicosFt.faq}} */}
             <h3>FAQ</h3>
             {abrirFaqDiv && (
               <>

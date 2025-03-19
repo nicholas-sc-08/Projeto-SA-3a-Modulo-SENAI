@@ -261,3 +261,8 @@
 
     color: var(--cor_seis);
 }
+
+.container_escurecer_tela{
+
+    background-color: #00000088;
+}

@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+.perfil-brecho-content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
