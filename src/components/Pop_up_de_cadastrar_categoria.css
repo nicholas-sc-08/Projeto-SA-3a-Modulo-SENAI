@@ -1,0 +1,153 @@
+.container_pop_up_cadastro_de_categoria{
+    
+    position: fixed;
+
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    
+    justify-content: center;
+}
+
+.container_pop_up_categoria{
+
+    display: flex;
+    justify-content: end;
+    width: 40%;
+    height: 40vh;
+
+    margin-top: 5%;
+
+    border-radius: 2vw;
+
+    background-size: 53.4%;
+    background-repeat: no-repeat;
+    background-image: url("./img/Imagem_pop_up_cadastro_categoria.svg");
+    background-color: var(--cor_quatro);
+}
+
+.container_pop_up_categoria_conteudo{
+
+    width: 55%;
+    height: 100%;
+}
+
+.container_pop_up_categoria_conteudo p{
+
+    width: 90%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_pop_up_categoria_conteudo label{
+
+    font-weight: bold;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_pop_up_categoria_conteudo input{
+
+    width: 90%;
+    height: 25%;
+
+    cursor: pointer;
+    outline: none;
+
+    margin-top: 2%;
+    padding-left: 2%;
+
+    font-family: var(--tipografia_secundaria);
+
+    border-radius: 0.7vw;
+    border: 1px solid var(--cor_dois);
+    background-color: transparent;
+}
+
+.container_alinhamento_formulario{
+
+    display: flex;
+    flex-direction: column;
+
+    height: 40%;
+}
+
+.container_alinhamento_botao_sair{
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 93%;
+    height: 20%;
+}
+
+.botao_de_sair_categoria{
+
+    cursor: pointer;
+    border: 0px;
+
+    color: var(--cor_um);
+    background-color: transparent;
+}
+
+.alinhamento_titulo{
+
+    width: 92%;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
+
+    border-bottom: 1px solid var(--cor_oito);
+}
+
+.alinhamento_titulo h2{
+
+    font-size: 1.5rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: bold;
+    color: var(--cor_seis);
+}
+
+.container_botao_cadastrar_categoria{
+
+    display: flex;
+    align-items: center;
+
+    height: 50%;
+}
+
+.container_botao_cadastrar_categoria p{
+
+    width: 60%;
+    color: red;
+}
+
+.botao_cadastrar_categoria{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 30%;
+    height: 60%;
+
+    border-radius: 2vw;
+    border: 1px solid var(--cor_um);
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}
+
+.botao_cadastrar_categoria:hover{
+
+    border: 1px solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}

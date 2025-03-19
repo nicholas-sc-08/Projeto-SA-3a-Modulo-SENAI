@@ -1,7 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import './Categorias_dashboard.css';
 import Pop_up_de_cadastrar_categoria from './Pop_up_de_cadastrar_categoria.jsx';
+import axios from 'axios';
 
 function Categorias_dashboard() {
 
@@ -15,7 +16,7 @@ function Categorias_dashboard() {
   function voltar_para_o_inicio(){
 
     set_inicio_dashboard(true);
-    set_categorias_dashboard(false);
+    set_categorias_dashboard(false);    
   };
 
   function abrir_pop_up_de_cadastro(){
@@ -23,11 +24,30 @@ function Categorias_dashboard() {
     set_pop_up_de_cadastrar_categoria(true);
   };
 
+  async function buscar_categorias(){
+
+    try {
+      
+      const categorias = await axios.get(`http://localhost:3000/categorias`);
+      set_categorias_dashboard(categorias.data);
+
+    } catch (erro) {
+      
+      console.error(erro);
+      
+    };
+  };
+
+  useEffect(() => {
+
+    buscar_categorias();
+  }, []);
+
   return (
     <div className='container_categorias_dashboard'>
 
-      {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria/>}
       {pop_up_de_cadastrar_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria/>}
       
         <div className="container_header_categorias_dashboard">
 
