@@ -23,6 +23,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
     const [ abrir_pop_up_dashboard, set_abrir_pop_up_dashboard ] = useState(false);
     const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
+    const [ pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria ] = useState(false);
 
     return (
         <GlobalContext.Provider value={{
@@ -62,7 +63,9 @@ export const GlobalContextProvider = ({ children }) => {
             abrir_pop_up_dashboard,
             set_abrir_pop_up_dashboard,
             pop_up_notificacao_excluir_dashboard,
-            set_pop_up_notificacao_excluir_dashboard
+            set_pop_up_notificacao_excluir_dashboard,
+            pop_up_de_cadastrar_categoria,
+            set_pop_up_de_cadastrar_categoria
             
             }}>
             {children}
