@@ -11,6 +11,7 @@ import GestaoEstoque from "../pages/Gestao_Estoque/Gestao_Estoque";
 import Cadastro_Produto from "../pages/Cadastro_Produto/Cadastro_Produto";
 import Cadastro_brecho from "../pages/Cadastro/Cadastro_brecho";
 import Perfil_Brecho from "../pages/Perfil_Brecho/Perfil_Brecho";
+import Contato from "../pages/Contato/Contato";
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
    { path: `/footer`, element: <Footer /> },
    { path: `/gestao_estoque`, element: <GestaoEstoque /> },
    { path: `/cadastro_produto`, element: <Cadastro_Produto /> },
-   { path: `/perfil_brecho`, element: <Perfil_Brecho />}
+   { path: `/perfil_brecho`, element: <Perfil_Brecho />},
+   { path: `/contato`, element: <Contato />}
 
 ])
 
