@@ -100,3 +100,96 @@
     align-items: center;
     display: flex;
 }
+
+/* FORMULARIO UM INPUTS CADASTRO BRECHO  */
+.container-formulario-um-cadastro-brecho{
+    width: 70%;
+}
+
+.container-formulario-um-cadastro-brecho h1{
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    width: fit-content;
+    letter-spacing: 1px;
+}
+
+.container-formulario-um-cadastro-brecho p{
+    font-family: var(--tipografia_secundaria);
+    letter-spacing: 0.5px;
+    color: var(--cor_seis);
+    opacity: 85%;
+    font-size: 105%;
+    padding-top: 1%;
+}
+
+.inputs-formulario-um-cadastro-brecho{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+.inputs-formulario-um-cadastro-brecho label{
+    font-family: var(--tipografia_secundaria);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-size: 18px;
+
+    padding-top: 2.5%;
+    padding-bottom: 1%;
+}
+
+.inputs-formulario-um-cadastro-brecho span{
+    color: var(--cor_sete);
+}
+
+.inputs-formulario-um-cadastro-brecho input{
+    width: 70%;
+    height: 2.5vw;
+    background-color:transparent;
+    border: 0.1em solid var(--cor_dois);
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    color: var(--cor_seis);
+    padding-left: 1%;
+    border-radius: 0.7vw;
+}
+
+.inputs-formulario-um-cadastro-brecho input::placeholder{
+    color: var(--cor_seis);
+    opacity: 75%;
+}
+
+.inputs-formulario-um-cadastro-brecho input:focus{
+    outline: none;
+    border: 0.1em solid var(--cor_um);
+}
+/* FORMULARIO UM INPUTS CADASTRO BRECHO  */
+
+.formulario-cadastro-brecho-buttons{
+    width: fit-content;
+
+    padding-top: 4%;
+}
+
+.formulario-cadastro-brecho-buttons button{
+    border: none;
+    background-color: var(--cor_um);
+    width: 250%;
+    height: 3vw;
+    border-radius: 2.5vw;
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9em;
+}
+
+.formulario-cadastro-brecho-buttons button:hover{
+    background-color: var(--cor_dois);
+    transition: 0.3s;
+}
+
+.formulario-cadastro-brecho-buttons button:not(:hover){
+    background-color: var(--cor_um);
+    transition: 0.3s;
+}

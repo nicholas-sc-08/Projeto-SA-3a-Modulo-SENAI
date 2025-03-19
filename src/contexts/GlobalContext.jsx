@@ -25,6 +25,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
     const [ pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria ] = useState(false);
 
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: ``});
+
+
     return (
         <GlobalContext.Provider value={{
 
@@ -65,7 +68,10 @@ export const GlobalContextProvider = ({ children }) => {
             pop_up_notificacao_excluir_dashboard,
             set_pop_up_notificacao_excluir_dashboard,
             pop_up_de_cadastrar_categoria,
-            set_pop_up_de_cadastrar_categoria
+            set_pop_up_de_cadastrar_categoria,
+
+            formCadastroBrecho,
+            setFormCadastroBrecho
             
             }}>
             {children}

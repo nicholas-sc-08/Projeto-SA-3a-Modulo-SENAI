@@ -5,6 +5,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import SecaoInputsUmBrecho from '../../components/CadastroBrechoSecaoInputsUm.jsx'
 import SecaoInputsDoisBrecho from '../../components/CadastroBrechoSecaoInputsDois.jsx'
 import SecaoInputsTresBrecho from '../../components/CadastroBrechoSecaoInputsTres.jsx'
+import axios from 'axios';
 
 function Cadastro_brecho() {
 
@@ -20,19 +21,19 @@ function Cadastro_brecho() {
   const [mensagemErro, setMensagemErro] = useState(``)
 
 
-  // async function informacoes_clientes() {
+  async function informacoesBrecho() {
 
-  //   try {
+    try {
 
-  //     const resultado = await axios.get(`http://localhost:3000/clientes`);
-  //     set_array_clientes(resultado.data);
-  //     console.log(resultado.data);
+      const resultado = await axios.get(`http://localhost:3000/brechos`);
+      setArraysBrechos(resultado.data);
+      console.log(resultado.data);
 
-  //   } catch (erro) {
+    } catch (erro) {
 
-  //     console.log(erro);
-  //   };
-  // };
+      console.log(erro);
+    };
+  };
 
   // async function lidar_com_formulario(e) {
 
@@ -254,6 +255,7 @@ function Cadastro_brecho() {
             <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" className='logo-cadastro-brecho' /></Link>
           </div>
 
+          <SecaoInputsUmBrecho />
           {/* Seção de inputs Cadastro Brecho */}
           <div className="container-cadastro-inputs">
 
@@ -261,7 +263,7 @@ function Cadastro_brecho() {
             {cadastroParteDoisBrecho && <SecaoInputsDoisBrecho />}
             {cadastroParteTresBrecho && <SecaoInputsTresBrecho />}
 
-            <div className="dv_formulario_botoes">
+            <div className="formulario-cadastro-brecho-buttons">
 
               {!exibirBotaoCadastro && <button type='button' onClick={seguinteEtapa}>Continuar</button>}
               {exibirBotaoCadastro && <button type='submit'>Cadastrar-se</button>}
@@ -272,7 +274,6 @@ function Cadastro_brecho() {
           </div>
           {/* Seção de inputs Cadastro Brecho */}
 
-          <SecaoInputsUmBrecho />
 
         </div>
       </div>
