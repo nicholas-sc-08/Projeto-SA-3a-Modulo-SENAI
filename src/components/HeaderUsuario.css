@@ -28,7 +28,7 @@
 .navbar-usuario {
     display: flex;
     align-items: center;
-    width: 80vw;
+    width: 85vw;
     justify-content: space-between;
 }
 
@@ -87,7 +87,7 @@
 
 .img-lupa-pesquisa-navbar {
     position: absolute;
-    margin-left: -28%;
+    margin-left: -35%;
     width: 1%;
 }
 

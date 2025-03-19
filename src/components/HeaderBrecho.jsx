@@ -9,7 +9,7 @@ function HeaderBrecho() {
                 <nav className="navbar-usuario">
                     <Link to={'/'} className='header-link-logo'><img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Logo Fly circular"/></Link>
 
-                    <Link to={'estoque'} className='link-texto-navbar-usuario'>Estoque</Link>
+                    <Link to={'/gestao_estoque'} className='link-texto-navbar-usuario'>Estoque</Link>
                     <Link to={'informações'} className='link-texto-navbar-usuario'>Informações</Link>
                     <Link to={'sobreNos'} className='link-texto-navbar-usuario'>Sobre Nós</Link>
 
