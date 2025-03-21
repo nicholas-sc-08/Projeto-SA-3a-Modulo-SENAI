@@ -75,6 +75,7 @@
     padding-right: 1%;
     color: var(--cor_seis);
     box-shadow: 0 4px 12px #c4bab1;
+    font-family: var(--tipografia_secundaria);
 }
 
 .input-pesquisa-navbar:focus {
@@ -89,7 +90,7 @@
 
 .img-lupa-pesquisa-navbar {
     position: absolute;
-    margin-left: -28%;
+    margin-left: -35%;
     width: 1%;
 }
 
