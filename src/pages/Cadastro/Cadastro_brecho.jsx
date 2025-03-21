@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Cadastro_brecho.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
@@ -14,11 +14,22 @@ function Cadastro_brecho() {
   const { cadastroParteDoisBrecho, setCadastroParteDoisBrecho } = useContext(GlobalContext);
   const { cadastroParteTresBrecho, setCadastroParteTresBrecho } = useContext(GlobalContext);
   const { arrayBrechos, setArraysBrechos } = useContext(GlobalContext)
+  const { enderecoDoBrecho } = useContext(GlobalContext)
 
   const { formCadastroBrecho } = useContext(GlobalContext)
 
   const [exibirBotaoCadastro, setExibirBotaoCadastro] = useState(false)
   const [mensagemErro, setMensagemErro] = useState(``)
+  const [idade, setIdade] = useState(``)
+  const [subTituloCadastroBrecho, setSubTituloCadastroBrecho] = useState(`Complete os dados abaixo e comece a compartilhar seus produtos com o mundo!`)
+  const [tituloCadastroBrecho, setTituloCadastroBrecho] = useState(`Crie a sua conta Fly!`)
+
+  const diaDeHoje = new Date();
+
+  let senhasIguais = false;
+  let emailJaCadastrado = false
+  let telefoneJaCadastrado = false
+  let CNPJJaCadastrado = false
 
 
   async function informacoesBrecho() {
@@ -35,193 +46,198 @@ function Cadastro_brecho() {
     };
   };
 
-  // async function lidar_com_formulario(e) {
+  async function lidarComFormulario(e) {
 
-  //   e.preventDefault();
+    e.preventDefault();
 
-  //   try {
+    try {
 
-  //     const resposta = await axios.post(`http://localhost:3000/clientes`, form_de_cadastro_cliente);
+      const resposta = await axios.post(`http://localhost:3000/brechos`, formCadastroBrecho);
 
-  //     const endereco_do_cliente_com_fk = {
+      const enderecoDoBrechoComFK = {
 
-  //       ...endereco_do_cliente,
-  //       fk_id: resposta.data.id
-  //     };
+        ...enderecoDoBrecho,
+        id_brecho: resposta.data.id
+      };
 
-  //     const resposta_endereco = await axios.post(`http://localhost:3000/enderecos`, endereco_do_cliente_com_fk);
+      const respostaEndereco = await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
 
-  //     informacoes_clientes();
-  //     mudar_de_pagina(`/login`);
+      informacoesBrecho();
+      mudar_de_pagina(`/login`);
 
-  //   } catch (erro) {
+    } catch (erro) {
 
-  //     console.error(erro);
-  //   };
-  // };
+      console.error(erro);
+    };
+  };
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   informacoes_clientes();
+    informacoesBrecho();
 
-  // }, []);
+  }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   calcular_idade();
+    calcularIdade();
 
-  // }, [form_de_cadastro_cliente.data_de_nascimento]);
+  }, [formCadastroBrecho.data_de_nascimento_vendedor]);
 
-  // function calcular_idade() {
+  function calcularIdade() {
 
-  //   set_idade(dia_de_hoje.getFullYear() - new Date(form_de_cadastro_cliente.data_de_nascimento).getFullYear());
-  // };
+    setIdade(diaDeHoje.getFullYear() - new Date(formCadastroBrecho.data_de_nascimento_vendedor).getFullYear());
+  };
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (cadastro_parte_dois_cliente) {
+    if (cadastroParteDoisBrecho) {
 
-  //     set_sub_titulo_cadastro_cliente(`Estamos a um passo de ter você conosco!`);
-  //   } else if (cadastro_parte_tres_cliente) {
+      setSubTituloCadastroBrecho(`Estamos a poucos passos de te ter conosco!!`);
 
-  //     set_sub_titulo_cadastro_cliente(`Seu estilo está quase no ar!`);
-  //   };
+    } else if (cadastroParteTresBrecho) {
 
-  // }, [cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
+      setSubTituloCadastroBrecho(`Cadastre as informações de endereço!`);
+    };
 
-  // useEffect(() => {
+  }, [cadastroParteDoisBrecho, cadastroParteTresBrecho]);
 
-  //   if (cadastro_parte_um_cliente == false && cadastro_parte_dois_cliente == false && cadastro_parte_tres_cliente) {
+  useEffect(() => {
 
-  //     set_exibir_botao_de_cadastro(true);
-  //   } else {
+    if (cadastroParteDoisBrecho) {
 
-  //     set_exibir_botao_de_cadastro(false);
-  //   };
+      setTituloCadastroBrecho(`Cadastre seu brechó`);
 
-  // }, [cadastro_parte_um_cliente, cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
+    } else if (cadastroParteTresBrecho) {
 
-  // function etapa_seguinte() {
+      setTituloCadastroBrecho(`Cadastre seu brechó`);
+    };
 
+  }, [cadastroParteDoisBrecho, cadastroParteTresBrecho]);
 
-  //   if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
+  useEffect(() => {
 
-  //     for (let i = 0; i < array_clientes.length; i++) {
+    if (cadastroParteUmBrecho == false && cadastroParteDoisBrecho == false && cadastroParteTresBrecho) {
 
-  //       if (array_clientes[i].email == form_de_cadastro_cliente.email) {
+      setExibirBotaoCadastro(true);
+    } else {
 
-  //         email_ja_cadastrado = true;
-  //       };
-  //     };
+      setExibirBotaoCadastro(false);
+    };
 
-  //     if (form_de_cadastro_cliente.senha == form_de_cadastro_cliente.confirmar_senha) {
+  }, [cadastroParteUmBrecho, cadastroParteDoisBrecho, cadastroParteTresBrecho]);
 
-  //       senhas_iguais = true;
-  //     } else {
 
-  //       senhas_iguais = false;
-  //     };
+  function seguinteEtapa() {
 
-  //     if (form_de_cadastro_cliente.nome == false || form_de_cadastro_cliente.email == false || form_de_cadastro_cliente.senha == false) {
+    if (cadastroParteUmBrecho == true && cadastroParteDoisBrecho == false) {
 
-  //       set_mensagem_de_erro(`Favor preencher todos os campos!`);
-  //       return
-  //     };
 
-  //     switch (true) {
+      if (formCadastroBrecho.senha == formCadastroBrecho.confirmarSenha) {
 
-  //       case senhas_iguais == true && email_ja_cadastrado == false:
+        senhasIguais = true;
 
-  //         set_cadastro_parte_um_cliente(false);
-  //         set_cadastro_parte_dois_cliente(true);
-  //         set_mensagem_de_erro(``);
-  //         break;
+      } else {
+        senhasIguais = false;
+      };
 
-  //       case senhas_iguais == false && email_ja_cadastrado == true:
+      if (formCadastroBrecho.nome == false || formCadastroBrecho.data_de_nascimento_vendedor == false || formCadastroBrecho.senha == false) {
 
-  //         set_mensagem_de_erro(`Email já cadastrado! As senhas devem ser iguais.`);
-  //         break;
+        setMensagemErro(`Favor preencher todos os campos!`);
+        return
+      };
 
-  //       case senhas_iguais == true && email_ja_cadastrado == true:
+      switch (true) {
 
-  //         set_mensagem_de_erro(`Email já cadastrado!`);
-  //         break;
+        case senhasIguais == true && idade >= 18:
 
-  //       case senhas_iguais == false && email_ja_cadastrado == false:
+          setCadastroParteUmBrecho(false);
+          setCadastroParteDoisBrecho(true);
+          setMensagemErro(``);
+          break;
 
-  //         set_mensagem_de_erro(`As senhas devem ser iguais!`);
-  //         break;
-  //     };
+        case senhasIguais == false && idade >= 18:
 
-  //   } else if (cadastro_parte_dois_cliente == true && cadastro_parte_tres_cliente == false) {
+          setMensagemErro(`As senhas devem ser iguais!`);
+          break;
 
-  //     for (let i = 0; i < array_clientes.length; i++) {
+        case senhasIguais == true && idade < 18:
 
-  //       if (array_clientes[i].cpf == form_de_cadastro_cliente.cpf) {
+          setMensagemErro(`Você precisa ser maior de idade para criar uma conta de vendedor no Fly!`);
+          break;
 
-  //         cpf_ja_cadastrado = true;
-  //       };
+        case senhasIguais == false && idade < 18:
 
-  //       if (array_clientes[i].telefone == form_de_cadastro_cliente.telefone) {
+          setMensagemErro(`As senhas devem ser iguais e você precisa ser maior de idade para criar uma conta de vendedor no Fly!`);
+          break;
+      };
 
-  //         telefone_ja_cadastrado = true;
-  //       };
-  //     };
+    } else if (cadastroParteDoisBrecho == true && cadastroParteTresBrecho == false) {
+      console.log(arrayBrechos)
 
-  //     switch (true) {
+      for (let i = 0; i < arrayBrechos.length; i++) {
 
-  //       case cpf_ja_cadastrado == false && telefone_ja_cadastrado == false && idade >= 18:
+        if (arrayBrechos[i].email == formCadastroBrecho.email) {
 
-  //         set_mensagem_de_erro(``);
-  //         set_cadastro_parte_dois_cliente(false);
-  //         set_cadastro_parte_tres_cliente(true);
-  //         break;
+          emailJaCadastrado = true;
+        };
 
-  //       case cpf_ja_cadastrado == true && telefone_ja_cadastrado == false && idade >= 18:
+        if (arrayBrechos[i].telefone == formCadastroBrecho.telefone) {
 
-  //         set_mensagem_de_erro(`CPF já cadastrado!`);
-  //         break;
+          telefoneJaCadastrado = true;
+        };
 
-  //       case cpf_ja_cadastrado == true && telefone_ja_cadastrado == true && idade >= 18:
+        if (arrayBrechos[i].CNPJ == formCadastroBrecho.CNPJ) {
 
-  //         set_mensagem_de_erro(`CPF e Telefone já cadastrados!`);
-  //         break;
+          CNPJJaCadastrado = true;
+        };
+      };
 
-  //       case cpf_ja_cadastrado == true && telefone_ja_cadastrado == true && idade < 18:
+      switch (true) {
 
-  //         set_mensagem_de_erro(`CPF e Telefone já cadastrados! Você deve ser maior de idade.`);
-  //         break;
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false:
 
-  //       case cpf_ja_cadastrado == true && telefone_ja_cadastrado == false && idade < 18:
+          setMensagemErro(``);
+          setCadastroParteDoisBrecho(false);
+          setCadastroParteTresBrecho(true);
+          break;
 
-  //         set_mensagem_de_erro(`CPF já cadastrado! Você deve ser maior de idade!`);
-  //         break;
+        case emailJaCadastrado == true && telefoneJaCadastrado == false && CNPJJaCadastrado == false:
 
-  //       case cpf_ja_cadastrado == false && telefone_ja_cadastrado == true && idade < 18:
+          setMensagemErro(`Email já cadastrado!`);
+          break;
 
-  //         set_mensagem_de_erro(`Telefone já cadastrado! Você deve ser maior de idade!`);
-  //         break;
+        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == false:
 
-  //       case cpf_ja_cadastrado == false && telefone_ja_cadastrado == false && idade < 18:
+          setMensagemErro(`Email e Telefone já cadastrados!`);
+          break;
 
-  //         set_mensagem_de_erro(`Você deve ser maior de idade!`);
-  //         break;
+        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == true:
 
-  //       case cpf_ja_cadastrado == false && telefone_ja_cadastrado == true && idade > 18:
+          setMensagemErro(`Email, Telefone e CNPJ já cadastrados!`);
+          break;
 
-  //         set_mensagem_de_erro(`Telefone já cadastrado!`);
-  //         break;
+        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == false:
 
-  //       default:
+          setMensagemErro(`Telefone já cadastrado!`);
+          break;
 
-  //         set_mensagem_de_erro(`Favor preencher todos os campos!`);
-  //         break;
-  //     };
+        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == true:
 
-  //   };
-  // };
+          setMensagemErro(`Telefone e CNPJ já cadastrados!`);
+          break;
 
-  function seguinteEtapa(params) {
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == true:
+
+          setMensagemErro(`CNPJ já cadastrado!`);
+          break;
+
+        default:
+
+          setMensagemErro(`Favor preencher todos os campos!`);
+          break;
+      };
+
+    };
 
   }
 
@@ -243,21 +259,27 @@ function Cadastro_brecho() {
 
         <div className="alinhamento-elipses-com-container-inputs">
 
-          <div className="alinhamento-elipses-logo">
+          <form onSubmit={lidarComFormulario}>
 
-            <div className='elipse-container'>
-              <img src='./img/Elipse_verde.svg' />
+            <div className="alinhamento-elipses-logo">
 
-              {cadastroParteDoisBrecho || cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
-              {cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+              <div className='elipse-container'>
+
+                <img src='./img/Elipse_verde.svg' />
+
+                {cadastroParteDoisBrecho || cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                {cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+              </div>
+
+              <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" className='logo-cadastro-brecho' /></Link>
             </div>
 
-            <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" className='logo-cadastro-brecho' /></Link>
-          </div>
+            <div className="container-formulario-um-cadastro-brecho">
 
-          <SecaoInputsUmBrecho />
-          {/* Seção de inputs Cadastro Brecho */}
-          <div className="container-cadastro-inputs">
+              <h1>{tituloCadastroBrecho}</h1>
+              <p>{subTituloCadastroBrecho}</p>
+
+            </div>
 
             {cadastroParteUmBrecho && <SecaoInputsUmBrecho />}
             {cadastroParteDoisBrecho && <SecaoInputsDoisBrecho />}
@@ -271,10 +293,7 @@ function Cadastro_brecho() {
 
             </div>
 
-          </div>
-          {/* Seção de inputs Cadastro Brecho */}
-
-
+          </form>
         </div>
       </div>
     </div>
