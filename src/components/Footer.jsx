@@ -4,44 +4,11 @@ import './Footer.css'
 
 function Footer() {
 
-  const [abrirMenuDiv, setAbrirMenuDiv] = useState(false)
-  const [abrirAjudaDiv, setAbrirAjudaDiv] = useState(false)
-  const [abrirFaqDiv, setAbrirFaqDiv] = useState(false)
+  const [divAberta, setDivAberta] = useState('menu')   // A div menu é definida para começar sempre aberta
 
   const alternarDiv = (div) => {
-    setAbrirMenuDiv(div === 'menu' ? !abrirMenuDiv : false)
-    setAbrirAjudaDiv(div === 'ajuda' ? !abrirAjudaDiv : false)
-    setAbrirFaqDiv(div === 'faq' ? !abrirFaqDiv : false)
+    setDivAberta(div)            // Faz com que tenha somente uma div (menu, ajuda, faq) aberta
   }
-
-  // const [alturaTopicosFt, setAlturaTopicosFt] = useState({menu : '10%', ajuda : '10%', faq : '10%'})
-
-  // useEffect(() => {
-
-  //   if(abrirMenuDiv){
-
-  //     setAlturaTopicosFt({...alturaTopicosFt, menu: '30%'});
-  //   };
-
-  // }, [abrirMenuDiv]);
-
-  // useEffect(() => { 
-
-  //   if(abrirAjudaDiv){
-
-  //     setAlturaTopicosFt({...alturaTopicosFt, ajuda: '30%'});
-  //   };
-
-  // }, [abrirAjudaDiv]);
-
-  // useEffect(() => { 
-
-  //   if(abrirFaqDiv){
-
-  //     setAlturaTopicosFt({...alturaTopicosFt, faq: '30%'});
-  //   };
-  // }, [abrirFaqDiv])
-
 
   return (
 
@@ -57,9 +24,9 @@ function Footer() {
               <p>Roupas com história, estilo com propósito. Encontre seu próximo garimpo!</p>
             </div>
           </div>
-          <div className="menu-content" onClick={() => alternarDiv('menu')} >  {/*style={{height: alturaTopicosFt.menu}} */}
+          <div className="menu-content" onClick={() => alternarDiv('menu')} style={{ height: divAberta === 'menu' ? '35%' : '7%' }}>
             <h3>MENU</h3>
-            {abrirMenuDiv && (
+            {divAberta === 'menu' && (
               <>
                 <Link to={"/"}>Início</Link>
                 <Link>Explorar brechós</Link>
@@ -70,9 +37,9 @@ function Footer() {
             )}
 
           </div>
-          <div className="ajuda-content" onClick={() => alternarDiv('ajuda')}> {/* style={{height: alturaTopicosFt.ajuda}}*/}
-            <h3>AJUDA</h3>
-            {abrirAjudaDiv && (
+          <div className="ajuda-content" onClick={() => alternarDiv('ajuda')} style={{ height: divAberta === 'ajuda' ? '35%' : '7%' }}> {/*style={{ height: alturaTopicosFt.ajuda }}*/}
+            <h3>AJUDA </h3>
+            {divAberta === 'ajuda' && (
               <>
                 <Link>Quem somos nós?</Link>
                 <Link>Contato</Link>
@@ -82,9 +49,9 @@ function Footer() {
             )}
 
           </div>
-          <div className="FAQ-content" onClick={() => alternarDiv('faq')} > {/*style={{height: alturaTopicosFt.faq}} */}
+          <div className="FAQ-content" onClick={() => alternarDiv('faq')} style={{height: divAberta === 'faq' ? '35%' : '7%' }}>
             <h3>FAQ</h3>
-            {abrirFaqDiv && (
+            {divAberta == 'faq' && (
               <>
                 <Link>Vender no Fly</Link>
                 <Link>Como doar roupas</Link>
@@ -92,7 +59,7 @@ function Footer() {
                 <Link>Pagamentos</Link>
               </>
             )}
-          
+
           </div>
         </div>
         <div className="linha-footer"></div>

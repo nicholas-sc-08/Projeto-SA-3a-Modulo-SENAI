@@ -3,8 +3,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding-top: 2%;
 }
 
 .container_header_categorias_dashboard{
@@ -264,5 +262,48 @@
 
 .container_escurecer_tela{
 
+    position: fixed;
+
+    width: 100%;
+    height: 100vh;
+
     background-color: #00000088;
+}
+
+.container_de_categorias_da_tabela{
+
+    display: flex;
+    width: 90%;
+    height: 75%;
+
+    padding-top: 1%;
+}
+
+.container_conteudo_categoria{
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cor_um_v_tres);
+
+    padding: 1%;
+    margin: 0.5%;
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_um_v_tres);
+}
+
+.container_conteudo_categoria:hover{
+
+    border: 0.1vw solid var(--cor_um);
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
 }
