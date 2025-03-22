@@ -6,6 +6,8 @@ import axios from 'axios';
 import Pop_up_de_notificacao_cadastro_categoria from './Pop_up_de_notificacao_cadastro_categoria.jsx';
 import Pop_up_de_editar_categoria from './Pop_up_de_editar_categoria.jsx';
 import Pop_up_de_notificacao_editar_categoria from './Pop_up_de_notificacao_editar_categoria.jsx';
+import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
+import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
 
 function Categorias_dashboard() {
 
@@ -17,8 +19,9 @@ function Categorias_dashboard() {
   const { pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria } = useContext(GlobalContext);
   const { pop_up_de_editar_categoria, set_pop_up_de_editar_categoria } = useContext(GlobalContext);
   const { pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria } = useContext(GlobalContext);
+  const { pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria } = useContext(GlobalContext);
+  const { pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria } = useContext(GlobalContext);
   const [ editar_categoria, set_editar_categoria ] = useState(false);
-
   const referencia_input = useRef(null);
 
   function voltar_para_o_inicio(){
@@ -41,21 +44,19 @@ function Categorias_dashboard() {
     };
   };
 
-  function clicar_em_categoria(id_categoria){
-
-    try {
+  function clicar_em_categoria(id){
+      
+      set_id_categoria(id);      
       
       if(editar_categoria){
 
-        set_id_categoria(id_categoria);
         set_pop_up_de_editar_categoria(true);
+        set_editar_categoria(false);
+      
+      } else {
+
+        set_pop_up_de_excluir_categoria(true);
       };
-      
-    } catch (erro) {
-      
-      console.error(erro);
-      
-    };
   };
 
   useEffect(() => {
@@ -83,7 +84,15 @@ function Categorias_dashboard() {
       }, 2000);
     };
 
-  }, [pop_up_notificacao_cadastro_categoria, pop_up_notificacao_editar_categoria]);
+    if(pop_up_notificacao_excluir_categoria){
+
+      setTimeout(() => {
+        
+        set_pop_up_notificacao_excluir_categoria(false);
+      }, 2000);
+    };
+
+  }, [pop_up_notificacao_cadastro_categoria, pop_up_notificacao_editar_categoria, pop_up_notificacao_excluir_categoria]);
 
   return (
     <div className='container_categorias_dashboard'>
@@ -99,6 +108,12 @@ function Categorias_dashboard() {
 
       {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
       {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria/>}
+
+      {pop_up_de_excluir_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_de_excluir_categoria && <Pop_up_de_excluir_categoria/>}
+
+      {pop_up_notificacao_excluir_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_notificacao_excluir_categoria && <Pop_up_de_notificacao_excluir_categoria/>}
 
         <div className="container_header_categorias_dashboard">
 
@@ -129,7 +144,7 @@ function Categorias_dashboard() {
 
             <div className="container_header_voltar_para_inicio">
 
-              <div className="container_header_voltar" onClick={() => voltar_para_o_inicio}>
+              <div className="container_header_voltar" onClick={voltar_para_o_inicio}>
 
                 <span>Voltar</span>
                 <img src="./img/icone_dashboard_sair.svg" alt="sair" />

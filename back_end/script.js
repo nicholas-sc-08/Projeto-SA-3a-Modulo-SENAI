@@ -328,3 +328,18 @@ app.put(`/categorias/:id`, async (req, res) => {
         console.error(erro);
     };
 });
+
+app.delete(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const categoria = await pool.query(`DELETE FROM categorias WHERE id = $1`, [id]);
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+    
+        console.error(erro);
+    };
+});
