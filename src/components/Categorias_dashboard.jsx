@@ -3,6 +3,7 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import './Categorias_dashboard.css';
 import Pop_up_de_cadastrar_categoria from './Pop_up_de_cadastrar_categoria.jsx';
 import axios from 'axios';
+import Pop_up_de_notificacao_cadastro_categoria from './Pop_up_de_notificacao_cadastro_categoria.jsx';
 
 function Categorias_dashboard() {
 
@@ -10,7 +11,8 @@ function Categorias_dashboard() {
   const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
   const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
   const { pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria } = useContext(GlobalContext);
-  
+  const { pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria } = useContext(GlobalContext);
+
   const referencia_input = useRef(null);
 
   function voltar_para_o_inicio(){
@@ -43,11 +45,27 @@ function Categorias_dashboard() {
     buscar_categorias();
   }, []);
 
+  useEffect(() => {
+
+    if(pop_up_notificacao_cadastro_categoria){
+
+      setTimeout(() => {
+
+        set_pop_up_notificacao_cadastro_categoria(false);
+
+      }, 2000);
+    };
+
+  }, [pop_up_notificacao_cadastro_categoria]);
+
   return (
     <div className='container_categorias_dashboard'>
 
       {pop_up_de_cadastrar_categoria && <div className='container_escurecer_tela'></div>}
       {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria/>}
+
+      {pop_up_notificacao_cadastro_categoria && <div className='container_escurecer_tela'></div>}      
+      {pop_up_notificacao_cadastro_categoria && <Pop_up_de_notificacao_cadastro_categoria/>}      
       
         <div className="container_header_categorias_dashboard">
 

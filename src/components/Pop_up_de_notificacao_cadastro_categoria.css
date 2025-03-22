@@ -1,0 +1,40 @@
+.container_pop_up_de_notificacao_categoria{
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.container_pop_up_dashboard_categoria{
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 25%;
+    height: 40%;
+
+    margin-top: 5%;
+
+    border-radius: 2vw;
+    background-color: var(--cor_quatro);
+}
+
+.container_pop_up_dashboard_categoria img{
+
+    margin-bottom: 15%;
+}
+
+.container_pop_up_dashboard_categoria p{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+
+    color: var(--cor_seis);
+    width: 50%;
+}
