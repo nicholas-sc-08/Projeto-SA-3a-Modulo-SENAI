@@ -25,6 +25,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard ] = useState(false);
     const [ pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria ] = useState(false);
     const [ pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria ] = useState(false);
+    const [ pop_up_de_editar_categoria, set_pop_up_de_editar_categoria ] = useState(false); 
+    const [ id_categoria, set_id_categoria ] = useState(``);
+    const [ pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria ] = useState(false);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: ``});
 
@@ -72,6 +75,12 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_de_cadastrar_categoria,
             pop_up_notificacao_cadastro_categoria,
             set_pop_up_notificacao_cadastro_categoria,
+            pop_up_de_editar_categoria,
+            set_pop_up_de_editar_categoria,
+            id_categoria,
+            set_id_categoria,
+            pop_up_notificacao_editar_categoria,
+            set_pop_up_notificacao_editar_categoria,
 
             formCadastroBrecho,
             setFormCadastroBrecho

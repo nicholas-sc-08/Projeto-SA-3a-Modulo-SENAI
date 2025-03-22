@@ -312,3 +312,19 @@ app.post(`/categorias`, async (req, res) => {
         console.error(erro);
     };
 });
+
+app.put(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    const { nome } = req.body;
+
+    try {
+        
+        const categoria = await pool.query(`UPDATE categorias SET nome = $2 WHERE id = $1`, [id, nome]);
+        res.status(200).json(categoria.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
