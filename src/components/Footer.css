@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
 }
 
@@ -16,6 +16,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 
 .conteudo-geral-meio {
     /* border: 1px solid purple;  */
@@ -70,7 +71,7 @@ body{
 .logo-footer {
     width: 117.35px;
     height: 126.1px;
-    
+
 }
 
 .menu-content {
@@ -78,9 +79,9 @@ body{
     display: flex;
     flex-direction: column;
     width: 18%;
-    height: 90%;
+    /* height: 90%; */
     justify-content: space-evenly;
-    gap: 3px;
+    gap: 9px;
 }
 
 .menu-content h3 {
@@ -95,7 +96,7 @@ body{
     color: var(--cor_dez);
     text-decoration: none;
     font-family: "Poppins";
-    
+
 }
 
 .ajuda-content {
@@ -103,9 +104,9 @@ body{
     display: flex;
     flex-direction: column;
     width: 18%;
-    height: 90%;
+    /* height: 90%; */
     justify-content: space-evenly;
-    gap: 3px;
+    gap: 9px;
 }
 
 .ajuda-content h3 {
@@ -128,9 +129,9 @@ body{
     display: flex;
     flex-direction: column;
     width: 18%;
-    height: 90%;
+    /* height: 90%; */
     justify-content: space-evenly;
-    gap: 3px;
+    gap: 9px;
 }
 
 .FAQ-content h3 {
@@ -172,18 +173,18 @@ body{
 }
 
 .rede-social-footer-content a {
-    width: 35px; 
+    width: 35px;
     height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:var(--cor_quatro); 
+    background-color: var(--cor_quatro);
     border-radius: 50%;
     border: 1px solid #CCCAC6;
 }
 
 .rede-social-footer-content img {
-    width: 20px; 
+    width: 20px;
     height: 20px;
 }
 
@@ -197,12 +198,13 @@ body{
         position: fixed;
         left: 0;
         bottom: 0;
-    
+
         display: flex;
         justify-content: center;
         align-items: center;
     }
     
+
     .conteudo-geral-meio {
         /* border: 1px solid purple;  */
         width: 98%;
@@ -212,7 +214,7 @@ body{
         align-items: center;
 
     }
-    
+
     .parte-de-cima-content {
         /* border: 1px solid #ff0396; */
         width: 98%;
@@ -221,7 +223,7 @@ body{
         flex-direction: column;
         /* justify-content: flex-start; */
     }
-    
+
     .logo-mais-descricao-content {
         /* border: 1px solid blue; */
         display: flex;
@@ -229,7 +231,7 @@ body{
         width: 97%;
         height: 42%;
     }
-    
+
     .logo-e-titulo {
         display: flex;
         align-items: center;
@@ -237,14 +239,14 @@ body{
         font-family: "Poppins";
         font-size: 16px;
     }
-    
+
     .logo-e-titulo h3 {
         font-family: "Montserrat", bold;
         color: var(--cor_dois);
         font-size: 36px;
         cursor: default;
     }
-    
+
     .descricao-footer {
         font-family: "Poppins";
         font-size: 16px;
@@ -254,13 +256,13 @@ body{
         text-align: justify;
         cursor: default;
     }
-    
+
     .logo-footer {
         width: 117.35px;
         height: 126.1px;
-        
+
     }
-    
+
     .menu-content {
         /* border: 1px solid blue; */
         width: 97%;
@@ -273,7 +275,7 @@ body{
 
         transition: 0.3s;
     }
-    
+
     .menu-content h3 {
         font-family: "Montserrat", bold;
         color: var(--cor_um);
@@ -281,14 +283,14 @@ body{
         letter-spacing: 3px;
         cursor: default;
     }
-    
+
     .menu-content a {
         color: var(--cor_dez);
         text-decoration: none;
         font-family: "Poppins";
-        
+
     }
-    
+
     .ajuda-content {
         /* border: 1px solid blue; */
         width: 97%;
@@ -301,7 +303,7 @@ body{
 
         transition: 0.3s;
     }
-    
+
     .ajuda-content h3 {
         font-family: "Montserrat", bold;
         color: var(--cor_um);
@@ -309,14 +311,14 @@ body{
         letter-spacing: 3px;
         cursor: default;
     }
-    
+
     .ajuda-content a {
         color: var(--cor_dez);
         text-decoration: none;
         font-family: "Poppins";
         font-size: 16px;
     }
-    
+
     .FAQ-content {
         /* border: 1px solid blue; */
         width: 97%;
@@ -329,7 +331,7 @@ body{
 
         transition: 0.3s;
     }
-    
+
     .FAQ-content h3 {
         font-family: "Montserrat", bold;
         color: var(--cor_um);
@@ -337,19 +339,19 @@ body{
         letter-spacing: 3px;
         cursor: default;
     }
-    
+
     .FAQ-content a {
         color: var(--cor_dez);
         text-decoration: none;
         font-family: "Poppins";
     }
-    
+
     .linha-footer {
         border-bottom: 2px var(--cor_quatorze) solid;
         width: 92%;
         opacity: 20%;
     }
-    
+
     .parte-de-baixo-content {
         /* border: 1px solid #ff0396; */
         width: 98%;
@@ -358,7 +360,7 @@ body{
         justify-content: flex-end;
         align-items: center;
     }
-    
+
     .rede-social-footer-content {
         /* border: 1px solid #00FF90; */
         width: 42%;
@@ -368,20 +370,20 @@ body{
         justify-content: space-evenly;
         margin-left: 3.5%;
     }
-    
+
     .rede-social-footer-content a {
-        width: 35px; 
+        width: 35px;
         height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color:var(--cor_quatro); 
+        background-color: var(--cor_quatro);
         border-radius: 50%;
         border: 1px solid #CCCAC6;
     }
-    
+
     .rede-social-footer-content img {
-        width: 20px; 
+        width: 20px;
         height: 20px;
     }
 }
