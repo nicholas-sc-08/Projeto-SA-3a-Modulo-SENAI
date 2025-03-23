@@ -22,6 +22,9 @@ function Categorias_dashboard() {
   const { pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria } = useContext(GlobalContext);
   const { pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria } = useContext(GlobalContext);
   const [ editar_categoria, set_editar_categoria ] = useState(false);
+  const [ texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa ] = useState(``);
+  const [ array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa ] = useState([]);
+  const [ pesquisar, set_pesquisar ] = useState(false);
   const referencia_input = useRef(null);
 
   function voltar_para_o_inicio(){
@@ -63,6 +66,22 @@ function Categorias_dashboard() {
 
     buscar_categorias();
   }, []);
+
+  useEffect(() => {    
+
+    for(let i = 0; i < array_categorias.length; i++){
+
+      if(texto_da_barra_de_pesquisa.toUpperCase() == array_categorias[i].nome.toUpperCase()){
+
+        set_array_da_barra_de_pesquisa([...array_da_barra_de_pesquisa, array_categorias[i].nome]);
+        
+      } else if(texto_da_barra_de_pesquisa == ``){
+
+        set_array_da_barra_de_pesquisa([]);
+      };
+    };
+
+  }, [texto_da_barra_de_pesquisa]);
 
   useEffect(() => {
 
@@ -162,7 +181,7 @@ function Categorias_dashboard() {
             <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
 
               <img src="./img/LupaIcon.svg" alt="Lupa" />
-              <input type="text" placeholder='Procurar Categoria' ref={referencia_input}/>
+              <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)}/>
 
             </div>
 
@@ -193,11 +212,19 @@ function Categorias_dashboard() {
 
           <div className="container_de_categorias_da_tabela">
 
-            {array_categorias.map((categoria, i) => (
+            { texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
 
               <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria.id)}>
 
                 <span>{editar_categoria && "· "}{categoria.nome}</span>
+
+              </div>
+            )) : array_da_barra_de_pesquisa.map((categoria, i) => (
+
+              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria.id)}>
+
+                  <span>{editar_categoria && "· "}{categoria}</span>
+
 
               </div>
             ))}
