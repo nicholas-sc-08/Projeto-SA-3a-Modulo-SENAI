@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS clientes CASCADE;
+DROP TABLE IF EXISTS brechos CASCADE;
+DROP TABLE IF EXISTS enderecos CASCADE;
+DROP TABLE IF EXISTS categorias CASCADE;
+DROP TABLE IF EXISTS produto CASCADE;
+DROP TABLE IF EXISTS EstoqueProduto CASCADE;
+
 CREATE TABLE clientes(
 
 	id SERIAL PRIMARY KEY,
@@ -12,7 +19,7 @@ CREATE TABLE clientes(
 
 CREATE TABLE brechos(
 
-	id_brechos SERIAL PRIMARY KEY,
+	id_brecho SERIAL PRIMARY KEY,
 	nome_vendedor VARCHAR(50) NOT NULL,
 	data_de_nascimento_vendedor DATE,
 	senha VARCHAR(12) NOT NULL,
@@ -35,9 +42,9 @@ CREATE TABLE enderecos(
 	complemento VARCHAR(200) NOT NULL,
 
 	fk_id INT,
-	FOREIGN KEY (fk_id) REFERENCES clientes(id)
-	id_brechos INT,
-	FOREIGN KEY (id_brechos) REFERENCES brechos(id_brechos)
+	FOREIGN KEY (fk_id) REFERENCES clientes(id),
+	id_brecho INT,
+	FOREIGN KEY (id_brecho) REFERENCES brechos(id_brecho)
 );
 
 CREATE TABLE categorias(
