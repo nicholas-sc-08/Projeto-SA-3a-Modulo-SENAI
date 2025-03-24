@@ -10,7 +10,7 @@ function Cadastro_Produto() {
   const [nomeProduto, setNomeProduto] = useState("Nome do Produto");
   const [preco, setPreco] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [corSelecionada, setCorSelecionada] = useState("");
+  const [coresSelecionadas, setCoresSelecionadas] = useState([]);
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
 
@@ -32,8 +32,35 @@ function Cadastro_Produto() {
 
   const handleDescricaoChange = (e) => {
     setDescricao(e.target.value);
-    e.target.style.height = 'auto'; // Reseta a altura
-    e.target.style.height = `${e.target.scrollHeight}px`; // Ajusta para a altura do conteúdo
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  };
+
+  const selecionarCorEyeDropper = async () => {
+    if (window.EyeDropper) {
+      try {
+        const eyeDropper = new window.EyeDropper();
+        const result = await eyeDropper.open();
+        if (coresSelecionadas.length < 3) {
+          setCoresSelecionadas([...coresSelecionadas, result.sRGBHex]); // Adiciona nova cor se houver espaço
+        } else {
+          alert("Você já selecionou o número máximo de cores (3).");
+        }
+      } catch (error) {
+        console.error("Erro ao selecionar cor", error);
+      }
+    } else {
+      alert("Seu navegador não suporta a EyeDropper API");
+    }
+  };
+
+  const substituirCor = (index) => {
+    // Substitui a cor na posição clicada
+    selecionarCorEyeDropper().then(() => {
+      const newCores = [...coresSelecionadas];
+      newCores[index] = newCores[index]; // Mantém o valor da cor
+      setCoresSelecionadas(newCores);
+    });
   };
 
   return (
@@ -89,33 +116,38 @@ function Cadastro_Produto() {
               onChange={(e) => setPreco(e.target.value)}
               onBlur={() => setEditandoPreco(false)}
               autoFocus
-              className="inpt-edit"
+              className="inpt-edit-preco"
             />
           ) : (
             <span className="preco-produto" onClick={() => setEditandoPreco(true)}>R$ {preco || " Preço"}</span>
           )}
 
-          {/* Adicionando a Descrição e Sessão de Cores dentro de Detalhes */}
           <div className="input-group-descricao">
-            <label>DESCRIÇÃO</label>
+            <label>Descrição</label>
             <textarea 
               placeholder="Descrição do produto"
               value={descricao}
-              onChange={handleDescricaoChange} // Alterado para usar o método que ajusta a altura
+              onChange={handleDescricaoChange}
             ></textarea>
             <hr />
           </div>
-          <div className="input-group">
-            <label>Escolha a Cor</label>
+
+          <div className="input-group-descricao">
+            <label>Seleção de Cores</label>
             <div className="cores">
-              {["#FF5733", "#33FF57", "#3357FF", "#F1C40F"].map((cor) => (
-                <button
-                  key={cor}
-                  style={{ backgroundColor: cor }}
-                  className={`cor ${corSelecionada === cor ? "selecionada" : ""}`}
-                  onClick={() => setCorSelecionada(cor)}
-                />
-              ))}
+              <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
+                <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
+              </button>
+              <div className="cores-selecionadas">
+                {coresSelecionadas.map((cor, index) => (
+                  <div
+                    key={index}
+                    className="cor-selecionada"
+                    style={{ backgroundColor: cor }}
+                    onClick={() => substituirCor(index)} // Permite clicar para trocar a cor
+                  ></div>
+                ))}
+              </div>
             </div>
             <hr />
           </div>
@@ -138,8 +170,6 @@ function Cadastro_Produto() {
             <span>{quantidade}</span>
             <button className="botao-quantidade" onClick={aumentarQuantidade}>+</button>
           </div>
-
-          
         </div>
 
         <div className="formulario">
@@ -167,4 +197,3 @@ function Cadastro_Produto() {
 }
 
 export default Cadastro_Produto;
-  

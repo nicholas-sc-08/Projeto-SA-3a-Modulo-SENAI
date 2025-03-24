@@ -1,0 +1,22 @@
+.container-contato{
+    display: flex;
+    margin-left: 6%;
+    margin-top: 2.5%;
+}
+
+.p-bege{
+    color: var(--cor_dez);
+}
+
+.info-para-contato{
+    border: none;
+    background-color: blueviolet;
+
+}
+
+.telefoneCirculo{
+    width: 50px;        /* Largura do círculo */
+    height: 50px;       /* Altura do círculo */
+    background-color: #3498db;  /* Cor de fundo */
+    border-radius: 50%;
+}

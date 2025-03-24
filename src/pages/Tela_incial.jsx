@@ -3,29 +3,29 @@ import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
 import HeaderBrecho from '../components/HeaderBrecho';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 function Tela_incial() {
 
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
-  
+
   useEffect(() => {
 
     informacoes_clientes();
-    
+
   }, []);
 
-  async function informacoes_clientes(){
-    
+  async function informacoes_clientes() {
+
     try {
-      
+
       const resultado = await axios.get(`http://localhost:3000/clientes`);
-      set_array_clientes(resultado.data);  
+      set_array_clientes(resultado.data);
 
     } catch (erro) {
-      
-      console.log(erro);      
+
+      console.log(erro);
     };
   };
 
@@ -34,9 +34,7 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
-      {/* <HeaderBrecho /> */}
-
-      {/* <p>Sou a tela inicial</p> */}
+      <Footer />
 
       {array_clientes.map((usuario, i) => (
 
@@ -49,8 +47,6 @@ function Tela_incial() {
           <p>Telefone: {usuario.telefone}</p>
           <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
           <p>CPF: {usuario.cpf}</p>
-
-          {/* <Footer/> */}
 
         </div>
       ))}

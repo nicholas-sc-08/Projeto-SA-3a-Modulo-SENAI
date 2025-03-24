@@ -73,7 +73,7 @@
 }
 
 
-.inpt-edit {
+.inpt-edit  {
     background-color: transparent;
     outline: none;
     border: 0px;
@@ -82,6 +82,19 @@
     font-weight: 500;
     color: #3E2A21;
 }
+
+.inpt-edit-preco{
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #466330;
+    resize: none; 
+    overflow: hidden; 
+}
+
 
 .nome-produto {
     font-family: "Montserrat", sans-serif;
@@ -194,23 +207,6 @@
     background: #3b5227;
 }
 
-.cores {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .cor {
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 5px;
-  }
-  
-  .cor.selecionada {
-    border: 2px solid #000; /* Destaque a cor selecionada */
-  }
   
   .input-group-descricao {
     display: flex;
@@ -231,6 +227,74 @@
     outline: none;
     min-height: 50px; 
   }
+
+  .cores {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .cor-seletor {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .cor-seletor:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Estilo da roda de cores */
+  .rodaDeCores {
+    width: 40px;
+    height: 40px;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+  }
+  
+  /* Quando a cor for selecionada, a roda de cores desaparece */
+  .cor-selecionada {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    opacity: 1;
+  }
+  
+  /* Quando a cor não foi selecionada, a roda de cores aparece */
+  .cor-seletor img {
+    opacity: 1;
+  }
+  .cor-seletor .cor-selecionada {
+    opacity: 0;
+  }
+
+  .titulo-escolha-cor label{
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+
+  }
+
+
+  .cores-selecionadas {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as cores */
+  }
+  
+  .cor-selecionada {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Bordas para destacar */
+  }
+  
+
   
 
 /* Responsividade */

@@ -12,7 +12,9 @@
     --cor_um: #466330;
     --cor_um_v_um: #466330b5;
     --cor_um_v_dois: #2d411f;
+    --cor_um_v_tres: #466330c2;
     --cor_dois: #9DA650;
+    --cor_dois_v_um: #8f9749;
     --cor_tres: #E7E8CE;
     --cor_quatro: #FFFDF7;
     --cor_cinco: #E4CD80;
@@ -21,12 +23,14 @@
     --cor_sete: #FF3333;
     --cor_sete_v_um: #ff333399;
     --cor_oito: #2f2e304d;
+    --cor_oito_v_um: #0000001a;
     --cor_nove: #FFFFFF;
     --cor_nove_v_um: #ffffff96;
-    --cor_dez:#5c5c5c;          /*fonte do footer*/
+    --cor_dez:#5c5c5c;
     --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
     --cor_treze: #6d0000;
+    --cor_quatorze: #ab9489;
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;

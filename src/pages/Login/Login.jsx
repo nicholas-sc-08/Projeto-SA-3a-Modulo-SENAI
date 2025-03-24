@@ -86,30 +86,30 @@ function Login() {
     return (
     <div className='container-corpo-login'>
         <div className='ladoEsquerdo-container'>
-          <img src="./img/logo-verdeCamadinha2.svg" alt="" />
+          <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
           <h1>Sua conta te espera</h1>
           <div className='info-login'>
           <label>Nome</label>
-          <input type="text" />
+          <input type="text" placeholder='Nome Completo'/>
 
           <label>Email</label>
-          <input type="email" />
+          <input type="email" placeholder='Exemplo@gmail.com'/>
 
           <label>Senha</label>
-          <input type="password" />
+          <input type="password" placeholder='Senha'/>
           </div>
-          <button>Fazer Login</button>
+          <GoogleLogin onSuccess={lidar_sucesso} onError={lidar_falha}/>
+          <button onClick={() => mudar_de_pagina(`#`)}>Fazer login</button>
         </div>
         <div className='ladoDireito-container'>
-          <img src="./img/estrelaGrande.png" alt="" />
+          <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
           <div className='info-ladoDireito'>
           <h1>Novo por aqui? Crie sua conta!</h1>
           <p>A moda circular nunca para! Que tal fazer parte desse movimento? Cadastre-se no Fly!</p>
-          <button>Cadastrar-se</button>
+          <button onClick={() => mudar_de_pagina(`#`)}>Cadastrar-se</button>
           </div>
-          <img src="./img/estrelaMenor.png" alt="" />
+          <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
         </div>
-         <GoogleLogin onSuccess={lidar_sucesso} onError={lidar_falha}/>
 
     </div>
   )

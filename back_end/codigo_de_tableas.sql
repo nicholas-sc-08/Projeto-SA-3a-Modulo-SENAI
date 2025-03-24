@@ -25,6 +25,12 @@ CREATE TABLE enderecos(
 	FOREIGN KEY (fk_id) REFERENCES clientes(id)
 );
 
+CREATE TABLE categorias(
+
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL
+);
+
 	CREATE TABLE Produto (
 		id SERIAL PRIMARY KEY,
 		nome VARCHAR(50) NOT NULL,
@@ -44,4 +50,5 @@ CREATE TABLE enderecos(
 
 	produto_id INT NOT NULL,
     FOREIGN KEY (produto_id) REFERENCES Produto(id) 
-);
+	);
+

@@ -59,7 +59,7 @@
 ### [Nicholas:](https://github.com/nicholas-sc-08)
 
 *  RF01 Cadastro usuário;
-*  RF08 Gestão de Estoque;
+*  RF06 Compras;
 *  RF13 DashBoard;
 *  RF14 Atualizar Categoria;
 *  RF21 Editar Info. Doações;
@@ -76,7 +76,7 @@
 ### [Gabriel Lacerda:](https://github.com/GabrielFerLacerda)
 
 *  RF04 Cadastro de produtos;
-*  RF06 Compras;
+*  RF08 Gestão de Estoque;
 *  RF07 Cadastrar Endereços.
 *  RF19 Editar Info. Brechós;
 *  RF22 Editar Info. Usuários.</br>

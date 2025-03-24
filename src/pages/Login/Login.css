@@ -1,12 +1,15 @@
 .ladoEsquerdo-container{
-    margin-top: 9%;
-    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 6%;
+    margin-left: 20%;
+    height: 45%;
 }
 
 .info-login{
     display: flex;
     flex-direction: column;
-    margin-top: 3%;
 }
 
 .ladoEsquerdo-container img{
@@ -14,14 +17,18 @@
 }
 
 .ladoEsquerdo-container input{
-    border-radius: 5px;
-    border-color: #9DA650;
-    width: 25%;
-    height: 35px;
+    width: 26%;
+    height: 40px;
+    outline: none;
+    border: 0.1vw solid var(--cor_dois);
+    border-radius: 7px;
+    background-color: transparent;
 }
 
 .ladoEsquerdo-container label{
     color: var(--cor_seis_v_um);
+    font-weight: 800;
+    margin-top: 2%;
 }
 
 .ladoEsquerdo-container h1{
@@ -33,34 +40,39 @@
     border-radius: 17px;
     background-color: var(--cor_um);
     color: aliceblue;
-    width: 10%;
+    width: 8%;
     height: 35px;
     margin-top: 1.5%;
+}
+
+.ladoEsquerdo-container button:hover{
+    transform: scale(1.1);
 }
 
 .ladoDireito-container{
     border-radius: 19px;
     background-color: #E7E8CE;
-    width: 25%;
-    height: 67%;
+    width: 28%;
+    height: 65%;
     position: absolute;
-    top: 18%;
+    top: 15%;
     left: 50%;
 }
 .info-ladoDireito{
     position: relative;
-    top: 30%;
     left: 27%;
     width: 50%;
 }
 
 .info-ladoDireito h1{
-    color: var(--cor_um_v_dois);
+    color: var(--cor_um);
+    font-size: 38px;
 }   
 
 .info-ladoDireito p{
     color: var(--cor_um);
-    font-weight: 200;
+    font-weight: 300;
+    font-size: 19px;
     margin-top: 9%;
 } 
 
@@ -78,5 +90,50 @@
 
 .info-ladoDireito button:hover{
     transform: scale(1.1);
+}
+
+.estrelaMenor{
+    margin-left: 95%;
+    margin-top: 25%;
+}
+
+/* Responsividade Mobile*/
+@media (max-width: 768px) {
+    .logo-camadinha{
+        margin-left: 15%;
+    }
+
+    .ladoEsquerdo-container {
+        position: relative;
+        bottom: 14px;
+        right: 3%;
+    }
+    
+    .info-login{
+        margin-top: 8%;
+
+    }
+
+    .info-login input{
+        width: 80%;
+    }
+
+    .ladoEsquerdo-container button{
+        width: 75%;
+        margin-top: 14%;
+        margin-left: 2.5%;
+
+    }
+
+    .ladoDireito-container {
+        position: relative;
+        width: 80%;
+        top: 30px;
+        left: 10%;
+    }
+
+    .info-ladoDireito p {
+        margin-top: 5%;
+    }
 
 }

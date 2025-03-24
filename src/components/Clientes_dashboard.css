@@ -168,6 +168,8 @@
 
     display: flex;
     align-items: center;
+
+    cursor: text;
     
     width: 35%;
     height: 45%;
@@ -181,13 +183,15 @@
 
 .container_barra_de_pesquisa input{
 
-    margin-left: 2%;
+    width: 90%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
-
-    outline: none;
+    
+    margin-left: 2%;
     border: 0px;
+    outline: none;
+    
     background-color: transparent;
 }
 
