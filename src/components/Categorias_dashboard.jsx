@@ -96,6 +96,7 @@ function Categorias_dashboard() {
 
     if(pop_up_notificacao_editar_categoria){
 
+      
       setTimeout(() => {
 
         set_pop_up_notificacao_editar_categoria(false);
@@ -224,7 +225,6 @@ function Categorias_dashboard() {
               <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria.id)}>
 
                   <span>{editar_categoria && "· "}{categoria}</span>
-
 
               </div>
             ))}

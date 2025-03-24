@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
+import HeaderBrecho from "../../components/HeaderBrecho"
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
@@ -43,7 +44,11 @@ function Gestao_Estoque() {
   }
 
   return (
-    <div className="estoque-container">
+    
+    <div className="">
+      <HeaderBrecho/>
+      <div className="estoque-container">
+      
       <h2>Estoque Produto</h2>
 
       <div className="container-tabela-estoque">
@@ -102,6 +107,7 @@ function Gestao_Estoque() {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 }

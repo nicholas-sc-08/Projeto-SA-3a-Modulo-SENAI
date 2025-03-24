@@ -1,3 +1,5 @@
+
+/* Estrutura Geral */
 .container-cadastro-produto {
     display: flex;
     flex-wrap: wrap;
@@ -10,39 +12,49 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Galeria de imagens */
+/* Título */
+.titulo {
+    padding-top: 2%;
+    padding-left: 10%;
+    color: #3E2A21;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Galeria de Imagens */
 .galeria {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
-
-  
 
 .miniatura {
-    width: 80px;
-    height: 80px;
-    background: #F3F1EF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.miniatura img {
-    width: 60px;
-    height: 60px;
-}
-
-.imagem-principal {
-    width: 350px;
-    height: 350px;
+    width: 100px;
+    height: 100px;
     background: #F3F1EF;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.miniatura img {
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.imagem-principal {
+    width: 400px;
+    height: 450px;
+    background: #F3F1EF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .imagem-principal img {
@@ -55,19 +67,71 @@
 .detalhes-produto {
     flex: 1;
     padding: 10px;
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna */
+    gap: 10px; /* Adiciona o espaçamento entre os elementos */
 }
 
+
+.inpt-edit  {
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #3E2A21;
+}
+
+.inpt-edit-preco{
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #466330;
+    resize: none; 
+    overflow: hidden; 
+}
+
+
+.nome-produto {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #3E2A21;
+    cursor: pointer;
+}
+
+.preco-produto {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #466330;
+    cursor: pointer;
+}
+
+.avaliacao {
+    font-size: 1.2rem;
+    color: #ffa6009f;
+}
+
+/* Tamanhos */
 .tamanhos {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 .tamanho {
-    padding: 10px;
+    padding: 8px 15px;
     background: #eae6da;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s;
 }
 
 .tamanho.selecionado {
@@ -75,7 +139,30 @@
     color: white;
 }
 
-/* Formulário */
+/* Controle de Quantidade */
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.botao-quantidade {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    border: none;
+    background: #eae6da;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-quantidade:hover {
+    background: #cfcabf;
+}
+
+/* Formulário de Detalhes */
 .formulario {
     width: 100%;
     padding-top: 20px;
@@ -88,17 +175,22 @@
 }
 
 .input-group label {
-    font-weight: bold;
+    font-weight: 350;
     margin-bottom: 5px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
 }
 
-.input-group input, 
+
+.input-group input,
 .input-group textarea {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
+    width: 100%;
 }
 
+/* Botão Cadastrar */
 .botao-cadastrar {
     width: 100%;
     padding: 16px;
@@ -108,4 +200,121 @@
     cursor: pointer;
     font-size: 18px;
     border-radius: 5px;
+    transition: 0.2s;
 }
+
+.botao-cadastrar:hover {
+    background: #3b5227;
+}
+
+  
+  .input-group-descricao {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0;
+  }
+
+
+  .input-group-descricao textarea {
+    background-color: transparent;
+    border: 0;
+    resize: none; 
+    overflow: hidden; 
+    height: auto; 
+    outline: none;
+    min-height: 50px; 
+  }
+
+  .cores {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .cor-seletor {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .cor-seletor:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Estilo da roda de cores */
+  .rodaDeCores {
+    width: 40px;
+    height: 40px;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+  }
+  
+  /* Quando a cor for selecionada, a roda de cores desaparece */
+  .cor-selecionada {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    opacity: 1;
+  }
+  
+  /* Quando a cor não foi selecionada, a roda de cores aparece */
+  .cor-seletor img {
+    opacity: 1;
+  }
+  .cor-seletor .cor-selecionada {
+    opacity: 0;
+  }
+
+  .titulo-escolha-cor label{
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+
+  }
+
+
+  .cores-selecionadas {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as cores */
+  }
+  
+  .cor-selecionada {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Bordas para destacar */
+  }
+  
+
+  
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .container-cadastro-produto {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagem-principal {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .galeria {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+
+
+
