@@ -1,10 +1,279 @@
-.container-ir-para-tela-login-alinhamento{
+.container-ir-para-tela-login-alinhamento {
+    width: 45%;
+    height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.container-informacoes-login-cadastro-brecho {
+    width: 80%;
+    height: 85vh;
+    border-radius: 25px;
+    background-color: var(--cor_tres);
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.container-informacoes-login-cadastro-brecho h1 {
+    font-family: var(--tipografia_primaria);
+    font-size: 35px;
+    width: 65%;
+    color: var(--cor_um);
+    letter-spacing: 1px;
+    line-height: 45px;
+    font-weight: bold;
+    text-align: center;
+
+    padding-bottom: 4%;
+}
+
+.container-informacoes-login-cadastro-brecho p {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_um);
+    opacity: 75%;
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+
+    padding-bottom: 5%;
+}
+
+.container-informacoes-login-cadastro-brecho button {
+    width: 25%;
+    height: 7%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border-radius: 10vw;
+    border: none;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_dois);
+}
+
+.container-informacoes-login-cadastro-brecho button:hover {
+    transition: 0.3s;
+    background-color: var(--cor_um);
+}
+
+.estrela-um-cadastro {
+    padding-left: 95%;
+    padding-bottom: 5%;
+}
+
+.estrela-dois-cadastro {
+    padding-right: 90%;
+}
+
+.alinhamento-fases-container-cadastro {
+    display: flex;
+}
+
+.alinhamento-elipses-logo {
+    display: flex;
+    height: fit-content;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 4vh;
+    width: 48vw;
+}
+
+.elipse-container {
+    height: fit-content;
+    width: 13%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+/* FORMULARIO UM INPUTS CADASTRO BRECHO  */
+.container-formulario-um-cadastro-brecho {
+    width: 70%;
+}
+
+.container-formulario-um-cadastro-brecho h1 {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    width: fit-content;
+    letter-spacing: 1px;
+
+    margin-top: -1.5vw;
+}
+
+.container-formulario-um-cadastro-brecho p {
+    font-family: var(--tipografia_secundaria);
+    letter-spacing: 0.5px;
+    color: var(--cor_seis);
+    opacity: 85%;
+    font-size: 105%;
+    padding-top: 1%;
+}
+
+.inputs-formulario-um-cadastro-brecho {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+.inputs-formulario-um-cadastro-brecho label {
+    font-family: var(--tipografia_secundaria);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-size: 18px;
+
+    padding-top: 2.5%;
+    padding-bottom: 1%;
+}
+
+.inputs-formulario-um-cadastro-brecho span {
+    color: var(--cor_sete);
+}
+
+.inputs-formulario-um-cadastro-brecho input {
+    width: 70%;
+    height: 2.5vw;
+    background-color: transparent;
+    border: 0.1em solid var(--cor_dois);
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    color: var(--cor_seis);
+    padding-left: 1%;
+    border-radius: 0.7vw;
+}
+
+.inputs-formulario-um-cadastro-brecho input::placeholder {
+    color: var(--cor_seis);
+    opacity: 75%;
+}
+
+.inputs-formulario-um-cadastro-brecho input:focus {
+    outline: none;
+    border: 0.1em solid var(--cor_um);
+}
+
+.inputs-formulario-dois-cadastro-brecho {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+.inputs-formulario-dois-cadastro-brecho label {
+    font-family: var(--tipografia_secundaria);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-size: 18px;
+
+    padding-top: 2.5%;
+    padding-bottom: 1%;
+
+    align-items: center;
+    display: flex;
+}
+
+.span-obrigatoria-cadastro-brecho-dois {
+    color: var(--cor_sete);
+}
+
+.inputs-formulario-dois-cadastro-brecho input {
+    width: 70%;
+    height: 2.5vw;
+    background-color: transparent;
+    border: 0.1em solid var(--cor_dois);
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    color: var(--cor_seis);
+    padding-left: 1%;
+    border-radius: 0.7vw;
+}
+
+.inputs-formulario-dois-cadastro-brecho input:focus {
+    outline: none;
+    border: 0.1em solid var(--cor_um);
+}
+
+.inputs-formulario-dois-cadastro-brecho input::placeholder{
+    color: var(--cor_seis);
+    opacity: 75%;
+}
+
+.span-opcional-cadastro-brecho{
+    color: var(--cor_seis);
+    font-size: 60%;
+}
+
+.cadastrar-imagem-perfil-brecho{
     border: 1px solid red;
     
 }
 
-.container-informacoes-login-cadastro-brecho{
-    border: 1px solid red;
+.alinhamento-cadastrar-imagem-perfil-brecho{
+    display: flex;
+}
+
+/* input[type="file"] {
+    border: none;
+} */
+
+/* FORMULARIO UM INPUTS CADASTRO BRECHO  */
+
+.formulario-cadastro-brecho-buttons {
     width: fit-content;
-    background-color: var(--cor_tres);
+
+    padding-top: 4%;
+}
+
+.formulario-cadastro-brecho-buttons button {
+    border: none;
+    background-color: var(--cor_um);
+    width: 10vw;
+    height: 3vw;
+    border-radius: 2.5vw;
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9em;
+}
+
+.formulario-cadastro-brecho-buttons button:hover {
+    background-color: var(--cor_dois);
+    transition: 0.3s;
+}
+
+.formulario-cadastro-brecho-buttons button:not(:hover) {
+    background-color: var(--cor_um);
+    transition: 0.3s;
+}
+
+.formulario-cadastro-brecho-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+}
+
+.formulario-cadastro-brecho-buttons p {
+    height: fit-content;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    font-weight: 550;
+    letter-spacing: 0.5px;
+    color: var(--cor_sete);
 }

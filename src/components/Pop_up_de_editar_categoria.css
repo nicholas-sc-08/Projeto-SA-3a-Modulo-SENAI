@@ -1,4 +1,4 @@
-.container_pop_up_cadastro_de_categoria{
+.container_pop_up_cadastro_de_categoria_edicao{
     
     position: fixed;
 
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.container_pop_up_categoria{
+.container_pop_up_categoria_edicao{
 
     display: flex;
     justify-content: end;
@@ -26,13 +26,13 @@
     background-color: var(--cor_quatro);
 }
 
-.container_pop_up_categoria_conteudo{
+.container_pop_up_categoria_conteudo_edicao{
 
     width: 55%;
     height: 100%;
 }
 
-.container_pop_up_categoria_conteudo p{
+.container_pop_up_categoria_conteudo_edicao p{
 
     width: 90%;
     margin-top: 2%;
@@ -44,7 +44,7 @@
     color: var(--cor_seis_v_um);
 }
 
-.container_pop_up_categoria_conteudo label{
+.container_pop_up_categoria_conteudo_edicao label{
 
     font-weight: bold;
     font-family: var(--tipografia_secundaria);
@@ -53,7 +53,7 @@
     color: var(--cor_seis_v_um);
 }
 
-.container_pop_up_categoria_conteudo input{
+.container_pop_up_categoria_conteudo_edicao input{
 
     width: 90%;
     height: 25%;
@@ -70,7 +70,7 @@
     background-color: transparent;
 }
 
-.container_alinhamento_formulario{
+.container_alinhamento_formulario_edicao{
 
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@
     height: 40%;
 }
 
-.container_alinhamento_botao_sair{
+.container_alinhamento_botao_sair_edicao{
 
     display: flex;
     justify-content: end;
@@ -87,7 +87,7 @@
     height: 20%;
 }
 
-.botao_de_sair_categoria{
+.botao_de_sair_categoria_edicao{
 
     cursor: pointer;
     border: 0px;
@@ -96,7 +96,7 @@
     background-color: transparent;
 }
 
-.alinhamento_titulo{
+.alinhamento_titulo_edicao{
 
     width: 92%;
     padding-top: 5%;
@@ -105,7 +105,7 @@
     border-bottom: 1px solid var(--cor_oito);
 }
 
-.alinhamento_titulo h2{
+.alinhamento_titulo_edicao h2{
 
     font-size: 1.5rem;
     font-family: var(--tipografia_primaria);
@@ -113,7 +113,7 @@
     color: var(--cor_seis);
 }
 
-.container_botao_cadastrar_categoria{
+.container_botao_categoria_edicao{
 
     display: flex;
     align-items: center;
@@ -121,13 +121,13 @@
     height: 50%;
 }
 
-.container_botao_cadastrar_categoria p{
+.container_botao_categoria_edicao p{
 
     width: 60%;
     color: red;
 }
 
-.botao_cadastrar_categoria{
+.botao_categoria_edicao{
 
     cursor: pointer;
     transition: 0.3s;
@@ -145,7 +145,7 @@
     background-color: var(--cor_um);
 }
 
-.botao_cadastrar_categoria:hover{
+.botao_categoria_edicao:hover{
 
     border: 1px solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);

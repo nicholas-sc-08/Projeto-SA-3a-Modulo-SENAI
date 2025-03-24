@@ -1,27 +1,36 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import './Categorias_dashboard.css';
 import Pop_up_de_cadastrar_categoria from './Pop_up_de_cadastrar_categoria.jsx';
 import axios from 'axios';
+import Pop_up_de_notificacao_cadastro_categoria from './Pop_up_de_notificacao_cadastro_categoria.jsx';
+import Pop_up_de_editar_categoria from './Pop_up_de_editar_categoria.jsx';
+import Pop_up_de_notificacao_editar_categoria from './Pop_up_de_notificacao_editar_categoria.jsx';
+import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
+import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
 
 function Categorias_dashboard() {
 
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
   const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
+  const { id_categoria, set_id_categoria } = useContext(GlobalContext);
   const { pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria } = useContext(GlobalContext);
-  
+  const { pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria } = useContext(GlobalContext);
+  const { pop_up_de_editar_categoria, set_pop_up_de_editar_categoria } = useContext(GlobalContext);
+  const { pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria } = useContext(GlobalContext);
+  const { pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria } = useContext(GlobalContext);
+  const { pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria } = useContext(GlobalContext);
+  const [ editar_categoria, set_editar_categoria ] = useState(false);
+  const [ texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa ] = useState(``);
+  const [ array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa ] = useState([]);
+  const [ pesquisar, set_pesquisar ] = useState(false);
   const referencia_input = useRef(null);
 
   function voltar_para_o_inicio(){
 
     set_inicio_dashboard(true);
     set_categorias_dashboard(false);    
-  };
-
-  function abrir_pop_up_de_cadastro(){
-
-    set_pop_up_de_cadastrar_categoria(true);
   };
 
   async function buscar_categorias(){
@@ -38,17 +47,93 @@ function Categorias_dashboard() {
     };
   };
 
+  function clicar_em_categoria(id){
+      
+      set_id_categoria(id);      
+      
+      if(editar_categoria){
+
+        set_pop_up_de_editar_categoria(true);
+        set_editar_categoria(false);
+      
+      } else {
+
+        set_pop_up_de_excluir_categoria(true);
+      };
+  };
+
   useEffect(() => {
 
     buscar_categorias();
   }, []);
+
+  useEffect(() => {    
+
+    for(let i = 0; i < array_categorias.length; i++){
+
+      if(texto_da_barra_de_pesquisa.toUpperCase() == array_categorias[i].nome.toUpperCase()){
+
+        set_array_da_barra_de_pesquisa([...array_da_barra_de_pesquisa, array_categorias[i].nome]);
+        
+      } else if(texto_da_barra_de_pesquisa == ``){
+
+        set_array_da_barra_de_pesquisa([]);
+      };
+    };
+
+  }, [texto_da_barra_de_pesquisa]);
+
+  useEffect(() => {
+
+    if(pop_up_notificacao_cadastro_categoria){
+
+      setTimeout(() => {
+
+        set_pop_up_notificacao_cadastro_categoria(false);
+
+      }, 2000);
+    };
+
+    if(pop_up_notificacao_editar_categoria){
+
+      setTimeout(() => {
+
+        set_pop_up_notificacao_editar_categoria(false);
+
+      }, 2000);
+    };
+
+    if(pop_up_notificacao_excluir_categoria){
+
+      setTimeout(() => {
+        
+        set_pop_up_notificacao_excluir_categoria(false);
+      }, 2000);
+    };
+
+  }, [pop_up_notificacao_cadastro_categoria, pop_up_notificacao_editar_categoria, pop_up_notificacao_excluir_categoria]);
 
   return (
     <div className='container_categorias_dashboard'>
 
       {pop_up_de_cadastrar_categoria && <div className='container_escurecer_tela'></div>}
       {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria/>}
-      
+
+      {pop_up_notificacao_cadastro_categoria && <div className='container_escurecer_tela'></div>}      
+      {pop_up_notificacao_cadastro_categoria && <Pop_up_de_notificacao_cadastro_categoria/>}
+
+      {pop_up_de_editar_categoria && <div className='container_escurecer_tela'></div>}      
+      {pop_up_de_editar_categoria && <Pop_up_de_editar_categoria/>}
+
+      {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria/>}
+
+      {pop_up_de_excluir_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_de_excluir_categoria && <Pop_up_de_excluir_categoria/>}
+
+      {pop_up_notificacao_excluir_categoria && <div className='container_escurecer_tela'></div>}
+      {pop_up_notificacao_excluir_categoria && <Pop_up_de_notificacao_excluir_categoria/>}
+
         <div className="container_header_categorias_dashboard">
 
             <div className="container_header_contador_categorias">
@@ -96,7 +181,7 @@ function Categorias_dashboard() {
             <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
 
               <img src="./img/LupaIcon.svg" alt="Lupa" />
-              <input type="text" placeholder='Procurar Categoria' ref={referencia_input}/>
+              <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)}/>
 
             </div>
 
@@ -105,13 +190,13 @@ function Categorias_dashboard() {
 
               <div className="container_tabela_categorias_header_cadastrar_categoria">
 
-                <button onClick={abrir_pop_up_de_cadastro}>Nova Categoria</button>
+                <button onClick={() => set_pop_up_de_cadastrar_categoria(true)}>Nova Categoria</button>
                 
               </div>
 
               <div className="container_tabela_categorias_header_editar_categoria">
 
-                <button>Editar Categoria</button>
+                <button onClick={() => set_editar_categoria(!editar_categoria)}>Editar Categoria</button>
                 
               </div>
 
@@ -127,11 +212,19 @@ function Categorias_dashboard() {
 
           <div className="container_de_categorias_da_tabela">
 
-            {array_categorias.map((categoria, i) => (
+            { texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
 
-              <div className='container_conteudo_categoria' key={i}>
+              <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria.id)}>
 
-                <span>{categoria.nome}</span>
+                <span>{editar_categoria && "· "}{categoria.nome}</span>
+
+              </div>
+            )) : array_da_barra_de_pesquisa.map((categoria, i) => (
+
+              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria.id)}>
+
+                  <span>{editar_categoria && "· "}{categoria}</span>
+
 
               </div>
             ))}

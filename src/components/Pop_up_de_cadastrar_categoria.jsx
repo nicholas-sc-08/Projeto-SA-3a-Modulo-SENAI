@@ -7,6 +7,7 @@ function Pop_up_de_cadastrar_categoria() {
 
   const { array_categorias, set_array_categorias} = useContext(GlobalContext);
   const { pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria } = useContext(GlobalContext);
+  const { pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria } = useContext(GlobalContext);
   const [ categoria_a_cadastrar, set_categoria_a_cadastrar ] = useState({nome: ``});
   const [ mensagem_de_erro, set_mensagem_de_erro ] = useState(`Categoria já cadastrada!`);
   const [ erro, set_erro ] = useState(false);
@@ -36,6 +37,7 @@ function Pop_up_de_cadastrar_categoria() {
         set_pop_up_de_cadastrar_categoria(false);
         set_erro(false);
         buscar_categorias();
+        set_pop_up_notificacao_cadastro_categoria(true);
       
       } else {
 
@@ -52,9 +54,6 @@ function Pop_up_de_cadastrar_categoria() {
 
     buscar_categorias();
   }, []);
-
-  useEffect(() => { console.log(categoria_a_cadastrar)
-  }, [categoria_a_cadastrar]);
 
   return (
     <div className='container_pop_up_cadastro_de_categoria'>

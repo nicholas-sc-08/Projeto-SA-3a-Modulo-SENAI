@@ -10,6 +10,19 @@ CREATE TABLE clientes(
 	imagem_de_perfil VARCHAR(5000) NOT NULL
 );
 
+CREATE TABLE brechos(
+
+	id_brechos SERIAL PRIMARY KEY,
+	nome_vendedor VARCHAR(50) NOT NULL,
+	data_de_nascimento_vendedor DATE,
+	senha VARCHAR(12) NOT NULL,
+	nome_brecho VARCHAR(100) NOT NULL,
+	email VARCHAR(200) NOT NULL,
+	telefone VARCHAR(14),
+	CNPJ VARCHAR(18),
+	logo TEXT NOT NULL
+);
+
 CREATE TABLE enderecos(
 
 	id SERIAL PRIMARY KEY,
@@ -23,6 +36,8 @@ CREATE TABLE enderecos(
 
 	fk_id INT,
 	FOREIGN KEY (fk_id) REFERENCES clientes(id)
+	id_brechos INT,
+	FOREIGN KEY (id_brechos) REFERENCES brechos(id_brechos)
 );
 
 CREATE TABLE categorias(
@@ -51,4 +66,3 @@ CREATE TABLE categorias(
 	produto_id INT NOT NULL,
     FOREIGN KEY (produto_id) REFERENCES Produto(id) 
 	);
-
