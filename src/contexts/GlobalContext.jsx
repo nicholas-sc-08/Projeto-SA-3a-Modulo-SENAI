@@ -31,8 +31,11 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria ] = useState(false);
     const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
 
-    const [formCadastroBrecho, setFormCadastroBrecho] = useState({nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: ``});
-
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
+    const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
+    const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
+    const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
+    const [cadastroParteTresBrecho, setCadastroParteTresBrecho] = useState(false)
 
     return (
         <GlobalContext.Provider value={{
@@ -89,9 +92,16 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_categoria,
 
             formCadastroBrecho,
-            setFormCadastroBrecho
-            
-            }}>
+            setFormCadastroBrecho,
+            enderecoDoBrecho,
+            setEnderecoDoBrecho,
+            cadastroParteUmBrecho,
+            setCadastroParteUmBrecho,
+            cadastroParteDoisBrecho,
+            setCadastroParteDoisBrecho,
+            cadastroParteTresBrecho,
+            setCadastroParteTresBrecho
+        }}>
             {children}
         </GlobalContext.Provider>
     )
