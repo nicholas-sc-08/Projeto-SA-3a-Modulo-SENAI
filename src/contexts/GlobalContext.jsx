@@ -37,6 +37,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
     const [cadastroParteTresBrecho, setCadastroParteTresBrecho] = useState(false)
     const [ arrayBrechos, setArrayBrechos ] = useState([])
+    const [ imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho ] = useState(null)
 
     return (
         <GlobalContext.Provider value={{
@@ -103,7 +104,9 @@ export const GlobalContextProvider = ({ children }) => {
             cadastroParteTresBrecho,
             setCadastroParteTresBrecho,
             arrayBrechos,
-            setArrayBrechos
+            setArrayBrechos,
+            imagemPerfilCadastroBrecho,
+            setImagemPerfilCadastroBrecho
         }}>
             {children}
         </GlobalContext.Provider>

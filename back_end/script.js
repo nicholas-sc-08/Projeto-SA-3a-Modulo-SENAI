@@ -206,13 +206,13 @@ app.get(`/brechos/:id`, async (req, res) => {
 });
 
 app.post(`/brechos`, async (req, res) => {
-    const { nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo } = req.body;
+    const { nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo } = req.body;
 
     try {
         const resultado = await pool.query(
-            `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo]
+            `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+            [nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo]
         );
 
         res.status(201).json(resultado.rows[0]); // Código 201 para "Created"

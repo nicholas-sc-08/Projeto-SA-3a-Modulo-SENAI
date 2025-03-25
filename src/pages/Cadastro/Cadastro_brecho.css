@@ -215,24 +215,27 @@
     opacity: 75%;
 }
 
-.span-opcional-cadastro-brecho {
-    color: var(--cor_seis);
-    font-size: 60%;
-}
-
-.cadastrar-imagem-perfil-brecho {
-    border: 1px solid blue;
+.adicionar-imagem-perfil-cadastro-brecho{
     display: flex;
-
+    width: 88%;
+    justify-content: space-between;
 }
 
-.alinhamento-cadastrar-imagem-perfil-brecho {
+.adicionar-imagem-perfil-cadastro-brecho span{
+   color: var(--cor_sete);
+}
+
+.adicionar-imagem-perfil-cadastro-brecho img{
     display: flex;
-}
-
-/* input[type="file"] {
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
     border: none;
-} */
+}
 
 /* .container-inputs-cadastro-brecho-tres{
     border: 1px solid red;

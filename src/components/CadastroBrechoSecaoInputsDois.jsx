@@ -1,23 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext';
 import '../pages/Cadastro/Cadastro_brecho.css';
 
 function CadastroBrechoSecaoInputsDois() {
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext);
-  const [previewImage, setPreviewImage] = useState(``);
+  const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result);
-        setFormCadastroBrecho({ ...formCadastroBrecho, fotoPerfil: reader.result });
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setImagemPerfilCadastroBrecho(imageUrl);
+      setFormCadastroBrecho({...formCadastroBrecho, logo: imageUrl})
     }
   };
+
+  useEffect( () => {
+
+    console.log(formCadastroBrecho)
+
+  }, [formCadastroBrecho])
 
   return (
     <div>
@@ -25,16 +28,18 @@ function CadastroBrechoSecaoInputsDois() {
 
         <div className="inputs-formulario-dois-cadastro-brecho">
 
-          <div className="cadastrar-imagem-perfil-brecho">
+          <div className="adicionar-imagem-perfil-cadastro-brecho">
 
-            <div className="alinhamento-cadastrar-imagem-perfil-brecho">
+            <label className="imagem-perfil-cadastro-brecho">
+              <input type="file" onChange={handleImageChange} hidden />
+              {imagemPerfilCadastroBrecho ? (
+                <img src={imagemPerfilCadastroBrecho} alt="Imagem de perfil" className="imagem" />
+              ) : (
+                <img src="./public/img/icons/inserirImagemCadastroBrecho.svg" className="icon-upload" />
+              )}
+            </label>
+            <label className="descricao">Como gostaria de ser lembrado? Insira a sua logo<span>*</span></label>
 
-              <label>Como gostaria de ser lembrado? Insira a sua logo!<span>*</span></label>
-              <input type="file" accept="image/*" onChange={handleImageChange} />
-
-            </div>
-            
-            {previewImage && <img src={previewImage} alt="Prévia da Foto" style={{ width: "150px", height: "150px", borderRadius: "50%" }} />}
           </div>
 
           <label>Nome do seu brechó<span className='span-obrigatoria-cadastro-brecho-dois'>*</span></label>

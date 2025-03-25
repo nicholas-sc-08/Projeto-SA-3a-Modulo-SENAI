@@ -30,6 +30,7 @@ function Cadastro_brecho() {
   let emailJaCadastrado = false
   let telefoneJaCadastrado = false
   let CNPJJaCadastrado = false
+  let nomeBrechoJaCadastrado = false
 
 
   async function informacoesBrecho() {
@@ -140,7 +141,7 @@ function Cadastro_brecho() {
         senhasIguais = false;
       };
 
-      if (formCadastroBrecho.nome == false || formCadastroBrecho.data_de_nascimento_vendedor == false || formCadastroBrecho.senha == false) {
+      if (formCadastroBrecho.nome_vendedor == false || formCadastroBrecho.data_de_nascimento_vendedor == false || formCadastroBrecho.senha == false) {
 
         setMensagemErro(`Favor preencher todos os campos!`);
         return
@@ -167,12 +168,17 @@ function Cadastro_brecho() {
 
         case senhasIguais == false && idade < 18:
 
-          setMensagemErro(`As senhas devem ser iguais e você precisa ser maior de idade para criar uma conta de vendedor no Fly!`);
+          setMensagemErro(`As senhas devem ser iguais e você precisa ser maior de idade para criar uma conta no Fly!`);
           break;
       };
 
     } else if (cadastroParteDoisBrecho == true && cadastroParteTresBrecho == false) {
       console.log(arrayBrechos)
+
+      if (formCadastroBrecho.logo == false || formCadastroBrecho.nome_brecho == false || formCadastroBrecho.email == false || formCadastroBrecho.telefone == false) {
+        setMensagemErro(`Favor preencher todos os campos!`);
+        return
+      };
 
       for (let i = 0; i < arrayBrechos.length; i++) {
 
@@ -190,11 +196,16 @@ function Cadastro_brecho() {
 
           CNPJJaCadastrado = true;
         };
+
+        if (arrayBrechos[i].nome_brecho == formCadastroBrecho.nome_brecho) {
+
+          nomeBrechoJaCadastrado = true;
+        };
       };
 
       switch (true) {
 
-        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false:
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == false:
 
           setMensagemErro(``);
           setCadastroParteDoisBrecho(false);
