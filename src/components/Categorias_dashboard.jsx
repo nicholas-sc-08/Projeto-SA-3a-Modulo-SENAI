@@ -25,6 +25,7 @@ function Categorias_dashboard() {
   const [ texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa ] = useState(``);
   const [ array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa ] = useState([]);
   const [ pesquisar, set_pesquisar ] = useState(false);
+  const [ resultado_de_pesquisa, set_resultado_de_pesquisa ] = useState(false);
   const referencia_input = useRef(null);
 
   function voltar_para_o_inicio(){
@@ -69,9 +70,17 @@ function Categorias_dashboard() {
 
   useEffect(() => {    
 
+    for(let i = 0; i < array_da_barra_de_pesquisa.length; i++){
+
+      if(array_da_barra_de_pesquisa[i].toUpperCase() == texto_da_barra_de_pesquisa.toUpperCase()){
+
+        set_resultado_de_pesquisa(true);
+      };
+    };
+
     for(let i = 0; i < array_categorias.length; i++){
 
-      if(texto_da_barra_de_pesquisa.toUpperCase() == array_categorias[i].nome.toUpperCase()){
+      if(texto_da_barra_de_pesquisa.toUpperCase() == array_categorias[i].nome.toUpperCase() && resultado_de_pesquisa == false){
 
         set_array_da_barra_de_pesquisa([...array_da_barra_de_pesquisa, array_categorias[i].nome]);
         
