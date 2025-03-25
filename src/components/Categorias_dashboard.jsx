@@ -87,6 +87,7 @@ function Categorias_dashboard() {
       } else if(texto_da_barra_de_pesquisa == ``){
 
         set_array_da_barra_de_pesquisa([]);
+        set_resultado_de_pesquisa(false);
       };
     };
 
