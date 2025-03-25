@@ -29,7 +29,7 @@ function Pop_up_de_cadastrar_categoria() {
 
     try {
 
-      const encontrar_categoria_cadastrada = array_categorias.findIndex(categoria => categoria.nome == categoria_a_cadastrar.nome);
+      const encontrar_categoria_cadastrada = array_categorias.findIndex(categoria => categoria.nome.toUpperCase() == categoria_a_cadastrar.nome.toUpperCase());
 
       if(encontrar_categoria_cadastrada == -1){
 

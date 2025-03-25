@@ -34,7 +34,7 @@ function Pop_up_de_editar_categoria({id_da_categoria}) {
     try {
       
       
-      const encontrar_categoria = array_categorias.findIndex(categori => categori.nome == categoria.nome);
+      const encontrar_categoria = array_categorias.findIndex(categori => categori.nome.toUpperCase() == categoria.nome.toUpperCase());
 
       if(encontrar_categoria == -1){
 

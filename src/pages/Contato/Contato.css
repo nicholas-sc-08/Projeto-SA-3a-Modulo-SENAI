@@ -9,14 +9,53 @@
 }
 
 .info-para-contato{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: 4%;
     border: none;
-    background-color: blueviolet;
+    border-radius: 10px;
+    width: 55%;
+    height: 95%;
+    background-color: var(--cor_quatro);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
 
+.info-para-contato p{
+    margin-left: 4%;
+    margin-top: 5%;
+    color: var(--cor_seis);
+}
+
+.info-para-contato h4{
+    margin-left: 4%;
+    margin-top: 7%;
+    color: var(--cor_um_v_tres);
 }
 
 .telefoneCirculo{
-    width: 50px;        /* Largura do círculo */
-    height: 50px;       /* Altura do círculo */
-    background-color: #3498db;  /* Cor de fundo */
+    width: 50px;     
+    height: 50px;      
+    background-color: var(--cor_um_v_dois);  
     border-radius: 50%;
+}
+
+.cabecario-ft{
+    display: flex;
+    margin-left: 4%;
+    margin-top: 4%;
+}
+
+.cabecario-ft h3{
+    margin-top: 3%;
+    margin-left: 5%;
+    color: var(--cor_seis);
+}
+
+.linha-contato{
+    border-bottom: 2px var(--cor_quatorze) solid;
+    width: 92%;
+    opacity: 20%;
+    margin-left: 4%;
+    margin-top: 3%;
 }
