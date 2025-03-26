@@ -29,6 +29,24 @@ export default function Contato() {
                 <h4>Emails: customer@exclusive.com</h4>
             </div>
 
+            <div className='fale-conosco'>
+              <div className='descricao'>
+                <label>Nome Completo</label>
+                <input type="text" />
+              </div>
+              <div className='descricaoo'>
+                <label>Email</label>
+                <input type="text" />
+              </div>
+              <div className='descricaooo'>
+                <label>Telefone</label>
+                <input type="number" />
+              </div>
+
+                <input type="text" placeholder='Escreva sua Mensagem'/>
+                <button>Enviar mensagem</button>
+
+            </div>
         </div>
       </div>
       {/* <Footer /> */}
