@@ -4,6 +4,8 @@
 
 [fly.circular](https://www.instagram.com/fly.circular/)
 
+* [Post Fast Fashion](https://www.instagram.com/p/DGoTA1cxyj5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+
 
 
 ## LinkedIn
