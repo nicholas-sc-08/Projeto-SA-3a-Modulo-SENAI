@@ -53,6 +53,7 @@ function Inicio_dashboard() {
         set_produtos_dashboard(true);
         set_categorias_dashboard(false);
         set_inicio_dashboard(false);
+        
     };
 
     function ir_para_categorias() {

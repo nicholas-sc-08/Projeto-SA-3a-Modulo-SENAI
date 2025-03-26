@@ -1,5 +1,6 @@
-
-/* Estrutura Geral */
+/* ========================
+   ESTRUTURA GERAL
+=========================== */
 .container-cadastro-produto {
     display: flex;
     flex-wrap: wrap;
@@ -12,15 +13,40 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Título */
-.titulo {
+body {
+    overflow-x: hidden;
+}
+
+/* ========================
+   TÍTULOS
+=========================== */
+.titulo, .titulo2 {
     padding-top: 2%;
     padding-left: 10%;
-    color: #3E2A21;
     font-family: "Montserrat", sans-serif;
 }
 
-/* Galeria de Imagens */
+.titulo {
+    color: #3E2A21;
+}
+
+.titulo2 {
+    color: #466330;
+}
+
+.linha-titulo-2 {
+    background-color: rgba(0, 0, 0, 0.279);
+    opacity: 0.5;
+    height: 2px;
+    width: 80%;
+    border: none;
+    margin-left: 9.8%;
+    margin-top: 9px;
+}
+
+/* ========================
+   GALERIA DE IMAGENS
+=========================== */
 .galeria {
     display: flex;
     flex-direction: column;
@@ -28,73 +54,60 @@
     align-items: center;
 }
 
-.miniatura {
-    width: 100px;
-    height: 100px;
+.miniatura, .imagem-principal {
+    border-radius: 10px;
+    overflow: hidden;
     background: #F3F1EF;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    cursor: pointer;
-    overflow: hidden;
 }
 
-.miniatura img {
+.miniatura {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.miniatura img, .imagem-principal img {
     width: 100%;
     object-fit: cover;
 }
-
 
 .imagem-principal {
     width: 400px;
     height: 450px;
-    background: #F3F1EF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 15px;
-    overflow: hidden;
 }
 
-.imagem-principal img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Detalhes do Produto */
+/* ========================
+   DETALHES DO PRODUTO
+=========================== */
 .detalhes-produto {
     flex: 1;
     padding: 10px;
     display: flex;
-    flex-direction: column; /* Organiza os itens em coluna */
-    gap: 10px; /* Adiciona o espaçamento entre os elementos */
+    flex-direction: column;
+    gap: 10px;
 }
 
-
-.inpt-edit  {
+.inpt-edit, .inpt-edit-preco {
     background-color: transparent;
     outline: none;
-    border: 0px;
+    border: 0;
     font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
     font-weight: 500;
     color: #3E2A21;
 }
 
-.inpt-edit-preco{
-    background-color: transparent;
-    outline: none;
-    border: 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: #466330;
-    resize: none; 
-    overflow: hidden; 
+.inpt-edit {
+    font-size: 2rem;
 }
 
+.inpt-edit-preco {
+    font-size: 1.7rem;
+    color: #466330;
+}
 
 .nome-produto {
     font-family: "Montserrat", sans-serif;
@@ -112,12 +125,9 @@
     cursor: pointer;
 }
 
-.avaliacao {
-    font-size: 1.2rem;
-    color: #ffa6009f;
-}
-
-/* Tamanhos */
+/* ========================
+   TAMANHOS
+=========================== */
 .tamanhos {
     display: flex;
     gap: 8px;
@@ -126,9 +136,9 @@
 
 .tamanho {
     padding: 8px 15px;
-    background: #eae6da;
+    background: #F3F1EF;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 1rem;
     transition: 0.2s;
@@ -139,39 +149,87 @@
     color: white;
 }
 
-/* Controle de Quantidade */
+/* ========================
+   CONTROLE DE QUANTIDADE
+=========================== */
 .quantidade {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
     margin-top: 15px;
+    height: 45px;
+    width: 21%;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: #F3F1EF;
+}
+
+.container-cadastro-produto hr {
+    background-color: rgba(0, 0, 0, 0.279);
+    opacity: 0.5;
+    height: 1px;
+    border: none;
+    margin-top: 9px;
 }
 
 .botao-quantidade {
     width: 30px;
     height: 30px;
-    font-size: 1.5rem;
     border: none;
-    background: #eae6da;
+    background: transparent;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.botao-quantidade:hover {
-    background: #cfcabf;
+.quantidade-numero {
+    width: 10px;
 }
 
-/* Formulário de Detalhes */
+/* ========================
+   FORMULÁRIO DE DETALHES
+=========================== */
 .formulario {
-    width: 100%;
+    width: 49%;
     padding-top: 20px;
+    gap: 20%;
+    margin-top: 10px;
+    padding-left: 9.5%;
 }
 
+.formulario-direito {
+    margin-left: 30px;
+    margin-top: 3px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    color: #3E2A21;
+}
+
+/* Estilo para o formulário direita (maior) */
+.input-group-direita {
+    padding-top: 20px;
+    gap: 20%;
+    margin-top: 10px;
+    height: 40%;
+    justify-content:center;
+    color: #3e2a21b7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container-detalhes-produtos {
+    display: flex;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ========================
+   INPUT GROUPS
+=========================== */
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-top: 40px;
 }
 
 .input-group label {
@@ -179,18 +237,49 @@
     margin-bottom: 5px;
     font-family: "Poppins", sans-serif;
     font-size: 13px;
+    color: #3e2a21b7;
+    font-size: 20px;
+    font-weight: bold;
 }
-
 
 .input-group input,
 .input-group textarea {
-    border: 1px solid #ccc;
+    border: 2px solid #9DA650;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 100%;
+    height: 50px;
+    background-color: transparent;
+    text-align: left;
+    vertical-align: top;
+    outline: none;
 }
 
-/* Botão Cadastrar */
+/* Ajustando o campo de input direita */
+
+
+.input-group-direita select {
+    margin-top: 39px;
+}
+
+.categoria-select{
+    border: 2px solid #9DA650;
+    padding: 10px;
+    border-radius: 20px;
+    width: 120%;
+    height: 39%;
+    background-color: transparent;
+    text-align: left;
+    vertical-align: top;
+    resize: none;
+    overflow: hidden;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ========================
+   BOTÃO CADASTRAR
+=========================== */
 .botao-cadastrar {
     width: 100%;
     padding: 16px;
@@ -199,42 +288,48 @@
     border: none;
     cursor: pointer;
     font-size: 18px;
-    border-radius: 5px;
     transition: 0.2s;
+    margin-top: 40%;
+    margin-left: 11%;
+    border-radius: 80px;
 }
 
 .botao-cadastrar:hover {
     background: #3b5227;
 }
 
-  
-  .input-group-descricao {
+/* ========================
+   DESCRIÇÃO
+=========================== */
+.input-group-descricao {
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: transparent;
     border-radius: 5px;
     border: 0;
-  }
+}
 
-
-  .input-group-descricao textarea {
+.input-group-descricao textarea {
     background-color: transparent;
     border: 0;
-    resize: none; 
-    overflow: hidden; 
-    height: auto; 
+    resize: none;
+    overflow: hidden;
+    height: auto;
     outline: none;
-    min-height: 50px; 
-  }
+    min-height: 50px;
+}
 
-  .cores {
+/* ========================
+   CORES
+=========================== */
+.cores {
     display: flex;
     gap: 10px;
     align-items: center;
-  }
-  
-  .cor-seletor {
+}
+
+.cor-seletor {
     background-color: transparent;
     border: 0;
     cursor: pointer;
@@ -243,61 +338,32 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
-  }
-  
-  .cor-seletor:hover {
+    flex-wrap: wrap; /* Permite que quebrem linha se necessário */
+}
+
+.cor-seletor:hover {
     transform: scale(1.1);
-  }
-  
-  /* Estilo da roda de cores */
-  .rodaDeCores {
+}
+
+.rodaDeCores {
     width: 40px;
     height: 40px;
     transition: opacity 0.3s ease;
     opacity: 1;
-  }
-  
-  /* Quando a cor for selecionada, a roda de cores desaparece */
-  .cor-selecionada {
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    opacity: 1;
-  }
-  
-  /* Quando a cor não foi selecionada, a roda de cores aparece */
-  .cor-seletor img {
-    opacity: 1;
-  }
-  .cor-seletor .cor-selecionada {
-    opacity: 0;
-  }
+}
 
-  .titulo-escolha-cor label{
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-
-  }
-
-
-  .cores-selecionadas {
-    display: flex;
-    gap: 10px; /* Espaçamento entre as cores */
-  }
-  
-  .cor-selecionada {
+.cor-selecionada {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #fff; /* Bordas para destacar */
-  }
-  
+    border: 2px solid #fff;
+    flex-wrap: wrap; /* Permite que quebrem linha se necessário */
+}
 
-  
-
-/* Responsividade */
+/* ========================
+   RESPONSIVIDADE
+=========================== */
 @media (max-width: 1024px) {
     .container-cadastro-produto {
         flex-direction: column;
@@ -315,6 +381,11 @@
     }
 }
 
-
-
-
+/* ========================
+   CATEGORIA EXISTENTE
+=========================== */
+.categoria-existente {
+    margin-top: 5%;
+    display: flex;
+    gap: 1%;
+}
