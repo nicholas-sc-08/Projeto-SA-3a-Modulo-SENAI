@@ -343,3 +343,18 @@ app.delete(`/categorias/:id`, async (req, res) => {
         console.error(erro);
     };
 });
+
+app.post('/produto', async (res, req) => {
+
+    const { nome, preco, codigo, condicao, imagem, tamanho, cor, marca } = req.body;
+
+
+    try{
+        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca) values($1,$2, $3, $4, $5, $6, $7, $8, $9)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca])
+        res.status(200).json(produto.rows)
+
+    } catch (erro){
+        console.error(erro)
+    }
+    
+})
