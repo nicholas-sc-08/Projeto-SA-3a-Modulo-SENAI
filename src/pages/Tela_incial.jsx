@@ -4,11 +4,14 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
 import HeaderBrecho from '../components/HeaderBrecho';
 import Footer from '../components/Footer';
+import Pop_up_chat from '../components/chat/Pop_up_chat';
+import Chat from '../components/chat/Chat';
 
 function Tela_incial() {
 
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+  const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
 
   useEffect(() => {
 
@@ -34,10 +37,11 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
+
       <Footer />
 
       {array_clientes.map((usuario, i) => (
-
+        
         <div key={i}>
 
           <p>Id: {usuario.id}</p>
@@ -50,6 +54,9 @@ function Tela_incial() {
 
         </div>
       ))}
+      
+      {!chat_aberto && <Pop_up_chat/>}
+      {chat_aberto && <Chat/>}
     </div>
   )
 }

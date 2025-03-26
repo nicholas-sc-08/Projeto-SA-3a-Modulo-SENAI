@@ -1,0 +1,16 @@
+.container_pop_up_chat{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    right: 3%;
+    bottom: 8%;
+    
+    padding: 0.8%;
+    cursor: pointer;
+    
+    border-radius: 100vw;
+    background-color: var(--cor_dois_v_dois);
+}
