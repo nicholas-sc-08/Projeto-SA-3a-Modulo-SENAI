@@ -14,7 +14,6 @@ function Footer() {
   // }
 
 
-
    // *** Código para as divs na desktop ficarem 'abertas' e no mobile (tela a partir de 914px) apenas uma fica 'aberta' ***
   
   const [divAberta, setDivAberta] = useState('menu')  // A div "menu" vai começar sempre aberta
