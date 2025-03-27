@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Cadastro_Produto.css"; 
 import HeaderBrecho from "../../components/HeaderBrecho"; 
 import axios from "axios";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 function Cadastro_Produto() {
   // Define os estados necessários para armazenar informações do produto
@@ -16,18 +17,28 @@ function Cadastro_Produto() {
   const [editandoNome, setEditandoNome] = useState(false); 
   const [editandoPreco, setEditandoPreco] = useState(false); 
   const [nomeEditado, setNomeEditado] = useState(false); 
+  const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
-    nomeProduto: '', 
+    nome: '', 
     descricao: '', 
     preco: '', 
     codigo: '', 
     condicao: '', 
-    cor: [''], 
+    cor: [], 
     imagem: '', 
     marca: '', 
-    categoria:[''], 
+    categoria:'', 
     composicao: '' 
   });
+
+  useEffect(() => {
+    buscar_produtos();
+  }, []);
+
+  useEffect(() => {
+    console.log(array_cadastro_produto);
+  }, [array_cadastro_produto]);
+
   const [categorias, setCategorias] = useState([]); // Estado para armazenar categorias
 
   // Função para aumentar a quantidade do produto
@@ -37,7 +48,7 @@ function Cadastro_Produto() {
   const diminuirQuantidade = () => quantidade > 1 && setQuantidade(quantidade - 1);
 
   // Função para alterar o tamanho do produto selecionado
-  const selecionarTamanho = (tamanho) => setTamanhoSelecionado(tamanho);
+  const selecionarTamanho = (tamanho) => setArray_cadastro_produto({...array_cadastro_produto, tamanho: tamanho});
 
   // Função para adicionar uma imagem ao produto
   const adicionarImagem = (event) => {
@@ -59,7 +70,10 @@ function Cadastro_Produto() {
         const eyeDropper = new window.EyeDropper(); 
         const result = await eyeDropper.open(); 
         if (coresSelecionadas.length < 3) {
+
           setCoresSelecionadas([...coresSelecionadas, result.sRGBHex]); 
+          setArray_cadastro_produto({...array_cadastro_produto, cor: coresSelecionadas});
+        
         } else {
           alert("Você já selecionou o número máximo de cores (3)."); 
         }
@@ -75,37 +89,44 @@ function Cadastro_Produto() {
     const corSelecionada = await selecionarCorEyeDropper(); 
     if (corSelecionada) {
       const newCores = [...coresSelecionadas]; 
+
       newCores[index] = corSelecionada;
       setCoresSelecionadas(newCores); 
     }
   };
-  
 
- // Função que permite editar o nome do produto ao clicar nele
-const handleNomeProdutoClick = () => {
-  setEditandoNome(true);
-};
+  // Função que permite editar o nome do produto ao clicar nele
+  const handleNomeProdutoClick = () => {
+    setEditandoNome(true);
+  };
 
-// Função para salvar o nome editado ao perder o foco
-const handleBlurNomeProduto = () => {
-  setEditandoNome(false);
-};
+  // Função para salvar o nome editado ao perder o foco
+  const handleBlurNomeProduto = () => {
+    setEditandoNome(false);
+  };
 
-// Função para ativar a edição do preço
-const handlePrecoClick = () => {
-  setEditandoPreco(true);
-};
+  // Função para ativar a edição do preço
+  const handlePrecoClick = () => {
+    setEditandoPreco(true);
+  };
 
+  // Exibir o nome salvo no estado correto
+  const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
 
-// Exibir o nome salvo no estado correto
-const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
-
-
+  async function buscar_produtos(){
+    try {
+      const produtos = await axios.get(`http://localhost:3000/Produto`);
+      set_array_produtos(produtos.data);
+    } catch (erro) {
+      console.error(erro);
+    };
+  };
 
   // Postar produto no banco de dados
   async function cadastrar_produto() {
+    const produtoComCores = { ...array_cadastro_produto, cor: coresSelecionadas };
     try {
-      await axios.post("http://localhost:3000/produto", array_cadastro_produto);
+      await axios.post("http://localhost:3000/Produto", produtoComCores);
     } catch (error) {
       console.error(error);
     }
@@ -123,6 +144,8 @@ const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
     }
     buscarCategorias();
   }, []);
+
+  
 
   return (
     <div>
@@ -185,7 +208,6 @@ const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
             />
           ) : (
             <span className="preco-produto" onClick={handlePrecoClick}>R$ {array_cadastro_produto.preco || "Preço"}</span>
-          
           )}
 
           {/* Campo de descrição */}
@@ -285,11 +307,10 @@ const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
           <div className="input-group-direita">
             <label>Categoria</label>
             <select 
-            value={array_cadastro_produto.categoria[0] || ""} 
-            onChange={(e) => setArray_cadastro_produto({...array_cadastro_produto, categoria: [e.target.value]})}
-            className="categoria-select"
->
-
+              value={array_cadastro_produto.categoria[0] || ""} 
+              onChange={(e) => setArray_cadastro_produto({...array_cadastro_produto, categoria: [e.target.value]})}
+              className="categoria-select"
+            >
               <option value="">Selecione uma categoria</option>
               {categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.nome}>
@@ -305,4 +326,4 @@ const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
   );
 }
 
-export default Cadastro_Produto; // Exporta o componente para ser utilizado em outros lugares
+export default Cadastro_Produto;

@@ -90,7 +90,7 @@ function Gestao_Estoque() {
                 </div>
                 <div>
                   <p className="produto-nome">{produto.nome}</p>
-                  <p className="produto-categoria">Categoria/cor</p>
+                  <p className="produto-categoria">{produto.cor}</p>
                 </div>
               </div>
               <span className="produto-preco">R$ {produto.preco}</span>
