@@ -40,6 +40,7 @@ function Pop_up_de_excluir_categoria() {
     };
   };
 
+
   return (
     <div className='container_pop_up_de_excluir'>
 

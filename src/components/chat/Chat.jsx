@@ -8,7 +8,7 @@ function Chat() {
 
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
-    const { array_chat, set_array_chat } = useContext(GlobalContext);
+    const { array_chat, set_array_chat } = useContext(GlobalContext);  
 
     useEffect(() => {
 
@@ -45,7 +45,7 @@ function Chat() {
 
             <div className="container_conversa" key={i}>
 
-
+              
 
             </div>
         ))}

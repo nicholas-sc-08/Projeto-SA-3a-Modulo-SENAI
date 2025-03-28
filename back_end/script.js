@@ -344,14 +344,29 @@ app.delete(`/categorias/:id`, async (req, res) => {
     };
 });
 
-app.post('/produto', async (res, req) => {
+app.get("/Produto", async (req, res) => {
 
-    const { nome, preco, codigo, condicao, imagem, tamanho, cor, marca } = req.body;
+    try {
+      
+        const produtos = await pool.query("SELECT * FROM Produto");
+        res.status(200).json(produtos.rows);
 
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post('/Produto', async (req, res) => {
+
+    const { nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca } = req.body;
+
+    console.log(nome);
+    
 
     try{
         const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca) values($1,$2, $3, $4, $5, $6, $7, $8, $9)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca])
-        res.status(200).json(produto.rows)
+        res.status(200).json(produto.rows[0])
 
     } catch (erro){
         console.error(erro)
