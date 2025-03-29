@@ -1,0 +1,218 @@
+.alinhamento-estoque-produto-dashboard {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.alinhamento-estoque-produto-dashboard h1{
+    width: 80%;
+    padding-top: 3%;
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-size: 175%;
+}
+
+.alinhamento-container-um-estoque-produto-dashboard {
+    width: 80%;
+    margin-top: 2.5%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 2vw;
+}
+
+.alinhamento-container-dois-estoque-produto-dashboard {
+    background-color: var(--cor_um);
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.alinhamento-input-button-estoque-produto-dashboard {
+    width: 90%;
+    margin-left: 4.5%;
+    padding-top: 2.5%;
+
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+
+.alinhamento-input-button-estoque-produto-dashboard input {
+    border: transparent;
+    width: 40%;
+    height: 6.5vh;
+    border-radius: 2vw;
+    background-color: var(--cor_quatro);
+
+    background-image: url('./public/img/icons/Pesquisa.svg');
+    background-repeat: no-repeat;
+    background-position: 4% center;
+    background-size: 5%;
+    padding-left: 5%; /* Colocar esto en los headers dps */
+}
+
+.alinhamento-input-button-estoque-produto-dashboard input::placeholder {
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-family: var(--tipografia_secundaria);
+}
+
+.alinhamento-input-button-estoque-produto-dashboard input:focus {
+    outline: none;
+    border: 1px solid var(--cor_dois);
+}
+
+.alinhamento-input-button-estoque-produto-dashboard button{
+    border: none;
+    background-color: var(--cor_dois);
+    color: var(--cor_quatro);
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 85%;
+    font-weight: 450;
+
+    padding: 1.5%;
+    border-radius: 2vw;
+    width: 20%;
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alinhamento-titulos-estoque-produto-dashboard{
+    width: 85%;
+    margin-left: 7%;
+
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.alinhamento-titulo-produtos-dashboard{
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.alinhamento-titulos-gerais-dashboard{
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.container-dois-estoque-produto-dashboard{
+    border-bottom-right-radius: 2vw;
+    border-bottom-left-radius: 2vw;
+    padding: 0.3%;
+}
+
+.alinhamento-containers-informacoes-produtos-dashboard{
+    /* border-bottom: 3px solid #ECECEC;
+    border-top: 3px solid #ECECEC; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.grupo-um-informacoes-produto-dashboard{
+    width: 30%;
+    display: flex;
+    padding: 1%;
+}
+
+.imagem-produto-dashboard{
+    background-color: var(--cor_tres);
+    width: 25%;
+    height: 11vh;
+    border-radius: 10%;
+}
+
+.nome-categoria-produto-dashboard{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding-left: 6%;
+}
+
+.nome-do-produto-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 90%;
+    color: var(--cor_seis);
+    font-weight: 450;
+}
+
+.categoria-cor-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 90%;
+    color: var(--cor_seis);
+    opacity: 80%;
+}
+
+.grupo-dois-informacoes-produto-dashboard{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+
+    width: 63%;
+    /* padding-right: 3%;*/
+    padding-left: 5%; 
+}
+
+.preco-produto-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 90%;
+    color: var(--cor_um);
+    font-weight: 500;
+}
+
+.p-grupo-dois-informacoes-produto-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 90%;
+    color: var(--cor_seis);
+    font-weight: 450;
+}
+
+.alinhamento-informacoes-gerais-unidade-dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 15%;
+}
+
+.alinhamento-informacoes-gerais-conservacao-dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 19%;
+}
+
+.alinhamento-informacoes-gerais-tamanho-dashboard{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 16%;
+}
+
+.button-deletar-produto-dashboard{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    width: 5%;
+}
+
+.button-deletar-produto-dashboard button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}   
