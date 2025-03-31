@@ -49,6 +49,7 @@ function Login() {
 
        if(email_ja_cadastrado){
 
+            
            console.log('Login bem-sucedido:', cliente_a_logar);
            navegar('/'); 
        } else {

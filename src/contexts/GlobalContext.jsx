@@ -32,6 +32,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria ] = useState(false);
     const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
     const [ chat_aberto, set_chat_aberto ] = useState(false);
+    const [ erro_pagina, set_erro_pagina ] = useState(``);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -96,6 +97,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_chat_aberto,
             array_chat,
             set_array_chat,
+            erro_pagina,
+            set_erro_pagina,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
