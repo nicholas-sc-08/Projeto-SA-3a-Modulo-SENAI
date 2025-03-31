@@ -1,4 +1,4 @@
-body {
+html, body {
     margin: 0;
 }
 
@@ -8,7 +8,7 @@ body {
     background-color: var(--cor_tres);
     width: 100%;
     height: 480px;
-    position: fixed;
+    position: fixed;  /* tirar futuramenta, pois pode ficar por cima de outras divs*/
     left: 0;
     bottom: 0;
 
