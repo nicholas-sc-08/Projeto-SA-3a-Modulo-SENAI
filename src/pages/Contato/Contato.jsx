@@ -49,7 +49,7 @@ export default function Contato() {
             </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }
