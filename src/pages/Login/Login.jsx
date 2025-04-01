@@ -11,6 +11,7 @@ import "./Login.css";
 function Login() {
  
      const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+     const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
      const navegar = useNavigate(); 
     
      useEffect(() => {
@@ -29,6 +30,8 @@ function Login() {
          } catch (erro) {
             
              console.log(erro);
+             set_erro_pagina(erro);
+             navegar(`/erro`);
          };
      };
     
@@ -49,6 +52,7 @@ function Login() {
 
        if(email_ja_cadastrado){
 
+            
            console.log('Login bem-sucedido:', cliente_a_logar);
            navegar('/'); 
        } else {
@@ -74,6 +78,8 @@ function Login() {
          } catch (erro) {
           
              console.error(erro);
+             set_erro_pagina(erro);
+             navegar(`/erro`);
          };
        };
       

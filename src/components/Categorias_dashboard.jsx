@@ -8,6 +8,7 @@ import Pop_up_de_editar_categoria from './Pop_up_de_editar_categoria.jsx';
 import Pop_up_de_notificacao_editar_categoria from './Pop_up_de_notificacao_editar_categoria.jsx';
 import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
 import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Categorias_dashboard() {
 
@@ -27,6 +28,8 @@ function Categorias_dashboard() {
   const [ pesquisar, set_pesquisar ] = useState(false);
   const [ resultado_de_pesquisa, set_resultado_de_pesquisa ] = useState(false);
   const referencia_input = useRef(null);
+  const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
+  const navegar = useNavigate(``);
 
   function voltar_para_o_inicio(){
 
@@ -44,7 +47,8 @@ function Categorias_dashboard() {
     } catch (erro) {
       
       console.error(erro);
-      
+      set_erro_pagina(erro);
+      navegar(`/erro`);
     };
   };
 
