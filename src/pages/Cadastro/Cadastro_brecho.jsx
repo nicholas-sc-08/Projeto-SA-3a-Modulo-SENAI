@@ -13,7 +13,7 @@ function Cadastro_brecho() {
   const { cadastroParteUmBrecho, setCadastroParteUmBrecho } = useContext(GlobalContext);
   const { cadastroParteDoisBrecho, setCadastroParteDoisBrecho } = useContext(GlobalContext);
   const { cadastroParteTresBrecho, setCadastroParteTresBrecho } = useContext(GlobalContext);
-  const { arrayBrechos, setArraysBrechos } = useContext(GlobalContext)
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { enderecoDoBrecho } = useContext(GlobalContext)
 
   const { formCadastroBrecho } = useContext(GlobalContext)
@@ -30,6 +30,7 @@ function Cadastro_brecho() {
   let emailJaCadastrado = false
   let telefoneJaCadastrado = false
   let CNPJJaCadastrado = false
+  let nomeBrechoJaCadastrado = false
 
 
   async function informacoesBrecho() {
@@ -37,7 +38,7 @@ function Cadastro_brecho() {
     try {
 
       const resultado = await axios.get(`http://localhost:3000/brechos`);
-      setArraysBrechos(resultado.data);
+      set_array_brechos(resultado.data);
       console.log(resultado.data);
 
     } catch (erro) {
@@ -140,7 +141,7 @@ function Cadastro_brecho() {
         senhasIguais = false;
       };
 
-      if (formCadastroBrecho.nome == false || formCadastroBrecho.data_de_nascimento_vendedor == false || formCadastroBrecho.senha == false) {
+      if (formCadastroBrecho.nome_vendedor == false || formCadastroBrecho.data_de_nascimento_vendedor == false || formCadastroBrecho.senha == false) {
 
         setMensagemErro(`Favor preencher todos os campos!`);
         return
@@ -167,79 +168,115 @@ function Cadastro_brecho() {
 
         case senhasIguais == false && idade < 18:
 
-          setMensagemErro(`As senhas devem ser iguais e você precisa ser maior de idade para criar uma conta de vendedor no Fly!`);
+          setMensagemErro(`As senhas devem ser iguais e você precisa ser maior de idade para criar uma conta no Fly!`);
           break;
       };
 
     } else if (cadastroParteDoisBrecho == true && cadastroParteTresBrecho == false) {
-      console.log(arrayBrechos)
+      console.log(array_brechos)
 
-      for (let i = 0; i < arrayBrechos.length; i++) {
+      for (let i = 0; i < array_brechos.length; i++) {
 
-        if (arrayBrechos[i].email == formCadastroBrecho.email) {
+        if (array_brechos[i].email == formCadastroBrecho.email) {
 
           emailJaCadastrado = true;
         };
 
-        if (arrayBrechos[i].telefone == formCadastroBrecho.telefone) {
+        if (array_brechos[i].telefone == formCadastroBrecho.telefone) {
 
           telefoneJaCadastrado = true;
         };
 
-        if (arrayBrechos[i].CNPJ == formCadastroBrecho.CNPJ) {
+        if (array_brechos[i].CNPJ == formCadastroBrecho.CNPJ) {
 
           CNPJJaCadastrado = true;
         };
+
+        if (array_brechos[i].nome_brecho == formCadastroBrecho.nome_brecho) {
+
+          nomeBrechoJaCadastrado = true;
+        };
+      };
+
+      if (!formCadastroBrecho.logo || !formCadastroBrecho.nome_brecho || !formCadastroBrecho.email || !formCadastroBrecho.telefone) {
+        setMensagemErro(`Por favor preencher todos os dados!`);
+        console.log(formCadastroBrecho)
+        return
       };
 
       switch (true) {
 
-        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false:
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == false:
 
           setMensagemErro(``);
           setCadastroParteDoisBrecho(false);
           setCadastroParteTresBrecho(true);
           break;
 
-        case emailJaCadastrado == true && telefoneJaCadastrado == false && CNPJJaCadastrado == false:
+        case emailJaCadastrado == true && telefoneJaCadastrado == false && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == false:
 
           setMensagemErro(`Email já cadastrado!`);
           break;
 
-        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == false:
-
-          setMensagemErro(`Email e Telefone já cadastrados!`);
-          break;
-
-        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == true:
-
-          setMensagemErro(`Email, Telefone e CNPJ já cadastrados!`);
-          break;
-
-        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == false:
+        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == false:
 
           setMensagemErro(`Telefone já cadastrado!`);
           break;
 
-        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == true:
-
-          setMensagemErro(`Telefone e CNPJ já cadastrados!`);
-          break;
-
-        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == true:
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == true && nomeBrechoJaCadastrado == false:
 
           setMensagemErro(`CNPJ já cadastrado!`);
           break;
 
-        default:
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == true:
 
-          setMensagemErro(`Favor preencher todos os campos!`);
+          setMensagemErro(`Nome do brechó já cadastrado!`);
           break;
+
+        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == true && nomeBrechoJaCadastrado == true:
+
+          setMensagemErro(`Dados já cadastrados!`);
+          break;
+
+        case emailJaCadastrado == true && telefoneJaCadastrado == true && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == false:
+
+          setMensagemErro(`Telefone e email já cadastrado!`);
+          break;
+
+        case emailJaCadastrado == true && telefoneJaCadastrado == false && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == true:
+
+          setMensagemErro(`Nome e email já cadastrados!`);
+          break;
+
+        case emailJaCadastrado == true && telefoneJaCadastrado == false && CNPJJaCadastrado == true && nomeBrechoJaCadastrado == false:
+
+          setMensagemErro(`Email e CNPJ já cadastrados!`);
+          break;
+
+        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == true && nomeBrechoJaCadastrado == false:
+
+          setMensagemErro(`Telefone e CNPJ já cadastrados!`);
+          break;
+
+        case emailJaCadastrado == false && telefoneJaCadastrado == true && CNPJJaCadastrado == false && nomeBrechoJaCadastrado == true:
+
+          setMensagemErro(`Telefone e nome já cadastrados!`);
+          break;
+
+        case emailJaCadastrado == false && telefoneJaCadastrado == false && CNPJJaCadastrado == true && nomeBrechoJaCadastrado == true:
+
+          setMensagemErro(`CNPJ e nome já cadastrados!`);
+          break;
+
       };
 
     };
 
   }
+
+  useEffect(() => {
+    console.log(cadastroParteUmBrecho, cadastroParteDoisBrecho)
+  }, [cadastroParteUmBrecho, cadastroParteDoisBrecho])
 
   return (
     <div>
