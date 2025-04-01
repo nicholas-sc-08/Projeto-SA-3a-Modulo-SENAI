@@ -5,6 +5,7 @@ import './Clientes_dashboard.css';
 import { GlobalContext } from '../contexts/GlobalContext';
 import Pop_up_de_excluir from './Pop_up_de_excluir';
 import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
+import { useNavigate } from 'react-router-dom';
 
 function Clientes_dashboard() {
 
@@ -21,6 +22,8 @@ function Clientes_dashboard() {
   const referencia_do_inpt = useRef(null);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState([]);
   const [pesquisar, set_pesquisar] = useState(false);
+  const { erro_Pagina, set_erro_pagina } = useContext(GlobalContext);
+  const navegar = useNavigate(``);
 
   function voltar_para_o_inicio(){
 
@@ -69,6 +72,8 @@ function Clientes_dashboard() {
     } catch (erro) {
       
       console.error(erro);
+      set_erro_pagina(erro);
+      navegar(`/erro`);
     };
   };
 
@@ -82,6 +87,8 @@ function Clientes_dashboard() {
     } catch (erro) {
       
       console.error(erro);
+      set_erro_pagina(erro);
+      navegar(`/erro`);
     };
   };
 
