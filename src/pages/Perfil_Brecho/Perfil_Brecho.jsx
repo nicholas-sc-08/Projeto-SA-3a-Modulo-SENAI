@@ -6,12 +6,15 @@ function Perfil_Brecho() {
 
   return (
 
-    <div>
+    <div className="toda-tela-content">
       <HeaderUsuario />
-      <div className="perfil-brecho-content">
+      <div className="depois-da-navbar-content">
+        <div className="perfil-brecho-content">
 
+        </div>
       </div>
-       <Footer /> 
+      
+       {/* <Footer />  */}
     </div>
 
   )
