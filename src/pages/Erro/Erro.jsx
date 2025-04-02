@@ -7,8 +7,9 @@ import './Erro.css';
 
 function Erro() {
 
-    const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
-    const navegacao = useNavigate(`/`);
+  const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
+  const navegacao = useNavigate(`/`);
+
   return (
     <div>
 

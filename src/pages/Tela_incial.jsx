@@ -6,12 +6,14 @@ import HeaderBrecho from '../components/HeaderBrecho';
 import Footer from '../components/Footer';
 import Pop_up_chat from '../components/chat/Pop_up_chat';
 import Chat from '../components/chat/Chat';
+import Chat_conversa from '../components/chat/Chat_conversa';
 
 function Tela_incial() {
 
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
+  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
 
   useEffect(() => {
 
@@ -37,8 +39,9 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
-      {!chat_aberto && <Pop_up_chat/>}
+      {!chat_aberto && !conversa_aberta && <Pop_up_chat/>}
       {chat_aberto && <Chat/>}
+      {conversa_aberta && <Chat_conversa/>}
 
 
       {array_clientes.map((usuario, i) => (
