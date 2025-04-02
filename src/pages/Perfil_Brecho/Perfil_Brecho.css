@@ -2,8 +2,18 @@ body {
     margin: 0;
 }
 
-.perfil-brecho-content {
+.toda-tela-content {
     height: 100%;
+    width: 100%;
+}
+
+.perfil-brecho-content {
+    border: 3px solid #0C35FF;
+
+
+    height: 90vh;
+    width: 85%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
