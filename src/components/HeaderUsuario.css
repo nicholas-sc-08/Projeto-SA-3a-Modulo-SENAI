@@ -169,36 +169,62 @@
 
 /* Para ocultar el menú en Desktop */
 @media screen and (min-width: 406px) and (max-width: 914px) {
-
     .navbar-usuario {
-        flex-direction: column;
+        display: flex;
         align-items: center;
-        gap: 10px;
-    }
-
-    .nav-links {
-        display: none;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 20px;
+        position: relative;
+        flex-wrap: wrap; /* Permite que los elementos se acomoden en varias líneas */
+        border: 1px solid red;
     }
 
     .hamburger-menu {
         display: block;
     }
 
+    .hamburger-menu img{
+        width: 130%;
+    }
+
+    /* Asegurar que el buscador quede debajo */
     .container-pesquisa-navbar {
         width: 100%;
         display: flex;
         justify-content: center;
+        margin-top: 10px;
+        order: 1; /* Asegura que el input esté en la segunda línea */
+        border: 1px solid blue;
     }
 
     .input-pesquisa-navbar {
         width: 90%;
         max-width: 350px;
+        border: 1px solid red;
+    }
+
+    /* Ocultar los links en mobile */
+    .nav-links {
+        display: none;
+    }
+
+    .header-link-logo img{
+        width: 55%;
     }
 
     .buttons-container-navbar-alinhamento {
-        width: 100%;
         display: flex;
-        justify-content: space-between;
-        padding: 0 20px;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-end; /* Para alinear mejor */
+        border: 1px solid red;
+
+    }
+
+    .button-sacola-navbar img,
+    .button-perfil-navbar img {
+        width: 10vw; /* Aumenta el tamaño de los íconos */
+        max-width: 50px; /* Evita que se hagan demasiado grandes */
     }
 }
