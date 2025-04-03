@@ -9,8 +9,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [ array_produtos, set_array_produtos ] = useState([]);
     const [ array_categorias, set_array_categorias ] = useState([]);
     const [ array_enderecos, set_array_enderecos ] = useState([]);
-    const [ usuario_logado, set_usuario_logado ] = useState([]);
-    const [ array_chat, set_array_chat ] = useState([]);
+    const [ array_chat, set_array_chat ] = useState([{id: 1, mensagem: ``, id_quem_recebeu: ``, id_dono_da_mensagem: ``}]);
+    const [ conversa_atual, set_conversa_atual ] = useState([]);
+    const [ conversa_aberta, set_conversa_aberta ] = useState(false);
     const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
     const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
     const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
@@ -101,6 +102,10 @@ export const GlobalContextProvider = ({ children }) => {
             set_array_chat,
             erro_pagina,
             set_erro_pagina,
+            conversa_atual,
+            set_conversa_atual,
+            conversa_aberta,
+            set_conversa_aberta,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
