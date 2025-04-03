@@ -10,7 +10,12 @@ function Perfil_Brecho() {
       <HeaderUsuario />
       <div className="depois-da-navbar-content">
         <div className="perfil-brecho-content">
+          <div className="parte-esquerda-content">
 
+          </div>
+          <div className="parte-direita-content">
+            
+          </div>
         </div>
       </div>
       
