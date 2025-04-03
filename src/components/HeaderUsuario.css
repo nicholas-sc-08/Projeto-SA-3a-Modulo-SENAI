@@ -39,7 +39,14 @@
     opacity: 20%;
 }
 
-.link-texto-navbar-usuario {
+.nav-links {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link-texto-navbar-usuario{
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     text-decoration: none;
@@ -50,6 +57,7 @@
 .link-texto-navbar-usuario:hover {
     color: var(--cor_um_v_dois);
     transition: 0.2s;
+    font-weight: 600;
 }
 
 .link-texto-navbar-usuario:not(:hover) {
@@ -76,6 +84,12 @@
     color: var(--cor_seis);
     box-shadow: 0 4px 12px #c4bab1;
     font-family: var(--tipografia_secundaria);
+
+    background-image: url('./public/img/icons/Pesquisa.svg');
+    background-repeat: no-repeat;
+    background-position: 2.3% center;
+    background-size: 3.2%;
+    padding-left: 7%; /* Colocar esto en los headers dps */
 }
 
 .input-pesquisa-navbar:focus {
@@ -86,12 +100,6 @@
 .input-pesquisa-navbar::placeholder {
     color: var(--cor_seis);
     opacity: 70%;
-}
-
-.img-lupa-pesquisa-navbar {
-    position: absolute;
-    margin-left: -35%;
-    width: 1%;
 }
 
 .button-sacola-navbar {
@@ -119,4 +127,78 @@
 
     justify-content: space-between;
     width: 8%;
+}
+
+/* Ocultar el botón de hamburguesa en Desktop */
+.hamburger-menu {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cor_seis);
+}
+
+/* Menú desplegable en Mobile */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor_tres);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 200px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: var(--cor_seis);
+    padding: 10px;
+    font-family: var(--tipografia_primaria);
+    font-weight: 500;
+}
+
+.mobile-menu a:hover {
+    background-color: var(--cor_um);
+    color: white;
+    border-radius: 5px;
+}
+
+/* Para ocultar el menú en Desktop */
+@media screen and (min-width: 406px) and (max-width: 914px) {
+
+    .navbar-usuario {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .container-pesquisa-navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .input-pesquisa-navbar {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .buttons-container-navbar-alinhamento {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
 }

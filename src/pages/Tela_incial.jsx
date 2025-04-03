@@ -35,14 +35,14 @@ function Tela_incial() {
   return (
     <div>
 
-      <HeaderUsuario />
+      <HeaderUsuario/>
 
-      {!chat_aberto && <Pop_up_chat/>}
-      {chat_aberto && <Chat/>}
+      {!chat_aberto && <Pop_up_chat />}
+      {chat_aberto && <Chat />}
 
 
       {array_clientes.map((usuario, i) => (
-        
+
         <div key={i}>
 
           <p>Id: {usuario.id}</p>
@@ -55,7 +55,7 @@ function Tela_incial() {
 
         </div>
       ))}
-      
+
       <Footer />
     </div>
   )
