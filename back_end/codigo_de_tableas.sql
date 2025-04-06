@@ -11,8 +11,8 @@ CREATE TABLE clientes(
 	nome VARCHAR(50) NOT NULL,
 	email VARCHAR(200) NOT NULL,
 	senha VARCHAR(12) NOT NULL,
-	telefone VARCHAR(14),
-	cpf VARCHAR(14),
+	telefone VARCHAR(20),
+	cpf VARCHAR(20),
 	data_de_nascimento DATE,
 	imagem_de_perfil VARCHAR(5000) NOT NULL
 );

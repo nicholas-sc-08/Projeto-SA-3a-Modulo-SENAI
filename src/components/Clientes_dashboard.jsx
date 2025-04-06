@@ -234,7 +234,7 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <span>{cliente.telefone}</span>
+                            <span>{cliente.telefone || "-"}</span>
             
                           </div>
 
@@ -269,7 +269,7 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <span>{cliente.telefone}</span>
+                            <span>{cliente.telefone || "-"}</span>
             
                           </div>
 
@@ -300,7 +300,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_cep_cliente">
 
-                          <span>{endereco.cep}</span>
+                          <span>{endereco.cep || "-"}</span>
 
                         </div>
                       </div>
@@ -314,7 +314,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_senha_cliente">
 
-                          <span>{cliente.senha}</span>
+                          <span>{cliente.senha || "-"}</span>
 
                         </div>
 
