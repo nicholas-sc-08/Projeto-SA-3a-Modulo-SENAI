@@ -76,7 +76,8 @@ function Chat() {
           <div key={i} className='container_corversa_chat'>
 
             <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa.id)}>
-              <img src={conversa.imagem_de_perfil} alt="" />
+              
+              <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
               <h2>{conversa.nome}</h2>
