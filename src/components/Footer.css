@@ -195,7 +195,7 @@ html, body {
         background-color: var(--cor_tres);
         width: 100%;
         height: 700px;
-        position: fixed;
+        /* position: fixed; */
         left: 0;
         bottom: 0;
 

@@ -21,7 +21,8 @@ function Clientes_dashboard() {
   const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
   const referencia_do_inpt = useRef(null);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState([]);
-  const [pesquisar, set_pesquisar] = useState(false);
+  const [resultado_de_pesquisa_endereco, set_resultado_de_pesquisa_endereco] = useState([]);
+  const [ids_filtrado, set_ids_filtrado] = useState(``);
   const { erro_Pagina, set_erro_pagina } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
@@ -31,36 +32,18 @@ function Clientes_dashboard() {
     set_clientes_dashboard(false);
   };
 
-  function enter_na_barra_de_pesquisa(e){
-
-    if(e.key === "Enter"){
-
-      for(let i = 0; i < array_clientes.length; i++){
-
-        if(barra_de_pesquisa == array_clientes[i].nome){
-
-          
-        };
-      };
-
-      alert(`a pesquisar`);
-    };
-  };
-
   useEffect(() => {
-      
-      console.log(`res`, resultado_de_pesquisa);
 
-      for(let i = 0; i < array_clientes.length; i++){
-
-        if(barra_de_pesquisa == array_clientes[i].nome){
-
-          set_resultado_de_pesquisa([...resultado_de_pesquisa, array_clientes[i]]);
-          set_pesquisar(true);
-        };
-      };
-
-  }, [barra_de_pesquisa]);
+    const clientes_filtrados = array_clientes.filter(cliente => cliente.nome.toLowerCase().includes(barra_de_pesquisa.toLowerCase()));
+    const ids = clientes_filtrados.map(cliente => cliente.id);
+    const enderecos_filtrados = array_enderecos.filter(endereco => ids.includes(endereco.fk_id));
+  
+    set_resultado_de_pesquisa(clientes_filtrados);
+    set_ids_filtrado(ids);
+    set_resultado_de_pesquisa_endereco(enderecos_filtrados);
+  
+  }, [barra_de_pesquisa, array_clientes, array_enderecos]);
+  
 
   async function buscar_clientes(){
 
@@ -105,13 +88,6 @@ function Clientes_dashboard() {
     buscar_enderecos();
     
   }, []);
-
-  useEffect(() => {
-
-    console.log(array_enderecos);
-    console.log(array_clientes);
-
-  }, [array_enderecos]);
 
   useEffect(() => {
 
@@ -184,7 +160,7 @@ function Clientes_dashboard() {
               <div className="container_barra_de_pesquisa" onClick={() => referencia_do_inpt.current.focus()}>
 
                 <img src="./img/LupaIcon.svg" alt="lupa" />
-                <input type="text" ref={referencia_do_inpt} onKeyDown={e => enter_na_barra_de_pesquisa(e)} placeholder="Procurar Usuário" value={barra_de_pesquisa} onChange={e => set_barra_de_pesquisa(e.target.value)}/>
+                <input type="text" placeholder="Procure pelo nome de usuário" value={barra_de_pesquisa} onChange={e => set_barra_de_pesquisa(e.target.value)}/>
 
               </div>
 
@@ -258,7 +234,7 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <span>{cliente.telefone}</span>
+                            <span>{cliente.telefone || "-"}</span>
             
                           </div>
 
@@ -267,7 +243,7 @@ function Clientes_dashboard() {
                       </div>
                     ))}
 
-                    {barra_de_pesquisa && resultado_de_pesquisa.map((cliente, i) => {
+                    {barra_de_pesquisa && resultado_de_pesquisa.map((cliente, i) => (
 
                       <div key={i} className='container_colunas_serie_a'>
 
@@ -293,20 +269,20 @@ function Clientes_dashboard() {
 
                           <div className="container_coluna_telefone_cliente">
 
-                            <span>{cliente.telefone}</span>
+                            <span>{cliente.telefone || "-"}</span>
             
                           </div>
 
                         </div>
 
                       </div>
-                    })}
+                    ))}
 
                     </div>
                     
                     <div className="c">
 
-                    {array_enderecos.map((endereco, i) => (
+                    {!barra_de_pesquisa && array_enderecos.map((endereco, i) => (
                       
                       <div key={i} className='container_colunas_serie_c'>
 
@@ -317,11 +293,44 @@ function Clientes_dashboard() {
                         </div>
                       </div>
                     ))}
+
+                    {barra_de_pesquisa && resultado_de_pesquisa_endereco.map((endereco, i) => (
+                      
+                      <div key={i} className='container_colunas_serie_c'>
+
+                        <div className="container_coluna_cep_cliente">
+
+                          <span>{endereco.cep || "-"}</span>
+
+                        </div>
+                      </div>
+                    ))}
                     </div>
 
                     <div className="d">
 
-                    {array_clientes.map((cliente, i) => (
+                    {resultado_de_pesquisa && resultado_de_pesquisa.map((cliente, i) => (
+                      <div key={i} className='container_colunas_serie_d'>
+
+                        <div className="container_coluna_senha_cliente">
+
+                          <span>{cliente.senha || "-"}</span>
+
+                        </div>
+
+                        {escolher_qual_excluir &&                 
+                        
+                        <div className="container_coluna_excluir_cliente">
+
+                        <button onClick={() => armazenar_id_do_cliente(cliente.id)}><img src="./img/Lixeiraicon.svg" alt="" /></button>
+
+                        </div>
+                        }
+
+                      </div>
+                    ))}
+
+                    {!resultado_de_pesquisa && array_clientes.map((cliente, i) => (
                       <div key={i} className='container_colunas_serie_d'>
 
                         <div className="container_coluna_senha_cliente">

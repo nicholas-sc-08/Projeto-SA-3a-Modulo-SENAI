@@ -19,7 +19,7 @@ function Perfil_Brecho() {
         </div>
       </div>
       
-       {/* <Footer />  */}
+       <Footer /> 
     </div>
 
   )

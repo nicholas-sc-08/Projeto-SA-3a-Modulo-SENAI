@@ -12,6 +12,12 @@ function Login() {
  
      const { array_clientes, set_array_clientes } = useContext(GlobalContext);
      const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
+     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+     const [ nome_cadastrado, set_nome_cadastrado ] = useState(false);
+     const [ email_cadastrado, set_email_cadastrado ] = useState(false);
+     const [ senha_cadastrado, set_senha_cadastrado ] = useState(false);
+     const [ formulario, set_formulario ] = useState({nome: ``, email: ``, senha: ``});
+     const [ erro, set_erro ] = useState(``);
      const navegar = useNavigate(); 
     
      useEffect(() => {
@@ -34,6 +40,43 @@ function Login() {
              navegar(`/erro`);
          };
      };
+
+     function lidar_com_formulario(e){
+
+      e.preventDefault();
+      console.log(formulario);
+
+      for(let i = 0; i < array_clientes.length; i++){
+
+        if(formulario.nome == array_clientes[i].nome){
+
+          set_nome_cadastrado(true);
+        };
+
+        if(formulario.email == array_clientes[i].email){
+
+          set_email_cadastrado(true)
+        };
+
+        if(formulario.senha == array_clientes[i].senha){
+
+          set_senha_cadastrado(true);
+        };
+      };      
+
+      if(nome_cadastrado && email_cadastrado && senha_cadastrado){
+
+        const encontrar_usuario = array_clientes.find(cliente => cliente.email.includes(formulario.email));        
+        set_usuario_logado(encontrar_usuario);
+        console.log(usuario_logado);
+        
+        navegar(`/`);
+      } else {
+
+        set_erro(`Usuário ou senha incorretos!`);
+      };
+
+    };
     
      async function lidar_sucesso(res) {
         
@@ -47,12 +90,12 @@ function Login() {
          if(array_clientes[i].email == cliente_a_logar.email){
 
             email_ja_cadastrado = true;
+            set_usuario_logado(array_clientes[i]);
          };
        };
 
        if(email_ja_cadastrado){
 
-            
            console.log('Login bem-sucedido:', cliente_a_logar);
            navegar('/'); 
        } else {
@@ -72,7 +115,7 @@ function Login() {
 
              const cadastrar_cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
              set_array_clientes([...array_clientes, novo_cliente]);
-                  
+             set_usuario_logado(novo_cliente);
              navegar('/'); 
         
          } catch (erro) {
@@ -91,32 +134,34 @@ function Login() {
  
     return (
     <div className='container-corpo-login'>
+        <form onSubmit={lidar_com_formulario}>
         <div className='ladoEsquerdo-container'>
           <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
           <h1>Sua conta te espera</h1>
           <div className='info-login'>
           <label>Nome</label>
-          <input type="text" placeholder='Nome Completo'/>
+          <input type="text" placeholder='Nome Completo' value={formulario.nome} onChange={e => set_formulario({...formulario, nome: e.target.value})}/>
 
           <label>Email</label>
-          <input type="email" placeholder='Exemplo@gmail.com'/>
+          <input type="email" placeholder='Exemplo@gmail.com' value={formulario.email} onChange={e => set_formulario({...formulario, email: e.target.value})}/>
 
           <label>Senha</label>
-          <input type="password" placeholder='Senha'/>
+          <input type="password" placeholder='Senha' value={formulario.senha} onChange={e => set_formulario({...formulario, senha: e.target.value})}/>
           </div>
-          <GoogleLogin onSuccess={lidar_sucesso} onError={lidar_falha}/>
-          <button onClick={() => mudar_de_pagina(`#`)}>Fazer login</button>
+          <GoogleLogin onSuccess={lidar_sucesso} onError={lidar_falha} type='button'/>
+          <button type='submit'>Fazer login</button>
+          {erro}
         </div>
         <div className='ladoDireito-container'>
           <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
           <div className='info-ladoDireito'>
           <h1>Novo por aqui? Crie sua conta!</h1>
           <p>A moda circular nunca para! Que tal fazer parte desse movimento? Cadastre-se no Fly!</p>
-          <button onClick={() => mudar_de_pagina(`#`)}>Cadastrar-se</button>
+          <button onClick={() => mudar_de_pagina(`#`)} type='button'>Cadastrar-se</button>
           </div>
           <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
         </div>
-
+        </form>
     </div>
   )
 }
