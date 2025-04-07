@@ -67,12 +67,15 @@
 .container_conversa_chat_imagem_de_perfil{
 
     display: flex;
+    justify-content: space-around;
+
+    width: 35%;
     padding-left: 5%;
 }
 
 .container_conversa_chat_imagem_de_perfil img{
 
-    width: 55%;
+    width: 50%;
 }
 
 .container_conversa_chat_imagem_de_perfil h2{
@@ -100,12 +103,14 @@
 .container_conversa_chat_titulo{
 
     padding-left: 10%;
+    padding-right: 10%;
 }
 
 .container_conversa_chat_horario{
 
     display: flex;
     width: 17%;
+    height: 100%;
     align-items: center;
 }
 

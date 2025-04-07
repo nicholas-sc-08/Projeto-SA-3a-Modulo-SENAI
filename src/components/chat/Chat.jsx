@@ -11,6 +11,7 @@ function Chat() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
     const { array_chat, set_array_chat } = useContext(GlobalContext);
+    const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const [ usuario_logado, set_usuario_logado ] = useState([{id: 1, nome: `asd`, email: `asd@gmail.com`, chat: [{fk_id: 8, conversas: []}]}]);
 
     useEffect(() => {
@@ -40,6 +41,12 @@ function Chat() {
         if(array_chat[i].id_quem_recebeu == id){
 
           set_conversa_atual([...conversa_atual, array_chat[i]]);
+
+        };
+
+        if(array_clientes[i].id == id){
+
+            set_pessoa_com_quem_esta_conversando(array_clientes[i]);
         };
       };
 
@@ -51,7 +58,6 @@ function Chat() {
 
       console.log(`conversa atual: `, conversa_atual);
       
-
     }, [conversa_atual]);
 
     function fechar_chat(){
@@ -73,9 +79,9 @@ function Chat() {
 
         {array_clientes.map((conversa, i ) => (
 
-          <div key={i} className='container_corversa_chat'>
+          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa.id)}>
 
-            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa.id)}>
+            <div className='container_conversa_chat_imagem_de_perfil'>
               <img src={conversa.imagem_de_perfil} alt="" />
              
              <div className="container_conversa_chat_titulo">
