@@ -22,8 +22,6 @@
 }
 
 .apresentando-equipe{
-    border: 3px solid green;
-
     display: flex;
     justify-content: space-around;
 
@@ -35,8 +33,6 @@
 }
 
 .equipe{
-    border: 3px solid rebeccapurple;
-
     width: 10%;
     height: 90%;
 }
@@ -48,6 +44,12 @@
     align-items: center;
     justify-content: space-evenly;
     margin-left: 3.5%;
+}
+
+.icons-redesSociais {
+    display: flex;
+    margin-right: 74px;
+
 }
 
 

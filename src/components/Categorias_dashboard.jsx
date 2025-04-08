@@ -25,8 +25,8 @@ function Categorias_dashboard() {
   const [ editar_categoria, set_editar_categoria ] = useState(false);
   const [ texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa ] = useState(``);
   const [ array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa ] = useState([]);
-  const [ pesquisar, set_pesquisar ] = useState(false);
   const [ resultado_de_pesquisa, set_resultado_de_pesquisa ] = useState(false);
+  const [ categorias_filtradas, set_categorias_filtradas ] = useState(``);
   const referencia_input = useRef(null);
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const navegar = useNavigate(``);
@@ -82,18 +82,8 @@ function Categorias_dashboard() {
       };
     };
 
-    for(let i = 0; i < array_categorias.length; i++){
-
-      if(texto_da_barra_de_pesquisa.toUpperCase() == array_categorias[i].nome.toUpperCase() && resultado_de_pesquisa == false){
-
-        set_array_da_barra_de_pesquisa([...array_da_barra_de_pesquisa, array_categorias[i].nome]);
-        
-      } else if(texto_da_barra_de_pesquisa == ``){
-
-        set_array_da_barra_de_pesquisa([]);
-        set_resultado_de_pesquisa(false);
-      };
-    };
+    set_categorias_filtradas(array_categorias.filter(categoria => categoria.nome.toLowerCase().includes(texto_da_barra_de_pesquisa.toLowerCase())));
+    
 
   }, [texto_da_barra_de_pesquisa]);
 
@@ -234,11 +224,11 @@ function Categorias_dashboard() {
                 <span>{editar_categoria && "· "}{categoria.nome}</span>
 
               </div>
-            )) : array_da_barra_de_pesquisa.map((categoria, i) => (
+            )) : categorias_filtradas.map((categoria, i) => (
 
               <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria.id)}>
 
-                  <span>{editar_categoria && "· "}{categoria}</span>
+                  <span>{editar_categoria && "· "}{categoria.nome}</span>
 
               </div>
             ))}

@@ -373,3 +373,46 @@ app.post('/Produto', async (req, res) => {
     }
     
 })
+
+app.get(`/chat`, async (req, res) => {
+
+    try {
+        
+        const conversas = await pool.query(`SELECT * FROM chat`);
+        res.status(200).json(conversas.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/chat/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const conversas = await pool.query(`SELECT * FROM chat WHERE id = $1`, [id]);
+        res.status(200).json(conversas.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/chat`, async (req, res) => {
+
+    const { mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+
+    try {
+        
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3)`, [mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(conversa.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
