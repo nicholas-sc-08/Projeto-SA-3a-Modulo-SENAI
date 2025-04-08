@@ -1,0 +1,59 @@
+.container_tela_de_erro{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.container_erro{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 25%;
+}
+
+.container_erro p{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+    font-weight: bold;
+
+    color: var(--cor_seis);
+}
+
+.container_botao_de_voltar{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+    height: 8%;
+}
+
+.container_botao_de_voltar button{
+
+    width: 15%;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_um);
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}
+
+.container_botao_de_voltar button:hover{
+
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}

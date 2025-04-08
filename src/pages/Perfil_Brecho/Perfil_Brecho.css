@@ -2,8 +2,46 @@ body {
     margin: 0;
 }
 
-.perfil-brecho-content {
-    height: 100%;
+.toda-tela-content {
+    border: 3px solid #18CA00;
+
+    height: 100vh;
+    width: 100%;
+}
+
+.depois-da-navbar-content{
+    border: 3px solid #D08E00;
+    background-color: var(--cor_quatro);
+
+    height: 83%;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+
+}
+
+.perfil-brecho-content {
+    border: 3px solid #0C35FF;
+    background-color: var(--);
+
+    height: 88%;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.parte-esquerda-content {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 26%;
+}
+
+.parte-direita-content {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 69%;
 }

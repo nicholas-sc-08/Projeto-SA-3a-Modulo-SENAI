@@ -1,0 +1,55 @@
+.bibliografia-fly{
+    display: flex;
+    justify-content: space-around;
+    padding: 5%;
+}
+
+.sobre{
+    width: 30%;
+    color: var(--cor_seis);
+}
+
+.sobre h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 43px;
+    padding: 5%;
+}
+
+.sobre p{
+    padding: 10%;
+}
+
+.apresentando-equipe{
+    display: flex;
+    justify-content: space-around;
+
+    height: 450px;
+}
+
+.equipe img{
+    width: 19vh;
+}
+
+.equipe{
+    width: 10%;
+    height: 90%;
+}
+
+.equipe a{
+    width: 16%;
+    height: 79%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 3.5%;
+}
+
+.icons-redesSociais {
+    display: flex;
+    margin-right: 74px;
+
+}
+
+

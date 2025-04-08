@@ -21,6 +21,7 @@ function Cadastro_cliente() {
   const mudar_de_pagina = useNavigate(``);
   const dia_de_hoje = new Date();
   const [idade, set_idade] = useState(``);
+  const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   let email_ja_cadastrado = false;
   let cpf_ja_cadastrado = false;
   let telefone_ja_cadastrado = false;
@@ -62,6 +63,8 @@ function Cadastro_cliente() {
     } catch (erro) {
 
       console.error(erro);
+      set_erro_pagina(erro);
+      mudar_de_pagina(`/erro`);
     };
   };
 
