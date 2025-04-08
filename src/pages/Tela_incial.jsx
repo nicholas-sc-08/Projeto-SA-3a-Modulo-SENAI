@@ -37,8 +37,8 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
-
       <Footer />
+     
 
       {array_clientes.map((usuario, i) => (
         
