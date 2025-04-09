@@ -404,11 +404,11 @@ app.get(`/chat/:id`, async (req, res) => {
 
 app.post(`/chat`, async (req, res) => {
 
-    const { mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+    const { mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
 
     try {
         
-        const conversa = await pool.query(`INSERT INTO chat(mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3)`, [mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4)`, [mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem]);
         res.status(200).json(conversa.rows[0]);
 
     } catch (erro) {

@@ -14,7 +14,6 @@ function HeaderBrecho() {
                     <Link to={'sobreNos'} className='link-texto-navbar-usuario'>Sobre Nós</Link>
 
                     <div className="container-pesquisa-navbar">
-                      <img src="./public/img/icons/Pesquisa.svg" alt="icone de pesquisa" className='img-lupa-pesquisa-navbar' />
                         <input type="text"
                             className='input-pesquisa-navbar'
                             placeholder='O que você está procurando?' />

@@ -1,11 +1,11 @@
 .bibliografia-fly{
     display: flex;
     justify-content: space-around;
-    padding: 5%;
+    padding: 10%;
 }
 
 .sobre{
-    width: 30%;
+    width: 40%;
     color: var(--cor_seis);
 }
 
@@ -47,9 +47,83 @@
 }
 
 .icons-redesSociais {
+    position: relative;
+    right: 5%;
+    width: 42%;
     display: flex;
-    margin-right: 74px;
+    justify-content: space-around;
 
 }
+
+
+/* Responsividade Mobile*/
+@media (max-width: 768px){
+        .bibliografia-fly {
+            flex-direction: column;
+            padding: 5%;
+        }
+    
+        .sobre {
+            width: 96%;
+            margin-top: 385px;
+        }
+
+        .imgEmGrupo{
+            position: relative;
+            bottom: 690px;
+
+        }
+    
+        .sobre h1 {
+            font-size: 30px;
+            padding: 3%;
+        }
+    
+        .sobre p {
+            padding: 5%;
+            font-size: 16px;
+        }
+    
+        .apresentando-equipe {
+            flex-direction: column;
+            height: auto;
+            align-items: center;
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+    
+        .equipe {
+            width: 80%;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: transform 0.5s ease;
+        }
+    
+        .equipe img {
+            width: 50vw;
+            height: auto;
+        }
+    
+        .equipe a {
+            width: 16%;
+            height: 79%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-left: 3.5%;
+        }
+    
+        .icons-redesSociais {
+            position: relative;
+            right: 5%;
+            width: 42%;
+            display: flex;
+            justify-content: space-around;
+        }
+}
+
 
 

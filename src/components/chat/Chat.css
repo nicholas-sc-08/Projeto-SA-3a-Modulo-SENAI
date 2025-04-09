@@ -2,8 +2,8 @@
 
     position: fixed;
 
-    height: 60%;
-    width: 20%;
+    height: 70%;
+    width: 24%;
 
     right: 4%;
     bottom: 0%;
@@ -21,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 10%;
+    height: 15%;
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
@@ -30,10 +30,48 @@
 
 .container_header_chat h2{
 
-    margin-left: 5%;
+    margin-top: 5%;
     font-family: var(--tipografia_primaria);
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: var(--cor_quatro);
+}
+
+.container_header_chat_pesquisa{
+
+    height: 100%;
+    width: 70%;
+    padding-left: 5%;
+}
+
+.container_inpt_pesquisa_chat{
+
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    height: 40%;
+
+    border-radius: 100vw;
+    background-color: var(--cor_doze);
+}
+
+.container_inpt_pesquisa_chat img{
+
+    margin-left: 5%;
+    height: 60%;
+}
+
+.container_inpt_pesquisa_chat input{
+
+    height: 100%;
+
+    outline: none;
+    border: 0px;
+    margin-left: 2%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    background-color: transparent;
 }
 
 .container_header_chat button{
@@ -51,7 +89,7 @@
 
 .container_conversas_chat{
     width: 100%;
-    height: 100%;
+    height: 90%;
     overflow-y: auto;
 }
 
@@ -62,9 +100,10 @@
     cursor: pointer;
     transition: 0.3s;
     min-height: 20%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     justify-content: space-between;
+
 }
 
 .container_corversa_chat:hover{
@@ -79,7 +118,7 @@
     padding-left: 5%;
     margin-bottom: 5%;
     margin-top: 5%;
-    width: 35%;
+    width: 30%;
     height: 100%;
 }
 
