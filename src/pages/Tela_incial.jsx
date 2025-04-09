@@ -39,13 +39,14 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
+      <Footer />
+    
+
       {!chat_aberto && !conversa_aberta && <Pop_up_chat/>}
       {chat_aberto && <Chat/>}
       {conversa_aberta && <Chat_conversa/>}
-
-
       {array_clientes.map((usuario, i) => (
-        
+
         <div key={i}>
 
           <p>Id: {usuario.id}</p>
@@ -58,8 +59,7 @@ function Tela_incial() {
 
         </div>
       ))}
-      
-      <Footer />
+
     </div>
   )
 }
