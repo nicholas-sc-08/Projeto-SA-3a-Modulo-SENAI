@@ -11,7 +11,7 @@ function HeaderUsuario() {
 
                     <Link to={'doacoes'} className='link-texto-navbar-usuario'>Doações</Link>
                     <Link to={'lancamentos'} className='link-texto-navbar-usuario'>Lançamentos</Link>
-                    <Link to={'sobreNos'} className='link-texto-navbar-usuario'>Sobre nós</Link>
+                    <Link to={"/sobre_nos"} className='link-texto-navbar-usuario'>Sobre nós</Link>
 
                     <div className="container-pesquisa-navbar">
                         <img src="./public/img/icons/Pesquisa.svg" alt="icone de pesquisa" className='img-lupa-pesquisa-navbar' />
