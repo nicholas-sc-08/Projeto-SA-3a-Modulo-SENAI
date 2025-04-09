@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Pop_up_chat from '../components/chat/Pop_up_chat';
 import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
+import './Tela_inicial.css'
 
 function Tela_incial() {
 
@@ -39,12 +40,39 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
-      <Footer />
-    
+      <div className="home-page-container-todas-as-secoes">
 
-      {!chat_aberto && !conversa_aberta && <Pop_up_chat/>}
-      {chat_aberto && <Chat/>}
-      {conversa_aberta && <Chat_conversa/>}
+        <div className="home-page-secao-um-container">
+          <div className="alinhamento-imagem-texto-secao-um-home-page">
+            <div className="alinhamento-texto-button-secao-um-home-page">
+              <h1>ENCONTRE ROUPAS QUE COMBINAM COM  SEU ESTILO</h1>
+              <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
+
+              <button>Compre Já</button>
+            </div>
+
+            <div className="alinhamento-imagem-estrelas-secao-um-container">
+
+              <img src="./img/estrelaGrande.png" alt="Estrela verde grande" />
+
+              <img className='imagem-roupas-um-home-page' src="./img/imagens_telaInicial/ImagemRoupaUm.svg" alt="Imagem roupa um" />
+
+              <img src="./img/estrelaMenor.png" alt="Estrela amarela menor" />
+
+            </div>
+          </div>
+
+          <div className="line-verde-grande-home-page"></div>
+        </div>
+
+      </div>
+
+      <Footer />
+
+
+      {!chat_aberto && !conversa_aberta && <Pop_up_chat />}
+      {chat_aberto && <Chat />}
+      {conversa_aberta && <Chat_conversa />}
       {array_clientes.map((usuario, i) => (
 
         <div key={i}>
