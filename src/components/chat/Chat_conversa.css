@@ -13,6 +13,7 @@
     border-top-right-radius: 1vw;
 
     background-color: var(--cor_quatro);
+    z-index: 4;
 }
 
 .container_header_chat_conversa{

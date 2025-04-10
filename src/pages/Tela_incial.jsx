@@ -53,11 +53,13 @@ function Tela_incial() {
 
             <div className="alinhamento-imagem-estrelas-secao-um-container">
 
-              <img src="./img/estrelaGrande.png" alt="Estrela verde grande" />
+              <img src="./img/estrelaGrande.png" alt="Estrela verde grande" className='imagem-estrela-verde-grande'/>
 
-              <img className='imagem-roupas-um-home-page' src="./img/imagens_telaInicial/ImagemRoupaUm.svg" alt="Imagem roupa um" />
+              <div className='container-imagem-com-degrade'>
+                <img className='imagem-roupas-um-home-page' src="./img/imagens_telaInicial/ImagemRoupaUm.svg" alt="Imagem roupa um" />
+              </div>
 
-              <img src="./img/estrelaMenor.png" alt="Estrela amarela menor" />
+              <img src="./img/estrelaMenor.png" alt="Estrela amarela menor" className='imagem-estrela-amarela-menor' />
 
             </div>
           </div>
@@ -73,20 +75,6 @@ function Tela_incial() {
       {!chat_aberto && !conversa_aberta && <Pop_up_chat />}
       {chat_aberto && <Chat />}
       {conversa_aberta && <Chat_conversa />}
-      {array_clientes.map((usuario, i) => (
-
-        <div key={i}>
-
-          <p>Id: {usuario.id}</p>
-          <p>Nome: {usuario.nome}</p>
-          <p>Email: {usuario.email}</p>
-          <p>Senha: {usuario.senha}</p>
-          <p>Telefone: {usuario.telefone}</p>
-          <p>Data de Nascimento: {usuario.data_de_nascimento}</p>
-          <p>CPF: {usuario.cpf}</p>
-
-        </div>
-      ))}
 
     </div>
   )

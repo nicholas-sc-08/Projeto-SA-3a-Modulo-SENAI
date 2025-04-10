@@ -12,7 +12,7 @@ html {
     --cor_dois_v_um: #8f9749;
     --cor_dois_v_dois: #9da65058;
     --cor_tres: #E7E8CE;
-    --cor_quatro: #FFFDF7; 
+    --cor_quatro: #FFFDF7;
     --cor_quatro_v_um: #e2e0da;
     --cor_cinco: #E4CD80;
     --cor_seis: #3E2A21;
@@ -55,7 +55,8 @@ html {
     align-items: center;
 
     width: 100%;
-    padding: 5%;
+    padding-left: 5%;
+    padding-top: 3%;
 }
 
 .alinhamento-texto-button-secao-um-home-page {
@@ -73,10 +74,10 @@ html {
     width: 110%;
 
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
-.alinhamento-texto-button-secao-um-home-page p{
+.alinhamento-texto-button-secao-um-home-page p {
     border: 1px solid red;
 
     font-family: var(--tipografia_secundaria);
@@ -87,10 +88,10 @@ html {
     width: 106%;
 
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
-.alinhamento-texto-button-secao-um-home-page button{
+.alinhamento-texto-button-secao-um-home-page button {
     border: none;
     width: 25%;
     height: 5.5vh;
@@ -103,7 +104,57 @@ html {
     font-size: 100%;
 }
 
-.line-verde-grande-home-page{
+.imagem-estrela-verde-grande{
+    border: 1px solid red;
+    position: absolute;
+    top: 20%;
+    z-index: 4;
+}
+
+.imagem-estrela-amarela-menor{
+    border: 1px solid blue;
+    z-index: 3;
+}
+
+.alinhamento-imagem-estrelas-secao-um-container{
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+}
+
+/* Degrade de imagem */
+.container-imagem-com-degrade {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    /* Ajusta si quieres */
+    height: auto;
+    overflow: hidden;
+}
+
+.container-imagem-com-degrade::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, red 0.5%, transparent 50%),
+        linear-gradient(to bottom, blue 0.5%, transparent 35%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+.imagem-roupas-um-home-page {
+    position: relative;
+    width: 166%;
+    height: auto;
+    display: block;
+    border: 1px solid red;
+}
+/* Degrade de imagem */
+
+.line-verde-grande-home-page {
     background-color: var(--cor_um);
     width: 100%;
     height: 7vh;
