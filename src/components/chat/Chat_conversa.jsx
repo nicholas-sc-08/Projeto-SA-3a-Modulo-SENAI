@@ -65,14 +65,14 @@ function Chat_conversa() {
 
     async function enviar_mensagem(e){
       
-      set_inpt_mensagem({...inpt_mensagem, mensagem: ``});
-      const hora_da_mensagem = data.getHours();
-      const minutos_da_mensagem = data.getMinutes();
-
+      
       try {
         
-        if(e.key == "Enter"){
+        const hora_da_mensagem = data.getHours();
+        const minutos_da_mensagem = data.getMinutes();
 
+        if(e.key == "Enter" || e.type == "click"){
+          
           const mensagem = {
             
             mensagem: inpt_mensagem,
@@ -84,6 +84,7 @@ function Chat_conversa() {
           const mensagem_a_ser_envidada = await axios.post(`http://localhost:3000/chat`, mensagem);
           set_conversa_atual([...conversa_atual, mensagem]);
           buscar_conversas();
+          set_inpt_mensagem({...inpt_mensagem, mensagem: ``});
         };
 
       } catch (erro) {

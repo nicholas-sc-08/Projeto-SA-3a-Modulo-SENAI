@@ -34,11 +34,15 @@
 
 .container_excluir_conversa:hover{
 
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
     background-color: var(--cor_quatro_v_um);
 }
 
 .container_excluir_mensagem:hover{
 
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
     background-color: var(--cor_quatro_v_um);
 }
 
