@@ -2,8 +2,8 @@
 
     position: fixed;
 
-    height: 60%;
-    width: 20%;
+    height: 70%;
+    width: 24%;
 
     right: 4%;
     bottom: 0%;
@@ -27,10 +27,14 @@
     background-color: var(--cor_um);
 }
 
-.container_header_chat_conversa img{
+.botao_sair_conversa_chat{
+
+    margin-left: 5%;
+}
+
+.container_header_chat_conversa_imagem{
 
     width: 15%;
-    margin-left: 8%;
 }
 
 .container_header_chat_conversa h2{
@@ -42,13 +46,20 @@
     color: var(--cor_quatro);
 }
 
+.container_header_info_chat{
+
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .container_header_chat_conversa button{
 
     cursor: pointer;
 
     font-size: 1.5rem;
     font-weight: bold;
-    margin-left: 50%;
+    margin-right: 5%;
 
     border: 0px;
     color: var(--cor_quatro);
@@ -57,11 +68,11 @@
 
 .container_conversa_atual{
     width: 100%;
-    min-height: 70%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-
+    overflow-x: hidden;
 }
 
 .container_campos_conversa_atual{
@@ -72,36 +83,84 @@
     height: 15%;
 }
 
-.container_mensagem{
-
-}
-
 .dono_da_mensagem{
     
-    width: 40%;
+    width: 70%;
     
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 4%;
+    padding-right: 5%;
     margin-top: 5%;
-    margin-left: 5%;
+    margin-right: 5%;
     
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     font-weight: 500;
     
-    border-radius: 1vw;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-top-left-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 1vw;
+
     color: var(--cor_quatro);
     background-color: var(--cor_um);
+
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.hora_dono_menagem{
+
+    font-size: 0.8rem;
+    font-family: var(--tipografia_secundaria);
+    font-weight: 700;
+    margin-right: 7%;
+}
+
+.container_hora_dono{
+    
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+.hora_recebedor_menagem{
+
+    font-size: 0.8rem;
+    font-family: var(--tipografia_secundaria);
+    font-weight: 700;
+    margin-right: 7%;
+}
+
+.container_hora_recebedor{
+    
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.container_dono_da_mensagem{
+
+    display: flex;
+    justify-content: end;
+}
+
+.container_recebedor_da_mensagem{
+
+    display: flex;
+    justify-content: start;
 }
 
 .recebedor_da_mensagem{
 
-    width: 40%;
+    width: 70%;
     
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 4%;
+    padding-right: 5%;
     margin-top: 5%;
     margin-left: 5%;
     
@@ -109,9 +168,17 @@
     font-size: 1rem;
     font-weight: 500;
     
-    border-radius: 1vw;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+
     color: var(--cor_quatro);
     background-color: var(--cor_dois);
+
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .container_campos_conversa_atual input{
@@ -141,7 +208,7 @@
     justify-content: center;
     cursor: pointer;
 
-    width: 13%;
+    width: 12%;
     height: 60%;
 
     border: 1% solid var(--cor_dois);
@@ -152,7 +219,19 @@
     background-color: var(--cor_dois);
 }
 
+.imagem_botao_chat{
+
+    width: 70%;
+    height: 100%;
+}
+
 .container_campos_conversa_atual img{
 
     width: 100%;
+}
+
+.container_pop_up_excluir_msg_chat{
+
+    display: flex;
+    justify-content: end;
 }

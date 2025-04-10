@@ -21,6 +21,7 @@ CREATE TABLE chat(
 
 	id SERIAL PRIMARY KEY,
 	mensagem TEXT,
+	hora CHAR(5),
 	id_dono_mensagem INT,
 	id_quem_recebeu_mensagem INT
 );

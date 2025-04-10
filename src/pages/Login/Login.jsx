@@ -45,31 +45,15 @@ function Login() {
 
       e.preventDefault();
       console.log(formulario);
+    
+      const encontrar_usuario = array_clientes.find(cliente => formulario.nome == cliente.nome && formulario.email == cliente.email && formulario.senha == cliente.senha);        
 
-      for(let i = 0; i < array_clientes.length; i++){
+      if(encontrar_usuario){
 
-        if(formulario.nome == array_clientes[i].nome){
-
-          set_nome_cadastrado(true);
-        };
-
-        if(formulario.email == array_clientes[i].email){
-
-          set_email_cadastrado(true)
-        };
-
-        if(formulario.senha == array_clientes[i].senha){
-
-          set_senha_cadastrado(true);
-        };
-      };      
-
-      if(nome_cadastrado && email_cadastrado && senha_cadastrado){
-
-        const encontrar_usuario = array_clientes.find(cliente => cliente.email.includes(formulario.email));        
         set_usuario_logado(encontrar_usuario);
         console.log(usuario_logado);
         
+        set_erro(``);
         navegar(`/`);
       } else {
 
@@ -116,6 +100,7 @@ function Login() {
              const cadastrar_cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
              set_array_clientes([...array_clientes, novo_cliente]);
              set_usuario_logado(novo_cliente);
+             set_erro(``);
              navegar('/'); 
         
          } catch (erro) {

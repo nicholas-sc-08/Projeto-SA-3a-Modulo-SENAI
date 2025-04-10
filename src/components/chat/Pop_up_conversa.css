@@ -1,0 +1,87 @@
+.container_pop_up_conversa_atual{
+
+    position: fixed;
+
+    display: flex;
+    justify-content: center;
+    width: 15%;
+    height: 30%;
+}
+
+.container_pop_up{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 85%;
+    height: 45%;
+
+    border-radius: 1vw;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: var(--cor_quatro);
+}
+
+.container_excluir_conversa{
+
+    display: flex;
+    align-items: center;
+    height: 50%;
+    transition: 0.3s;
+
+    cursor: pointer;
+}
+
+.container_excluir_conversa:hover{
+
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+    background-color: var(--cor_quatro_v_um);
+}
+
+.container_excluir_mensagem:hover{
+
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    background-color: var(--cor_quatro_v_um);
+}
+
+.container_excluir_conversa img{
+
+    width: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.container_excluir_conversa span{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: var(--cor_um);
+}
+
+.container_excluir_mensagem{
+
+    display: flex;
+    align-items: center;
+    height: 50%;
+    transition: 0.3s;
+}
+
+.container_excluir_mensagem img{
+
+    width: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.container_excluir_mensagem span{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: var(--cor_um);
+}
