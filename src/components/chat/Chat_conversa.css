@@ -14,6 +14,7 @@
 
     background-image: url('./img/Papel de parede chat.jpg');
     background-color: var(--cor_quatro);
+    z-index: 4;
 }
 
 .container_header_chat_conversa{
