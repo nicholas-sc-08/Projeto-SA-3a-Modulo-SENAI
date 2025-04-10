@@ -4,6 +4,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import './Chat_conversa.css';
 import axios from 'axios';
 import Pop_up_conversa from './Pop_up_conversa.jsx';
+import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
 
 function Chat_conversa() {
 
@@ -14,6 +15,7 @@ function Chat_conversa() {
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
     const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+    const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState(``);
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
@@ -25,6 +27,7 @@ function Chat_conversa() {
         set_chat_aberto(true);
         set_conversa_aberta(false);
         set_conversa_atual([]);
+        set_excluir_conversa_chat(false);
         set_pessoa_com_quem_esta_conversando(``);
     };
 
@@ -112,7 +115,8 @@ function Chat_conversa() {
       <div className="container_pop_up_excluir_msg_chat">
 
         {pop_up_excluir_conversa && <Pop_up_conversa/>}
-      
+        {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
+        {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
       </div>
 
       <div className="container_conversa_atual">

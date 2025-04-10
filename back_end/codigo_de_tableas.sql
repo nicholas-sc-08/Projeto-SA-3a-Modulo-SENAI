@@ -23,7 +23,10 @@ CREATE TABLE chat(
 	mensagem TEXT,
 	hora CHAR(5),
 	hora_ultima_msg CHAR(5),
+	
 	id_dono_mensagem INT,
+	FOREIGN KEY (id_dono_mensagem)
+
 	id_quem_recebeu_mensagem INT
 );
 
@@ -67,7 +70,7 @@ CREATE TABLE categorias(
 		id SERIAL PRIMARY KEY,
 		nome VARCHAR(50) NOT NULL,
 		descricao VARCHAR(200) NOT NULL,
-		preco VARCHAR(10,2) NOT NULL, 
+		preco VARCHAR(10) NOT NULL, 
 		codigo VARCHAR(14) NULL, 
 		condicao VARCHAR(14) NULL, 
 		imagem TEXT, 

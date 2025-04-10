@@ -37,6 +37,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ chat_aberto, set_chat_aberto ] = useState(false);
     const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
     const [ id_chat, set_id_chat ] = useState(null);
+    const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -115,6 +116,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_id_chat,
             usuario_logado,
             set_usuario_logado,
+            excluir_conversa_chat,
+            set_excluir_conversa_chat,
 
             formCadastroBrecho,
             setFormCadastroBrecho,

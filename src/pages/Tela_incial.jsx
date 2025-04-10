@@ -68,8 +68,7 @@ function Tela_incial() {
       </div>
 
       <Footer />
-
-
+      
       {!chat_aberto && !conversa_aberta && <Pop_up_chat />}
       {chat_aberto && <Chat />}
       {conversa_aberta && <Chat_conversa />}

@@ -35,6 +35,7 @@
 .container_header_chat_conversa_imagem{
 
     width: 15%;
+    border-radius: 100vw;
 }
 
 .container_header_chat_conversa h2{
@@ -222,7 +223,7 @@
 
 .imagem_botao_chat{
 
-    width: 70%;
+    width: 90%;
     height: 100%;
 }
 
@@ -235,4 +236,12 @@
 
     display: flex;
     justify-content: end;
+}
+
+.escurecer_tela_chat_conversa{
+
+    position: fixed;
+    width: 24%;
+    height: 100%;
+    background-color: #00000041;
 }
