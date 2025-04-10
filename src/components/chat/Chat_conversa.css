@@ -12,6 +12,7 @@
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
+    background-image: url('./img/Papel de parede chat.jpg');
     background-color: var(--cor_quatro);
 }
 
