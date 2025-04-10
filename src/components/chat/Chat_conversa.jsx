@@ -19,7 +19,6 @@ function Chat_conversa() {
     const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
-    const [ data, set_data ] = useState(new Date);
 
     function fechar_chat(){
 
@@ -65,13 +64,16 @@ function Chat_conversa() {
 
     async function enviar_mensagem(e){
       
-      
+      const data = new Date;
+      const hora_da_mensagem = data.getHours();
+      const minutos_da_mensagem = data.getMinutes();
+
       try {
         
-        const hora_da_mensagem = data.getHours();
-        const minutos_da_mensagem = data.getMinutes();
-
-        if(e.key == "Enter" || e.type == "click"){
+        
+        if(e.key == "Enter" || e.type == "click" && inpt_mensagem != ''){
+          
+          console.log(minutos_da_mensagem);
           
           const mensagem = {
             

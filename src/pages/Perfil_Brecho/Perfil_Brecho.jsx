@@ -24,17 +24,22 @@ function Perfil_Brecho() {
 
               </div>
               <div className="entrar-em-contato-content">
-                
+
               </div>
             </div>
             <div className="parte-inferior-div-direita-content">
+                <div className="topicos-infos-content">
 
+                </div>
+                <div className="infos-exibidas-content">
+                  
+                </div>
             </div>
           </div>
         </div>
       </div>
-      
-       <Footer /> 
+
+      <Footer />
     </div>
 
   )

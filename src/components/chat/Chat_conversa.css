@@ -12,6 +12,7 @@
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
+    background-image: url('./img/Papel de parede chat.jpg');
     background-color: var(--cor_quatro);
     z-index: 4;
 }
@@ -85,7 +86,8 @@
 
 .dono_da_mensagem{
     
-    width: 70%;
+    width: fit-content;
+    max-width: 70%;
     
     padding-top: 2%;
     padding-bottom: 2%;
@@ -116,7 +118,6 @@
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 700;
-    margin-right: 7%;
 }
 
 .container_hora_dono{
@@ -131,7 +132,6 @@
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 700;
-    margin-right: 7%;
 }
 
 .container_hora_recebedor{
@@ -155,7 +155,8 @@
 
 .recebedor_da_mensagem{
 
-    width: 70%;
+    width: fit-content;
+    max-width: 70%;
     
     padding-top: 2%;
     padding-bottom: 2%;
@@ -188,6 +189,7 @@
     outline: none;
 
     padding-left: 5%;
+    padding-right: 5%;
 
     font-size: 1rem;
     font-weight: 550;
