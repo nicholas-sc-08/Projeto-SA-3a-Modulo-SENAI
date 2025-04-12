@@ -294,10 +294,6 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.container_coluna_imagem_de_perfil_cliente{
-
-}
-
 .container_coluna_imagem_de_perfil_cliente img{
 
     width: 45%;
@@ -395,6 +391,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 35%;
     height: 100%;
     overflow-x: auto;
@@ -490,7 +487,7 @@
 
 .container_coluna_excluir_cliente button{
 
-    margin-right: -13vw;
+    margin-right: -3vw;
     cursor: pointer;
     border: 0;
     background-color: transparent;

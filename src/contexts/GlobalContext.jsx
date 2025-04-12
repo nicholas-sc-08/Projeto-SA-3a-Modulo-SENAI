@@ -9,9 +9,11 @@ export const GlobalContextProvider = ({ children }) => {
     const [ array_produtos, set_array_produtos ] = useState([]);
     const [ array_categorias, set_array_categorias ] = useState([]);
     const [ array_enderecos, set_array_enderecos ] = useState([]);
-    const [ array_chat, set_array_chat ] = useState([{id: 1, mensagem: ``, id_quem_recebeu: ``, id_dono_da_mensagem: ``}]);
+    const [ array_chat, set_array_chat ] = useState([]);
     const [ conversa_atual, set_conversa_atual ] = useState([]);
     const [ conversa_aberta, set_conversa_aberta ] = useState(false);
+    const [ usuario_logado, set_usuario_logado ] = useState([]);
+    const [ pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando ] = useState(null);
     const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
     const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
     const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
@@ -34,6 +36,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
     const [ chat_aberto, set_chat_aberto ] = useState(false);
     const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
+    const [ id_chat, set_id_chat ] = useState(null);
+    const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -106,6 +110,14 @@ export const GlobalContextProvider = ({ children }) => {
             set_conversa_atual,
             conversa_aberta,
             set_conversa_aberta,
+            pessoa_com_quem_esta_conversando,
+            set_pessoa_com_quem_esta_conversando,
+            id_chat,
+            set_id_chat,
+            usuario_logado,
+            set_usuario_logado,
+            excluir_conversa_chat,
+            set_excluir_conversa_chat,
 
             formCadastroBrecho,
             setFormCadastroBrecho,

@@ -17,6 +17,19 @@ CREATE TABLE clientes(
 	imagem_de_perfil VARCHAR(5000) NOT NULL
 );
 
+CREATE TABLE chat(
+
+	id SERIAL PRIMARY KEY,
+	mensagem TEXT,
+	hora CHAR(5),
+	hora_ultima_msg CHAR(5),
+	
+	id_dono_mensagem INT,
+	FOREIGN KEY (id_dono_mensagem)
+
+	id_quem_recebeu_mensagem INT
+);
+
 CREATE TABLE brechos(
 
 	id_brecho SERIAL PRIMARY KEY,
