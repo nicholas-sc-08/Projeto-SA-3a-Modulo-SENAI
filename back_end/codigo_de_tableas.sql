@@ -57,7 +57,7 @@ CREATE TABLE categorias(
 		id SERIAL PRIMARY KEY,
 		nome VARCHAR(50) NOT NULL,
 		descricao VARCHAR(200) NOT NULL,
-		preco VARCHAR(10,2) NOT NULL, 
+		preco VARCHAR(10) NOT NULL, 
 		codigo VARCHAR(14) NULL, 
 		condicao VARCHAR(14) NULL, 
 		imagem TEXT, 
