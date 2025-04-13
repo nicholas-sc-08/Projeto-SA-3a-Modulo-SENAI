@@ -67,26 +67,24 @@ function Chat_conversa() {
 
     async function enviar_mensagem(e){
       
-      const data = new Date;
+      const data = new Date();
       const hora_da_mensagem = data.getHours();
-      const minutos_da_mensagem = data.getMinutes();
+      const minutos_da_mensagem = data.getMinutes();      
 
       try {
         
-        
-        if(inpt_mensagem.trim() !== '' || e.type == "click" && inpt_mensagem.trim() !== ''){
-          
-          console.log(minutos_da_mensagem.length);
-          
+        if(inpt_mensagem.trim() != `` || e.type == `click` && inpt_mensagem.trim() != ``){
+                    
           const mensagem = {
             
             mensagem: inpt_mensagem,
             hora: `${hora_da_mensagem < 10 ? `0${hora_da_mensagem}` : hora_da_mensagem }:${ minutos_da_mensagem < 10 ? `0${minutos_da_mensagem}` : minutos_da_mensagem}`,
+            data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
           };        
           
-          const mensagem_a_ser_envidada = await axios.post(`http://localhost:3000/chat`, mensagem);
+          await axios.post(`http://localhost:3000/chat`, mensagem);
           set_conversa_atual([...conversa_atual, mensagem]);
           buscar_conversas();
         };
@@ -98,18 +96,59 @@ function Chat_conversa() {
       set_inpt_mensagem(``);
     };
 
+    function buscar_data_da_conversa(data_da_conversa) {
+      
+      const hoje = new Date();
+      const ontem = new Date();
+      
+      ontem.setDate(hoje.getDate() - 1);
+
+      const [dia, mes, ano] = data_da_conversa.split('/').map(Number);
+      const data = new Date(ano, mes - 1, dia);
+
+      if (data.getDate() == hoje.getDate() && data.getMonth() == hoje.getMonth() && data.getFullYear() == hoje.getFullYear()){
+        
+        return 'Hoje';
+      };
+
+      if (data.getDate() == ontem.getDate() && data.getMonth() == ontem.getMonth() && data.getFullYear() == ontem.getFullYear()){
+        
+        return 'Ontem';
+      };
+
+      return data_da_conversa;
+    }
+
+    const mensagens_do_dia = conversa_atual.reduce((aculumador, mensagem) => {
+      
+      const data = mensagem.data_da_mensagem;
+
+      if (!aculumador[data]) {
+        
+        aculumador[data] = [];
+      };
+
+      aculumador[data].push(mensagem);
+      return aculumador;
+    }, {});
+
+
   return (
     <div className='container_chat_conversa'>
       
       <div className="container_header_chat_conversa">
         
         <button onClick={fechar_chat} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
+        
         <img src={pessoa_com_quem_esta_conversando.imagem_de_perfil} alt="" className='container_header_chat_conversa_imagem'/>
+        
         <div className="container_header_info_chat">
 
-        <h2>{pessoa_com_quem_esta_conversando.nome}</h2>
-        <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
+          <h2>{pessoa_com_quem_esta_conversando.nome}</h2>
+          <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
+          
         </div>
+      
       </div> 
 
       <div className="container_pop_up_excluir_msg_chat">
@@ -117,54 +156,74 @@ function Chat_conversa() {
         {pop_up_excluir_conversa && <Pop_up_conversa/>}
         {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
         {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
+      
       </div>
+      
+     <div className="container_conversa_atual">
 
-      <div className="container_conversa_atual">
+      {Object.entries(mensagens_do_dia).map(([data, mensagens]) => (
+  
+        <div key={data}>
+          
+          <div className="data_da_conversa">
+        
+            <span>{buscar_data_da_conversa(data)}</span>
+        
+          </div>
 
-        {conversa_atual.map((conversa, i) => (
-
-            
-            <div className="container_mensagem" key={i}>
-
-                {conversa.id_dono_mensagem == usuario_logado.id ?
-                
-                <div className="container_dono_da_mensagem">
-
-                  <div className="dono_da_mensagem">
-
-                    <div className='container_mensagem_dono'>
-                      <span>{conversa.mensagem}</span>
-                    </div>
-                    
-                    <div className='container_hora_dono'>
-                      <span className='hora_dono_menagem'>{conversa.hora}</span>
-                    </div>
-                  
-                  </div>
-                
+          {mensagens.map((conversa, i) => (
+          
+          <div className="container_mensagem" key={i}>
+          
+            {conversa.id_dono_mensagem === usuario_logado.id ? 
+          
+            <div className="container_dono_da_mensagem">
+          
+              <div className="dono_da_mensagem">
+          
+                <div className="container_mensagem_dono">
+          
+                  <span>{conversa.mensagem}</span>
+          
                 </div>
-              : 
-
-                <div className="container_recebedor_da_mensagem">
-
-                  <div className="recebedor_da_mensagem">
-
-                    <div className='container_mensagem_recebedor'>
-                      <span>{conversa.mensagem}</span>
-                    </div>
-                    
-                    <div className='container_hora_recebedor'>
-                      <span className='hora_recebedor_menagem'>{conversa.hora}</span>
-                    </div>
-                  
-                  </div>
+          
+                <div className="container_hora_dono">
+          
+                  <span className="hora_dono_menagem">{conversa.hora}</span>
+          
                 </div>
-              }
-
+          
+              </div>
+          
             </div>
+                : 
+            
+            <div className="container_recebedor_da_mensagem">
+            
+              <div className="recebedor_da_mensagem">
+                  
+                 <div className="container_mensagem_recebedor">
+                  
+                  <span>{conversa.mensagem}</span>
+                  
+                 </div>
+                  
+                 <div className="container_hora_recebedor">
+                  
+                  <span className="hora_recebedor_menagem">{conversa.hora}</span>
+                  
+                 </div>
+                  
+              </div>
+                  
+            </div>
+                }
+          </div>
+            ))}
+        </div>
         ))}
+     </div>
 
-      </div>
 
       <div className="container_campos_conversa_atual">
 

@@ -22,7 +22,7 @@ CREATE TABLE chat(
 	id SERIAL PRIMARY KEY,
 	mensagem TEXT,
 	hora CHAR(5),
-	hora_ultima_msg CHAR(5),
+	data_da_mensagem CHAR(10),
 	
 	id_dono_mensagem INT,
 	FOREIGN KEY (id_dono_mensagem) REFERENCES clientes(id),

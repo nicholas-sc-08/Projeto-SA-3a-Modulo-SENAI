@@ -54,19 +54,17 @@ function Chat() {
     function ir_para_conversa(id){
 
       const pessoa_selecionada = array_clientes.find(cliente => cliente.id === id);
-
       set_pessoa_com_quem_esta_conversando(pessoa_selecionada);
   
       if (array_chat.length != 0) {
         
         const mensagens_filtradas = array_chat.filter((mensagem) => {
         
-        return (
-            mensagem.id_dono_mensagem === usuario_logado.id && mensagem.id_quem_recebeu_mensagem === pessoa_selecionada.id || mensagem.id_dono_mensagem === pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem === usuario_logado.id);
+        return (mensagem.id_dono_mensagem == usuario_logado.id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada.id || mensagem.id_dono_mensagem == pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem == usuario_logado.id);
         });
   
         set_conversa_atual(mensagens_filtradas);
-      }
+      };
   
       set_conversa_aberta(true);
       set_chat_aberto(false);

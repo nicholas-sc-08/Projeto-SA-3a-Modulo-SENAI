@@ -85,6 +85,29 @@
     height: 15%;
 }
 
+.data_da_conversa{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.data_da_conversa span{
+
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 5%;
+
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    color: var(--cor_seis);
+    background-color: var(--cor_nove_v_dois);
+}
+
 .dono_da_mensagem{
     
     width: fit-content;
