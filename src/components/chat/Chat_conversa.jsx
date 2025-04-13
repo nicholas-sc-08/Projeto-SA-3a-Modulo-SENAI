@@ -16,7 +16,7 @@ function Chat_conversa() {
     const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
-    const [ inpt_mensagem, set_inpt_mensagem ] = useState(``);
+    const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
     const referencia_inpt_de_msg = useRef(null);
@@ -74,14 +74,14 @@ function Chat_conversa() {
       try {
         
         
-        if(e.key == "Enter" && inpt_mensagem.trim() !== '' || e.type == "click" && inpt_mensagem.trim() !== ''){
+        if(inpt_mensagem.trim() !== '' || e.type == "click" && inpt_mensagem.trim() !== ''){
           
-          console.log(inpt_mensagem.trim());
+          console.log(minutos_da_mensagem.length);
           
           const mensagem = {
             
             mensagem: inpt_mensagem,
-            hora: `${hora_da_mensagem}:${minutos_da_mensagem}`,
+            hora: `${hora_da_mensagem < 10 ? `0${hora_da_mensagem}` : hora_da_mensagem }:${ minutos_da_mensagem < 10 ? `0${minutos_da_mensagem}` : minutos_da_mensagem}`,
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
           };        
@@ -168,7 +168,7 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <input type="text" placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => enviar_mensagem(e)}/>
+          <input type="text" placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``}/>
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       </div>
 

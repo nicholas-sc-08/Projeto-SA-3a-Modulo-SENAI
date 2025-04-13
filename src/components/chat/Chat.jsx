@@ -58,9 +58,11 @@ function Chat() {
       set_pessoa_com_quem_esta_conversando(pessoa_selecionada);
   
       if (array_chat.length != 0) {
+        
         const mensagens_filtradas = array_chat.filter((mensagem) => {
-          return (
-            (mensagem.id_dono_mensagem === usuario_logado.id && mensagem.id_quem_recebeu_mensagem === pessoa_selecionada.id) || (mensagem.id_dono_mensagem === pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem === usuario_logado.id));
+        
+        return (
+            mensagem.id_dono_mensagem === usuario_logado.id && mensagem.id_quem_recebeu_mensagem === pessoa_selecionada.id || mensagem.id_dono_mensagem === pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem === usuario_logado.id);
         });
   
         set_conversa_atual(mensagens_filtradas);
@@ -70,11 +72,42 @@ function Chat() {
       set_chat_aberto(false);
     };
 
-    useEffect(() => {
+    function ultima_mensagem(id_cliente){
 
-      console.log(`conversa atual: `, conversa_atual);
+      for(let i = array_chat.length - 1; i >= 0; i--){
+
+        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
+
+          return array_chat[i].mensagem;
+        };
+
+        if(array_chat[i].id_dono_mensagem == usuario_logado.id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
+          
+          return array_chat[i].mensagem;
+        };
+
+      };
+
+      return `Nenhuma mensagem`;
+    };
+
+    function hora_da_ultima_mensagem(id_cliente){
+
+      for(let i = array_chat.length - 1; i >= 0; i--){
+
+        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
+
+          return array_chat[i].hora;
+        };
+
+        if(array_chat[i].id_dono_mensagem == usuario_logado.id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
+
+          return array_chat[i].hora;
+        };
+      };
       
-    }, [conversa_atual]);
+      return `00:00`;
+    };
 
     useEffect(() => {
 
@@ -118,13 +151,13 @@ function Chat() {
              
              <div className="container_conversa_chat_titulo">
               <h2>{conversa.nome}{conversa.nome == usuario_logado.nome ? `(você)` : ``}</h2>
-              <span>{conversa.nome}</span>
+              <span>{ultima_mensagem(conversa.id)}</span>
              </div>
             </div>
 
             <div className='container_conversa_chat_horario'>
 
-              <p>20:52</p>
+              <p>{hora_da_ultima_mensagem(conversa.id)}</p>
 
             </div>
 
@@ -140,13 +173,13 @@ function Chat() {
             
             <div className="container_conversa_chat_titulo">
               <h2>{conversa.nome}</h2>
-              <span>{conversa.nome}</span>
+              <span>{ultima_mensagem(conversa.id)}</span>
             </div>
             </div>
 
             <div className='container_conversa_chat_horario'>
 
-              <p>20:52</p>
+              <p>{hora_da_ultima_mensagem(conversa.id)}</p>
 
             </div>
 
