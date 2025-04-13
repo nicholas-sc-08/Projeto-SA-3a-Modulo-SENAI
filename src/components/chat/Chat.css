@@ -153,6 +153,7 @@
 
 .container_conversa_chat_imagem_de_perfil span{
 
+    width: 100%;
     font-size: 0.8rem;
     font-family: var(--tipografia_primaria);
     font-weight: bold;

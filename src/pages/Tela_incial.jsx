@@ -15,6 +15,7 @@ function Tela_incial() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
   useEffect(() => {
 
@@ -71,7 +72,7 @@ function Tela_incial() {
 
       <Footer />
       
-      {!chat_aberto && !conversa_aberta && <Pop_up_chat />}
+      {!chat_aberto && usuario_logado != `` && !conversa_aberta && <Pop_up_chat />}
       {chat_aberto && <Chat />}
       {conversa_aberta && <Chat_conversa />}
 

@@ -150,7 +150,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
-              <h2>{conversa.nome}{conversa.nome == usuario_logado.nome ? `(você)` : ``}</h2>
+              <h2>{conversa.nome}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
               <span>{ultima_mensagem(conversa.id)}</span>
              </div>
             </div>
@@ -172,7 +172,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
-              <h2>{conversa.nome}</h2>
+              <h2>{conversa.nome}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
               <span>{ultima_mensagem(conversa.id)}</span>
             </div>
             </div>
