@@ -68,8 +68,6 @@ function Chat_conversa() {
     async function enviar_mensagem(e){
       
       const data = new Date();
-      const hora_da_mensagem = data.getHours();
-      const minutos_da_mensagem = data.getMinutes();      
 
       try {
         
@@ -78,7 +76,7 @@ function Chat_conversa() {
           const mensagem = {
             
             mensagem: inpt_mensagem,
-            hora: `${hora_da_mensagem < 10 ? `0${hora_da_mensagem}` : hora_da_mensagem }:${ minutos_da_mensagem < 10 ? `0${minutos_da_mensagem}` : minutos_da_mensagem}`,
+            hora: `${data.getHours() < 10 ? `0${data.getHours()}` : data.getHours() }:${ data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes()}`,
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
@@ -93,7 +91,7 @@ function Chat_conversa() {
         
         console.error(erro);
       };
-      set_inpt_mensagem(``);
+      set_inpt_mensagem({mensagem: ``});
     };
 
     function buscar_data_da_conversa(data_da_conversa) {
@@ -119,19 +117,18 @@ function Chat_conversa() {
       return data_da_conversa;
     }
 
-    const mensagens_do_dia = conversa_atual.reduce((aculumador, mensagem) => {
+    const mensagens_do_dia = conversa_atual.reduce((conversa_do_dia, mensagem) => {
       
-      const data = mensagem.data_da_mensagem;
+      const data_mensagem = mensagem.data_da_mensagem;
 
-      if (!aculumador[data]) {
+      if (!conversa_do_dia[data_mensagem]) {
         
-        aculumador[data] = [];
+        conversa_do_dia[data_mensagem] = [];
       };
 
-      aculumador[data].push(mensagem);
-      return aculumador;
+      conversa_do_dia[data_mensagem].push(mensagem);
+      return conversa_do_dia;
     }, {});
-
 
   return (
     <div className='container_chat_conversa'>
@@ -156,6 +153,8 @@ function Chat_conversa() {
         {pop_up_excluir_conversa && <Pop_up_conversa/>}
         {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
         {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
+
+        {pop_up_excluir_conversa}
       
       </div>
       
@@ -196,7 +195,8 @@ function Chat_conversa() {
               </div>
           
             </div>
-                : 
+            
+            : 
             
             <div className="container_recebedor_da_mensagem">
             
@@ -227,8 +227,9 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <input type="text" placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``}/>
+          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``} />
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
+      
       </div>
 
     </div>

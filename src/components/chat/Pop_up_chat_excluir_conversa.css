@@ -40,8 +40,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 70%;
 
     border-radius: 1vw;
 
@@ -52,6 +52,7 @@
 
     margin-top: 5%;
 
+    width: 90%;
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     font-weight: 510;

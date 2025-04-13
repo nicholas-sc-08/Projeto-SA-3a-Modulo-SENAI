@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Chat.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
-
+import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
 
 function Chat() {
 
@@ -16,6 +16,7 @@ function Chat() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const [ inpt_de_pesquisa_chat, set_inpt_de_pesquisa_chat ] = useState(``);
     const [ array_de_pesquisa_chat, set_array_de_pesquisa_chat ] = useState([]);
+    const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -50,6 +51,19 @@ function Chat() {
         console.error(erro);
       };
     };
+
+    useEffect(() => {
+
+      if(pop_up_notificacao_excluir_conversa){
+
+        setTimeout(() => {
+
+          set_pop_up_notificacao_excluir_conversa(false);
+
+        }, 2000);
+      };
+
+    }, [pop_up_notificacao_excluir_conversa]);
 
     function ir_para_conversa(id){
 
@@ -136,6 +150,9 @@ function Chat() {
 
         <button onClick={fechar_chat}>X</button>
       </div> 
+
+      {pop_up_notificacao_excluir_conversa && <div className='fundo_escuro_para_notificacao'></div>}
+      {pop_up_notificacao_excluir_conversa && <Pop_up_excluir_conversa/>}
 
       <div className="container_conversas_chat">
 

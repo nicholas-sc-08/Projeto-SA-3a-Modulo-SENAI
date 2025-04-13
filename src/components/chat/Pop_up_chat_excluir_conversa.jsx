@@ -10,6 +10,9 @@ function Pop_up_chat_excluir_conversa() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
   const { conversa_atual, set_conversa_atual } = useContext(GlobalContext);
+  const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
+  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+  const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
 
   async function buscar_conversas(){
 
@@ -33,16 +36,15 @@ function Pop_up_chat_excluir_conversa() {
         if(usuario_logado.id == array_chat[i].id_dono_mensagem || usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
 
           await axios.delete(`http://localhost:3000/chat/${usuario_logado.id}/${pessoa_com_quem_esta_conversando.id}`);
+          set_pop_up_notificacao_excluir_conversa(true);
         };
-
-
       };
 
       buscar_conversas();
-
       set_conversa_atual([]);
-
       set_excluir_conversa_chat(false);
+      set_conversa_aberta(false);
+      set_chat_aberto(true);
       
     } catch (erro) {
       

@@ -255,7 +255,8 @@
     align-items: center;
 
     width: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
 }
 
 .container_titulos_da_tabela_clientes{
@@ -384,6 +385,8 @@
     width: 40%;
     height: 100%;  
     overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
+    
     color: var(--cor_seis);
 }
 
@@ -391,10 +394,12 @@
 
     display: flex;
     align-items: center;
+
     justify-content: center;
     width: 35%;
     height: 100%;
     overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
     color: var(--cor_seis);
 }
 
@@ -406,6 +411,7 @@
     width: 35%;
     height: 100%;
     overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
     color: var(--cor_seis);
 }
 

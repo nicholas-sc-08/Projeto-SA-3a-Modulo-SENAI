@@ -185,3 +185,11 @@
 
     color: var(--cor_seis);
 }
+
+.fundo_escuro_para_notificacao{
+
+    position: fixed;
+    width: 24%;
+    height: 70%;
+    background-color: #00000041;
+}

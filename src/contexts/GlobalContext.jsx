@@ -34,6 +34,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria ] = useState(false);
     const [ pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria ] = useState(false);
     const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
+    const [ pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa ] = useState(false);
     const [ chat_aberto, set_chat_aberto ] = useState(false);
     const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
     const [ id_chat, set_id_chat ] = useState(null);
@@ -118,6 +119,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_usuario_logado,
             excluir_conversa_chat,
             set_excluir_conversa_chat,
+            pop_up_notificacao_excluir_conversa,
+            set_pop_up_notificacao_excluir_conversa,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
