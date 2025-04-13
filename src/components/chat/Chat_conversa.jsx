@@ -22,7 +22,7 @@ function Chat_conversa() {
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
 
-    function fechar_chat(){
+    function fechar_conversa(){
 
         set_chat_aberto(true);
         set_conversa_aberta(false);
@@ -135,7 +135,7 @@ function Chat_conversa() {
       
       <div className="container_header_chat_conversa">
         
-        <button onClick={fechar_chat} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
+        <button onClick={fechar_conversa} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
         
         <img src={pessoa_com_quem_esta_conversando.imagem_de_perfil} alt="" className='container_header_chat_conversa_imagem'/>
         

@@ -1,8 +1,8 @@
 .container_chat{
 
+    transition: 0.5s;
     position: fixed;
 
-    height: 70%;
     width: 24%;
 
     right: 4%;
@@ -75,6 +75,11 @@
     background-color: transparent;
 }
 
+.botao_de_abrir_e_fechar_chat img{
+
+    width: 60%;
+}
+
 .container_header_chat button{
 
     cursor: pointer;
@@ -91,8 +96,9 @@
 .container_conversas_chat{
     width: 100%;
     height: 85%;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_um);
 }
 
 .container_corversa_chat{

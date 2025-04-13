@@ -39,6 +39,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
     const [ id_chat, set_id_chat ] = useState(null);
     const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
+    const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
+    const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -121,6 +123,10 @@ export const GlobalContextProvider = ({ children }) => {
             set_excluir_conversa_chat,
             pop_up_notificacao_excluir_conversa,
             set_pop_up_notificacao_excluir_conversa,
+            altura_inicial_chat,
+            set_altura_inicial_chat,
+            altura_inicial_header_chat,
+            set_altura_inicial_header_chat,
 
             formCadastroBrecho,
             setFormCadastroBrecho,

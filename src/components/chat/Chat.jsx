@@ -17,6 +17,8 @@ function Chat() {
     const [ inpt_de_pesquisa_chat, set_inpt_de_pesquisa_chat ] = useState(``);
     const [ array_de_pesquisa_chat, set_array_de_pesquisa_chat ] = useState([]);
     const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
+    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
+    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -129,14 +131,27 @@ function Chat() {
 
     function fechar_chat(){
 
-      set_chat_aberto(false);
-      set_conversa_aberta(false);
+      if(altura_inicial_chat == `10%`){
+
+        set_altura_inicial_chat(`70%`);
+        set_altura_inicial_header_chat(`15%`);
+      } else {
+
+        setTimeout(() => {
+          
+          set_altura_inicial_header_chat(`100%`);
+
+        }, 325);
+        
+        set_altura_inicial_chat(`10%`);
+        set_conversa_aberta(false);
+      };
     };
 
   return (
-    <div className='container_chat'>
+    <div className='container_chat' style={{height: altura_inicial_chat}}>
       
-      <div className="container_header_chat">
+      <div className="container_header_chat" style={{height: altura_inicial_header_chat}}>
         
         <div className='container_header_chat_pesquisa'>
           
@@ -148,7 +163,7 @@ function Chat() {
           </div>
         </div>
 
-        <button onClick={fechar_chat}>X</button>
+        <button onClick={fechar_chat} className='botao_de_abrir_e_fechar_chat'>{altura_inicial_chat == `10%` ? <img src='./img/imagem_abrir_chat.svg' alt=''/> : <img src='./img/imagem_fechar_chat.svg' alt=''/>}</button>
       </div> 
 
       {pop_up_notificacao_excluir_conversa && <div className='fundo_escuro_para_notificacao'></div>}
