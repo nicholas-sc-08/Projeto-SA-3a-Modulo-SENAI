@@ -416,3 +416,19 @@ app.post(`/chat`, async (req, res) => {
         console.error(erro);
     };
 });
+
+app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res) => {
+
+    const { id_dono_mensagem } = req.params;
+    const { id_quem_recebeu_mensagem } = req.params;
+
+    try {
+        
+        const conversa = await pool.query(`DELETE FROM chat WHERE id_dono_mensagem = $1 AND id_quem_recebeu_mensagem = $2 OR id_dono_mensagem = $2 AND id_quem_recebeu_mensagem = $1`, [id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(conversa.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});

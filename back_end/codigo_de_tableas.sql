@@ -25,9 +25,11 @@ CREATE TABLE chat(
 	hora_ultima_msg CHAR(5),
 	
 	id_dono_mensagem INT,
-	FOREIGN KEY (id_dono_mensagem)
+	FOREIGN KEY (id_dono_mensagem) REFERENCES clientes(id),
 
-	id_quem_recebeu_mensagem INT
+	id_quem_recebeu_mensagem INT,
+	FOREIGN KEY (id_quem_recebeu_mensagem) REFERENCES clientes(id)
+
 );
 
 CREATE TABLE brechos(
