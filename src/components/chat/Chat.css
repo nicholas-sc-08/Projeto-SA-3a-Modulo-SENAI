@@ -96,7 +96,7 @@
 .container_conversas_chat{
     width: 100%;
     height: 85%;
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-color: var(--cor_um) var(--cor_nove_v_um);
 }

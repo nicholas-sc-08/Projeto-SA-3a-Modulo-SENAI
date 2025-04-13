@@ -148,6 +148,20 @@ function Chat() {
       };
     };
 
+    function pegar_ultimo_sobrenome(nome){
+
+      const pegar_sobrenome = nome.trim().split(` `);
+      console.log(pegar_sobrenome);
+
+      if(pegar_sobrenome.length != 1 ){
+
+        return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
+      } else {
+
+        return pegar_sobrenome[0];
+      };
+    };
+
   return (
     <div className='container_chat' style={{height: altura_inicial_chat}}>
       
@@ -180,7 +194,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
-              <h2>{conversa.nome}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{pegar_ultimo_sobrenome(conversa.nome)}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
               <span>{ultima_mensagem(conversa.id)}</span>
              </div>
             </div>
