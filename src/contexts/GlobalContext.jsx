@@ -9,8 +9,11 @@ export const GlobalContextProvider = ({ children }) => {
     const [ array_produtos, set_array_produtos ] = useState([]);
     const [ array_categorias, set_array_categorias ] = useState([]);
     const [ array_enderecos, set_array_enderecos ] = useState([]);
-    const [ usuario_logado, set_usuario_logado ] = useState([]);
     const [ array_chat, set_array_chat ] = useState([]);
+    const [ conversa_atual, set_conversa_atual ] = useState([]);
+    const [ conversa_aberta, set_conversa_aberta ] = useState(false);
+    const [ usuario_logado, set_usuario_logado ] = useState([]);
+    const [ pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando ] = useState(null);
     const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
     const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
     const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
@@ -31,13 +34,21 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria ] = useState(false);
     const [ pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria ] = useState(false);
     const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
+    const [ pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa ] = useState(false);
     const [ chat_aberto, set_chat_aberto ] = useState(false);
+    const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
+    const [ id_chat, set_id_chat ] = useState(null);
+    const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
+    const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
+    const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
     const [cadastroParteTresBrecho, setCadastroParteTresBrecho] = useState(false)
+    const [ arrayBrechos, setArrayBrechos ] = useState([])
+    const [ imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho ] = useState(null)
 
     return (
         <GlobalContext.Provider value={{
@@ -96,6 +107,26 @@ export const GlobalContextProvider = ({ children }) => {
             set_chat_aberto,
             array_chat,
             set_array_chat,
+            erro_pagina,
+            set_erro_pagina,
+            conversa_atual,
+            set_conversa_atual,
+            conversa_aberta,
+            set_conversa_aberta,
+            pessoa_com_quem_esta_conversando,
+            set_pessoa_com_quem_esta_conversando,
+            id_chat,
+            set_id_chat,
+            usuario_logado,
+            set_usuario_logado,
+            excluir_conversa_chat,
+            set_excluir_conversa_chat,
+            pop_up_notificacao_excluir_conversa,
+            set_pop_up_notificacao_excluir_conversa,
+            altura_inicial_chat,
+            set_altura_inicial_chat,
+            altura_inicial_header_chat,
+            set_altura_inicial_header_chat,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
@@ -106,7 +137,11 @@ export const GlobalContextProvider = ({ children }) => {
             cadastroParteDoisBrecho,
             setCadastroParteDoisBrecho,
             cadastroParteTresBrecho,
-            setCadastroParteTresBrecho
+            setCadastroParteTresBrecho,
+            arrayBrechos,
+            setArrayBrechos,
+            imagemPerfilCadastroBrecho,
+            setImagemPerfilCadastroBrecho
         }}>
             {children}
         </GlobalContext.Provider>

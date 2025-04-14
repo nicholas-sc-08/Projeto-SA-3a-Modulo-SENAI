@@ -255,7 +255,8 @@
     align-items: center;
 
     width: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
 }
 
 .container_titulos_da_tabela_clientes{
@@ -292,6 +293,12 @@
     color: var(--cor_nove);
     background-color: var(--cor_um);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container_coluna_imagem_de_perfil_cliente img{
+
+    width: 45%;
+    border-radius: 100vw;
 }
 
 .titulo_dashboard_nome{
@@ -377,15 +384,23 @@
     justify-content: center;
     width: 40%;
     height: 100%;  
+    overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
+    
+    color: var(--cor_seis);
 }
 
 .container_coluna_email_cliente{
 
     display: flex;
     align-items: center;
+
     justify-content: center;
     width: 35%;
     height: 100%;
+    overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
+    color: var(--cor_seis);
 }
 
 .container_coluna_telefone_cliente{
@@ -395,7 +410,9 @@
     justify-content: center;
     width: 35%;
     height: 100%;
-
+    overflow-x: auto;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_dois);
+    color: var(--cor_seis);
 }
 
 .c{
@@ -407,6 +424,28 @@
     width: 20%;
     height: 100%;
 
+}
+
+.container_coluna_cep_cliente{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    color: var(--cor_seis);
+}
+
+.container_coluna_senha_cliente{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    color: var(--cor_seis);
 }
 
 
@@ -454,7 +493,7 @@
 
 .container_coluna_excluir_cliente button{
 
-    margin-right: -13vw;
+    margin-right: -3vw;
     cursor: pointer;
     border: 0;
     background-color: transparent;

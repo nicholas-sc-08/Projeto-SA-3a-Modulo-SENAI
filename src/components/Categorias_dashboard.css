@@ -274,9 +274,9 @@
 .container_de_categorias_da_tabela{
 
     display: flex;
+    flex-wrap: wrap;
 
     width: 90%;
-    height: 75%;
 
     padding-top: 1%;
 }

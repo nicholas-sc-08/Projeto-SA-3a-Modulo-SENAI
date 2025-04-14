@@ -71,7 +71,7 @@ function Footer() {
             <h3>AJUDA </h3>
             {(divAberta === 'ajuda' || !isMobile) && (
               <>
-                <Link>Quem somos nós?</Link>
+                <Link to={"/sobre_nos"}>Quem somos nós?</Link>
                 <Link to={"/contato"}>Contato</Link>
                 <Link>Termos & Condições </Link>
                 <Link>Política de Privacidade</Link>

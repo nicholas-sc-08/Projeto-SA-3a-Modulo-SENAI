@@ -2,8 +2,137 @@ body {
     margin: 0;
 }
 
-.perfil-brecho-content {
-    height: 100%;
+.toda-tela-content {
+    border: 3px solid #18CA00;
+
+    height: 100vh;
+    width: 100%;
+}
+
+.depois-da-navbar-content{
+    border: 3px solid #D08E00;
+    background-color: var(--cor_quatro);
+
+    height: 93%;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+
+}
+
+.perfil-brecho-content {
+    /* border: 3px solid #0C35FF; */
+    border-radius: 25px;
+    border: 1px solid  #fbf0ce;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+
+    height: 85%;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.parte-esquerda-content {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-brecho-perfil-content {
+    border: 3px solid #00E69D;
+    border-radius: 20px;
+    background-color: var(--cor_dezesseis);
+
+    height: 59%;
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infos-horario-endereco-brecho-content {
+    border: 3px solid #00E69D;
+
+    height: 36%;
+    width: 96%;
+    
+}
+
+.parte-direita-content {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 69%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.parte-superior-div-direita-content {
+    border: 3px solid #026002;
+
+    height: 46%;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nome-brecho-icons-content{
+    border: 3px solid #E600B5;
+
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nome-brecho-icons-content h1 {
+    font-family: "Poppins", sans serif;
+    font-weight: 620;
+    font-size: 27px;
+    letter-spacing: 1px;
+    color: var(--cor_dezesete);
+}
+
+.entrar-em-contato-content {
+    border: 3px solid #E600B5;
+
+    height: 34%;
+    width: 100%;
+}
+
+.parte-inferior-div-direita-content {
+    border: 3px solid #026002;
+
+    height: 48%;
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topicos-infos-content {
+    border: 3px solid #E600B5;
+
+    height: 22%;
+    width: 100%;
+}
+
+.infos-exibidas-content {
+    border: 3px solid #E600B5;
+
+    height: 73%;
+    width: 100%;
 }

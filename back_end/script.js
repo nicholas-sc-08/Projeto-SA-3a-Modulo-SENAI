@@ -206,13 +206,13 @@ app.get(`/brechos/:id`, async (req, res) => {
 });
 
 app.post(`/brechos`, async (req, res) => {
-    const { nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo } = req.body;
+    const { nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo } = req.body;
 
     try {
         const resultado = await pool.query(
-            `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [nome_vendedor, data_de_nascimento_vendedor, nome_brecho, email, telefone, CNPJ, logo]
+            `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+            [nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo]
         );
 
         res.status(201).json(resultado.rows[0]); // Código 201 para "Created"
@@ -373,3 +373,62 @@ app.post('/Produto', async (req, res) => {
     }
     
 })
+
+app.get(`/chat`, async (req, res) => {
+
+    try {
+        
+        const conversas = await pool.query(`SELECT * FROM chat`);
+        res.status(200).json(conversas.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/chat/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const conversas = await pool.query(`SELECT * FROM chat WHERE id = $1`, [id]);
+        res.status(200).json(conversas.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/chat`, async (req, res) => {
+
+    const { mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+
+    try {
+        
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5)`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(conversa.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res) => {
+
+    const { id_dono_mensagem } = req.params;
+    const { id_quem_recebeu_mensagem } = req.params;
+
+    try {
+        
+        const conversa = await pool.query(`DELETE FROM chat WHERE id_dono_mensagem = $1 AND id_quem_recebeu_mensagem = $2 OR id_dono_mensagem = $2 AND id_quem_recebeu_mensagem = $1`, [id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(conversa.rows);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});

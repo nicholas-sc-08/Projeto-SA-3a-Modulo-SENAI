@@ -1,0 +1,42 @@
+.container_pop_up_excluir_conversa_notificacao{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    width: 24%;
+    height: 50%;
+}
+
+.container_pop_up_de_notificacao_de_conversa_excluida{
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: 80%;
+    height: 65%;
+
+    border-radius: 2vw;
+    background-color: var(--cor_quatro);
+}
+
+.container_pop_up_de_notificacao_de_conversa_excluida img{
+
+    margin-top: 15%;
+    margin-bottom: 15%;
+    width: 35%;
+}
+
+.container_pop_up_de_notificacao_de_conversa_excluida span{
+
+    width: 70%;
+
+    text-align: center;
+    font-family: var(--tipografia_primaria);
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: var(--cor_seis);
+}
