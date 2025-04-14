@@ -41,6 +41,7 @@ function Tela_incial() {
 
       <HeaderUsuario />
 
+      {/* home page seção um */}
       <div className="home-page-secao-um-container">
         <div className="secao-um-texto-container">
           <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
@@ -57,9 +58,44 @@ function Tela_incial() {
 
       <div className="line-home-page-secao-um">
       </div>
+      {/* home page seção um */}
+
+      {/* home page seção dois */}
+      <div className="home-page-secao-dois-container">
+        <div className="container-sinalizacao-brechos-home-page">
+          <div className="icon-quadrado-brechos-home-page"></div>
+          <p>Brechós</p>
+        </div>
+
+        <div className="container-titulo-brechos-home-page">
+          <h1>BRECHÓS</h1>
+        </div>
+
+        <div className="buttons-anterior-proximo">
+          <button><img src="./img/icons/setaAnteriorCarrossel.svg" alt="seta anterior carrossel" /></button>
+          <button><img src="./img/icons/setaProximoCarrossel.svg" alt="seta proximo carrossel" /></button>
+        </div>
+
+        <div className="container-brechos-cards-home-page">
+          <div className="card-brecho-home-page">
+            <div className="container-imagem-brecho-cinza">
+              <div className="container-imagem-brecho">
+                <img src="./img/img_perfil_provisorio.svg" alt="" />
+              </div>
+            </div>
+
+            <h2 className="nome-brecho">Brechó Moda Sustentavel</h2>
+          </div>
+        </div>
+
+        <div className="button-ver-todos-os-brechos-home-page">
+          <button>Ver todos</button>
+        </div>
+      </div>
+      {/* home page seção dois */}
 
       <Footer />
-      
+
       {usuario_logado != `` && !conversa_aberta && <Chat />}
       {conversa_aberta && <Chat_conversa />}
 
