@@ -7,6 +7,12 @@ function Pop_up_conversa() {
   const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
   const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
 
+  useState(() => {
+
+    set_excluir_mensagens_chat(false);
+
+  }, []);
+
   return (
     <div className='container_pop_up_conversa_atual'>
       

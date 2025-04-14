@@ -19,6 +19,7 @@ function Chat_conversa() {
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
+    const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
 
     function fechar_conversa(){
 
@@ -26,6 +27,7 @@ function Chat_conversa() {
         set_conversa_aberta(false);
         set_conversa_atual([]);
         set_excluir_conversa_chat(false);
+        set_excluir_mensagens_chat(false);
         buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
     };
@@ -136,6 +138,28 @@ function Chat_conversa() {
       return nome_a_exibir[0];
     };
 
+    async function excluir_mensagem_digitada(mensagem_par){
+
+      try {
+        
+        if(excluir_mensagens_chat){
+
+          const mensagem = {
+
+            ...mensagem_par,
+            mensagem: `Menagem excluida 🚫`
+          };
+          
+          await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          set_excluir_mensagens_chat(false);
+        };
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
+
   return (
     <div className='container_chat_conversa'>
       
@@ -182,7 +206,7 @@ function Chat_conversa() {
           
             <div className="container_dono_da_mensagem">
           
-              <div className="dono_da_mensagem">
+              <div className="dono_da_mensagem" onClick={() => excluir_mensagem_digitada(conversa)}>
           
                 <div className="container_mensagem_dono">
           
