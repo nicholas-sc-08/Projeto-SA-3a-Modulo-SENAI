@@ -195,7 +195,9 @@ function Chat() {
              
              <div className="container_conversa_chat_titulo">
               <h2>{pegar_ultimo_sobrenome(conversa.nome)}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
-              <span>{ultima_mensagem(conversa.id)}</span>
+              <div className='container_ultima_mensagem_chat'>
+                <span>{ultima_mensagem(conversa.id)}</span>
+              </div>
              </div>
             </div>
 
