@@ -33,6 +33,7 @@
     --tipografia_secundaria: "Poppins", serif;
 }
 
+/* home page secao um */
 .home-page-secao-um-container {
     display: flex;
     justify-content: space-between;
@@ -120,3 +121,54 @@
     height: 6.5vh;
     background-color: var(--cor_um);
 }
+/* home page secao um */
+
+/* home page secao dois */
+.home-page-secao-dois-container{
+    border: 1px solid red;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.container-sinalizacao-brechos-home-page{
+    display: flex;
+    align-items: center;
+}
+
+.icon-quadrado-brechos-home-page{
+    width: 1%;
+    height: 4vh;
+    background-color: var(--cor_um);
+    border-radius: 0.2vw;
+}
+
+.container-sinalizacao-brechos-home-page p{
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    padding-left: 0.7%;
+    font-weight: 600;
+    font-size: 90%;
+}
+
+/* .container-titulo-brechos-home-page{
+    border: 1px solid green;
+}
+
+.buttons-anterior-proximo{
+    border: 1px solid purple;
+}
+
+.container-brechos-cards-home-page{
+    border: 1px solid blue;
+}
+
+.card-brecho-home-page{
+    border: 1px solid red;
+}
+
+.button-ver-todos-os-brechos-home-page{
+    border: 1px solid blue;
+} */
+/* home page secao dois */
