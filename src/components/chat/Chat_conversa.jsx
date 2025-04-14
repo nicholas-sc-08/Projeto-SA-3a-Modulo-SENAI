@@ -13,14 +13,13 @@ function Chat_conversa() {
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
-    const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
-    const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
+    const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
 
     function fechar_conversa(){
 
@@ -28,6 +27,8 @@ function Chat_conversa() {
         set_conversa_aberta(false);
         set_conversa_atual([]);
         set_excluir_conversa_chat(false);
+        set_excluir_mensagens_chat(false);
+        buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
     };
 
@@ -130,6 +131,35 @@ function Chat_conversa() {
       return conversa_do_dia;
     }, {});
 
+    function pegar_ultimo_sobrenome(nome){
+
+      const nome_a_exibir = nome.split(` `);
+
+      return nome_a_exibir[0];
+    };
+
+    async function excluir_mensagem_digitada(mensagem_par){
+
+      try {
+        
+        if(excluir_mensagens_chat){
+
+          const mensagem = {
+
+            ...mensagem_par,
+            mensagem: `Menagem excluida 🚫`
+          };
+          
+          await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          set_excluir_mensagens_chat(false);
+        };
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
+
   return (
     <div className='container_chat_conversa'>
       
@@ -141,7 +171,7 @@ function Chat_conversa() {
         
         <div className="container_header_info_chat">
 
-          <h2>{pessoa_com_quem_esta_conversando.nome}</h2>
+          <h2>{pegar_ultimo_sobrenome(pessoa_com_quem_esta_conversando.nome)}</h2>
           <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
           
         </div>
@@ -154,8 +184,6 @@ function Chat_conversa() {
         {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
         {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
 
-        {pop_up_excluir_conversa}
-      
       </div>
       
      <div className="container_conversa_atual">
@@ -174,11 +202,11 @@ function Chat_conversa() {
           
           <div className="container_mensagem" key={i}>
           
-            {conversa.id_dono_mensagem === usuario_logado.id ? 
+            {conversa.id_dono_mensagem == usuario_logado.id ? 
           
             <div className="container_dono_da_mensagem">
           
-              <div className="dono_da_mensagem">
+              <div className="dono_da_mensagem" onClick={() => excluir_mensagem_digitada(conversa)}>
           
                 <div className="container_mensagem_dono">
           
