@@ -95,14 +95,25 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1%;
 }
 
 .nome-brecho-icons-content h1 {
-    font-family: "Poppins", sans serif;
-    font-weight: 620;
-    font-size: 27px;
+    font-family: "Montserrat", sans serif;
+    font-weight: 740;
+    font-size: 35px;
     letter-spacing: 1px;
     color: var(--cor_dezesete);
+}
+
+.icons-edicao-excluir-content {
+    border: 3px solid #DFE600;
+
+    width: 26%;
+    height: 73%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .entrar-em-contato-content {
@@ -110,6 +121,67 @@ body {
 
     height: 34%;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+}
+
+.mensagem-content {
+    border: 3px solid #DFE600;
+    
+    width: 28%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mensagem-content a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.mensagem-content img {
+    width: 30px;
+    height: 30px;
+}
+
+.ligar-content {
+    border: 3px solid #DFE600;
+
+    width: 28%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ligar-content a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.ligar-content img {
+    width: 30px;
+    height: 30px;
+}
+
+.entrar-em-contato-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 730;
+    font-size: 18px;
+    color: var(--cor_seis);
 }
 
 .parte-inferior-div-direita-content {
