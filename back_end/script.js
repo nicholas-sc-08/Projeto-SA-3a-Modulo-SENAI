@@ -404,12 +404,28 @@ app.get(`/chat/:id`, async (req, res) => {
 
 app.post(`/chat`, async (req, res) => {
 
-    const { mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+    const { mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
 
     try {
         
-        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4)`, [mensagem, hora, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5)`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
         res.status(200).json(conversa.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res) => {
+
+    const { id_dono_mensagem } = req.params;
+    const { id_quem_recebeu_mensagem } = req.params;
+
+    try {
+        
+        const conversa = await pool.query(`DELETE FROM chat WHERE id_dono_mensagem = $1 AND id_quem_recebeu_mensagem = $2 OR id_dono_mensagem = $2 AND id_quem_recebeu_mensagem = $1`, [id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(conversa.rows);
 
     } catch (erro) {
       

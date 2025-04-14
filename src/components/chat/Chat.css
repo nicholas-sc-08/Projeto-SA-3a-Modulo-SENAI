@@ -1,8 +1,8 @@
 .container_chat{
 
+    transition: 0.5s;
     position: fixed;
 
-    height: 70%;
     width: 24%;
 
     right: 4%;
@@ -75,6 +75,11 @@
     background-color: transparent;
 }
 
+.botao_de_abrir_e_fechar_chat img{
+
+    width: 60%;
+}
+
 .container_header_chat button{
 
     cursor: pointer;
@@ -91,7 +96,9 @@
 .container_conversas_chat{
     width: 100%;
     height: 85%;
-    overflow-y: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_um);
 }
 
 .container_corversa_chat{
@@ -137,23 +144,23 @@
 
 .container_conversa_chat_imagem_de_perfil h2{
 
-    margin-top: 20%;
-    margin-left: 5%;
     margin-bottom: 0%;
 
-    font-size: 1.2rem;
+    width: 300%;
+    
+    font-size: 1.1rem;
     font-family: var(--tipografia_primaria);
     font-weight: bold;
 
     color: var(--cor_seis);
 }
 
-.container_conversa_chat_imagem_de_perfil span{
+.container_ultima_mensagem_chat{
 
+    width: 200%;
     font-size: 0.8rem;
     font-family: var(--tipografia_primaria);
     font-weight: bold;
-
     color: var(--cor_seis_v_um);
 }
 
@@ -168,6 +175,7 @@
     display: flex;
     width: 17%;
     height: 100%;
+    margin-bottom: 5%;
     align-items: center;
 }
 
@@ -180,4 +188,12 @@
     font-weight: 600;
 
     color: var(--cor_seis);
+}
+
+.fundo_escuro_para_notificacao{
+
+    position: fixed;
+    width: 24%;
+    height: 70%;
+    background-color: #00000041;
 }
