@@ -359,13 +359,13 @@ app.get("/Produto", async (req, res) => {
 
 app.post('/Produto', async (req, res) => {
 
-    const { nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca } = req.body;
+    const { nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria } = req.body;
 
     console.log(nome);
     
 
     try{
-        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca) values($1,$2, $3, $4, $5, $6, $7, $8, $9)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca])
+        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria) values($1,$2, $3, $4, $5, $6, $7, $8, $9, $10)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria])
         res.status(200).json(produto.rows[0])
 
     } catch (erro){
