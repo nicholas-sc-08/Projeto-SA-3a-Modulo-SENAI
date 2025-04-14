@@ -1,6 +1,4 @@
-#root,
-body,
-html {
+#root, body, html{
 
     min-height: 100vh;
 
@@ -24,138 +22,101 @@ html {
     --cor_nove: #FFFFFF;
     --cor_nove_v_um: #ffffff96;
     --cor_nove_v_dois: #F0F0F0;
-    --cor_dez: #5c5c5c;
+    --cor_dez:#5c5c5c;
     --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
     --cor_treze: #6d0000;
     --cor_quatorze: #ab9489;
+    --cor_quinze: #FFF4D1;
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
 }
 
-/* .home-page-secao-um-container {
+.home-page-secao-um-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 3rem 5%;
-    min-height: 100vh;
-
-    background:
-        linear-gradient(to right, #f9f9f5 40%, transparent 100%),
-        url('./img/imagens_telaInicial/ImagemRoupaUm.svg') no-repeat right center;
-    background-size: contain;
-} */
-
-.alinhamento-imagem-texto-secao-um-home-page {
-    border: 1px solid red;
-    display: flex;
-
-    justify-content: center;
     align-items: center;
-
-    width: 100%;
     padding-left: 5%;
-    padding-top: 3%;
+    padding-top: 4%;
+
+    /* background: linear-gradient(to right, #FFFDF7 50%, transparent 100%); */
+    position: relative;
 }
 
-.alinhamento-texto-button-secao-um-home-page {
-    border: 1px solid blue;
-    height: fit-content;
-    width: fit-content;
+.secao-um-texto-container {
+    width: 50%;
+    z-index: 2;
 }
 
-.alinhamento-texto-button-secao-um-home-page h1 {
-    border: 1px solid red;
+.secao-um-texto-container h1 {
     font-family: var(--tipografia_primaria);
-    font-size: 3vw;
+    font-size: 2.8vw;
     font-weight: 800;
     color: var(--cor_seis);
-    width: 110%;
-
-    position: relative;
-    z-index: 3;
+    margin-bottom: 1.5rem;
+    /* border: 1px solid blue; */
 }
 
-.alinhamento-texto-button-secao-um-home-page p {
-    border: 1px solid red;
-
+.secao-um-texto-container p {
     font-family: var(--tipografia_secundaria);
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 1rem;
     color: var(--cor_seis);
     opacity: 70%;
-    width: 106%;
-
-    position: relative;
-    z-index: 3;
+    margin-bottom: 2rem;
+    /* border: 1px solid red; */
 }
 
-.alinhamento-texto-button-secao-um-home-page button {
-    border: none;
-    width: 25%;
-    height: 5.5vh;
-    border-radius: 2vw;
+.secao-um-texto-container button {
     background-color: var(--cor_dois);
-    color: var(--cor_tres);
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
     font-family: var(--tipografia_secundaria);
-    font-weight: 500;
-    letter-spacing: 0.02cap;
+    font-weight: 410;
+    cursor: pointer;
     font-size: 100%;
 }
 
-.imagem-estrela-verde-grande{
-    border: 1px solid red;
-    position: absolute;
-    top: 20%;
-    z-index: 4;
-}
-
-.imagem-estrela-amarela-menor{
-    border: 1px solid blue;
-    z-index: 3;
-}
-
-.alinhamento-imagem-estrelas-secao-um-container{
-    border: 1px solid red;
-    height: 100%;
-    width: 100%;
-}
-
 /* Degrade de imagem */
-.container-imagem-com-degrade {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    max-width: 600px;
-    /* Ajusta si quieres */
-    height: auto;
-    overflow: hidden;
+.container-imagem-roupas-numero-um{
+    width: 75%;
+    height: 70vh;
+    background-image: url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
+    background-size: cover;
 }
 
-.container-imagem-com-degrade::before {
+.container-imagem-roupas-numero-um::before{
     content: "";
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(to right, red 0.5%, transparent 50%),
-        linear-gradient(to bottom, blue 0.5%, transparent 35%);
+        linear-gradient(to right, var(--cor_quatro) 0.2%, transparent 50%),
+        linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 35%);
     z-index: 1;
     pointer-events: none;
+    width: 75%;
+    height: 70.7vh;
+    top: 9.5%;
+    left: 43%;
 }
 
-
-.imagem-roupas-um-home-page {
-    position: relative;
-    width: 166%;
-    height: auto;
-    display: block;
-    border: 1px solid red;
+.estrela-verde-home-page{
+    position: absolute;
+    z-index: 2;
+    top: 6%;
+    left: 92%; 
 }
-/* Degrade de imagem */
 
-.line-verde-grande-home-page {
+.estrela-amarela-home-page{
+    position: absolute;
+    z-index: 2;
+    top: 84%;
+    left: 45%;
+}
+
+.line-home-page-secao-um{
+    height: 6.5vh;
     background-color: var(--cor_um);
-    width: 100%;
-    height: 7vh;
 }
