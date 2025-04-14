@@ -12,9 +12,13 @@
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
-    background-image: url('./img/Papel de parede chat.jpg');
+    background-image: url('./img/fundo_conversa_chat.png');
     background-color: var(--cor_quatro);
     z-index: 4;
+}
+
+.container_chat_conversa img{
+
 }
 
 .container_header_chat_conversa{
@@ -103,7 +107,7 @@
     padding-left: 5%;
 
     border-radius: 0.5vw;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
 
     font-family: var(--tipografia_secundaria);
     font-size: 0.8rem;
