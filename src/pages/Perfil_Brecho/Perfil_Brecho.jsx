@@ -25,11 +25,11 @@ function Perfil_Brecho() {
 
                 <div className="icons-edicao-excluir-content">
                   <div className="editar-content">
-                    <i></i>
+                    <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
                     <p>Editar</p>
                   </div>
                   <div className="excluir-content">
-                    <i></i>
+                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
                     <p>Excluir</p>
                   </div>
                 </div>
@@ -38,21 +38,25 @@ function Perfil_Brecho() {
               <div className="entrar-em-contato-content">
                 <div className="mensagem-content">
                   <a href="">
-                   <img src="./public/img/icons/envelope-mensagem-icon.svg" alt="Icone-Email" />
+                    <img src="./public/img/icons/envelope-mensagem-icon.svg" alt="Icone-Email" />
                   </a>
                   <p>Envie uma Mensagem</p>
                 </div>
                 <div className="ligar-content">
-                <a href={'/contato'}>
-                   <img src="./public/img/icons/telefone-icon.svg" alt="Icone-Ligar" />
+                  <a href={'/contato'}>
+                    <img src="./public/img/icons/telefone-icon.svg" alt="Icone-Ligar" />
                   </a>
                   <p>Ligue para Nós</p>
                 </div>
               </div>
             </div>
             <div className="parte-inferior-div-direita-content">
-              <div className="topicos-infos-content">
-
+              <div className="topicos-infos-grandeContent">
+                <div className="topicos-infos-subContent">
+                  <p>Informações</p>
+                  <p>Sobre</p>
+                  <p>Produtos</p>
+                </div>
               </div>
               <div className="infos-exibidas-content">
 
