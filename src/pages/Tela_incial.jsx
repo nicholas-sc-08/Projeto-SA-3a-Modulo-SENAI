@@ -4,7 +4,6 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
 import HeaderBrecho from '../components/HeaderBrecho';
 import Footer from '../components/Footer';
-import Pop_up_chat from '../components/chat/Pop_up_chat';
 import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
 import './Tela_inicial.css'

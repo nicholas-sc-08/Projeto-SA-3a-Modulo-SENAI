@@ -13,12 +13,10 @@ function Chat_conversa() {
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
-    const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
-    const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
 
@@ -28,6 +26,7 @@ function Chat_conversa() {
         set_conversa_aberta(false);
         set_conversa_atual([]);
         set_excluir_conversa_chat(false);
+        buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
     };
 
@@ -130,6 +129,13 @@ function Chat_conversa() {
       return conversa_do_dia;
     }, {});
 
+    function pegar_ultimo_sobrenome(nome){
+
+      const nome_a_exibir = nome.split(` `);
+
+      return nome_a_exibir[0];
+    };
+
   return (
     <div className='container_chat_conversa'>
       
@@ -141,7 +147,7 @@ function Chat_conversa() {
         
         <div className="container_header_info_chat">
 
-          <h2>{pessoa_com_quem_esta_conversando.nome}</h2>
+          <h2>{pegar_ultimo_sobrenome(pessoa_com_quem_esta_conversando.nome)}</h2>
           <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
           
         </div>
@@ -154,8 +160,6 @@ function Chat_conversa() {
         {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
         {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
 
-        {pop_up_excluir_conversa}
-      
       </div>
       
      <div className="container_conversa_atual">
@@ -174,7 +178,7 @@ function Chat_conversa() {
           
           <div className="container_mensagem" key={i}>
           
-            {conversa.id_dono_mensagem === usuario_logado.id ? 
+            {conversa.id_dono_mensagem == usuario_logado.id ? 
           
             <div className="container_dono_da_mensagem">
           
@@ -227,7 +231,7 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``} />
+          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       
       </div>

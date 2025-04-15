@@ -73,7 +73,6 @@ CREATE TABLE categorias(
 		nome VARCHAR(50) NOT NULL,
 		descricao VARCHAR(200) NOT NULL,
 		preco TEXT NOT NULL, 
-		preco VARCHAR(10) NOT NULL, 
 		codigo VARCHAR(14) NULL, 
 		condicao VARCHAR(14) NULL, 
 		imagem TEXT, 
