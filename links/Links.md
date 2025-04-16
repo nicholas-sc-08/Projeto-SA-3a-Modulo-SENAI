@@ -10,6 +10,8 @@
 
 ## LinkedIn
 
+[FlyCircular](https://www.l
+inkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
 [FlyCircular](https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)<br>
 
 * [Post Participação de evento](https://www.linkedin.com/posts/fly-circular-76a172352_grupofly-inovaaexaeto-transformaaexaetodigital-activity-7312916881558904832-F8hs?utm_source=share&utm_medium=member_android&rcm=ACoAAFZDY_0BSvlZNddcyNk79Y8hLEa_6KFYUHM)
