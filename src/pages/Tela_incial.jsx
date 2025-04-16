@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
 import './Tela_inicial.css'
+import { Link } from 'react-router-dom';
 
 function Tela_incial() {
 
@@ -70,10 +71,12 @@ function Tela_incial() {
           <p>BRECHÓS</p>
         </div>
 
+        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
         <div className="buttons-anterior-proximo">
           <button className='seta-anterior-carrossel'><img src="./img/icons/setaAnteriorCarrossel.svg" alt="seta anterior carrossel" /></button>
           <button className='seta-proximo-carrossel'><img src="./img/icons/setaProximoCarrossel.svg" alt="seta proximo carrossel" /></button>
         </div>
+        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
         <div className="container-brechos-cards-home-page">
           <div className="card-brecho-home-page">
@@ -92,6 +95,77 @@ function Tela_incial() {
         </div>
       </div>
       {/* home page seção dois */}
+
+      {/* home page seção tres */}
+      <div className="home-page-secao-tres-container">
+        <div className="container-sinalizacao-destaques-home-page">
+          <div className="icon-quadrado-destaques-home-page"></div>
+          <p>Destaques</p>
+        </div>
+
+        <div className="home-page-titulo-secao-tres">
+          <p>LANÇAMENTOS</p>
+        </div>
+
+        <div className="container-cards-alinhamento-lancamentos-secao-tres">
+          <div className="card-lancamento-secao-tres">
+            <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
+              <img src="./img/img_perfil_provisorio.svg" alt="" />
+
+              <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brecho sustentavel</Link>
+            </div>
+
+            <div className="container-card-imagem-roupa-lancamentos">
+              <img src="./img/img_perfil_provisorio.svg" alt="" />
+            </div>
+
+            <div className="alinhamento-preco-roupa-card-lancamento">
+              <p className='nome-roupa-lancamentos-card'>Camiseta bonita</p>
+
+              <p className='preco-roupa-lancamentos-card'>R$ 21.50</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="alinhamento-buttons-secao-tres-lancamentos">
+          <button>Ver todos</button>
+        </div>
+      </div>
+      {/* home page seção tres */}
+
+      {/* home page seção quatro */}
+      <div className="home-page-container-secao-quatro">
+        <div className="container-titulo-secao-quatro">
+          <p>ENCONTRE O QUE PROCURA</p>
+        </div>
+
+        <div className="alinhamento-cards-secao-quatro">
+          <div className="container-um-cards-secao-quatro">
+            <div className="card-um-secao-quatro">
+              {/* <img src="./img/imagens_telaInicial/CardImagemUmTelaInicial.svg" alt="Roupas" /> */}
+              <p>Roupas</p>
+            </div>
+
+            <div className="card-dois-secao-quatro">
+              {/* <img src="./img/imagens_telaInicial/CardImagemDoisTelaInicial.svg" alt="Accesórios" /> */}
+              <p>Accesórios</p>
+            </div>
+          </div>
+
+          <div className="container-dois-cards-secao-quatro">
+            <div className="card-tres-secao-quatro">
+              {/* <img src="./img/imagens_telaInicial/CardImagemTresTelaInicial.svg" alt="Doações" /> */}
+              <p>Doações</p>
+            </div>
+
+            <div className="card-quatro-secao-quatro">
+              {/* <img src="./img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg" alt="Calçados" /> */}
+              <p>Calçados</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* home page seção quatro */}
 
       <Footer />
 
