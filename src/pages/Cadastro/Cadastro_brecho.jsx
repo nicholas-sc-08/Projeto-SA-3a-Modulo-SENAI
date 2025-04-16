@@ -16,7 +16,6 @@ function Cadastro_brecho() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext);
-  const { endereco_cadastrado, set_endereco_cadastrado } = useContext(GlobalContext);
 
   const { formCadastroBrecho } = useContext(GlobalContext)
 
@@ -33,6 +32,7 @@ function Cadastro_brecho() {
   let telefoneJaCadastrado = false
   let CNPJJaCadastrado = false
   let nomeBrechoJaCadastrado = false
+  let enderecoCadastrado = false;
 
   async function informacoesBrecho() {
 
@@ -48,37 +48,56 @@ function Cadastro_brecho() {
     };
   };
 
-  useEffect(() => {
+  async function buscar_enderecos(){
 
-    console.log(enderecoDoBrecho);
+    try {
+      
+      const enderecos = await axios.get(`http://localhost:3000/enderecos`);
+      set_array_enderecos(enderecos.data);
+
+
+    } catch (erro) {
+      
+      console.error(erro);
+    };
+  };
+
+  useEffect(() => {
 
   }, [enderecoDoBrecho]);
 
   async function lidarComFormulario(e) {
 
     e.preventDefault();
+    
+    for(let i = 0; i < array_enderecos.length; i++){
+
+      if(array_enderecos[i].cep == enderecoDoBrecho.cep){
+                
+        enderecoCadastrado = true;
+      };
+    };
 
     try {
 
-      if(endereco_cadastrado === false){
+      if(enderecoCadastrado === false){
      
       const resposta = await axios.post(`http://localhost:3000/brechos`, formCadastroBrecho);
-      console.log(resposta.id);
       
-      informacoesBrecho();
-
       const enderecoDoBrechoComFK = {
-
+        
         ...enderecoDoBrecho,
         id_brecho: array_brechos[array_brechos.length - 1].id
       };      
-        console.log(enderecoDoBrechoComFK);
-        const respostaEndereco = await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
+      
+      await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
+      
+      informacoesBrecho();
+      buscar_enderecos();
       
       } else {
 
         setMensagemErro(`CEP já cadastrado!`);
-        set_endereco_cadastrado(false);
       };
 
     } catch (erro) {
@@ -90,6 +109,7 @@ function Cadastro_brecho() {
   useEffect(() => {
 
     informacoesBrecho();
+    buscar_enderecos();
 
   }, []);
 
@@ -188,7 +208,6 @@ function Cadastro_brecho() {
       };
 
     } else if (cadastroParteDoisBrecho == true && cadastroParteTresBrecho == false) {
-      console.log(array_brechos)
 
       for (let i = 0; i < array_brechos.length; i++) {
 

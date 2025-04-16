@@ -4,8 +4,6 @@ import { GlobalContext } from '../contexts/GlobalContext'
 function CadastroBrechoSecaoInputsTres() {
 
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
-  const { set_endereco_cadastrado, set_set_endereco_cadastrado } = useContext(GlobalContext);
-  const { array_enderecos, set_array_enderecos } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -30,14 +28,6 @@ function CadastroBrechoSecaoInputsTres() {
                     estado: dadosDoEndereco.uf,
                     cidade: dadosDoEndereco.localidade
                 });
-
-                for(let i = 0; i < array_enderecos.length; i++){
-  
-                  if(array_enderecos[i].cep == enderecoDoBrecho.cep){
-            
-                    set_endereco_cadastrado(true);
-                  };
-                };
 
             } catch (erro) {
               
