@@ -130,28 +130,31 @@ function Login() {
         <div className='ladoEsquerdo-container'>
           <h1>Sua conta te espera!</h1>
           <div className='info-login'>
-            <label>Nome</label>
+            <label>Nome<span>*</span></label>
             <input
               type="text"
               className={campos_vazios.nome ? 'input-erro' : ''}
               value={formulario.nome}
               onChange={e => set_formulario({ ...formulario, nome: e.target.value })}
+              placeholder='Nome de usuario'
             />
 
-            <label>Email</label>
+            <label>Email<span>*</span></label>
             <input
               type="email"
               className={campos_vazios.email ? 'input-erro' : ''}
               value={formulario.email}
               onChange={e => set_formulario({ ...formulario, email: e.target.value })}
+              placeholder='Ex: exemplo@gmail.com'
             />
 
-            <label>Senha</label>
+            <label>Senha<span>*</span></label>
             <input
               type="password"
               className={campos_vazios.senha ? 'input-erro' : ''}
               value={formulario.senha}
               onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
+              placeholder='Senha pessoal'
             />
           </div>
 
