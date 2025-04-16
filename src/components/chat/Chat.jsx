@@ -11,7 +11,6 @@ function Chat() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
     const { array_chat, set_array_chat } = useContext(GlobalContext);
-    const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const [ inpt_de_pesquisa_chat, set_inpt_de_pesquisa_chat ] = useState(``);
@@ -19,6 +18,7 @@ function Chat() {
     const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
+    const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -194,7 +194,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
-              <h2>{pegar_ultimo_sobrenome(conversa.nome)}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
               <div className='container_ultima_mensagem_chat'>
                 <span>{ultima_mensagem(conversa.id)}</span>
               </div>
@@ -218,7 +218,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
-              <h2>{conversa.nome}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
               <span>{ultima_mensagem(conversa.id)}</span>
             </div>
             </div>

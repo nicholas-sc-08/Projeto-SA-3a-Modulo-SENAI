@@ -13,7 +13,7 @@ body {
     border: 3px solid #D08E00;
     background-color: var(--cor_quatro);
 
-    height: 83%;
+    height: 93%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ body {
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 
-    height: 88%;
+    height: 85%;
     width: 85%;
     display: flex;
     align-items: center;
@@ -47,9 +47,14 @@ body {
 
 .logo-brecho-perfil-content {
     border: 3px solid #00E69D;
+    border-radius: 20px;
+    background-color: var(--cor_dezesseis);
 
     height: 59%;
     width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .infos-horario-endereco-brecho-content {
@@ -57,6 +62,7 @@ body {
 
     height: 36%;
     width: 96%;
+    
 }
 
 .parte-direita-content {
@@ -81,11 +87,62 @@ body {
     align-items: center;
 }
 
-.nome-brecho-content{
+.nome-brecho-icons-content{
     border: 3px solid #E600B5;
 
     height: 35%;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+}
+
+.nome-brecho-icons-content h1 {
+    font-family: "Montserrat", sans serif;
+    font-weight: 740;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: var(--cor_dezesete);
+}
+
+.icons-edicao-excluir-content {
+    border: 3px solid #DFE600;
+
+    width: 28%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.editar-content {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.editar-content p {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_um);
+}
+
+.excluir-content {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.excluir-content p {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_onze);
 }
 
 .entrar-em-contato-content {
@@ -93,6 +150,67 @@ body {
 
     height: 34%;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+}
+
+.mensagem-content {
+    border: 3px solid #DFE600;
+    
+    width: 28%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mensagem-content a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.mensagem-content img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.ligar-content {
+    border: 3px solid #DFE600;
+
+    width: 28%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ligar-content a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.ligar-content img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.entrar-em-contato-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 730;
+    font-size: 0.9rem;
+    color: var(--cor_seis);
 }
 
 .parte-inferior-div-direita-content {
@@ -106,16 +224,46 @@ body {
     align-items: center;
 }
 
-.topicos-infos-content {
+.topicos-infos-grandeContent {
     border: 3px solid #E600B5;
 
-    height: 22%;
+    height: 24%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3%;
 }
+
+.topicos-infos-subContent {
+    border: 3px solid #DFE600;
+
+    height: 90%;
+    width: 47%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.topicos-infos-subContent button {
+    font-family: "Montserrat", sans serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--cor_um);
+    cursor: pointer;
+   border: none;
+}
+
+    .topicos-infos-subContent button:focus{
+        border-bottom: 1px solid red; 
+    }
+
 
 .infos-exibidas-content {
     border: 3px solid #E600B5;
 
     height: 73%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
 }

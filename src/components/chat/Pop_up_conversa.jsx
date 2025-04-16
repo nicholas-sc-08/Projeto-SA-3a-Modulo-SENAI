@@ -5,25 +5,54 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 function Pop_up_conversa() {
 
   const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
+  const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
+
+  useState(() => {
+
+    set_excluir_mensagens_chat(false);
+
+  }, []);
 
   return (
     <div className='container_pop_up_conversa_atual'>
       
       <div className="container_pop_up">
 
-        <div className="container_excluir_conversa" onClick={() => set_excluir_conversa_chat(true)}>
+        {!excluir_mensagens_chat ?
 
-          <img src="./img/Excluir conversa icone.svg" alt="" />
-          <span>Excluir Conversa</span>
+        <div className='container_conteudo_pop_up_conversa_atual'>
+
+          <div className="container_excluir_conversa" onClick={() => set_excluir_conversa_chat(true)}>
+
+            <img src="./img/Excluir conversa icone.svg" alt="" />
+            <span>Excluir Conversa</span>
+
+          </div>
+
+          <div className="container_excluir_mensagem" onClick={() => set_excluir_mensagens_chat(true)}>
+
+            <img src="./img/Excluir mensagem icone.svg" alt="" />
+            <span>Excluir Mensagem</span>
+
+          </div>
 
         </div>
 
-        <div className="container_excluir_mensagem">
+        : 
 
-          <img src="./img/Excluir mensagem icone.svg" alt="" />
-          <span>Excluir Mensagem</span>
+        <div className='continer_conteudo_mensagem'>
+          
+          <div className='container_botao_voltar_pop_up_conversa_atual'>
+
+          <button onClick={() => set_excluir_mensagens_chat(false)}> <img src="./img/Seta sair excluir mensagens chat.svg" alt=""/></button>
+          
+          </div>
+          
+          <span>Clique nas mensagens para excluir</span>
 
         </div>
+
+        }
 
       </div>
 
