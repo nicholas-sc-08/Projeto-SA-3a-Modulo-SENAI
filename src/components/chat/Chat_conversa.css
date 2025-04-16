@@ -18,10 +18,6 @@
     z-index: 4;
 }
 
-.container_chat_conversa img{
-
-}
-
 .container_header_chat_conversa{
 
     display: flex;
@@ -289,3 +285,15 @@
     height: 100%;
     background-color: #00000041;
 }
+
+.emoji_picker_wrapper {
+    position: relative;
+  }
+  
+  .emoji_picker_container {
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    z-index: 999;
+  }
+  

@@ -11,13 +11,12 @@ function Cadastro_Produto() {
   const [imagens, setImagens] = useState([]); 
   const [imagemPrincipal, setImagemPrincipal] = useState(null); 
   const [nomeProduto, setNomeProduto] = useState("Nome do Produto"); 
-  const [preco, setPreco] = useState(""); 
-  const [descricao, setDescricao] = useState(""); 
   const [coresSelecionadas, setCoresSelecionadas] = useState([]); 
   const [editandoNome, setEditandoNome] = useState(false); 
   const [editandoPreco, setEditandoPreco] = useState(false); 
   const [nomeEditado, setNomeEditado] = useState(false); 
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+  const { array_categorias, set_array_categorias } = useContext(GlobalContext)
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
     nome: '', 
     descricao: '', 
@@ -25,10 +24,13 @@ function Cadastro_Produto() {
     codigo: '', 
     condicao: '', 
     cor: [], 
-    imagem: '', 
+    imagem:[], 
     marca: '', 
-    categoria:'', 
-    composicao: '' 
+    fk_id_categoria: '',
+    composicao: '', 
+    categoria: ``
+
+
   });
 
   useEffect(() => {
@@ -124,9 +126,13 @@ function Cadastro_Produto() {
 
   // Postar produto no banco de dados
   async function cadastrar_produto() {
-    const produtoComCores = { ...array_cadastro_produto, cor: coresSelecionadas };
-    try {
-      await axios.post("http://localhost:3000/Produto", produtoComCores);
+    setArray_cadastro_produto({...array_cadastro_produto, cor: coresSelecionadas})
+    try { 
+      const encontrar_categoria = array_categorias.findIndex((categoria)=> categoria.nome == array_cadastro_produto.categoria)
+      setArray_cadastro_produto({...array_cadastro_produto, fk_id_categoria: array_categorias[encontrar_categoria].id})
+      console.log(array_cadastro_produto);
+      
+      await axios.post("http://localhost:3000/Produto", array_cadastro_produto);
     } catch (error) {
       console.error(error);
     }
@@ -137,11 +143,14 @@ function Cadastro_Produto() {
     async function buscarCategorias() {
       try {
         const resposta = await axios.get("http://localhost:3000/categorias");
-        setCategorias(resposta.data); // Supondo que a resposta seja um array de categorias
+        set_array_categorias(resposta.data); 
       } catch (error) {
         console.error("Erro ao buscar categorias", error);
       }
     }
+
+    
+
     buscarCategorias();
   }, []);
 
@@ -149,8 +158,8 @@ function Cadastro_Produto() {
 
   return (
     <div>
-      <HeaderBrecho /> {/* Exibe o cabeçalho */}
-      <h2 className="titulo">Cadastro Produto</h2> {/* Título da página */}
+      <HeaderBrecho /> 
+      <h2 className="titulo">Cadastro Produto</h2>
       <div className="container-cadastro-produto"> {/* Container principal do formulário */}
         
         {/* Galeria de imagens */}
@@ -307,12 +316,12 @@ function Cadastro_Produto() {
           <div className="input-group-direita">
             <label>Categoria</label>
             <select 
-              value={array_cadastro_produto.categoria[0] || ""} 
-              onChange={(e) => setArray_cadastro_produto({...array_cadastro_produto, categoria: [e.target.value]})}
+              value={array_cadastro_produto.categoria || ""} 
+              onChange={(e) => setArray_cadastro_produto({...array_cadastro_produto, categoria: e.target.value})}
               className="categoria-select"
             >
               <option value="">Selecione uma categoria</option>
-              {categorias.map((categoria) => (
+              {array_categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.nome}>
                   {categoria.nome}
                 </option>

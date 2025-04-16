@@ -47,6 +47,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
     const [cadastroParteTresBrecho, setCadastroParteTresBrecho] = useState(false)
+    const [ endereco_cadastrado, set_endereco_cadastrado ] = useState(false);
     const [ arrayBrechos, setArrayBrechos ] = useState([])
     const [ imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho ] = useState(null)
 
@@ -127,6 +128,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_altura_inicial_header_chat,
             excluir_mensagens_chat,
             set_excluir_mensagens_chat,
+            endereco_cadastrado,
+            set_endereco_cadastrado,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
