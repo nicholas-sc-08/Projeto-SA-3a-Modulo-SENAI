@@ -417,6 +417,22 @@ app.post(`/chat`, async (req, res) => {
     };
 });
 
+app.put(`/chat/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    const { mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+
+    try {
+        
+        const mensagem_a_atualizar = await pool.query(`UPDATE chat SET mensagem = $2, hora = $3, data_da_mensagem = $4, id_dono_mensagem = $5, id_quem_recebeu_mensagem = $6 WHERE id = $1`, [id, mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(mensagem_a_atualizar.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res) => {
 
     const { id_dono_mensagem } = req.params;
@@ -425,7 +441,7 @@ app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res)
     try {
         
         const conversa = await pool.query(`DELETE FROM chat WHERE id_dono_mensagem = $1 AND id_quem_recebeu_mensagem = $2 OR id_dono_mensagem = $2 AND id_quem_recebeu_mensagem = $1`, [id_dono_mensagem, id_quem_recebeu_mensagem]);
-        res.status(200).json(conversa.rows);
+        res.status(200).json(conversa.rows[0]);
 
     } catch (erro) {
       
