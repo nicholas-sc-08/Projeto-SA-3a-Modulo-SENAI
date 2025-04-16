@@ -35,8 +35,6 @@ function Chat_conversa() {
 
       buscar_clientes();
       buscar_conversas();
-
-      console.log(`p`, usuario_logado);
     }, []);
 
     async function buscar_clientes(){
