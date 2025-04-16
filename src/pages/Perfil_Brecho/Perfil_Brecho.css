@@ -167,8 +167,8 @@ body {
 }
 
 .mensagem-content a {
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,8 +177,8 @@ body {
 }
 
 .mensagem-content img {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .ligar-content {
@@ -192,8 +192,8 @@ body {
 }
 
 .ligar-content a {
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,14 +202,14 @@ body {
 }
 
 .ligar-content img {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .entrar-em-contato-content p {
     font-family: "Montserrat", sans serif;
     font-weight: 730;
-    font-size: 18px;
+    font-size: 0.9rem;
     color: var(--cor_seis);
 }
 
@@ -244,13 +244,19 @@ body {
     justify-content: space-around;
 }
 
-.topicos-infos-subContent p {
+.topicos-infos-subContent button {
     font-family: "Montserrat", sans serif;
-    font-weight: 650;
+    font-weight: 700;
     font-size: 0.9rem;
     color: var(--cor_um);
     cursor: pointer;
+   border: none;
 }
+
+    .topicos-infos-subContent button:focus{
+        border-bottom: 1px solid red; 
+    }
+
 
 .infos-exibidas-content {
     border: 3px solid #E600B5;

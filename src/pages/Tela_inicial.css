@@ -78,6 +78,13 @@
     font-weight: 410;
     cursor: pointer;
     font-size: 100%;
+    width: 25%;
+
+    transition: 0.4s;
+}
+
+.secao-um-texto-container button:hover{
+    background-color: var(--cor_um);
 }
 
 /* Degrade de imagem */
@@ -125,11 +132,11 @@
 
 /* home page secao dois */
 .home-page-secao-dois-container{
-    border: 1px solid red;
     padding-top: 3%;
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
+    height: 85vh;
 }
 
 .container-sinalizacao-brechos-home-page{
@@ -152,23 +159,104 @@
     font-size: 90%;
 }
 
-/* .container-titulo-brechos-home-page{
-    border: 1px solid green;
+ .container-titulo-brechos-home-page{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 3.5rem;
+    font-weight: 800;
 }
 
 .buttons-anterior-proximo{
-    border: 1px solid purple;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5%;
+}
+
+.seta-anterior-carrossel{
+    border: none;
+    background-color: var(--cor_nove_v_dois);
+    border-radius: 2vw;
+    padding: 0.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.seta-anterior-carrossel:hover{
+    background-color: #9da6506b;
+}
+
+.seta-proximo-carrossel{
+    border: none;
+    background-color: var(--cor_um);
+    border-radius: 2vw;
+    padding: 0.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.seta-proximo-carrossel:hover{
+    background-color: #9da650be;
 }
 
 .container-brechos-cards-home-page{
-    border: 1px solid blue;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .card-brecho-home-page{
-    border: 1px solid red;
+    width: 17%;
+    height: auto;
+}
+
+.container-imagem-brecho-cinza{
+    background-color: var(--cor_nove_v_dois);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.8vw;
+    height: 30vh;
+    margin-bottom: 5%;
+}
+
+.nome-brecho{
+    font-family: var(--tipografia_primaria);
+    font-size: 1.3rem;
+    color: var(--cor_seis);
+
 }
 
 .button-ver-todos-os-brechos-home-page{
-    border: 1px solid blue;
-} */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.button-ver-todos-os-brechos-home-page button{
+    border: none;
+    background-color: var(--cor_um);
+    color: var(--cor_doze);
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    border-radius: 2vw;
+    width: 12%;
+    height: 5.5vh;
+
+    transition: 0.4s;
+}
+
+.button-ver-todos-os-brechos-home-page button:hover{
+    background-color: var(--cor_dois);
+}
 /* home page secao dois */

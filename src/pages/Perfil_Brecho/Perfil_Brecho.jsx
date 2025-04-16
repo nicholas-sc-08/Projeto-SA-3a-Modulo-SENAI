@@ -53,9 +53,9 @@ function Perfil_Brecho() {
             <div className="parte-inferior-div-direita-content">
               <div className="topicos-infos-grandeContent">
                 <div className="topicos-infos-subContent">
-                  <p>Informações</p>
-                  <p>Sobre</p>
-                  <p>Produtos</p>
+                  <button>Informações</button>
+                  <button>Sobre</button>
+                  <button>Produtos</button>
                 </div>
               </div>
               <div className="infos-exibidas-content">

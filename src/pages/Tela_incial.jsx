@@ -67,12 +67,12 @@ function Tela_incial() {
         </div>
 
         <div className="container-titulo-brechos-home-page">
-          <h1>BRECHÓS</h1>
+          <p>BRECHÓS</p>
         </div>
 
         <div className="buttons-anterior-proximo">
-          <button><img src="./img/icons/setaAnteriorCarrossel.svg" alt="seta anterior carrossel" /></button>
-          <button><img src="./img/icons/setaProximoCarrossel.svg" alt="seta proximo carrossel" /></button>
+          <button className='seta-anterior-carrossel'><img src="./img/icons/setaAnteriorCarrossel.svg" alt="seta anterior carrossel" /></button>
+          <button className='seta-proximo-carrossel'><img src="./img/icons/setaProximoCarrossel.svg" alt="seta proximo carrossel" /></button>
         </div>
 
         <div className="container-brechos-cards-home-page">
