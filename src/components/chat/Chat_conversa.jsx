@@ -273,7 +273,7 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``} />
+          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       
       </div>

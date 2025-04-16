@@ -72,13 +72,16 @@ CREATE TABLE categorias(
 		id SERIAL PRIMARY KEY,
 		nome VARCHAR(50) NOT NULL,
 		descricao VARCHAR(200) NOT NULL,
-		preco VARCHAR(10) NOT NULL, 
+		preco TEXT NOT NULL, 
 		codigo VARCHAR(14) NULL, 
 		condicao VARCHAR(14) NULL, 
 		imagem TEXT, 
 		tamanho VARCHAR(3) NOT NULL,
 		cor VARCHAR(50),
-		marca VARCHAR(50)
+		marca VARCHAR(50),
+
+		fk_id_categoria INT,
+		FOREIGN KEY (fk_id_categoria) REFERENCES categorias(id)
 	);
 
 	CREATE TABLE EstoqueProduto (
