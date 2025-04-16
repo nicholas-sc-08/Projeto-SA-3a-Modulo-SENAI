@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     width: 15%;
-    height: 30%;
+    height: 14%;
 }
 
 .container_pop_up{
@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: space-around;
     width: 85%;
-    height: 45%;
+    height: 100%;
 
     border-radius: 1vw;
 

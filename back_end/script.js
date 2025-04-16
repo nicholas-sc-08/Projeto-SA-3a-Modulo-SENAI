@@ -128,11 +128,11 @@ app.get(`/enderecos/:id`, async (req, res) => {
 
 app.post(`/enderecos`, async (req, res) => {
 
-    const { cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id } = req.body;
+    const { cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho } = req.body;
 
     try {
 
-        const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id) values($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id]);
+        const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho) values($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho]);
         res.status(200).json(resultado.rows[0]);
 
     } catch (erro) {
@@ -211,11 +211,11 @@ app.post(`/brechos`, async (req, res) => {
     try {
         const resultado = await pool.query(
             `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
             [nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo]
         );
 
-        res.status(201).json(resultado.rows[0]); // Código 201 para "Created"
+        res.status(201).json(resultado.rows[0]);
     } catch (erro) {
         console.error(erro);
         res.status(500).json({ erro: erro.message });

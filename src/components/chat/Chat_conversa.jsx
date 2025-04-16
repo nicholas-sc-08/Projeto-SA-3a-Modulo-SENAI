@@ -20,6 +20,9 @@ function Chat_conversa() {
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
     const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
+    const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
+    const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
+    const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
 
     function fechar_conversa(){
 
@@ -116,9 +119,9 @@ function Chat_conversa() {
       };
 
       return data_da_conversa;
-    }
+    };
 
-    const mensagens_do_dia = conversa_atual.reduce((conversa_do_dia, mensagem) => {
+      const mensagens_do_dia = conversa_atual.reduce((conversa_do_dia, mensagem) => {
       
       const data_mensagem = mensagem.data_da_mensagem;
 
@@ -128,8 +131,9 @@ function Chat_conversa() {
       };
 
       conversa_do_dia[data_mensagem].push(mensagem);
+      
       return conversa_do_dia;
-    }, {});
+      }, {});
 
     function pegar_ultimo_sobrenome(nome){
 
@@ -140,18 +144,20 @@ function Chat_conversa() {
 
     async function excluir_mensagem_digitada(mensagem_par){
 
+      const mensagem = {
+
+        ...mensagem_par,
+        mensagem: `Mensagem apagada`
+      };
+      
       try {
         
         if(excluir_mensagens_chat){
-
-          const mensagem = {
-
-            ...mensagem_par,
-            mensagem: `Menagem excluida 🚫`
-          };
           
           await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          buscar_conversas();
           set_excluir_mensagens_chat(false);
+          set_conversa_aberta(false);
         };
         
       } catch (erro) {
@@ -159,6 +165,18 @@ function Chat_conversa() {
         console.error(erro);
       };
     };
+
+    useEffect(() => {
+
+      if(excluir_mensagens_chat){
+
+        set_tipo_do_cursor_mouse_chat(`pointer`);
+      } else {
+
+        set_tipo_do_cursor_mouse_chat(`default`);
+      };
+
+    }, [excluir_mensagens_chat]);
 
   return (
     <div className='container_chat_conversa'>
@@ -208,9 +226,9 @@ function Chat_conversa() {
           
               <div className="dono_da_mensagem" onClick={() => excluir_mensagem_digitada(conversa)}>
           
-                <div className="container_mensagem_dono">
+                <div className="container_mensagem_dono" style={{cursor: tipo_do_cursor_mouse_chat, }}>
           
-                  <span>{conversa.mensagem}</span>
+                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
           
                 </div>
           
@@ -232,7 +250,7 @@ function Chat_conversa() {
                   
                  <div className="container_mensagem_recebedor">
                   
-                  <span>{conversa.mensagem}</span>
+                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
                   
                  </div>
                   

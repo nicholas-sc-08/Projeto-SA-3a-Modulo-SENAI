@@ -14,7 +14,9 @@ function Cadastro_brecho() {
   const { cadastroParteDoisBrecho, setCadastroParteDoisBrecho } = useContext(GlobalContext);
   const { cadastroParteTresBrecho, setCadastroParteTresBrecho } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
-  const { enderecoDoBrecho } = useContext(GlobalContext)
+  const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
+  const { array_enderecos, set_array_enderecos } = useContext(GlobalContext);
+  const { endereco_cadastrado, set_endereco_cadastrado } = useContext(GlobalContext);
 
   const { formCadastroBrecho } = useContext(GlobalContext)
 
@@ -32,7 +34,6 @@ function Cadastro_brecho() {
   let CNPJJaCadastrado = false
   let nomeBrechoJaCadastrado = false
 
-
   async function informacoesBrecho() {
 
     try {
@@ -47,24 +48,38 @@ function Cadastro_brecho() {
     };
   };
 
+  useEffect(() => {
+
+    console.log(enderecoDoBrecho);
+
+  }, [enderecoDoBrecho]);
+
   async function lidarComFormulario(e) {
 
     e.preventDefault();
 
     try {
 
+      if(endereco_cadastrado === false){
+     
       const resposta = await axios.post(`http://localhost:3000/brechos`, formCadastroBrecho);
+      console.log(resposta.id);
+      
+      informacoesBrecho();
 
       const enderecoDoBrechoComFK = {
 
         ...enderecoDoBrecho,
-        id_brecho: resposta.data.id
+        id_brecho: array_brechos[array_brechos.length - 1].id
+      };      
+        console.log(enderecoDoBrechoComFK);
+        const respostaEndereco = await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
+      
+      } else {
+
+        setMensagemErro(`CEP já cadastrado!`);
+        set_endereco_cadastrado(false);
       };
-
-      const respostaEndereco = await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
-
-      informacoesBrecho();
-      mudar_de_pagina(`/login`);
 
     } catch (erro) {
 
@@ -271,7 +286,6 @@ function Cadastro_brecho() {
       };
 
     };
-
   }
 
   useEffect(() => {

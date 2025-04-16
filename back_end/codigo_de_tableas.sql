@@ -34,7 +34,7 @@ CREATE TABLE chat(
 
 CREATE TABLE brechos(
 
-	id_brecho SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	nome_vendedor VARCHAR(50) NOT NULL,
 	data_de_nascimento_vendedor DATE,
 	senha VARCHAR(12) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE enderecos(
 	fk_id INT,
 	FOREIGN KEY (fk_id) REFERENCES clientes(id),
 	id_brecho INT,
-	FOREIGN KEY (id_brecho) REFERENCES brechos(id_brecho)
+	FOREIGN KEY (id_brecho) REFERENCES brechos(id)
 );
 
 CREATE TABLE categorias(
