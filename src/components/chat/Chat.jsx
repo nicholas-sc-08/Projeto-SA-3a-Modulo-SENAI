@@ -25,7 +25,6 @@ function Chat() {
         buscar_clientes();
         buscar_chat();
         console.log(usuario_logado);
-        
     }, []);
 
     async function buscar_clientes(){
@@ -76,7 +75,7 @@ function Chat() {
         
         const mensagens_filtradas = array_chat.filter((mensagem) => {
         
-        return (mensagem.id_dono_mensagem == usuario_logado.id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada.id || mensagem.id_dono_mensagem == pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem == usuario_logado.id);
+        return mensagem.id_dono_mensagem == usuario_logado.id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada.id || mensagem.id_dono_mensagem == pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem == usuario_logado.id;
         });
   
         set_conversa_atual(mensagens_filtradas);
@@ -194,7 +193,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
-              <h2>{pegar_ultimo_sobrenome(conversa.nome)}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(Você)` : ``}</h2>
               <div className='container_ultima_mensagem_chat'>
                 <span>{ultima_mensagem(conversa.id)}</span>
               </div>
@@ -218,7 +217,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
-              <h2>{conversa.nome}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(Você)` : ``}</h2>
               <span>{ultima_mensagem(conversa.id)}</span>
             </div>
             </div>
