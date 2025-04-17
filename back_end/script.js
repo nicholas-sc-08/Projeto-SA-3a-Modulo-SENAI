@@ -128,11 +128,11 @@ app.get(`/enderecos/:id`, async (req, res) => {
 
 app.post(`/enderecos`, async (req, res) => {
 
-    const { cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id } = req.body;
+    const { cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho } = req.body;
 
     try {
 
-        const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id) values($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id]);
+        const resultado = await pool.query(`INSERT INTO enderecos (cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho) values($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [cep, bairro, logradouro, estado, cidade, numero, complemento, fk_id, id_brecho]);
         res.status(200).json(resultado.rows[0]);
 
     } catch (erro) {
@@ -211,11 +211,11 @@ app.post(`/brechos`, async (req, res) => {
     try {
         const resultado = await pool.query(
             `INSERT INTO brechos (nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
             [nome_vendedor, data_de_nascimento_vendedor, senha, nome_brecho, email, telefone, CNPJ, logo]
         );
 
-        res.status(201).json(resultado.rows[0]); // Código 201 para "Created"
+        res.status(201).json(resultado.rows[0]);
     } catch (erro) {
         console.error(erro);
         res.status(500).json({ erro: erro.message });
@@ -320,7 +320,7 @@ app.put(`/categorias/:id`, async (req, res) => {
 
     try {
         
-        const categoria = await pool.query(`UPDATE categorias SET nome = $2 WHERE id = $1`, [id, nome]);
+        const categoria = await pool.query(`UPDATE categorias SET nome = $2 WHERE id = $1 RETURNING *`, [id, nome]);
         res.status(200).json(categoria.rows[0]);
 
     } catch (erro) {
@@ -359,13 +359,13 @@ app.get("/Produto", async (req, res) => {
 
 app.post('/Produto', async (req, res) => {
 
-    const { nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca } = req.body;
+    const { nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria } = req.body;
 
     console.log(nome);
     
 
     try{
-        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca) values($1,$2, $3, $4, $5, $6, $7, $8, $9)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca])
+        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria) values($1,$2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria])
         res.status(200).json(produto.rows[0])
 
     } catch (erro){
@@ -408,8 +408,24 @@ app.post(`/chat`, async (req, res) => {
 
     try {
         
-        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5)`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5) RETURNING *`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
         res.status(200).json(conversa.rows[0]);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.put(`/chat/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    const { mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem } = req.body;
+
+    try {
+        
+        const mensagem_a_atualizar = await pool.query(`UPDATE chat SET mensagem = $2, hora = $3, data_da_mensagem = $4, id_dono_mensagem = $5, id_quem_recebeu_mensagem = $6 WHERE id = $1 RETURNING *`, [id, mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        res.status(200).json(mensagem_a_atualizar.rows[0]);
 
     } catch (erro) {
       
@@ -425,7 +441,7 @@ app.delete(`/chat/:id_dono_mensagem/:id_quem_recebeu_mensagem`, async (req, res)
     try {
         
         const conversa = await pool.query(`DELETE FROM chat WHERE id_dono_mensagem = $1 AND id_quem_recebeu_mensagem = $2 OR id_dono_mensagem = $2 AND id_quem_recebeu_mensagem = $1`, [id_dono_mensagem, id_quem_recebeu_mensagem]);
-        res.status(200).json(conversa.rows);
+        res.status(200).json(conversa.rows[0]);
 
     } catch (erro) {
       

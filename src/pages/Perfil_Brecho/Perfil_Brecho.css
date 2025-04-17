@@ -15,6 +15,7 @@ body {
 
     height: 93%;
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,16 +30,25 @@ body {
 
     height: 85%;
     width: 85%;
+
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
+
+
+
+/*  --- Dentro da Div do Perfil Brecho ---  */
+
+
+/* Divs e Elementos que estão presentes na parte ESQUERDA dentro da Div Principal de Perfil Brecho*/
 
 .parte-esquerda-content {
     border: 3px solid red;
 
     height: 95%;
     width: 26%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -52,24 +62,104 @@ body {
 
     height: 59%;
     width: 96%;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.infos-horario-endereco-brecho-content {
+.infos-horario-endereco-cadastrou-brecho-content {
     border: 3px solid #00E69D;
 
     height: 36%;
     width: 96%;
-    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
+
+.endereco-e-horarios-contents {
+    border: 3px solid #00A9E6;
+
+    height: 70%;
+    width: 95%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.endereco-brecho-content {
+    border: 3px solid #FFA600;
+
+    height: 66%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5%;
+
+}
+
+.titulo-endereco {
+    font-family: "Montserrat", sans serif;
+    font-weight: 720;
+    font-size: 1.2rem;
+    color: var(--cor_um);
+}
+
+.endereco-cadastrado {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
+.horario-brecho-content {
+    border: 3px solid #FFA600;
+
+    height: 34%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5%;
+}
+
+.horario-brecho-content {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
+.titulo-horario {
+    font-family: "Montserrat", sans serif;
+    font-weight: 720;
+    font-size: 1.2rem;
+    color: var(--cor_um);
+}
+
+.data-cadastrouSe-content {
+    border: 3px solid #00A9E6;
+
+    height: 23%;
+    width: 95%;
+}
+
+/* Divs e Elementos que estão presentes na parte DIREITA dentro da Div Principal de Perfil Brecho*/
 
 .parte-direita-content {
     border: 3px solid red;
 
     height: 95%;
     width: 69%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -81,6 +171,7 @@ body {
 
     height: 46%;
     width: 98%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -92,17 +183,61 @@ body {
 
     height: 35%;
     width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1%;
 }
 
 .nome-brecho-icons-content h1 {
-    font-family: "Poppins", sans serif;
-    font-weight: 620;
-    font-size: 27px;
+    font-family: "Montserrat", sans serif;
+    font-weight: 740;
+    font-size: 1.9rem;
     letter-spacing: 1px;
     color: var(--cor_dezesete);
+}
+
+.icons-edicao-excluir-content {
+    border: 3px solid #DFE600;
+
+    width: 22%;
+    height: 80%;
+
+    display: flex;
+    align-items: center;
+}
+
+.editar-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.editar-content p {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_um);
+}
+
+.excluir-content {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.excluir-content p {
+    font-size: 1em;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: var(--cor_onze);
 }
 
 .entrar-em-contato-content {
@@ -110,6 +245,69 @@ body {
 
     height: 34%;
     width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+}
+
+.mensagem-content {
+    border: 3px solid #DFE600;
+    
+    width: 28%;
+    height: 90%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mensagem-content a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.mensagem-content img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.ligar-content {
+    border: 3px solid #DFE600;
+
+    width: 28%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ligar-content a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_um);
+    border-radius: 50%;
+}
+
+.ligar-content img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.entrar-em-contato-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 730;
+    font-size: 1.1rem;
+    color: var(--cor_seis);
 }
 
 .parte-inferior-div-direita-content {
@@ -123,16 +321,48 @@ body {
     align-items: center;
 }
 
-.topicos-infos-content {
+.topicos-infos-grandeContent {
     border: 3px solid #E600B5;
 
-    height: 22%;
+    height: 24%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3%;
 }
+
+.topicos-infos-subContent {
+    border: 3px solid #DFE600;
+
+    height: 90%;
+    width: 47%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.topicos-infos-subContent button {
+    width: 24%;
+
+    font-family: "Montserrat", sans serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_um);
+    cursor: pointer;
+    border: none;
+}
+
+    .topicos-infos-subContent button:focus{
+        border-bottom: 0.14rem solid var(--cor_um); 
+    }
+
 
 .infos-exibidas-content {
     border: 3px solid #E600B5;
 
     height: 73%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
 }

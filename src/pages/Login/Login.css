@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 6%;
-    margin-left: 20%;
+    margin-left: 15%;
     height: 45%;
+    font-family: "Montserrat", sans serif;
+    overflow-y: hidden;
+
 }
 
 .info-login{
@@ -12,90 +14,178 @@
     flex-direction: column;
 }
 
+.logo-camadinha{
+
+    margin-left: 8%;
+    margin-top: 2%;
+    height: 10%;
+}
+
+
 .ladoEsquerdo-container img{
     width: 150px;
 }
 
 .ladoEsquerdo-container input{
-    width: 26%;
-    height: 40px;
+   
+    width: 30%;
+    height: 3.1vw;
+    padding-left: 1%;
+    cursor: pointer;
     outline: none;
     border: 0.1vw solid var(--cor_dois);
-    border-radius: 7px;
+    border-radius: 1vw;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_seis);
     background-color: transparent;
+
+}
+
+.ladoEsquerdo-container span{
+    color: var(--cor_sete_v_um);
 }
 
 .ladoEsquerdo-container label{
     color: var(--cor_seis_v_um);
     font-weight: 800;
-    margin-top: 2%;
+    margin-top: 3%;
+    margin-bottom: 1%;
 }
 
 .ladoEsquerdo-container h1{
     color: var(--cor_seis);
+    width: 30%;
+    margin-top: 2%;
 }
 
-.ladoEsquerdo-container button{
+.fazer_login_butao{
     border: none;
-    border-radius: 17px;
+    border-radius: 30px;
     background-color: var(--cor_um);
     color: aliceblue;
-    width: 8%;
-    height: 35px;
+    width: 15%;
+    height: 50px;
+    font-size: 1.2rem;
     margin-top: 1.5%;
+    cursor: pointer;
 }
 
-.ladoEsquerdo-container button:hover{
-    transform: scale(1.1);
+.fazer_login_butao button:hover{
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+    
 }
+
+
+.botao-google-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 19px;
+    border: 1px solid #dadce0;
+    border-radius: 30px;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 30%;
+  }
+  
+  .botao-google-custom:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .botao-google-custom img {
+    width: 35px;
+    height: 20px;
+  }
+
+/* --------------------------------------------------------LADO DIREITO--------------------------------------- */
 
 .ladoDireito-container{
     border-radius: 19px;
     background-color: #E7E8CE;
-    width: 28%;
-    height: 65%;
+    width: 40%;
+    height: 90%;
     position: absolute;
-    top: 15%;
-    left: 50%;
+    top: 5%;
+    left: 45%;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .info-ladoDireito{
-    position: relative;
     left: 27%;
     width: 50%;
 }
 
 .info-ladoDireito h1{
+    transition: 0.3s;
+    font-family: var(--tipografia_primaria);
+    font-size: 2.4rem;
+    width: 120%;
+    margin-left: 50%;
+    
     color: var(--cor_um);
-    font-size: 38px;
 }   
 
 .info-ladoDireito p{
-    color: var(--cor_um);
-    font-weight: 300;
-    font-size: 19px;
-    margin-top: 9%;
+    transition: 0.3s;
+    width: 120%;
+    margin-top: 10%;
+    margin-bottom: 8%;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.25rem;
+    color: var(--cor_um_v_um);
+    margin-left: 42%;
+    text-align: center;
 } 
+
+
 
 .info-ladoDireito button{
     position: relative;
     top: 26px;
-    left: 15%;
     border: none;
-    border-radius: 19px;
-    background-color: var(--cor_dois);
+    border-radius: 30px;
+    background-color: var(--cor_um);
     color: aliceblue;
-    width: 50%;
-    height: 35px;
+    width: 65%;
+    height: 50px;
+    font-size: 1rem;
+    margin-left: 69%;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .info-ladoDireito button:hover{
-    transform: scale(1.1);
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
 }
 
 .estrelaMenor{
     margin-left: 95%;
-    margin-top: 25%;
+    margin-top: 16%;
 }
+
+
+.erro-campo {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.erro-geral {
+    margin-top: 1rem;
+}
+
 
 /* Responsividade Mobile*/
 @media (max-width: 768px) {

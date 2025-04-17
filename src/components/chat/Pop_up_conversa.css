@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     width: 15%;
-    height: 30%;
+    height: 14%;
 }
 
 .container_pop_up{
@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: space-around;
     width: 85%;
-    height: 45%;
+    height: 100%;
 
     border-radius: 1vw;
 
@@ -30,6 +30,63 @@
     transition: 0.3s;
 
     cursor: pointer;
+}
+
+.container_conteudo_pop_up_conversa_atual{
+
+    height: 100%;
+}
+
+.continer_conteudo_mensagem{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container_botao_voltar_pop_up_conversa_atual{
+
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.container_botao_voltar_pop_up_conversa_atual button{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    width: 15%;
+    height: 90%;
+
+    margin-left: 5%;
+
+    border: 0px;
+    border-radius: 100vw;
+    background-color: transparent;
+}
+
+.container_botao_voltar_pop_up_conversa_atual img{
+
+    width: 100%;
+}
+
+.continer_conteudo_mensagem span{
+
+    width: 90%;
+    font-size: 0.9rem;
+    font-family: var(--tipografia_secundaria);
+    font-weight: 500;
+
+    color: var(--cor_dois);
 }
 
 .container_excluir_conversa:hover{
@@ -66,6 +123,8 @@
 
     display: flex;
     align-items: center;
+    cursor: pointer;
+    
     height: 50%;
     transition: 0.3s;
 }

@@ -13,14 +13,16 @@ function Chat_conversa() {
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
-    const { id_chat, set_id_chat } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
-    const [ apagar_mensagem, set_apagar_mensagem ] = useState(false);
     const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
+    const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
+    const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
+    const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
+    const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
 
     function fechar_conversa(){
 
@@ -28,6 +30,8 @@ function Chat_conversa() {
         set_conversa_aberta(false);
         set_conversa_atual([]);
         set_excluir_conversa_chat(false);
+        set_excluir_mensagens_chat(false);
+        buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
     };
 
@@ -35,8 +39,6 @@ function Chat_conversa() {
 
       buscar_clientes();
       buscar_conversas();
-
-      console.log(`p`, usuario_logado);
     }, []);
 
     async function buscar_clientes(){
@@ -81,9 +83,13 @@ function Chat_conversa() {
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
           };        
+
           
-          await axios.post(`http://localhost:3000/chat`, mensagem);
-          set_conversa_atual([...conversa_atual, mensagem]);
+          
+          const mensagem_postada = await axios.post(`http://localhost:3000/chat`, mensagem);
+
+          console.log(mensagem_postada.data);
+          set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
         };
         
@@ -115,20 +121,63 @@ function Chat_conversa() {
       };
 
       return data_da_conversa;
-    }
+    };
 
-    const mensagens_do_dia = conversa_atual.reduce((conversa_do_dia, mensagem) => {
+    const mensagens_do_dia = {};
+
+    conversa_atual.forEach(mensagem => {
+    
+      const data = mensagem.data_da_mensagem;
+    
+      if (!mensagens_do_dia[data]) {
+        mensagens_do_dia[data] = [];
+      };
+    
+      mensagens_do_dia[data].push(mensagem);
+    });
+
+    function pegar_ultimo_sobrenome(nome){
+
+      const nome_a_exibir = nome.split(` `);
+
+      return nome_a_exibir[0];
+    };
+
+    async function excluir_mensagem_digitada(mensagem_par){
+
+      const mensagem = {
+
+        ...mensagem_par,
+        mensagem: `Mensagem apagada`
+      };
       
-      const data_mensagem = mensagem.data_da_mensagem;
-
-      if (!conversa_do_dia[data_mensagem]) {
+      try {
         
-        conversa_do_dia[data_mensagem] = [];
+        if(excluir_mensagens_chat){
+          
+          await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          
+          buscar_conversas();
+          set_excluir_mensagens_chat(false);
+        };
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
+
+    useEffect(() => {
+
+      if(excluir_mensagens_chat){
+
+        set_tipo_do_cursor_mouse_chat(`pointer`);
+      } else {
+
+        set_tipo_do_cursor_mouse_chat(`default`);
       };
 
-      conversa_do_dia[data_mensagem].push(mensagem);
-      return conversa_do_dia;
-    }, {});
+    }, [excluir_mensagens_chat]);
 
   return (
     <div className='container_chat_conversa'>
@@ -141,7 +190,7 @@ function Chat_conversa() {
         
         <div className="container_header_info_chat">
 
-          <h2>{pessoa_com_quem_esta_conversando.nome}</h2>
+          <h2>{pegar_ultimo_sobrenome(pessoa_com_quem_esta_conversando.nome)}</h2>
           <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
           
         </div>
@@ -154,8 +203,6 @@ function Chat_conversa() {
         {excluir_conversa_chat && <div className='escurecer_tela_chat_conversa'></div>}      
         {excluir_conversa_chat && <Pop_up_chat_excluir_conversa/>}
 
-        {pop_up_excluir_conversa}
-      
       </div>
       
      <div className="container_conversa_atual">
@@ -174,15 +221,15 @@ function Chat_conversa() {
           
           <div className="container_mensagem" key={i}>
           
-            {conversa.id_dono_mensagem === usuario_logado.id ? 
+            {conversa.id_dono_mensagem == usuario_logado.id ? 
           
             <div className="container_dono_da_mensagem">
           
-              <div className="dono_da_mensagem">
+              <div className="dono_da_mensagem" onClick={() => excluir_mensagem_digitada(conversa)}>
           
-                <div className="container_mensagem_dono">
+                <div className="container_mensagem_dono" style={{cursor: tipo_do_cursor_mouse_chat, }}>
           
-                  <span>{conversa.mensagem}</span>
+                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
           
                 </div>
           
@@ -204,7 +251,7 @@ function Chat_conversa() {
                   
                  <div className="container_mensagem_recebedor">
                   
-                  <span>{conversa.mensagem}</span>
+                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
                   
                  </div>
                   
@@ -227,7 +274,7 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : ``} />
+          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       
       </div>
