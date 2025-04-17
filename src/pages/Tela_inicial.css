@@ -1,4 +1,6 @@
-#root, body, html{
+#root,
+body,
+html {
 
     min-height: 100vh;
 
@@ -22,7 +24,7 @@
     --cor_nove: #FFFFFF;
     --cor_nove_v_um: #ffffff96;
     --cor_nove_v_dois: #F0F0F0;
-    --cor_dez:#5c5c5c;
+    --cor_dez: #5c5c5c;
     --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
     --cor_treze: #6d0000;
@@ -78,24 +80,24 @@
     font-weight: 410;
     cursor: pointer;
     font-size: 100%;
-    width: 25%;
+    width: 28%;
 
     transition: 0.4s;
 }
 
-.secao-um-texto-container button:hover{
+.secao-um-texto-container button:hover {
     background-color: var(--cor_um);
 }
 
 /* Degrade de imagem */
-.container-imagem-roupas-numero-um{
+.container-imagem-roupas-numero-um {
     width: 75%;
     height: 70vh;
     background-image: url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
     background-size: cover;
 }
 
-.container-imagem-roupas-numero-um::before{
+.container-imagem-roupas-numero-um::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -110,48 +112,49 @@
     left: 43%;
 }
 
-.estrela-verde-home-page{
+.estrela-verde-home-page {
     position: absolute;
     z-index: 2;
     top: 6%;
-    left: 92%; 
+    left: 92%;
 }
 
-.estrela-amarela-home-page{
+.estrela-amarela-home-page {
     position: absolute;
     z-index: 2;
     top: 84%;
     left: 45%;
 }
 
-.line-home-page-secao-um{
+.line-home-page-secao-um {
     height: 6.5vh;
     background-color: var(--cor_um);
 }
+
 /* home page secao um */
 
 /* home page secao dois */
-.home-page-secao-dois-container{
+.home-page-secao-dois-container {
     padding-top: 3%;
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 85vh;
+    height: 90vh;
 }
 
-.container-sinalizacao-brechos-home-page{
+.container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
 }
 
-.icon-quadrado-brechos-home-page{
+.icon-quadrado-brechos-home-page {
     width: 1%;
     height: 4vh;
     background-color: var(--cor_um);
     border-radius: 0.2vw;
 }
 
-.container-sinalizacao-brechos-home-page p{
+.container-sinalizacao-brechos-home-page p {
     font-family: var(--tipografia_primaria);
     color: var(--cor_um);
     padding-left: 0.7%;
@@ -159,7 +162,7 @@
     font-size: 90%;
 }
 
- .container-titulo-brechos-home-page{
+.container-titulo-brechos-home-page {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -170,14 +173,14 @@
     font-weight: 800;
 }
 
-.buttons-anterior-proximo{
+.buttons-anterior-proximo {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0.5%;
 }
 
-.seta-anterior-carrossel{
+.seta-anterior-carrossel {
     border: none;
     background-color: var(--cor_nove_v_dois);
     border-radius: 2vw;
@@ -189,11 +192,11 @@
     transition: 0.4s;
 }
 
-.seta-anterior-carrossel:hover{
+.seta-anterior-carrossel:hover {
     background-color: #9da6506b;
 }
 
-.seta-proximo-carrossel{
+.seta-proximo-carrossel {
     border: none;
     background-color: var(--cor_um);
     border-radius: 2vw;
@@ -205,45 +208,46 @@
     transition: 0.4s;
 }
 
-.seta-proximo-carrossel:hover{
+.seta-proximo-carrossel:hover {
     background-color: #9da650be;
 }
 
-.container-brechos-cards-home-page{
+.container-brechos-cards-home-page {
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
-.card-brecho-home-page{
-    width: 17%;
+.card-brecho-home-page {
+    width: 23%;
     height: auto;
 }
 
-.container-imagem-brecho-cinza{
+.container-imagem-brecho-cinza {
     background-color: var(--cor_nove_v_dois);
 
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.8vw;
-    height: 30vh;
+    height: 40vh;
     margin-bottom: 5%;
 }
 
-.nome-brecho{
+.nome-brecho {
     font-family: var(--tipografia_primaria);
     font-size: 1.3rem;
     color: var(--cor_seis);
 
 }
 
-.button-ver-todos-os-brechos-home-page{
+.button-ver-todos-os-brechos-home-page {
     justify-content: center;
     align-items: center;
     display: flex;
+    padding-top: 2%;
 }
 
-.button-ver-todos-os-brechos-home-page button{
+.button-ver-todos-os-brechos-home-page button {
     border: none;
     background-color: var(--cor_um);
     color: var(--cor_doze);
@@ -256,7 +260,261 @@
     transition: 0.4s;
 }
 
-.button-ver-todos-os-brechos-home-page button:hover{
+.button-ver-todos-os-brechos-home-page button:hover {
     background-color: var(--cor_dois);
 }
+
 /* home page secao dois */
+
+/* home page secao tres */
+
+.home-page-secao-tres-container {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
+    height: 90vh;
+}
+
+.container-sinalizacao-destaques-home-page {
+    display: flex;
+    align-items: center;
+}
+
+.icon-quadrado-destaques-home-page {
+    width: 1%;
+    height: 4vh;
+    background-color: var(--cor_um);
+    border-radius: 0.2vw;
+}
+
+.container-sinalizacao-destaques-home-page p {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    padding-left: 0.7%;
+    font-weight: 600;
+    font-size: 90%;
+}
+
+.home-page-titulo-secao-tres {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 3.5rem;
+    font-weight: 800;
+    padding-bottom: 2.5%;
+}
+
+.card-lancamento-secao-tres {
+    width: 23%;
+}
+
+.alinhamento-img-perfil-nome-usuario-secao-tres {
+    align-items: center;
+    display: flex;
+    padding-bottom: 2%;
+}
+
+.alinhamento-img-perfil-nome-usuario-secao-tres img {
+    width: 10%;
+    opacity: 65%;
+    padding: 1%;
+}
+
+.nome-brech-card-lancamento {
+    padding-left: 2%;
+    font-family: var(--tipografia_secundaria);
+    font-size: 85%;
+    color: var(--cor_seis);
+    font-weight: 450;
+    opacity: 65%;
+    text-decoration: none;
+}
+
+.container-card-imagem-roupa-lancamentos {
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8f97496b;
+    border-radius: 1vw;
+}
+
+.nome-roupa-lancamentos-card {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.4rem;
+    color: var(--cor_seis);
+    font-weight: 660;
+
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.preco-roupa-lancamentos-card {
+    font-family: var(--tipografia_primaria);
+    font-size: 1rem;
+    color: var(--cor_seis);
+    font-weight: 660;
+}
+
+.alinhamento-buttons-secao-tres-lancamentos {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 2%;
+}
+
+.alinhamento-buttons-secao-tres-lancamentos button {
+    border: none;
+    background-color: var(--cor_um);
+    color: var(--cor_doze);
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    border-radius: 2vw;
+    width: 12%;
+    height: 5.5vh;
+
+    transition: 0.4s;
+}
+
+.alinhamento-buttons-secao-tres-lancamentos button:hover {
+    background-color: var(--cor_dois);
+}
+
+/* home page secao tres */
+
+/* home page secao quatro */
+.home-page-container-secao-quatro {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
+    height: 95vh;
+}
+
+.container-titulo-secao-quatro {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 3.5rem;
+    font-weight: 800;
+    padding-bottom: 3%;
+}
+
+.alinhamento-cards-secao-quatro {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-um-cards-secao-quatro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    padding-bottom: 2%;
+}
+
+.card-um-secao-quatro {
+    width: 40%;
+    height: 33vh;
+    border-radius: 1vw;
+
+    background-image: 
+    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+      url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1vw;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+}
+
+.card-dois-secao-quatro {
+    width: 58%;
+    height: 33vh;
+    border-radius: 1vw;
+
+    background-image: 
+    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+      url('./public/img/imagens_telaInicial/CardImagemDoisTelaInicial.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1vw;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+}
+
+.container-dois-cards-secao-quatro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+}
+
+.card-tres-secao-quatro {
+    width: 58%;
+    height: 33vh;
+    border-radius: 1vw;
+
+    background-image: 
+    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+      url('./public/img/imagens_telaInicial/CardImagemTresTelaInicial.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1vw;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+}
+
+.card-quatro-secao-quatro {
+    width: 40%;
+    height: 33vh;
+    border-radius: 1vw;
+
+    background-image: 
+    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+      url('./public/img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1vw;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 2rem;
+}
+
+/* home page secao quatro */
