@@ -14,8 +14,20 @@ function Perfil_Brecho() {
             <div className="logo-brecho-perfil-content">
               <img src="" alt="" />
             </div>
-            <div className="infos-horario-endereco-brecho-content">
+            <div className="infos-horario-endereco-cadastrou-brecho-content">
+              <div className="endereco-e-horarios-contents">
+                <div className="endereco-brecho-content">
+                  <p className="titulo-endereco">Endereço:</p>
+                  <p className="endereco-cadastrado">exemplo  Rua Irmão Walmir Orsi/Santa Augusta/Criciúma/SC </p>
+                </div>
+                <div className="horario-brecho-content">
+                  <p className="titulo-horario">Horário de Funcionamento:</p>
+                  <p className="horario-cadastrado">exemplo  08:00 - 16:00 </p>
+                </div>
+              </div>
+              <div className="data-cadastrouSe-content">
 
+              </div>
             </div>
           </div>
           <div className="parte-direita-content">

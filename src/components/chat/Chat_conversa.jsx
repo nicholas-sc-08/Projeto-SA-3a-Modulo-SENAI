@@ -39,8 +39,6 @@ function Chat_conversa() {
 
       buscar_clientes();
       buscar_conversas();
-
-      console.log(`p`, usuario_logado);
     }, []);
 
     async function buscar_clientes(){
@@ -85,9 +83,13 @@ function Chat_conversa() {
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
           };        
+
           
-          await axios.post(`http://localhost:3000/chat`, mensagem);
-          set_conversa_atual([...conversa_atual, mensagem]);
+          
+          const mensagem_postada = await axios.post(`http://localhost:3000/chat`, mensagem);
+
+          console.log(mensagem_postada.data);
+          set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
         };
         
@@ -121,19 +123,18 @@ function Chat_conversa() {
       return data_da_conversa;
     };
 
-      const mensagens_do_dia = conversa_atual.reduce((conversa_do_dia, mensagem) => {
-      
-      const data_mensagem = mensagem.data_da_mensagem;
+    const mensagens_do_dia = {};
 
-      if (!conversa_do_dia[data_mensagem]) {
-        
-        conversa_do_dia[data_mensagem] = [];
+    conversa_atual.forEach(mensagem => {
+    
+      const data = mensagem.data_da_mensagem;
+    
+      if (!mensagens_do_dia[data]) {
+        mensagens_do_dia[data] = [];
       };
-
-      conversa_do_dia[data_mensagem].push(mensagem);
-      
-      return conversa_do_dia;
-      }, {});
+    
+      mensagens_do_dia[data].push(mensagem);
+    });
 
     function pegar_ultimo_sobrenome(nome){
 
@@ -155,9 +156,13 @@ function Chat_conversa() {
         if(excluir_mensagens_chat){
           
           await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          
           buscar_conversas();
+
+          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual.id == mensagem.id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
+          
+          set_conversa_atual(conversa_atualizada)
           set_excluir_mensagens_chat(false);
-          set_conversa_aberta(false);
         };
         
       } catch (erro) {
