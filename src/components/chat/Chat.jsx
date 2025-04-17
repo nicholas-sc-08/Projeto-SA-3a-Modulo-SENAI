@@ -193,11 +193,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
              
              <div className="container_conversa_chat_titulo">
-<<<<<<< HEAD
-              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(Você)` : ``}</h2>
-=======
               <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
->>>>>>> 768864e73ebc17441d0b47b88fcdbd460d178d0a
               <div className='container_ultima_mensagem_chat'>
                 <span>{ultima_mensagem(conversa.id)}</span>
               </div>
@@ -221,11 +217,7 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
-<<<<<<< HEAD
-              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(Você)` : ``}</h2>
-=======
               <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
->>>>>>> 768864e73ebc17441d0b47b88fcdbd460d178d0a
               <span>{ultima_mensagem(conversa.id)}</span>
             </div>
             </div>

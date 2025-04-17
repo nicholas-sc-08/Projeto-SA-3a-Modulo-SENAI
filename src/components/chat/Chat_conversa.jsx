@@ -158,6 +158,10 @@ function Chat_conversa() {
           await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
           
           buscar_conversas();
+
+          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual.id == mensagem.id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
+          
+          set_conversa_atual(conversa_atualizada)
           set_excluir_mensagens_chat(false);
         };
         
