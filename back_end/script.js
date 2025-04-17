@@ -320,7 +320,7 @@ app.put(`/categorias/:id`, async (req, res) => {
 
     try {
         
-        const categoria = await pool.query(`UPDATE categorias SET nome = $2 WHERE id = $1`, [id, nome]);
+        const categoria = await pool.query(`UPDATE categorias SET nome = $2 WHERE id = $1 RETURNING *`, [id, nome]);
         res.status(200).json(categoria.rows[0]);
 
     } catch (erro) {
@@ -365,7 +365,7 @@ app.post('/Produto', async (req, res) => {
     
 
     try{
-        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria) values($1,$2, $3, $4, $5, $6, $7, $8, $9, $10)", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria])
+        const produto = await pool.query("INSERT INTO produto(nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria) values($1,$2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *", [nome, descricao, preco, codigo, condicao, imagem, tamanho, cor, marca, fk_id_categoria])
         res.status(200).json(produto.rows[0])
 
     } catch (erro){
@@ -408,7 +408,7 @@ app.post(`/chat`, async (req, res) => {
 
     try {
         
-        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5)`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        const conversa = await pool.query(`INSERT INTO chat(mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem) VALUES($1, $2, $3, $4, $5) RETURNING *`, [mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
         res.status(200).json(conversa.rows[0]);
 
     } catch (erro) {
@@ -424,7 +424,7 @@ app.put(`/chat/:id`, async (req, res) => {
 
     try {
         
-        const mensagem_a_atualizar = await pool.query(`UPDATE chat SET mensagem = $2, hora = $3, data_da_mensagem = $4, id_dono_mensagem = $5, id_quem_recebeu_mensagem = $6 WHERE id = $1`, [id, mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
+        const mensagem_a_atualizar = await pool.query(`UPDATE chat SET mensagem = $2, hora = $3, data_da_mensagem = $4, id_dono_mensagem = $5, id_quem_recebeu_mensagem = $6 WHERE id = $1 RETURNING *`, [id, mensagem, hora, data_da_mensagem, id_dono_mensagem, id_quem_recebeu_mensagem]);
         res.status(200).json(mensagem_a_atualizar.rows[0]);
 
     } catch (erro) {
