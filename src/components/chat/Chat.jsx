@@ -137,14 +137,14 @@ function Chat() {
         set_altura_inicial_header_chat(`15%`);
       } else {
 
-        setTimeout(() => {
+      setTimeout(() => {
           
-          set_altura_inicial_header_chat(`100%`);
+        set_altura_inicial_header_chat(`100%`);
 
-        }, 325);
+      }, 325);
         
-        set_altura_inicial_chat(`10%`);
-        set_conversa_aberta(false);
+      set_altura_inicial_chat(`10%`);
+      set_conversa_aberta(false);
       };
     };
 
@@ -175,9 +175,11 @@ function Chat() {
           <img src="./img/LupaIcon.svg" alt="" />
           <input type="text" placeholder='Pesquise' value={inpt_de_pesquisa_chat} onChange={e => set_inpt_de_pesquisa_chat(e.target.value)}/>
           </div>
+        
         </div>
 
         <button onClick={fechar_chat} className='botao_de_abrir_e_fechar_chat'>{altura_inicial_chat == `10%` ? <img src='./img/imagem_abrir_chat.svg' alt=''/> : <img src='./img/imagem_fechar_chat.svg' alt=''/>}</button>
+      
       </div> 
 
       {pop_up_notificacao_excluir_conversa && <div className='fundo_escuro_para_notificacao'></div>}
@@ -193,12 +195,18 @@ function Chat() {
               
               <img src={conversa.imagem_de_perfil} alt=""/>
              
-             <div className="container_conversa_chat_titulo">
-              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
-              <div className='container_ultima_mensagem_chat'>
-                <span>{ultima_mensagem(conversa.id)}</span>
+              <div className="container_conversa_chat_titulo">
+              
+                <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+                
+                <div className='container_ultima_mensagem_chat'>
+                
+                  <span>{ultima_mensagem(conversa.id)}</span>
+                
+                </div>
+             
               </div>
-             </div>
+            
             </div>
 
             <div className='container_conversa_chat_horario'>
@@ -218,9 +226,17 @@ function Chat() {
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
+              
               <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
-              <span>{ultima_mensagem(conversa.id)}</span>
+
+              <div className="container_ultima_mensagem_chat">
+
+                <span>{ultima_mensagem(conversa.id)}</span>
+              
+              </div>
+            
             </div>
+            
             </div>
 
             <div className='container_conversa_chat_horario'>

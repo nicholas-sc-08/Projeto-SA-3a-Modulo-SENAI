@@ -158,6 +158,7 @@ function Chat_conversa() {
           await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
           
           buscar_conversas();
+
           set_excluir_mensagens_chat(false);
         };
         
