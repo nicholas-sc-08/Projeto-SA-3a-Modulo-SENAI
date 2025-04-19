@@ -92,7 +92,7 @@ html {
 /* Degrade de imagem */
 .container-imagem-roupas-numero-um {
     width: 75%;
-    height: 70vh;
+    height: 66vh;
     background-image: url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
     background-size: cover;
 }
@@ -107,7 +107,7 @@ html {
     z-index: 1;
     pointer-events: none;
     width: 75%;
-    height: 70.7vh;
+    height: 67.3vh;
     top: 9.5%;
     left: 43%;
 }
@@ -139,7 +139,7 @@ html {
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 90vh;
+    height: 98vh;
 }
 
 .container-sinalizacao-brechos-home-page {
@@ -178,38 +178,6 @@ html {
     justify-content: flex-end;
     align-items: center;
     gap: 0.5%;
-}
-
-.seta-anterior-carrossel {
-    border: none;
-    background-color: var(--cor_nove_v_dois);
-    border-radius: 2vw;
-    padding: 0.3%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-}
-
-.seta-anterior-carrossel:hover {
-    background-color: #9da6506b;
-}
-
-.seta-proximo-carrossel {
-    border: none;
-    background-color: var(--cor_um);
-    border-radius: 2vw;
-    padding: 0.3%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-}
-
-.seta-proximo-carrossel:hover {
-    background-color: #9da650be;
 }
 
 .container-brechos-cards-home-page {
@@ -273,7 +241,7 @@ html {
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 90vh;
+    height: 98vh;
 }
 
 .container-sinalizacao-destaques-home-page {
@@ -392,7 +360,7 @@ html {
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 95vh;
+    height: 98vh;
 }
 
 .container-titulo-secao-quatro {
@@ -427,9 +395,9 @@ html {
     height: 33vh;
     border-radius: 1vw;
 
-    background-image: 
-    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-      url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
+    background-image:
+        linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+        url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -442,6 +410,13 @@ html {
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
+    transition: 0.8s;
+}
+
+.card-um-secao-quatro:hover {
+    width: 85%;
+    margin-right: 2%;
+    cursor: pointer;
 }
 
 .card-dois-secao-quatro {
@@ -449,9 +424,9 @@ html {
     height: 33vh;
     border-radius: 1vw;
 
-    background-image: 
-    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-      url('./public/img/imagens_telaInicial/CardImagemDoisTelaInicial.svg');
+    background-image:
+        linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+        url('./public/img/imagens_telaInicial/CardImagemDoisTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -464,6 +439,13 @@ html {
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
+    transition: 0.8s;
+}
+
+.card-dois-secao-quatro:hover {
+    width: 85%;
+    margin-left: 2%;
+    cursor: pointer;
 }
 
 .container-dois-cards-secao-quatro {
@@ -478,9 +460,9 @@ html {
     height: 33vh;
     border-radius: 1vw;
 
-    background-image: 
-    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-      url('./public/img/imagens_telaInicial/CardImagemTresTelaInicial.svg');
+    background-image:
+        linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+        url('./public/img/imagens_telaInicial/CardImagemTresTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -493,6 +475,13 @@ html {
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
+    transition: 0.8s;
+}
+
+.card-tres-secao-quatro:hover {
+    width: 85%;
+    margin-right: 2%;
+    cursor: pointer;
 }
 
 .card-quatro-secao-quatro {
@@ -500,9 +489,9 @@ html {
     height: 33vh;
     border-radius: 1vw;
 
-    background-image: 
-    linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-      url('./public/img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg');
+    background-image:
+        linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
+        url('./public/img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -515,6 +504,137 @@ html {
     color: var(--cor_seis);
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
+    transition: 0.8s;
+}
+
+.card-quatro-secao-quatro:hover {
+    width: 85%;
+    margin-left: 2%;
+    cursor: pointer;
 }
 
 /* home page secao quatro */
+
+/* home page secao cinco */
+.home-page-secao-cinco-container {
+    border: 1px solid red;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
+    height: 95vh;
+}
+
+.container-sinalizacao-avalicacoes-home-page {
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+}
+
+.icon-quadrado-avaliacoes-home-page {
+    width: 1%;
+    height: 4vh;
+    background-color: var(--cor_um);
+    border-radius: 0.2vw;
+}
+
+.container-sinalizacao-avalicacoes-home-page p {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    padding-left: 0.7%;
+    font-weight: 600;
+    font-size: 90%;
+}
+
+.container-titulo-secao-cinco {
+    border: 1px solid red;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 3.5rem;
+    font-weight: 800;
+    padding-bottom: 2.5%;
+}
+
+.alinhamento-buttons-anterior-proximo {
+    border: 1px solid red;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.8%;
+}
+
+.button-anterior-carrossel {
+    border: none;
+    background-color: var(--cor_nove_v_dois);
+    padding: 0.8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2vw;
+
+    transition: all 0.3s ease;
+}
+
+.button-anterior-carrossel:hover {
+    background-color: var(--cor_um);
+    content: url('./img/icons/CarrosselAnteriorBranco.svg');
+}
+
+.button-proximo-carrossel {
+    border: none;
+    background-color: var(--cor_nove_v_dois);
+    padding: 0.8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2vw;
+
+    transition: all 0.3s ease;
+}
+
+.button-proximo-carrossel:hover {
+    background-color: var(--cor_um);
+    content: url('./img/icons/CarrosselProximoBranco.svg');
+}
+
+.container-alinhamento-avaliacoes{
+    border: 1px solid blue;
+    padding-top: 2%;
+    display: flex;
+    align-items: center;
+}
+
+.home-page-card-avaliacoes{
+    border: 2px solid color-mix(in srgb, var(--cor_seis) 20%, transparent);
+    border-radius: 1vw;
+    padding: 1.2%;
+    width: 25%;
+}
+
+.alinhamento-imagem-perfil-usuario-nome-usuario{
+    display: flex;
+    align-items: center;
+}
+
+.alinhamento-imagem-perfil-usuario-nome-usuario img{
+    width: 10%;
+}
+
+.nome-pessoa-avaliacoes{
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-weight: 700;
+    padding-bottom: 2%;
+}
+
+.comentario-avaliacao{
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    font-size: 0.9rem;
+}
+
+/* home page secao cinco */

@@ -73,8 +73,8 @@ function Tela_incial() {
 
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
         <div className="buttons-anterior-proximo">
-          <button className='seta-anterior-carrossel'><img src="./img/icons/setaAnteriorCarrossel.svg" alt="seta anterior carrossel" /></button>
-          <button className='seta-proximo-carrossel'><img src="./img/icons/setaProximoCarrossel.svg" alt="seta proximo carrossel" /></button>
+          <button className='button-anterior-carrossel'><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+          <button className='button-proximo-carrossel'><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
@@ -166,6 +166,37 @@ function Tela_incial() {
         </div>
       </div>
       {/* home page seção quatro */}
+
+      {/* home page seção cinco */}
+      <div className="home-page-secao-cinco-container">
+        <div className="container-sinalizacao-avalicacoes-home-page">
+          <div className="icon-quadrado-avaliacoes-home-page"></div>
+          <p>Avaliações</p>
+        </div>
+
+        <div className="container-titulo-secao-cinco">
+          <p>ENCONTRE O QUE PROCURA</p>
+        </div>
+
+        <div className="alinhamento-buttons-anterior-proximo">
+          <button className='button-anterior-carrossel'><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+          <button className='button-proximo-carrossel'><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+        </div>
+
+        <div className="container-alinhamento-avaliacoes">
+          <div className="home-page-card-avaliacoes">
+            <div className="alinhamento-imagem-perfil-usuario-nome-usuario">
+              <img src="./img/img_perfil_provisorio.svg" alt="" />
+              <p className="nome-pessoa-avaliacoes">Sarah M.</p>
+            </div>
+
+            <p className="comentario-avaliacao">
+              "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* home page seção cinco */}
 
       <Footer />
 
