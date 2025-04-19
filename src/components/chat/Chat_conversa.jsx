@@ -5,6 +5,8 @@ import './Chat_conversa.css';
 import axios from 'axios';
 import Pop_up_conversa from './Pop_up_conversa.jsx';
 import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
+import { io } from 'socket.io-client';
+import socket from './socket.js';
 
 function Chat_conversa() {
 
@@ -23,6 +25,27 @@ function Chat_conversa() {
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
+
+    useEffect(() => {
+      
+      socket.connect();
+    
+      function lidar_com_a_nova_mensagem(mensagem){
+      
+        console.log("Nova mensagem recebida:", mensagem);
+        set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
+      };
+    
+      //aqui ele vai conecta com o servidor socket
+      socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
+      socket.on("receber_mensagem", lidar_com_a_nova_mensagem);
+    
+      return () => {
+
+        // Limpa o listener quando o componente desmonta
+        socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+      };
+    }, []);
 
     function fechar_conversa(){
 
@@ -82,13 +105,11 @@ function Chat_conversa() {
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
-          };        
-
-          
+          };          
           
           const mensagem_postada = await axios.post(`http://localhost:3000/chat`, mensagem);
+          socket.emit(`nova_mensagem`, mensagem_postada.data);
 
-          console.log(mensagem_postada.data);
           set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
         };
