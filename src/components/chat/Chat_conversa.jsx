@@ -198,7 +198,6 @@ function Chat_conversa() {
           buscar_conversas();
 
           const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual.id == mensagem.id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
-          
           set_conversa_atual(conversa_atualizada);
           socket.emit(`nova_mensagem`, mensagem_atualizada.data);
           set_excluir_mensagens_chat(false);

@@ -44,6 +44,7 @@ io.on(`connection`, (socket) => {
 });
 
 app.get('/', (req, res) => {
+    
     res.send('Servidor de Usuários');
 });
 
