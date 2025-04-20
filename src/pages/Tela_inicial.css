@@ -183,6 +183,9 @@ html {
 .container-brechos-cards-home-page {
     padding-top: 2%;
     padding-bottom: 2%;
+    display: flex;
+    gap: 3%;
+    border: 1px solid red;
 }
 
 .card-brecho-home-page {
@@ -223,7 +226,7 @@ html {
     font-size: 1rem;
     border-radius: 2vw;
     width: 12%;
-    height: 5.5vh;
+    height: 6.2vh;
 
     transition: 0.4s;
 }
@@ -343,7 +346,7 @@ html {
     font-size: 1rem;
     border-radius: 2vw;
     width: 12%;
-    height: 5.5vh;
+    height: 6.2vh;
 
     transition: 0.4s;
 }
@@ -517,16 +520,14 @@ html {
 
 /* home page secao cinco */
 .home-page-secao-cinco-container {
-    border: 1px solid red;
     padding-top: 3%;
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 95vh;
+    height: 68vh;
 }
 
 .container-sinalizacao-avalicacoes-home-page {
-    border: 1px solid blue;
     display: flex;
     align-items: center;
 }
@@ -547,7 +548,6 @@ html {
 }
 
 .container-titulo-secao-cinco {
-    border: 1px solid red;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -560,7 +560,6 @@ html {
 }
 
 .alinhamento-buttons-anterior-proximo {
-    border: 1px solid red;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -601,37 +600,37 @@ html {
     content: url('./img/icons/CarrosselProximoBranco.svg');
 }
 
-.container-alinhamento-avaliacoes{
-    border: 1px solid blue;
+.container-alinhamento-avaliacoes {
     padding-top: 2%;
     display: flex;
     align-items: center;
 }
 
-.home-page-card-avaliacoes{
+.home-page-card-avaliacoes {
     border: 2px solid color-mix(in srgb, var(--cor_seis) 20%, transparent);
     border-radius: 1vw;
     padding: 1.2%;
     width: 25%;
 }
 
-.alinhamento-imagem-perfil-usuario-nome-usuario{
+.alinhamento-imagem-perfil-usuario-nome-usuario {
     display: flex;
     align-items: center;
-}
-
-.alinhamento-imagem-perfil-usuario-nome-usuario img{
-    width: 10%;
-}
-
-.nome-pessoa-avaliacoes{
-    font-family: var(--tipografia_primaria);
-    color: var(--cor_seis);
-    font-weight: 700;
+    gap: 3%;
     padding-bottom: 2%;
 }
 
-.comentario-avaliacao{
+.alinhamento-imagem-perfil-usuario-nome-usuario img {
+    width: 10%;
+}
+
+.nome-pessoa-avaliacoes {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-weight: 700;
+}
+
+.comentario-avaliacao {
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
     font-size: 0.9rem;
