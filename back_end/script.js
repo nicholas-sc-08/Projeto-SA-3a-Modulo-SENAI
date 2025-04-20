@@ -6,7 +6,6 @@ const { Server } = require(`socket.io`);
 
 const app = express();
 const pool = require(`./db`);
-const { error } = require("console");
 
 const porta = 3000;
 const server = http.createServer(app);
