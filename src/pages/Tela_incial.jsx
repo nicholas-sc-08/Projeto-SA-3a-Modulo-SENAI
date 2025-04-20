@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import HeaderUsuario from '../components/HeaderUsuario';
@@ -16,6 +16,9 @@ function Tela_incial() {
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+
+  const [startIndex, setStartIndex] = useState(0);
+  const itemsToShow = 4;
 
   useEffect(() => {
 
@@ -35,6 +38,31 @@ function Tela_incial() {
       console.log(erro);
     };
   };
+
+  const brechos = [
+    { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
+  ];
+
+  const next = () => {
+    if (startIndex + itemsToShow < brechos.length) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  const prev = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
+
+  const visibleBrechos = brechos.slice(startIndex, startIndex + itemsToShow);
 
   return (
     <div>
@@ -73,21 +101,22 @@ function Tela_incial() {
 
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
         <div className="buttons-anterior-proximo">
-          <button className='button-anterior-carrossel'><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel'><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+          <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+          <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
-        <div className="container-brechos-cards-home-page">
-          <div className="card-brecho-home-page">
-            <div className="container-imagem-brecho-cinza">
-              <div className="container-imagem-brecho">
-                <img src="./img/img_perfil_provisorio.svg" alt="" />
+        <div className="container-brechos-cards-home-page" >
+          {visibleBrechos.map((b, i) => (
+            <div className="card-brecho-home-page" key={i}>
+              <div className="container-imagem-brecho-cinza">
+                <div className="container-imagem-brecho">
+                  <img src={b.img} alt={b.nome} />
+                </div>
               </div>
+              <h2 className="nome-brecho">{b.nome}</h2>
             </div>
-
-            <h2 className="nome-brecho">Brechó Moda Sustentavel</h2>
-          </div>
+          ))}
         </div>
 
         <div className="button-ver-todos-os-brechos-home-page">
@@ -206,5 +235,4 @@ function Tela_incial() {
     </div>
   )
 }
-
 export default Tela_incial
