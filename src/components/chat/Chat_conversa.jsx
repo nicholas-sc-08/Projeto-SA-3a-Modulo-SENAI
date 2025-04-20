@@ -5,6 +5,8 @@ import './Chat_conversa.css';
 import axios from 'axios';
 import Pop_up_conversa from './Pop_up_conversa.jsx';
 import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
+import { io } from 'socket.io-client';
+import socket from './socket.js';
 
 function Chat_conversa() {
 
@@ -23,6 +25,43 @@ function Chat_conversa() {
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
+    const final_da_conversa = useRef(null);
+
+    useEffect(() => {
+      
+      //ele vai conecta com o servidor socket que esta conectando com o servidor do back end. lá no arquivo socket.js
+      socket.connect();
+
+      buscar_clientes();
+      buscar_conversas();
+    
+      function lidar_com_a_nova_mensagem(mensagem){
+      
+        //aqui toda vez que uma mensagem é cadastrada lá no socket, que eu fiz ali quando vai postar no banco de dados, eu já lanço no servidor socket também para ele atualizar em tempo real aqui, fazendo com que chame está função por mais que o useEffect seja chamado somente uma vez aqui ele chama esta função mais de uma vezz
+        console.log("Nova mensagem recebida:", mensagem);
+        set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
+      };
+    
+      //aqui ele vai conecta com o servidor socket
+      socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
+      socket.on("receber_mensagem", lidar_com_a_nova_mensagem);
+    
+      return () => {
+
+        // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
+        socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+      };
+      
+    }, []);
+
+    useEffect(() => {
+
+      if(final_da_conversa.current){
+
+        final_da_conversa.current.scrollIntoView({behavior: 'smooth'});
+      };
+
+    }, [conversa_atual]);
 
     function fechar_conversa(){
 
@@ -34,12 +73,6 @@ function Chat_conversa() {
         buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
     };
-
-    useEffect(() => {
-
-      buscar_clientes();
-      buscar_conversas();
-    }, []);
 
     async function buscar_clientes(){
 
@@ -82,13 +115,11 @@ function Chat_conversa() {
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado.id,
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
-          };        
-
-          
+          };          
           
           const mensagem_postada = await axios.post(`http://localhost:3000/chat`, mensagem);
+          socket.emit(`nova_mensagem`, mensagem_postada.data);
 
-          console.log(mensagem_postada.data);
           set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
         };
@@ -107,6 +138,7 @@ function Chat_conversa() {
       
       ontem.setDate(hoje.getDate() - 1);
 
+      // aqui eu vou tar fazendo um split da data, ou seja estou guardandoo dia, mes e ano em um array, fazendo um split da data, tirando a "/" para que guarde somente os dias, meses e anos.
       const [dia, mes, ano] = data_da_conversa.split('/').map(Number);
       const data = new Date(ano, mes - 1, dia);
 
@@ -125,13 +157,19 @@ function Chat_conversa() {
 
     const mensagens_do_dia = {};
 
+    // aqui vou estar iterando cadas mensagem do array conversa atual
     conversa_atual.forEach(mensagem => {
     
       const data = mensagem.data_da_mensagem;
     
+      // aqui vou estar verificando se já existe uma data para aquele objeto mensagens_do_dia
+      // se não houver ele mantém o array vazio
       if (!mensagens_do_dia[data]) {
         mensagens_do_dia[data] = [];
       };
+
+      //aqui então adicionando o array vazio ou não para a chave data
+      // seria tipo: { dia/mes/ano: [mensagem]}, sendo o dia/mes/ano da mensagem e o [mensagem] todas as informações da quela mensagem, desde a mensagem em si até o id de quem mandou e de quem recebeu
     
       mensagens_do_dia[data].push(mensagem);
     });
@@ -155,13 +193,14 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          const mensagem_atualizada = await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
           
           buscar_conversas();
 
           const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual.id == mensagem.id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
           
-          set_conversa_atual(conversa_atualizada)
+          set_conversa_atual(conversa_atualizada);
+          socket.emit(`nova_mensagem`, mensagem_atualizada.data);
           set_excluir_mensagens_chat(false);
         };
         
@@ -273,6 +312,8 @@ function Chat_conversa() {
             ))}
         </div>
         ))}
+
+        <div ref={final_da_conversa}></div>
      </div>
 
 

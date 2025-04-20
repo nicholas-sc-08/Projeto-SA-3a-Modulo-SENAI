@@ -29,6 +29,7 @@
     --cor_nove: #FFFFFF;
     --cor_nove_v_um: #ffffff96;
     --cor_nove_v_dois: #F0F0F0;
+    --cor_nove_v_tres: #e6e6e696;
     --cor_dez:#5c5c5c;
     --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
@@ -41,5 +42,6 @@
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
-}
 
+    scrollbar-color: var(--cor_um) var(--cor_nove_v_tres);
+}

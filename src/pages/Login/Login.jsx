@@ -12,50 +12,42 @@ function Login() {
 
   const [formulario, set_formulario] = useState({ nome: '', email: '', senha: '' });
   const [erro, set_erro] = useState('');
-  const [campos_vazios, set_campos_vazios] = useState({
-    nome: false,
-    email: false,
-    senha: false,
-  });
 
   const navegar = useNavigate();
 
   useEffect(() => {
+    
     informacoes_clientes();
+  
   }, []);
 
-  const informacoes_clientes = async () => {
+  async function informacoes_clientes(){
+    
     try {
+    
       const resultado = await axios.get(`http://localhost:3000/clientes`);
       set_array_clientes(resultado.data);
+    
     } catch (erro) {
+    
       console.log(erro);
-      set_erro_pagina(erro);
-      navegar(`/erro`);
-    }
+      
+    };
   };
 
   function lidar_com_formulario(e) {
+    
     e.preventDefault();
 
-    const campos_vazios_temp = {
-      nome: formulario.nome.trim() === '',
-      email: formulario.email.trim() === '',
-      senha: formulario.senha.trim() === '',
-    };
+    if(formulario.nome.trim() == `` || formulario.email.trim() == `` || formulario.senha.trim() == ``){
 
-    set_campos_vazios(campos_vazios_temp);
-
-    const algum_vazio = Object.values(campos_vazios_temp).some(vazio => vazio);
-    if (algum_vazio) {
-      set_erro("");
-      return;
-    }
+      set_erro(`Favor preencher todos os campos!`);
+    } else {
 
     const encontrar_usuario = array_clientes.find(cliente =>
-      formulario.nome === cliente.nome &&
-      formulario.email === cliente.email &&
-      formulario.senha === cliente.senha
+      formulario.nome == cliente.nome &&
+      formulario.email == cliente.email &&
+      formulario.senha == cliente.senha
     );
 
     if (encontrar_usuario) {
@@ -65,7 +57,8 @@ function Login() {
     } else {
       set_erro('Usuário ou senha incorretos!');
     }
-  }
+  };
+  };
 
   async function lidar_sucesso(tokenResponse) {
     try {
@@ -78,19 +71,23 @@ function Login() {
       });
 
       const cliente_a_logar = {
+       
         nome: data.name,
         email: data.email,
         imagem_de_perfil: data.picture,
       };
 
       const cliente_existente = array_clientes.find(
-        cliente => cliente.email === cliente_a_logar.email
+        cliente => cliente.email == cliente_a_logar.email
       );
 
       if (cliente_existente) {
+        
         set_usuario_logado(cliente_existente);
         navegar('/');
+      
       } else {
+       
         const novo_cliente = {
           nome: cliente_a_logar.nome,
           email: cliente_a_logar.email,
@@ -101,13 +98,15 @@ function Login() {
           imagem_de_perfil: cliente_a_logar.imagem_de_perfil
         };
 
-        await axios.post(`http://localhost:3000/clientes`, novo_cliente);
-        set_array_clientes([...array_clientes, novo_cliente]);
-        set_usuario_logado(novo_cliente);
+        const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
+       
+        set_array_clientes([...array_clientes, cliente.data]);
+        set_usuario_logado(cliente.data);
         set_erro('');
         navegar('/');
       }
     } catch (erro) {
+      
       console.error("Erro ao logar com Google:", erro);
       set_erro_pagina(erro);
       navegar(`/erro`);
@@ -115,10 +114,12 @@ function Login() {
   }
 
   function lidar_falha(erro) {
+   
     console.error('Erro no login:', erro);
-  }
+  };
 
   const loginGoogle = useGoogleLogin({
+    
     onSuccess: lidar_sucesso,
     onError: lidar_falha
   });
@@ -133,7 +134,7 @@ function Login() {
             <label>Nome<span>*</span></label>
             <input
               type="text"
-              className={campos_vazios.nome ? 'input-erro' : ''}
+              className='input-erro'
               value={formulario.nome}
               onChange={e => set_formulario({ ...formulario, nome: e.target.value })}
               placeholder='Nome de usuario'
@@ -142,7 +143,7 @@ function Login() {
             <label>Email<span>*</span></label>
             <input
               type="email"
-              className={campos_vazios.email ? 'input-erro' : ''}
+              className='input-erro'
               value={formulario.email}
               onChange={e => set_formulario({ ...formulario, email: e.target.value })}
               placeholder='Ex: exemplo@gmail.com'
@@ -151,7 +152,7 @@ function Login() {
             <label>Senha<span>*</span></label>
             <input
               type="password"
-              className={campos_vazios.senha ? 'input-erro' : ''}
+              className='input-erro'
               value={formulario.senha}
               onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
               placeholder='Senha pessoal'
@@ -164,10 +165,6 @@ function Login() {
           </button>
 
           <button type='submit' className='fazer_login_butao'>Fazer login</button>
-
-          {(campos_vazios.nome || campos_vazios.email || campos_vazios.senha) && (
-            <p className="erro-campo">Todos os campos são obrigatórios</p>
-          )}
 
           {erro && <p className='erro-campo erro-geral'>{erro}</p>}
         </div>
