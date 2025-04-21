@@ -8,6 +8,8 @@ import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 function Tela_incial() {
 
@@ -106,18 +108,30 @@ function Tela_incial() {
         </div>
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
-        <div className="container-brechos-cards-home-page" >
-          {visibleBrechos.map((b, i) => (
-            <div className="card-brecho-home-page" key={i}>
-              <div className="container-imagem-brecho-cinza">
-                <div className="container-imagem-brecho">
-                  <img src={b.img} alt={b.nome} />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={startIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{
+              duration: 0.25,
+              ease: "easeOut",
+            }}
+            className="container-brechos-cards-home-page"
+          >
+              {visibleBrechos.map((b, i) => (
+                <div className="card-brecho-home-page" key={i}>
+                  <div className="container-imagem-brecho-cinza">
+                    <div className="container-imagem-brecho">
+                      <img src={b.img} alt={b.nome} />
+                    </div>
+                  </div>
+                  <h2 className="nome-brecho">{b.nome}</h2>
                 </div>
-              </div>
-              <h2 className="nome-brecho">{b.nome}</h2>
-            </div>
-          ))}
-        </div>
+              ))}
+          </motion.div>
+        </AnimatePresence>
 
         <div className="button-ver-todos-os-brechos-home-page">
           <button>Ver todos</button>
