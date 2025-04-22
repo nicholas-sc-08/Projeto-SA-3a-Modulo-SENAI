@@ -64,8 +64,6 @@ function Tela_incial() {
     }
   };
 
-  const visibleBrechos = brechos.slice(startIndex, startIndex + itemsToShow);
-
   return (
     <div>
 
@@ -109,18 +107,13 @@ function Tela_incial() {
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
         <AnimatePresence mode="wait">
-          <motion.div
-            key={startIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{
-              duration: 0.25,
-              ease: "easeOut",
-            }}
-            className="container-brechos-cards-home-page"
-          >
-              {visibleBrechos.map((b, i) => (
+          <div className="carousel-wrapper">
+            <motion.div
+              animate={{ x: -startIndex * 390 }} // ajuste se o card for 270px, inclua margens
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="container-brechos-cards-home-page"
+            >
+              {brechos.map((b, i) => (
                 <div className="card-brecho-home-page" key={i}>
                   <div className="container-imagem-brecho-cinza">
                     <div className="container-imagem-brecho">
@@ -130,7 +123,8 @@ function Tela_incial() {
                   <h2 className="nome-brecho">{b.nome}</h2>
                 </div>
               ))}
-          </motion.div>
+            </motion.div>
+          </div>
         </AnimatePresence>
 
         <div className="button-ver-todos-os-brechos-home-page">
@@ -191,7 +185,7 @@ function Tela_incial() {
 
             <div className="card-dois-secao-quatro">
               {/* <img src="./img/imagens_telaInicial/CardImagemDoisTelaInicial.svg" alt="Accesórios" /> */}
-              <p>Accesórios</p>
+              <p>Acessórios</p>
             </div>
           </div>
 
@@ -218,7 +212,7 @@ function Tela_incial() {
         </div>
 
         <div className="container-titulo-secao-cinco">
-          <p>ENCONTRE O QUE PROCURA</p>
+          <p>NOSSOS FEEDBACKS</p>
         </div>
 
         <div className="alinhamento-buttons-anterior-proximo">
