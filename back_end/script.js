@@ -7,6 +7,7 @@ const { Server } = require(`socket.io`);
 const app = express();
 const conectar_com_mongo = require(`./mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
+const Endereco = require(`./models/Endereco.js`);
 
 conectar_com_mongo();
 
@@ -48,7 +49,7 @@ io.on(`connection`, (socket) => {
 
 app.get('/', (req, res) => {
     
-    res.send('Servidor de Usuários');
+    res.send('Conexão com mongo funcionando!');
 });
 
 app.get(`/clientes`, async (req, res) => {
@@ -87,6 +88,80 @@ app.post(`/clientes`, async (req, res) => {
         
     await cliente.save();
     res.status(201).json(`Cliente cadastrado!`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/clientes/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        await Cliente.findByIdAndDelete(id);
+        res.status(200).json(`Cliente excluído`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/enderecos`, async (req, res) => {
+
+    try {
+        
+        const enderecos = await Endereco.find();
+        res.status(200).json(enderecos);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/enderecos/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+    const endereco = await Endereco.findById(id);
+    res.status(200).json(endereco);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.put(`/enderecos/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+        
+       const endereco_atualizado = await Endereco.findByIdAndUpdate(id, req.body, {new: true});
+       res.status(200).json(endereco_atualizado);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/enderecos/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        await Endereco.findByIdAndDelete(id);
+        res.status(200).json(`Endereço excluído`);
 
     } catch (erro) {
       

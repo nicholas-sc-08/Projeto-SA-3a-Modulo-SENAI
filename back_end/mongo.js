@@ -5,7 +5,7 @@ async function conectar_com_mongo(){
 
     try {
         
-        await mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
+        await mongoose.connect(process.env.MONGO_URL);
 
     } catch (erro) {
       
