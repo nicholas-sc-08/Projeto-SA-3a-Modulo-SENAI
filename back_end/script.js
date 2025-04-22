@@ -139,6 +139,20 @@ app.get(`/enderecos/:id`, async (req, res) => {
     };
 });
 
+app.post(`/enderecos`, async (req, res) => {
+
+    const endereco = new Endereco(req.body);
+    try {
+        
+        const cadastrar_endereco = endereco.save();
+        res.status(201).json(cadastrar_endereco);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.put(`/enderecos/:id`, async (req, res) => {
 
     const { id } = req.params;
@@ -170,13 +184,43 @@ app.delete(`/enderecos/:id`, async (req, res) => {
     };
 });
 
-app.get(`/chat`, async (req, res) => {
+app.get(`/chats`, async (req, res) => {
 
     try {
         
         const mensagens = await Chat.find();
         res.status(200).json(mensagens);
 
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const conversa = await Chat.findById(id);
+        res.status(200).json(conversa);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/chats`, async (req, res) => {
+
+    const mensagem = new Chat(req.body);
+
+    try {
+
+        await mensagem.save();
+        res.status(201).json(`Mensagem enviada com sucesso!`);
+        
     } catch (erro) {
       
         console.error(erro);

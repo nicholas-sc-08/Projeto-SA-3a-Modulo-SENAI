@@ -8,7 +8,7 @@ const endereco_schema = new mongoose.Schema({
     estado: { type: String, required: true},
     cidade: { type: String, required: true},
     numero: { type: String, required: true},
-    complemento: { type: String, required: true},
+    complemento: { type: String, required: false},
     fk_id: { type: String, required: false},
     id_brecho: { type: String, required: false}
 }, {timestamps: true});

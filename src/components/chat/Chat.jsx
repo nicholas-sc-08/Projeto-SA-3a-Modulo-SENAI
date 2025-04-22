@@ -44,7 +44,7 @@ function Chat() {
 
       try {
         
-        const chat = await axios.get(`http://localhost:3000/chat`);
+        const chat = await axios.get(`http://localhost:3000/chats`);
         set_array_chat(chat.data);
 
       } catch (erro) {
@@ -230,7 +230,7 @@ function Chat() {
 
               <div className="container_ultima_mensagem_chat">
 
-                <span>{ultima_mensagem(conversa.id)}</span>
+                <span>{ultima_mensagem(conversa._id)}</span>
               
               </div>
             
