@@ -30,23 +30,21 @@ export default function Contato() {
             </div>
 
             <div className='fale-conosco'>
-              <div className='descricao'>
-                <label>Nome Completo</label>
+                <div className='descricao'>
+                <label>Nome</label>
+                <label className='email'>Email</label>
+                <label className='telemovel'>Telefone</label>
+                </div>
+                <div className='forms'>
                 <input type="text" />
-              </div>
-              <div className='descricaoo'>
-                <label>Email</label>
                 <input type="text" />
-              </div>
-              <div className='descricaooo'>
-                <label>Telefone</label>
-                <input type="number" />
-              </div>
-
-                <input type="text" placeholder='Escreva sua Mensagem'/>
-                <button>Enviar mensagem</button>
+                <input type="text" />
+                </div>
+                {/* <input type="text" placeholder='Escreva sua Mensagem'/>
+                <button>Enviar mensagem</button> */}
 
             </div>
+            
         </div>
       </div>
       <Footer />
