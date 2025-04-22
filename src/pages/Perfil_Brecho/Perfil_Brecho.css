@@ -3,14 +3,14 @@ body {
 }
 
 .toda-tela-content {
-    border: 3px solid #18CA00;
+    /* border: 3px solid #18CA00; */
 
     height: 100vh;
     width: 100%;
 }
 
 .depois-da-navbar-content{
-    border: 3px solid #D08E00;
+    /* border: 3px solid #D08E00; */
     background-color: var(--cor_quatro);
 
     height: 93%;
@@ -44,7 +44,7 @@ body {
 /* Divs e Elementos que estão presentes na parte ESQUERDA dentro da Div Principal de Perfil Brecho*/
 
 .parte-esquerda-content {
-    border: 3px solid red;
+    /* border: 3px solid red; */
 
     height: 95%;
     width: 26%;
@@ -56,11 +56,11 @@ body {
 }
 
 .logo-brecho-perfil-content {
-    border: 3px solid #00E69D;
+    /* border: 3px solid #00E69D; */
     border-radius: 20px;
     background-color: var(--cor_dezesseis);
 
-    height: 59%;
+    height: 56%;
     width: 96%;
 
     display: flex;
@@ -69,9 +69,10 @@ body {
 }
 
 .infos-horario-endereco-cadastrou-brecho-content {
-    border: 3px solid #00E69D;
+    border-top: 3px solid var(--cor_nove_v_tres);
 
-    height: 36%;
+
+    height: 39%;
     width: 96%;
 
     display: flex;
@@ -81,9 +82,9 @@ body {
 }
 
 .endereco-e-horarios-contents {
-    border: 3px solid #00A9E6;
+    /* border: 3px solid #00A9E6; */
 
-    height: 70%;
+    height: 77%;
     width: 95%;
 
     display: flex;
@@ -93,9 +94,9 @@ body {
 }
 
 .endereco-brecho-content {
-    border: 3px solid #FFA600;
+    /* border: 3px solid #FFA600; */
 
-    height: 66%;
+    height: 60%;
     width: 100%;
 
     display: flex;
@@ -108,7 +109,7 @@ body {
 .titulo-endereco {
     font-family: "Montserrat", sans serif;
     font-weight: 720;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--cor_um);
 }
 
@@ -120,9 +121,9 @@ body {
 }
 
 .horario-brecho-content {
-    border: 3px solid #FFA600;
+    /* border: 3px solid #FFA600; */
 
-    height: 34%;
+    height: 40%;
     width: 100%;
 
     display: flex;
@@ -146,16 +147,27 @@ body {
 }
 
 .data-cadastrouSe-content {
-    border: 3px solid #00A9E6;
+    /* border: 3px solid #00A9E6; */
 
-    height: 23%;
+    height: 16%;
     width: 95%;
+
+    display: flex;
+    align-items: end;
+    padding-left: 5%;
+}
+
+.data-cadastrouSe-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 650;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
 }
 
 /* Divs e Elementos que estão presentes na parte DIREITA dentro da Div Principal de Perfil Brecho*/
 
 .parte-direita-content {
-    border: 3px solid red;
+    /* border: 3px solid red; */
 
     height: 95%;
     width: 69%;
@@ -167,7 +179,7 @@ body {
 }
 
 .parte-superior-div-direita-content {
-    border: 3px solid #026002;
+    /* border: 3px solid #026002; */
 
     height: 46%;
     width: 98%;
@@ -179,7 +191,7 @@ body {
 }
 
 .nome-brecho-icons-content{
-    border: 3px solid #E600B5;
+    /* border: 3px solid #E600B5; */
 
     height: 35%;
     width: 100%;
@@ -199,7 +211,7 @@ body {
 }
 
 .icons-edicao-excluir-content {
-    border: 3px solid #DFE600;
+    /* border: 3px solid #DFE600; */
 
     width: 22%;
     height: 80%;
@@ -241,7 +253,7 @@ body {
 }
 
 .entrar-em-contato-content {
-    border: 3px solid #E600B5;
+    /* border: 3px solid #E600B5; */
 
     height: 34%;
     width: 100%;
@@ -253,7 +265,7 @@ body {
 }
 
 .mensagem-content {
-    border: 3px solid #DFE600;
+    /* border: 3px solid #DFE600; */
     
     width: 28%;
     height: 90%;
@@ -279,7 +291,7 @@ body {
 }
 
 .ligar-content {
-    border: 3px solid #DFE600;
+    /* border: 3px solid #DFE600; */
 
     width: 28%;
     height: 90%;
@@ -311,7 +323,7 @@ body {
 }
 
 .parte-inferior-div-direita-content {
-    border: 3px solid #026002;
+    /* border: 3px solid #026002; */
 
     height: 48%;
     width: 98%;
@@ -322,7 +334,7 @@ body {
 }
 
 .topicos-infos-grandeContent {
-    border: 3px solid #E600B5;
+    border-bottom: 3px solid var(--cor_nove_v_tres);
 
     height: 24%;
     width: 100%;
@@ -332,7 +344,7 @@ body {
 }
 
 .topicos-infos-subContent {
-    border: 3px solid #DFE600;
+    /* border: 3px solid #DFE600; */
 
     height: 90%;
     width: 47%;
@@ -343,6 +355,7 @@ body {
 
 .topicos-infos-subContent button {
     width: 24%;
+    background-color: var(--cor_quatro);
 
     font-family: "Montserrat", sans serif;
     font-weight: 700;
@@ -358,11 +371,45 @@ body {
 
 
 .infos-exibidas-content {
-    border: 3px solid #E600B5;
+    /* border: 3px solid #E600B5; */
 
     height: 73%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1%;
+}
+
+.titulo-topico-exibido{
+    /* border: 3px solid #8a00e6; */
+
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.titulo-topico-exibido p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--cor_seis);
+}
+
+.infos-cadastradas-sub-div {
+    /* border: 3px solid #8a00e6; */
+
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 3%;
+}
+
+.labels-infos {
+    font-family: "Montserrat", sans serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_dezesete);
 }

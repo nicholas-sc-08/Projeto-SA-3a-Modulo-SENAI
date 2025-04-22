@@ -122,7 +122,7 @@ function Tela_incial() {
         <AnimatePresence mode="wait">
           <div className="carousel-wrapper">
             <motion.div
-              animate={{ x: -startIndex * 478 }} // ajuste se o card for 270px, inclua margens
+              animate={{ x: -startIndex * 390 }} // ajuste se o card for 270px, inclua margens
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="container-brechos-cards-home-page"
             >
