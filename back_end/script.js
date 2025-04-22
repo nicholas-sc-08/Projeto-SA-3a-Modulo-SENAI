@@ -8,6 +8,7 @@ const app = express();
 const conectar_com_mongo = require(`./mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
+const Chat = require(`./models/Chat.js`);
 
 conectar_com_mongo();
 
@@ -87,7 +88,7 @@ app.post(`/clientes`, async (req, res) => {
     try {
         
     await cliente.save();
-    res.status(201).json(`Cliente cadastrado!`);
+    res.status(201).json(cliente);
 
     } catch (erro) {
       
@@ -162,6 +163,19 @@ app.delete(`/enderecos/:id`, async (req, res) => {
         
         await Endereco.findByIdAndDelete(id);
         res.status(200).json(`Endereço excluído`);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/chat`, async (req, res) => {
+
+    try {
+        
+        const mensagens = await Chat.find();
+        res.status(200).json(mensagens);
 
     } catch (erro) {
       

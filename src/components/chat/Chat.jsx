@@ -66,16 +66,16 @@ function Chat() {
 
     }, [pop_up_notificacao_excluir_conversa]);
 
-    function ir_para_conversa(id){
+    function ir_para_conversa(_id){
 
-      const pessoa_selecionada = array_clientes.find(cliente => cliente.id === id);
+      const pessoa_selecionada = array_clientes.find(cliente => cliente._id == _id);
       set_pessoa_com_quem_esta_conversando(pessoa_selecionada);
   
       if (array_chat.length != 0) {
         
         const mensagens_filtradas = array_chat.filter((mensagem) => {
         
-        return mensagem.id_dono_mensagem == usuario_logado.id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada.id || mensagem.id_dono_mensagem == pessoa_selecionada.id && mensagem.id_quem_recebeu_mensagem == usuario_logado.id;
+        return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada._id || mensagem.id_dono_mensagem == pessoa_selecionada._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
         });
   
         set_conversa_atual(mensagens_filtradas);
@@ -89,12 +89,12 @@ function Chat() {
 
       for(let i = array_chat.length - 1; i >= 0; i--){
 
-        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
+        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem){
 
           return array_chat[i].mensagem;
         };
 
-        if(array_chat[i].id_dono_mensagem == usuario_logado.id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
+        if(array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
           
           return array_chat[i].mensagem;
         };
@@ -108,12 +108,12 @@ function Chat() {
 
       for(let i = array_chat.length - 1; i >= 0; i--){
 
-        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
+        if(array_chat[i].id_dono_mensagem == id_cliente && usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem){
 
           return array_chat[i].hora;
         };
 
-        if(array_chat[i].id_dono_mensagem == usuario_logado.id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
+        if(array_chat[i].id_dono_mensagem == usuario_logado._id && array_chat[i].id_quem_recebeu_mensagem == id_cliente){
 
           return array_chat[i].hora;
         };
@@ -188,19 +188,19 @@ function Chat() {
 
         {inpt_de_pesquisa_chat == `` ? array_clientes.map((conversa, i ) => (
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa.id)}>
+          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
-            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa.id)}>
+            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa._id)}>
               
               <img src={conversa.imagem_de_perfil} alt=""/>
              
               <div className="container_conversa_chat_titulo">
               
-                <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+                <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                 
                 <div className='container_ultima_mensagem_chat'>
                 
-                  <span>{ultima_mensagem(conversa.id)}</span>
+                  <span>{ultima_mensagem(conversa._id)}</span>
                 
                 </div>
              
@@ -210,7 +210,7 @@ function Chat() {
 
             <div className='container_conversa_chat_horario'>
 
-              <p>{hora_da_ultima_mensagem(conversa.id)}</p>
+              <p>{hora_da_ultima_mensagem(conversa._id)}</p>
 
             </div>
 
@@ -218,15 +218,15 @@ function Chat() {
         ))
         : array_de_pesquisa_chat.map((conversa, i) => (
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa.id)}>
+          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
-            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa.id)}>
+            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa._id)}>
               
               <img src={conversa.imagem_de_perfil} alt=""/>
             
             <div className="container_conversa_chat_titulo">
               
-              <h2>{conversa.id != usuario_logado.id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa.id == usuario_logado.id ? `(você)` : ``}</h2>
+              <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
 
               <div className="container_ultima_mensagem_chat">
 
@@ -240,7 +240,7 @@ function Chat() {
 
             <div className='container_conversa_chat_horario'>
 
-              <p>{hora_da_ultima_mensagem(conversa.id)}</p>
+              <p>{hora_da_ultima_mensagem(conversa._id)}</p>
 
             </div>
 
