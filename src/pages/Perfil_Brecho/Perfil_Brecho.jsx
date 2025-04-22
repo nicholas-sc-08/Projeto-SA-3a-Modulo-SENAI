@@ -22,11 +22,11 @@ function Perfil_Brecho() {
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
-                  <p className="horario-cadastrado">exemplo  08:00 - 16:00 </p>
+                  <p className="horario-cadastrado">Segunda à Sexta: 08:00 - 16:00 </p>
                 </div>
               </div>
               <div className="data-cadastrouSe-content">
-
+                  <p>Cadastrou-se em </p>
               </div>
             </div>
           </div>
@@ -71,7 +71,18 @@ function Perfil_Brecho() {
                 </div>
               </div>
               <div className="infos-exibidas-content">
+                  <div className="titulo-topico-exibido">
+                    <p>Informações de Contato</p>
+                  </div>
+                  <div className="infos-cadastradas-sub-div">
+                    <p className="labels-infos">Nome:</p>
 
+                    <p className="labels-infos">Email:</p>
+
+                    <p className="labels-infos">Telefone:</p>
+
+                    <p className="labels-infos">CNPJ:</p>
+                  </div>
               </div>
             </div>
           </div>
