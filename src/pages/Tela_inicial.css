@@ -190,6 +190,8 @@ html {
 .card-brecho-home-page {
     width: 23%;
     height: auto;
+    flex: none;
+    margin-right: 16px;
 }
 
 .container-imagem-brecho-cinza {
@@ -234,6 +236,11 @@ html {
     background-color: var(--cor_dois);
 }
 
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
 /* home page secao dois */
 
 /* home page secao tres */
