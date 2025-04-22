@@ -91,7 +91,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await axios.get(`http://localhost:3000/chat`);
+        const conversas = await axios.get(`http://localhost:3000/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -113,11 +113,11 @@ function Chat_conversa() {
             mensagem: inpt_mensagem,
             hora: `${data.getHours() < 10 ? `0${data.getHours()}` : data.getHours() }:${ data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes()}`,
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
-            id_dono_mensagem: usuario_logado.id,
-            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando.id
+            id_dono_mensagem: usuario_logado._id,
+            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id
           };          
           
-          const mensagem_postada = await axios.post(`http://localhost:3000/chat`, mensagem);
+          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
 
           set_conversa_atual([...conversa_atual, mensagem_postada.data]);
@@ -193,11 +193,11 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chat/${mensagem.id}`, mensagem);
+          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
           
           buscar_conversas();
 
-          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual.id == mensagem.id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
+          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
           set_conversa_atual(conversa_atualizada);
           socket.emit(`nova_mensagem`, mensagem_atualizada.data);
           set_excluir_mensagens_chat(false);
@@ -263,7 +263,7 @@ function Chat_conversa() {
           
           <div className="container_mensagem" key={i}>
           
-            {conversa.id_dono_mensagem == usuario_logado.id ? 
+            {conversa.id_dono_mensagem == usuario_logado._id ? 
           
             <div className="container_dono_da_mensagem">
           
