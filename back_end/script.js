@@ -11,6 +11,7 @@ const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
 const Estoque = require(`./models/Estoque.js`);
 const Categoria = require(`./models/Categoria.js`);
+const Brecho = require(`./models/Brecho.js`);
 
 conectar_com_mongo();
 
