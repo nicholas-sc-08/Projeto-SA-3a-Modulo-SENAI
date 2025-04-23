@@ -13,6 +13,7 @@ function Gestao_Estoque() {
 
   useEffect(() => {
     buscar_produtos();
+    buscar_categorias();
   }, []);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function Gestao_Estoque() {
 
   async function buscar_produtos() {
     try {
-      const produtos = await axios.get("http://localhost:3000/produto");
+      const produtos = await axios.get("http://localhost:3000/produtos");
       set_array_produtos(produtos.data);
     } catch (erro) {
       console.error(erro);
@@ -39,7 +40,7 @@ function Gestao_Estoque() {
 
   async function excluirProduto(id) {
     try {
-      await axios.delete(`http://localhost:3000/produto/${id}`);
+      await axios.delete(`http://localhost:3000/produtos/${_id}`);
       buscar_produtos();
     } catch (error) {
       console.error(error);
@@ -163,7 +164,7 @@ function Gestao_Estoque() {
 
                     <div className="container_categoria" key={i}>
 
-                      <p>{array_categorias.find((categoria) => categoria.id == produto.fk_id_categoria)}</p>
+                      <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
 
                     </div>
 
@@ -172,9 +173,9 @@ function Gestao_Estoque() {
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
                 <span>{produto.estoque} Uni</span>
-                <span>{produto.condicao}</span>
+                <span>{produto.estado}</span>
                 <span>{produto.tamanho}</span>
-                <button onClick={() => excluirProduto(produto.id)} className="delete-button">
+                <button onClick={() => excluirProduto(produto._id)} className="delete-button">
                   <img src="./img/Lixeiraicon.svg" alt="" />
                 </button>
               </div>

@@ -119,6 +119,8 @@ function Chat_conversa() {
           
           const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
+          console.log(mensagem_postada.data);
+          
 
           set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
