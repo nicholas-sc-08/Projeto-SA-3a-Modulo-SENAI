@@ -229,6 +229,22 @@ app.post(`/chats`, async (req, res) => {
     };
 });
 
+app.put(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body_id;
+
+    try {
+
+        const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(mensagem);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.get (`/estoques`, async (req, res) =>{
     try {
         const estoque = await Estoque.find();
