@@ -227,6 +227,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 
 .editar-content p {
@@ -234,6 +235,7 @@ body {
     font-family: "Montserrat";
     font-weight: 500;
     color: var(--cor_um);
+    cursor: pointer;
 }
 
 .excluir-content {
@@ -243,6 +245,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 
 .excluir-content p {
@@ -250,6 +253,7 @@ body {
     font-family: "Montserrat";
     font-weight: 500;
     color: var(--cor_onze);
+    cursor: pointer;
 }
 
 .entrar-em-contato-content {
@@ -320,6 +324,7 @@ body {
     font-weight: 730;
     font-size: 1.1rem;
     color: var(--cor_seis);
+    cursor: default;
 }
 
 .parte-inferior-div-direita-content {

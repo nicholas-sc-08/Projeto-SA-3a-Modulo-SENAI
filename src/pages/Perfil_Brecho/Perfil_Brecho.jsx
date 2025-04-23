@@ -23,6 +23,7 @@ function Perfil_Brecho() {
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
                   <p className="horario-cadastrado">Segunda à Sexta: 08:00 - 16:00 </p>
+                  <p className="horario-cadastrado">Sábado à Domingo: 10:00 - 17:00 </p>
                 </div>
               </div>
               <div className="data-cadastrouSe-content">
