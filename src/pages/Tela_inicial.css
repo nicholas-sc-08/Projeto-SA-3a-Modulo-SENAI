@@ -203,7 +203,7 @@ html {
     justify-content: center;
     border-radius: 0.8vw;
     height: 90%;
-   
+
 }
 
 .nome-brecho {
@@ -221,7 +221,7 @@ html {
     align-items: center;
     display: flex;
     padding-top: 3%;
-    
+
 }
 
 .button-ver-todos-os-brechos-home-page button {
@@ -245,7 +245,8 @@ html {
     width: 100%;
     overflow: hidden;
     position: relative;
-  }
+}
+
 /* home page secao dois */
 
 /* home page secao tres */
@@ -291,8 +292,18 @@ html {
     padding-bottom: 2.5%;
 }
 
+.container-cards-alinhamento-lancamentos-secao-tres {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: flex;
+    gap: 3%;
+}
+
 .card-lancamento-secao-tres {
     width: 23%;
+    height: auto;
+    flex: none;
+    margin-right: 16px;
 }
 
 .alinhamento-img-perfil-nome-usuario-secao-tres {
@@ -324,7 +335,7 @@ html {
     align-items: center;
     background-color: #8f97496b;
     border-radius: 1vw;
-    
+
 }
 
 .nome-roupa-lancamentos-card {
@@ -615,15 +626,27 @@ html {
 
 .container-alinhamento-avaliacoes {
     padding-top: 2%;
+    padding-bottom: 2%;
     display: flex;
-    align-items: center;
+    gap: 3%;
+}
+
+.container-cards-alinhamento {
+    width: 22.8%;
+    height: auto;
+    flex: none;
+    /* margin-right: 16px; */
 }
 
 .home-page-card-avaliacoes {
     border: 2px solid color-mix(in srgb, var(--cor_seis) 20%, transparent);
     border-radius: 1vw;
     padding: 1.2%;
-    width: 25%;
+    padding-top: 3%;
+    padding-left: 3%;
+    width: 100%;
+    min-height: 120%;
+    max-height: 150%;
 }
 
 .alinhamento-imagem-perfil-usuario-nome-usuario {
