@@ -340,3 +340,80 @@ app.delete(`/categorias/:id`, async (req, res) => {
         console.error(erro);
     };
 });
+
+// brechos
+app.get(`/brechos`, async (req, res) => {
+
+    try {
+
+        const brechos = await Brecho.find();
+        res.status(200).json(brechos);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/brechos/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const brecho = await Brecho.findById(id);
+        res.status(200).json(brecho);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/brechos`, async (req, res) => {
+
+    const brecho = new Brecho(req.body);
+
+    try {
+
+    const novo_brecho = await brecho.save();
+    res.status(201).json(novo_brecho);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+//auiwfwkfhslj
+app.put(`/brecho/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndDelete(id);
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+// brechos
