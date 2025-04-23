@@ -243,7 +243,7 @@ body {
 }
 
 .input-group input,
-.input-group textarea {
+.input-group textarea, select {
     border: 2px solid #9DA650;
     padding: 10px;
     border-radius: 20px;

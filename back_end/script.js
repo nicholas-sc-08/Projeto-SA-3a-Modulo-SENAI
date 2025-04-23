@@ -9,6 +9,7 @@ const conectar_com_mongo = require(`./mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
+const Estoque = require(`./models/Estoque.js`);
 
 conectar_com_mongo();
 
@@ -226,3 +227,25 @@ app.post(`/chats`, async (req, res) => {
         console.error(erro);
     };
 });
+
+app.get (`/estoques`, async (req, res) =>{
+    try {
+        const estoque = await Estoque.find();
+        res.status(200).json(estoque)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+app.get(`/estoques/:id`, async (req, res) =>{
+
+    const { id } = req.params;
+
+    try {
+        const estoque = await Estoque.findById(id);
+        res.status(200).json(estoque);
+    } catch (error) {
+        console.error(error); 
+    }
+})
+
