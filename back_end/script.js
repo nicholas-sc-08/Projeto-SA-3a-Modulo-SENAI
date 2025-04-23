@@ -87,8 +87,8 @@ app.post(`/clientes`, async (req, res) => {
 
     try {
         
-    await cliente.save();
-    res.status(201).json(cliente);
+    const cliente_cadastrado = await cliente.save();
+    res.status(201).json(cliente_cadastrado);
 
     } catch (erro) {
       
