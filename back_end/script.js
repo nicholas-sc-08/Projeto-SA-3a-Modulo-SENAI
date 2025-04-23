@@ -218,8 +218,8 @@ app.post(`/chats`, async (req, res) => {
 
     try {
 
-        await mensagem.save();
-        res.status(201).json(`Mensagem enviada com sucesso!`);
+        const mensagem_postada = await mensagem.save();
+        res.status(201).json(mensagem_postada);
         
     } catch (erro) {
       
