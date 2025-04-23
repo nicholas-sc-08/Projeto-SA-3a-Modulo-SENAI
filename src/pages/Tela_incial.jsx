@@ -19,10 +19,14 @@ function Tela_incial() {
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
-  const [startIndex, setStartIndex] = useState(0); // Brechos
-  const [startIndexLancamentos, setStartIndexLancamentos] = useState(0);
-  const [startIndexFeedback, setStartIndexFeedback] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
   const itemsToShow = 4;
+
+  const [startIndexLancamentos, setStartIndexLancamentos] = useState(0);
+  const lancamentosToShow = 4;
+
+  const [startIndexFeedBack, setStartIndexFeedBack] = useState(0);
+  const FeedBackToShow = 4;
 
   useEffect(() => {
 
@@ -54,28 +58,62 @@ function Tela_incial() {
     { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
   ];
 
-  const lancamentos = Array.from({ length: 8 }).map((_, i) => ({
-    nome: `Produto ${i + 1}`,
-    preco: `R$ ${(20 + i * 5).toFixed(2)}`,
-    img: "./img/img_perfil_provisorio.svg",
-    brecho: "Brecho sustentável"
-  }));
-
-  const feedbacks = Array.from({ length: 6 }).map((_, i) => ({
-    nome: `Cliente ${i + 1}`,
-    comentario: `Comentário exemplo número ${i + 1}.`,
-    img: "./img/img_perfil_provisorio.svg"
-  }));
-
-  const next = (indexSetter, currentIndex, listLength) => {
-    if (currentIndex + itemsToShow < listLength) {
-      indexSetter(currentIndex + 1);
+  const next = () => {
+    if (startIndex + itemsToShow < brechos.length) {
+      setStartIndex(startIndex + 1);
     }
   };
 
-  const prev = (indexSetter, currentIndex) => {
-    if (currentIndex > 0) {
-      indexSetter(currentIndex - 1);
+  const prev = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
+
+  const lancamentos = [
+    { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
+    { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
+  ];
+
+  const nextLancamentos = () => {
+    if (startIndexLancamentos + lancamentosToShow < 8) { // ajusta pro total de lançamentos
+      setStartIndexLancamentos(startIndexLancamentos + 1);
+    }
+  };
+
+  const prevLancamentos = () => {
+    if (startIndexLancamentos > 0) {
+      setStartIndexLancamentos(startIndexLancamentos - 1);
+    }
+  };
+
+  const comentarios = [
+    { nome: "Sarah M.", texto: "Adorei as peças!" },
+    { nome: "João K.", texto: "Entrega super rápida!" },
+    { nome: "Lúcia R.", texto: "Tudo impecável. Voltarei!" },
+    { nome: "Sarah M.", texto: "Adorei as peças!" },
+    { nome: "João K.", texto: "Entrega super rápida!" },
+    { nome: "Lúcia R.", texto: "Tudo impecável. Voltarei!" },
+    { nome: "Sarah M.", texto: "Adorei as peças!" },
+    { nome: "João K.", texto: "Entrega super rápida!" },
+  ];
+
+
+  const nextFeedBack = () => {
+    if (startIndexFeedBack + FeedBackToShow < 8) {
+      setStartIndexFeedBack(startIndexFeedBack + 1);
+    }
+  };
+
+  const prevFeedBack = () => {
+    if (startIndexFeedBack > 0) {
+      setStartIndexFeedBack(startIndexFeedBack - 1);
     }
   };
 
@@ -114,10 +152,12 @@ function Tela_incial() {
           <p>BRECHÓS</p>
         </div>
 
+        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
         <div className="buttons-anterior-proximo">
           <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
           <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
+        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
         <AnimatePresence mode="wait">
           <div className="carousel-wrapper">
@@ -158,29 +198,29 @@ function Tela_incial() {
         </div>
 
         <div className="buttons-anterior-proximo">
-          <button className='button-anterior-carrossel' onClick={() => prev(setStartIndexLancamentos, startIndexLancamentos)}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel' onClick={() => next(setStartIndexLancamentos, startIndexLancamentos, lancamentos.length)}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+          <button className='button-anterior-carrossel' onClick={prevLancamentos}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+          <button className='button-proximo-carrossel' onClick={nextLancamentos}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
 
         <AnimatePresence mode="wait">
           <div className="carousel-wrapper">
             <motion.div
-              animate={{ x: -startIndexLancamentos * 478 }}
+              animate={{ x: -startIndexLancamentos * 390 }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="container-cards-alinhamento-lancamentos-secao-tres"
             >
               {lancamentos.map((l, i) => (
                 <div className="card-lancamento-secao-tres" key={i}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                    <img src={l.img} alt="" />
-                    <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{l.brecho}</Link>
+                    <img src="./img/img_perfil_provisorio.svg" alt="" />
+                    <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brechó Sustentável</Link>
                   </div>
                   <div className="container-card-imagem-roupa-lancamentos">
-                    <img src={l.img} alt="" />
+                    <img src={l.img} alt={l.nome} />
                   </div>
                   <div className="alinhamento-preco-roupa-card-lancamento">
-                    <p className='nome-roupa-lancamentos-card'>{l.nome}</p>
-                    <p className='preco-roupa-lancamentos-card'>{l.preco}</p>
+                    <p className='nome-roupa-lancamentos-card'>Camiseta bonita {i + 1}</p>
+                    <p className='preco-roupa-lancamentos-card'>R$ 21.50</p>
                   </div>
                 </div>
               ))}
@@ -240,30 +280,40 @@ function Tela_incial() {
         </div>
 
         <div className="alinhamento-buttons-anterior-proximo">
-          <button className='button-anterior-carrossel'><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel'><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+          <button className='button-anterior-carrossel' onClick={prevFeedBack}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+          <button className='button-proximo-carrossel' onClick={nextFeedBack}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
 
-        <div className="container-alinhamento-avaliacoes">
-          <div className="home-page-card-avaliacoes">
-            <div className="alinhamento-imagem-perfil-usuario-nome-usuario">
-              <img src="./img/img_perfil_provisorio.svg" alt="" />
-              <p className="nome-pessoa-avaliacoes">Sarah M.</p>
-            </div>
+        <AnimatePresence mode="wait">
+          <div className="carousel-wrapper">
+            <motion.div
+              animate={{ x: -startIndexFeedBack * 390 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="container-alinhamento-avaliacoes"
+            >
+              {comentarios.map((c, i) => (
+                <div className="container-cards-alinhamento">
+                  <div className="home-page-card-avaliacoes" key={i}>
+                    <div className="alinhamento-imagem-perfil-usuario-nome-usuario">
+                      <img src="./img/img_perfil_provisorio.svg" alt="" />
+                      <p className="nome-pessoa-avaliacoes">{c.nome}</p>
+                    </div>
 
-            <p className="comentario-avaliacao">
-              "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”
-            </p>
+                    <p className="comentario-avaliacao">{c.texto}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </AnimatePresence>
+        {/* home page seção cinco */}
+
+
+        {usuario_logado != `` && !conversa_aberta && <Chat />}
+        {conversa_aberta && <Chat_conversa />}
+
       </div>
-      {/* home page seção cinco */}
-
       <Footer />
-
-      {usuario_logado != `` && !conversa_aberta && <Chat />}
-      {conversa_aberta && <Chat_conversa />}
-
     </div>
   )
 }
