@@ -10,6 +10,7 @@ const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
 const Estoque = require(`./models/Estoque.js`);
+const Categoria = require(`./models/Categoria.js`);
 
 conectar_com_mongo();
 
@@ -249,3 +250,76 @@ app.get(`/estoques/:id`, async (req, res) =>{
     }
 })
 
+app.get(`/categorias`, async (req, res) => {
+
+    try {
+
+        const categorias = await Categoria.find();
+        res.status(200).json(categorias);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const categoria = await Categoria.findById(id);
+        res.status(200).json(categoria);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/categorias`, async (req, res) => {
+
+    const categoria = new Categoria(req.body);
+
+    try {
+
+    const nova_categoria = await categoria.save();
+    res.status(201).json(nova_categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.put(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndDelete(id);
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});

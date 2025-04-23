@@ -219,14 +219,14 @@ function Categorias_dashboard() {
 
             { texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
 
-              <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria.id)}>
+              <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria._id)}>
 
                 <span>{editar_categoria && "· "}{categoria.nome}</span>
 
               </div>
             )) : categorias_filtradas.map((categoria, i) => (
 
-              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria.id)}>
+              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria._id)}>
 
                   <span>{editar_categoria && "· "}{categoria.nome}</span>
 
