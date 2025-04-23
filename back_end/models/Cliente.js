@@ -6,7 +6,7 @@ const cliente_schema = new mongoose.Schema({
     email: { type: String, required: true, unique: true},
     senha: { type: String, required: true},
     telefone: { type: String, required: false, unique: false},
-    cpf: { type: String, required: false, unique: true},
+    cpf: { type: String, required: false, unique: false},
     data_de_nascimento: { type: Date, required: true},
     imagem_de_perfil: { type: String, required: true}
 }, { timestamps: true});
