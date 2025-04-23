@@ -9,6 +9,8 @@ const conectar_com_mongo = require(`./mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
+const Estoque = require(`./models/Estoque.js`);
+const Categoria = require(`./models/Categoria.js`);
 
 conectar_com_mongo();
 
@@ -87,8 +89,8 @@ app.post(`/clientes`, async (req, res) => {
 
     try {
         
-    await cliente.save();
-    res.status(201).json(cliente);
+    const cliente_cadastrado = await cliente.save();
+    res.status(201).json(cliente_cadastrado);
 
     } catch (erro) {
       
@@ -220,6 +222,117 @@ app.post(`/chats`, async (req, res) => {
 
         const mensagem_postada = await mensagem.save();
         res.status(201).json(mensagem_postada);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.put(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body_id;
+
+    try {
+
+        const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(mensagem);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get (`/estoques`, async (req, res) =>{
+    try {
+        const estoque = await Estoque.find();
+        res.status(200).json(estoque)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+app.get(`/estoques/:id`, async (req, res) =>{
+
+    const { id } = req.params;
+
+    try {
+        const estoque = await Estoque.findById(id);
+        res.status(200).json(estoque);
+    } catch (error) {
+        console.error(error); 
+    }
+})
+
+app.get(`/categorias`, async (req, res) => {
+
+    try {
+
+        const categorias = await Categoria.find();
+        res.status(200).json(categorias);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.get(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const categoria = await Categoria.findById(id);
+        res.status(200).json(categoria);
+
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.post(`/categorias`, async (req, res) => {
+
+    const categoria = new Categoria(req.body);
+
+    try {
+
+    const nova_categoria = await categoria.save();
+    res.status(201).json(nova_categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.put(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(categoria);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/categorias/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const categoria = await Categoria.findByIdAndDelete(id);
+        res.status(200).json(categoria);
         
     } catch (erro) {
       
