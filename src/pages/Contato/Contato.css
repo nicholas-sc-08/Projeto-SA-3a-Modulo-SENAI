@@ -64,9 +64,50 @@
     position: relative;
     bottom: 95%;
     left: 67%;
-    border: none;
+    width: 760px;
+    height: 55%;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
+.telemovel{
+    margin-left: 40%;
+}
+.email{
+    margin-left: 43%;
+}
+
+.descricao{
+    display: flex;
+    justify-content:space-between ;
+    color: var(--cor_dez);
+    font-weight: 800;
+    width: 75%;
+}
+
+.forms{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+}
+
+.forms input{
+    width: 30%;
+    height: 40px;
+    margin-left: 5%;
+    cursor: pointer;
+    outline: none;
+    border: 0.1vw solid var(--cor_dois);
+    border-radius: 1vw;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_seis);
+    background-color: transparent;
+
+
+}
+
 
 
