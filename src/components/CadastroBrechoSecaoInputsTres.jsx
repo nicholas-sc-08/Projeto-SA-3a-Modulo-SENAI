@@ -17,6 +17,9 @@ function CadastroBrechoSecaoInputsTres() {
 
   async function buscarCep() {
 
+    const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
+    const dadosDoEndereco = await resposta.json();
+
     try {
       setEnderecoDoBrecho({
         ...enderecoDoBrecho,
