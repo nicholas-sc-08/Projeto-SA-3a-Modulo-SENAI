@@ -8,25 +8,24 @@ function CadastroBrechoSecaoInputsTres() {
   useEffect(() => {
 
     if (enderecoDoBrecho.cep.length == 8) {
-            buscarCep();
-            console.log(enderecoDoBrecho);
-         
-        };
+      buscarCep();
+      console.log(enderecoDoBrecho);
 
+    };
 
   }, [enderecoDoBrecho.cep]);
 
   async function buscarCep() {
 
     try {
-                setEnderecoDoBrecho({
-                    ...enderecoDoBrecho, 
-                    bairro: dadosDoEndereco.bairro,
-                    logradouro: dadosDoEndereco.logradouro,
-                    estado: dadosDoEndereco.uf,
-                    cidade: dadosDoEndereco.localidade
-                });
-            console.log(enderecoDoBrecho);
+      setEnderecoDoBrecho({
+        ...enderecoDoBrecho,
+        bairro: dadosDoEndereco.bairro,
+        logradouro: dadosDoEndereco.logradouro,
+        estado: dadosDoEndereco.uf,
+        cidade: dadosDoEndereco.localidade
+      });
+      console.log(enderecoDoBrecho);
 
     } catch (erro) {
 
