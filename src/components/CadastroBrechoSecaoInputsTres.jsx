@@ -22,7 +22,7 @@ function CadastroBrechoSecaoInputsTres() {
                 
                 const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
                 const dadosDoEndereco = await resposta.json();
-
+ 
                 setEnderecoDoBrecho({
                     ...enderecoDoBrecho, 
                     bairro: dadosDoEndereco.bairro,
