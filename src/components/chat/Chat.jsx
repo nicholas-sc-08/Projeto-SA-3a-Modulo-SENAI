@@ -192,7 +192,7 @@ function Chat() {
 
             <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa._id)}>
               
-              <img src={conversa.imagem_de_perfil} alt=""/>
+              <img src={conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
              
               <div className="container_conversa_chat_titulo">
               
