@@ -42,7 +42,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
     const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
 
-    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, CNPJ: ``, logo: ``, confirmarSenha: `` });
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)

@@ -10,6 +10,8 @@ function CadastroBrechoSecaoInputsTres() {
         if(enderecoDoBrecho.cep.length == 8){
 
             buscarCep();
+            console.log(enderecoDoBrecho);
+            
         };
 
     }, [enderecoDoBrecho.cep]);
@@ -28,6 +30,8 @@ function CadastroBrechoSecaoInputsTres() {
                     estado: dadosDoEndereco.uf,
                     cidade: dadosDoEndereco.localidade
                 });
+            console.log(enderecoDoBrecho);
+
 
             } catch (erro) {
               

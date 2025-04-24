@@ -52,7 +52,7 @@ function CadastroBrechoSecaoInputsDois() {
           <input type="text" placeholder='(DD) 99123-4567' required value={formCadastroBrecho.telefone} onChange={e => setFormCadastroBrecho({ ...formCadastroBrecho, telefone: e.target.value })} />
 
           <label>CNPJ<span className='span-opcional-cadastro-brecho'>(opcional)</span></label>
-          <input type="text" placeholder='00.000.000/0000-00' value={formCadastroBrecho.CNPJ} onChange={e => setFormCadastroBrecho({ ...formCadastroBrecho, CNPJ: e.target.value })} />
+          <input type="text" placeholder='00.000.000/0000-00' value={formCadastroBrecho.cnpj} onChange={e => setFormCadastroBrecho({ ...formCadastroBrecho, cnpj: e.target.value })} />
         </div>
 
       </div>
