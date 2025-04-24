@@ -230,7 +230,7 @@ function Chat_conversa() {
         
         <button onClick={fechar_conversa} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
         
-        <img src={pessoa_com_quem_esta_conversando.imagem_de_perfil} alt="" className='container_header_chat_conversa_imagem'/>
+        <img src={pessoa_com_quem_esta_conversando.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" className='container_header_chat_conversa_imagem'/>
         
         <div className="container_header_info_chat">
 
