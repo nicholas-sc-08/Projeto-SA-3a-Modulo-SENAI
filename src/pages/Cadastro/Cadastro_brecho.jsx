@@ -26,6 +26,7 @@ function Cadastro_brecho() {
   const [tituloCadastroBrecho, setTituloCadastroBrecho] = useState(`Crie a sua conta Fly!`)
 
   const diaDeHoje = new Date();
+  const navegar_para_outra_tela = useNavigate();
 
   let senhasIguais = false;
   let emailJaCadastrado = false
@@ -69,37 +70,23 @@ function Cadastro_brecho() {
   async function lidarComFormulario(e) {
 
     e.preventDefault();
-    
-    for(let i = 0; i < array_enderecos.length; i++){
-
-      if(array_enderecos[i].cep == enderecoDoBrecho.cep){
-                
-        enderecoCadastrado = true;
-      };
-    };
 
     try {
-
-      if(enderecoCadastrado === false){
      
       const resposta = await axios.post(`http://localhost:3000/brechos`, formCadastroBrecho);
       
       const enderecoDoBrechoComFK = {
         
         ...enderecoDoBrecho,
-        id_brecho: array_brechos[array_brechos.length - 1].id
+        id_brecho: resposta.data._id
       };      
       
       await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
       
       informacoesBrecho();
       buscar_enderecos();
+      navegar_para_outra_tela(`/login`);
       
-      } else {
-
-        setMensagemErro(`CEP já cadastrado!`);
-      };
-
     } catch (erro) {
 
       console.error(erro);
@@ -221,7 +208,7 @@ function Cadastro_brecho() {
           telefoneJaCadastrado = true;
         };
 
-        if (array_brechos[i].CNPJ == formCadastroBrecho.CNPJ) {
+        if (array_brechos[i].cnpj == formCadastroBrecho.cnpj) {
 
           CNPJJaCadastrado = true;
         };

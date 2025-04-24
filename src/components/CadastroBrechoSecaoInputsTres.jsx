@@ -8,26 +8,25 @@ function CadastroBrechoSecaoInputsTres() {
   useEffect(() => {
 
     if (enderecoDoBrecho.cep.length == 8) {
+            buscarCep();
+            console.log(enderecoDoBrecho);
+         
+        };
 
-      buscarCep();
-    };
 
   }, [enderecoDoBrecho.cep]);
 
   async function buscarCep() {
 
     try {
-
-      const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
-      const dadosDoEndereco = await resposta.json();
-
-      setEnderecoDoBrecho({
-        ...enderecoDoBrecho,
-        bairro: dadosDoEndereco.bairro,
-        logradouro: dadosDoEndereco.logradouro,
-        estado: dadosDoEndereco.uf,
-        cidade: dadosDoEndereco.localidade
-      });
+                setEnderecoDoBrecho({
+                    ...enderecoDoBrecho, 
+                    bairro: dadosDoEndereco.bairro,
+                    logradouro: dadosDoEndereco.logradouro,
+                    estado: dadosDoEndereco.uf,
+                    cidade: dadosDoEndereco.localidade
+                });
+            console.log(enderecoDoBrecho);
 
     } catch (erro) {
 
