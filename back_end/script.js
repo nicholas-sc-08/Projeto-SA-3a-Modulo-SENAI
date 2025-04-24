@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     next();
 });
 
-server.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+server.listen(porta, `0.0.0.0`, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
 io.on(`connection`, (socket) => {
         
