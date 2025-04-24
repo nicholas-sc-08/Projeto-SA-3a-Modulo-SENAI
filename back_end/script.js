@@ -385,16 +385,15 @@ app.post(`/brechos`, async (req, res) => {
     };
 });
 
-//auiwfwkfhslj
-app.put(`/brecho/:id`, async (req, res) => {
+app.put(`/brechos/:id`, async (req, res) => {
 
     const { id } = req.params;
     delete req.body._id;
 
     try {
 
-        const categoria = await Categoria.findByIdAndUpdate(id, req.body, { new: true });
-        res.status(200).json(categoria);
+        const brecho = await Brecho.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(brecho);
         
     } catch (erro) {
       
@@ -402,14 +401,14 @@ app.put(`/brecho/:id`, async (req, res) => {
     };
 });
 
-app.delete(`/categorias/:id`, async (req, res) => {
+app.delete(`/brechos/:id`, async (req, res) => {
 
     const { id } = req.params;
 
     try {
 
-        const categoria = await Categoria.findByIdAndDelete(id);
-        res.status(200).json(categoria);
+        const brecho = await Brecho.findByIdAndDelete(id);
+        res.status(200).json(brecho);
         
     } catch (erro) {
       

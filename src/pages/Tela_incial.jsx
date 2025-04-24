@@ -287,7 +287,7 @@ function Tela_incial() {
         <AnimatePresence mode="wait">
           <div className="carousel-wrapper">
             <motion.div
-              animate={{ x: -startIndexFeedBack * 390 }}
+              animate={{ x: -startIndexFeedBack * 355 }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="container-alinhamento-avaliacoes"
             >

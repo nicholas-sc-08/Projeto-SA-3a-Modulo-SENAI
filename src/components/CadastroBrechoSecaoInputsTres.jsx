@@ -5,35 +5,35 @@ function CadastroBrechoSecaoInputsTres() {
 
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
 
-    useEffect(() => {
+  useEffect(() => {
 
-        if(enderecoDoBrecho.cep.length == 8){
+    if (enderecoDoBrecho.cep.length == 8) {
 
-            buscarCep();
-        };
+      buscarCep();
+    };
 
-    }, [enderecoDoBrecho.cep]);
-    
-    async function buscarCep() {
+  }, [enderecoDoBrecho.cep]);
 
-            try {
-                
-                const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
-                const dadosDoEndereco = await resposta.json();
+  async function buscarCep() {
 
-                setEnderecoDoBrecho({
-                    ...enderecoDoBrecho, 
-                    bairro: dadosDoEndereco.bairro,
-                    logradouro: dadosDoEndereco.logradouro,
-                    estado: dadosDoEndereco.uf,
-                    cidade: dadosDoEndereco.localidade
-                });
+    try {
 
-            } catch (erro) {
-              
-                console.error(erro);
-            };
-        };
+      const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
+      const dadosDoEndereco = await resposta.json();
+
+      setEnderecoDoBrecho({
+        ...enderecoDoBrecho,
+        bairro: dadosDoEndereco.bairro,
+        logradouro: dadosDoEndereco.logradouro,
+        estado: dadosDoEndereco.uf,
+        cidade: dadosDoEndereco.localidade
+      });
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
 
   return (
     <div>
@@ -74,7 +74,7 @@ function CadastroBrechoSecaoInputsTres() {
           <label>Complemento<span className='span-obrigatorio-cadastro-brecho-tres'>*</span></label>
           <input type="text" placeholder='( Opcional )' value={enderecoDoBrecho.complemento} onChange={e => setEnderecoDoBrecho({ ...enderecoDoBrecho, complemento: e.target.value })} />
         </div>
-        
+
       </div>
 
     </div>
