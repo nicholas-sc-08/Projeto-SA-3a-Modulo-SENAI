@@ -25,7 +25,7 @@ function Login() {
     
     try {
     
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`);
       set_array_clientes(resultado.data);
     
     } catch (erro) {
@@ -98,7 +98,7 @@ function Login() {
           imagem_de_perfil: cliente_a_logar.imagem_de_perfil
         };
 
-        const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
+        const cliente = await axios.post(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);
