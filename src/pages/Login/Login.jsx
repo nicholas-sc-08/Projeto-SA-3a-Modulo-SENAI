@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import "./Login.css";
+import api from '../../services/api.js'
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
@@ -25,8 +26,10 @@ function Login() {
     
     try {
     
-      const resultado = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`);
+      const resultado = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`);
       set_array_clientes(resultado.data);
+      console.log(resultado.data);
+      
     
     } catch (erro) {
     
@@ -61,10 +64,13 @@ function Login() {
   };
 
   async function lidar_sucesso(tokenResponse) {
+    
+    informacoes_clientes();
+    
     try {
       const { access_token } = tokenResponse;
 
-      const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+      const { data } = await api.get('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
@@ -79,7 +85,7 @@ function Login() {
 
       const cliente_existente = array_clientes.find(
         cliente => cliente.email == cliente_a_logar.email
-      );
+      );      
 
       if (cliente_existente) {
         
@@ -98,7 +104,7 @@ function Login() {
           imagem_de_perfil: cliente_a_logar.imagem_de_perfil
         };
 
-        const cliente = await axios.post(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`, novo_cliente);
+        const cliente = await api.post(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);
@@ -108,7 +114,8 @@ function Login() {
     } catch (erro) {
       
       console.error("Erro ao logar com Google:", erro);
-      set_erro_pagina(erro);
+      set_erro(erro.message || erro.toString());
+      set_erro_pagina(erro.message || erro.toString());
       navegar(`/erro`);
     }
   }
@@ -166,7 +173,7 @@ function Login() {
 
           <button type='submit' className='fazer_login_butao'>Fazer login</button>
 
-          {erro && <p className='erro-campo erro-geral'>{erro}</p>}
+          {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
         </div>
 
         <div className='ladoDireito-container'>

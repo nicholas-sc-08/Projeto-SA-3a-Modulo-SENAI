@@ -3,6 +3,7 @@ import './Chat.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
 import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
+import api from '../../services/api.js'
 
 function Chat() {
 
@@ -31,7 +32,7 @@ function Chat() {
 
         try {
 
-            const clientes = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`);
+            const clientes = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`);
             set_array_clientes(clientes.data);
 
         } catch (erro) {
@@ -44,7 +45,7 @@ function Chat() {
 
       try {
         
-        const chat = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/chats`);
+        const chat = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/chats`);
         set_array_chat(chat.data);
 
       } catch (erro) {
