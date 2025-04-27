@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import "./Login.css";
-import api from '../../services/api.js'
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
@@ -26,7 +25,7 @@ function Login() {
     
     try {
     
-      const resultado = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`);
+      const resultado = await axios.get(`http://localhost:3000/clientes`);
       set_array_clientes(resultado.data);
       console.log(resultado.data);
       
@@ -70,7 +69,7 @@ function Login() {
     try {
       const { access_token } = tokenResponse;
 
-      const { data } = await api.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+      const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
@@ -104,7 +103,7 @@ function Login() {
           imagem_de_perfil: cliente_a_logar.imagem_de_perfil
         };
 
-        const cliente = await api.post(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`, novo_cliente);
+        const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);

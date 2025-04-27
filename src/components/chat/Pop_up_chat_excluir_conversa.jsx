@@ -18,7 +18,7 @@ function Pop_up_chat_excluir_conversa() {
 
     try {
       
-      const conversas = await axios.get(`http://localhost:3000/chat`);
+      const conversas = await axios.get(`http://localhost:3000/chats`);
       set_array_chat(conversas.data);
 
     } catch (erro) {
@@ -35,7 +35,7 @@ function Pop_up_chat_excluir_conversa() {
 
         if(usuario_logado.id == array_chat[i].id_dono_mensagem || usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
 
-          await axios.delete(`http://localhost:3000/chat/${usuario_logado.id}/${pessoa_com_quem_esta_conversando.id}`);
+          await axios.delete(`http://localhost:3000/chats/${usuario_logado.id}/${pessoa_com_quem_esta_conversando.id}`);
           set_pop_up_notificacao_excluir_conversa(true);
         };
       };

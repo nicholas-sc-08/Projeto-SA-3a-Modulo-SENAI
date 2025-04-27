@@ -5,7 +5,7 @@ import './Chat_conversa.css';
 import Pop_up_conversa from './Pop_up_conversa.jsx';
 import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
 import socket from './socket.js';
-import api from '../../services/api.js';
+import axios from 'axios';
 
 function Chat_conversa() {
 
@@ -40,6 +40,12 @@ function Chat_conversa() {
         console.log("Nova mensagem recebida:", mensagem);
         set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
       };
+
+      // Aqui eu vo ta substituindo a mensagem atualizada no historioc de conversa
+      socket.on('receber_mensagem', (mensagem_atualizada) => {
+        
+        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id === mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
+    });
     
       //aqui ele vai conecta com o servidor socket
       socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
@@ -77,7 +83,7 @@ function Chat_conversa() {
 
       try {
           
-          const clientes = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/clientes`);
+          const clientes = await axios.get(`http://localhost:3000/clientes`);
           set_array_clientes(clientes.data);
 
       } catch (erro) {
@@ -90,7 +96,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await api.get(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/chats`);
+        const conversas = await axios.get(`http://localhost:3000/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -116,7 +122,7 @@ function Chat_conversa() {
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id
           };          
           
-          const mensagem_postada = await api.post(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/chats`, mensagem);
+          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
           console.log(mensagem_postada.data);
           
@@ -194,7 +200,7 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          const mensagem_atualizada = await api.put(`https://dc7d-2804-7f5-b0c0-fd9-487a-7c5b-df1f-8cff.ngrok-free.app/chats/${mensagem._id}`, mensagem);
+          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
           
           buscar_conversas();
 
