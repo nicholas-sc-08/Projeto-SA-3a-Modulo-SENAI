@@ -31,7 +31,7 @@ function Chat() {
 
         try {
 
-            const clientes = await axios.get(`http://localhost:3000/clientes`);
+            const clientes = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`);
             set_array_clientes(clientes.data);
 
         } catch (erro) {
@@ -44,7 +44,7 @@ function Chat() {
 
       try {
         
-        const chat = await axios.get(`http://localhost:3000/chats`);
+        const chat = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/chats`);
         set_array_chat(chat.data);
 
       } catch (erro) {

@@ -78,7 +78,7 @@ function Chat_conversa() {
 
       try {
           
-          const clientes = await axios.get(`http://localhost:3000/clientes`);
+          const clientes = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/clientes`);
           set_array_clientes(clientes.data);
 
       } catch (erro) {
@@ -91,7 +91,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await axios.get(`http://localhost:3000/chats`);
+        const conversas = await axios.get(`https://e4b5-179-89-210-29.ngrok-free.app/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -117,7 +117,7 @@ function Chat_conversa() {
             id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id
           };          
           
-          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
+          const mensagem_postada = await axios.post(`https://e4b5-179-89-210-29.ngrok-free.app/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
           console.log(mensagem_postada.data);
           
@@ -195,7 +195,7 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
+          const mensagem_atualizada = await axios.put(`https://e4b5-179-89-210-29.ngrok-free.app/chats/${mensagem._id}`, mensagem);
           
           buscar_conversas();
 
