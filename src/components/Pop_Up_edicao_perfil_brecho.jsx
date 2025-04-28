@@ -10,12 +10,14 @@ function Pop_Up_edicao_perfil_brecho() {
             <input type="image" />
           </div>
           <div className="info-horario-perfil-brecho">
-            <input type="text" />
+           <textarea name="" id="">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
           </div>
-
         </div>
         <div className="parte-direita-pop-up">
-
+          <div className="titulo-edicao-brecho-content">
+            <p>Edite seu Perfil</p>
+          </div>
+          .
         </div>
       </div>
     </div>
