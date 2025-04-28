@@ -7,6 +7,7 @@ import "./Login.css";
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
@@ -18,6 +19,7 @@ function Login() {
   useEffect(() => {
     
     informacoes_clientes();
+    informacoes_brechos();
   
   }, []);
 
@@ -37,6 +39,19 @@ function Login() {
     };
   };
 
+  async function informacoes_brechos(){
+
+    try {
+
+      const brechos = await axios.get(`http://localhost:3000/brechos`);
+      set_array_brechos(brechos.data);
+      
+    } catch (erro) {
+      
+      console.error(erro);
+    };
+  };
+
   function lidar_com_formulario(e) {
     
     e.preventDefault();
@@ -44,47 +59,46 @@ function Login() {
     if(formulario.nome.trim() == `` || formulario.email.trim() == `` || formulario.senha.trim() == ``){
 
       set_erro(`Favor preencher todos os campos!`);
+    
     } else {
 
-    const encontrar_usuario = array_clientes.find(cliente =>
-      formulario.nome == cliente.nome &&
-      formulario.email == cliente.email &&
-      formulario.senha == cliente.senha
-    );
+      const cliente_a_encontrar = array_clientes.find(cliente => formulario.nome == cliente.nome && formulario.email == cliente.email && formulario.senha == cliente.senha);
+      const brecho_a_encontrar = array_brechos.find(brecho => formulario.nome == brecho.nome_brecho && formulario.email == brecho.email && formulario.senha == brecho.senha);
+      console.log();
+      
 
-    if (encontrar_usuario) {
-      set_usuario_logado(encontrar_usuario);
-      set_erro('');
-      navegar(`/`);
-    } else {
-      set_erro('Usuário ou senha incorretos!');
-    }
-  };
+      if (cliente_a_encontrar) {
+        
+        set_usuario_logado(cliente_a_encontrar);
+        set_erro(``);
+        navegar(`/`);
+      
+      } else if(brecho_a_encontrar){
+
+        set_usuario_logado(brecho_a_encontrar);
+        set_erro(``);
+        navegar(`/`);
+
+      } else {
+        set_erro('Usuário ou senha incorretos!');
+      };
+    };
   };
 
-  async function lidar_sucesso(tokenResponse) {
+  async function lidar_sucesso(token) {
     
     informacoes_clientes();
     
     try {
-      const { access_token } = tokenResponse;
-
+      const { access_token } = token;
       const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
       });
 
-      const cliente_a_logar = {
-       
-        nome: data.name,
-        email: data.email,
-        imagem_de_perfil: data.picture,
-      };
-
-      const cliente_existente = array_clientes.find(
-        cliente => cliente.email == cliente_a_logar.email
-      );      
+      const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);  
+      const brecho_existente = array_brechos.find(brecho => brecho.email == data.email);
 
       if (cliente_existente) {
         
@@ -107,9 +121,16 @@ function Login() {
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);
-        set_erro('');
-        navegar('/');
-      }
+        set_erro(``);
+        navegar(`/`);
+      };
+    
+      if(brecho_existente){
+
+        set_usuario_logado(brecho_existente);
+        navegar(`/`);
+      };
+
     } catch (erro) {
       
       console.error("Erro ao logar com Google:", erro);
