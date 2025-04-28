@@ -364,6 +364,7 @@ app.delete(`/categorias/:id`, async (req, res) => {
 });
 
 // brechos
+
 app.get(`/brechos`, async (req, res) => {
 
     try {
@@ -437,4 +438,3 @@ app.delete(`/brechos/:id`, async (req, res) => {
         console.error(erro);
     };
 });
-// brechos

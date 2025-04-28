@@ -1,125 +1,76 @@
-import React from 'react'
-import HeaderUsuario from '../../components/HeaderUsuario'
+import React, { useRef, useState } from 'react';
+import HeaderUsuario from '../../components/HeaderUsuario';
 import Footer from '../../components/Footer';
 import "./Sobre_nos.css";
 
 export default function Sobre_nos() {
-                
+  const carrosselRef = useRef(null);
+  const [indiceAtual, setIndiceAtual] = useState(0);
+
+  const equipe = [
+    { nome: "Maria Eduarda Wolf", funcao: "Gestora e desenvolvedora front-end", foto: "./public/img/Ale.jpg", linkedin: "https://www.linkedin.com/in/maria-eduarda-wolf-luiz-051825344/", instagram: "https://www.instagram.com/wolf_eduarda12?igsh=MTFqY3Nncm02dDZyYw==", github: "https://github.com/dudawl18" },
+    { nome: "Mayara Storl", funcao: "Desenvolvedora front-end e gestora de mídia", foto: "./public/img/May.jpg", linkedin: "https://www.linkedin.com/in/mayara-storl-315ab9346", instagram: "https://www.instagram.com/storl_may/?igsh=ZzdpZHFlbXNjYzNn#", github: "https://github.com/MayaraStorl" },
+    { nome: "Rinmarys Alejandra", funcao: "Desenvolvedora front-end e gestora de mídia", foto: "./public/img/Dudinha.jpg", linkedin: "#", instagram: "#", github: "https://github.com/dudawl18" },
+    { nome: "Gabriel Fernandes", funcao: "Desenvolvedor back-end e gestor de dados", foto: "./public/img/Gabriel.jpg", linkedin: "#", instagram: "#", github: "https://github.com/dudawl18" },
+    { nome: "Nicholas Serencovich", funcao: "Desenvolvedor back-end e gestor de dados", foto: "./public/img/Nicholas.jpeg", linkedin: "#", instagram: "#", github: "https://github.com/dudawl18" }
+  ];
+
+  function mudarSlide(index) {
+    const { current } = carrosselRef;
+    const larguraSlide = current.offsetWidth;
+    current.scrollTo({ left: larguraSlide * index, behavior: "smooth" });
+    setIndiceAtual(index);
+  }
+
   return (
     <div>
-        <HeaderUsuario />
-        <div className='bibliografia-fly'>
-          <div className='sobre'>
-            <h1>Nossa História</h1>
-            <p> A ideia do Fly surgiu da experiência pessoal de um dos membros do nosso grupo de desenvolvedores. Sua mãe é dona de um brechó e, 
-              diariamente, enfrenta o desafio de alcançar novos clientes e tornar seu negócio mais conhecido. Essa realidade nos motivou a criar 
-              uma solução tecnológica que beneficie tanto pequenos empreendedores quanto consumidores que buscam alternativas mais acessíveis e 
-              ecológicas no mundo da moda. Com isso, estamos desenvolvendo o Fly, um aplicativo pensado para conectar brechós a um público maior, 
-              incentivando o consumo consciente e valorizando peças cheias de história. Acreditamos que, com essa iniciativa, poderemos transformar 
-              a forma como as pessoas descobrem e interagem com o universo dos brechós.</p>
-          </div>
-            <img className='imgEmGrupo' src="./public/img/fotoEmGrupo.png" alt="" />          
+      <HeaderUsuario />
 
+      <div className='bibliografia-fly'>
+        <div className='sobre'>
+          <h1>Nossa História</h1>
+          <p>A ideia do Fly surgiu da experiência pessoal de um dos membros do nosso grupo de desenvolvedores...</p>
         </div>
-        <div className='apresentando-equipe'>
-          <div className='equipe'>
-              <img src="./public/img/Ale.jpg" alt="" />
-              <h3>Maria Eduarda Wolf</h3>
-              <p>Gestora e desenvolvedora front-end</p>
-              <div className='icons-redesSociais'>
-              <a href="https://www.linkedin.com/in/maria-eduarda-wolf-luiz-051825344/">
-              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
+        <img className='imgEmGrupo' src="./public/img/fotoEmGrupo.png" alt="Equipe reunida" />
+      </div>
 
-            <a href="https://www.instagram.com/wolf_eduarda12?igsh=MTFqY3Nncm02dDZyYw==">
-              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
-
-            <a href="https://github.com/dudawl18">
-              <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
+      <div className='apresentando-equipe'>
+        <div className='carrossel-container'>
+          <div className='carrossel-scroll' ref={carrosselRef}>
+            {equipe.map((membro, index) => (
+              <div className='card-membro' key={index}>
+                <img src={membro.foto} alt={membro.nome} />
+                <h3>{membro.nome}</h3>
+                <p>{membro.funcao}</p>
+                <div className='icons-redesSociais'>
+                  <a href={membro.linkedin} target="_blank" rel="noreferrer">
+                    <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
+                  </a>
+                  <a href={membro.instagram} target="_blank" rel="noreferrer">
+                    <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
+                  </a>
+                  <a href={membro.github} target="_blank" rel="noreferrer">
+                    <img src="./public/img/Github-icon.svg" alt="Github" />
+                  </a>
+                </div>
               </div>
+            ))}
           </div>
 
-          <div className='equipe'>
-              <img src="./public/img/May.jpg" alt="" />
-              <h3>Mayara Storl</h3>
-              <p>Desenvolvedora front-end e gestora de midia</p>
-              <div className='icons-redesSociais'>
-              <a href="www.linkedin.com/in/mayara-storl-315ab9346">
-              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
-
-            <a href="https://www.instagram.com/storl_may/?igsh=ZzdpZHFlbXNjYzNn#">
-              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
-
-            <a href="https://github.com/MayaraStorl">
-              <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
-              </div>
-
+          {/* BOLINHAS DE NAVEGAÇÃO */}
+          <div className='bolinhas-navegacao'>
+            {equipe.map((_, index) => (
+              <span
+                key={index}
+                className={indiceAtual === index ? "bolinha ativa" : "bolinha"}
+                onClick={() => mudarSlide(index)}
+              />
+            ))}
           </div>
-
-          <div className='equipe'>
-            <img src="./public/img/Dudinha.jpg" alt="" />
-            <h3>Rinmarys Alejandra</h3>
-            <p>Desenvolvedora front-end e gestora de midia</p>
-            <div className='icons-redesSociais'>
-              <a href="#">
-              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
-
-            <a href="#">
-              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
-
-            <a href="https://github.com/dudawl18">
-              <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
-            </div>
-          </div>
-
-          <div className='equipe'>
-            <img src="./public/img/Gabriel.jpg" alt="" />
-            <h3>Gabriel Fernandes</h3>
-            <p>Desenvolvedor back-end e gestor de dados</p>
-            <div className='icons-redesSociais'>
-            <a href="#">
-              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
-
-            <a href="#">
-              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
-
-            <a href="https://github.com/dudawl18">
-              <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
-            </div>
-          </div>
-
-          <div className='equipe'>
-            <img src="./public/img/Nicholas.jpeg" alt="" />
-            <h3>Nicholas Serencovich</h3>
-            <p>Desenvolvedor back-end e gestor de dados</p>
-            <div className='icons-redesSociais'>
-            <a href="#">
-              <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
-
-            <a href="#">
-              <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
-
-            <a href="https://github.com/dudawl18">
-              <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
-            </div>
-          </div>
-
         </div>
-        <Footer />  
+      </div>
+
+      <Footer />
     </div>
-  )
+  );
 }
