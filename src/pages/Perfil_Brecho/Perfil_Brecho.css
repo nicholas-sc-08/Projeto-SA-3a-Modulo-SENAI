@@ -71,7 +71,6 @@ body {
 .infos-horario-endereco-cadastrou-brecho-content {
     border-top: 3px solid var(--cor_nove_v_tres);
 
-
     height: 39%;
     width: 96%;
 
@@ -417,4 +416,20 @@ body {
     font-weight: 700;
     font-size: 1rem;
     color: var(--cor_dezesete);
+}
+
+.infos-cadastradas-descricao-sub-div {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5%;
+}
+
+.descricao-brecho-cadastrado {
+    font-family: "Montserrat", sans serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cor_seis);
+    text-align: justify;
 }
