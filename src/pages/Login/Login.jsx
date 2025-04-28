@@ -88,6 +88,7 @@ function Login() {
   async function lidar_sucesso(token) {
     
     informacoes_clientes();
+    informacoes_brechos();
     
     try {
       const { access_token } = token;
@@ -164,7 +165,7 @@ function Login() {
               className='input-erro'
               value={formulario.nome}
               onChange={e => set_formulario({ ...formulario, nome: e.target.value })}
-              placeholder='Nome de usuario'
+              placeholder='Nome de Cliente ou de Brechó'
             />
 
             <label>Email<span>*</span></label>
