@@ -93,10 +93,10 @@ function Perfil_Brecho() {
 
                 {divAtiva === "sobre" && (
                   <>
-                    <div className="titulo-topico-exibido">
+                    {/* <div className="titulo-topico-exibido">
                       <p>Sobre o Brechó</p>
-                    </div>
-                    <div className="infos-cadastradas-sub-div">
+                    </div> */}
+                    <div className="infos-cadastradas-descricao-sub-div">
                       <p className="descricao-brecho-cadastrado">Brechó focado em moda sustentável, com peças selecionadas e de qualidade.</p>
                     </div>
                   </>
@@ -104,9 +104,6 @@ function Perfil_Brecho() {
 
                 {divAtiva === "produtos" && (
                   <>
-                    <div className="titulo-topico-exibido">
-                      <p>Produtos</p>
-                    </div>
                     <div className="infos-cadastradas-sub-div">
                       <p>Produtos disponíveis do brechó</p>
                     </div>

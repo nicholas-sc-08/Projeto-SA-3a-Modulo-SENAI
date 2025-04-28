@@ -18,17 +18,18 @@ conectar_com_mongo();
 const porta = 3000;
 const server = http.createServer(app);
 
+app.use(cors());
+  
 const io = new Server(server, {
 
     cors: {
 
         origin: `*`,
-        methods: [`GET`, `POST`, `PUT`]
+        methods: [`GET`, `POST`, `PUT`],
     }
 });
 
 app.use(body_parser.json());
-app.use(cors());
 
 app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
@@ -239,6 +240,27 @@ app.put(`/chats/:id`, async (req, res) => {
 
         const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json(mensagem);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const mensagensDeletadas = await Chat.deleteMany({
+            $or: [
+                { id_dono_mensagem: id_dono, id_quem_recebeu_mensagem: id_recebedor },
+                { id_dono_mensagem: id_recebedor, id_quem_recebeu_mensagem: id_dono }
+            ]
+        });
+        
+        res.status(200).json(mensagensDeletadas)
         
     } catch (erro) {
       

@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import './Chat_conversa.css';
-import axios from 'axios';
 import Pop_up_conversa from './Pop_up_conversa.jsx';
 import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
-import { io } from 'socket.io-client';
 import socket from './socket.js';
+import axios from 'axios';
 
 function Chat_conversa() {
 
@@ -41,6 +40,12 @@ function Chat_conversa() {
         console.log("Nova mensagem recebida:", mensagem);
         set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
       };
+
+      // Aqui eu vo ta substituindo a mensagem atualizada no historioc de conversa
+      socket.on('receber_mensagem', (mensagem_atualizada) => {
+        
+        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id === mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
+    });
     
       //aqui ele vai conecta com o servidor socket
       socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));

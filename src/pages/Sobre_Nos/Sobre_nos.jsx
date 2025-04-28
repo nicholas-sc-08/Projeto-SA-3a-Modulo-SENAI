@@ -4,25 +4,10 @@ import Footer from '../../components/Footer';
 import "./Sobre_nos.css";
 
 export default function Sobre_nos() {
-
-  function mudarSlide(direcao) {
-    const slides = document.querySelector('.equipe');
-    const numSlides = document.querySelectorAll('.equipe img').length;
-    
-    indiceAtual += direcao;
-    
-    if (indiceAtual < 0) {
-        indiceAtual = numSlides - 1;
-    } else if (indiceAtual >= numSlides) {
-        indiceAtual = 0;
-    }
-    
-    slides.style.transform = `translateX(-${indiceAtual * 100}%)`;
-}
                 
   return (
     <div>
-        {/* <HeaderUsuario /> */}
+        <HeaderUsuario />
         <div className='bibliografia-fly'>
           <div className='sobre'>
             <h1>Nossa História</h1>
@@ -131,8 +116,6 @@ export default function Sobre_nos() {
               <img src="./public/img/Github-icon.svg" alt="Github" />
             </a>
             </div>
-            <button class="prev" onclick="mudarSlide(-1)">&#10094;</button>
-            <button class="next" onclick="mudarSlide(1)">&#10095;</button>
           </div>
 
         </div>

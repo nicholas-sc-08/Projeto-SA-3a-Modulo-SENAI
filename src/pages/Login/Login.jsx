@@ -27,6 +27,8 @@ function Login() {
     
       const resultado = await axios.get(`http://localhost:3000/clientes`);
       set_array_clientes(resultado.data);
+      console.log(resultado.data);
+      
     
     } catch (erro) {
     
@@ -61,6 +63,9 @@ function Login() {
   };
 
   async function lidar_sucesso(tokenResponse) {
+    
+    informacoes_clientes();
+    
     try {
       const { access_token } = tokenResponse;
 
@@ -79,7 +84,7 @@ function Login() {
 
       const cliente_existente = array_clientes.find(
         cliente => cliente.email == cliente_a_logar.email
-      );
+      );      
 
       if (cliente_existente) {
         
@@ -108,7 +113,8 @@ function Login() {
     } catch (erro) {
       
       console.error("Erro ao logar com Google:", erro);
-      set_erro_pagina(erro);
+      set_erro(erro.message || erro.toString());
+      set_erro_pagina(erro.message || erro.toString());
       navegar(`/erro`);
     }
   }
@@ -166,7 +172,7 @@ function Login() {
 
           <button type='submit' className='fazer_login_butao'>Fazer login</button>
 
-          {erro && <p className='erro-campo erro-geral'>{erro}</p>}
+          {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
         </div>
 
         <div className='ladoDireito-container'>

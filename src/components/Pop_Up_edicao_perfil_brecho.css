@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+}
+
+.toda-tela-antes-do-pop-up {
+    border: 3px solid #18CA00;
+    background-color: transparent;
+
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-up-de-edicao-perfil-brecho-content {
+    border: 3px solid #0C35FF;
+    border-radius: 25px;
+    border: 1px solid  #fbf0ce;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+
+    height: 85%;
+    width: 85%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+ /*---- Parte Esquerda do Pop Up ----*/
+
+.parte-esquerda-pop-up {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 26%;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.perfil-brecho-logo-content {
+    border: 3px solid #00E69D;
+    border-radius: 20px;
+    background-color: var(--cor_dezesseis);
+  
+    height: 56%;
+    width: 96%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-horario-perfil-brecho {
+    border-top: 3px solid var(--cor_nove_v_tres);
+
+    height: 38%;
+    width: 94%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3%;
+}
+
+/*---- Parte DIREITA do Pop Up ----*/
+
+.parte-direita-pop-up {
+    border: 3px solid red;
+
+    height: 95%;
+    width: 69%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
