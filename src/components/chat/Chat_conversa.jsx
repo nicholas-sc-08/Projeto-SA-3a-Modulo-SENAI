@@ -319,9 +319,9 @@ function Chat_conversa() {
         </div>
         ))}
 
-        <div ref={final_da_conversa}></div>
-     </div>
+      <div ref={final_da_conversa}></div>
 
+     </div>
 
       <div className="container_campos_conversa_atual">
 
