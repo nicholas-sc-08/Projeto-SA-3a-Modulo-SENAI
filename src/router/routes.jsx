@@ -33,7 +33,7 @@ const router = createBrowserRouter([
    { path: `/sobre_nos`, element: <Sobre_nos />},
    { path: `/erro`, element: <Erro/>},
 
-   { path: `/pop_up_edicao_perfil_brecho`, element: <Pop_Up_edicao_perfil_brecho />}
+   { path: `/pop_up_edicao_perfil_brecho`, element: <Pop_Up_edicao_perfil_brecho />},
 
 ])
 
