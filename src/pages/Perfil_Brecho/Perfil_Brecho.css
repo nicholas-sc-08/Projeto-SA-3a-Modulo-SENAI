@@ -229,7 +229,8 @@ body {
     cursor: pointer;
 }
 
-.editar-content p {
+.editar-opcao-palavra {
+    text-decoration: none;
     font-size: 1em;
     font-family: "Montserrat";
     font-weight: 500;
