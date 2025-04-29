@@ -24,6 +24,7 @@ function Chat_conversa() {
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
+    const [ mensagem_lida, set_mensagem_lida ] = useState(``);
     const final_da_conversa = useRef(null);
 
     useEffect(() => {
@@ -53,6 +54,21 @@ function Chat_conversa() {
     
       // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
       return () => socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+    }, []);
+
+    useEffect(() => {
+
+      for(let i = array_chat.length - 1; i > 0; i--){
+        
+        if(array_chat[i].id_quem_recebeu_mensagem == usuario_logado._id && array_chat[i].id_dono_mensagem == pessoa_com_quem_esta_conversando._id && array_chat[i].mensagem_lida_quem_recebeu == false){
+          
+          set_mensagem_lida({...array_chat[i], mensagem_lida_quem_recebeu: true});
+          console.log(mensagem_lida);
+          atualizar_mensagem();
+          return;
+        };
+      };
+
     }, []);
 
     useEffect(() => {
@@ -96,6 +112,18 @@ function Chat_conversa() {
       return nome_a_exibir[0];
     };
 
+    async function atualizar_mensagem(){
+
+      try {
+        
+        await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
+
     async function buscar_clientes(){
 
       try {
@@ -136,7 +164,8 @@ function Chat_conversa() {
             hora: `${data.getHours() < 10 ? `0${data.getHours()}` : data.getHours() }:${ data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes()}`,
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado._id,
-            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id
+            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id,
+            mensagem_lida_quem_recebeu: false
           };          
           
           const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
