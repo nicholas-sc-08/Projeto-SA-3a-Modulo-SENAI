@@ -7,7 +7,7 @@ const produto_schema = new mongoose.Schema({
     preco: { type: Number, required: true },
     condicao: { type: String, required: true },
     imagem: { type: Array, required: true},
-    cor: { type: String, required: true },
+    cor: { type: Array, required: true },
     marca: { type: String, required: true },
     fk_id_categoria: { type: String, required: true}
 });
