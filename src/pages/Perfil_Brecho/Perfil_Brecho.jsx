@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import HeaderUsuario from '../../components/HeaderUsuario'
 import '../Perfil_Brecho/Perfil_Brecho.css'
@@ -41,7 +42,7 @@ function Perfil_Brecho() {
                 <div className="icons-edicao-excluir-content">
                   <div className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
-                    <p>Editar</p>
+                    <Link to={"/Edicao_perfil_brecho"} className="editar-opcao-palavra" >Editar</Link>
                   </div>
                   <div className="excluir-content">
                     <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />

@@ -205,6 +205,7 @@ app.get(`/chats`, async (req, res) => {
 app.get(`/chats/:id`, async (req, res) => {
 
     const { id } = req.params;
+    
 
     try {
 
@@ -235,33 +236,12 @@ app.post(`/chats`, async (req, res) => {
 app.put(`/chats/:id`, async (req, res) => {
 
     const { id } = req.params;
-    delete req.body_id;
+    delete req.body._id;    
 
     try {
 
         const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json(mensagem);
-        
-    } catch (erro) {
-      
-        console.error(erro);
-    };
-});
-
-app.delete(`/chats/:id`, async (req, res) => {
-
-    const { id } = req.params;
-
-    try {
-
-        const mensagensDeletadas = await Chat.deleteMany({
-            $or: [
-                { id_dono_mensagem: id_dono, id_quem_recebeu_mensagem: id_recebedor },
-                { id_dono_mensagem: id_recebedor, id_quem_recebeu_mensagem: id_dono }
-            ]
-        });
-        
-        res.status(200).json(mensagensDeletadas)
         
     } catch (erro) {
       
