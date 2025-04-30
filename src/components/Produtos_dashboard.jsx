@@ -1,14 +1,35 @@
 import React from 'react'
 import './Produtos_dashboard.css'
 import HeaderBrecho from './HeaderBrecho'
-import Footer from './Footer'
+// import Footer from './Footer'
 
 function Produtos_dashboard() {
     return (
         <div className='alinhamento-estoque-produto-dashboard'>
             <HeaderBrecho />
+            
+            <div className="container-alinhamento-imagem-titulo-produtos-dashboard">
+                <div className="container-alinhamento-imagem-produtos-dashboard">
+                    <div className="container-alinhamento-imagem-titulo-quantidade-produtos-dashboard">
+                        <div className="fundo-cinza-imagem-produtos-dashboard">
+                            <div className="fundo-verde-imagem-produtos-dashboard">
+                                <img src="./public/img/icons/icone_dashboard_produtos_v_um.svg" alt="Icone produtos dashboard" />
+                            </div>
+                        </div>
 
-            <h1>Estoque Produto</h1>
+                        <div className="container-alinhamento-titulo-produtos-dashboard">
+                            <p className='titulo-um-produtos-dashboard'>Produtos</p>
+                            <p className='numero-de-produtos-dashboard'>200</p>
+                        </div>
+                    </div>
+
+                    <div className="container-sair-de-brechos-dashboard">
+                        <p>Voltar</p>
+
+                        <img src="./img/icone_dashboard_sair.svg" alt="" />
+                    </div>
+                </div>
+            </div>
 
             <div className="alinhamento-container-um-estoque-produto-dashboard">
 
@@ -71,7 +92,6 @@ function Produtos_dashboard() {
                     </div>
                 </div>
             </div>
-
         </div >
     )
 }

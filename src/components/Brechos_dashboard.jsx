@@ -50,17 +50,19 @@ function Brechos_dashboard() {
                             <p>Senha</p>
                         </div>
 
-                        <div className="container-dados-do-brecho">
-                            <div className="alinhamento-container-dados-do-brecho">
-                                <div className="alinhamento-imagem-nome-brecho">
-                                    <img src="./img/img_perfil_provisorio.svg" alt="" />
-                                    <p>Nome do brechó</p>
-                                </div>
+                        <div className="fundo-container-dados-do-brecho">
+                            <div className="container-dados-do-brecho">
+                                <div className="alinhamento-container-dados-do-brecho">
+                                    <div className="alinhamento-imagem-nome-brecho">
+                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+                                        <p>Nome do brechó</p>
+                                    </div>
 
-                                <p>emailBrecho@gmail.com</p>
-                                <p>(48) 99999-9999</p>
-                                <p>12.345.678/0001-95</p>
-                                <p>123456789</p>
+                                    <p className='p-informacoes-brechos-dashboard'>emailBrecho@gmail.com</p>
+                                    <p className='p-informacoes-brechos-dashboard'>(48) 99999-9999</p>
+                                    <p className='p-informacoes-brechos-dashboard'>12.345.678/0001-95</p>
+                                    <p className='p-informacoes-brechos-dashboard'>123456789</p>
+                                </div>
                             </div>
                         </div>
                     </div>
