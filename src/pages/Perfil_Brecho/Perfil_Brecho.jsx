@@ -40,10 +40,10 @@ function Perfil_Brecho() {
                 <h1>Brechó Moda Sustentável</h1>
 
                 <div className="icons-edicao-excluir-content">
-                  <div className="editar-content">
+                  <Link to={"/Edicao_perfil_brecho"} className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
-                    <Link to={"/Edicao_perfil_brecho"} className="editar-opcao-palavra" >Editar</Link>
-                  </div>
+                    <span className="editar-opcao-palavra">Editar</span>
+                  </Link>
                   <div className="excluir-content">
                     <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
                     <p>Excluir</p>
