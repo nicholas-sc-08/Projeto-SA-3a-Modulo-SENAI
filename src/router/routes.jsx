@@ -15,6 +15,7 @@ import Contato from "../pages/Contato/Contato";
 import Sobre_nos from "../pages/Sobre_Nos/Sobre_nos";
 import Erro from "../pages/Erro/Erro";
 import Edicao_perfil_brecho from "../pages/Perfil_Brecho/Edicao_perfil_brecho";
+import Perfil_cliente from "../pages/Perfil_Cliente/Perfil_cliente";
 
 
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
    { path: `/erro`, element: <Erro/>},
 
    { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho />},
+   { path: `/perfil_cliente`, element: <Perfil_cliente />}
 
 ])
 

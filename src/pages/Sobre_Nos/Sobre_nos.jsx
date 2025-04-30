@@ -57,7 +57,7 @@ export default function Sobre_nos() {
 
   return (
     <div>
-      {/* <HeaderUsuario /> */}
+      <HeaderUsuario />
 
       <div className='bibliografia-fly'>
         <div className='sobre'>
