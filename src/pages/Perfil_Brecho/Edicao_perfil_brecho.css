@@ -2,7 +2,13 @@ body {
     margin: 0;
 }
 
-.toda-tela-antes-do-pop-up {
+.toda-a-tela {
+    border: 3px solid #D08E00;
+    height: 100vh;
+    width: 100%;
+}
+
+.tela-antes-da-div-central {
     border: 3px solid #18CA00;
     background-color: transparent;
 
@@ -10,11 +16,12 @@ body {
     width: 100%;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.pop-up-de-edicao-perfil-brecho-content {
+.edicao-perfil-brecho-content {
     border: 3px solid #0C35FF;
     border-radius: 25px;
     border: 1px solid  #fbf0ce;
