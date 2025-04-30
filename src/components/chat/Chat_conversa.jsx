@@ -58,14 +58,13 @@ function Chat_conversa() {
 
     useEffect(() => {
 
+      
       for(let i = array_chat.length - 1; i > 0; i--){
         
-        if(array_chat[i].id_quem_recebeu_mensagem == usuario_logado._id && array_chat[i].id_dono_mensagem == pessoa_com_quem_esta_conversando._id && array_chat[i].mensagem_lida_quem_recebeu == false){
-          
-          set_mensagem_lida({...array_chat[i], mensagem_lida_quem_recebeu: true});
-          console.log(mensagem_lida);
-          atualizar_mensagem();
-          return;
+        console.log(array_chat[i].id_quem_recebeu_mensagem);
+        if(usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+          // atualizar_mensagem();
         };
       };
 
@@ -135,7 +134,7 @@ function Chat_conversa() {
         
           console.error(erro);
       };
-    };
+      };
 
     async function buscar_conversas(){
 
