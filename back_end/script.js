@@ -424,7 +424,7 @@ app.get(`/produtos`, async (req, res) =>{
 
     try {
         const produtos = await Produto.find()
-        res.status(200).json.produtos;
+        res.status(200).json(produtos);
         
     } catch (error) {
 
@@ -464,7 +464,7 @@ app.post(`/produtos`, async (req, res) =>{
 app.put(`/produtos/:id`, async (req, res) =>{
     
     const { id } = req.params;
-    delete eq.body._id;
+    delete req.body._id;
 
     try {
 
