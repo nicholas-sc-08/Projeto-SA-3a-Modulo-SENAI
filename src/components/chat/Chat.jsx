@@ -3,6 +3,7 @@ import './Chat.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
 import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
+import socket from './socket';
 
 function Chat() {
 
@@ -27,7 +28,6 @@ function Chat() {
         buscar_clientes();
         buscar_chat();
         buscar_brechos();
-        console.log(array_brechos);
     }, []);
     
     useEffect(() => {

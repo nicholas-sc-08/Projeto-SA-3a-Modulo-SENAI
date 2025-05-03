@@ -254,6 +254,21 @@ app.put(`/chats/:id`, async (req, res) => {
     };
 });
 
+app.delete(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        await Chat.findByIdAndDelete(id);
+        res.status(200).json(`Mensagem excluída com sucesso!`);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.get (`/estoques`, async (req, res) =>{
     try {
         const estoque = await Estoque.find();
