@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
-import HeaderUsuario from '../components/HeaderUsuario';
-import HeaderBrecho from '../components/HeaderBrecho';
 import Footer from '../components/Footer';
 import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
+import Header from '../components/Header';
 
 
 function Tela_incial() {
@@ -34,7 +33,7 @@ function Tela_incial() {
     informacoes_clientes();
     informacoes_brechos();
     informacoes_produtos();
-    
+
   }, []);
 
   async function informacoes_clientes() {
@@ -138,7 +137,7 @@ function Tela_incial() {
   return (
     <div>
 
-      <HeaderUsuario />
+      <Header tipo="usuario" />
 
       {/* home page seção um */}
       <div className="home-page-secao-um-container">

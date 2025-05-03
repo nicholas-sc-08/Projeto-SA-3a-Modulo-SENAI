@@ -37,7 +37,6 @@ html {
 }
 
 .container-alinhamento-brechos-dashboard-allPage {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +57,7 @@ html {
 .container-alinhamento-imagem-titulo-quantidade-brechos-dashboard {
     display: flex;
     align-items: center;
-    width: 10.2%;
+    width: 13%;
     justify-content: space-between;
     /* border: 1px solid red; */
 }
@@ -216,7 +215,7 @@ html {
 }
 
 .nome-do-brecho-dashboard{
-    width: 30%;
+    width: 27%;
     padding-left: 1.5%;
 }
 
@@ -230,7 +229,6 @@ html {
 }
 
 .alinhamento-container-dados-do-brecho{
-    /* border: 1px solid purple; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -238,12 +236,11 @@ html {
 }
 
 .alinhamento-imagem-nome-brecho{
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
 
-    width: 30%;
-    padding-left: 2%;
+    width: 27%;
+    padding-left: 1.5%;
 }
 
 .alinhamento-imagem-nome-brecho p{
@@ -255,10 +252,66 @@ html {
     font-weight: 450;
 }
 
-.p-informacoes-brechos-dashboard{
-    /* border: 1px solid red; */
+.email-do-brecho-dashboard{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.telefone-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.CNPJ-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.senha-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-email-brechos-dashboard{
     font-family: var(--tipografia_secundaria);
     font-size: 0.9rem;
     color: var(--cor_seis);
     font-weight: 450;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-telefone-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-cnpj-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-senha-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
-import HeaderBrecho from './HeaderBrecho'
 import './Brechos_dashboard.css'
+import Header from './Header'
 
 function Brechos_dashboard() {
     return (
         <div>
-            <HeaderBrecho />
+            <Header tipo="admin" />
 
             <div className="container-alinhamento-brechos-dashboard-allPage">
                 <div className="container-alinhamento-imagem-titulo-brecho-dashboard">
@@ -44,10 +44,10 @@ function Brechos_dashboard() {
 
                         <div className="container-barra-titulos-guias-informacoes-brecho">
                             <p className='nome-do-brecho-dashboard'>Nome do Brechó</p>
-                            <p>Email</p>
-                            <p>Telefone</p>
-                            <p>CNPJ</p>
-                            <p>Senha</p>
+                            <p className='email-do-brecho-dashboard'>Email</p>
+                            <p className='telefone-do-brecho-dashboard'>Telefone</p>
+                            <p className='CNPJ-do-brecho-dashboard'>CNPJ</p>
+                            <p className='senha-do-brecho-dashboard'>Senha</p>
                         </div>
 
                         <div className="fundo-container-dados-do-brecho">
@@ -58,10 +58,10 @@ function Brechos_dashboard() {
                                         <p>Nome do brechó</p>
                                     </div>
 
-                                    <p className='p-informacoes-brechos-dashboard'>emailBrecho@gmail.com</p>
-                                    <p className='p-informacoes-brechos-dashboard'>(48) 99999-9999</p>
-                                    <p className='p-informacoes-brechos-dashboard'>12.345.678/0001-95</p>
-                                    <p className='p-informacoes-brechos-dashboard'>123456789</p>
+                                    <p className='p-email-brechos-dashboard'>emailBrecho@gmail.com</p>
+                                    <p className='p-telefone-brechos-dashboard'>(48) 99999-9999</p>
+                                    <p className='p-cnpj-brechos-dashboard'>12.345.678/0001-95</p>
+                                    <p className='p-senha-brechos-dashboard'>123456789</p>
                                 </div>
                             </div>
                         </div>

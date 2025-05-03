@@ -7,7 +7,7 @@ import Clientes_dashboard from '../../components/Clientes_dashboard.jsx';
 import Categorias_dashboard from '../../components/Categorias_dashboard.jsx';
 import Produtos_dashboard from '../../components/Produtos_dashboard.jsx';
 import { useNavigate } from 'react-router-dom';
-import Brechos_dashboard from '../../components/Brechos_dashboard.jsx';
+import Brechos_dashboard from '../../components/brechos_dashboard.jsx';
 
 function DashBoard() {
 

@@ -1,12 +1,12 @@
 import React from 'react'
 import './Produtos_dashboard.css'
-import HeaderBrecho from './HeaderBrecho'
+import Header from './Header'
 // import Footer from './Footer'
 
 function Produtos_dashboard() {
     return (
         <div className='alinhamento-estoque-produto-dashboard'>
-            <HeaderBrecho />
+            <Header tipo='admin' />
             
             <div className="container-alinhamento-imagem-titulo-produtos-dashboard">
                 <div className="container-alinhamento-imagem-produtos-dashboard">
@@ -45,14 +45,14 @@ function Produtos_dashboard() {
 
                         <div className="alinhamento-titulos-estoque-produto-dashboard">
                             <div className="alinhamento-titulo-produtos-dashboard">
-                                <p>Produtos</p>
+                                <p>Nome do produto</p>
                             </div>
 
                             <div className="alinhamento-titulos-gerais-dashboard">
-                                <p>Preço</p>
-                                <p>Estoque</p>
-                                <p>Conservação</p>
-                                <p>Tamanho</p>
+                                <p className='p-titulos-produtos-dashboard'>Preço</p>
+                                <p className='p-titulos-produtos-dashboard'>Estoque</p>
+                                <p className='p-titulos-produtos-dashboard'>Conservação</p>
+                                <p className='p-titulos-produtos-dashboard'>Tamanho</p>
                             </div>
                         </div>
                     </div>
