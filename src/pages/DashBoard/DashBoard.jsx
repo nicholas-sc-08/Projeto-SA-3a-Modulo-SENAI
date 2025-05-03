@@ -6,6 +6,7 @@ import Inicio_dashboard from '../../components/Inicio_dashboard';
 import Clientes_dashboard from '../../components/Clientes_dashboard.jsx';
 import Categorias_dashboard from '../../components/Categorias_dashboard.jsx';
 import Produtos_dashboard from '../../components/Produtos_dashboard.jsx';
+import Brechos_dashboard from '../../components/Brechos_dashboard.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function DashBoard() {
@@ -18,6 +19,7 @@ function DashBoard() {
     const { clientes_dashboard, set_clientes_dashboard } = useContext(GlobalContext);
     const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
     const { produtos_dashboard, set_produtos_dashboard } = useContext(GlobalContext);
+    const { brechos_dashboard, set_brechos_dashboard } = useContext(GlobalContext);
     const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
     const navegar = useNavigate(``);
 
@@ -81,6 +83,7 @@ function DashBoard() {
         { clientes_dashboard && <Clientes_dashboard/>}
         { categorias_dashboard && <Categorias_dashboard/>}
         { produtos_dashboard && <Produtos_dashboard />}
+        { brechos_dashboard && <Brechos_dashboard /> }
     </div>
   )
 }
