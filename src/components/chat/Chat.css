@@ -189,10 +189,15 @@
 
 .container_ultima_mensagem_chat p{
 
+    width: 70%;
     font-family: var(--tipografia_secundaria);
     font-size: 0.8rem;
     font-weight: 400;
     color: var(--cor_seis_v_um);
+
+    white-space: nowrap;  /* impede quebra de linha */
+    overflow: hidden;     /* oculta o conteúdo que ultrapassa */
+    text-overflow: ellipsis;
 }
 
 .fundo_escuro_para_notificacao{
