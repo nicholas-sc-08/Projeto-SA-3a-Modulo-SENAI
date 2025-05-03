@@ -1,0 +1,158 @@
+.sideBar-perfil-cliente{
+    display: flex;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+.sideBar-perfil-cliente h4{
+    color: var(--cor_um_v_um);
+    font-weight: 200
+}
+
+.sideBar-perfil-cliente img{
+    position: absolute;
+    left: 70%;
+    width: 36px;
+    color: var(--cor_um_v_um);
+}
+
+.container-perfil-cliente{
+    margin-top: 3%;
+    margin-left: 25%;
+    border: 3px solid cadetblue;
+    width: 47%;
+    height: 676px;
+}
+
+/* .foto-perfil-cliente{
+    border: 3px solid palevioletred;
+    width: 30%;
+    height: 676px;
+} */
+
+.info-cliente{
+
+}
+
+.cabecario-cliente{
+    margin-left: 35%;
+    margin-top: 4%;
+    color: var(--cor_um_v_dois);
+}
+
+.info1{
+    display: flex;
+    margin-left: 35%;
+    margin-top: 5%;
+}
+
+.nome-cliente{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.nome-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.telefone-cliente{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
+.telefone-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.info1{
+    display: flex;
+    margin-left: 35%;
+    margin-top: 5%;
+}
+
+.nome-cliente{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.nome-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.telefone-cliente{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
+.telefone-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.info2{
+    display: flex;
+    margin-left: 35%;
+    margin-top: 5%;
+}
+
+.email-cliente{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.email-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.rua-cliente{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
+.rua-cliente input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+}
+
+.mudanca-senha{
+    display: flex;
+    flex-direction: column ;
+    margin-left: 35%;
+    margin-top: 5%;
+}
+
+.mudanca-senha input{
+    background-color: #fcf3dc;
+    border: none;
+    height: 75%;
+    width: 79%;
+}
+
+.mudanca-senha button{
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    border: none;
+    border-radius: 19px;
+    width: 25%;
+    height: 35px;
+    margin-top: 34%;
+    margin-left: 54%;
+}
+
+
