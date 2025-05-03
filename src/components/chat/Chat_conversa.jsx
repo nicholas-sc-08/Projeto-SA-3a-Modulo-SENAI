@@ -24,10 +24,7 @@ function Chat_conversa() {
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
-    const [ mensagem_lida, set_mensagem_lida ] = useState(``);
     const final_da_conversa = useRef(null);
-
-
 
     useEffect(() => {
       
@@ -64,16 +61,8 @@ function Chat_conversa() {
 
     useEffect(() => {
 
+      atualizar_mensagem();
       
-      for(let i = array_chat.length - 1; i > 0; i--){
-        
-        console.log(array_chat[i].id_quem_recebeu_mensagem);
-        if(usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && array_chat[i].mensagem_lida_quem_recebeu == false){
-
-          // atualizar_mensagem();
-        };
-      };
-
     }, []);
 
     useEffect(() => {
@@ -119,14 +108,23 @@ function Chat_conversa() {
 
     async function atualizar_mensagem(){
 
-      try {
+      for(let i = array_chat.length - 1; i > 0; i--){
         
-        await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
-        
-      } catch (erro) {
-        
-        console.error(erro);
+        try {
+
+          if(usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && pessoa_com_quem_esta_conversando._id == array_chat[i].id_dono_mensagem && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+            const mensagem_lida = {...array_chat[i], mensagem_lida_quem_recebeu: true};            
+            
+            await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+          };
+          
+        } catch (erro) {
+          
+          console.error(erro);
+        };
       };
+      
     };
 
     async function buscar_clientes(){
