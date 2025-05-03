@@ -4,7 +4,7 @@ import axios from "axios";
 import namer from "color-namer";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
-import HeaderBrecho from "../../components/HeaderBrecho";
+import Header from "../../components/Header";
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
@@ -75,11 +75,11 @@ function Gestao_Estoque() {
     { nome: "Lima", hex: "#00FF00" },
     { nome: "Lavanda", hex: "#E6E6FA" },
   ];
-  
+
   function hexParaRGB(hex) {
     const match = hex.match(/#([0-9a-fA-F]{6})/);
     if (!match) return null;
-    
+
     const bigint = parseInt(match[1], 16);
     return {
       r: (bigint >> 16) & 255,
@@ -87,40 +87,40 @@ function Gestao_Estoque() {
       b: bigint & 255,
     };
   }
-  
+
   function corMaisProxima(hex) {
     const rgb = hexParaRGB(hex);
     if (!rgb) return "Cor desconhecida";
-  
+
     let corMaisPerto = null;
     let menorDiferenca = Infinity;
-  
+
     coresSimplificadas.forEach((cor) => {
       const corRGB = hexParaRGB(cor.hex);
-      const diferenca = 
-        Math.abs(rgb.r - corRGB.r) + 
-        Math.abs(rgb.g - corRGB.g) + 
+      const diferenca =
+        Math.abs(rgb.r - corRGB.r) +
+        Math.abs(rgb.g - corRGB.g) +
         Math.abs(rgb.b - corRGB.b);
-      
+
       if (diferenca < menorDiferenca) {
         menorDiferenca = diferenca;
         corMaisPerto = cor.nome;
       }
     });
-  
+
     return corMaisPerto || "Cor desconhecida";
   }
-  
+
   // Exemplo de uso:
   console.log(corMaisProxima("#3e2a21")); // Deve retornar "Marrom" ou algo próximo
   console.log(corMaisProxima("#00ffff")); // Deve retornar "Ciano"
   console.log(corMaisProxima("#ffd700")); // Deve retornar "Dourado"
-  
-  
+
+
 
   return (
     <div>
-      <HeaderBrecho />
+      <Header tipo='brecho' />
       <div className="estoque-container">
         <h2>Estoque Produto</h2>
 
@@ -162,11 +162,11 @@ function Gestao_Estoque() {
                     <p className="produto-nome">{produto.nome}</p>
                     <p className="produto-categoria">{array_categorias.map((categoria, i) => (
 
-                    <div className="container_categoria" key={i}>
+                      <div className="container_categoria" key={i}>
 
-                      <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
+                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
 
-                    </div>
+                      </div>
 
                     ))}{corMaisProxima(produto.cor)}</p>
                   </div>

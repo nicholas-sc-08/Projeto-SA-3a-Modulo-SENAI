@@ -30,7 +30,7 @@ function Edicao_perfil_brecho() {
                 </div>
                 <div className="input-data-nasci-vendedor">
                   <p>Data de Nascimento</p>
-                  <input type="text" placeholder='+55 (DD) 90000-0000'/>
+                  <input type="text" placeholder='+55 (DD) 90000-0000' />
                 </div>
               </div>
             </div>
@@ -44,15 +44,15 @@ function Edicao_perfil_brecho() {
               </div>
               <div className="inputs-pequenos-infos-brecho">
                 <p>Telefone</p>
-                <input type="text" placeholder='+55 (DD) 90000-0000'/>
+                <input type="text" placeholder='+55 (DD) 90000-0000' />
               </div>
               <div className="inputs-pequenos-infos-brecho">
                 <p>Email</p>
-                <input type="text" placeholder='brecho@gmail.com'/>
+                <input type="text" placeholder='brecho@gmail.com' />
               </div>
               <div className="inputs-pequenos-infos-brecho">
                 <p>CNPJ</p>
-                <input type="text" placeholder='123456780090'/>
+                <input type="text" placeholder='123456780090' />
               </div>
             </div>
           </div>

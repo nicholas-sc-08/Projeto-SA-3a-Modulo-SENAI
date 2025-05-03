@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import HeaderUsuario from '../../components/HeaderUsuario';
 import Footer from '../../components/Footer';
 import "./Sobre_nos.css";
+import Header from '../../components/Header';
 
 export default function Sobre_nos() {
   const carrosselRef = useRef(null);
@@ -57,7 +57,7 @@ export default function Sobre_nos() {
 
   return (
     <div>
-      <HeaderUsuario />
+      <Header tipo='usuario' />
 
       <div className='bibliografia-fly'>
         <div className='sobre'>

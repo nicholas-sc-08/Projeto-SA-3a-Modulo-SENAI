@@ -6,7 +6,7 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import '../pages/DashBoard/DashBoard.css';
 import { useState } from 'react';
-import HeaderBrecho from "./HeaderBrecho.jsx";
+import Header from './Header.jsx';
 
 function Inicio_dashboard() {
 
@@ -114,7 +114,7 @@ function Inicio_dashboard() {
   return (
 <div>
 
-    <HeaderBrecho/>
+    <Header tipo='admin'/>
 
     <h1 className='saudacoes_ao_admin'>Olá Administrador(a)!</h1>
 

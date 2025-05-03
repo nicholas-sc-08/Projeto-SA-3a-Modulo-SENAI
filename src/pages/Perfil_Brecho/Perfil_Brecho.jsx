@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-import HeaderUsuario from '../../components/HeaderUsuario'
 import '../Perfil_Brecho/Perfil_Brecho.css'
+import Header from '../../components/Header'
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
@@ -10,7 +10,7 @@ function Perfil_Brecho() {
   return (
 
     <div className="toda-tela-content">
-      <HeaderUsuario />
+      <Header tipo='brecho' />
       <div className="depois-da-navbar-content">
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">

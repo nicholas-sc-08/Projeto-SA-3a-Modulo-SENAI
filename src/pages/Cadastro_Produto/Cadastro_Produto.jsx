@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Cadastro_Produto.css";
-import HeaderBrecho from "../../components/HeaderBrecho";
+import Header from "../../components/Header";
 
 function Cadastro_Produto() {
   const [quantidade, setQuantidade] = useState(1);
@@ -88,7 +88,7 @@ function Cadastro_Produto() {
 
   return (
     <div>
-      <HeaderBrecho />
+      <Header tipo='brecho' />
       <h2 className="titulo">Cadastro Produto</h2>
       <div className="container-cadastro-produto">
         <div className="galeria">

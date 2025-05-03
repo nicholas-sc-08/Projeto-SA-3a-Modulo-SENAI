@@ -1,12 +1,12 @@
 import React from 'react'
 import "./Contato.css";
 import Footer from '../../components/Footer';
-import HeaderUsuario from '../../components/HeaderUsuario';
+import Header from '../../components/Header';
 
 export default function Contato() {
   return (
     <div>
-      <HeaderUsuario />
+      <Header tipo='usuario' />
       <div className='container-contato'>
         <p className='p-bege'>Início </p><p>/</p><p> Contato</p>
         <div className='info-contato'>
