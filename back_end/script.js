@@ -47,6 +47,11 @@ io.on(`connection`, (socket) => {
         socket.broadcast.emit(`receber_mensagem`, mensagem);
     });
 
+    socket.on(`mensagem_a_atualizar`, mensagem => {
+
+        socket.broadcast.emit(`receber_mensagem`, mensagem);
+    })
+
     socket.on(`disconnect`, () => {
 
         console.log(`Usuário desconectado!`, socket.id);

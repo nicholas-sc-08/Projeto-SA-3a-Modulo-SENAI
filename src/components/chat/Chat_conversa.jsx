@@ -27,6 +27,8 @@ function Chat_conversa() {
     const [ mensagem_lida, set_mensagem_lida ] = useState(``);
     const final_da_conversa = useRef(null);
 
+
+
     useEffect(() => {
       
       //ele vai conecta com o servidor socket que esta conectando com o servidor do back end. lá no arquivo socket.js
@@ -38,22 +40,26 @@ function Chat_conversa() {
       function lidar_com_a_nova_mensagem(mensagem){
       
         //aqui toda vez que uma mensagem é cadastrada lá no socket, que eu fiz ali quando vai postar no banco de dados, eu já lanço no servidor socket também para ele atualizar em tempo real aqui, fazendo com que chame está função por mais que o useEffect seja chamado somente uma vez aqui ele chama esta função mais de uma vezz
-        console.log("Nova mensagem recebida:", mensagem);
+        console.log(`Nova mensagem recebida:`, mensagem);
         set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
       };
 
       // Aqui eu vo ta substituindo a mensagem atualizada no historioc de conversa
-      socket.on('receber_mensagem', (mensagem_atualizada) => {
+      socket.on(`mensagem_a_atualizar`, (mensagem_atualizada) => {
         
-        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id === mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
+        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id == mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
       });
     
       //aqui ele vai conecta com o servidor socket
-      socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
-      socket.on("receber_mensagem", lidar_com_a_nova_mensagem);
+      socket.on(`connect`, () => console.log("Conectado com o servidor socket:", socket.id));
+      socket.on(`receber_mensagem`, lidar_com_a_nova_mensagem);
     
       // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
-      return () => socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+      return () => {
+       
+        socket.off(`mensagem_a_atualizar`);
+        socket.off(`receber_mensagem`);
+      }
     }, []);
 
     useEffect(() => {
@@ -134,7 +140,7 @@ function Chat_conversa() {
         
           console.error(erro);
       };
-      };
+    };
 
     async function buscar_conversas(){
 
@@ -196,12 +202,9 @@ function Chat_conversa() {
         if(excluir_mensagens_chat){
           
           const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
-          
-          buscar_conversas();
-
           const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
           set_conversa_atual(conversa_atualizada);
-          socket.emit(`nova_mensagem`, mensagem_atualizada.data);
+          socket.emit(`mensagem_a_atualizar`, mensagem_atualizada.data);
           set_excluir_mensagens_chat(false);
         };
         
@@ -245,6 +248,7 @@ function Chat_conversa() {
       // aqui vou estar verificando se já existe uma data para aquele objeto mensagens_do_dia
       // se não houver ele mantém o array vazio
       if (!mensagens_do_dia[data]) {
+        
         mensagens_do_dia[data] = [];
       };
 
