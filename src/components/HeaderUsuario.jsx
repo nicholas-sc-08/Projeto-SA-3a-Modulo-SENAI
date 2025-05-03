@@ -22,7 +22,7 @@ function HeaderUsuario() {
                 <div className="nav-links">
                     <Link to="doacoes" className="link-texto-navbar-usuario">Doações</Link>
                     <Link to="lancamentos" className="link-texto-navbar-usuario">Lançamentos</Link>
-                    <Link to="sobreNos" className="link-texto-navbar-usuario">Sobre nós</Link>
+                    <Link to="sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </div>
 
                 {/* Pesquisa */}

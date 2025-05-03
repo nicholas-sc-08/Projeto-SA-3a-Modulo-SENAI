@@ -227,9 +227,11 @@ body {
     align-items: center;
     justify-content: space-evenly;
     cursor: pointer;
+
+    text-decoration: none;
 }
 
-.editar-content p {
+.editar-opcao-palavra {
     font-size: 1em;
     font-family: "Montserrat";
     font-weight: 500;

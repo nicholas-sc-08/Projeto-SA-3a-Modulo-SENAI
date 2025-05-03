@@ -14,7 +14,9 @@ import Perfil_Brecho from "../pages/Perfil_Brecho/Perfil_Brecho";
 import Contato from "../pages/Contato/Contato";
 import Sobre_nos from "../pages/Sobre_Nos/Sobre_nos";
 import Erro from "../pages/Erro/Erro";
-import Pop_Up_edicao_perfil_brecho from "../components/Pop_Up_edicao_perfil_brecho";
+import Edicao_perfil_brecho from "../pages/Perfil_Brecho/Edicao_perfil_brecho";
+import Perfil_cliente from "../pages/Perfil_Cliente/Perfil_cliente";
+
 
 
 const router = createBrowserRouter([
@@ -33,7 +35,8 @@ const router = createBrowserRouter([
    { path: `/sobre_nos`, element: <Sobre_nos />},
    { path: `/erro`, element: <Erro/>},
 
-   { path: `/pop_up_edicao_perfil_brecho`, element: <Pop_Up_edicao_perfil_brecho />}
+   { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho />},
+   { path: `/perfil_cliente`, element: <Perfil_cliente />}
 
 ])
 

@@ -10,6 +10,7 @@ import './Cadastro_cliente.css';
 function Cadastro_cliente() {
 
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { form_de_cadastro_cliente } = useContext(GlobalContext);
   const { endereco_do_cliente } = useContext(GlobalContext);
   const { cadastro_parte_um_cliente, set_cadastro_parte_um_cliente } = useContext(GlobalContext);
@@ -18,10 +19,10 @@ function Cadastro_cliente() {
   const [exibir_botao_de_cadastro, set_exibir_botao_de_cadastro] = useState(false);
   const [mensagem_de_erro, set_mensagem_de_erro] = useState(``);
   const [sub_titulo_cadastro_cliente, set_sub_titulo_cadastro_cliente] = useState(`Quase lá! Preencha abaixo e aproveite as ofertas!`);
-  const mudar_de_pagina = useNavigate(``);
-  const dia_de_hoje = new Date();
   const [idade, set_idade] = useState(``);
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
+  const dia_de_hoje = new Date();
+  const mudar_de_pagina = useNavigate(``);
   let email_ja_cadastrado = false;
   let cpf_ja_cadastrado = false;
   let telefone_ja_cadastrado = false;
@@ -122,6 +123,14 @@ function Cadastro_cliente() {
         };
       };
 
+      for(let i = 0; i < array_brechos; i++){
+
+        if(array_brechos[i].email == form_de_cadastro_cliente.email){
+
+          email_ja_cadastrado = true;
+        };
+      };
+
       if (form_de_cadastro_cliente.senha == form_de_cadastro_cliente.confirmar_senha) {
 
         senhas_iguais = true;
@@ -171,6 +180,14 @@ function Cadastro_cliente() {
         };
 
         if (array_clientes[i].telefone == form_de_cadastro_cliente.telefone) {
+
+          telefone_ja_cadastrado = true;
+        };
+      };
+
+      for(let i = 0; i < array_brechos.length; i++){
+
+        if(array_brechos[i].telefone == form_de_cadastro_cliente.telefone){
 
           telefone_ja_cadastrado = true;
         };

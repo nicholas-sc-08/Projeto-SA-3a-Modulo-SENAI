@@ -1,130 +1,156 @@
-.bibliografia-fly{
-    display: flex;
-    justify-content: space-around;
-    padding: 10%;
+.bibliografia-fly {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 5%;
 }
 
-.sobre{
-    width: 40%;
-    color: var(--cor_seis);
+.sobre {
+  width: 40%;
+  margin-left: 3%;
+  margin-top: 1%;
+  color: var(--cor_seis);
 }
 
-.sobre h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 43px;
-    padding: 5%;
+.sobre h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 43px;
+  padding: 5%;
 }
 
-.sobre p{
-    padding: 6%;
-    font-size: 19px;
+.sobre p {
+  padding: 1%;
 }
 
-.apresentando-equipe{
-    display: flex;
-    justify-content: space-around;
-
-    height: 450px;
+.imgEmGrupo {
+  width: 36%;
+  margin-left: 2%;
 }
 
-.equipe img{
-    width: 19vh;
+.apresentando-equipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  width: 100%;
 }
 
-.equipe{
-    width: 10%;
-    height: 90%;
+.carrossel-container {
+  position: relative;
+  overflow: hidden;
+  left: 13%;
+  width: 100%;
+  max-width: 100%;
 }
 
-.equipe a{
-    width: 16%;
-    height: 79%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-left: 3.5%;
+.carrossel-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 5px 0;
+  gap: 50px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carrossel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.card-membro {
+  flex: 0 0 auto;
+  width: 250px;
+  text-align: center;
+  scroll-snap-align: center;
+}
+
+.card-membro img {
+  width: 100%;
+  height: auto;
 }
 
 .icons-redesSociais {
-    position: relative;
-    right: 5%;
-    width: 42%;
-    display: flex;
-    justify-content: space-around;
-
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: var(--cor_um_v_um);
 }
 
-
-/* Responsividade Mobile*/
-@media (max-width: 768px){
-        .bibliografia-fly {
-            flex-direction: column;
-            padding: 5%;
-        }
-    
-        .sobre {
-            width: 96%;
-            margin-top: 385px;
-        }
-
-        .imgEmGrupo{
-            position: relative;
-            bottom: 690px;
-
-        }
-    
-        .sobre h1 {
-            font-size: 30px;
-            padding: 3%;
-        }
-    
-        .sobre p {
-            padding: 5%;
-            font-size: 16px;
-        }
-    
-        .apresentando-equipe {
-            flex-direction: column;
-            height: auto;
-            align-items: center;
-            position: relative;
-            width: 80%;
-            max-width: 600px;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-    
-        .equipe {
-            width: 80%;
-            margin-bottom: 10px;
-            text-align: center;
-            transition: transform 0.5s ease;
-        }
-    
-        .equipe img {
-            width: 50vw;
-            height: auto;
-        }
-    
-        .equipe a {
-            width: 16%;
-            height: 79%;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            margin-left: 3.5%;
-        }
-    
-        .icons-redesSociais {
-            position: relative;
-            right: 5%;
-            width: 42%;
-            display: flex;
-            justify-content: space-around;
-        }
+.icons-redesSociais img {
+  width: 30px;
+  height: auto;
 }
 
+.bolinhas-navegacao {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-right: 25%;
+  gap: 8px;
+}
 
+.bolinha {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
+.bolinha.ativa {
+  background-color: #333;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .bibliografia-fly {
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+  }
+
+  .sobre {
+    width: 90%;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .sobre h1 {
+    font-size: 28px;
+    padding: 3%;
+  }
+
+  .sobre p {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .imgEmGrupo {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .apresentando-equipe {
+    width: 80%;
+    max-width: 100%;
+    padding: 20px 0;
+  }
+
+  .card-membro {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .card-membro img {
+    width: 100%;
+  }
+
+  .icons-redesSociais img {
+    width: 25px;
+  }
+}

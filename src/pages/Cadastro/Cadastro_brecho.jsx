@@ -13,7 +13,8 @@ function Cadastro_brecho() {
   const { cadastroParteUmBrecho, setCadastroParteUmBrecho } = useContext(GlobalContext);
   const { cadastroParteDoisBrecho, setCadastroParteDoisBrecho } = useContext(GlobalContext);
   const { cadastroParteTresBrecho, setCadastroParteTresBrecho } = useContext(GlobalContext);
-  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+  const { array_clientes, set_array_clientes } = useContext(GlobalContext); 
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext);
 
@@ -49,6 +50,20 @@ function Cadastro_brecho() {
     };
   };
 
+  async function informacoes_clientes(){
+
+    try {
+
+      const clientes = await axios.get(`http://localhost:3000/clientes`);
+      set_array_clientes(clientes.data);
+
+      
+    } catch (erro) {
+      
+      console.error(erro);
+    };
+  };
+
   async function buscar_enderecos(){
 
     try {
@@ -62,10 +77,6 @@ function Cadastro_brecho() {
       console.error(erro);
     };
   };
-
-  useEffect(() => {
-
-  }, [enderecoDoBrecho]);
 
   async function lidarComFormulario(e) {
 
@@ -93,9 +104,15 @@ function Cadastro_brecho() {
     };
   };
 
+  function calcularIdade() {
+
+    setIdade(diaDeHoje.getFullYear() - new Date(formCadastroBrecho.data_de_nascimento_vendedor).getFullYear());
+  };
+
   useEffect(() => {
 
     informacoesBrecho();
+    informacoes_clientes();
     buscar_enderecos();
 
   }, []);
@@ -105,11 +122,6 @@ function Cadastro_brecho() {
     calcularIdade();
 
   }, [formCadastroBrecho.data_de_nascimento_vendedor]);
-
-  function calcularIdade() {
-
-    setIdade(diaDeHoje.getFullYear() - new Date(formCadastroBrecho.data_de_nascimento_vendedor).getFullYear());
-  };
 
   useEffect(() => {
 
@@ -216,6 +228,19 @@ function Cadastro_brecho() {
         if (array_brechos[i].nome_brecho == formCadastroBrecho.nome_brecho) {
 
           nomeBrechoJaCadastrado = true;
+        };
+      };
+
+      for(let i = 0; i < array_clientes.length; i++){
+
+        if(array_clientes[i].email == formCadastroBrecho.email){
+
+          emailJaCadastrado = true;
+        };
+
+        if(array_clientes[i].telefone == formCadastroBrecho.telefone){
+
+          telefoneJaCadastrado = true;
         };
       };
 

@@ -24,6 +24,7 @@ function Chat_conversa() {
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
+    const [ mensagem_lida, set_mensagem_lida ] = useState(``);
     const final_da_conversa = useRef(null);
 
     useEffect(() => {
@@ -45,18 +46,28 @@ function Chat_conversa() {
       socket.on('receber_mensagem', (mensagem_atualizada) => {
         
         set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id === mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
-    });
+      });
     
       //aqui ele vai conecta com o servidor socket
       socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
       socket.on("receber_mensagem", lidar_com_a_nova_mensagem);
     
-      return () => {
+      // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
+      return () => socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+    }, []);
 
-        // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
-        socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
-      };
+    useEffect(() => {
+
       
+      for(let i = array_chat.length - 1; i > 0; i--){
+        
+        console.log(array_chat[i].id_quem_recebeu_mensagem);
+        if(usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+          // atualizar_mensagem();
+        };
+      };
+
     }, []);
 
     useEffect(() => {
@@ -68,6 +79,18 @@ function Chat_conversa() {
 
     }, [conversa_atual]);
 
+    useEffect(() => {
+
+      if(excluir_mensagens_chat){
+
+        set_tipo_do_cursor_mouse_chat(`pointer`);
+      } else {
+
+        set_tipo_do_cursor_mouse_chat(`default`);
+      };
+
+    }, [excluir_mensagens_chat]);
+
     function fechar_conversa(){
 
         set_chat_aberto(true);
@@ -77,6 +100,27 @@ function Chat_conversa() {
         set_excluir_mensagens_chat(false);
         buscar_conversas();
         set_pessoa_com_quem_esta_conversando(``);
+    };
+
+    function pegar_primeiro_nome(nome){
+
+      console.log(nome);
+      
+      const nome_a_exibir = nome.split(` `);
+
+      return nome_a_exibir[0];
+    };
+
+    async function atualizar_mensagem(){
+
+      try {
+        
+        await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
     };
 
     async function buscar_clientes(){
@@ -90,7 +134,7 @@ function Chat_conversa() {
         
           console.error(erro);
       };
-    };
+      };
 
     async function buscar_conversas(){
 
@@ -119,7 +163,8 @@ function Chat_conversa() {
             hora: `${data.getHours() < 10 ? `0${data.getHours()}` : data.getHours() }:${ data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes()}`,
             data_da_mensagem: `${data.getDate() + 1 < 10 ? `0${data.getDate()}` : data.getDate()}/${data.getMonth() + 1 < 10 ? `0${data.getMonth() + 1}` : data.getMonth() + 1}/${data.getFullYear()}` ,
             id_dono_mensagem: usuario_logado._id,
-            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id
+            id_quem_recebeu_mensagem: pessoa_com_quem_esta_conversando._id,
+            mensagem_lida_quem_recebeu: false
           };          
           
           const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
@@ -136,6 +181,34 @@ function Chat_conversa() {
         console.error(erro);
       };
       set_inpt_mensagem({mensagem: ``});
+    };
+
+    async function excluir_mensagem_digitada(mensagem_par){
+
+      const mensagem = {
+
+        ...mensagem_par,
+        mensagem: `Mensagem apagada`
+      };
+      
+      try {
+        
+        if(excluir_mensagens_chat){
+          
+          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
+          
+          buscar_conversas();
+
+          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
+          set_conversa_atual(conversa_atualizada);
+          socket.emit(`nova_mensagem`, mensagem_atualizada.data);
+          set_excluir_mensagens_chat(false);
+        };
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
     };
 
     function buscar_data_da_conversa(data_da_conversa) {
@@ -181,53 +254,6 @@ function Chat_conversa() {
       mensagens_do_dia[data].push(mensagem);
     });
 
-    function pegar_ultimo_sobrenome(nome){
-
-      const nome_a_exibir = nome.split(` `);
-
-      return nome_a_exibir[0];
-    };
-
-    async function excluir_mensagem_digitada(mensagem_par){
-
-      const mensagem = {
-
-        ...mensagem_par,
-        mensagem: `Mensagem apagada`
-      };
-      
-      try {
-        
-        if(excluir_mensagens_chat){
-          
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
-          
-          buscar_conversas();
-
-          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
-          set_conversa_atual(conversa_atualizada);
-          socket.emit(`nova_mensagem`, mensagem_atualizada.data);
-          set_excluir_mensagens_chat(false);
-        };
-        
-      } catch (erro) {
-        
-        console.error(erro);
-      };
-    };
-
-    useEffect(() => {
-
-      if(excluir_mensagens_chat){
-
-        set_tipo_do_cursor_mouse_chat(`pointer`);
-      } else {
-
-        set_tipo_do_cursor_mouse_chat(`default`);
-      };
-
-    }, [excluir_mensagens_chat]);
-
   return (
     <div className='container_chat_conversa'>
       
@@ -239,7 +265,7 @@ function Chat_conversa() {
         
         <div className="container_header_info_chat">
 
-          <h2>{pegar_ultimo_sobrenome(pessoa_com_quem_esta_conversando.nome)}</h2>
+          <h2>{pessoa_com_quem_esta_conversando.nome ? pegar_primeiro_nome(pessoa_com_quem_esta_conversando.nome) : pegar_primeiro_nome(pessoa_com_quem_esta_conversando.nome_brecho)}</h2>
           <button onClick={() => set_pop_up_excluir_conversa(!pop_up_excluir_conversa)}><img src="./img/Menu chat.svg" alt="" className='imagem_botao_chat' /></button>
           
         </div>
@@ -319,9 +345,9 @@ function Chat_conversa() {
         </div>
         ))}
 
-        <div ref={final_da_conversa}></div>
-     </div>
+      <div ref={final_da_conversa}></div>
 
+     </div>
 
       <div className="container_campos_conversa_atual">
 

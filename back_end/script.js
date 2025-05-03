@@ -12,6 +12,7 @@ const Chat = require(`./models/Chat.js`);
 const Estoque = require(`./models/Estoque.js`);
 const Categoria = require(`./models/Categoria.js`);
 const Brecho = require(`./models/Brecho.js`);
+const Produto = require(`./models/Produto.js`);
 
 conectar_com_mongo();
 
@@ -204,6 +205,7 @@ app.get(`/chats`, async (req, res) => {
 app.get(`/chats/:id`, async (req, res) => {
 
     const { id } = req.params;
+    
 
     try {
 
@@ -234,33 +236,12 @@ app.post(`/chats`, async (req, res) => {
 app.put(`/chats/:id`, async (req, res) => {
 
     const { id } = req.params;
-    delete req.body_id;
+    delete req.body._id;    
 
     try {
 
         const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json(mensagem);
-        
-    } catch (erro) {
-      
-        console.error(erro);
-    };
-});
-
-app.delete(`/chats/:id`, async (req, res) => {
-
-    const { id } = req.params;
-
-    try {
-
-        const mensagensDeletadas = await Chat.deleteMany({
-            $or: [
-                { id_dono_mensagem: id_dono, id_quem_recebeu_mensagem: id_recebedor },
-                { id_dono_mensagem: id_recebedor, id_quem_recebeu_mensagem: id_dono }
-            ]
-        });
-        
-        res.status(200).json(mensagensDeletadas)
         
     } catch (erro) {
       
@@ -364,6 +345,7 @@ app.delete(`/categorias/:id`, async (req, res) => {
 });
 
 // brechos
+
 app.get(`/brechos`, async (req, res) => {
 
     try {
@@ -437,4 +419,73 @@ app.delete(`/brechos/:id`, async (req, res) => {
         console.error(erro);
     };
 });
-// brechos
+
+app.get(`/produtos`, async (req, res) =>{
+
+    try {
+        const produtos = await Produto.find()
+        res.status(200).json(produtos);
+        
+    } catch (error) {
+
+        console.error(error)
+    }
+})
+
+app.get(`/produtos/:id`, async (req, res) =>{
+
+    const { id } =req.params
+
+    try {
+        const produto = await Produto.findById(id)
+        res.status(200).json(produto);
+        
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+app.post(`/produtos`, async (req, res) =>{
+    
+    const produto = new Produto(req.body);
+
+    try {
+        
+        const novo_produto = await produto.save();
+        res.status(201).json(novo_produto);
+
+    } catch (error) {
+
+        console.error(error)
+    }
+
+})
+
+app.put(`/produtos/:id`, async (req, res) =>{
+    
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+
+        const produto = await Produto.findByIdAndUpdate(id, req.body, { new: true});
+        res.status(200).json(produto);
+
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+app.delete(`/produtos/:id`, async (req, res) =>{
+
+    const { id } = req.params;
+
+    try {
+
+        const produto = await Produto.findByIdAndDelete(id)
+        res.status(200).json(produto);
+
+    } catch (error) {
+        console.error(error)
+    }
+})
