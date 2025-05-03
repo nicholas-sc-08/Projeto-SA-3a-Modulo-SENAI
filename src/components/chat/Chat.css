@@ -200,6 +200,28 @@
     text-overflow: ellipsis;
 }
 
+.container_contador_de_mensagens_nao_lida{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    height: 80%;
+
+    margin-right: 9%;
+    border-radius: 100vw;
+    background-color: var(--cor_um);
+}
+
+.container_contador_de_mensagens_nao_lida span{
+    
+    font-size: 0.8rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: 300;
+
+    color: var(--cor_quatro);
+}
+
 .fundo_escuro_para_notificacao{
 
     position: fixed;

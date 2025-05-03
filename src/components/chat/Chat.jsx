@@ -252,7 +252,12 @@ function Chat() {
                 <div className='container_ultima_mensagem_chat'>
                 
                   <p>{ultima_mensagem(conversa._id)}</p>
-                  <span>1</span>
+                  
+                  <div className="container_contador_de_mensagens_nao_lida">
+
+                    <span>1</span>
+                  
+                  </div>
 
                 </div>
              
