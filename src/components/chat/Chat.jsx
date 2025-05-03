@@ -232,28 +232,32 @@ function Chat() {
 
           <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
-            <div className='container_conversa_chat_imagem_de_perfil' onClick={() => ir_para_conversa(conversa._id)}>
+            <div className='container_usuario_chat' onClick={() => ir_para_conversa(conversa._id)}>
               
-              <img src={conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
+              <div className='container_conversa_chat_imagem_de_perfil'>
+
+               <img src={conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
+              
+              </div>
              
               <div className="container_conversa_chat_titulo">
               
-                <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                <div className='container_conversa_chat_titulo_info'>
+                  
+                  <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <p>{hora_da_ultima_mensagem(conversa._id)}</p>
+                
+                </div>
                 
                 <div className='container_ultima_mensagem_chat'>
                 
-                  <span>{ultima_mensagem(conversa._id)}</span>
-                
+                  <p>{ultima_mensagem(conversa._id)}</p>
+                  <span>1</span>
+
                 </div>
              
               </div>
             
-            </div>
-
-            <div className='container_conversa_chat_horario'>
-
-              <p>{hora_da_ultima_mensagem(conversa._id)}</p>
-
             </div>
 
           </div>

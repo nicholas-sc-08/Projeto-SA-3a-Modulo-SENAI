@@ -107,11 +107,9 @@
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
-    min-height: 20%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    width: 100%;
+    height: 20%;
     justify-content: space-between;
-
 }
 
 .container_corversa_chat:hover{
@@ -119,76 +117,82 @@
     background-color: var(--cor_quatro_v_um);
 }
 
+.container_usuario_chat{
+
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
 .container_conversa_chat_imagem_de_perfil{
 
     display: flex;
     align-items: center;
-    padding-left: 5%;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    width: 30%;
+    justify-content: end;
+    width: 20%;
     height: 100%;
-}
-
-.dv_imagem_de_perfil{
-
-    display: flex;
-    align-items: center;
+    background-color: blue;
 }
 
 .container_conversa_chat_imagem_de_perfil img{
 
-    width: 50%;
-    border-radius: 100%;
-}
-
-.container_conversa_chat_imagem_de_perfil h2{
-
-    margin-bottom: 0%;
-
-    width: 300%;
-    
-    font-size: 1.1rem;
-    font-family: var(--tipografia_primaria);
-    font-weight: bold;
-
-    color: var(--cor_seis);
-}
-
-.container_ultima_mensagem_chat{
-
-    width: 200%;
-    font-size: 0.8rem;
-    font-family: var(--tipografia_primaria);
-    font-weight: bold;
-    
-    color: var(--cor_seis_v_um);
+    width: 70%;
+    height: 50%;
+    border-radius: 100vw;
 }
 
 .container_conversa_chat_titulo{
 
-    padding-left: 10%;
-    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+    padding-left: 3%;
+    background-color: purple;
 }
 
-.container_conversa_chat_horario{
+.container_conversa_chat_titulo_info{
 
     display: flex;
-    width: 17%;
-    height: 100%;
-    margin-bottom: 5%;
     align-items: center;
+    justify-content: space-between;
 }
 
-.container_conversa_chat_horario p{
+.container_conversa_chat_titulo_info h2{
 
-    padding-right: 10%;
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 650;
+    color: var(--cor_seis);
+}
+
+.container_conversa_chat_titulo_info p{
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     font-weight: 600;
+    margin-right: 5%;
+    color: var(--cor_seis_v_um);
+}
 
-    color: var(--cor_seis);
+.container_ultima_mensagem_chat{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 25%;
+    background-color: green;
+}
+
+.container_ultima_mensagem_chat p{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--cor_seis_v_um);
 }
 
 .fundo_escuro_para_notificacao{
