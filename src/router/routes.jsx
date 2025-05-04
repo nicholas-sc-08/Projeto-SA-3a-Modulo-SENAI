@@ -14,6 +14,8 @@ import Sobre_nos from "../pages/Sobre_Nos/Sobre_nos";
 import Erro from "../pages/Erro/Erro";
 import Edicao_perfil_brecho from "../pages/Perfil_Brecho/Edicao_perfil_brecho";
 import Perfil_cliente from "../pages/Perfil_Cliente/Perfil_cliente";
+import Termos_de_uso from "../pages/Legal_Pages/Termos_de_uso";
+import Politica_de_Privacidade from "../pages/Legal_Pages/Politica_de_Privacidade";
 
 
 
@@ -28,13 +30,16 @@ const router = createBrowserRouter([
    { path: `/footer`, element: <Footer /> },
    { path: `/gestao_estoque`, element: <GestaoEstoque /> },
    { path: `/cadastro_produto`, element: <Cadastro_Produto /> },
-   { path: `/perfil_brecho`, element: <Perfil_Brecho />},
-   { path: `/contato`, element: <Contato />},
-   { path: `/sobre_nos`, element: <Sobre_nos />},
-   { path: `/erro`, element: <Erro/>},
+   { path: `/perfil_brecho`, element: <Perfil_Brecho /> },
 
-   { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho />},
-   { path: `/perfil_cliente`, element: <Perfil_cliente />}
+   { path: `/contato`, element: <Contato /> },
+   { path: `/sobre_nos`, element: <Sobre_nos /> },
+   { path: `/erro`, element: <Erro /> },
+   { path: `/TermosDeUso`, element: <Termos_de_uso /> },
+   { path: `/PoliticaDePrivacidade`, element: <Politica_de_Privacidade /> },
+
+   { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho /> },
+   { path: `/perfil_cliente`, element: <Perfil_cliente /> }
 
 ])
 

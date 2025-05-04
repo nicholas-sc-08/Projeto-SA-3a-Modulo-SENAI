@@ -43,5 +43,5 @@
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
 
-    scrollbar-color: var(--cor_um) var(--cor_nove_v_tres);
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
 }

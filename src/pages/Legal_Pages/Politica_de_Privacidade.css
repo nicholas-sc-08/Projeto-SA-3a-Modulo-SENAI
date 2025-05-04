@@ -1,0 +1,292 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root,
+body,
+html {
+
+    min-height: 100vh;
+
+    --cor_um: #466330;
+    --cor_um_v_um: #466330b5;
+    --cor_um_v_dois: #2d411f;
+    --cor_um_v_tres: #466330c2;
+    --cor_dois: #9DA650;
+    --cor_dois_v_um: #8f9749;
+    --cor_dois_v_dois: #9da65058;
+    --cor_tres: #E7E8CE;
+    --cor_quatro: #FFFDF7;
+    --cor_quatro_v_um: #e2e0da;
+    --cor_cinco: #E4CD80;
+    --cor_seis: #3E2A21;
+    --cor_seis_v_um: #3e2a219e;
+    --cor_sete: #FF3333;
+    --cor_sete_v_um: #ff333399;
+    --cor_oito: #2f2e304d;
+    --cor_oito_v_um: #0000001a;
+    --cor_nove: #FFFFFF;
+    --cor_nove_v_um: #ffffff96;
+    --cor_nove_v_dois: #F0F0F0;
+    --cor_nove_v_tres: #e6e6e696;
+    --cor_dez: #5c5c5c;
+    --cor_onze: #D23D3D;
+    --cor_doze: #F0EEED;
+    --cor_treze: #A62424;
+    --cor_quatorze: #ab9489;
+    --cor_quinze: #FFF4D1;
+    --cor_dezesseis: #F0EEED;
+    --cor_dezesete: #593F28;
+    --cor_dezoito: #3e2a21af;
+
+    --tipografia_primaria: "Montserrat", serif;
+    --tipografia_secundaria: "Poppins", serif;
+
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
+}
+
+.container-all-page-politica-privacidade {
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade {
+    width: 85%;
+
+    padding-bottom: 3%;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    font-size: 2.4rem;
+
+    padding-bottom: 2%;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+}
+
+.alinhamento-titulo-subtitulo-politica-privacidade strong {
+    color: var(--cor_um);
+}
+
+.container-alinhamento-topicos-politica-privacidade {
+    width: 85%;
+    padding-bottom: 4%;
+}
+
+.topico-um-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-um-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-um-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-um-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-um-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-dois-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-dois-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-dois-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-dois-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-dois-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-tres-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-tres-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-tres-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-tres-politica-privacidade strong {
+    color: var(--cor_um);
+}
+
+.topico-quatro-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-quatro-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-quatro-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-cinco-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-cinco-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-cinco-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-cinco-politica-privacidade ul {
+    margin-left: 1.5%;
+}
+
+.topico-cinco-politica-privacidade li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-seis-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-seis-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-seis-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-de-duvidas-contato-politica-privacidade {
+    padding-bottom: 2%;
+}
+
+.topico-de-duvidas-contato-politica-privacidade h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-de-duvidas-contato-politica-privacidade p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-de-duvidas-contato-politica-privacidade a {
+    color: var(--cor_um);
+    margin-left: 0.5%;
+}
+
+.atualizacao-politica-privacidade{
+    padding-bottom: 2%;
+}
+
+.atualizacao-politica-privacidade h1{
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
