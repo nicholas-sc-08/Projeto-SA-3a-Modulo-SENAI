@@ -6,7 +6,7 @@ const ip = `192.168.15.14`;
 const { Server } = require(`socket.io`);
 
 const app = express();
-const conectar_com_mongo = require(`./mongo.js`);
+const conectar_com_mongo = require(`./mongo/mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
