@@ -73,8 +73,8 @@ function Footer() {
               <>
                 <Link to={"/sobre_nos"}>Quem somos nós?</Link>
                 <Link to={"/contato"}>Contato</Link>
-                <Link>Termos & Condições </Link>
-                <Link>Política de Privacidade</Link>
+                <Link to={'/termosDeUso'}>Termos & Condições </Link>
+                <Link to={'/PoliticaDePrivacidade'}>Política de Privacidade</Link>
               </>
             )}
 
