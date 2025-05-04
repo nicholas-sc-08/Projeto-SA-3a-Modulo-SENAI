@@ -18,12 +18,12 @@ function Chat_conversa() {
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
-    const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
     const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
+    const referencia_inpt_de_msg = useRef(null);
     const final_da_conversa = useRef(null);
 
     useEffect(() => {
@@ -62,7 +62,6 @@ function Chat_conversa() {
     useEffect(() => {
 
       atualizar_mensagem();
-      
     }, []);
 
     useEffect(() => {
@@ -353,7 +352,12 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
+          <div className="campo_de_texto_da_conversa_atual">
+
+            <textarea rows={1} placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
+
+          </div>
+
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       
       </div>
