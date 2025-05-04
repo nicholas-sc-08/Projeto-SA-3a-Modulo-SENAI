@@ -116,7 +116,7 @@ function Chat_conversa() {
 
             const mensagem_lida = {...array_chat[i], mensagem_lida_quem_recebeu: true};            
             
-            await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+            await axios.put(`http://192.168.15.14:3000/chats/${mensagem_lida._id}`, mensagem_lida);
           };
           
         } catch (erro) {
@@ -131,7 +131,7 @@ function Chat_conversa() {
 
       try {
           
-          const clientes = await axios.get(`http://localhost:3000/clientes`);
+          const clientes = await axios.get(`http://192.168.15.14:3000/clientes`);
           set_array_clientes(clientes.data);
 
       } catch (erro) {
@@ -144,7 +144,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await axios.get(`http://localhost:3000/chats`);
+        const conversas = await axios.get(`http://192.168.15.14:3000/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -171,7 +171,7 @@ function Chat_conversa() {
             mensagem_lida_quem_recebeu: false
           };          
           
-          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
+          const mensagem_postada = await axios.post(`http://192.168.15.14:3000/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
           console.log(mensagem_postada.data);
           
@@ -199,7 +199,7 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
+          const mensagem_atualizada = await axios.put(`http://192.168.15.14:3000/chats/${mensagem._id}`, mensagem);
           const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
           set_conversa_atual(conversa_atualizada);
           socket.emit(`mensagem_a_atualizar`, mensagem_atualizada.data);
