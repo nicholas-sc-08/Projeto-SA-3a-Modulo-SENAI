@@ -28,6 +28,7 @@ function Chat() {
         buscar_clientes();
         buscar_chat();
         buscar_brechos();
+
     }, []);
     
     useEffect(() => {
@@ -143,7 +144,7 @@ function Chat() {
 
       };
 
-      return `Nenhuma mensagem`;
+      return ``;
     };
 
     function hora_da_ultima_mensagem(id_cliente){
@@ -185,7 +186,7 @@ function Chat() {
 
       for(let i = 0; i < array_chat.length; i++){
 
-        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado._id != _id){
 
           aparecer_contador = true;
         };
@@ -200,7 +201,7 @@ function Chat() {
 
       for(let i = 0; i < array_chat.length; i++){
 
-        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado._id != _id){
 
           cor_da_hora = `#466330`;
         };
