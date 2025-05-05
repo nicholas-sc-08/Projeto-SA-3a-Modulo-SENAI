@@ -9,10 +9,10 @@ function Edicao_perfil_brecho() {
         <div className="edicao-perfil-brecho-content">
           <div className="parte-esquerda-div-central">
             <div className="perfil-brecho-logo-content">
-              <input type="image" />
+            <img src="" alt="" />
             </div>
             <div className="info-horario-perfil-brecho">
-              <textarea name="" id="">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
+              <textarea name="" className="horario-preenchido-brecho" id="">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
             </div>
           </div>
           <div className="parte-direita-div-central">
@@ -61,6 +61,9 @@ function Edicao_perfil_brecho() {
               <p className="titulo-do-input">Mudança de Senha</p>
               <input type="text" placeholder="Nova Senha" />
               <input type="text" placeholder='Confirme sua senha'/>
+            </div>
+            <div className="botao-editar-content">
+              <button>Editar</button>
             </div>
           </div>
         </div>
