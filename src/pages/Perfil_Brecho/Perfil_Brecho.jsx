@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-import HeaderUsuario from '../../components/HeaderUsuario'
 import '../Perfil_Brecho/Perfil_Brecho.css'
+import Header from '../../components/Header'
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
@@ -10,7 +10,7 @@ function Perfil_Brecho() {
   return (
 
     <div className="toda-tela-content">
-      <HeaderUsuario />
+      <Header tipo='brecho' />
       <div className="depois-da-navbar-content">
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">
@@ -40,10 +40,10 @@ function Perfil_Brecho() {
                 <h1>Brechó Moda Sustentável</h1>
 
                 <div className="icons-edicao-excluir-content">
-                  <div className="editar-content">
+                  <Link to={"/Edicao_perfil_brecho"} className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
-                    <Link to={"/Edicao_perfil_brecho"} className="editar-opcao-palavra" >Editar</Link>
-                  </div>
+                    <span className="editar-opcao-palavra">Editar</span>
+                  </Link>
                   <div className="excluir-content">
                     <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
                     <p>Excluir</p>

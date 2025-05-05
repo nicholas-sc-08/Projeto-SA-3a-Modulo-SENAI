@@ -51,6 +51,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ endereco_cadastrado, set_endereco_cadastrado ] = useState(false);
     const [ arrayBrechos, setArrayBrechos ] = useState([])
     const [ imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho ] = useState(null)
+    const [ array_lancamentos, set_array_lancamnetos ] = useState('')
 
     return (
         <GlobalContext.Provider value={{

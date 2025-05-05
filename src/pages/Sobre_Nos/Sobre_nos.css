@@ -1,12 +1,14 @@
 .bibliografia-fly {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 5%;
 }
 
 .sobre {
   width: 40%;
+  margin-left: 3%;
+  margin-top: 1%;
   color: var(--cor_seis);
 }
 
@@ -23,7 +25,8 @@
 }
 
 .imgEmGrupo {
-  width: 46%;
+  width: 36%;
+  margin-left: 2%;
 }
 
 .apresentando-equipe {
@@ -37,6 +40,7 @@
 .carrossel-container {
   position: relative;
   overflow: hidden;
+  left: 13%;
   width: 100%;
   max-width: 100%;
 }
@@ -85,6 +89,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-right: 25%;
   gap: 8px;
 }
 

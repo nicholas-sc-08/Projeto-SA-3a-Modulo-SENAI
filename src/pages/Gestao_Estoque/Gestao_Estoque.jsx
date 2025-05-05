@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
-import HeaderBrecho from "../../components/HeaderBrecho";
+import Header from "../../components/Header";
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
@@ -93,6 +93,7 @@ function Gestao_Estoque() {
     };
   }
 
+<<<<<<< HEAD
   function corMaisProxima(cor) {
     if (Array.isArray(cor)) {
       cor = cor[0];
@@ -101,13 +102,22 @@ function Gestao_Estoque() {
     if (typeof cor !== "string") return "Cor desconhecida";
 
     const rgb = hexParaRGB(cor);
+=======
+  function corMaisProxima(hex) {
+    const rgb = hexParaRGB(hex);
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
     if (!rgb) return "Cor desconhecida";
 
     let corMaisPerto = null;
     let menorDiferenca = Infinity;
 
+<<<<<<< HEAD
     coresSimplificadas.forEach((corSimplificada) => {
       const corRGB = hexParaRGB(corSimplificada.hex);
+=======
+    coresSimplificadas.forEach((cor) => {
+      const corRGB = hexParaRGB(cor.hex);
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
       const diferenca =
         Math.abs(rgb.r - corRGB.r) +
         Math.abs(rgb.g - corRGB.g) +
@@ -121,10 +131,20 @@ function Gestao_Estoque() {
 
     return corMaisPerto || "Cor desconhecida";
   }
+<<<<<<< HEAD
+=======
+
+  // Exemplo de uso:
+  console.log(corMaisProxima("#3e2a21")); // Deve retornar "Marrom" ou algo próximo
+  console.log(corMaisProxima("#00ffff")); // Deve retornar "Ciano"
+  console.log(corMaisProxima("#ffd700")); // Deve retornar "Dourado"
+
+
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
 
   return (
     <div>
-      <HeaderBrecho />
+      <Header tipo='brecho' />
       <div className="estoque-container">
         <h2>Estoque Produto</h2>
 
@@ -167,6 +187,7 @@ function Gestao_Estoque() {
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
+<<<<<<< HEAD
                     <p className="produto-categoria">
                       {
                         array_categorias.find(
@@ -176,6 +197,17 @@ function Gestao_Estoque() {
                       {"  "}
                       {corMaisProxima(produto.cor)}
                     </p>
+=======
+                    <p className="produto-categoria">{array_categorias.map((categoria, i) => (
+
+                      <div className="container_categoria" key={i}>
+
+                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
+
+                      </div>
+
+                    ))}{corMaisProxima(produto.cor)}</p>
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>

@@ -18,13 +18,12 @@ function Chat_conversa() {
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
     const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
-    const referencia_inpt_de_msg = useRef(null);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
     const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
     const [ icone_mensagem_apagada, set_icone_mensagem_apagada ] = useState('./img/icone_mensagem_apagada_chat.svg');
     const [ tipo_do_cursor_mouse_chat, set_tipo_do_cursor_mouse_chat ] = useState(`default`);
     const [ mensagen_do_dia, set_mensagens_do_dia ] = useState([]);
-    const [ mensagem_lida, set_mensagem_lida ] = useState(``);
+    const referencia_inpt_de_msg = useRef(null);
     const final_da_conversa = useRef(null);
 
     useEffect(() => {
@@ -38,37 +37,31 @@ function Chat_conversa() {
       function lidar_com_a_nova_mensagem(mensagem){
       
         //aqui toda vez que uma mensagem é cadastrada lá no socket, que eu fiz ali quando vai postar no banco de dados, eu já lanço no servidor socket também para ele atualizar em tempo real aqui, fazendo com que chame está função por mais que o useEffect seja chamado somente uma vez aqui ele chama esta função mais de uma vezz
-        console.log("Nova mensagem recebida:", mensagem);
+        console.log(`Nova mensagem recebida:`, mensagem);
         set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
       };
 
       // Aqui eu vo ta substituindo a mensagem atualizada no historioc de conversa
-      socket.on('receber_mensagem', (mensagem_atualizada) => {
+      socket.on(`mensagem_a_atualizar`, (mensagem_atualizada) => {
         
-        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id === mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
+        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id == mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
       });
     
       //aqui ele vai conecta com o servidor socket
-      socket.on("connect", () => console.log("Conectado com o servidor socket:", socket.id));
-      socket.on("receber_mensagem", lidar_com_a_nova_mensagem);
+      socket.on(`connect`, () => console.log("Conectado com o servidor socket:", socket.id));
+      socket.on(`receber_mensagem`, lidar_com_a_nova_mensagem);
     
       // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
-      return () => socket.off("receber_mensagem", lidar_com_a_nova_mensagem);
+      return () => {
+       
+        socket.off(`mensagem_a_atualizar`);
+        socket.off(`receber_mensagem`);
+      }
     }, []);
 
     useEffect(() => {
 
-      for(let i = array_chat.length - 1; i > 0; i--){
-        
-        if(array_chat[i].id_quem_recebeu_mensagem == usuario_logado._id && array_chat[i].id_dono_mensagem == pessoa_com_quem_esta_conversando._id && array_chat[i].mensagem_lida_quem_recebeu == false){
-          
-          set_mensagem_lida({...array_chat[i], mensagem_lida_quem_recebeu: true});
-          console.log(mensagem_lida);
-          atualizar_mensagem();
-          return;
-        };
-      };
-
+      atualizar_mensagem();
     }, []);
 
     useEffect(() => {
@@ -114,21 +107,30 @@ function Chat_conversa() {
 
     async function atualizar_mensagem(){
 
-      try {
+      for(let i = array_chat.length - 1; i > 0; i--){
         
-        await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
-        
-      } catch (erro) {
-        
-        console.error(erro);
+        try {
+
+          if(usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && pessoa_com_quem_esta_conversando._id == array_chat[i].id_dono_mensagem && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+            const mensagem_lida = {...array_chat[i], mensagem_lida_quem_recebeu: true};            
+            
+            await axios.put(`http://10.3.61.122:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+          };
+          
+        } catch (erro) {
+          
+          console.error(erro);
+        };
       };
+      
     };
 
     async function buscar_clientes(){
 
       try {
           
-          const clientes = await axios.get(`http://localhost:3000/clientes`);
+          const clientes = await axios.get(`http://10.3.61.122:3000/clientes`);
           set_array_clientes(clientes.data);
 
       } catch (erro) {
@@ -141,7 +143,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await axios.get(`http://localhost:3000/chats`);
+        const conversas = await axios.get(`http://10.3.61.122:3000/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -168,7 +170,7 @@ function Chat_conversa() {
             mensagem_lida_quem_recebeu: false
           };          
           
-          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
+          const mensagem_postada = await axios.post(`http://10.3.61.122:3000/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
           console.log(mensagem_postada.data);
           
@@ -196,13 +198,10 @@ function Chat_conversa() {
         
         if(excluir_mensagens_chat){
           
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
-          
-          buscar_conversas();
-
+          const mensagem_atualizada = await axios.put(`http://10.3.61.122:3000/chats/${mensagem._id}`, mensagem);
           const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
           set_conversa_atual(conversa_atualizada);
-          socket.emit(`nova_mensagem`, mensagem_atualizada.data);
+          socket.emit(`mensagem_a_atualizar`, mensagem_atualizada.data);
           set_excluir_mensagens_chat(false);
         };
         
@@ -246,6 +245,7 @@ function Chat_conversa() {
       // aqui vou estar verificando se já existe uma data para aquele objeto mensagens_do_dia
       // se não houver ele mantém o array vazio
       if (!mensagens_do_dia[data]) {
+        
         mensagens_do_dia[data] = [];
       };
 
@@ -352,7 +352,12 @@ function Chat_conversa() {
 
       <div className="container_campos_conversa_atual">
 
-          <textarea type="text" className='campo_de_texto_da_conversa_atual' placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
+          <div className="campo_de_texto_da_conversa_atual">
+
+            <textarea rows={1} placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
+
+          </div>
+
           <button onClick={enviar_mensagem}><img src="./img/Enviar_mensagem_v_1.svg" alt="" /></button>
       
       </div>

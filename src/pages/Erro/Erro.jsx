@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext'
-import HeaderBrecho from '../../components/HeaderBrecho';
 import Footer from '../../components/Footer.jsx';
 import './Erro.css';
+import Header from '../../components/Header.jsx';
 
 function Erro() {
 
@@ -13,7 +13,7 @@ function Erro() {
   return (
     <div>
 
-        <HeaderBrecho/>
+        <Header tipo="usuario"/>
 
         <div className="container_tela_de_erro">
 

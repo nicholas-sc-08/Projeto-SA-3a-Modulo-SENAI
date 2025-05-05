@@ -11,7 +11,7 @@ function Login() {
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
-  const [formulario, set_formulario] = useState({ nome: '', email: '', senha: '' });
+  const [formulario, set_formulario] = useState({email: '', senha: '' });
   const [erro, set_erro] = useState('');
 
   const navegar = useNavigate();
@@ -27,7 +27,7 @@ function Login() {
     
     try {
     
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await axios.get(`http://10.28.145.244:3000/clientes`);
       set_array_clientes(resultado.data);
       console.log(resultado.data);
       
@@ -43,7 +43,7 @@ function Login() {
 
     try {
 
-      const brechos = await axios.get(`http://localhost:3000/brechos`);
+      const brechos = await axios.get(`http://10.28.145.244:3000/brechos`);
       set_array_brechos(brechos.data);
       
     } catch (erro) {
@@ -56,14 +56,14 @@ function Login() {
     
     e.preventDefault();
 
-    if(formulario.nome.trim() == `` || formulario.email.trim() == `` || formulario.senha.trim() == ``){
+    if(formulario.email.trim() == `` || formulario.senha.trim() == ``){
 
       set_erro(`Favor preencher todos os campos!`);
     
     } else {
 
-      const cliente_a_encontrar = array_clientes.find(cliente => formulario.nome == cliente.nome && formulario.email == cliente.email && formulario.senha == cliente.senha);
-      const brecho_a_encontrar = array_brechos.find(brecho => formulario.nome == brecho.nome_brecho && formulario.email == brecho.email && formulario.senha == brecho.senha);
+      const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
+      const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
       console.log();
       
 
@@ -89,17 +89,14 @@ function Login() {
     
     informacoes_clientes();
     informacoes_brechos();
-    
-    try {
-      const { access_token } = token;
-      const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
 
-      const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);  
-      const brecho_existente = array_brechos.find(brecho => brecho.email == data.email);
+    const { access_token } = token;
+    const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${access_token}`}});
+
+    const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);  
+    const brecho_existente = array_brechos.find(brecho => brecho.email == data.email);
+      
+    try {
 
       if (cliente_existente) {
         
@@ -109,16 +106,16 @@ function Login() {
       } else {
        
         const novo_cliente = {
-          nome: cliente_a_logar.nome,
-          email: cliente_a_logar.email,
+          nome: data.nome,
+          email: data.email,
           senha: `123`,
           telefone: ``,
           cpf: ``,
           data_de_nascimento: `2000-01-01`,
-          imagem_de_perfil: cliente_a_logar.imagem_de_perfil
+          imagem_de_perfil: data.imagem_de_perfil
         };
 
-        const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
+        const cliente = await axios.post(`http://10.28.145.244:3000/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);
@@ -159,14 +156,6 @@ function Login() {
         <div className='ladoEsquerdo-container'>
           <h1>Sua conta te espera!</h1>
           <div className='info-login'>
-            <label>Nome<span>*</span></label>
-            <input
-              type="text"
-              className='input-erro'
-              value={formulario.nome}
-              onChange={e => set_formulario({ ...formulario, nome: e.target.value })}
-              placeholder='Nome de Cliente ou de Brechó'
-            />
 
             <label>Email<span>*</span></label>
             <input

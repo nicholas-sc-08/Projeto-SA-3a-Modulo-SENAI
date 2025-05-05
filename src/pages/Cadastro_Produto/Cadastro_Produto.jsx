@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
+<<<<<<< HEAD
 import HeaderBrecho from "../../components/HeaderBrecho";
 import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
+=======
+import Header from "../../components/Header";
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
 
 function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
@@ -131,7 +135,7 @@ function Cadastro_Produto() {
 
   return (
     <div>
-      <HeaderBrecho />
+      <Header tipo='brecho' />
       <h2 className="titulo">Cadastro Produto</h2>
       <div className="container-cadastro-produto">
         <div className="galeria">

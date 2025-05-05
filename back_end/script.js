@@ -2,10 +2,11 @@ const express = require(`express`);
 const cors = require(`cors`);
 const body_parser = require(`body-parser`);
 const http = require(`http`);
+const ip = `10.28.145.244`;
 const { Server } = require(`socket.io`);
 
 const app = express();
-const conectar_com_mongo = require(`./mongo.js`);
+const conectar_com_mongo = require(`./mongo/mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
 const Chat = require(`./models/Chat.js`);
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
     next();
 });
 
-server.listen(porta, `0.0.0.0`, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+server.listen(porta, ip, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
 io.on(`connection`, (socket) => {
         
@@ -46,6 +47,11 @@ io.on(`connection`, (socket) => {
 
         socket.broadcast.emit(`receber_mensagem`, mensagem);
     });
+
+    socket.on(`mensagem_a_atualizar`, mensagem => {
+
+        socket.broadcast.emit(`receber_mensagem`, mensagem);
+    })
 
     socket.on(`disconnect`, () => {
 
@@ -242,6 +248,21 @@ app.put(`/chats/:id`, async (req, res) => {
 
         const mensagem = await Chat.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json(mensagem);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
+app.delete(`/chats/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        await Chat.findByIdAndDelete(id);
+        res.status(200).json(`Mensagem excluída com sucesso!`);
         
     } catch (erro) {
       

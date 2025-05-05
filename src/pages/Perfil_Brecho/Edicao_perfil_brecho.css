@@ -3,16 +3,16 @@ body {
 }
 
 .toda-a-tela {
-    border: 3px solid #D08E00;
-    height: 100vh;
+    /* border: 3px solid #D08E00; */
+    height: 120vh;
     width: 100%;
 }
 
 .tela-antes-da-div-central {
-    border: 3px solid #18CA00;
+    /* border: 3px solid #18CA00; */
     background-color: transparent;
 
-    height: 100vh;
+    height: 110vh;
     width: 100%;
 
     display: flex;
@@ -22,13 +22,13 @@ body {
 }
 
 .edicao-perfil-brecho-content {
-    border: 3px solid #0C35FF;
+    /* border: 3px solid #0C35FF; */
     border-radius: 25px;
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 
-    height: 85%;
-    width: 85%;
+    height: 95%;
+    width: 80%;
 
     display: flex;
     align-items: center;
@@ -37,8 +37,8 @@ body {
 
  /*---- Parte Esquerda do Pop Up ----*/
 
-.parte-esquerda-pop-up {
-    border: 3px solid red;
+.parte-esquerda-div-central {
+    /* border: 3px solid red; */
 
     height: 95%;
     width: 26%;
@@ -50,11 +50,11 @@ body {
 }
 
 .perfil-brecho-logo-content {
-    border: 3px solid #00E69D;
+    /* border: 3px solid #00E69D; */
     border-radius: 20px;
     background-color: var(--cor_dezesseis);
   
-    height: 42%;
+    height: 36%;
     width: 82%;
   
     display: flex;
@@ -74,17 +74,233 @@ body {
     padding: 3%;
 }
 
+.horario-preenchido-brecho {
+    width: 100%;
+    height: 66%;
+
+    border-radius: 0.3rem;
+    resize: none;
+
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+}
+
 /*---- Parte DIREITA do Pop Up ----*/
 
-.parte-direita-pop-up {
-    border: 3px solid red;
+.parte-direita-div-central {
+    /* border: 3px solid red; */
 
     height: 95%;
     width: 69%;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 }
 
+.titulo-edicao-brecho-content {
+    /* border: 3px solid #026002; */
+
+    height: 8%;
+    width: 99%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.1%;
+}
+
+.titulo-edicao-brecho-content p {
+    font-family: "Poppins", sans serif;
+    font-weight: 490;
+    font-size: 1.7rem;
+    color: var(--cor_um);
+}
+
+.vendedor-info-content {
+    /* border: 3px solid #026002; */
+
+    height: 19%;
+    width: 99%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-vendedor-info {
+    /* border: 3px solid #F2D500; */
+
+    height: 25%;
+    width: 99%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.2%;
+}
+
+.titulo-vendedor-info p {
+    font-family: "Poppins", sans serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--cor_dezoito);
+}
+
+.inputs-info-vendedor-content {
+    /* border: 3px solid #F2D500; */
+
+    height: 75%;
+    width: 99%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-info-vendedor-subDiv {
+    /* border: 3px solid #C9057B; */
+
+    height: 100%;
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1%;
+}
+
+.titulo-do-input {
+    font-family: "Poppins", sans serif;
+    font-weight: 670;
+    font-size: 1.1rem;
+    color: var(--cor_dezoito);
+}
+
+.inputs-pequenos-infos {
+    height: 56%;
+    width: 94%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+}
+
+.brecho-info-content {
+    /* border: 3px solid #026002; */
+    border-top: 3px solid var(--cor_nove_v_tres);
+
+    height: 34%;
+    width: 99%;
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.titulo-brecho-infos {
+    /* border: 3px solid #026002; */
+
+    height: 16%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.2%;
+}
+
+.titulo-brecho-infos p {
+    font-family: "Poppins", sans serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--cor_dezoito);
+}
+
+.inputs-pequenos-infos-brecho {
+    /* border: 3px solid #F2D500; */
+
+    height: 41%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1%;
+}
+
+.endereco-e-senha-infos-content {
+    /* border: 3px solid #026002; */
+   
+
+    height: 40%;
+    width: 99%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1.2%;
+}
+
+.endereco-e-senha-infos-content button {
+    height: 19%;
+    width: 98%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    cursor: pointer;
+
+    background-color: var(--cor_dezenove);
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
+
+    text-align: left;
+}
+
+.endereco-e-senha-infos-content button:hover {
+    background-color: var(--cor_tres);
+}
+
+.endereco-e-senha-infos-content input {
+    height: 19%;
+    width: 98%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+}
+
+.botao-editar-content {
+    /* border: 3px solid #026002; */
+
+    height: 12%;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 4%;
+}
+
+.botao-editar-content button {
+    height: 79%;
+    width: 18%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 4rem;
+    border: none;
+    background-color: var(--cor_um);
+    font-family: "Poppins", sans serif;
+    font-size: 1.1rem;
+    color: var(--cor_tres);
+
+}

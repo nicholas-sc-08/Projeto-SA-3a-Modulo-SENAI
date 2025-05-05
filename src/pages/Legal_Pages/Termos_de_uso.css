@@ -1,0 +1,174 @@
+.container-all-page-termos-de-uso {
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.alinhamento-titulo-subtitulo-termos-de-uso {
+    width: 85%;
+
+    padding-bottom: 3%;
+}
+
+.alinhamento-titulo-subtitulo-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    font-size: 2.4rem;
+
+    padding-bottom: 2%;
+}
+
+.alinhamento-titulo-subtitulo-termos-de-uso p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 550;
+}
+
+.container-alinhamento-topicos-termos-de-uso {
+    width: 85%;
+    padding-bottom: 4%;
+}
+
+.topico-um-termos-de-uso {
+    padding-bottom: 2%;
+}
+
+.topico-um-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-um-termos-de-uso p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-dois-termos-de-uso {
+    padding-bottom: 2%;
+}
+
+.topico-dois-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-dois-termos-de-uso ul {
+    margin-left: 1.5%;
+}
+
+.topico-dois-termos-de-uso li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-tres-termos-de-uso {
+    padding-bottom: 2%;
+}
+
+.topico-tres-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-tres-termos-de-uso ul {
+    margin-left: 1.5%;
+}
+
+.topico-tres-termos-de-uso li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-quatro-termos-de-uso {
+    padding-bottom: 2%;
+}
+
+.topico-quatro-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-quatro-termos-de-uso ul {
+    margin-left: 1.5%;
+}
+
+.topico-quatro-termos-de-uso li {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-quatro-termos-de-uso strong {
+    color: var(--cor_um);
+}
+
+.topico-cinco-termos-de-uso {
+    padding-bottom: 2%;
+}
+
+.topico-cinco-termos-de-uso h1 {
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-cinco-termos-de-uso p {
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+}
+
+.topico-seis-termos-de-uso h1{
+    color: var(--cor_um);
+    font-family: var(--tipografia_primaria);
+    letter-spacing: 0.8px;
+    font-weight: 650;
+    font-size: 1.5rem;
+
+    padding-bottom: 0.5%;
+}
+
+.topico-seis-termos-de-uso p{
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;  
+}

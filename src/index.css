@@ -31,17 +31,18 @@
     --cor_nove_v_dois: #F0F0F0;
     --cor_nove_v_tres: #e6e6e696;
     --cor_dez:#5c5c5c;
-    --cor_onze: #9D0000;
+    --cor_onze: #D23D3D;
     --cor_doze: #F0EEED;
-    --cor_treze: #6d0000;
+    --cor_treze: #A62424;
     --cor_quatorze: #ab9489;
     --cor_quinze: #FFF4D1;
     --cor_dezesseis: #F0EEED;
     --cor_dezesete:#593F28;
     --cor_dezoito: #3e2a21af;
+    --cor_dezenove  : #FFFDF7;
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
 
-    scrollbar-color: var(--cor_um) var(--cor_nove_v_tres);
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
 }

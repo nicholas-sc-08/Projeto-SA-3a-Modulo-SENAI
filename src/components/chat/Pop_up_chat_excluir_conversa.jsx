@@ -18,7 +18,7 @@ function Pop_up_chat_excluir_conversa() {
 
     try {
       
-      const conversas = await axios.get(`http://localhost:3000/chats`);
+      const conversas = await axios.get(`http://192.168.15.14:3000/chats`);
       set_array_chat(conversas.data);
 
     } catch (erro) {
@@ -30,21 +30,21 @@ function Pop_up_chat_excluir_conversa() {
   async function apagar_historico_de_conversa(){
 
     try {
-
+      
       for(let i = 0; i < array_chat.length; i++){
-
-        if(usuario_logado.id == array_chat[i].id_dono_mensagem || usuario_logado.id == array_chat[i].id_quem_recebeu_mensagem){
-
-          await axios.delete(`http://localhost:3000/chats/${usuario_logado.id}/${pessoa_com_quem_esta_conversando.id}`);
+        
+        if((usuario_logado._id == array_chat[i].id_dono_mensagem && pessoa_com_quem_esta_conversando._id == array_chat[i].id_quem_recebeu_mensagem) || (usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && array_chat[i].id_dono_mensagem == pessoa_com_quem_esta_conversando._id)){
+          console.log(array_chat[i]);
+          
+          await axios.delete(`http://192.168.15.14:3000/chats/${array_chat[i]._id}`);
           set_pop_up_notificacao_excluir_conversa(true);
+          
         };
       };
 
       buscar_conversas();
-      set_conversa_atual([]);
       set_excluir_conversa_chat(false);
       set_conversa_aberta(false);
-      set_chat_aberto(true);
       
     } catch (erro) {
       
