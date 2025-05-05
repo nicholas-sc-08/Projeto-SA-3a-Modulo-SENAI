@@ -27,8 +27,8 @@ body {
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 
-    height: 89%;
-    width: 85%;
+    height: 92%;
+    width: 80%;
 
     display: flex;
     align-items: center;
@@ -90,14 +90,25 @@ body {
 .titulo-edicao-brecho-content {
     border: 3px solid #026002;
 
-    height: 7%;
+    height: 8%;
     width: 99%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.3%;
+}
+
+.titulo-edicao-brecho-content p {
+    font-family: "Poppins", sans serif;
+    font-weight: 490;
+    font-size: 1.8rem;
+    color: var(--cor_um);
 }
 
 .vendedor-info-content {
     border: 3px solid #026002;
 
-    height: 18%;
+    height: 20%;
     width: 99%;
 
     display: flex;
@@ -107,39 +118,66 @@ body {
 .titulo-vendedor-info {
     border: 3px solid #F2D500;
 
-    height: 30%;
+    height: 28%;
     width: 99%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.2%;
+}
+
+.titulo-vendedor-info p {
+    font-family: "Poppins", sans serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--cor_dezoito);
 }
 
 .inputs-info-vendedor-content {
     border: 3px solid #F2D500;
 
-    height: 70%;
+    height: 72%;
     width: 99%;
 
     display: flex;
     justify-content: space-between;
 }
 
-.input-nome-vendedor {
+.input-info-vendedor-subDiv {
     border: 3px solid #C9057B;
 
     height: 100%;
-    width: 44%;
+    width: 60%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1%;
 }
 
-.input-data-nasci-vendedor {
-    border: 3px solid #C9057B;
+.titulo-do-input {
+    font-family: "Poppins", sans serif;
+    font-weight: 670;
+    font-size: 1.1rem;
+    color: var(--cor_dezoito);
+}
 
-    height: 100%;
-    width: 44%;
+.inputs-pequenos-infos {
+    height: 50%;
+    width: 94%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
 }
 
 .brecho-info-content {
     border: 3px solid #026002;
 
-    height: 37%;
+    height: 35%;
     width: 99%;
     
     display: flex;
@@ -149,13 +187,69 @@ body {
 .titulo-brecho-infos {
     border: 3px solid #026002;
 
-    height: 20%;
+    height: 18%;
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 1.2%;
+}
+
+.titulo-brecho-infos p {
+    font-family: "Poppins", sans serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--cor_dezoito);
 }
 
 .inputs-pequenos-infos-brecho {
     border: 3px solid #F2D500;
 
-    height: 40%;
+    height: 41%;
     width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1%;
+}
+
+.endereco-e-senha-infos-content {
+    border: 3px solid #026002;
+
+    height: 40%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 1.2%;
+}
+
+.endereco-e-senha-infos-content button {
+    height: 15%;
+    width: 93%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    background-color: var(--cor_dezenove);
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    color: ;
+
+    text-align: left;
+}
+
+.endereco-e-senha-infos-content input {
+    height: 15%;
+    width: 93%;
+
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
 }
