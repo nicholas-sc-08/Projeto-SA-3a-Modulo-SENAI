@@ -164,6 +164,51 @@ function Chat() {
       return `00:00`;
     };
 
+    function verificar_mensagens_nao_lida(_id){
+
+      let contador = 0;
+
+      for(let i = 0; i < array_chat.length; i++){
+
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+          contador += 1;
+        };
+      };
+
+      return contador;
+    };
+
+    function exibir_contador(_id){
+
+      let aparecer_contador = false;
+
+      for(let i = 0; i < array_chat.length; i++){
+
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+          aparecer_contador = true;
+        };
+      };
+      
+      return aparecer_contador;
+    };
+
+    function cor_do_horario_da_mensagem(_id){
+
+      let cor_da_hora = `#3e2a219e`;
+
+      for(let i = 0; i < array_chat.length; i++){
+
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+
+          cor_da_hora = `#466330`;
+        };
+      };
+
+      return cor_da_hora;
+    };
+
     function fechar_chat(){
 
       if(altura_inicial_chat == `10%`){
@@ -246,7 +291,7 @@ function Chat() {
                 <div className='container_conversa_chat_titulo_info'>
                   
                   <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p>{hora_da_ultima_mensagem(conversa._id)}</p>
+                  <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
                 
@@ -254,11 +299,14 @@ function Chat() {
                 
                   <p>{ultima_mensagem(conversa._id)}</p>
                   
-                  <div className="container_contador_de_mensagens_nao_lida">
+                  {exibir_contador(conversa._id) && 
+                  
+                    <div className="container_contador_de_mensagens_nao_lida">
 
-                    <span>1</span>
+                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
                   
                   </div>
+                  }
 
                 </div>
              
