@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+  const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
