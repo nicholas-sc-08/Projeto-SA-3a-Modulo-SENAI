@@ -32,7 +32,7 @@ function Cadastro_cliente() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await axios.get(`http://10.3.61.122:3000/clientes`);
       set_array_clientes(resultado.data);
       console.log(resultado.data);
 
@@ -48,7 +48,7 @@ function Cadastro_cliente() {
 
     try {
 
-      const resposta = await axios.post(`http://localhost:3000/clientes`, form_de_cadastro_cliente);
+      const resposta = await axios.post(`http://10.3.61.122:3000/clientes`, form_de_cadastro_cliente);
 
       const endereco_do_cliente_com_fk = {
 
@@ -56,7 +56,7 @@ function Cadastro_cliente() {
         fk_id: resposta.data.id
       };
 
-      const resposta_endereco = await axios.post(`http://localhost:3000/enderecos`, endereco_do_cliente_com_fk);
+      const resposta_endereco = await axios.post(`http://10.3.61.122:3000/enderecos`, endereco_do_cliente_com_fk);
 
       informacoes_clientes();
       mudar_de_pagina(`/login`);

@@ -2,7 +2,7 @@ const express = require(`express`);
 const cors = require(`cors`);
 const body_parser = require(`body-parser`);
 const http = require(`http`);
-const ip = `192.168.15.14`;
+const ip = `10.3.61.122`;
 const { Server } = require(`socket.io`);
 
 const app = express();

@@ -54,7 +54,7 @@ function Chat() {
 
       try {
 
-        const brechos = await axios.get(`http://192.168.15.14:3000/brechos`);
+        const brechos = await axios.get(`http://10.3.61.122:3000/brechos`);
         set_array_brechos(brechos.data);
         
       } catch (erro) {
@@ -67,7 +67,7 @@ function Chat() {
 
         try {
 
-            const clientes = await axios.get(`http://192.168.15.14:3000/clientes`);
+            const clientes = await axios.get(`http://10.3.61.122:3000/clientes`);
             set_array_clientes(clientes.data);
 
         } catch (erro) {
@@ -80,7 +80,7 @@ function Chat() {
 
       try {
         
-        const chat = await axios.get(`http://192.168.15.14:3000/chats`);
+        const chat = await axios.get(`http://10.3.61.122:3000/chats`);
         set_array_chat(chat.data);
 
       } catch (erro) {
