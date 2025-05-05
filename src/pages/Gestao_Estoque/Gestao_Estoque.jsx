@@ -1,14 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import namer from "color-namer";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
 import Header from "../../components/Header";
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-  const { array_categorias, set_array_categorias } = useContext(GlobalContext)
+  const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +39,7 @@ function Gestao_Estoque() {
 
   async function excluirProduto(id) {
     try {
-      await axios.delete(`http://localhost:3000/produtos/${_id}`);
+      await axios.delete(`http://localhost:3000/produtos/${id}`);
       buscar_produtos();
     } catch (error) {
       console.error(error);
@@ -77,7 +76,13 @@ function Gestao_Estoque() {
   ];
 
   function hexParaRGB(hex) {
-    const match = hex.match(/#([0-9a-fA-F]{6})/);
+    if (typeof hex !== "string") return null;
+
+    if (!hex.startsWith("#")) {
+      hex = "#" + hex;
+    }
+
+    const match = hex.match(/^#([0-9a-fA-F]{6})$/);
     if (!match) return null;
 
     const bigint = parseInt(match[1], 16);
@@ -88,15 +93,31 @@ function Gestao_Estoque() {
     };
   }
 
+<<<<<<< HEAD
+  function corMaisProxima(cor) {
+    if (Array.isArray(cor)) {
+      cor = cor[0];
+    }
+
+    if (typeof cor !== "string") return "Cor desconhecida";
+
+    const rgb = hexParaRGB(cor);
+=======
   function corMaisProxima(hex) {
     const rgb = hexParaRGB(hex);
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
     if (!rgb) return "Cor desconhecida";
 
     let corMaisPerto = null;
     let menorDiferenca = Infinity;
 
+<<<<<<< HEAD
+    coresSimplificadas.forEach((corSimplificada) => {
+      const corRGB = hexParaRGB(corSimplificada.hex);
+=======
     coresSimplificadas.forEach((cor) => {
       const corRGB = hexParaRGB(cor.hex);
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
       const diferenca =
         Math.abs(rgb.r - corRGB.r) +
         Math.abs(rgb.g - corRGB.g) +
@@ -104,12 +125,14 @@ function Gestao_Estoque() {
 
       if (diferenca < menorDiferenca) {
         menorDiferenca = diferenca;
-        corMaisPerto = cor.nome;
+        corMaisPerto = corSimplificada.nome;
       }
     });
 
     return corMaisPerto || "Cor desconhecida";
   }
+<<<<<<< HEAD
+=======
 
   // Exemplo de uso:
   console.log(corMaisProxima("#3e2a21")); // Deve retornar "Marrom" ou algo próximo
@@ -117,6 +140,7 @@ function Gestao_Estoque() {
   console.log(corMaisProxima("#ffd700")); // Deve retornar "Dourado"
 
 
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
 
   return (
     <div>
@@ -137,7 +161,10 @@ function Gestao_Estoque() {
                 onKeyDown={(e) => procurar_produtos(e)}
               />
             </div>
-            <button onClick={() => navigate("/cadastro_produto")} className="novo-produto">
+            <button
+              onClick={() => navigate("/cadastro_produto")}
+              className="novo-produto"
+            >
               Novo Produto
             </button>
           </div>
@@ -160,6 +187,17 @@ function Gestao_Estoque() {
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
+<<<<<<< HEAD
+                    <p className="produto-categoria">
+                      {
+                        array_categorias.find(
+                          (categoria) => categoria.nome === produto.fk_id_categoria
+                        )?.nome || "Categoria desconhecida"
+                      }
+                      {"  "}
+                      {corMaisProxima(produto.cor)}
+                    </p>
+=======
                     <p className="produto-categoria">{array_categorias.map((categoria, i) => (
 
                       <div className="container_categoria" key={i}>
@@ -169,13 +207,17 @@ function Gestao_Estoque() {
                       </div>
 
                     ))}{corMaisProxima(produto.cor)}</p>
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
-                <span>{produto.estoque} Uni</span>
-                <span>{produto.estado}</span>
+                <span>{produto.quantidade} uni</span>
+                <span>{produto.condicao}</span>
                 <span>{produto.tamanho}</span>
-                <button onClick={() => excluirProduto(produto._id)} className="delete-button">
+                <button
+                  onClick={() => excluirProduto(produto._id)}
+                  className="delete-button"
+                >
                   <img src="./img/Lixeiraicon.svg" alt="" />
                 </button>
               </div>
