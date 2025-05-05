@@ -27,7 +27,7 @@ function Login() {
     
     try {
     
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await axios.get(`http://10.28.145.244:3000/clientes`);
       set_array_clientes(resultado.data);
       console.log(resultado.data);
       
@@ -43,7 +43,7 @@ function Login() {
 
     try {
 
-      const brechos = await axios.get(`http://localhost:3000/brechos`);
+      const brechos = await axios.get(`http://10.28.145.244:3000/brechos`);
       set_array_brechos(brechos.data);
       
     } catch (erro) {
@@ -115,7 +115,7 @@ function Login() {
           imagem_de_perfil: data.imagem_de_perfil
         };
 
-        const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
+        const cliente = await axios.post(`http://10.28.145.244:3000/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);

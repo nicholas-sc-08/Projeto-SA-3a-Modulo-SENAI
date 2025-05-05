@@ -1,41 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
+<<<<<<< HEAD
+import HeaderBrecho from "../../components/HeaderBrecho";
+import axios from "axios";
+import { GlobalContext } from "../../contexts/GlobalContext";
+=======
 import Header from "../../components/Header";
+>>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
 
 function Cadastro_Produto() {
+  const { array_estoques, set_array_estoques } = useContext(GlobalContext);
+  const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+  
   const [quantidade, setQuantidade] = useState(1);
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState("");
   const [imagens, setImagens] = useState([]);
   const [imagemPrincipal, setImagemPrincipal] = useState(null);
   const [coresSelecionadas, setCoresSelecionadas] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
-  const [categorias] = useState([""]);
-  const [estado_produto] = useState([
-    { id: 1, nome: "Novo" },
-    { id: 2, nome: "Semi-Novo" },
-    { id: 3, nome: "Usado" },
-    { id: 4, nome: "Velho" },
-  ]);
 
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
     nome: "",
     descricao: "",
     preco: "",
-    codigo: "",
-    estado: "",
+    condicao: "",
     cor: [],
     imagem: [],
     marca: "",
-    fk_id_categoria: "",
     composicao: "",
-    categoria: "",
+    fk_id_categoria: "",
+    tamanho: "",
+    quantidade: 1,
   });
 
-  const aumentarQuantidade = () => setQuantidade(quantidade + 1);
-  const diminuirQuantidade = () => quantidade > 1 && setQuantidade(quantidade - 1);
-  const selecionarTamanho = (tamanho) =>
-    setArray_cadastro_produto({ ...array_cadastro_produto, tamanho });
+  const aumentarQuantidade = () => setQuantidade((q) => {
+    setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: q + 1 });
+    return q + 1;
+  });
+
+  const diminuirQuantidade = () => {
+    if (quantidade > 1) {
+      setQuantidade((q) => {
+        setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: q - 1 });
+        return q - 1;
+      });
+    }
+  };
+
+  const selecionarTamanho = (t) => {
+    setTamanhoSelecionado(t);
+    setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
+  };
 
   const adicionarImagem = (event) => {
     const file = event.target.files[0];
@@ -81,10 +99,39 @@ function Cadastro_Produto() {
 
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
 
-  const cadastrar_produto = () => {
-    console.log("Produto cadastrado (simulação):", array_cadastro_produto);
-    alert("Produto cadastrado com sucesso (simulação)");
-  };
+  async function buscar_categorias() {
+    try {
+      const res = await axios.get("http://localhost:3000/categorias");
+      setCategorias(res.data);
+    } catch (error) {
+      console.error("Erro ao buscar categorias", error);
+    }
+  }
+
+  async function buscar_produtos() {
+    try {
+      const res = await axios.get("http://localhost:3000/produtos");
+      set_array_produtos(res.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos", error);
+    }
+  }
+
+  async function cadastrar_produto() {
+    try {
+      await axios.post("http://localhost:3000/produtos", array_cadastro_produto);
+      buscar_produtos();
+      alert("Produto cadastrado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar produto", error);
+      alert("Erro ao cadastrar produto");
+    }
+  }
+
+  useEffect(() => {
+    buscar_produtos();
+    buscar_categorias();
+  }, []);
 
   return (
     <div>
@@ -179,10 +226,7 @@ function Cadastro_Produto() {
               <button
                 key={tamanho}
                 className={`tamanho ${tamanhoSelecionado === tamanho ? "selecionado" : ""}`}
-                onClick={() => {
-                  setTamanhoSelecionado(tamanho);
-                  selecionarTamanho(tamanho);
-                }}
+                onClick={() => selecionarTamanho(tamanho)}
               >
                 {tamanho}
               </button>
@@ -220,9 +264,9 @@ function Cadastro_Produto() {
               onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })}
             >
               <option value="">Selecione o estado</option>
-              {estado_produto.map((estado) => (
-                <option key={estado.id} value={estado.nome}>
-                  {estado.nome}
+              {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
+                <option key={index} value={estado}>
+                  {estado}
                 </option>
               ))}
             </select>
@@ -242,8 +286,8 @@ function Cadastro_Produto() {
           <div className="input-group-direita">
             <label>Categoria</label>
             <select
-              value={array_cadastro_produto.categoria || ""}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, categoria: e.target.value })}
+              value={array_cadastro_produto.fk_id_categoria}
+              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: e.target.value })}
               className="categoria-select"
             >
               <option value="">Selecione uma categoria</option>

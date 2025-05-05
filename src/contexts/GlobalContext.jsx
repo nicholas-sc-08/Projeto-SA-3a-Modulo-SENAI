@@ -9,6 +9,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ array_produtos, set_array_produtos ] = useState([]);
     const [ array_categorias, set_array_categorias ] = useState([]);
     const [ array_enderecos, set_array_enderecos ] = useState([]);
+    const [ array_estoques, set_array_estoques ] = useState([])
     const [ array_chat, set_array_chat ] = useState([]);
     const [ conversa_atual, set_conversa_atual ] = useState([]);
     const [ conversa_aberta, set_conversa_aberta ] = useState(false);
@@ -131,6 +132,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_excluir_mensagens_chat,
             endereco_cadastrado,
             set_endereco_cadastrado,
+            array_estoques,
+            set_array_estoques,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
@@ -145,7 +148,7 @@ export const GlobalContextProvider = ({ children }) => {
             arrayBrechos,
             setArrayBrechos,
             imagemPerfilCadastroBrecho,
-            setImagemPerfilCadastroBrecho
+            setImagemPerfilCadastroBrecho,
         }}>
             {children}
         </GlobalContext.Provider>
