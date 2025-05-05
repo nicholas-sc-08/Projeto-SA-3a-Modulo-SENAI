@@ -160,10 +160,16 @@
 
 .container_conversa_chat_titulo_info h2{
 
+    width: 80%;
+
     font-family: var(--tipografia_primaria);
     font-size: 1.2rem;
     font-weight: 650;
     color: var(--cor_seis);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container_conversa_chat_titulo_info p{
@@ -201,7 +207,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8%;
+    width: 6%;
     height: 80%;
 
     margin-right: 7%;
