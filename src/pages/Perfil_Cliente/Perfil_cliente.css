@@ -16,12 +16,21 @@
     color: var(--cor_um_v_um);
 }
 
+.foto-perfil-cliente{
+    width: 20%;
+    margin-left: 4%;
+    margin-top: 15%;
+
+}
+
 .container-perfil-cliente{
-    margin-top: 3%;
     margin-left: 25%;
-    border: 3px solid cadetblue;
+    margin-top: 3%;
     width: 47%;
     height: 676px;
+    border-radius: 25px;
+    border: 1px solid  #fbf0ce;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 }
 
 /* .foto-perfil-cliente{
@@ -31,7 +40,10 @@
 } */
 
 .info-cliente{
-
+    position: relative;
+    bottom: 50%;
+    left: 20%;
+    width: 70%;
 }
 
 .cabecario-cliente{

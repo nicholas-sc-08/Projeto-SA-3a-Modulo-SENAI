@@ -41,7 +41,7 @@ function Header({ tipo }) {
                 {tipo === 'brecho' && (
                     <button className='button-chat-navbar'><img src="./public/img/icons/chat.svg" alt="Chat" /></button>
                 )}
-                <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /></button>
+                <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente"  jva/></button>
             </div>
         );
     };
