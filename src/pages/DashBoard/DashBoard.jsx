@@ -36,7 +36,7 @@ function DashBoard() {
 
         try {
 
-            const resultado = await axios.get(`http://10.28.145.244:3000/clientes`);
+            const resultado = await axios.get(`http://localhost:3000/clientes`);
             set_array_clientes(resultado.data);
 
         } catch (erro) {
@@ -52,7 +52,7 @@ function DashBoard() {
 
         try {
 
-            const categorias = await axios.get(`http://10.28.145.244:3000/categorias`);
+            const categorias = await axios.get(`http://localhost:3000/categorias`);
             set_array_categorias(categorias.data);
 
         } catch (erro) {
@@ -67,7 +67,7 @@ function DashBoard() {
 
         try {
 
-            const produtos = await axios.get(`http://10.28.145.244:3000/produto`);
+            const produtos = await axios.get(`http://localhost:3000/produto`);
             set_array_produtos(produtos.data);
 
         } catch (erro) {

@@ -11,7 +11,7 @@ function Perfil_cliente() {
         </div>
         <div className='container-perfil-cliente'>
             <div className='foto-perfil-cliente'>
-                <img src="" alt="" />
+                <img src="./img/fotoPerfil.png" alt="" />
             </div>
             <div className='info-cliente'>
                 <div className='cabecario-cliente'><h2>Edite seu Perfil</h2></div>
