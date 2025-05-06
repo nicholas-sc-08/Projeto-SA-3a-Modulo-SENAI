@@ -1,12 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
-<<<<<<< HEAD
-import HeaderBrecho from "../../components/HeaderBrecho";
-import axios from "axios";
-import { GlobalContext } from "../../contexts/GlobalContext";
-=======
 import Header from "../../components/Header";
->>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
+import { GlobalContext } from "../../contexts/GlobalContext";
+import axios from "axios";
 
 function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
@@ -21,19 +17,20 @@ function Cadastro_Produto() {
 
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
+  const { informacoes_editar_produto, set_informacoes_editar_produto} = useContext(GlobalContext)
 
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
-    nome: "",
-    descricao: "",
-    preco: "",
-    condicao: "",
-    cor: [],
-    imagem: [],
-    marca: "",
-    composicao: "",
-    fk_id_categoria: "",
-    tamanho: "",
-    quantidade: 1,
+    nome: "" || informacoes_editar_produto.nome,
+    descricao: "" || informacoes_editar_produto.descricao,
+    preco: "" || informacoes_editar_produto.preco,
+    condicao: "" || informacoes_editar_produto.condicao,
+    cor: [] || informacoes_editar_produto.cor,
+    imagem: [] || informacoes_editar_produto.imagem,
+    marca: "" || informacoes_editar_produto.marca,
+    composicao: "" || informacoes_editar_produto. composicao,
+    fk_id_categoria: "" || informacoes_editar_produto.fk_id_categoria,
+    tamanho: "" || informacoes_editar_produto.tamanho,
+    quantidade: 1 || informacoes_editar_produto.quantidade,
   });
 
   const aumentarQuantidade = () => setQuantidade((q) => {
@@ -292,7 +289,7 @@ function Cadastro_Produto() {
             >
               <option value="">Selecione uma categoria</option>
               {categorias.map((categoria) => (
-                <option key={categoria.id} value={categoria.nome}>
+                <option key={categoria._id} value={categoria.nome}>
                   {categoria.nome}
                 </option>
               ))}

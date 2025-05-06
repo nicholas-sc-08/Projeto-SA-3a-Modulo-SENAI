@@ -8,16 +8,13 @@ import Header from "../../components/Header";
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+  const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
   }, []);
-
-  useEffect(() => {
-    console.log(array_produtos);
-  }, [array_produtos]);
 
   async function buscar_produtos() {
     try {
@@ -48,7 +45,7 @@ function Gestao_Estoque() {
 
   function procurar_produtos(e) {
     if (e.key === "Enter") {
-      // Implementar lógica de pesquisa
+      // lógica de pesquisa aqui
     }
   }
 
@@ -77,10 +74,7 @@ function Gestao_Estoque() {
 
   function hexParaRGB(hex) {
     if (typeof hex !== "string") return null;
-
-    if (!hex.startsWith("#")) {
-      hex = "#" + hex;
-    }
+    if (!hex.startsWith("#")) hex = "#" + hex;
 
     const match = hex.match(/^#([0-9a-fA-F]{6})$/);
     if (!match) return null;
@@ -93,31 +87,15 @@ function Gestao_Estoque() {
     };
   }
 
-<<<<<<< HEAD
-  function corMaisProxima(cor) {
-    if (Array.isArray(cor)) {
-      cor = cor[0];
-    }
-
-    if (typeof cor !== "string") return "Cor desconhecida";
-
-    const rgb = hexParaRGB(cor);
-=======
   function corMaisProxima(hex) {
     const rgb = hexParaRGB(hex);
->>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
     if (!rgb) return "Cor desconhecida";
 
     let corMaisPerto = null;
     let menorDiferenca = Infinity;
 
-<<<<<<< HEAD
-    coresSimplificadas.forEach((corSimplificada) => {
-      const corRGB = hexParaRGB(corSimplificada.hex);
-=======
     coresSimplificadas.forEach((cor) => {
       const corRGB = hexParaRGB(cor.hex);
->>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
       const diferenca =
         Math.abs(rgb.r - corRGB.r) +
         Math.abs(rgb.g - corRGB.g) +
@@ -125,26 +103,31 @@ function Gestao_Estoque() {
 
       if (diferenca < menorDiferenca) {
         menorDiferenca = diferenca;
-        corMaisPerto = corSimplificada.nome;
+        corMaisPerto = cor.nome;
       }
     });
 
     return corMaisPerto || "Cor desconhecida";
   }
-<<<<<<< HEAD
-=======
 
-  // Exemplo de uso:
-  console.log(corMaisProxima("#3e2a21")); // Deve retornar "Marrom" ou algo próximo
-  console.log(corMaisProxima("#00ffff")); // Deve retornar "Ciano"
-  console.log(corMaisProxima("#ffd700")); // Deve retornar "Dourado"
+  function vizualizar_produto(_id) {
+    const produtoSelecionado = array_produtos.find(
+      (produto) => produto._id === _id
+    )
+    console.log(produtoSelecionado)
+    set_informacoes_editar_produto(produtoSelecionado);
+    navigate("/cadastro_produto");
+  }
 
-
->>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
+  function novo_produto(){
+    set_informacoes_editar_produto("")
+    navigate("/cadastro_produto")
+    
+  }
 
   return (
     <div>
-      <Header tipo='brecho' />
+      <Header tipo="brecho" />
       <div className="estoque-container">
         <h2>Estoque Produto</h2>
 
@@ -162,7 +145,7 @@ function Gestao_Estoque() {
               />
             </div>
             <button
-              onClick={() => navigate("/cadastro_produto")}
+              onClick={() => novo_produto}
               className="novo-produto"
             >
               Novo Produto
@@ -180,34 +163,24 @@ function Gestao_Estoque() {
             </div>
 
             {array_produtos.map((produto, index) => (
-              <div className="produto-linha" key={index}>
+              <div
+                className="produto-linha"
+                key={index}
+                onClick={() => vizualizar_produto(produto._id)}
+              >
                 <div className="produto-info">
                   <div className="produto-imagem">
                     <img src={produto.imagem} alt="" />
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
-<<<<<<< HEAD
                     <p className="produto-categoria">
-                      {
-                        array_categorias.find(
-                          (categoria) => categoria.nome === produto.fk_id_categoria
-                        )?.nome || "Categoria desconhecida"
-                      }
-                      {"  "}
-                      {corMaisProxima(produto.cor)}
+                      {array_categorias.find(
+                        (categoria) =>
+                          categoria._id === produto.fk_id_categoria
+                      )?.nome || "Sem categoria"}{" "}
+                      - {corMaisProxima(produto.cor)}
                     </p>
-=======
-                    <p className="produto-categoria">{array_categorias.map((categoria, i) => (
-
-                      <div className="container_categoria" key={i}>
-
-                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
-
-                      </div>
-
-                    ))}{corMaisProxima(produto.cor)}</p>
->>>>>>> 66b4172d4cfee35935e80a49e2f1dcfd66ecf9e9
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
@@ -215,7 +188,10 @@ function Gestao_Estoque() {
                 <span>{produto.condicao}</span>
                 <span>{produto.tamanho}</span>
                 <button
-                  onClick={() => excluirProduto(produto._id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    excluirProduto(produto._id);
+                  }}
                   className="delete-button"
                 >
                   <img src="./img/Lixeiraicon.svg" alt="" />

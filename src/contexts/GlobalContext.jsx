@@ -42,6 +42,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
     const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
     const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
+    const [ informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -56,6 +57,8 @@ export const GlobalContextProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={{
 
+            informacoes_editar_produto,
+            set_informacoes_editar_produto,
             array_clientes,
             set_array_clientes,
             array_enderecos,

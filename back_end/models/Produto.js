@@ -12,7 +12,8 @@ const produto_schema = new mongoose.Schema({
     fk_id_categoria: { type: String, required: false},
     quantidade: { type: Number, required: true},
     descricao: {type: String, required: false},
-    tamanho: {type: String, required: true}
+    tamanho: {type: String, required: true},
+    composicao: {type: String, required: true}
 });
 
 const novo_produto = mongoose.model(`Produto`, produto_schema);
