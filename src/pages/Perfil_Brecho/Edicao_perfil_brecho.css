@@ -27,7 +27,7 @@ body {
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 
-    height: 95%;
+    height: 94%;
     width: 80%;
 
     display: flex;
@@ -84,6 +84,12 @@ body {
     font-family: "Poppins", sans serif;
     font-size: 1rem;
     color: var(--cor_dezoito);
+
+    outline: none;
+}
+
+.horario-preenchido-brecho:focus {
+    border: 1px solid var(--cor_um_v_dois);
 }
 
 /*---- Parte DIREITA do Pop Up ----*/
@@ -112,8 +118,8 @@ body {
 
 .titulo-edicao-brecho-content p {
     font-family: "Poppins", sans serif;
-    font-weight: 490;
-    font-size: 1.7rem;
+    font-weight: 495;
+    font-size: 1.8rem;
     color: var(--cor_um);
 }
 
@@ -175,7 +181,7 @@ body {
 }
 
 .inputs-pequenos-infos {
-    height: 56%;
+    height: 53%;
     width: 94%;
 
     border-radius: 0.3rem;
@@ -184,6 +190,12 @@ body {
 
     font-family: "Poppins", sans serif;
     font-size: 1rem;
+
+    outline: none;
+}
+
+.inputs-pequenos-infos:focus {
+    border: 1px solid var(--cor_um_v_dois);
 }
 
 .brecho-info-content {
@@ -218,7 +230,7 @@ body {
 .inputs-pequenos-infos-brecho {
     /* border: 3px solid #F2D500; */
 
-    height: 41%;
+    height: 42%;
     width: 50%;
 
     display: flex;
@@ -272,6 +284,12 @@ body {
 
     font-family: "Poppins", sans serif;
     font-size: 1rem;
+
+    outline: none;
+}
+
+.endereco-e-senha-infos-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
 }
 
 .botao-editar-content {
@@ -287,7 +305,7 @@ body {
 }
 
 .botao-editar-content button {
-    height: 79%;
+    height: 76%;
     width: 18%;
 
     display: flex;
