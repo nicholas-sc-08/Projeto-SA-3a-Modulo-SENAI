@@ -27,12 +27,13 @@ function Chat_conversa() {
     const final_da_conversa = useRef(null);
 
     useEffect(() => {
-      
-      //ele vai conecta com o servidor socket que esta conectando com o servidor do back end. lá no arquivo socket.js
-      socket.connect();
 
       buscar_clientes();
       buscar_conversas();
+      atualizar_mensagem();
+      
+      //ele vai conecta com o servidor socket que esta conectando com o servidor do back end. lá no arquivo socket.js
+      socket.connect();
     
       function lidar_com_a_nova_mensagem(mensagem){
       
@@ -40,12 +41,6 @@ function Chat_conversa() {
         console.log(`Nova mensagem recebida:`, mensagem);
         set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
       };
-
-      // Aqui eu vo ta substituindo a mensagem atualizada no historioc de conversa
-      socket.on(`mensagem_a_atualizar`, (mensagem_atualizada) => {
-        
-        set_conversa_atual(mensagens_anteriores => mensagens_anteriores.map(mensagem => mensagem._id == mensagem_atualizada._id ? { ...mensagem, mensagem: mensagem_atualizada.mensagem } : mensagem ));
-      });
     
       //aqui ele vai conecta com o servidor socket
       socket.on(`connect`, () => console.log("Conectado com o servidor socket:", socket.id));
@@ -73,18 +68,6 @@ function Chat_conversa() {
 
     }, [conversa_atual]);
 
-    useEffect(() => {
-
-      if(excluir_mensagens_chat){
-
-        set_tipo_do_cursor_mouse_chat(`pointer`);
-      } else {
-
-        set_tipo_do_cursor_mouse_chat(`default`);
-      };
-
-    }, [excluir_mensagens_chat]);
-
     function fechar_conversa(){
 
         set_chat_aberto(true);
@@ -97,8 +80,6 @@ function Chat_conversa() {
     };
 
     function pegar_primeiro_nome(nome){
-
-      console.log(nome);
       
       const nome_a_exibir = nome.split(` `);
 
@@ -107,7 +88,7 @@ function Chat_conversa() {
 
     async function atualizar_mensagem(){
 
-      for(let i = array_chat.length - 1; i > 0; i--){
+      for(let i = 0; i < array_chat.length; i++){
         
         try {
 
@@ -116,6 +97,7 @@ function Chat_conversa() {
             const mensagem_lida = {...array_chat[i], mensagem_lida_quem_recebeu: true};            
             
             await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+            buscar_conversas();
           };
           
         } catch (erro) {
@@ -186,31 +168,6 @@ function Chat_conversa() {
       set_inpt_mensagem({mensagem: ``});
     };
 
-    async function excluir_mensagem_digitada(mensagem_par){
-
-      const mensagem = {
-
-        ...mensagem_par,
-        mensagem: `Mensagem apagada`
-      };
-      
-      try {
-        
-        if(excluir_mensagens_chat){
-          
-          const mensagem_atualizada = await axios.put(`http://localhost:3000/chats/${mensagem._id}`, mensagem);
-          const conversa_atualizada = conversa_atual.map(mensagem_atual => mensagem_atual._id == mensagem._id ? {...mensagem_atual, mensagem: `Mensagem apagada`} : mensagem_atual);
-          set_conversa_atual(conversa_atualizada);
-          socket.emit(`mensagem_a_atualizar`, mensagem_atualizada.data);
-          set_excluir_mensagens_chat(false);
-        };
-        
-      } catch (erro) {
-        
-        console.error(erro);
-      };
-    };
-
     function buscar_data_da_conversa(data_da_conversa) {
       
       const hoje = new Date();
@@ -262,7 +219,7 @@ function Chat_conversa() {
         
         <button onClick={fechar_conversa} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
         
-        <img src={pessoa_com_quem_esta_conversando.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" className='container_header_chat_conversa_imagem'/>
+        <img src={pessoa_com_quem_esta_conversando.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" className='container_header_chat_conversa_imagem'/>
         
         <div className="container_header_info_chat">
 
@@ -301,11 +258,11 @@ function Chat_conversa() {
           
             <div className="container_dono_da_mensagem">
           
-              <div className="dono_da_mensagem" onClick={() => excluir_mensagem_digitada(conversa)}>
+              <div className="dono_da_mensagem">
           
-                <div className="container_mensagem_dono" style={{cursor: tipo_do_cursor_mouse_chat, }}>
+                <div className="container_mensagem_dono">
           
-                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
+                  <span>{conversa.mensagem}</span>
           
                 </div>
           
@@ -327,7 +284,7 @@ function Chat_conversa() {
                   
                  <div className="container_mensagem_recebedor">
                   
-                  <span>{conversa.mensagem == `Mensagem apagada` ? <img src={icone_mensagem_apagada}/> : ``} {conversa.mensagem}</span>
+                  <span>{conversa.mensagem}</span>
                   
                  </div>
                   

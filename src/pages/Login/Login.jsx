@@ -106,13 +106,14 @@ function Login() {
       } else {
        
         const novo_cliente = {
-          nome: data.nome,
+          nome: data.name,
           email: data.email,
           senha: `123`,
           telefone: ``,
           cpf: ``,
           data_de_nascimento: `2000-01-01`,
-          imagem_de_perfil: data.imagem_de_perfil
+          imagem_de_perfil: data.picture,
+          conversas: []
         };
 
         const cliente = await axios.post(`http://localhost:3000/clientes`, novo_cliente);
