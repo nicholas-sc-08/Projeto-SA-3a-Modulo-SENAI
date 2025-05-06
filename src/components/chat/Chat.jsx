@@ -16,11 +16,9 @@ function Chat() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const [ inpt_de_pesquisa_chat, set_inpt_de_pesquisa_chat ] = useState(``);
     const [ array_de_pesquisa_chat, set_array_de_pesquisa_chat ] = useState([]);
-    const [ array_de_pesquisa_chat_brecho, set_array_de_pesquisa_chat_brecho ] = useState([]);
     const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
-    const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
     const ref_inpt_de_pesquisa = useRef(null);
 
     useEffect(() => {
@@ -46,8 +44,7 @@ function Chat() {
 
     useEffect(() => {
 
-      set_array_de_pesquisa_chat(array_clientes.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
-      set_array_de_pesquisa_chat_brecho(array_brechos.filter(brecho => brecho.nome_brecho.toLowerCase().includes(inpt_de_pesquisa_chat.toLocaleLowerCase())));
+      set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
 
     }, [inpt_de_pesquisa_chat]);
 
@@ -280,7 +277,7 @@ function Chat() {
 
       <div className="container_conversas_chat">
 
-        {inpt_de_pesquisa_chat == `` ? array_clientes.map((conversa, i ) => (
+        {inpt_de_pesquisa_chat == `` ? usuario_logado.conversas.map((conversa, i ) => (
 
           <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
@@ -339,7 +336,7 @@ function Chat() {
                 <div className='container_conversa_chat_titulo_info'>
                   
                   <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p>{hora_da_ultima_mensagem(conversa._id)}</p>
+                  <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
                 
@@ -365,92 +362,6 @@ function Chat() {
           </div>
         ))
       }
-      {inpt_de_pesquisa_chat == `` ? array_brechos.map((conversa, i ) => (
-
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa_com_brecho(conversa._id)}>
-
-            <div className='container_usuario_chat'>
-              
-              <div className='container_conversa_chat_imagem_de_perfil'>
-
-               <img src={conversa.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
-              
-              </div>
-             
-              <div className="container_conversa_chat_titulo">
-              
-                <div className='container_conversa_chat_titulo_info'>
-                  
-                  <h2>{conversa._id != usuario_logado._id ? pegar_primeiro_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p>{hora_da_ultima_mensagem(conversa._id)}</p>
-                
-                </div>
-                
-                <div className='container_ultima_mensagem_chat'>
-                
-                  <p>{ultima_mensagem(conversa._id)}</p>
-                  
-                  {exibir_contador(conversa._id) && 
-                  
-                  <div className="container_contador_de_mensagens_nao_lida">
-
-                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
-                
-                  </div>
-                  }
-
-                </div>
-             
-              </div>
-            
-            </div>
-
-          </div>
-        ))
-        : array_de_pesquisa_chat_brecho.map((conversa, i) => (
-
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa_com_brecho(conversa._id)}>
-
-            <div className='container_usuario_chat'>
-              
-              <div className='container_conversa_chat_imagem_de_perfil'>
-
-               <img src={conversa.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
-              
-              </div>
-             
-              <div className="container_conversa_chat_titulo">
-              
-                <div className='container_conversa_chat_titulo_info'>
-                  
-                  <h2>{conversa._id != usuario_logado._id ? pegar_primeiro_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p>{hora_da_ultima_mensagem(conversa._id)}</p>
-                
-                </div>
-                
-                <div className='container_ultima_mensagem_chat'>
-                
-                  <p>{ultima_mensagem(conversa._id)}</p>
-                  
-                  {exibir_contador(conversa._id) && 
-                  
-                  <div className="container_contador_de_mensagens_nao_lida">
-
-                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
-                
-                  </div>
-                  }
-
-                </div>
-             
-              </div>
-            
-            </div>
-
-          </div>
-        ))
-      }
-
 
       </div>
 

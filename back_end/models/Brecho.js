@@ -9,7 +9,8 @@ const brecho_schema = new mongoose.Schema({
     email: { type: String, required: true},
     telefone: { type: String, required: true},
     cnpj: { type: String, required: true },
-    logo: { type: String, required: true }
+    logo: { type: String, required: true },
+    conversas: { type: Array, required: true }
 }, {timestamps: true});
 
 const novo_brecho = mongoose.model(`Brecho`, brecho_schema);
