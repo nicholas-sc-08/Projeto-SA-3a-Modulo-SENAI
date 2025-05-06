@@ -90,16 +90,36 @@ function Chat() {
     function ir_para_conversa(_id){
 
       const pessoa_selecionada = array_clientes.find(cliente => cliente._id == _id);
-      set_pessoa_com_quem_esta_conversando(pessoa_selecionada);
+      const brecho_selecionado = array_brechos.find(brecho => brecho._id == _id);
+      
+      if(pessoa_selecionada != null){
+
+        set_pessoa_com_quem_esta_conversando(pessoa_selecionada);
+
+        if(array_chat.length != 0){
+
+          const mensagens_filtradas_cliente_com_brecho = array_chat.filter(mensagem => {
+            
+            return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada._id || mensagem.id_dono_mensagem == pessoa_selecionada._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
+          });
+
+          set_conversa_atual(mensagens_filtradas_cliente_com_brecho);
+        };
+      };
+
+      if(brecho_selecionado != null){
+
+        set_pessoa_com_quem_esta_conversando(brecho_selecionado);
+
+        if (array_chat.length != 0) {  
   
-      if (array_chat.length != 0) {
-        
-        const mensagens_filtradas = array_chat.filter(mensagem => {
-        
-        return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == pessoa_selecionada._id || mensagem.id_dono_mensagem == pessoa_selecionada._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
-        });
+          const mensagens_filtradas_brecho_com_cliente = array_chat.filter(mensagem => {
   
-        set_conversa_atual(mensagens_filtradas);
+            return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == brecho_selecionado._id || mensagem.id_dono_mensagem == brecho_selecionado._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
+          });
+
+          set_conversa_atual(mensagens_filtradas_brecho_com_cliente);
+        };
       };
   
       set_conversa_aberta(true);
@@ -108,7 +128,6 @@ function Chat() {
 
     function ir_para_conversa_com_brecho(_id){
 
-      const brecho_selecionado = array_brechos.find(brecho => brecho._id == _id);
       set_pessoa_com_quem_esta_conversando(brecho_selecionado);
 
       if(array_chat.length != 0){
@@ -231,7 +250,7 @@ function Chat() {
       ref_inpt_de_pesquisa.current.focus();
     };
 
-    function pegar_ultimo_sobrenome(nome){
+    function pegar_nome_brecho(nome){
 
       const pegar_sobrenome = nome.trim().split(` `);
 
@@ -245,17 +264,9 @@ function Chat() {
       };
     };
 
-    function pegar_primeiro_nome_brecho(nome){
-
-      const pegar_nome_inicial = nome.trim().split(` `);
-
-      return pegar_nome_inicial[0];
-    };
-
     useEffect(() => {
 
       console.log(usuario_logado.conversas);
-      
 
     }, []);
 
@@ -286,7 +297,7 @@ function Chat() {
 
         {inpt_de_pesquisa_chat == `` ? usuario_logado.conversas.map((conversa, i ) => (
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa_com_brecho(conversa._id)}>
+          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
             <div className='container_usuario_chat'>
               
@@ -300,7 +311,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
@@ -342,7 +353,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
