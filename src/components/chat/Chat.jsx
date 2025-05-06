@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Chat.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
 import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
-import socket from './socket';
 
 function Chat() {
 
@@ -22,6 +21,7 @@ function Chat() {
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
     const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
+    const ref_inpt_de_pesquisa = useRef(null);
 
     useEffect(() => {
 
@@ -171,7 +171,7 @@ function Chat() {
 
       for(let i = 0; i < array_chat.length; i++){
 
-        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false){
+        if(array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado != _id){
 
           contador += 1;
         };
@@ -229,6 +229,11 @@ function Chat() {
       };
     };
 
+    function acionar_inpt_de_pesquisa(){
+
+      ref_inpt_de_pesquisa.current.focus();
+    };
+
     function pegar_ultimo_sobrenome(nome){
 
       const pegar_sobrenome = nome.trim().split(` `);
@@ -258,10 +263,10 @@ function Chat() {
         <div className='container_header_chat_pesquisa'>
           
           <h2>ChatFly</h2>
-          <div className="container_inpt_pesquisa_chat">
+          <div className="container_inpt_pesquisa_chat" onClick={acionar_inpt_de_pesquisa}>
 
           <img src="./img/LupaIcon.svg" alt="" />
-          <input type="text" placeholder='Pesquise' value={inpt_de_pesquisa_chat} onChange={e => set_inpt_de_pesquisa_chat(e.target.value)}/>
+          <input type="text" placeholder='Pesquise' ref={ref_inpt_de_pesquisa} value={inpt_de_pesquisa_chat} onChange={e => set_inpt_de_pesquisa_chat(e.target.value)}/>
           </div>
         
         </div>
@@ -304,9 +309,9 @@ function Chat() {
                   
                     <div className="container_contador_de_mensagens_nao_lida">
 
-                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
+                      <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
                   
-                  </div>
+                    </div>
                   }
 
                 </div>
@@ -342,11 +347,14 @@ function Chat() {
                 
                   <p>{ultima_mensagem(conversa._id)}</p>
                   
+                  {exibir_contador(conversa._id) && 
+                  
                   <div className="container_contador_de_mensagens_nao_lida">
 
-                    <span>1</span>
-                  
+                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
+                
                   </div>
+                  }
 
                 </div>
              
@@ -382,11 +390,14 @@ function Chat() {
                 
                   <p>{ultima_mensagem(conversa._id)}</p>
                   
+                  {exibir_contador(conversa._id) && 
+                  
                   <div className="container_contador_de_mensagens_nao_lida">
 
-                    <span>1</span>
-                  
+                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
+                
                   </div>
+                  }
 
                 </div>
              
@@ -421,11 +432,14 @@ function Chat() {
                 
                   <p>{ultima_mensagem(conversa._id)}</p>
                   
+                  {exibir_contador(conversa._id) && 
+                  
                   <div className="container_contador_de_mensagens_nao_lida">
 
-                    <span>1</span>
-                  
+                    <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
+                
                   </div>
+                  }
 
                 </div>
              
