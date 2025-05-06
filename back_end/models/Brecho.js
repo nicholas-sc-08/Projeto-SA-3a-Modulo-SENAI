@@ -8,7 +8,7 @@ const brecho_schema = new mongoose.Schema({
     nome_brecho: { type: String, required: true},
     email: { type: String, required: true},
     telefone: { type: String, required: true},
-    cnpj: { type: String, required: true },
+    cnpj: { type: String, required: false },
     logo: { type: String, required: true },
     conversas: { type: Array, required: true }
 }, {timestamps: true});

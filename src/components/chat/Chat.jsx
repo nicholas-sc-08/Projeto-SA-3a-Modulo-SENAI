@@ -44,7 +44,7 @@ function Chat() {
 
     useEffect(() => {
 
-      set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
+      set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome_vendedor.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
 
     }, [inpt_de_pesquisa_chat]);
 
@@ -252,6 +252,13 @@ function Chat() {
       return pegar_nome_inicial[0];
     };
 
+    useEffect(() => {
+
+      console.log(usuario_logado.conversas);
+      
+
+    }, []);
+
   return (
     <div className='container_chat' style={{height: altura_inicial_chat}}>
       
@@ -279,7 +286,7 @@ function Chat() {
 
         {inpt_de_pesquisa_chat == `` ? usuario_logado.conversas.map((conversa, i ) => (
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
+          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa_com_brecho(conversa._id)}>
 
             <div className='container_usuario_chat'>
               
@@ -293,7 +300,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_ultimo_sobrenome(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
