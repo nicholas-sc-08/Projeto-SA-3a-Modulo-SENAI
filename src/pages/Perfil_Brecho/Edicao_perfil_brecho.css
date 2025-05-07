@@ -12,7 +12,7 @@ body {
     /* border: 3px solid #18CA00; */
     background-color: transparent;
 
-    height: 110vh;
+    height: 100vh;
     width: 100%;
 
     display: flex;
@@ -26,6 +26,7 @@ body {
     border-radius: 25px;
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+    background-color: var(--cor_nove);
 
     height: 94%;
     width: 80%;
@@ -84,6 +85,7 @@ body {
     font-family: "Poppins", sans serif;
     font-size: 1rem;
     color: var(--cor_dezoito);
+    border: 1px solid var(--cor_dois);
 
     outline: none;
 }
@@ -155,7 +157,7 @@ body {
     /* border: 3px solid #F2D500; */
 
     height: 75%;
-    width: 99%;
+    width: 100%;
 
     display: flex;
     justify-content: space-between;
@@ -181,7 +183,7 @@ body {
 }
 
 .inputs-pequenos-infos {
-    height: 53%;
+    height: 51%;
     width: 94%;
 
     border-radius: 0.3rem;
@@ -253,8 +255,8 @@ body {
 }
 
 .endereco-e-senha-infos-content button {
-    height: 19%;
-    width: 98%;
+    height: 18%;
+    width: 97%;
 
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
@@ -262,7 +264,7 @@ body {
 
     cursor: pointer;
 
-    background-color: var(--cor_dezenove);
+    background-color: var(--cor_nove);
     font-family: "Poppins", sans serif;
     font-size: 1rem;
     color: var(--cor_dezoito);
@@ -271,12 +273,12 @@ body {
 }
 
 .endereco-e-senha-infos-content button:hover {
-    background-color: var(--cor_tres);
+    background-color: var(--cor_quatro);
 }
 
 .endereco-e-senha-infos-content input {
-    height: 19%;
-    width: 98%;
+    height: 18%;
+    width: 97%;
 
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
@@ -305,7 +307,7 @@ body {
 }
 
 .botao-editar-content button {
-    height: 76%;
+    height: 72%;
     width: 18%;
 
     display: flex;
