@@ -2,18 +2,17 @@ import { useState } from 'react';
 import Footer from '../../components/Footer'
 import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco';
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
-import { useNavigate } from 'react-router-dom';
 
 
 function Edicao_perfil_brecho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false)
 
   const abrirPopUp = () => {
-    setMostrarPopup(true);
+    setMostrarPopUp(true)
   }
 
   const fecharPopUp = () => {
-    setMostrarPopUp(false);
+    setMostrarPopUp(false)
   }
 
   return (
@@ -82,7 +81,7 @@ function Edicao_perfil_brecho() {
           </div>
         </div>
       </div>
-      {mostrarPopUp && <PopUp_mudar_Endereco onClose={fecharPopup} />}
+      {mostrarPopUp && <PopUp_mudar_Endereco onClose={fecharPopUp} />}
       <Footer />
     </div>
   )

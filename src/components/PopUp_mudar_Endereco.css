@@ -4,19 +4,27 @@ body {
 
 .tela-inteira-content {
     border: 3px solid #18CA00;
+    background-color: rgba(0, 0, 0, 0.692);
 
     height: 100vh;
     width: 100%;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;  
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .divs-centrais-content {
     border: 3px solid #FF0000;
+    background-color: var(--cor_quatro);
 
     height: 86%;
     width: 43%;
+
+    
 }
