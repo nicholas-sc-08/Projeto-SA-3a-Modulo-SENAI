@@ -1,13 +1,24 @@
-import React from 'react'
+import { useState } from 'react';
 import "./Perfil_cliente.css";
 import Footer from '../../components/Footer';
+import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
 
 function Perfil_cliente() {
+    const [mostrarPopUp, setMostrarPopUp] = useState(false)
+
+    const abrirPopUp = () => {
+      setMostrarPopUp(true)
+    }
+  
+    const fecharPopUp = () => {
+      setMostrarPopUp(false)
+    }
+
   return (
     <div>
         <div className='sideBar-perfil-cliente'>
             <p>Bem-vindo(a)</p><h4>Nome do usuario</h4>
-            <img src="./img/Justifyc-icon.svg" alt="" />
+            <img src="./img/Justifyc-icon.svg" alt="" onClick={abrirPopUp} />
         </div>
         <div className='container-perfil-cliente'>
             <div className='foto-perfil-cliente'>
@@ -47,8 +58,8 @@ function Perfil_cliente() {
 
             </div>
         </div>
-
-      {/* <Footer /> */}
+        {mostrarPopUp && <Pop_up_menu_cliente onClose={fecharPopUp} />}
+      <Footer />
     </div>
   )
 }
