@@ -1,24 +1,24 @@
 .sideBar-perfil-cliente{
     display: flex;
-    margin-left: 25%;
+    margin-left: 20%;
     margin-top: 5%;
 }
 
 .sideBar-perfil-cliente h4{
     color: var(--cor_um_v_um);
-    font-weight: 200
+    font-weight: 200;
 }
 
 .sideBar-perfil-cliente img{
     position: absolute;
-    left: 70%;
+    left: 78%;
     width: 36px;
     color: var(--cor_um_v_um);
 }
 
 .foto-perfil-cliente{
     width: 20%;
-    margin-left: 7%;
+    margin-left: 9%;
     margin-top: 15%;
 
 }
@@ -26,9 +26,10 @@
 .container-perfil-cliente{
     margin-left: 20%;
     margin-top: 3%;
-    width: 57%;
+    margin-bottom: 77px;
+    width: 60%;
     height: 676px;
-    border-radius: 25px;
+    border-radius: 13px;
     border: 1px solid  #fbf0ce;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 }
@@ -42,27 +43,29 @@
 
 .info-cliente{
     position: relative;
-    bottom: 55%;
-    left: 20%;
+    bottom: 60%;
+    left: 22%;
     width: 70%;
 }
 
 .cabecario-cliente{
-    margin-left: 35%;
+    margin-left: 28%;
     margin-top: 4%;
-    color: var(--cor_um_v_dois);
+    color: var(--cor_um);
 }
 
 .info1{
     display: flex;
-    margin-left: 35%;
+    margin-left: 22%;
     margin-top: 5%;
+    justify-content: space-around;
 
 }
 
 .nome-cliente, .telefone-cliente, .rua-cliente{
     display: flex;
     flex-direction: column;
+
 }
 
 .nome-cliente input{
@@ -95,7 +98,7 @@
 
 .info2{
     display: flex;
-    margin-left: 35%;
+    margin-left: 22%;
     margin-top: 5%;
     justify-content: space-around;
 }
@@ -135,7 +138,7 @@
 .mudanca-senha{
     display: flex;
     flex-direction: column ;
-    margin-left: 35%;
+    margin-left: 29%;
     margin-top: 5%;
 }
 
@@ -143,6 +146,7 @@
     display: block;
     margin-bottom: 3%;
     height: 2.2vw;
+    width: 512px;
     padding-left: 1%;
     outline: none;
     border: none;
@@ -161,8 +165,8 @@
     border-radius: 19px;
     width: 30%;
     height: 40px;
-    margin-top: 10%;
-    margin-left: 70%;
+    margin-top: 5%;
+    margin-left: 60%;
 }
 
 
