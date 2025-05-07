@@ -44,7 +44,19 @@ function Chat() {
 
     useEffect(() => {
 
-      set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome_vendedor.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
+      const encontrar_cliente = array_clientes.find(_id => usuario_logado._id == _id);
+      const encontrar_brecho = array_brechos.find(_id => usuario_logado._id == _id);
+
+      if(encontrar_cliente){
+
+        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(brecho => brecho.nome_vendedor.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
+
+      };
+      
+      if(encontrar_brecho){        
+        
+        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLocaleLowerCase())));
+      };
 
     }, [inpt_de_pesquisa_chat]);
 
@@ -311,7 +323,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho || conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
@@ -353,7 +365,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
