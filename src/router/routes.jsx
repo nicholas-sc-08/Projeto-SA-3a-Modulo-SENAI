@@ -16,6 +16,7 @@ import Edicao_perfil_brecho from "../pages/Perfil_Brecho/Edicao_perfil_brecho";
 import Perfil_cliente from "../pages/Perfil_Cliente/Perfil_cliente";
 import Termos_de_uso from "../pages/Legal_Pages/Termos_de_uso";
 import Politica_de_Privacidade from "../pages/Legal_Pages/Politica_de_Privacidade";
+import Pesquisa_de_produtos from "../pages/Pesquisa_de_produtos/Pesquisa_de_produtos";
 
 
 
@@ -28,9 +29,10 @@ const router = createBrowserRouter([
 
 
    { path: `/footer`, element: <Footer /> },
+
    { path: `/gestao_estoque`, element: <GestaoEstoque /> },
    { path: `/cadastro_produto`, element: <Cadastro_Produto /> },
-   
+   { path: `/buscarProdutos`, element: <Pesquisa_de_produtos /> },
 
    { path: `/contato`, element: <Contato /> },
    { path: `/sobre_nos`, element: <Sobre_nos /> },
