@@ -50,7 +50,6 @@ function Chat() {
       if(encontrar_cliente){
 
         set_array_de_pesquisa_chat(usuario_logado.conversas.filter(brecho => brecho.nome_vendedor.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
-
       };
       
       if(encontrar_brecho){        
