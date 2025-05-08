@@ -3,6 +3,7 @@ import './Chat.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
 import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
+import api from '../../services/api';
 
 function Chat() {
 
@@ -63,7 +64,7 @@ function Chat() {
 
       try {
 
-        const brechos = await axios.get(`http://localhost:3000/brechos`);
+        const brechos = await api.get(`/brechos`);
         set_array_brechos(brechos.data);
         
       } catch (erro) {
@@ -76,7 +77,7 @@ function Chat() {
 
         try {
 
-            const clientes = await axios.get(`http://localhost:3000/clientes`);
+            const clientes = await api.get(`/clientes`);
             set_array_clientes(clientes.data);
 
         } catch (erro) {
@@ -89,7 +90,7 @@ function Chat() {
 
       try {
         
-        const chat = await axios.get(`http://localhost:3000/chats`);
+        const chat = await api.get(`/chats`);
         set_array_chat(chat.data);
 
       } catch (erro) {

@@ -6,6 +6,7 @@ import Pop_up_conversa from './Pop_up_conversa.jsx';
 import Pop_up_chat_excluir_conversa from './Pop_up_chat_excluir_conversa.jsx';
 import socket from './socket.js';
 import axios from 'axios';
+import api from '../../services/api.js';
 
 function Chat_conversa() {
 
@@ -39,11 +40,11 @@ function Chat_conversa() {
       
         //aqui toda vez que uma mensagem é cadastrada lá no socket, que eu fiz ali quando vai postar no banco de dados, eu já lanço no servidor socket também para ele atualizar em tempo real aqui, fazendo com que chame está função por mais que o useEffect seja chamado somente uma vez aqui ele chama esta função mais de uma vezz
         console.log(`Nova mensagem recebida:`, mensagem);
-        set_conversa_atual((mensagens_anteriores) => [...mensagens_anteriores, mensagem]);
+        set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem]);
       };
     
       //aqui ele vai conecta com o servidor socket
-      socket.on(`connect`, () => console.log("Conectado com o servidor socket:", socket.id));
+      socket.on(`connect`, () => console.log(`Conectado com o servidor socket:`, socket.id));
       socket.on(`receber_mensagem`, lidar_com_a_nova_mensagem);
     
       // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
@@ -96,7 +97,7 @@ function Chat_conversa() {
 
             const mensagem_lida = {...array_chat[i], mensagem_lida_quem_recebeu: true};            
             
-            await axios.put(`http://localhost:3000/chats/${mensagem_lida._id}`, mensagem_lida);
+            await api.put(`/chats/${mensagem_lida._id}`, mensagem_lida);
             buscar_conversas();
           };
           
@@ -112,7 +113,7 @@ function Chat_conversa() {
 
       try {
           
-          const clientes = await axios.get(`http://localhost:3000/clientes`);
+          const clientes = await api.get(`/clientes`);
           set_array_clientes(clientes.data);
 
       } catch (erro) {
@@ -125,7 +126,7 @@ function Chat_conversa() {
 
       try {
 
-        const conversas = await axios.get(`http://localhost:3000/chats`);
+        const conversas = await api.get(`/chats`);
         set_array_chat(conversas.data);
         
       } catch (erro) {
@@ -152,7 +153,7 @@ function Chat_conversa() {
             mensagem_lida_quem_recebeu: false
           };          
           
-          const mensagem_postada = await axios.post(`http://localhost:3000/chats`, mensagem);
+          const mensagem_postada = await api.post(`/chats`, mensagem);
           socket.emit(`nova_mensagem`, mensagem_postada.data);
           console.log(mensagem_postada.data);
           
