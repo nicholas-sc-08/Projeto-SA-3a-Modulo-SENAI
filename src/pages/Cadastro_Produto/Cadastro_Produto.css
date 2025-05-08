@@ -61,6 +61,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; /* Permite que o botão de remoção fique posicionado sobre a imagem */
 }
 
 .miniatura {
@@ -78,6 +79,21 @@ body {
     width: 400px;
     height: 450px;
     border-radius: 15px;
+}
+
+/* Botão para remover imagem */
+.botao-remover-imagem {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
 }
 
 /* ========================
@@ -257,7 +273,6 @@ body {
 
 /* Ajustando o campo de input direita */
 
-
 .input-group-direita select {
     margin-top: 39px;
 }
@@ -327,7 +342,10 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: nowrap; /* Garante que as cores não vão para a linha de baixo */
+    justify-content: flex-start; /* Alinha as cores à esquerda */
 }
+
 
 .cor-seletor {
     background-color: transparent;
@@ -353,12 +371,24 @@ body {
 }
 
 .cor-selecionada {
+    position: relative;
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin: 5px;
     cursor: pointer;
-    border: 2px solid #fff;
-    flex-wrap: wrap; /* Permite que quebrem linha se necessário */
+}
+
+.remover-cor {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    border-radius: 50%;
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 /* ========================

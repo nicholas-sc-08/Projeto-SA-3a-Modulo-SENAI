@@ -4,6 +4,9 @@ import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
 import Header from "../../components/Header";
+import api from "../../services/api";
+
+// ...imports mantidos
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
@@ -18,7 +21,7 @@ function Gestao_Estoque() {
 
   async function buscar_produtos() {
     try {
-      const produtos = await axios.get("http://localhost:3000/produtos");
+      const produtos = await api.get("/produtos");
       set_array_produtos(produtos.data);
     } catch (erro) {
       console.error(erro);
@@ -27,7 +30,7 @@ function Gestao_Estoque() {
 
   async function buscar_categorias() {
     try {
-      const categorias = await axios.get("http://localhost:3000/categorias");
+      const categorias = await api.get("/categorias");
       set_array_categorias(categorias.data);
     } catch (erro) {
       console.error(erro);
@@ -36,7 +39,7 @@ function Gestao_Estoque() {
 
   async function excluirProduto(id) {
     try {
-      await axios.delete(`http://localhost:3000/produtos/${id}`);
+      await api.delete(`/produtos/${id}`);
       buscar_produtos();
     } catch (error) {
       console.error(error);
@@ -113,12 +116,11 @@ function Gestao_Estoque() {
   function vizualizar_produto(_id) {
     const produtoSelecionado = array_produtos.find(
       (produto) => produto._id === _id
-    )
-    console.log(produtoSelecionado)
+    );
+    console.log(produtoSelecionado);
     set_informacoes_editar_produto(produtoSelecionado);
     navigate("/cadastro_produto");
   }
-
 
   return (
     <div>
@@ -140,7 +142,7 @@ function Gestao_Estoque() {
               />
             </div>
             <button
-              onClick={() => novo_produto}
+              onClick={() => navigate("/cadastro_produto")}
               className="novo-produto"
             >
               Novo Produto
@@ -169,15 +171,12 @@ function Gestao_Estoque() {
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
-                    <p className="produto-categoria">{array_categorias.map((categoria, i) => (
-
-                      <div className="container_categoria" key={i}>
-
-                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
-
-                      </div>
-
-                    ))}{corMaisProxima(produto.cor)}</p>
+                    <p className="produto-categoria">
+                      {array_categorias.find(
+                        (categoria) => categoria._id === produto.fk_id_categoria
+                      )?.nome || "Sem categoria"}{" "}
+                      - {corMaisProxima(produto.cor)}
+                    </p>
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
