@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
 import Header from "../../components/Header";
-import { GlobalContext } from "../../contexts/GlobalContext";
-import axios from "axios";
 
 function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
@@ -20,17 +18,17 @@ function Cadastro_Produto() {
   const { informacoes_editar_produto, set_informacoes_editar_produto} = useContext(GlobalContext)
 
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
-    nome: "" || informacoes_editar_produto.nome,
-    descricao: "" || informacoes_editar_produto.descricao,
-    preco: "" || informacoes_editar_produto.preco,
-    condicao: "" || informacoes_editar_produto.condicao,
-    cor: [] || informacoes_editar_produto.cor,
-    imagem: [] || informacoes_editar_produto.imagem,
-    marca: "" || informacoes_editar_produto.marca,
-    composicao: "" || informacoes_editar_produto. composicao,
-    fk_id_categoria: "" || informacoes_editar_produto.fk_id_categoria,
-    tamanho: "" || informacoes_editar_produto.tamanho,
-    quantidade: 1 || informacoes_editar_produto.quantidade,
+    nome: "" ,
+    descricao: "" ,
+    preco: "",
+    condicao: "",
+    cor: [] ,
+    imagem: [] ,
+    marca: "",
+    composicao: "",
+    fk_id_categoria: "",
+    tamanho: "",
+    quantidade: 1,
   });
 
   const aumentarQuantidade = () => setQuantidade((q) => {

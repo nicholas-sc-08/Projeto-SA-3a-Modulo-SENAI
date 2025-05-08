@@ -16,7 +16,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ usuario_logado, set_usuario_logado ] = useState([]);
     const [ pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando ] = useState(null);
     const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
-    const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
+    const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, conversas: [], confirmar_senha: ``});
     const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
     const [ cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente ] = useState(false);
     const [ cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente ] = useState(false);
@@ -44,7 +44,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
     const [ informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
 
-    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, confirmarSenha: `` });
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)

@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
-  const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -119,11 +119,6 @@ function Gestao_Estoque() {
     navigate("/cadastro_produto");
   }
 
-  function novo_produto(){
-    set_informacoes_editar_produto("")
-    navigate("/cadastro_produto")
-    
-  }
 
   return (
     <div>
@@ -174,13 +169,15 @@ function Gestao_Estoque() {
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
-                    <p className="produto-categoria">
-                      {array_categorias.find(
-                        (categoria) =>
-                          categoria._id === produto.fk_id_categoria
-                      )?.nome || "Sem categoria"}{" "}
-                      - {corMaisProxima(produto.cor)}
-                    </p>
+                    <p className="produto-categoria">{array_categorias.map((categoria, i) => (
+
+                      <div className="container_categoria" key={i}>
+
+                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
+
+                      </div>
+
+                    ))}{corMaisProxima(produto.cor)}</p>
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
