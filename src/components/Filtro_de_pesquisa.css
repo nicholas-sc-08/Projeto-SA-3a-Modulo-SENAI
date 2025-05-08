@@ -83,17 +83,29 @@
 /* Icon de flechita */
 
 .categorias-ocultas li {
+    
+    transition: 0.3s;
+    
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
 .categorias-ocultas button {
+
+    transition: 0.3s;
+
     background-color: transparent;
     border: none;
     cursor: pointer;
 
     color: var(--cor_seis);
     font-family: var(--tipografia_secundaria);
+}
+
+.categorias-ocultas button:hover{
+
+    font-weight: 600;
+    color: var(--cor_um);
 }
 
 ul {
