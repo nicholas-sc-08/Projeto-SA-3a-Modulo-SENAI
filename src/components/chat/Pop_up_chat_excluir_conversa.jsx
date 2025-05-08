@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Pop_up_chat_excluir_conversa.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import axios from 'axios';
+import api from '../../services/api';
 
 function Pop_up_chat_excluir_conversa() {
 
@@ -18,7 +18,7 @@ function Pop_up_chat_excluir_conversa() {
 
     try {
       
-      const conversas = await axios.get(`http://localhost:3000/chats`);
+      const conversas = await api.get(`/chats`);
       set_array_chat(conversas.data);
 
     } catch (erro) {
@@ -36,7 +36,7 @@ function Pop_up_chat_excluir_conversa() {
         if((usuario_logado._id == array_chat[i].id_dono_mensagem && pessoa_com_quem_esta_conversando._id == array_chat[i].id_quem_recebeu_mensagem) || (usuario_logado._id == array_chat[i].id_quem_recebeu_mensagem && array_chat[i].id_dono_mensagem == pessoa_com_quem_esta_conversando._id)){
           console.log(array_chat[i]);
           
-          await axios.delete(`http://localhost:3000/chats/${array_chat[i]._id}`);
+          await api.delete(`/chats/${array_chat[i]._id}`);
           set_pop_up_notificacao_excluir_conversa(true);
           
         };
