@@ -1,7 +1,20 @@
+import { useState } from 'react';
 import Footer from '../../components/Footer'
+import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco';
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
 
+
 function Edicao_perfil_brecho() {
+  const [mostrarPopUp, setMostrarPopUp] = useState(false)
+
+  const abrirPopUp = () => {
+    setMostrarPopUp(true)
+  }
+
+  const fecharPopUp = () => {
+    setMostrarPopUp(false)
+  }
+
   return (
 
     <div className="toda-a-tela">
@@ -57,7 +70,7 @@ function Edicao_perfil_brecho() {
             </div>
             <div className="endereco-e-senha-infos-content">
               <p className="titulo-do-input">Endereço</p>
-              <button>Clique para alterar</button>
+              <button onClick={abrirPopUp}>Clique para alterar</button>
               <p className="titulo-do-input">Mudança de Senha</p>
               <input type="text" placeholder="Nova Senha" />
               <input type="text" placeholder='Confirme sua senha'/>
@@ -68,6 +81,7 @@ function Edicao_perfil_brecho() {
           </div>
         </div>
       </div>
+      {mostrarPopUp && <PopUp_mudar_Endereco onClose={fecharPopUp} />}
       <Footer />
     </div>
   )
