@@ -6,6 +6,7 @@ import SecaoInputsUmBrecho from '../../components/CadastroBrechoSecaoInputsUm.js
 import SecaoInputsDoisBrecho from '../../components/CadastroBrechoSecaoInputsDois.jsx'
 import SecaoInputsTresBrecho from '../../components/CadastroBrechoSecaoInputsTres.jsx'
 import axios from 'axios';
+import api from '../../services/api.js';
 
 function Cadastro_brecho() {
 
@@ -40,7 +41,7 @@ function Cadastro_brecho() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/brechos`);
+      const resultado = await api.get(`/brechos`);
       set_array_brechos(resultado.data);
       console.log(resultado.data);
 
@@ -54,7 +55,7 @@ function Cadastro_brecho() {
 
     try {
 
-      const clientes = await axios.get(`http://localhost:3000/clientes`);
+      const clientes = await api.get(`/clientes`);
       set_array_clientes(clientes.data);
 
       
@@ -68,7 +69,7 @@ function Cadastro_brecho() {
 
     try {
       
-      const enderecos = await axios.get(`http://localhost:3000/enderecos`);
+      const enderecos = await api.get(`/enderecos`);
       set_array_enderecos(enderecos.data);
 
 
@@ -84,7 +85,7 @@ function Cadastro_brecho() {
 
     try {
      
-      const resposta = await axios.post(`http://localhost:3000/brechos`, formCadastroBrecho);
+      const resposta = await api.post(`/brechos`, formCadastroBrecho);
       
       const enderecoDoBrechoComFK = {
         
@@ -92,7 +93,7 @@ function Cadastro_brecho() {
         id_brecho: resposta.data._id
       };      
       
-      await axios.post(`http://localhost:3000/enderecos`, enderecoDoBrechoComFK);
+      await api.post(`/enderecos`, enderecoDoBrechoComFK);
       
       informacoesBrecho();
       buscar_enderecos();
@@ -318,10 +319,6 @@ function Cadastro_brecho() {
 
     };
   }
-
-  useEffect(() => {
-    console.log(cadastroParteUmBrecho, cadastroParteDoisBrecho)
-  }, [cadastroParteUmBrecho, cadastroParteDoisBrecho])
 
   return (
     <div>

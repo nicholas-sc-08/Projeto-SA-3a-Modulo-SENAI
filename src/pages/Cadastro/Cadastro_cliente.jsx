@@ -4,6 +4,7 @@ import Secao_inputs_um from '../../components/Cadastro_cliente_secao_inputs_um.j
 import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_dois.jsx';
 import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
+import api from '../../services/api.js';
 import { Link, useNavigate } from 'react-router-dom';
 import './Cadastro_cliente.css';
 
@@ -32,7 +33,7 @@ function Cadastro_cliente() {
 
     try {
 
-      const resultado = await axios.get(`http://10.28.145.244:3000/clientes`);
+      const resultado = await api.get(`/clientes`);
       set_array_clientes(resultado.data);
       console.log(resultado.data);
 
@@ -48,15 +49,15 @@ function Cadastro_cliente() {
 
     try {
 
-      const resposta = await axios.post(`http://10.28.145.244:3000/clientes`, form_de_cadastro_cliente);
+      const resposta = await api.post(`/clientes`, form_de_cadastro_cliente);
 
       const endereco_do_cliente_com_fk = {
 
         ...endereco_do_cliente,
         fk_id: resposta.data.id
       };
-
-      const resposta_endereco = await axios.post(`http://10.28.145.244:3000/enderecos`, endereco_do_cliente_com_fk);
+      
+      await api.post(`/enderecos`, endereco_do_cliente_com_fk);
 
       informacoes_clientes();
       mudar_de_pagina(`/login`);
