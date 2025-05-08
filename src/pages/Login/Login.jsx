@@ -116,7 +116,7 @@ function Login() {
           conversas: []
         };
 
-        const cliente = await axios.post(`${api}/clientes`, novo_cliente);
+        const cliente = await api.post(`/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);

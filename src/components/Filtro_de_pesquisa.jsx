@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Filtro_de_pesquisa.css';
 
 function Filtro_de_pesquisa() {
-    const [categoriasVisibles, setCategoriasVisibles] = useState({
+    const [categorias_visiveis, set_categorias_visiveis] = useState({
         preco: false,
         tamanho: false,
         estilos: false,
@@ -17,15 +17,13 @@ function Filtro_de_pesquisa() {
 
     const [preco, setPreco] = useState(1000);
 
-    const toggleCategoria = (categoria) => {
-        setCategoriasVisibles((prev) => ({
-            ...prev,
-            [categoria]: !prev[categoria],
-        }));
-    };
-
     const handlePrecoChange = (event) => {
         setPreco(event.target.value);
+    };
+
+    function exibir_opcoes_de_categoria(categoria){
+
+        
     };
 
     return (
@@ -40,10 +38,10 @@ function Filtro_de_pesquisa() {
 
             {/* T-Shirts */}
             <div className="filtro-categorias-roupas">
-                <h4 onClick={() => toggleCategoria('tshirts')}>
+                <h4 onClick={() => exibir_opcoes_de_categoria('tshirts')}>
                     T-shirts
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.tshirts ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.tshirts ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
@@ -51,7 +49,7 @@ function Filtro_de_pesquisa() {
                     </svg>
                 </h4>
 
-                {categoriasVisibles.tshirts && (
+                {categorias_visiveis.tshirts && (
                     <ul className="categorias-ocultas">
                         <li><button>Camisetas de manga longa</button></li>
                         <li><button>Camisetas de algodão</button></li>
@@ -62,16 +60,16 @@ function Filtro_de_pesquisa() {
 
             {/* Shorts */}
             <div className="filtro-categorias-roupas">
-                <h4 onClick={() => toggleCategoria('shorts')}>Shorts
+                <h4 onClick={() => exibir_opcoes_de_categoria('shorts')}>Shorts
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.shorts ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.shorts ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </h4>
-                {categoriasVisibles.shorts && (
+                {categorias_visiveis.shorts && (
                     <ul className="categorias-ocultas">
                         <li><button>Shorts de praia</button></li>
                         <li><button>Shorts de algodão</button></li>
@@ -82,16 +80,16 @@ function Filtro_de_pesquisa() {
 
             {/* Jeans */}
             <div className="filtro-categorias-roupas">
-                <h4 onClick={() => toggleCategoria('jeans')}>Jeans
+                <h4 onClick={() => exibir_opcoes_de_categoria('jeans')}>Jeans
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.jeans ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.jeans ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </h4>
-                {categoriasVisibles.jeans && (
+                {categorias_visiveis.jeans && (
                     <ul className="categorias-ocultas">
                         <li><button>Jeans slim</button></li>
                         <li><button>Jeans reto</button></li>
@@ -102,16 +100,16 @@ function Filtro_de_pesquisa() {
 
             {/* Preços */}
             <div className="filtro-pesquisa-preco">
-                <h4 onClick={() => toggleCategoria('preco')}>Preços
+                <h4 onClick={() => exibir_opcoes_de_categoria('preco')}>Preços
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.preco ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.preco ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </h4>
-                {categoriasVisibles.preco && (
+                {categorias_visiveis.preco && (
                     <div className='container-input-preco-filtro'>
                         <input
                             type="range"
@@ -129,16 +127,16 @@ function Filtro_de_pesquisa() {
 
             {/* Tamanho */}
             <div className="filtro-tamanho">
-                <h4 onClick={() => toggleCategoria('tamanho')}>Tamanho
+                <h4 onClick={() => exibir_opcoes_de_categoria('tamanho')}>Tamanho
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.tamanho ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.tamanho ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </h4>
-                {categoriasVisibles.tamanho && (
+                {categorias_visiveis.tamanho && (
                     <div className="opcoes-tamanho-filtro">
                         <button>PP</button>
                         <button>P</button>
@@ -152,27 +150,27 @@ function Filtro_de_pesquisa() {
 
             {/* Estilos */}
             <div className="filtro-estilos">
-                <h4 onClick={() => toggleCategoria('estilos')}>Estilos
+                <h4 onClick={() => exibir_opcoes_de_categoria('estilos')}>Estilos
                     <svg
-                        className={`flecha-icon ${categoriasVisibles.estilos ? 'flecha-open' : ''}`}
+                        className={`flecha-icon ${categorias_visiveis.estilos ? 'flecha-open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                     >
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </h4>
-                {categoriasVisibles.estilos && (
+                {categorias_visiveis.estilos && (
                     <ul>
                         <div>
-                            <li><button className='button-estilos-categorias-visiveis' onClick={() => toggleCategoria('casual')}>Casual</button>
+                            <li><button className='button-estilos-categorias-visiveis' onClick={() => exibir_opcoes_de_categoria('casual')}>Casual</button>
                                 <svg
-                                    className={`flecha-icon ${categoriasVisibles.casual ? 'flecha-open' : ''}`}
+                                    className={`flecha-icon ${categorias_visiveis.casual ? 'flecha-open' : ''}`}
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                 >
                                     <path d="M9 6l6 6-6 6" />
                                 </svg></li>
-                            {categoriasVisibles.casual && (
+                            {categorias_visiveis.casual && (
                                 <ul className="categorias-ocultas">
                                     <li><button>Roupas casuais</button></li>
                                     <li><button>Casacos</button></li>
@@ -181,15 +179,15 @@ function Filtro_de_pesquisa() {
                             )}
                         </div>
 
-                        <li><button className='button-estilos-categorias-visiveis' onClick={() => toggleCategoria('formal')}>Formal</button>
+                        <li><button className='button-estilos-categorias-visiveis' onClick={() => exibir_opcoes_de_categoria('formal')}>Formal</button>
                             <svg
-                                className={`flecha-icon ${categoriasVisibles.formal ? 'flecha-open' : ''}`}
+                                className={`flecha-icon ${categorias_visiveis.formal ? 'flecha-open' : ''}`}
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                             >
                                 <path d="M9 6l6 6-6 6" />
                             </svg></li>
-                        {categoriasVisibles.formal && (
+                        {categorias_visiveis.formal && (
                             <ul className="categorias-ocultas">
                                 <li><button>Ternos</button></li>
                                 <li><button>Camisas sociais</button></li>
@@ -197,15 +195,15 @@ function Filtro_de_pesquisa() {
                             </ul>
                         )}
 
-                        <li><button className='button-estilos-categorias-visiveis' onClick={() => toggleCategoria('festa')}>Festa</button>
+                        <li><button className='button-estilos-categorias-visiveis' onClick={() => exibir_opcoes_de_categoria('festa')}>Festa</button>
                             <svg
-                                className={`flecha-icon ${categoriasVisibles.festa ? 'flecha-open' : ''}`}
+                                className={`flecha-icon ${categorias_visiveis.festa ? 'flecha-open' : ''}`}
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                             >
                                 <path d="M9 6l6 6-6 6" />
                             </svg></li>
-                        {categoriasVisibles.festa && (
+                        {categorias_visiveis.festa && (
                             <ul className="categorias-ocultas">
                                 <li><button>Vestidos de festa</button></li>
                                 <li><button>Roupas de gala</button></li>
@@ -213,15 +211,15 @@ function Filtro_de_pesquisa() {
                             </ul>
                         )}
 
-                        <li><button className='button-estilos-categorias-visiveis' onClick={() => toggleCategoria('academia')}>Academia</button>
+                        <li><button className='button-estilos-categorias-visiveis' onClick={() => exibir_opcoes_de_categoria('academia')}>Academia</button>
                             <svg
-                                className={`flecha-icon ${categoriasVisibles.academia ? 'flecha-open' : ''}`}
+                                className={`flecha-icon ${categorias_visiveis.academia ? 'flecha-open' : ''}`}
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                             >
                                 <path d="M9 6l6 6-6 6" />
                             </svg></li>
-                        {categoriasVisibles.academia && (
+                        {categorias_visiveis.academia && (
                             <ul className="categorias-ocultas">
                                 <li><button>Leggings</button></li>
                                 <li><button>Blusas de treino</button></li>
