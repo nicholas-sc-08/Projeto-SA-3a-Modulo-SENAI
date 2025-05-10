@@ -3,7 +3,7 @@ import './Filtro_de_pesquisa.css';
 
 function Filtro_de_pesquisa() {
     const [categorias_visiveis, set_categorias_visiveis] = useState({
-        preco: false,
+        preco: true,
         tamanho: false,
         estilos: false,
         tshirts: false,
@@ -23,7 +23,10 @@ function Filtro_de_pesquisa() {
 
     function exibir_opcoes_de_categoria(categoria){
 
-        
+        if(categoria == 'tshirts'){
+
+            
+        };
     };
 
     return (

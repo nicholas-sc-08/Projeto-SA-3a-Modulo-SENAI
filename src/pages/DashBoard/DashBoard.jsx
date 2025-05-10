@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext';
-import axios from 'axios';
 import './DashBoard.css';
 import Inicio_dashboard from '../../components/Inicio_dashboard';
 import Clientes_dashboard from '../../components/Clientes_dashboard.jsx';
@@ -8,6 +7,7 @@ import Categorias_dashboard from '../../components/Categorias_dashboard.jsx';
 import Produtos_dashboard from '../../components/Produtos_dashboard.jsx';
 import { useNavigate } from 'react-router-dom';
 import Brechos_dashboard from '../../components/brechos_dashboard.jsx';
+import api from '../../services/api.js';
 
 function DashBoard() {
 
@@ -36,7 +36,7 @@ function DashBoard() {
 
         try {
 
-            const resultado = await axios.get(`http://localhost:3000/clientes`);
+            const resultado = await api.get(`/clientes`);
             set_array_clientes(resultado.data);
 
         } catch (erro) {
@@ -52,7 +52,7 @@ function DashBoard() {
 
         try {
 
-            const categorias = await axios.get(`http://localhost:3000/categorias`);
+            const categorias = await api.get(`/categorias`);
             set_array_categorias(categorias.data);
 
         } catch (erro) {
@@ -67,7 +67,7 @@ function DashBoard() {
 
         try {
 
-            const produtos = await axios.get(`http://localhost:3000/produto`);
+            const produtos = await api.get(`/produto`);
             set_array_produtos(produtos.data);
 
         } catch (erro) {
