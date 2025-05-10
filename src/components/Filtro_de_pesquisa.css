@@ -68,9 +68,19 @@
     justify-content: space-between;
 }
 
-.container_pesquisa_filtro_um img{
+.container_pesquisa_filtro_um button{
+
+    cursor: pointer;
 
     width: 4%;
+    border: 0px;
+    background-color: transparent;
+}
+
+.container_pesquisa_filtro_um img{
+
+    transition: 0.3s;
+    width: 100%;
 }
 
 .container_pesquisa_filtro_dois p:hover{

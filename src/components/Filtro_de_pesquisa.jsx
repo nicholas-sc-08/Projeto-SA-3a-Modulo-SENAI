@@ -8,9 +8,10 @@ function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const [ botao_titulo_precos_deg, set_botao_titulo_precos_deg ] = useState(`rotate(0deg)`);
+    const [ botao_filtro_um_deg, set_botao_filtro_um_deg ] = useState(`rotate(0deg)`);
     const [ preco_filtro_de_pesquisa, set_preco_filtro_de_pesquisa ] = useState(`25`);
-    const [ exibir_filtro_do_preco, set_exibir_filtro_do_preco ] = useState(false);
-    const [ altura_preco_filtro_de_pesquisa, set_altura_preco_filtro_de_pesquisa ] = useState(`0%`);
+    const [ exibir_filtro_do_preco, set_exibir_filtro_do_preco ] = useState(true);
+    const [ exibir_filtro_um, set_exibir_filtro_um ] = useState(false);
 
     useEffect(() => {
 
@@ -31,11 +32,16 @@ function Filtro_de_pesquisa() {
         };
     };
 
+    function girar_botao_titulo_filtro_um(){
+
+        botao_filtro_um_deg == `rotate(0deg)` ? set_botao_filtro_um_deg(`rotate(90deg)`) : set_botao_filtro_um_deg(`rotate(0deg)`);
+        set_exibir_filtro_um(!exibir_filtro_um); 
+    };
+
     function girar_botao_titulo_preco(){
 
         botao_titulo_precos_deg == `rotate(0deg)` ? set_botao_titulo_precos_deg(`rotate(180deg)`) : set_botao_titulo_precos_deg(`rotate(0deg)`);
         set_exibir_filtro_do_preco(!exibir_filtro_do_preco); 
-        
     };
 
     function categorias_principais(categoria){
@@ -46,6 +52,7 @@ function Filtro_de_pesquisa() {
 
             return array_categorias[index_da_cateogria].nome;
         };
+
     };
 
     return (
@@ -63,7 +70,7 @@ function Filtro_de_pesquisa() {
                 <div className="container_pesquisa_filtro_um">
 
                     <p>{categorias_principais(`camiseta`)}</p>
-                    <img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" />
+                    <button onClick={() => girar_botao_titulo_filtro_um()}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{transform: botao_filtro_um_deg}}/></button>
                 
                 </div>
 
