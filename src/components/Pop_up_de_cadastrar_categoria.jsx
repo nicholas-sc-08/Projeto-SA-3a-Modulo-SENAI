@@ -17,9 +17,7 @@ function Pop_up_de_cadastrar_categoria() {
   useEffect(() => {
 
     buscar_categorias();
-    set_categorias_primarias(array_categorias.map(categoria => categoria.sub_categoria == false));
-    console.log(categorias_primarias);
-    
+
   }, []);
 
   async function buscar_categorias(){
@@ -39,7 +37,7 @@ function Pop_up_de_cadastrar_categoria() {
 
     try {
 
-      const encontrar_categoria_cadastrada = array_categorias.findIndex(categoria => categoria.nome.toUpperCase() == categoria_a_cadastrar.nome.toUpperCase());
+      const encontrar_categoria_cadastrada = array_categorias.findIndex(categoria => categoria.nome.toUpperCase() == categoria_a_cadastrar.nome.toUpperCase() && categoria.sub_categoria == categoria_a_cadastrar.sub_categoria);
 
       if(encontrar_categoria_cadastrada == -1){
 
@@ -86,7 +84,6 @@ function Pop_up_de_cadastrar_categoria() {
 
             <label>Nome da Categoria</label>
             <input type="text" placeholder={valor_checkbox ? `Insira o nome da sub categoria` : `Insira o nome da categoria`} value={categoria_a_cadastrar.nome} onChange={e => set_categoria_a_cadastrar({...categoria_a_cadastrar, nome: e.target.value})}/>
-            {valor_checkbox && <select><option></option></select>}
             
             <div className="container_checkbox_cadastrar_categoria">
 

@@ -67,7 +67,7 @@ function DashBoard() {
 
         try {
 
-            const produtos = await api.get(`/produto`);
+            const produtos = await api.get(`/produtos`);
             set_array_produtos(produtos.data);
 
         } catch (erro) {
