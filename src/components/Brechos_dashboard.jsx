@@ -1,11 +1,107 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Brechos_dashboard.css'
 import Header from './Header'
+import { GlobalContext } from '../contexts/GlobalContext';
+import { useNavigate } from 'react-router-dom';
+import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
+import Pop_up_de_excluir from './Pop_up_de_excluir';
+import axios from 'axios';
+import api from '../services/api';
+import { img } from 'framer-motion/client';
 
 function Brechos_dashboard() {
+
+    const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+    const { brechos_dashboard, set_brechos_dashboard } = useContext(GlobalContext);
+    const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
+
+    const [barra_de_pesquisa, set_barra_de_pesquisa] = useState(``);
+    const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState([]);
+    const [ids_filtrado, set_ids_filtrado] = useState(``);
+
+    const { erro_Pagina, set_erro_pagina } = useContext(GlobalContext);
+    const navegar = useNavigate(``);
+
+    const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useContext(GlobalContext);
+    const { id_do_brecho_a_excluir, set_id_do_brecho_a_excluir } = useContext(GlobalContext);
+    const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
+
+    const [escolher_qual_excluir, set_escolher_qual_excluir] = useState(false);
+
+    function voltar_para_o_inicio() {
+
+        set_inicio_dashboard(true);
+        set_brechos_dashboard(false);
+    };
+
+    useEffect(() => {
+
+        const brechos_filtrados = array_brechos.filter(
+            brecho => brecho.nome_brecho && brecho.nome_brecho.toLowerCase().includes(barra_de_pesquisa.toLowerCase())
+        );
+        const ids = brechos_filtrados.map(brecho => brecho.id);
+
+        set_resultado_de_pesquisa(brechos_filtrados);
+        set_ids_filtrado(ids);
+
+    }, [barra_de_pesquisa, array_brechos]);
+
+    async function buscar_brechos() {
+        try {
+
+            const resultado = await api(`/brechos`);
+            set_array_brechos(resultado.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+            set_erro_pagina(erro.message);
+            navegar(`/erro`);
+        };
+    };
+
+    async function excluir_brecho(id) {
+        try {
+            await api(`/brechos/${id}`);
+            set_array_brechos(prev => prev.filter(b => b.id !== id));
+            set_pop_up_notificacao_excluir_dashboard(true);
+        } catch (erro) {
+            console.error("Erro ao excluir brechó", erro);
+            alert("Erro ao excluir brechó.");
+        }
+    }
+
+    function armazenar_id_do_brecho(id_do_brecho) {
+
+        set_abrir_pop_up_dashboard(true);
+        set_id_do_brecho_a_excluir(id_do_brecho);
+
+    };
+
+    useEffect(() => {
+
+        buscar_brechos();
+
+    }, []);
+
+    useEffect(() => {
+
+        setTimeout(() => {
+
+            set_pop_up_notificacao_excluir_dashboard(false);
+
+        }, 2000);
+
+    }, [pop_up_notificacao_excluir_dashboard]);
+
     return (
         <div>
             <Header tipo="admin" />
+
+            {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+            {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
+            {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+            {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
 
             <div className="container-alinhamento-brechos-dashboard-allPage">
                 <div className="container-alinhamento-imagem-titulo-brecho-dashboard">
@@ -19,11 +115,11 @@ function Brechos_dashboard() {
 
                             <div className="container-alinhamento-titulo-brecho-dashboard">
                                 <p className='titulo-um-brecho-dashboard'>Brechós</p>
-                                <p className='numero-de-brechos-dashboard'>200</p>
+                                <p className='numero-de-brechos-dashboard'>{array_brechos.length}</p>
                             </div>
                         </div>
 
-                        <div className="container-sair-de-brechos-dashboard">
+                        <div className="container-sair-de-brechos-dashboard" onClick={voltar_para_o_inicio}>
                             <p>Voltar</p>
 
                             <img src="./img/icone_dashboard_sair.svg" alt="" />
@@ -36,9 +132,11 @@ function Brechos_dashboard() {
                         <div className="container-barra-verde-pesquisa">
                             <div className="alinhamento-elementos-barra-verde-pesquisa">
                                 <input type="text"
-                                    placeholder='Buscar brechó' />
+                                    placeholder='Buscar brechó'
+                                    value={barra_de_pesquisa}
+                                    onChange={e => set_barra_de_pesquisa(e.target.value)} />
 
-                                <button><img src="./img/Lixeira_icon_v_dois.svg" alt="" /></button>
+                                <button onClick={() => set_escolher_qual_excluir(!escolher_qual_excluir)}>{!escolher_qual_excluir ? <img src='./img/Lixeira_icon_v_dois.svg' alt='lixeira' /> : <img src='./img/icons/close-icon.png' alt='fechar' className='icon-cancelar'/>}</button>
                             </div>
                         </div>
 
@@ -50,19 +148,58 @@ function Brechos_dashboard() {
                             <p className='senha-do-brecho-dashboard'>Senha</p>
                         </div>
 
-                        <div className="fundo-container-dados-do-brecho">
-                            <div className="container-dados-do-brecho">
-                                <div className="alinhamento-container-dados-do-brecho">
-                                    <div className="alinhamento-imagem-nome-brecho">
-                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-                                        <p>Nome do brechó</p>
-                                    </div>
+                        <div className='fundo-container-dados-do-brecho'>
 
-                                    <p className='p-email-brechos-dashboard'>emailBrecho@gmail.com</p>
-                                    <p className='p-telefone-brechos-dashboard'>(48) 99999-9999</p>
-                                    <p className='p-cnpj-brechos-dashboard'>12.345.678/0001-95</p>
-                                    <p className='p-senha-brechos-dashboard'>123456789</p>
-                                </div>
+                            <div className="container-dados-do-brecho">
+
+                                {!barra_de_pesquisa && array_brechos.map((brecho, i) => (
+
+                                    <div key={i} className="alinhamento-container-dados-do-brecho">
+                                        <div className="alinhamento-imagem-nome-brecho">
+                                            <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
+                                            <p>{brecho.nome_brecho}</p>
+                                        </div>
+
+                                        <p className='p-email-brechos-dashboard'>{brecho.email}</p>
+                                        <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
+                                        <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
+                                        <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
+
+                                        {escolher_qual_excluir && (
+                                            <button
+                                                className="botao-excluir-individual"
+                                                onClick={() => armazenar_id_do_brecho(brecho.id)}
+                                            >
+                                                <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+
+                                {barra_de_pesquisa && resultado_de_pesquisa.map((brecho, i) => (
+
+                                    <div key={i} className="alinhamento-container-dados-do-brecho">
+                                        <div className="alinhamento-imagem-nome-brecho">
+                                            <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
+                                            <p>{brecho.nome_brecho}</p>
+                                        </div>
+
+                                        <p className='p-email-brechos-dashboard'>{brecho.email}</p>
+                                        <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
+                                        <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
+                                        <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
+
+                                        {escolher_qual_excluir && (
+                                            <button
+                                                className="botao-excluir-individual"
+                                                onClick={() => armazenar_id_do_brecho(brecho.id)}
+                                            >
+                                                <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                                            </button>
+                                        )}
+
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
