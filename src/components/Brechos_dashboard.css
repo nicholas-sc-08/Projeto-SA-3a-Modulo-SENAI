@@ -71,6 +71,8 @@
 .container-sair-de-brechos-dashboard {
     display: flex;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .container-sair-de-brechos-dashboard p {
@@ -152,6 +154,14 @@
     border-radius: 2vw;
     background-color: var(--cor_onze);
     transition: 0.1s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-cancelar{
+    width: 40%;
 }
 
 .alinhamento-elementos-barra-verde-pesquisa button:hover{
@@ -189,7 +199,9 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 2vw;
     border-bottom-right-radius: 2vw;
-    padding: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
 
     width: 100%;
     overflow-y: scroll;
@@ -200,10 +212,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 4%;
     padding-left: 1%;
+    padding-right: 4%;
     padding-bottom: 1.5%;
+    padding-top: 1.5%;
     border-bottom: 1px solid #0000003f;
+    /* border: 1px solid red; */
 }
 
 .alinhamento-imagem-nome-brecho{
@@ -211,7 +225,12 @@
     align-items: center;
 
     width: 27%;
-    padding-left: 1.5%;
+}
+
+.logo-brecho-dashboard{
+    width: 20%;
+    height: 55px;
+    border-radius: 2vw;
 }
 
 .alinhamento-imagem-nome-brecho p{
@@ -285,5 +304,15 @@
     width: 15%;
     display: flex;
     justify-content: center;
-    /* border: 1px solid red; */
+}
+
+.botao-excluir-individual{
+    width: 1.8%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.botao-excluir-individual img{
+    width: 90%;
 }
