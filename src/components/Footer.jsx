@@ -95,17 +95,17 @@ function Footer() {
         <div className="linha-footer"></div>
         <div className="parte-de-baixo-content">
           <div className="rede-social-footer-content">
-            <a href="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR">
+            <Link to="https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR" target='_blank'>
               <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-            </a>
+            </Link>
 
-            <a href="https://www.instagram.com/fly.circular/">
+            <Link to="https://www.instagram.com/fly.circular/" target='_blank'>
               <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-            </a>
+            </Link>
 
-            <a href="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI">
+            <Link to="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI" target='_blank'>
               <img src="./public/img/Github-icon.svg" alt="Github" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

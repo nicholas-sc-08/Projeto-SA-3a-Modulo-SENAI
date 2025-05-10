@@ -2,7 +2,10 @@ const express = require(`express`);
 const cors = require(`cors`);
 const body_parser = require(`body-parser`);
 const http = require(`http`);
-const ip = `192.168.15.14`;
+<<<<<<< HEAD
+=======
+const ip = `10.3.61.122`;
+>>>>>>> 205b27e28ca49d80649dae4fc23c42fa060c9dd5
 const { Server } = require(`socket.io`);
 
 const app = express();
@@ -39,7 +42,7 @@ app.use((req, res, next) => {
     next();
 });
 
-server.listen(porta, ip, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+server.listen(porta,() => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
 io.on(`connection`, (socket) => {
         

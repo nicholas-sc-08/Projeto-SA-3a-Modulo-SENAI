@@ -1,0 +1,285 @@
+.filtro-container {
+    border-radius: 1vw;
+    /* border: 1px solid red; */
+
+    width: 20%;
+    height: 600px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: scroll;
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alinhamento-titulo-filtro-pesquisa {
+    /* border: 1px solid blue; */
+    width: 90%;
+    padding-top: 6%;
+}
+
+.titulo-imagem-filtro-pesquisa {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo-imagem-filtro-pesquisa h1 {
+    /* border: 1px solid red; */
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_seis);
+    font-size: 120%;
+}
+
+.line-filtro-pesquisa {
+    border: 0.5px solid var(--cor_seis);
+    opacity: 25%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.filtro-categorias-roupas {
+    padding-top: 4%;
+    width: 90%;
+    cursor: pointer;
+}
+
+.filtro-categorias-roupas h4 {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    opacity: 60%;
+
+    font-weight: 450;
+    font-size: 90%;
+    transition: 0.3s;
+}
+
+.filtro-categorias-roupas h4:hover {
+    opacity: 90%;
+}
+
+/* Icon de flechita */
+.flecha-icon {
+    width: 17px;
+    height: 17px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    fill: var(--cor_seis);
+    opacity: 60%;
+}
+
+.flecha-icon:hover {
+    opacity: 100%;
+}
+
+.flecha-open {
+    transform: rotate(90deg);
+    /* Gira para mostrar que está aberto */
+}
+
+/* Icon de flechita */
+
+.categorias-ocultas li {
+    
+    transition: 0.3s;
+    
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.categorias-ocultas button {
+
+    transition: 0.3s;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+}
+
+.categorias-ocultas button:hover{
+
+    font-weight: 600;
+    color: var(--cor_um);
+}
+
+ul {
+    list-style: none;
+}
+
+.filtro-pesquisa-preco {
+    /* border: 1px solid blue; */
+    width: 90%;
+    padding-top: 4%;
+    cursor: pointer;
+}
+
+.filtro-pesquisa-preco h4 {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+
+    font-weight: 500;
+    font-size: 100%;
+    transition: 0.3s;
+
+    padding-bottom: 3%;
+}
+
+.container-input-preco-filtro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-input-preco-filtro input[type='range'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 90%;
+    height: 8px;
+    background: var(--cor_quatro_v_um);
+    border-radius: 5px;
+    /* Borda arredondada */
+    outline: none;
+    transition: background 0.3s ease;
+    /* Transição suave para o fundo */
+}
+
+/* Estilo para o "thumb" (parte que o usuário arrasta) */
+.container-input-preco-filtro input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 15px;
+    height: 15px;
+    /* Altura do thumb */
+    background: var(--cor_dois);
+    /* Cor do thumb */
+    border-radius: 50%;
+    /* Deixa o thumb redondo */
+    cursor: pointer;
+    /* Muda o cursor para um ponteiro */
+}
+
+/* Quando o usuário passa o mouse sobre o slider, altera a cor da barra */
+.container-input-preco-filtro input[type="range"]:hover {
+    background: var(--cor_quatro_v_um);
+}
+
+/* Quando o thumb está sendo arrastado */
+.container-input-preco-filtro input[type="range"]:active::-webkit-slider-thumb {
+    background: var(--cor_um);
+}
+
+.valores-preco-filtro {
+    padding-top: 4%;
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+    font-weight: 400;
+    font-size: 85%;
+
+    padding-bottom: 3%;
+}
+
+.filtro-tamanho {
+    /* border: 1px solid red; */
+    width: 90%;
+    padding-top: 2%;
+    cursor: pointer;
+}
+
+.filtro-tamanho h4 {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+
+    font-weight: 500;
+    font-size: 100%;
+    transition: 0.3s;
+
+    padding-bottom: 3%
+}
+
+.opcoes-tamanho-filtro {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+
+    flex-wrap: wrap;
+}
+
+.opcoes-tamanho-filtro button {
+    background-color: #FCF7E9;
+    width: 20%;
+    height: 40px;
+    padding: 3%;
+
+    margin-right: 2%;
+    margin-bottom: 4%;
+
+    border-radius: 100vw;
+    border: none;
+}
+
+.opcoes-tamanho-filtro button:hover {
+    background-color: var(--cor_quinze);
+}
+
+.filtro-estilos {
+    /* border: 1px solid red; */
+    width: 90%;
+    cursor: pointer;
+    padding-top: 2%;
+}
+
+.filtro-estilos h4 {
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+
+    font-weight: 500;
+    font-size: 100%;
+    transition: 0.3s;
+
+    padding-bottom: 3%;
+}
+
+.button-estilos-categorias-visiveis {
+    background-color: transparent;
+    color: var(--cor_seis);
+    font-family: var(--tipografia_secundaria);
+    font-weight: 500;
+    opacity: 60%;
+    font-size: 85%;
+    border: none;
+    transition: 0.3s;
+}
+
+.button-estilos-categorias-visiveis:hover {
+    opacity: 90%;
+}
+
+.btn-aplicar {
+    border: none;
+    background-color: var(--cor_um);
+    color: var(--cor_doze);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    border-radius: 2vw;
+    width: 60%;
+    height: 2.5rem;
+
+    transition: 0.4s;
+
+    margin-top: 10%;
+}
+
+.btn-aplicar:hover{
+    background-color: var(--cor_dois);
+}

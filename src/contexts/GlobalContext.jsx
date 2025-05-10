@@ -9,13 +9,14 @@ export const GlobalContextProvider = ({ children }) => {
     const [ array_produtos, set_array_produtos ] = useState([]);
     const [ array_categorias, set_array_categorias ] = useState([]);
     const [ array_enderecos, set_array_enderecos ] = useState([]);
+    const [ array_estoques, set_array_estoques ] = useState([])
     const [ array_chat, set_array_chat ] = useState([]);
     const [ conversa_atual, set_conversa_atual ] = useState([]);
     const [ conversa_aberta, set_conversa_aberta ] = useState(false);
     const [ usuario_logado, set_usuario_logado ] = useState([]);
     const [ pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando ] = useState(null);
     const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
-    const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, confirmar_senha: ``});
+    const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, conversas: [], confirmar_senha: ``});
     const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
     const [ cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente ] = useState(false);
     const [ cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente ] = useState(false);
@@ -41,8 +42,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
     const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
     const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
+    const [ informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
 
-    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, confirmarSenha: `` });
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
@@ -55,6 +57,8 @@ export const GlobalContextProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={{
 
+            informacoes_editar_produto,
+            set_informacoes_editar_produto,
             array_clientes,
             set_array_clientes,
             array_enderecos,
@@ -131,6 +135,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_excluir_mensagens_chat,
             endereco_cadastrado,
             set_endereco_cadastrado,
+            array_estoques,
+            set_array_estoques,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
@@ -145,7 +151,7 @@ export const GlobalContextProvider = ({ children }) => {
             arrayBrechos,
             setArrayBrechos,
             imagemPerfilCadastroBrecho,
-            setImagemPerfilCadastroBrecho
+            setImagemPerfilCadastroBrecho,
         }}>
             {children}
         </GlobalContext.Provider>

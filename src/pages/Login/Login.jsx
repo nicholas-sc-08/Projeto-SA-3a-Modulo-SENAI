@@ -3,6 +3,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 import "./Login.css";
 
 function Login() {
@@ -20,6 +21,7 @@ function Login() {
     
     informacoes_clientes();
     informacoes_brechos();
+    
   
   }, []);
 
@@ -27,10 +29,8 @@ function Login() {
     
     try {
     
-      const resultado = await axios.get(`http://192.168.15.14:3000/clientes`);
-      set_array_clientes(resultado.data);
-      console.log(resultado.data);
-      
+      const resultado = await api.get(`/clientes`);
+      set_array_clientes(resultado.data);      
     
     } catch (erro) {
     
@@ -43,9 +43,9 @@ function Login() {
 
     try {
 
-      const brechos = await axios.get(`http://192.168.15.14:3000/brechos`);
+      const brechos = await api.get(`/brechos`);
       set_array_brechos(brechos.data);
-      
+
     } catch (erro) {
       
       console.error(erro);
@@ -106,16 +106,17 @@ function Login() {
       } else {
        
         const novo_cliente = {
-          nome: data.nome,
+          nome: data.name,
           email: data.email,
           senha: `123`,
           telefone: ``,
           cpf: ``,
           data_de_nascimento: `2000-01-01`,
-          imagem_de_perfil: data.imagem_de_perfil
+          imagem_de_perfil: data.picture,
+          conversas: []
         };
 
-        const cliente = await axios.post(`http://192.168.15.14:3000/clientes`, novo_cliente);
+        const cliente = await api.post(`/clientes`, novo_cliente);
        
         set_array_clientes([...array_clientes, cliente.data]);
         set_usuario_logado(cliente.data);
