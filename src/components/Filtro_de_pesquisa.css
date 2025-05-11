@@ -134,8 +134,8 @@
     opacity: 0;
     transform: translateY(-40%); /* o translateY() faz com que a div fique n% acima da sua posição final*/
     transition: 0.3s;
+    width: 100%;
     animation: animacao_de_entrada 0.3s ease forwards; 
-    width: 80%;
 }
 
 @keyframes animacao_de_entrada {
@@ -203,4 +203,95 @@
     font-weight: 500;
 
     color: var(--cor_seis);
+}
+
+.container_tamanho_titulo_filtro_de_pesquisa{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 12%;
+}
+
+.container_tamanho_titulo_filtro_de_pesquisa h1{
+
+    font-size: 1.7rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: 600;
+
+    color: var(--cor_seis);
+}
+
+.container_tamanho_titulo_filtro_de_pesquisa button{
+
+    cursor: pointer;
+    
+    width: 8%;
+    height: 50%;
+    
+    border: 0px;
+    background-color: transparent;
+}
+
+.container_tamanho_titulo_filtro_de_pesquisa img{
+    
+    transition: 0.3s;
+    width: 70%;
+}
+
+.container_tamanho_filtro_de_pesquisa{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.container_selecionar_tamanho_filtro_de_pesquisa{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    opacity: 0;
+    transform: translateY(-40%); /* o translateY() faz com que a div fique n% acima da sua posição final*/
+    transition: 0.3s;
+    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+}
+
+@keyframes animacao_de_selecionar_tamanho {
+
+    to{
+
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container_tamanho_filtro_de_pesquisa button{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 3vw;
+    height: 3.5vh;
+    border: 0px;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 1vw;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: 500;
+
+    color: var(--cor_seis);
+    background-color: var(--cor_quatro);
 }

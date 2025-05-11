@@ -9,9 +9,14 @@ function Filtro_de_pesquisa() {
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const [ botao_titulo_precos_deg, set_botao_titulo_precos_deg ] = useState(`rotate(0deg)`);
     const [ botao_filtro_um_deg, set_botao_filtro_um_deg ] = useState(`rotate(0deg)`);
+    const [ botao_titulo_tamanho_deg, set_botao_titulo_tamanho_deg ] = useState(`rotate(0deg)`);
     const [ preco_filtro_de_pesquisa, set_preco_filtro_de_pesquisa ] = useState(`25`);
     const [ exibir_filtro_do_preco, set_exibir_filtro_do_preco ] = useState(true);
+    const [ exibir_filtro_do_tamanho, set_exibir_filtro_do_tamanho ] = useState(true);
     const [ exibir_filtro_um, set_exibir_filtro_um ] = useState(false);
+    const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
+    const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
+    const [ cor_do_botao_do_tamanho, set_cor_do_botao_do_tamanho ] = useState({cor: ``, cor_de_fundo: ``});
 
     useEffect(() => {
 
@@ -44,6 +49,27 @@ function Filtro_de_pesquisa() {
         set_exibir_filtro_do_preco(!exibir_filtro_do_preco); 
     };
 
+    function girar_botao_titulo_tamanho(){
+
+        botao_titulo_tamanho_deg == `rotate(0deg)` ? set_botao_titulo_tamanho_deg(`rotate(180deg)`) : set_botao_titulo_tamanho_deg(`rotate(0deg)`);
+        set_exibir_filtro_do_tamanho(!exibir_filtro_do_tamanho); 
+    };
+
+    function selecionar_tamanho(tamanho){
+
+        const verificar_tamanho = tamanhos_selecionados.includes(tamanho_selecionado => tamanho_selecionado == tamanho);
+
+        if(verificar_tamanho == -1){
+
+            set_tamanhos_selecionados([...tamanhos_selecionados, tamanho]);
+        } else {
+
+            set_tamanhos_selecionados(tamanhos_selecionados.splice(verificar_tamanho, 1));
+        };
+        console.log(tamanhos_selecionados);
+        
+    };
+
     function categorias_principais(categoria){
 
         const index_da_cateogria = array_categorias.findIndex(categoria_principal => categoria_principal.nome.toUpperCase() == categoria.toUpperCase() && categoria_principal.sub_categoria == false);
@@ -52,7 +78,6 @@ function Filtro_de_pesquisa() {
 
             return array_categorias[index_da_cateogria].nome;
         };
-
     };
 
     return (
@@ -119,6 +144,32 @@ function Filtro_de_pesquisa() {
 
             </div>
 
+            <div className="container_tamanho_titulo_filtro_de_pesquisa">
+
+                <h1>Tamanho</h1>
+                <button onClick={() => girar_botao_titulo_tamanho()}><img src="./img/icons/seta_do_filtro_de_pesquisa_titulo.svg" alt="" style={{transform: botao_titulo_tamanho_deg}}/></button>
+
+            </div>
+
+            <div className="container_tamanho_filtro_de_pesquisa">
+
+                { exibir_filtro_do_tamanho && 
+                
+                    <div className="container_selecionar_tamanho_filtro_de_pesquisa">
+
+                        {array_de_tamanhos_de_roupa.map((tamanho, i) => (
+
+                            <div key={i} className='container_selecionar_tamanho_do_botao'>
+
+                                <button onClick={() => selecionar_tamanho(tamanho)} style={{backgroundColor: tamanhos_selecionados.includes(tamanho) ? `#466330` : `#FFFDF7`}}>{tamanho}</button>
+
+                            </div>
+                        ))}
+
+                    </div>
+                }
+
+            </div>
 
         </div>
     );
