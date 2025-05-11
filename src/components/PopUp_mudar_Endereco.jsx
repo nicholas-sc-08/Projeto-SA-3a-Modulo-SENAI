@@ -10,32 +10,32 @@ function PopUp_mudar_Endereco() {
         </div>
         <div className="popUp-mudar-endereco-content">
           <div className="titulo-e-subtitulo-content">
-            <p className="titulo-endereco-popUp">Modificar meu endereço</p>
-            <p>De onde você deseja enviar os seus produtos?</p>
+            <p className="titulo-endereco-brecho-popUp">Modificar meu endereço</p>
+            <p className="subtitulo-endereco-brecho-popUp">De onde você deseja enviar os seus produtos?</p>
           </div>
-          <div className="inputs-do-popUp">
+          <div className="inputs-do-popUp-content">
             <div className="rua-logra-input-content">
-              <p>Rua/Logradouro</p>
+              <p className="topicos-input-endereco">Rua/Logradouro</p>
               <input type="text" placeholder='Rua do Vasco'/>
             </div>
             <div className="numero-input-content">
-              <p>Número</p>
+              <p className="topicos-input-endereco">Número</p>
               <input type="text" placeholder='283'/>
             </div>
             <div className="complemento-input-content">
-              <p>Complemento</p>
+              <p className="topicos-input-endereco">Complemento</p>
               <input type="text" placeholder='Apartamento 07'/>
             </div>
             <div className="cep-input-content">
-              <p>CEP</p>
+              <p className="topicos-input-endereco">CEP</p>
               <input type="text" placeholder='88058-080'/>
             </div>
             <div className="bairro-input-content">
-              <p>Bairro</p>
+              <p className="topicos-input-endereco">Bairro</p>
               <input type="text" placeholder='Ingleses do Rio Vermelho'/>
             </div>
             <div className="ponto-de-refe-input-content">
-              <p>Ponto de Referência</p>
+              <p className="topicos-input-endereco">Ponto de Referência</p>
               <input type="text" placeholder='Brasil Atacadista'/>
             </div>
           </div>
