@@ -93,7 +93,7 @@ function Login() {
     const { access_token } = token;
     const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${access_token}`}});
 
-    const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);  
+    const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);      
     const brecho_existente = array_brechos.find(brecho => brecho.email == data.email);
       
     try {
@@ -118,7 +118,7 @@ function Login() {
 
         const cliente = await api.post(`/clientes`, novo_cliente);
        
-        set_array_clientes([...array_clientes, cliente.data]);
+        informacoes_clientes();
         set_usuario_logado(cliente.data);
         set_erro(``);
         navegar(`/`);
