@@ -4,10 +4,8 @@ import Header from './Header'
 import { GlobalContext } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
-import Pop_up_de_excluir from './Pop_up_de_excluir';
-import axios from 'axios';
 import api from '../services/api';
-import { img } from 'framer-motion/client';
+import Pop_up_excluir_brecho from './Pop_up_excluir_brecho';
 
 function Brechos_dashboard() {
 
@@ -24,7 +22,7 @@ function Brechos_dashboard() {
 
     const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useContext(GlobalContext);
     const { id_do_brecho_a_excluir, set_id_do_brecho_a_excluir } = useContext(GlobalContext);
-    const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
+    const { pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard } = useContext(GlobalContext);
 
     const [escolher_qual_excluir, set_escolher_qual_excluir] = useState(false);
 
@@ -60,23 +58,26 @@ function Brechos_dashboard() {
         };
     };
 
-    async function excluir_brecho(id) {
-        try {
-            await api(`/brechos/${id}`);
-            set_array_brechos(prev => prev.filter(b => b.id !== id));
-            set_pop_up_notificacao_excluir_dashboard(true);
-        } catch (erro) {
-            console.error("Erro ao excluir brechó", erro);
-            alert("Erro ao excluir brechó.");
-        }
-    }
+    // async function excluir_brecho(id) {
+    //     try {
+    //         await api.delete(`/brechos/${id}`);
+    //         set_array_brechos(prev => prev.filter(b => b.id !== id));
+    //         set_pop_up_notificacao_excluir_brechos_dashboard(true);
+    //     } catch (erro) {
+    //         console.error("Erro ao excluir brechó", erro);
+    //         alert("Erro ao excluir brechó.");
+    //     }
+    // }
 
     function armazenar_id_do_brecho(id_do_brecho) {
 
         set_abrir_pop_up_dashboard(true);
         set_id_do_brecho_a_excluir(id_do_brecho);
 
+        console.log(id_do_brecho)
     };
+
+    // useEffect(() =>{console.log(id_do_brecho_a_excluir)}, [id_do_brecho_a_excluir])
 
     useEffect(() => {
 
@@ -88,20 +89,20 @@ function Brechos_dashboard() {
 
         setTimeout(() => {
 
-            set_pop_up_notificacao_excluir_dashboard(false);
+            set_pop_up_notificacao_excluir_brechos_dashboard(false);
 
         }, 2000);
 
-    }, [pop_up_notificacao_excluir_dashboard]);
+    }, [pop_up_notificacao_excluir_brechos_dashboard]);
 
     return (
         <div>
             <Header tipo="admin" />
 
             {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
-            {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
-            {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
-            {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
+            {abrir_pop_up_dashboard && <Pop_up_excluir_brecho />}
+            {pop_up_notificacao_excluir_brechos_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+            {pop_up_notificacao_excluir_brechos_dashboard && <Pop_up_de_notificacao_dashboard />}
 
             <div className="container-alinhamento-brechos-dashboard-allPage">
                 <div className="container-alinhamento-imagem-titulo-brecho-dashboard">
@@ -168,7 +169,7 @@ function Brechos_dashboard() {
                                         {escolher_qual_excluir && (
                                             <button
                                                 className="botao-excluir-individual"
-                                                onClick={() => armazenar_id_do_brecho(brecho.id)}
+                                                onClick={() => armazenar_id_do_brecho(brecho._id)}
                                             >
                                                 <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                             </button>
@@ -192,7 +193,7 @@ function Brechos_dashboard() {
                                         {escolher_qual_excluir && (
                                             <button
                                                 className="botao-excluir-individual"
-                                                onClick={() => armazenar_id_do_brecho(brecho.id)}
+                                                onClick={() => armazenar_id_do_brecho(brecho._id)}
                                             >
                                                 <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                             </button>
