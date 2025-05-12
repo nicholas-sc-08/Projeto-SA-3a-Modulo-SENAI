@@ -41,7 +41,7 @@ function Cadastro_cliente_secao_inputs_tres() {
                 set_erro_pagina(erro);
                 navegar(`/erro`);
             };
-        };
+    };
 
     return (
     <div>

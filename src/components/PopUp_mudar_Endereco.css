@@ -23,8 +23,8 @@ body {
     /* border: 3px solid #FF0000; */
     background-color: var(--cor_quatro);
 
-    height: 88%;
-    width: 39%;
+    height: 75%;
+    width: 34%;
 
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ body {
 .inputs-do-popUp-content {
     /* border: 3px solid #005DD7; */
 
-    height: 72%;
+    height: 62%;
     width: 100%;
 
     display: flex;
@@ -98,7 +98,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    gap: 2%;
+    gap: 5%;
 }
 
 /*--- inputs do pop up ---*/
@@ -275,36 +275,6 @@ body {
 }
 
 .bairro-input-content input:focus {
-    border: 1px solid var(--cor_um_v_dois);
-}
-
-
-.ponto-de-refe-input-content {
-    /* border: 3px solid #00C4C4; */
-
-    height: 19%;
-    width: 80%;
-
-    display: flex;
-    flex-direction: column;
-    padding-left: 1%;
-}
-
-.ponto-de-refe-input-content input {
-    height: 63%;
-    width: 98%;
-
-    border-radius: 0.3rem;
-    border: 1px solid var(--cor_dois);
-    padding-left: 3%;
-
-    font-family: "Poppins", sans serif;
-    font-size: 1rem;
-
-    outline: none;
-}
-
-.ponto-de-refe-input-content input:focus {
     border: 1px solid var(--cor_um_v_dois);
 }
 
