@@ -81,6 +81,35 @@ function Filtro_de_pesquisa() {
             set_exibir_filtro_tres(false);
         };
 
+        if(botao_estilo_um_deg == `rotate(0deg)` && categoria_principal == `estilo_um`){
+
+            set_botao_estilo_um_deg(`rotate(90deg)`);
+            set_exibir_estilo_um(true);
+        } else {
+
+            set_botao_estilo_um_deg(`rotate(0deg)`);
+            set_exibir_estilo_um(false);
+        };
+
+        if(botao_estilo_dois_deg == `rotate(0deg)` && categoria_principal == `estilo_dois`){
+
+            set_botao_estilo_dois_deg(`rotate(90deg)`);
+            set_exibir_estilo_dois(true);
+        } else {
+
+            set_botao_estilo_dois_deg(`rotate(0deg)`);
+            set_exibir_estilo_dois(false);
+        };
+        
+        if(botao_estilo_tres_deg == `rotate(0deg)` && categoria_principal == `estilo_tres`){
+
+            set_botao_estilo_tres_deg(`rotate(90deg)`);
+            set_exibir_estilo_tres(true);
+        } else {
+
+            set_botao_estilo_tres_deg(`rotate(0deg)`);
+            set_exibir_estilo_tres(false);
+        };
     };
 
     function sub_categorias_das_principais(categoria_principal){
@@ -331,7 +360,7 @@ function Filtro_de_pesquisa() {
                 <div className="container_pesquisa_por_estilo_tres">
 
                     <p>{categorias_principais(`jaqueta`)}</p>
-                    <button onClick={() => categorias_principais(`jaqueta`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt=""  style={{transform: botao_estilo_tres_deg}}/></button>
+                    <button onClick={() => exibir_sub_categorias(`estilo_tres`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt=""  style={{transform: botao_estilo_tres_deg}}/></button>
                 
                 </div>   
 

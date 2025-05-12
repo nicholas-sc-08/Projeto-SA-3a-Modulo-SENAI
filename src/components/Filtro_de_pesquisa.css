@@ -636,3 +636,89 @@
     font-weight: 500;
     color: var(--cor_seis);
 }
+
+.container_resultado_pesquisa_estilo_dois{
+
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+
+    height: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    opacity: 0;
+    
+    transform: translateY(-40%);
+    transition: 0.3s;
+
+    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+}
+
+.container_resultado_pesquisa_estilo_dois button{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: start;
+    width: fit-content;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 300;
+
+    border: 0px;
+
+    color: var(--cor_seis_v_um);
+    background-color: transparent;
+}
+
+.container_resultado_pesquisa_estilo_dois button:hover{
+
+    font-weight: 500;
+    color: var(--cor_seis);
+}
+
+.container_resultado_pesquisa_estilo_tres{
+
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+
+    height: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    opacity: 0;
+    
+    transform: translateY(-40%);
+    transition: 0.3s;
+
+    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+}
+
+.container_resultado_pesquisa_estilo_tres button{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: start;
+    width: fit-content;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 300;
+
+    border: 0px;
+
+    color: var(--cor_seis_v_um);
+    background-color: transparent;
+}
+
+.container_resultado_pesquisa_estilo_tres button:hover{
+
+    font-weight: 500;
+    color: var(--cor_seis);
+}
