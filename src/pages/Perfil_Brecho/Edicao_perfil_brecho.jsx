@@ -22,7 +22,7 @@ function Edicao_perfil_brecho() {
         <div className="edicao-perfil-brecho-content">
           <div className="parte-esquerda-div-central">
             <div className="perfil-brecho-logo-content">
-            <img src="" alt="" />
+              <img src="" alt="" />
             </div>
             <div className="info-horario-perfil-brecho">
               <textarea name="" className="horario-preenchido-brecho" id="">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
@@ -70,10 +70,10 @@ function Edicao_perfil_brecho() {
             </div>
             <div className="endereco-e-senha-infos-content">
               <p className="titulo-do-input">Endereço</p>
-              <button onClick={abrirPopUp}>Clique para alterar</button>
+              <button onClick={() => setMostrarPopUp(true)}>Clique para alterar</button>
               <p className="titulo-do-input">Mudança de Senha</p>
               <input type="text" placeholder="Nova Senha" />
-              <input type="text" placeholder='Confirme sua senha'/>
+              <input type="text" placeholder='Confirme sua senha' />
             </div>
             <div className="botao-editar-content">
               <button>Editar</button>
@@ -81,7 +81,10 @@ function Edicao_perfil_brecho() {
           </div>
         </div>
       </div>
-      {mostrarPopUp && <PopUp_mudar_Endereco onClose={fecharPopUp} />}
+      {mostrarPopUp && (
+        <PopUp_mudar_Endereco fecharPopUp={() => setMostrarPopUp(false)} />
+      )}
+
       <Footer />
     </div>
   )

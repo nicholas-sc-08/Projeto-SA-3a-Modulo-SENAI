@@ -260,7 +260,7 @@ body {
 
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
-    padding-left: 3%;
+    padding-left: 1.4%;
 
     cursor: pointer;
 
@@ -282,7 +282,7 @@ body {
 
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
-    padding-left: 3%;
+    padding-left: 1.4%;
 
     font-family: "Poppins", sans serif;
     font-size: 1rem;
@@ -321,6 +321,6 @@ body {
     background-color: var(--cor_um);
     font-family: "Poppins", sans serif;
     font-size: 1.1rem;
-    color: var(--cor_tres);
+    color: var(--cor_nove);
 
 }
