@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-
-import axios from 'axios';
 import './Clientes_dashboard.css';
 import { GlobalContext } from '../contexts/GlobalContext';
 import Pop_up_de_excluir from './Pop_up_de_excluir';
 import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header.jsx';
+import api from '../services/api.js';
 
 function Clientes_dashboard() {
 
@@ -50,7 +49,7 @@ function Clientes_dashboard() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await api(`/clientes`);
       set_array_clientes(resultado.data);
 
     } catch (erro) {
@@ -65,7 +64,7 @@ function Clientes_dashboard() {
 
     try {
 
-      const enderecos = await axios.get(`http://localhost:3000/enderecos`);
+      const enderecos = await api(`/enderecos`);
       set_array_enderecos(enderecos.data);
 
     } catch (erro) {

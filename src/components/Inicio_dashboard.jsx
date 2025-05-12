@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import '../pages/DashBoard/DashBoard.css';
 import { useState } from 'react';
 import Header from './Header.jsx';
+import api from '../services/api.js';
 
 function Inicio_dashboard() {
 
@@ -102,7 +103,7 @@ function Inicio_dashboard() {
 
         try {
             
-            const resultado = await axios.get(`http://localhost:3000/clientes`);
+            const resultado = await api.get(`/clientes`);
             set_array_clientes(resultado.data);            
         
         } catch (erro) {

@@ -4,55 +4,58 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
 
-    const [ array_clientes, set_array_clientes ] = useState([]);
-    const [ array_brechos, set_array_brechos ] = useState([]);
-    const [ array_produtos, set_array_produtos ] = useState([]);
-    const [ array_categorias, set_array_categorias ] = useState([]);
-    const [ array_enderecos, set_array_enderecos ] = useState([]);
-    const [ array_estoques, set_array_estoques ] = useState([])
-    const [ array_chat, set_array_chat ] = useState([]);
-    const [ conversa_atual, set_conversa_atual ] = useState([]);
-    const [ conversa_aberta, set_conversa_aberta ] = useState(false);
-    const [ usuario_logado, set_usuario_logado ] = useState([]);
-    const [ pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando ] = useState(null);
-    const [ endereco_do_cliente, set_endereco_do_cliente ] = useState({cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: ``});
-    const [ form_de_cadastro_cliente, set_form_de_cadastro_cliente ] = useState({nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, conversas: [], confirmar_senha: ``});
-    const [ cadastro_parte_um_cliente, set_cadastro_parte_um_cliente ] = useState(true);
-    const [ cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente ] = useState(false);
-    const [ cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente ] = useState(false);
-    const [ inicio_dashboard, set_inicio_dashboard ] = useState(true);
-    const [ clientes_dashboard, set_clientes_dashboard ] = useState(false);
-    const [ brechos_dashboard, set_brechos_dashboard ] = useState(false);
-    const [ produtos_dashboard, set_produtos_dashboard ] = useState(false);
-    const [ categorias_dashboard, set_categorias_dashboard ] = useState(false);
-    const [ id_do_cliente_a_excluir, set_id_do_cliente_a_excluir ] = useState(``);
-    const [ abrir_pop_up_dashboard, set_abrir_pop_up_dashboard ] = useState(false);
-    const [ pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard ] = useState(false);
-    const [ pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria ] = useState(false);
-    const [ pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria ] = useState(false);
-    const [ pop_up_de_editar_categoria, set_pop_up_de_editar_categoria ] = useState(false); 
-    const [ id_categoria, set_id_categoria ] = useState(``);
-    const [ pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria ] = useState(false);
-    const [ pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria ] = useState(false);
-    const [ pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria ] = useState(false);
-    const [ pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa ] = useState(false);
-    const [ chat_aberto, set_chat_aberto ] = useState(false);
-    const [ erro_pagina, set_erro_pagina ] = useState(`404 Página não encontrada`);
-    const [ excluir_mensagens_chat, set_excluir_mensagens_chat ] = useState(false);
-    const [ excluir_conversa_chat, set_excluir_conversa_chat ] = useState(false);
-    const [ altura_inicial_chat, set_altura_inicial_chat ] = useState(`10%`);
-    const [ altura_inicial_header_chat, set_altura_inicial_header_chat ] = useState(`100%`);
-    const [ informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
+    const [array_clientes, set_array_clientes] = useState([]);
+    const [array_brechos, set_array_brechos] = useState([]);
+    const [array_produtos, set_array_produtos] = useState([]);
+    const [array_categorias, set_array_categorias] = useState([]);
+    const [array_enderecos, set_array_enderecos] = useState([]);
+    const [array_estoques, set_array_estoques] = useState([])
+    const [array_chat, set_array_chat] = useState([]);
+    const [conversa_atual, set_conversa_atual] = useState([]);
+    const [conversa_aberta, set_conversa_aberta] = useState(false);
+    const [usuario_logado, set_usuario_logado] = useState([]);
+    const [pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando] = useState(null);
+    const [endereco_do_cliente, set_endereco_do_cliente] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` });
+    const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({ nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, conversas: [], confirmar_senha: `` });
+    const [cadastro_parte_um_cliente, set_cadastro_parte_um_cliente] = useState(true);
+    const [cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente] = useState(false);
+    const [cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente] = useState(false);
+    const [inicio_dashboard, set_inicio_dashboard] = useState(true);
+    const [clientes_dashboard, set_clientes_dashboard] = useState(false);
+    const [brechos_dashboard, set_brechos_dashboard] = useState(false);
+    const [produtos_dashboard, set_produtos_dashboard] = useState(false);
+    const [categorias_dashboard, set_categorias_dashboard] = useState(false);
+    const [id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
+    const [id_do_brecho_a_excluir, set_id_do_brecho_a_excluir] = useState(``);
+    const [abrir_pop_up_dashboard, set_abrir_pop_up_dashboard] = useState(false);
+    const [pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
+    const [pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria] = useState(false);
+    const [pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria] = useState(false);
+    const [pop_up_de_editar_categoria, set_pop_up_de_editar_categoria] = useState(false);
+    const [id_categoria, set_id_categoria] = useState(``);
+    const [pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria] = useState(false);
+    const [pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria] = useState(false);
+    const [pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria] = useState(false);
+    const [pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa] = useState(false);
+    const [chat_aberto, set_chat_aberto] = useState(false);
+    const [erro_pagina, set_erro_pagina] = useState(`404 Página não encontrada`);
+    const [excluir_mensagens_chat, set_excluir_mensagens_chat] = useState(false);
+    const [excluir_conversa_chat, set_excluir_conversa_chat] = useState(false);
+    const [altura_inicial_chat, set_altura_inicial_chat] = useState(`10%`);
+    const [altura_inicial_header_chat, set_altura_inicial_header_chat] = useState(`100%`);
+    const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)
     const [cadastroParteTresBrecho, setCadastroParteTresBrecho] = useState(false)
-    const [ endereco_cadastrado, set_endereco_cadastrado ] = useState(false);
-    const [ arrayBrechos, setArrayBrechos ] = useState([])
-    const [ imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho ] = useState(null)
-    const [ array_lancamentos, set_array_lancamnetos ] = useState('')
+    const [endereco_cadastrado, set_endereco_cadastrado] = useState(false);
+    const [arrayBrechos, setArrayBrechos] = useState([])
+    const [imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho] = useState(null)
+    const [array_lancamentos, set_array_lancamnetos] = useState('')
+
+    const [pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard] = useState(``)
 
     return (
         <GlobalContext.Provider value={{
@@ -152,6 +155,10 @@ export const GlobalContextProvider = ({ children }) => {
             setArrayBrechos,
             imagemPerfilCadastroBrecho,
             setImagemPerfilCadastroBrecho,
+            id_do_brecho_a_excluir,
+            set_id_do_brecho_a_excluir,
+            pop_up_notificacao_excluir_brechos_dashboard,
+            set_pop_up_notificacao_excluir_brechos_dashboard,
         }}>
             {children}
         </GlobalContext.Provider>

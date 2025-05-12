@@ -10,6 +10,7 @@ import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
 import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header.jsx';
+import api from '../services/api.js';
 
 function Categorias_dashboard() {
 
@@ -42,7 +43,7 @@ function Categorias_dashboard() {
 
     try {
 
-      const categorias = await axios.get(`http://localhost:3000/categorias`);
+      const categorias = await api(`/categorias`);
       set_categorias_dashboard(categorias.data);
 
     } catch (erro) {
