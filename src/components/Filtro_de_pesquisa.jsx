@@ -26,7 +26,6 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
     const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
-    const [ contador_filtro_um, set_contador_filtro_um ] = useState(0);
 
     useEffect(() => {
 
