@@ -33,6 +33,12 @@ function Filtro_de_pesquisa() {
 
     }, []);
 
+    useEffect(() => {
+
+
+
+    }, []);
+
     async function buscar_categorias(){
 
         try {
@@ -129,7 +135,8 @@ function Filtro_de_pesquisa() {
 
     function limpar_filtro_de_pesquisa(){
 
-
+        set_filtro_de_pesquisa({preco: `20`, tamanho: []});
+        set_tamanhos_selecionados([]);
     };
 
     function girar_botao_titulo_preco(){
@@ -202,7 +209,7 @@ function Filtro_de_pesquisa() {
                         </div>
                     ))}
 
-                    </div>
+                    </div>  
                 }
 
                 <div className="container_pesquisa_filtro_dois">
