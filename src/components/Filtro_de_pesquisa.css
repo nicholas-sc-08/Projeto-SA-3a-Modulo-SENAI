@@ -171,6 +171,7 @@
 
     width: 100%;
     accent-color: var(--cor_um);
+    outline: none;
 }
 
 .container_preco_titulo_filtro_de_pesquisa{
@@ -301,7 +302,7 @@
     cursor: pointer;
     transition: 0.3s;
 
-    width: 3vw;
+    width: 2.8vw;
     height: 3.5vh;
     border: 0px;
 
@@ -314,6 +315,12 @@
 
     color: var(--cor_seis);
     background-color: var(--cor_quatro);
+}
+
+.container_tamanho_filtro_de_pesquisa button:hover{
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
 }
 
 .container_titulo_estilos{
@@ -443,14 +450,18 @@
 .container_botao_filtro_de_pesquisa{
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 8%;
+    margin-top: 5%;
 }
 
-.container_botao_filtro_de_pesquisa button{
+.botao_filtro_de_pesquisa_aplicar{
 
+    transition: 0.3s;
+    cursor: pointer;
+     
     width: 60%;
     height: 80%;
 
@@ -463,6 +474,37 @@
 
     color: var(--cor_quatro);
     background-color: var(--cor_um);
+}
+
+.botao_filtro_de_pesquisa_aplicar:hover{
+
+    border: 0.1vw solid var(--cor_um_v_dois);
+    background-color: var(--cor_um_v_dois);
+}
+
+.botao_filtro_de_pesquisa_limpar{
+
+    transition: 0.3s;
+    cursor: pointer;
+     
+    width: 30%;
+    height: 80%;
+
+    border-radius: 2vw;
+    border: 0vw;
+
+    font-size: 1rem;
+    font-family: var(--tipografia_secundaria);
+    font-weight: 600;
+
+    color: var(--cor_um);
+    background-color: var(--cor_um_v_quatro);
+}
+
+.botao_filtro_de_pesquisa_limpar:hover{
+
+    border: 0vw;
+    background-color: var(--cor_um_v_cinco);
 }
 
 .container_resultado_pesquisa_filtro_um{

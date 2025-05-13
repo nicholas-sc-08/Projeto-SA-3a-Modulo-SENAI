@@ -6,11 +6,13 @@ import "./Gestao_estoque.css";
 import Header from "../../components/Header";
 import api from "../../services/api";
 
+
 // ...imports mantidos
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+  const { informacoes_editar_produto, set_informacoes_editar_produto} = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -122,6 +124,11 @@ function Gestao_Estoque() {
     navigate("/cadastro_produto");
   }
 
+  const ResetNovoProduto = () => {
+  set_informacoes_editar_produto(null); 
+  navigate("/cadastro_produto"); 
+  };
+
   return (
     <div>
       <Header tipo="brecho" />
@@ -142,7 +149,7 @@ function Gestao_Estoque() {
               />
             </div>
             <button
-              onClick={() => navigate("/cadastro_produto")}
+              onClick={() => ResetNovoProduto()}
               className="novo-produto"
             >
               Novo Produto
