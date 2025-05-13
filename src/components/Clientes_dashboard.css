@@ -244,6 +244,10 @@
     background-color: var(--cor_treze);
 }
 
+.container_excluir_usuario img{
+    width: 35%;
+}
+
 .container_separacao_de_informacoes_e_da_scrollbar {
 
     display: flex;
@@ -508,4 +512,15 @@
     cursor: pointer;
     border: 0;
     background-color: transparent;
+}
+
+.botao-excluir-individual-cliente{
+    width: 10%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.botao-excluir-individual-cliente img{
+    width: 90%;
 }

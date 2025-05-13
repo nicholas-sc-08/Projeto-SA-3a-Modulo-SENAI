@@ -58,17 +58,6 @@ function Brechos_dashboard() {
         };
     };
 
-    // async function excluir_brecho(id) {
-    //     try {
-    //         await api.delete(`/brechos/${id}`);
-    //         set_array_brechos(prev => prev.filter(b => b.id !== id));
-    //         set_pop_up_notificacao_excluir_brechos_dashboard(true);
-    //     } catch (erro) {
-    //         console.error("Erro ao excluir brechó", erro);
-    //         alert("Erro ao excluir brechó.");
-    //     }
-    // }
-
     function armazenar_id_do_brecho(id_do_brecho) {
 
         set_abrir_pop_up_dashboard(true);
