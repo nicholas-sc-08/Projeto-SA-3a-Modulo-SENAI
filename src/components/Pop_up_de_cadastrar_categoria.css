@@ -4,7 +4,7 @@
 
     display: flex;
     width: 100%;
-    height: 10vh;
+    height: 100vh;
     
     justify-content: center;
 }
@@ -124,7 +124,27 @@
 .container_botao_cadastrar_categoria p{
 
     width: 60%;
-    color: red;
+}
+
+.container_checkbox_cadastrar_categoria{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 40%;
+    height: 40%;
+}
+
+.container_checkbox_cadastrar_categoria p{
+
+    width: 300%;
+    font-size: 0.7rem;
+}
+
+.checkbox_cadastro_de_categoria{
+    
+    accent-color: var(--cor_um);
 }
 
 .botao_cadastrar_categoria{

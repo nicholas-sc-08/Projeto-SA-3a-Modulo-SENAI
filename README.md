@@ -110,9 +110,9 @@
   Este aplicativo ainda está em processo de criação.
 
 ## Tecnologias Utilizadas
-  Front-end:<br>
-  Back-end:<br>
-  Banco de Dados: PostgreSQL.
+  Front-end: React<br>
+  Back-end: NodeJS<br>
+  Banco de Dados: MongoDB.
 
 ## Integrantes
 Mayara: https://github.com/MayaraStorl <br>

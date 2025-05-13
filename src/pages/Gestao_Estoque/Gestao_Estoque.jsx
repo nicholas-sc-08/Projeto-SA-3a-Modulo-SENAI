@@ -4,11 +4,14 @@ import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
 import Header from "../../components/Header";
+import api from "../../services/api";
+
+// ...imports mantidos
 
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
-  const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,13 +19,9 @@ function Gestao_Estoque() {
     buscar_categorias();
   }, []);
 
-  useEffect(() => {
-    console.log(array_produtos);
-  }, [array_produtos]);
-
   async function buscar_produtos() {
     try {
-      const produtos = await axios.get("http://localhost:3000/produtos");
+      const produtos = await api.get("/produtos");
       set_array_produtos(produtos.data);
     } catch (erro) {
       console.error(erro);
@@ -31,7 +30,7 @@ function Gestao_Estoque() {
 
   async function buscar_categorias() {
     try {
-      const categorias = await axios.get("http://localhost:3000/categorias");
+      const categorias = await api.get("/categorias");
       set_array_categorias(categorias.data);
     } catch (erro) {
       console.error(erro);
@@ -40,7 +39,7 @@ function Gestao_Estoque() {
 
   async function excluirProduto(id) {
     try {
-      await axios.delete(`http://localhost:3000/produtos/${id}`);
+      await api.delete(`/produtos/${id}`);
       buscar_produtos();
     } catch (error) {
       console.error(error);
@@ -49,7 +48,7 @@ function Gestao_Estoque() {
 
   function procurar_produtos(e) {
     if (e.key === "Enter") {
-      // Implementar lógica de pesquisa
+      // lógica de pesquisa aqui
     }
   }
 
@@ -78,10 +77,7 @@ function Gestao_Estoque() {
 
   function hexParaRGB(hex) {
     if (typeof hex !== "string") return null;
-
-    if (!hex.startsWith("#")) {
-      hex = "#" + hex;
-    }
+    if (!hex.startsWith("#")) hex = "#" + hex;
 
     const match = hex.match(/^#([0-9a-fA-F]{6})$/);
     if (!match) return null;
@@ -110,23 +106,25 @@ function Gestao_Estoque() {
 
       if (diferenca < menorDiferenca) {
         menorDiferenca = diferenca;
-        corMaisPerto = corSimplificada.nome;
+        corMaisPerto = cor.nome;
       }
     });
 
     return corMaisPerto || "Cor desconhecida";
   }
 
-  // Exemplo de uso:
-  console.log(corMaisProxima("#3e2a21")); // Deve retornar "Marrom" ou algo próximo
-  console.log(corMaisProxima("#00ffff")); // Deve retornar "Ciano"
-  console.log(corMaisProxima("#ffd700")); // Deve retornar "Dourado"
-
-
+  function vizualizar_produto(_id) {
+    const produtoSelecionado = array_produtos.find(
+      (produto) => produto._id === _id
+    );
+    console.log(produtoSelecionado);
+    set_informacoes_editar_produto(produtoSelecionado);
+    navigate("/cadastro_produto");
+  }
 
   return (
     <div>
-      <Header tipo='brecho' />
+      <Header tipo="brecho" />
       <div className="estoque-container">
         <h2>Estoque Produto</h2>
 
@@ -162,22 +160,23 @@ function Gestao_Estoque() {
             </div>
 
             {array_produtos.map((produto, index) => (
-              <div className="produto-linha" key={index}>
+              <div
+                className="produto-linha"
+                key={index}
+                onClick={() => vizualizar_produto(produto._id)}
+              >
                 <div className="produto-info">
                   <div className="produto-imagem">
                     <img src={produto.imagem} alt="" />
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
-                    <p className="produto-categoria">{array_categorias.map((categoria, i) => (
-
-                      <div className="container_categoria" key={i}>
-
-                        <p>{array_categorias.find((categoria) => categoria._id == produto.fk_id_categoria)}</p>
-
-                      </div>
-
-                    ))}{corMaisProxima(produto.cor)}</p>
+                    <p className="produto-categoria">
+                      {array_categorias.find(
+                        (categoria) => categoria._id === produto.fk_id_categoria
+                      )?.nome || "Sem categoria"}{" "}
+                      - {corMaisProxima(produto.cor)}
+                    </p>
                   </div>
                 </div>
                 <span className="produto-preco">R$ {produto.preco}</span>
@@ -185,7 +184,10 @@ function Gestao_Estoque() {
                 <span>{produto.condicao}</span>
                 <span>{produto.tamanho}</span>
                 <button
-                  onClick={() => excluirProduto(produto._id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    excluirProduto(produto._id);
+                  }}
                   className="delete-button"
                 >
                   <img src="./img/Lixeiraicon.svg" alt="" />

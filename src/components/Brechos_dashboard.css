@@ -1,41 +1,3 @@
-#root,
-body,
-html {
-
-    min-height: 100vh;
-
-    --cor_um: #466330;
-    --cor_um_v_um: #466330b5;
-    --cor_um_v_dois: #2d411f;
-    --cor_um_v_tres: #466330c2;
-    --cor_dois: #9DA650;
-    --cor_dois_v_um: #8f9749;
-    --cor_dois_v_dois: #9da65058;
-    --cor_tres: #E7E8CE;
-    --cor_quatro: #FFFDF7;
-    --cor_quatro_v_um: #e2e0da;
-    --cor_cinco: #E4CD80;
-    --cor_seis: #3E2A21;
-    --cor_seis_v_um: #3e2a219e;
-    --cor_sete: #FF3333;
-    --cor_sete_v_um: #ff333399;
-    --cor_oito: #2f2e304d;
-    --cor_oito_v_um: #0000001a;
-    --cor_nove: #FFFFFF;
-    --cor_nove_v_um: #ffffff96;
-    --cor_nove_v_dois: #F0F0F0;
-    --cor_dez: #5c5c5c;
-    --cor_onze: #D23D3D;
-    --cor_doze: #F0EEED;
-    --cor_treze: #A62424;
-    --cor_quatorze: #ab9489;
-    --cor_quinze: #FFF4D1;
-    --cor_dezesseis: #C1BFBB;
-
-    --tipografia_primaria: "Montserrat", serif;
-    --tipografia_secundaria: "Poppins", serif;
-}
-
 .container-alinhamento-brechos-dashboard-allPage {
     display: flex;
     flex-direction: column;
@@ -109,6 +71,8 @@ html {
 .container-sair-de-brechos-dashboard {
     display: flex;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .container-sair-de-brechos-dashboard p {
@@ -140,6 +104,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5%;
 }
 
 .container-barra-verde-pesquisa {
@@ -189,6 +154,14 @@ html {
     border-radius: 2vw;
     background-color: var(--cor_onze);
     transition: 0.1s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-cancelar{
+    width: 40%;
 }
 
 .alinhamento-elementos-barra-verde-pesquisa button:hover{
@@ -222,17 +195,29 @@ html {
 .fundo-container-dados-do-brecho{
     /* border: 1px solid blue; */
     width: 100%;
+    height: 405px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 2vw;
     border-bottom-right-radius: 2vw;
-    padding: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
 }
 
 .alinhamento-container-dados-do-brecho{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 5%;
+    padding-left: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    padding-top: 1.5%;
+    border-bottom: 1px solid #0000003f;
+    /* border: 1px solid red; */
 }
 
 .alinhamento-imagem-nome-brecho{
@@ -240,7 +225,12 @@ html {
     align-items: center;
 
     width: 27%;
-    padding-left: 1.5%;
+}
+
+.logo-brecho-dashboard{
+    width: 20%;
+    height: 55px;
+    border-radius: 2vw;
 }
 
 .alinhamento-imagem-nome-brecho p{
@@ -314,4 +304,15 @@ html {
     width: 15%;
     display: flex;
     justify-content: center;
+}
+
+.botao-excluir-individual{
+    width: 1.8%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.botao-excluir-individual img{
+    width: 90%;
 }

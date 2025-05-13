@@ -70,7 +70,6 @@
 
 .input-pesquisa-navbar:focus {
     outline: none;
-    border: 1px solid var(--cor_seis);
 }
 
 .input-pesquisa-navbar::placeholder {
@@ -96,6 +95,8 @@
 .button-perfil-navbar img {
     width: 2.5vw;
     max-width: 35px;
+
+    cursor: pointer;
 }
 
 /* Hamburger menu */

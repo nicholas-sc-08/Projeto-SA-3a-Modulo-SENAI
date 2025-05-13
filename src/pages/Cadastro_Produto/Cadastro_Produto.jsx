@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
 import Header from "../../components/Header";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import api from "../../services/api";
 
 function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-  
+  const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+
   const [quantidade, setQuantidade] = useState(1);
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState("");
   const [imagens, setImagens] = useState([]);
   const [imagemPrincipal, setImagemPrincipal] = useState(null);
   const [coresSelecionadas, setCoresSelecionadas] = useState([]);
   const [categorias, setCategorias] = useState([]);
-
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
 
@@ -30,16 +32,19 @@ function Cadastro_Produto() {
     quantidade: 1,
   });
 
-  const aumentarQuantidade = () => setQuantidade((q) => {
-    setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: q + 1 });
-    return q + 1;
-  });
+  const aumentarQuantidade = () =>
+    setQuantidade((q) => {
+      const novaQuantidade = q + 1;
+      setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: novaQuantidade });
+      return novaQuantidade;
+    });
 
   const diminuirQuantidade = () => {
     if (quantidade > 1) {
       setQuantidade((q) => {
-        setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: q - 1 });
-        return q - 1;
+        const novaQuantidade = q - 1;
+        setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: novaQuantidade });
+        return novaQuantidade;
       });
     }
   };
@@ -53,8 +58,19 @@ function Cadastro_Produto() {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImagens([...imagens, imageUrl]);
+      const novasImagens = [...imagens, imageUrl];
+      setImagens(novasImagens);
+      setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
       if (!imagemPrincipal) setImagemPrincipal(imageUrl);
+    }
+  };
+
+  const removerImagem = (index) => {
+    const novasImagens = imagens.filter((_, i) => i !== index);
+    setImagens(novasImagens);
+    setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
+    if (imagemPrincipal === imagens[index]) {
+      setImagemPrincipal(novasImagens[0] || null);
     }
   };
 
@@ -81,21 +97,26 @@ function Cadastro_Produto() {
   };
 
   const substituirCor = async (index) => {
-    const eyeDropper = new window.EyeDropper();
-    const result = await eyeDropper.open();
-    if (result) {
-      const newCores = [...coresSelecionadas];
-      newCores[index] = result.sRGBHex;
-      setCoresSelecionadas(newCores);
-      setArray_cadastro_produto({ ...array_cadastro_produto, cor: newCores });
+    try {
+      const eyeDropper = new window.EyeDropper();
+      const result = await eyeDropper.open();
+      const novasCores = [...coresSelecionadas];
+      novasCores[index] = result.sRGBHex;
+      setCoresSelecionadas(novasCores);
+      setArray_cadastro_produto({ ...array_cadastro_produto, cor: novasCores });
+    } catch (error) {
+      console.error("Erro ao substituir cor", error);
     }
   };
 
-  const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
+  const removerCor = () => {
+    setCoresSelecionadas([]);
+    setArray_cadastro_produto({ ...array_cadastro_produto, cor: [] });
+  };
 
   async function buscar_categorias() {
     try {
-      const res = await axios.get("http://localhost:3000/categorias");
+      const res = await api.get("http://localhost:3000/categorias");
       setCategorias(res.data);
     } catch (error) {
       console.error("Erro ao buscar categorias", error);
@@ -104,7 +125,7 @@ function Cadastro_Produto() {
 
   async function buscar_produtos() {
     try {
-      const res = await axios.get("http://localhost:3000/produtos");
+      const res = await api.get("/produtos");
       set_array_produtos(res.data);
     } catch (error) {
       console.error("Erro ao buscar produtos", error);
@@ -113,7 +134,7 @@ function Cadastro_Produto() {
 
   async function cadastrar_produto() {
     try {
-      await axios.post("http://localhost:3000/produtos", array_cadastro_produto);
+      await api.post("/produtos", array_cadastro_produto);
       buscar_produtos();
       alert("Produto cadastrado com sucesso!");
     } catch (error) {
@@ -125,7 +146,29 @@ function Cadastro_Produto() {
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
+    if (informacoes_editar_produto) {
+      setArray_cadastro_produto({
+        nome: informacoes_editar_produto.nome || "",
+        descricao: informacoes_editar_produto.descricao || "",
+        preco: informacoes_editar_produto.preco || "",
+        condicao: informacoes_editar_produto.condicao || "",
+        cor: informacoes_editar_produto.cor || [],
+        imagem: informacoes_editar_produto.imagem || [],
+        marca: informacoes_editar_produto.marca || "",
+        composicao: informacoes_editar_produto.composicao || "",
+        fk_id_categoria: informacoes_editar_produto.fk_id_categoria || "",
+        tamanho: informacoes_editar_produto.tamanho || "",
+        quantidade: informacoes_editar_produto.quantidade || 1,
+      });
+      setQuantidade(informacoes_editar_produto.quantidade || 1);
+      setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
+      setCoresSelecionadas(informacoes_editar_produto.cor || []);
+      setImagens(informacoes_editar_produto.imagem || []);
+      setImagemPrincipal((informacoes_editar_produto.imagem || [])[0] || null);
+    }
   }, []);
+
+  const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
 
   return (
     <div>
@@ -286,7 +329,7 @@ function Cadastro_Produto() {
             >
               <option value="">Selecione uma categoria</option>
               {categorias.map((categoria) => (
-                <option key={categoria.id} value={categoria.nome}>
+                <option key={categoria._id} value={categoria.nome}>
                   {categoria.nome}
                 </option>
               ))}
@@ -300,3 +343,4 @@ function Cadastro_Produto() {
 }
 
 export default Cadastro_Produto;
+

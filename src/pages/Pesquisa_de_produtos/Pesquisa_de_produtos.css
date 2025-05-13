@@ -1,0 +1,14 @@
+.all-page-informacoes-alinhamento{
+    /* border: 1px solid blue; */
+
+    padding-top: 1%;
+    height: 900px;
+    width: 92%;
+}
+
+.container-alinhamento-all-pages{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

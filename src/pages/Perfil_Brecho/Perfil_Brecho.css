@@ -13,7 +13,7 @@ body {
     /* border: 3px solid #D08E00; */
     background-color: var(--cor_quatro);
 
-    height: 93%;
+    height: 89%;
     width: 100%;
 
     display: flex;
@@ -26,10 +26,11 @@ body {
     /* border: 3px solid #0C35FF; */
     border-radius: 25px;
     border: 1px solid  #fbf0ce;
-    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105);
+    background-color: var(--cor_nove);
 
     height: 85%;
-    width: 85%;
+    width: 83%;
 
     display: flex;
     align-items: center;
@@ -44,7 +45,7 @@ body {
 /* Divs e Elementos que estão presentes na parte ESQUERDA dentro da Div Principal de Perfil Brecho*/
 
 .parte-esquerda-content {
-    /* border: 3px solid red; */
+    /* border: 3px solid red;  */
 
     height: 95%;
     width: 26%;
@@ -53,15 +54,17 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    padding-top: 1.5%;  
+    gap: 10%;
 }
 
 .logo-brecho-perfil-content {
-    /* border: 3px solid #00E69D; */
+    /* border: 3px solid #00E69D;  */
     border-radius: 20px;
     background-color: var(--cor_dezesseis);
 
-    height: 56%;
-    width: 96%;
+    height: 40%;
+    width: 72%;
 
     display: flex;
     align-items: center;
@@ -361,7 +364,7 @@ body {
 
 .topicos-infos-subContent button {
     width: 24%;
-    background-color: var(--cor_quatro);
+    background-color: var(--cor_nove);
 
     font-family: "Montserrat", sans serif;
     font-weight: 700;

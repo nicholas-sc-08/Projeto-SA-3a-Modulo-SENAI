@@ -45,7 +45,7 @@ function Perfil_Brecho() {
                     <span className="editar-opcao-palavra">Editar</span>
                   </Link>
                   <div className="excluir-content">
-                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
+                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt=""  />
                     <p>Excluir</p>
                   </div>
                 </div>
@@ -124,3 +124,7 @@ function Perfil_Brecho() {
 }
 
 export default Perfil_Brecho
+
+
+
+
