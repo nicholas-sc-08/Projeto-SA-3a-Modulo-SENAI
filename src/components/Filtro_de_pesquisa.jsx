@@ -25,7 +25,7 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
     const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
-    const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: []});
+    const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: [], categoria_filtrada: ``});
 
     useEffect(() => {
 
@@ -35,9 +35,9 @@ function Filtro_de_pesquisa() {
 
     useEffect(() => {
 
+        console.log(filtro_de_pesquisa);
 
-
-    }, []);
+    }, [filtro_de_pesquisa]);
 
     async function buscar_categorias(){
 
@@ -204,7 +204,7 @@ function Filtro_de_pesquisa() {
 
                         <div key={sub_categoria._id}>
 
-                            <button>{sub_categoria.nome}</button>
+                            <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                         </div>
                     ))}
@@ -227,7 +227,7 @@ function Filtro_de_pesquisa() {
 
                         <div key={sub_categoria._id}>
 
-                            <button>{sub_categoria.nome}</button>
+                            <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                         </div>
                     ))}
@@ -250,7 +250,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -339,7 +339,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -362,7 +362,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -385,7 +385,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
