@@ -17,7 +17,7 @@ const Produto = require(`./models/Produto.js`);
 
 conectar_com_mongo();
 
-const porta = 3000;
+const porta = 3001;
 const server = http.createServer(app);
 
 app.use(cors());
