@@ -17,6 +17,40 @@ const Produto = require(`./models/Produto.js`);
 
 conectar_com_mongo();
 
+
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });  
+
+require('dotenv').config();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+const fs = require('fs'); // certifique-se de colocar esse require no topo se ainda não tiver
+
+app.post("/upload", upload.single("imagem"), async (req, res) => {
+  try {
+    const resultado = await cloudinary.uploader.upload(req.file.path, {
+      folder: "produtos",
+    });
+
+    fs.unlinkSync(req.file.path); // Apaga o arquivo local temporário
+
+    res.status(200).json({ url: resultado.secure_url });
+  } catch (erro) {
+    console.error("Erro ao enviar para o Cloudinary:", erro);
+    res.status(500).json({ erro: "Erro ao enviar imagem" });
+  }
+});
+
+
+
+
 const porta = 3000;
 const server = http.createServer(app);
 
@@ -510,3 +544,4 @@ app.delete(`/produtos/:id`, async (req, res) =>{
         console.error(error)
     }
 })
+

@@ -18,6 +18,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [endereco_do_cliente, set_endereco_do_cliente] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` });
     const [form_de_cadastro_cliente, set_form_de_cadastro_cliente] = useState({ nome: ``, email: ``, senha: ``, telefone: ``, cpf: ``, data_de_nascimento: ``, imagem_de_perfil: `./img/img_perfil_provisorio.svg`, conversas: [], confirmar_senha: `` });
     const [cadastro_parte_um_cliente, set_cadastro_parte_um_cliente] = useState(true);
+    const [produto, set_produto] = useState(``);
     const [cadastro_parte_dois_cliente, set_cadastro_parte_dois_cliente] = useState(false);
     const [cadastro_parte_tres_cliente, set_cadastro_parte_tres_cliente] = useState(false);
     const [inicio_dashboard, set_inicio_dashboard] = useState(true);
@@ -43,7 +44,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [excluir_conversa_chat, set_excluir_conversa_chat] = useState(false);
     const [altura_inicial_chat, set_altura_inicial_chat] = useState(`10%`);
     const [altura_inicial_header_chat, set_altura_inicial_header_chat] = useState(`100%`);
-    const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null)
+    const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null);
+    const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: [], categoria_filtrada: ``});
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -140,6 +142,10 @@ export const GlobalContextProvider = ({ children }) => {
             set_endereco_cadastrado,
             array_estoques,
             set_array_estoques,
+            filtro_de_pesquisa,
+            set_filtro_de_pesquisa,
+            produto,
+            set_produto,
 
             formCadastroBrecho,
             setFormCadastroBrecho,
