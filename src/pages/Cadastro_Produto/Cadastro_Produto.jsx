@@ -32,37 +32,31 @@ function Cadastro_Produto() {
     quantidade: 1,
   });
 
-
-  
   useEffect(() => {
-  buscar_produtos();
-  buscar_categorias();  
+    buscar_produtos();
+    buscar_categorias();
 
-  if (informacoes_editar_produto != null && informacoes_editar_produto.nome !== "") {
-    setArray_cadastro_produto({
-      nome: informacoes_editar_produto.nome || "",
-      descricao: informacoes_editar_produto.descricao || "",
-      preco: informacoes_editar_produto.preco || "",
-      condicao: informacoes_editar_produto.condicao || "",
-      cor: informacoes_editar_produto.cor || [],
-      imagem: informacoes_editar_produto.imagem || [],
-      marca: informacoes_editar_produto.marca || "",
-      composicao: informacoes_editar_produto.composicao || "",
-      fk_id_categoria: informacoes_editar_produto.fk_id_categoria || "",
-      tamanho: informacoes_editar_produto.tamanho || "",
-      quantidade: informacoes_editar_produto.quantidade || 1,
-    });
-
-    setQuantidade(informacoes_editar_produto.quantidade || 1);
-    setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
-    setImagens(informacoes_editar_produto.imagem || []);
-    setImagemPrincipal(
-      informacoes_editar_produto.imagem?.[0] || null
-    );
-    setCoresSelecionadas(informacoes_editar_produto.cor || []);
-  }
-}, []);
-
+    if (informacoes_editar_produto != null && informacoes_editar_produto.nome !== "") {
+      setArray_cadastro_produto({
+        nome: informacoes_editar_produto.nome || "",
+        descricao: informacoes_editar_produto.descricao || "",
+        preco: informacoes_editar_produto.preco || "",
+        condicao: informacoes_editar_produto.condicao || "",
+        cor: informacoes_editar_produto.cor || [],
+        imagem: informacoes_editar_produto.imagem || [],
+        marca: informacoes_editar_produto.marca || "",
+        composicao: informacoes_editar_produto.composicao || "",
+        fk_id_categoria: informacoes_editar_produto.fk_id_categoria || "",
+        tamanho: informacoes_editar_produto.tamanho || "",
+        quantidade: informacoes_editar_produto.quantidade || 1,
+      });
+      setQuantidade(informacoes_editar_produto.quantidade || 1);
+      setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
+      setImagens(informacoes_editar_produto.imagem || []);
+      setImagemPrincipal(informacoes_editar_produto.imagem?.[0] || null);
+      setCoresSelecionadas(informacoes_editar_produto.cor || []);
+    }
+  }, []);
 
   const aumentarQuantidade = () =>
     setQuantidade((q) => {
@@ -86,14 +80,26 @@ function Cadastro_Produto() {
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
   };
 
-  const adicionarImagem = (event) => {
+  const adicionarImagem = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      const novasImagens = [...imagens, imageUrl];
-      setImagens(novasImagens);
-      setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
-      if (!imagemPrincipal) setImagemPrincipal(imageUrl);
+      const formData = new FormData();
+      formData.append("imagem", file);
+      try {
+        const response = await api.post("/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        const imageUrl = response.data.url;
+        const novasImagens = [...imagens, imageUrl];
+        setImagens(novasImagens);
+        setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
+        if (!imagemPrincipal) setImagemPrincipal(imageUrl);
+      } catch (error) {
+        console.error("Erro ao fazer upload da imagem", error);
+        alert("Erro ao enviar a imagem");
+      }
     }
   };
 
@@ -118,7 +124,7 @@ function Cadastro_Produto() {
           setCoresSelecionadas(novasCores);
           setArray_cadastro_produto({ ...array_cadastro_produto, cor: novasCores });
         } else {
-          alert("Você já selecionou o número máximo de cores (3).");
+          alert("Você já selecionou o número máximo de cores (3).")
         }
       } catch (error) {
         console.error("Erro ao selecionar cor", error);
