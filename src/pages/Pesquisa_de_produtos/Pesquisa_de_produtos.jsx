@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from 'react'
-import './Pesquisa_de_produtos.css'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa'
-import { GlobalContext } from '../../contexts/GlobalContext'
-import api from '../../services/api'
+import React, { useContext, useEffect } from 'react';
+import './Pesquisa_de_produtos.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 function Pesquisa_de_produtos() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const navegar_para_produto = useNavigate(null);
 
     useEffect(() => {
 
@@ -29,6 +31,11 @@ function Pesquisa_de_produtos() {
         };
     };
 
+    function ir_para_produto(produto){
+
+        navegar_para_produto(`/produto`);
+    };
+
     return (
         <div className='container-alinhamento-all-pages'>
             <Header tipo='usuario' />
@@ -43,7 +50,7 @@ function Pesquisa_de_produtos() {
 
                     {array_produtos.map((produto, i) => (
                         
-                        <div key={i} className='container_produto'>
+                        <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
                             
                             <div className="container_produto_img">
 
