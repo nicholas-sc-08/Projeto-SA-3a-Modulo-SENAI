@@ -55,7 +55,6 @@ function Perfil_cliente() {
                     <input type="text" placeholder='Confirmar senha' />
                     <button>Editar</button>
                 </div>
-
             </div>
         </div>
         {mostrarPopUp && <Pop_up_menu_cliente onClose={fecharPopUp} />}

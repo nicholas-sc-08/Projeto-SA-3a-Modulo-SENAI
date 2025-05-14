@@ -25,7 +25,7 @@ function Edicao_perfil_brecho() {
               <img src="" alt="" />
             </div>
             <div className="info-horario-perfil-brecho">
-              <textarea name="" className="horario-preenchido-brecho" id="">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
+              <textarea name="" className="horario-preenchido-brecho" id="" placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
             </div>
           </div>
           <div className="parte-direita-div-central">

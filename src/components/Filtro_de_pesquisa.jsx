@@ -15,7 +15,6 @@ function Filtro_de_pesquisa() {
     const [ botao_estilo_dois_deg, set_botao_estilo_dois_deg ] = useState(`rotate(0deg)`);
     const [ botao_estilo_tres_deg, set_botao_estilo_tres_deg ] = useState(`rotate(0deg)`);
     const [ botao_titulo_tamanho_deg, set_botao_titulo_tamanho_deg ] = useState(`rotate(0deg)`);
-    const [ preco_filtro_de_pesquisa, set_preco_filtro_de_pesquisa ] = useState(`25`);
     const [ exibir_filtro_do_preco, set_exibir_filtro_do_preco ] = useState(true);
     const [ exibir_filtro_do_tamanho, set_exibir_filtro_do_tamanho ] = useState(true);
     const [ exibir_filtro_um, set_exibir_filtro_um ] = useState(false);
@@ -26,12 +25,19 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
     const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
+    const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: [], categoria_filtrada: ``});
 
     useEffect(() => {
 
         buscar_categorias();
 
     }, []);
+
+    useEffect(() => {
+
+        console.log(filtro_de_pesquisa);
+
+    }, [filtro_de_pesquisa]);
 
     async function buscar_categorias(){
 
@@ -127,6 +133,12 @@ function Filtro_de_pesquisa() {
         return array_a_ser_exibido;
     };
 
+    function limpar_filtro_de_pesquisa(){
+
+        set_filtro_de_pesquisa({preco: `20`, tamanho: []});
+        set_tamanhos_selecionados([]);
+    };
+
     function girar_botao_titulo_preco(){
 
         botao_titulo_precos_deg == `rotate(0deg)` ? set_botao_titulo_precos_deg(`rotate(180deg)`) : set_botao_titulo_precos_deg(`rotate(0deg)`);
@@ -146,10 +158,12 @@ function Filtro_de_pesquisa() {
         if(index_tamanho == -1){
 
             set_tamanhos_selecionados([...tamanhos_selecionados, tamanho]);
+            set_filtro_de_pesquisa({...filtro_de_pesquisa, tamanhos: tamanhos_selecionados});
 
         } else {
 
             set_tamanhos_selecionados(tamanhos_selecionados.splice(index_tamanho, 1));
+            set_filtro_de_pesquisa({...filtro_de_pesquisa, tamanhos: tamanhos_selecionados});
         };        
     };
 
@@ -190,12 +204,12 @@ function Filtro_de_pesquisa() {
 
                         <div key={sub_categoria._id}>
 
-                            <button>{sub_categoria.nome}</button>
+                            <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                         </div>
                     ))}
 
-                    </div>
+                    </div>  
                 }
 
                 <div className="container_pesquisa_filtro_dois">
@@ -213,7 +227,7 @@ function Filtro_de_pesquisa() {
 
                         <div key={sub_categoria._id}>
 
-                            <button>{sub_categoria.nome}</button>
+                            <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                         </div>
                     ))}
@@ -236,7 +250,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -260,12 +274,12 @@ function Filtro_de_pesquisa() {
 
             <div className="container_selecionar_preco_filtro_de_pesquisa">
 
-                <input type="range" min={0} max={200} step={1} value={preco_filtro_de_pesquisa} onChange={e => set_preco_filtro_de_pesquisa(e.target.value)}/>
-                
+                <input type="range" min={0} max={200} step={1} value={filtro_de_pesquisa.preco} onChange={e => set_filtro_de_pesquisa({...filtro_de_pesquisa, preco: e.target.value})}/>
+
                 <div className="container_exibir_preco_filtro_de_pesquisa">
 
                     <p>R$ 0,00</p>
-                    <p>R$ {preco_filtro_de_pesquisa},00</p>
+                    <p>R$ {filtro_de_pesquisa.preco},00</p>
 
                 </div>
 
@@ -312,7 +326,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_um">
 
-                    <p>{categorias_principais(`casual`)}</p>
+                    <p style={{color: exibir_estilo_um ? `#3E2A21` : `#3e2a219e`}}>{categorias_principais(`casual`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_um`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{transform: botao_estilo_um_deg}}/></button>
                 
                 </div>
@@ -325,7 +339,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -335,7 +349,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_dois">
 
-                    <p>{categorias_principais(`esporte`)}</p>
+                    <p style={{color: exibir_estilo_dois ? `#3E2A21` : `#3e2a219e`}}>{categorias_principais(`esporte`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_dois`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt=""  style={{transform: botao_estilo_dois_deg}}/></button>
                 
                 </div>
@@ -348,7 +362,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -358,7 +372,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_tres">
 
-                    <p>{categorias_principais(`jaqueta`)}</p>
+                    <p style={{color: exibir_estilo_tres ? `#3E2A21` : `#3e2a219e`}}>{categorias_principais(`jaqueta`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_tres`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt=""  style={{transform: botao_estilo_tres_deg}}/></button>
                 
                 </div>   
@@ -371,7 +385,7 @@ function Filtro_de_pesquisa() {
 
                     <div key={sub_categoria._id}>
 
-                        <button>{sub_categoria.nome}</button>
+                        <button onClick={() => set_filtro_de_pesquisa({...filtro_de_pesquisa, categoria_filtrada: sub_categoria.nome})} style={{color: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `#3E2A21` : `#3e2a219e`, fontWeight: filtro_de_pesquisa.categoria_filtrada == sub_categoria.nome ? `600` : `500`}}>{sub_categoria.nome}</button>
 
                     </div>
                 ))}
@@ -382,8 +396,9 @@ function Filtro_de_pesquisa() {
             </div>
 
             <div className="container_botao_filtro_de_pesquisa">
-
-                <button>Aplicar Filtro</button>
+                
+                <button className='botao_filtro_de_pesquisa_limpar' onClick={() => limpar_filtro_de_pesquisa()}>Limpar</button>
+                <button className='botao_filtro_de_pesquisa_aplicar'>Aplicar Filtro</button>
 
             </div>
 
