@@ -244,7 +244,7 @@
     background-color: var(--cor_treze);
 }
 
-.container_excluir_usuario img{
+.container_excluir_usuario img {
     width: 35%;
 }
 
@@ -324,7 +324,7 @@
 }
 
 .titulo_dashboard_email {
-    width: 22%;
+    width: 23%;
     display: flex;
     justify-content: center;
     /* border: 1px solid blue; */
@@ -342,7 +342,7 @@
     width: 15%;
     display: flex;
     justify-content: center;
-   /* border: 1px solid purple; */
+    /* border: 1px solid purple; */
 }
 
 .titulo_dashboard_senha {
@@ -359,11 +359,11 @@
     width: 93%;
     /* border: 1px solid blue; */
     height: 100%;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .b {
-    width: 83%;
+    width: 100%;
 }
 
 .container_colunas_serie_a {
@@ -373,12 +373,14 @@
 
     width: 100%;
     height: 20%;
-    margin-top: 2%;
+    margin-top: 0.5%;
     /* border-top: 1px solid #0000003f;
-    border-left: 1px solid #0000003f; */    
+    border-left: 1px solid #0000003f; */
     border-bottom: 1px solid #0000003f;
 
     background-color: var(--cor_quatro);
+
+    /* border: 1px solid red; */
 }
 
 .container_coluna_imagem_de_perfil_cliente {
@@ -388,13 +390,12 @@
     justify-content: center;
     width: 6%;
     height: 100%;
-    /* border: 1px solid blue; */
 }
 
-.container_coluna_imagem_de_perfil_cliente img{
+.container_coluna_imagem_de_perfil_cliente img {
     /* border: 1px solid red; */
 
-    width: 100%;
+    width: 80%;
     border-radius: 100vw;
 }
 
@@ -404,7 +405,7 @@
     text-align: center;
     align-items: center;
 
-    width: 100%;
+    width: 93.4%;
     height: 100%;
 
     font-family: var(--tipografia_secundaria);
@@ -420,12 +421,11 @@
     color: var(--cor_seis);
     font-weight: 450;
     /* border: 1px solid red; */
+    width: 29%;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 30%;
+    justify-content: flex-start;
+    padding-left: 1.5%;
 }
 
 .container_coluna_email_cliente {
@@ -436,9 +436,9 @@
     /* border: 1px solid red; */
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 28%;
-    
-    margin-left: 3%;
+    width: 25%;
+
+    margin-left: 0.5%;
 }
 
 .container_coluna_telefone_cliente {
@@ -446,30 +446,15 @@
     font-size: 0.9rem;
     color: var(--cor_seis);
     font-weight: 450;
-    /* border: 1px solid red; */
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 19%;
-    margin-left: 1%;
-}
-
-.c {
-    width: 18%;
-    height: 100%;
-}
-
-.container_coluna_cep_cliente {
-
-    font-family: var(--tipografia_secundaria);
-    font-size: 0.9rem;
-    color: var(--cor_seis);
-    font-weight: 450;
-    /* border: 1px solid red; */
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 85%;
-    display: flex;
+    /* border: 1px solid purple; */
     justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 18.7%;
+    margin-left: 0.5%;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .container_coluna_senha_cliente {
@@ -478,16 +463,33 @@
     color: var(--cor_seis);
     font-weight: 450;
     /* border: 1px solid blue; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 17%;
+    margin-left: 0.5%;
+
     text-overflow: ellipsis;
     overflow: hidden;
-    justify-content: center;
-    display: flex;
-    width: 19%;
-    margin-left: 1%;
 }
 
+.container_coluna_cpf_cliente{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    /* border: 1px solid blue; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 19%;
+    margin-left: 0.5%;
 
-.container_colunas_serie_c {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* .container_colunas_serie_c {
 
     display: flex;
     align-items: center;
@@ -504,23 +506,15 @@
     border-bottom: 1px solid #0000003f;
 
     background-color: var(--cor_quatro);
-}
+} */
 
-.container_coluna_excluir_cliente button {
-
-    margin-right: -3vw;
-    cursor: pointer;
-    border: 0;
-    background-color: transparent;
-}
-
-.botao-excluir-individual-cliente{
-    width: 10%;
+.botao-excluir-individual-cliente {
+    width: 1.6%;
     background-color: transparent;
     cursor: pointer;
     border: none;
 }
 
-.botao-excluir-individual-cliente img{
-    width: 90%;
+.botao-excluir-individual-cliente img {
+    width: 100%;
 }

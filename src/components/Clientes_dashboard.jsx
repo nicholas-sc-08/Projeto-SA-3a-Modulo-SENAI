@@ -107,9 +107,7 @@ function Clientes_dashboard() {
       {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
       {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
       {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
-      {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard
-       />}
-
+      {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
 
       <div className="container-alinhamento-imagem-titulo-usuarios-dashboard">
         <div className="container-alinhamento-imagem-usuarios-dashboard">
@@ -220,13 +218,22 @@ function Clientes_dashboard() {
 
                           </div>
 
-                          <div className="container_coluna_telefone_cliente">
+                          <div className="container_coluna_cpf_cliente">
 
                             <span>{cliente.cpf || "-"}</span>
 
                           </div>
 
                         </div>
+
+                        {escolher_qual_excluir && (
+                          <button
+                            className="botao-excluir-individual-cliente"
+                            onClick={() => armazenar_id_do_cliente(cliente._id)}
+                          >
+                            <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                          </button>
+                        )}
 
                       </div>
                     ))}
@@ -245,65 +252,27 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_nome_cliente">
 
-                          <span>{cliente.nome}</span>
+                          <p>{cliente.nome}</p>
 
                         </div>
 
                         <div className="container_coluna_email_cliente">
 
-                          <span>{cliente.email}</span>
+                          <p>{cliente.email}</p>
 
                         </div>
 
                         <div className="container_coluna_telefone_cliente">
 
-                          <span>{cliente.telefone || "-"}</span>
+                          <p>{cliente.telefone || "-"}</p>
 
                         </div>
 
-                        <div className="container_coluna_telefone_cliente">
+                        <div className="container_coluna_cpf_cliente">
 
-                            <span>{cliente.cpf || "-"}</span>
+                          <p>{cliente.cpf || "-"}</p>
 
-                          </div>
-
-                      </div>
-
-                    </div>
-                  ))}
-
-                </div>
-
-                {/* <div className="c">
-
-                  {!barra_de_pesquisa && array_enderecos.map((endereco, i) => (
-
-                    <div key={i} className='container_colunas_serie_c'>
-
-                      <div className="container_coluna_cep_cliente">
-
-                        <span>{endereco.cep}</span>
-
-                      </div>
-
-                      {escolher_qual_excluir && (
-                        <button
-                          className="botao-excluir-individual-cliente"
-                          onClick={() => armazenar_id_do_cliente(endereco._id)}
-                        >
-                          <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-
-                  {barra_de_pesquisa && resultado_de_pesquisa_endereco.map((endereco, i) => (
-
-                    <div key={i} className='container_colunas_serie_c'>
-
-                      <div className="container_coluna_cep_cliente">
-
-                        <span>{endereco.cep || "-"}</span>
+                        </div>
 
                       </div>
 
@@ -315,18 +284,21 @@ function Clientes_dashboard() {
                           <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                         </button>
                       )}
-                    </div>
-                  ))} */}
-                </div>
 
+                    </div>
+                  ))}
+
+                </div>
               </div>
 
             </div>
-          </div>
 
+          </div>
         </div>
 
       </div>
+
+    </div>
   )
 }
 

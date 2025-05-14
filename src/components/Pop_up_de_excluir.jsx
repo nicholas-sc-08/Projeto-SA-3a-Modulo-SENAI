@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import "./Pop_up_de_excluir.css";
 import { GlobalContext } from '../contexts/GlobalContext';
+import api from '../services/api';
 
 function Pop_up_de_excluir() {
 
@@ -39,19 +40,6 @@ function Pop_up_de_excluir() {
     };
   };
 
-  async function excluir_endereco(id) {
-
-    try {
-
-      const endereco_a_excluir = await api.delete(`/enderecos/${id}`);
-      excluir_cliente(id);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
   async function excluir_cliente(id) {
 
     try {
@@ -67,6 +55,20 @@ function Pop_up_de_excluir() {
       console.error(erro);
     };
   };
+
+  async function excluir_endereco(id) {
+
+    try {
+
+      const endereco_a_excluir = await api.delete(`/enderecos/${id}`);
+      excluir_cliente(id);
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
+
 
   useEffect(() => {
 

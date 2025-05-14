@@ -214,8 +214,8 @@
 
 .imagem-produto-dashboard{
     background-color: var(--cor_tres);
-    width: 25%;
-    height: 11vh;
+    width: 35%;
+    height: 90px;
     border-radius: 10%;
     /* border: 1px solid blue; */
 }
@@ -224,8 +224,9 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    padding-left: 6%;
+    margin-left: 5%;
     /* border: 1px solid blue; */
+    width: 100%;
 }
 
 .nome-do-produto-dashboard{
@@ -241,7 +242,6 @@
     font-size: 90%;
     color: var(--cor_seis);
     opacity: 80%;
-    /* border: 1px solid blue; */
 }
 
 .grupo-dois-informacoes-produto-dashboard{
@@ -250,8 +250,8 @@
     align-items: center;
 
     width: 67%;
-    padding-left: 0.5%;
     /* padding-right: 3%;*/ 
+    margin-right: 5%;
     /* border: 1px solid black; */
 }
 
@@ -272,6 +272,8 @@
     font-size: 90%;
     color: var(--cor_seis);
     font-weight: 450;
+
+    /* border: 1px solid red; */
 }
 
 .alinhamento-informacoes-gerais-unidade-dashboard{
@@ -305,7 +307,7 @@
     /* border: 1px solid red; */
 
     display: flex;
-    width: 20%;
+    width: 21%;
     justify-content: center;
 }
 
@@ -322,3 +324,42 @@
     background-color: transparent;
     cursor: pointer;
 }   
+
+.container_excluir_produto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 4%;
+    height: 6vh;
+}
+
+.container_excluir_produto button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0px;
+    border-radius: 100%;
+
+    padding: 0px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.4rem;
+
+    color: var(--cor_nove);
+    background-color: var(--cor_onze);
+}
+
+.container_excluir_produto button:hover{
+    background-color: var(--cor_treze);
+}
+
+.container_excluir_produto img{
+    width: 35%;
+}

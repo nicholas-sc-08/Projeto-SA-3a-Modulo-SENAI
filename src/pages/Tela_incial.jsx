@@ -286,7 +286,7 @@ function Tela_incial() {
       {/* home page seção quatro */}
 
       {/* home page seção cinco */}
-      <div className="home-page-secao-cinco-container">
+      {/* <div className="home-page-secao-cinco-container">
         <div className="container-sinalizacao-avalicacoes-home-page">
           <div className="icon-quadrado-avaliacoes-home-page"></div>
           <p>Avaliações</p>
@@ -323,13 +323,13 @@ function Tela_incial() {
             </motion.div>
           </div>
         </AnimatePresence>
+      </div> */}
         {/* home page seção cinco */}
 
 
         {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}
 
-      </div>
       <Footer />
     </div>
   )
