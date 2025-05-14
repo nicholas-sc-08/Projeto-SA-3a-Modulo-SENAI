@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Footer from '../../components/Footer'
-import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco';
+import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
 
 

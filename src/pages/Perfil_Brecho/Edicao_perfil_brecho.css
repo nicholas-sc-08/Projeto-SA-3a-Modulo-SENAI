@@ -39,7 +39,7 @@ body {
  /*---- Parte Esquerda do Pop Up ----*/
 
 .parte-esquerda-div-central {
-    /* border: 3px solid red; */
+    border: 3px solid red;
 
     height: 95%;
     width: 26%;
@@ -51,7 +51,7 @@ body {
 }
 
 .perfil-brecho-logo-content {
-    /* border: 3px solid #00E69D; */
+    border: 3px solid #00E69D;
     border-radius: 20px;
     background-color: var(--cor_dezesseis);
   
@@ -64,6 +64,8 @@ body {
 }
 
 .info-horario-perfil-brecho {
+
+    border: 3px solid #00E69D;
     border-top: 3px solid var(--cor_nove_v_tres);
 
     height: 38%;

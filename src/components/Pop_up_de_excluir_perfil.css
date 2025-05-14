@@ -19,10 +19,13 @@ body {
 }
 
 .pop-up-excluir-perfil-content {
-    border: 3px solid red;
+    background-color: var(--cor_quatro);
+    border-radius: 1.6rem;
 
-    height: 39%;
-    width: 30%;
+    height: 49%;
+    width: 35%;
+
+    gap: 3%;
 
     display: flex;
     flex-direction: column;
@@ -30,20 +33,52 @@ body {
     align-items: center;
 }
 
-.botoes-pop-up-exluir-perfil-content {
-    border: 3px solid darkblue;
+.pop-up-excluir-perfil-content img {
+    height: 6.5rem;
+    width: 6.5rem;
+}
 
-    height: 30%;
-    width: 85%;
+.pop-up-excluir-perfil-content p {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1.3rem;
+    color: var(--cor_seis);
+}
+
+.botoes-pop-up-exluir-perfil-content {
+    /* border: 3px solid darkblue; */
+
+    height: 21%;
+    width: 76%;
 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.botoes-pop-up-exluir-perfil-content button {
-    height: 60%;
-    width: 40%;
+.sair-button-excluir-perfil {
+    height: 59%;
+    width: 46%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 4rem;
+    border: none;
+    
+    background-color: var(--cor_dois);
+    font-family: "Poppins", sans serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cor_nove);
+}
+
+.excluir-button-excluir-perfil {
+    height: 59%;
+    width: 46%;
 
     display: flex;
     align-items: center;
@@ -56,7 +91,7 @@ body {
     
     background-color: var(--cor_um);
     font-family: "Poppins", sans serif;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 400;
     color: var(--cor_nove);
 }
