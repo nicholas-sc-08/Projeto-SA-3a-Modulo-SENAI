@@ -81,7 +81,7 @@ function Pop_up_de_excluir() {
       <div className="pop_up_de_excluir">
 
         <img src="./img/Ponto_de_interrogacao.svg" alt="" />
-        <p>Tem certeza que deseja excluir  essa conta de usuário?</p>
+        <p>Tem certeza que deseja excluir essa conta de usuário?</p>
 
         <div className="pop_up_de_excluir_botoes">
 

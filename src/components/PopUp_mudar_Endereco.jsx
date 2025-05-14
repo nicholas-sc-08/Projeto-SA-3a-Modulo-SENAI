@@ -50,7 +50,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
         
         <div className="voltar-e-menu-content">
           <img src="./img/icons/Voltar-icone-verde.svg" alt="Voltar" onClick={fecharPopUp} />
-          <img src="./img/icons/Menu-hamburguer-verde-escuro.svg" alt="Menu" />
+          {/* <img src="./img/icons/Menu-hamburguer-verde-escuro.svg" alt="Menu" /> */}
         </div>
 
         <div className="popUp-mudar-endereco-content">

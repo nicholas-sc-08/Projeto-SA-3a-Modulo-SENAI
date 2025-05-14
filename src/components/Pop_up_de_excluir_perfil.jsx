@@ -4,8 +4,17 @@ function Pop_up_de_excluir_perfil() {
 
   return (
 
-    <div>
-      
+    <div className="toda-a-tela-inteira">
+
+      <div className="pop-up-excluir-perfil-content">
+        <img src="./img/Ponto_de_interrogacao.svg" alt="" />
+        <p>Tem certeza que deseja excluir esse perfil?</p>
+        <div className="botoes-pop-up-exluir-perfil-content">
+          <button>Sair</button>
+          <button>Excluir</button>
+        </div>
+      </div>
+
     </div>
   )
 }
