@@ -17,13 +17,7 @@ import Perfil_cliente from "../pages/Perfil_Cliente/Perfil_cliente";
 import Termos_de_uso from "../pages/Legal_Pages/Termos_de_uso";
 import Politica_de_Privacidade from "../pages/Legal_Pages/Politica_de_Privacidade";
 import Pesquisa_de_produtos from "../pages/Pesquisa_de_produtos/Pesquisa_de_produtos";
-<<<<<<< HEAD
-import Detalhe_Pagamento from "../pages/CheckOut/Detalhe_Pagamento";
-=======
 import Produto from "../pages/Produto/Produto";
->>>>>>> a3d2f5985b86f99cc24aa58d78110fb0f3273851
-
-
 
 const router = createBrowserRouter([
    { path: `/`, element: <Tela_incial /> },
@@ -48,7 +42,7 @@ const router = createBrowserRouter([
    { path: `/perfil_brecho`, element: <Perfil_Brecho /> },
    { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho /> },
    { path: `/perfil_cliente`, element: <Perfil_cliente /> },
-   { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
+   // { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
 
 ])
 
