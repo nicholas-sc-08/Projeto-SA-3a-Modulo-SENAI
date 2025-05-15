@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Produtos_dashboard.css'
 import Header from './Header'
 import { GlobalContext } from '../contexts/GlobalContext';
+import Pop_up_de_excluir from './Pop_up_de_excluir';
+import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
 
 function Produtos_dashboard() {
 
@@ -15,6 +17,9 @@ function Produtos_dashboard() {
     const [ids_filtrado, set_ids_filtrado] = useState(``);
 
     const [escolher_qual_excluir, set_escolher_qual_excluir] = useState(false);
+
+    const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
+    const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useContext(GlobalContext);
 
     function voltar_para_o_inicio() {
         set_inicio_dashboard(true);
@@ -46,9 +51,37 @@ function Produtos_dashboard() {
         };
     };
 
+    function armazenar_id_do_produto(id_do_produto) {
+
+        set_abrir_pop_up_dashboard(true);
+        set_id_do_produto_a_excluir(id_do_produto);
+
+    };
+
+    useEffect(() => {
+
+        buscar_produtos();
+
+    }, []);
+
+    useEffect(() => {
+
+        setTimeout(() => {
+
+            set_pop_up_notificacao_excluir_dashboard(false);
+
+        }, 2000);
+
+    }, [pop_up_notificacao_excluir_dashboard]);
+
     return (
         <div className='alinhamento-estoque-produto-dashboard'>
             <Header tipo='admin' />
+
+            {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+            {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
+            {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
+            {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
 
             <div className="container-alinhamento-imagem-titulo-produtos-dashboard">
                 <div className="container-alinhamento-imagem-produtos-dashboard">
