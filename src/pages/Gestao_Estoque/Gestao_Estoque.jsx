@@ -12,7 +12,7 @@ import api from "../../services/api";
 function Gestao_Estoque() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
-  const { informacoes_editar_produto, set_informacoes_editar_produto} = useContext(GlobalContext);
+  const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -125,8 +125,8 @@ function Gestao_Estoque() {
   }
 
   const ResetNovoProduto = () => {
-  set_informacoes_editar_produto(null); 
-  navigate("/cadastro_produto"); 
+    set_informacoes_editar_produto(null);
+    navigate("/cadastro_produto");
   };
 
   return (
