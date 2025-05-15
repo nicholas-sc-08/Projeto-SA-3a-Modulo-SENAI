@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function Pesquisa_de_produtos() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { produto, set_produto } = useContext(GlobalContext);
     const navegar_para_produto = useNavigate(null);
 
     useEffect(() => {
@@ -33,6 +34,7 @@ function Pesquisa_de_produtos() {
 
     function ir_para_produto(produto){
 
+        set_produto(produto);
         navegar_para_produto(`/produto`);
     };
 
