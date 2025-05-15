@@ -307,12 +307,12 @@
 }
 
 .botao-excluir-individual{
-    width: 1.8%;
+    width: 1.6%;
     background-color: transparent;
     cursor: pointer;
     border: none;
 }
 
 .botao-excluir-individual img{
-    width: 90%;
+    width: 100%;
 }

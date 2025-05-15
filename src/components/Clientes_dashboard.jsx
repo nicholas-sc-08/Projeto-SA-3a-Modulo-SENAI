@@ -35,7 +35,7 @@ function Clientes_dashboard() {
   useEffect(() => {
 
     const clientes_filtrados = array_clientes.filter(cliente => cliente.nome.toLowerCase().includes(barra_de_pesquisa.toLowerCase()));
-    const ids = clientes_filtrados.map(cliente => cliente.id);
+    const ids = clientes_filtrados.map(cliente => cliente._id);
     const enderecos_filtrados = array_enderecos.filter(endereco => ids.includes(endereco.fk_id));
 
     set_resultado_de_pesquisa(clientes_filtrados);
@@ -49,7 +49,7 @@ function Clientes_dashboard() {
 
     try {
 
-      const resultado = await api(`/clientes`);
+      const resultado = await api.get(`/clientes`);
       set_array_clientes(resultado.data);
 
     } catch (erro) {
@@ -64,7 +64,7 @@ function Clientes_dashboard() {
 
     try {
 
-      const enderecos = await api(`/enderecos`);
+      const enderecos = await api.get(`/enderecos`);
       set_array_enderecos(enderecos.data);
 
     } catch (erro) {
@@ -109,7 +109,6 @@ function Clientes_dashboard() {
       {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
       {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
 
-
       <div className="container-alinhamento-imagem-titulo-usuarios-dashboard">
         <div className="container-alinhamento-imagem-usuarios-dashboard">
           <div className="container-alinhamento-imagem-titulo-quantidade-usuarios-dashboard">
@@ -148,7 +147,7 @@ function Clientes_dashboard() {
 
             <div className="container_excluir_usuario">
 
-              <button onClick={() => set_escolher_qual_excluir(!escolher_qual_excluir)}>{!escolher_qual_excluir ? <img src='./img/Lixeira_icon_v_dois.svg' alt='lixeira' /> : `X`}</button>
+              <button onClick={() => set_escolher_qual_excluir(!escolher_qual_excluir)}>{!escolher_qual_excluir ? <img src='./img/Lixeira_icon_v_dois.svg' alt='lixeira' /> : <img src='./img/icons/close-icon.png' alt='cancelar' />}</button>
 
             </div>
 
@@ -166,7 +165,7 @@ function Clientes_dashboard() {
                   <span className='titulo_dashboard_email'>Email</span>
                   <span className='titulo_dashboard_telefone'>Telefone</span>
                   <span className='titulo_dashboard_senha'>Senha</span>
-                  <span className='titulo_dashboard_cep'>CEP</span>
+                  <span className='titulo_dashboard_cep'>CPF</span>
 
                 </div>
 
@@ -219,7 +218,22 @@ function Clientes_dashboard() {
 
                           </div>
 
+                          <div className="container_coluna_cpf_cliente">
+
+                            <span>{cliente.cpf || "-"}</span>
+
+                          </div>
+
                         </div>
+
+                        {escolher_qual_excluir && (
+                          <button
+                            className="botao-excluir-individual-cliente"
+                            onClick={() => armazenar_id_do_cliente(cliente._id)}
+                          >
+                            <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                          </button>
+                        )}
 
                       </div>
                     ))}
@@ -238,61 +252,48 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_nome_cliente">
 
-                          <span>{cliente.nome}</span>
+                          <p>{cliente.nome}</p>
 
                         </div>
 
                         <div className="container_coluna_email_cliente">
 
-                          <span>{cliente.email}</span>
+                          <p>{cliente.email}</p>
 
                         </div>
 
                         <div className="container_coluna_telefone_cliente">
 
-                          <span>{cliente.telefone || "-"}</span>
+                          <p>{cliente.telefone || "-"}</p>
+
+                        </div>
+
+                        <div className="container_coluna_cpf_cliente">
+
+                          <p>{cliente.cpf || "-"}</p>
 
                         </div>
 
                       </div>
 
+                      {escolher_qual_excluir && (
+                        <button
+                          className="botao-excluir-individual-cliente"
+                          onClick={() => armazenar_id_do_cliente(cliente._id)}
+                        >
+                          <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                        </button>
+                      )}
+
                     </div>
                   ))}
 
                 </div>
-
-                <div className="c">
-
-                  {!barra_de_pesquisa && array_enderecos.map((endereco, i) => (
-
-                    <div key={i} className='container_colunas_serie_c'>
-
-                      <div className="container_coluna_cep_cliente">
-
-                        <span>{endereco.cep}</span>
-
-                      </div>
-                    </div>
-                  ))}
-
-                  {barra_de_pesquisa && resultado_de_pesquisa_endereco.map((endereco, i) => (
-
-                    <div key={i} className='container_colunas_serie_c'>
-
-                      <div className="container_coluna_cep_cliente">
-
-                        <span>{endereco.cep || "-"}</span>
-
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
               </div>
 
             </div>
-          </div>
 
+          </div>
         </div>
 
       </div>

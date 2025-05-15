@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import "./Pop_up_de_excluir.css";
 import { GlobalContext } from '../contexts/GlobalContext';
+import api from '../services/api';
 
 function Pop_up_de_excluir() {
 
@@ -10,14 +11,14 @@ function Pop_up_de_excluir() {
   const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useContext(GlobalContext);
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext);
-  const { fk_id, set_fk_id } = useState(``);
+  // const { fk_id, set_fk_id } = useState(``);
   const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
 
   async function buscar_clientes() {
 
     try {
 
-      const clientes = await api(`/clientes`);
+      const clientes = await api.get(`/clientes`);
       set_array_clientes(clientes.data);
 
     } catch (erro) {
@@ -30,21 +31,8 @@ function Pop_up_de_excluir() {
 
     try {
 
-      const enderecos = await api(`/enderecos`);
+      const enderecos = await api.get(`/enderecos`);
       set_array_enderecos(enderecos.data);
-
-    } catch (erro) {
-
-      console.error(erro);
-    };
-  };
-
-  async function excluir_endereco(id) {
-
-    try {
-
-      const endereco_a_excluir = await api(`/enderecos/${id}`);
-      excluir_cliente(id);
 
     } catch (erro) {
 
@@ -56,7 +44,7 @@ function Pop_up_de_excluir() {
 
     try {
 
-      const cliente_a_excluir = await api(`/clientes/${id}`);
+      const cliente_a_excluir = await api.delete(`/clientes/${id}`);
       buscar_clientes();
       buscar_enderecos();
       set_abrir_pop_up_dashboard(false);
@@ -67,6 +55,20 @@ function Pop_up_de_excluir() {
       console.error(erro);
     };
   };
+
+  async function excluir_endereco(id) {
+
+    try {
+
+      const endereco_a_excluir = await api.delete(`/enderecos/${id}`);
+      excluir_cliente(id);
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
+
 
   useEffect(() => {
 

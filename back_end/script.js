@@ -18,6 +18,9 @@ const Produto = require(`./models/Produto.js`);
 conectar_com_mongo();
 
 
+const porta = 3001;
+
+
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });  
@@ -52,6 +55,7 @@ app.post("/upload", upload.single("imagem"), async (req, res) => {
 
 
 const porta = 3000;
+
 const server = http.createServer(app);
 
 app.use(cors());
@@ -73,7 +77,8 @@ app.use((req, res, next) => {
     next();
 });
 
-server.listen(porta,() => console.log(`Servidor HTTP rodando na porta ${porta}`));
+
+server.listen(porta,  () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
 io.on(`connection`, (socket) => {
         
