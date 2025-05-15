@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header'
+import Pop_up_de_excluir_perfil from '../../components/Pop_up_de_excluir_perfil'
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
+
+  const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
+
+  const abrirPopUpExcluir = () => {
+    setMostrarPopUpExcluir(true)
+  }
+
+  const fecharPopUpExcluir = () => {
+    setMostrarPopUpExcluir(false)
+  }
 
   return (
 
@@ -40,14 +51,17 @@ function Perfil_Brecho() {
                 <h1>Brechó Moda Sustentável</h1>
 
                 <div className="icons-edicao-excluir-content">
+                  
                   <Link to={"/Edicao_perfil_brecho"} className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
                     <span className="editar-opcao-palavra">Editar</span>
                   </Link>
-                  <div className="excluir-content">
-                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt=""  />
-                    <p>Excluir</p>
-                  </div>
+
+                    <Link onClick={() => setMostrarPopUpExcluir(true)}  className="excluir-content">
+                      <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
+                      <span className="excluir-opcao-palavra">Excluir</span>
+                    </Link>
+                 
                 </div>
               </div>
 
@@ -117,6 +131,9 @@ function Perfil_Brecho() {
         </div>
       </div>
 
+      {mostrarPopUpExcluir && (
+        <Pop_up_de_excluir_perfil fecharPopUpExcluir={() => setMostrarPopUpExcluir(false)} />
+      )}
       <Footer />
     </div>
 

@@ -134,18 +134,18 @@ body {
     padding-left: 5%;
 }
 
-.horario-brecho-content {
-    font-family: "Montserrat", sans serif;
-    font-weight: 595;
-    font-size: 1rem;
-    color: var(--cor_dezoito);
-}
-
 .titulo-horario {
     font-family: "Montserrat", sans serif;
     font-weight: 720;
     font-size: 1.2rem;
     color: var(--cor_um);
+}
+
+.horario-cadastrado {
+    font-family: "Montserrat", sans serif;
+    font-weight: 595;
+    font-size: 1rem;
+    color: var(--cor_dezoito);
 }
 
 .data-cadastrouSe-content {
@@ -250,9 +250,11 @@ body {
     align-items: center;
     justify-content: space-evenly;
     cursor: pointer;
+
+    text-decoration: none;
 }
 
-.excluir-content p {
+.excluir-opcao-palavra {
     font-size: 1em;
     font-family: "Montserrat";
     font-weight: 500;

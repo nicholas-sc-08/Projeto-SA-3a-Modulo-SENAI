@@ -1,0 +1,197 @@
+#root, body, html{
+
+    min-height: 100vh;
+
+    --cor_um: #466330;
+    --cor_um_v_um: #466330b5;
+    --cor_um_v_dois: #2d411f;
+    --cor_um_v_tres_a: #466330c2;
+    --cor_um_v_quatro: #4663303f;
+    --cor_dois: #9DA650;
+    --cor_dois_v_um: #8f9749;
+    --cor_dois_v_dois: #9da65058;
+    --cor_tres: #E7E8CE;
+    --cor_quatro: #FFFDF7;
+    --cor_quatro_v_um: #e2e0da;
+    --cor_cinco: #E4CD80;
+    --cor_seis: #3E2A21;
+    --cor_seis_v_um: #3e2a219e;
+    --cor_sete: #FF3333;
+    --cor_sete_v_um: #ff333399;
+    --cor_oito: #2f2e304d;
+    --cor_oito_v_um: #0000001a;
+    --cor_nove: #FFFFFF;
+    --cor_nove_v_um: #ffffff96;
+    --cor_nove_v_dois: #F0F0F0;
+    --cor_nove_v_tres: #e6e6e696;
+    --cor_dez:#5c5c5c;
+    --cor_onze: #D23D3D;
+    --cor_doze: #F0EEED;
+    --cor_treze: #A62424;
+    --cor_quatorze: #ab9489;
+    --cor_quinze: #FFF4D1;
+    --cor_dezesseis: #F0EEED;
+    --cor_dezesete:#593F28;
+    --cor_dezoito: #3e2a21af;
+    --cor_dezenove  : #FFFDF7;
+
+    --tipografia_primaria: "Montserrat", serif;
+    --tipografia_secundaria: "Poppins", serif;
+
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
+}
+
+.container-tela {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--cor_quatro);
+  min-height: 100%;
+  height: 100vh;
+  
+}
+
+.titulo {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--cor_seis);
+}
+
+.container-principal {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: var(--cor_nove);
+  border: red 1px solid;
+  width: 70%;
+  align-items: center;
+  
+}
+
+.pagamento-conteudo {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  max-width: 1000px;
+}
+
+.formulario-entrega {
+  flex: 1;
+}
+
+.descricao-formulario {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #444;
+  max-width: 90%;
+}
+
+.indicador-etapas {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.etapa {
+  width: 12px;
+  height: 12px;
+  background-color: #e4dab4;
+  border-radius: 50%;
+}
+
+.etapa.ativa {
+  background-color: #b2b66b;
+}
+
+.formulario label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.formulario input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fffefb;
+}
+
+.botao-seguinte {
+  background-color: #5a8c4e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-seguinte:hover {
+  background-color: #4a7c3e;
+}
+
+.resumo-produtos {
+  flex: 1;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  padding-left: 2rem;
+}
+
+.resumo-produtos h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.produto {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.produto img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.produto .info p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.produto .info small {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.preco {
+  margin-top: 0.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.resumo-valores {
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.resumo-valores p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.total span {
+  font-weight: bold;
+  color: green;
+}
