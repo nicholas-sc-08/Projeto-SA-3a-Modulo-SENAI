@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import './Produto.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
+import Header from '../../components/Header';
 
 function Produto() {
 
@@ -30,6 +31,8 @@ function Produto() {
 
   return (
     <div className='container_visualizar_produto'>
+
+        <Header/>
 
         <div className="container_info_do_produto">
 
@@ -79,7 +82,7 @@ function Produto() {
                 <div className="container_info_do_produto_titulo">
 
                     <h1>Camiseta OneLife</h1>
-                    <img src="" alt="" />
+                    <img src="./img/image 53.svg" alt="" />
 
                 </div>
 
