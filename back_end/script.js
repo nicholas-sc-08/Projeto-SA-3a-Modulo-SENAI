@@ -17,10 +17,6 @@ const Produto = require(`./models/Produto.js`);
 
 conectar_com_mongo();
 
-
-const porta = 3001;
-
-
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });  
