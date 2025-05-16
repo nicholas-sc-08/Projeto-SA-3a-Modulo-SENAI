@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+}
+
+.toda-a-tela-carregamento-e-header {
+    border: 3px solid #18CA00;
+
+    height: 100vh;
+    width: 100%;
+}
+

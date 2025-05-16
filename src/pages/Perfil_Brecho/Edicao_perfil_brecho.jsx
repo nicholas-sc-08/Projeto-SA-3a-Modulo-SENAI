@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Footer from '../../components/Footer'
 import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
+import { Link } from 'react-router-dom';
 
 
 function Edicao_perfil_brecho() {
@@ -21,11 +22,18 @@ function Edicao_perfil_brecho() {
       <div className="tela-antes-da-div-central">
         <div className="edicao-perfil-brecho-content">
           <div className="parte-esquerda-div-central">
-            <div className="perfil-brecho-logo-content">
-              <img src="" alt="" />
+            <div className="icone-voltar-verde-content">
+              <Link to={'/perfil_brecho'}>
+              <img src="./public/img/icons/Voltar-icone-verde.svg" className="icone-voltar-edicao-brecho" alt="Voltar"/>
+              </Link>
+            </div>
+            <div className="logo-brecho-geral-content">
+              <div className="perfil-brecho-logo">
+                <img src="" alt="" />
+              </div>
             </div>
             <div className="info-horario-perfil-brecho">
-              <textarea name="" className="horario-preenchido-brecho" id="" placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00">Exemplo: Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00</textarea>
+              <textarea name="" className="horario-preenchido-brecho" id="" placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00"></textarea>
             </div>
           </div>
           <div className="parte-direita-div-central">

@@ -44,6 +44,7 @@ const router = createBrowserRouter([
    { path: `/Edicao_perfil_brecho`, element: <Edicao_perfil_brecho /> },
    { path: `/perfil_cliente`, element: <Perfil_cliente /> },
    { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
+   { path: `/pagina_carregamento`, element: <Pagina_Carregamento />}
 
 ])
 
