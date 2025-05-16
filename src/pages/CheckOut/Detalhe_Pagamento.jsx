@@ -1,12 +1,12 @@
 import "./Detalhe_Pagamento.css";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function Detalhe_Pagamento() {
   return (
     <div className="container-tela">
       <Header tipo="usuario" />
       <h2 className="titulo">Detalhes do Pagamento</h2>
-
       <div className="container-principal">
         <div className="pagamento-conteudo">
           <div className="formulario-entrega">
@@ -21,16 +21,16 @@ function Detalhe_Pagamento() {
             </div>
 
             <form className="formulario">
-              <label>Nome Completo*</label>
+              <label>Nome Completo<strong>*</strong></label>
               <input type="text" placeholder="Digite seu nome completo" required />
 
-              <label>Endereço de Email*</label>
+              <label>Endereço de Email<strong>*</strong></label>
               <input type="email" placeholder="Digite seu e-mail" required />
 
-              <label>Telefone*</label>
+              <label>Telefone<strong>*</strong></label>
               <input type="tel" placeholder="Digite seu telefone" required />
 
-              <label>Nome de Contato Alternativo (Opcional)*</label>
+              <label>Nome de Contato Alternativo (Opcional)</label>
               <input type="text" placeholder="Nome alternativo" />
 
               <button type="submit" className="botao-seguinte">Seguinte</button>
@@ -78,6 +78,9 @@ function Detalhe_Pagamento() {
           </div>
         </div>
       </div>
+ 
+    <Footer/>
+
     </div>
   );
 }
