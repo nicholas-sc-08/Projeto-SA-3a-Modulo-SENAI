@@ -675,3 +675,127 @@ html {
 }
 
 /* home page secao cinco */
+
+@media (max-width: 768px) {
+    .home-page-secao-um-container {
+        flex-direction: column;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 8%;
+        border: 1px solid red;
+    }
+
+    .secao-um-texto-container {
+        width: 100%;
+        border: 1px solid red;
+    }
+
+    .secao-um-texto-container h1 {
+        font-size: 10vw;
+        border: 1px solid red;
+        display: flex;
+        text-align: left;
+    }
+
+    .secao-um-texto-container p {
+        border: 1px solid red;
+        display: flex;
+        text-align: left;
+    }
+
+    .secao-um-texto-container button {
+        width: 100%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    .container-imagem-roupas-numero-um {
+        margin-top: -10%;
+        width: 111%;
+        height: 300px;
+        background-position: center;
+    }
+
+    .container-imagem-roupas-numero-um::before {
+        position: absolute;
+        inset: 0;
+        background-color: linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 35%);
+        z-index: 1;
+        pointer-events: none;
+        width: 100%;
+        border: 1px solid red;
+        height: 100%;
+    }
+
+    .estrela-verde-home-page,
+    .estrela-amarela-home-page {
+        display: none;
+    }
+
+    .home-page-secao-dois-container,
+    .home-page-secao-tres-container,
+    .home-page-container-secao-quatro,
+    .home-page-secao-cinco-container {
+        padding: 5% 3%;
+    }
+
+    .container-titulo-brechos-home-page,
+    .home-page-titulo-secao-tres,
+    .container-titulo-secao-quatro,
+    .container-titulo-secao-cinco {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .container-brechos-cards-home-page,
+    .container-cards-alinhamento-lancamentos-secao-tres,
+    .container-dois-cards-secao-quatro,
+    .container-um-cards-secao-quatro,
+    .container-alinhamento-avaliacoes {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .card-brecho-home-page,
+    .card-lancamento-secao-tres,
+    .card-um-secao-quatro,
+    .card-dois-secao-quatro,
+    .card-tres-secao-quatro,
+    .card-quatro-secao-quatro,
+    .container-cards-alinhamento {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-um-secao-quatro:hover,
+    .card-dois-secao-quatro:hover,
+    .card-tres-secao-quatro:hover,
+    .card-quatro-secao-quatro:hover {
+        width: 100%;
+        margin: 0;
+    }
+
+    .alinhamento-buttons-secao-tres-lancamentos button,
+    .button-ver-todos-os-brechos-home-page button {
+        width: 60%;
+    }
+
+    .nome-brecho,
+    .nome-roupa-lancamentos-card,
+    .preco-roupa-lancamentos-card {
+        text-align: center;
+    }
+
+    .container-card-imagem-roupa-lancamentos {
+        height: 200px;
+    }
+
+    .alinhamento-buttons-anterior-proximo {
+        justify-content: center;
+    }
+
+    .home-page-card-avaliacoes {
+        min-height: auto;
+        max-height: none;
+    }
+}
