@@ -11,8 +11,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 88vw;
+    width: 90%;
     flex-wrap: nowrap;
+    /* border: 1px solid red; */
 }
 
 /* Links de navegação */
@@ -20,6 +21,7 @@
     display: flex;
     gap: 4vw;
     margin-left: 3%;
+    /* border: 1px solid red; */
 }
 
 .link-texto-navbar-usuario {
@@ -28,6 +30,7 @@
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
+    /* border: 1px solid red; */
 }
 
 .link-texto-navbar-usuario:hover {
@@ -38,6 +41,7 @@
 
 .link-texto-navbar-usuario:not(:hover) {
     transition: 0.2s;
+
 }
 
 /* Pesquisa */
@@ -78,25 +82,67 @@
 }
 
 /* Botões */
-.buttons-container-navbar-alinhamento {
+.button-container-navbar-alinhamento {
     justify-content: center;
     align-items: center;
     display: flex;
-    gap: 1.5vw;
+    gap: 0.3vw;
+    /* border: 1px solid red; */
 }
 
-.button-sacola-navbar,
-.button-perfil-navbar {
+.button-sacola-navbar {
+    border: none;
+    background: transparent;
+    /* border: 1px solid red; */
+}
+
+.button-perfil-navbar{
     border: none;
     background: transparent;
 }
 
-.button-sacola-navbar img,
-.button-perfil-navbar img {
-    width: 2.5vw;
+.button-chat-navbar {
+    border: none;
+    background: transparent;
+    /* border: 1px solid blue; */
+}
+
+.button-chat-navbar img {
+    /* border: 1px solid red; */
+    width: 1.8vw;
     max-width: 35px;
 
     cursor: pointer;
+    transition: 0.4s;
+}
+
+.button-chat-navbar img:hover {
+    width: 1.9vw;
+}
+
+.button-sacola-navbar img {
+    width: 2.5vw;
+    
+    
+
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.button-sacola-navbar img:hover {
+    width: 2.7vw;
+}
+
+.button-perfil-navbar img {
+    width: 2vw;
+    max-width: 35px;
+
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.button-perfil-navbar img:hover{
+    width: 2.2vw;
 }
 
 /* Hamburger menu */
