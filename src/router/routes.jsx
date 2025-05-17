@@ -51,6 +51,7 @@ const router = createBrowserRouter([
    { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
    { path: `/detalhe_pagamento_etapa_dois`, element: <Detalhe_Pagamento_etapa_dois /> },
    { path: `/detalhe_pagamento_etapa_tres`, element: <Detalhe_Pagamento_etapa_tres/> },
+   
 
 
    
