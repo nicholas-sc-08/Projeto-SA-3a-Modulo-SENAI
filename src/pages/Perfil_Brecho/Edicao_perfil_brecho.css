@@ -39,24 +39,53 @@ body {
  /*---- Parte Esquerda do Pop Up ----*/
 
 .parte-esquerda-div-central {
-    border: 3px solid red;
+    /* border: 3px solid red; */
 
     height: 95%;
     width: 26%;
  
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 4%;
     align-items: center;
 }
 
-.perfil-brecho-logo-content {
-    border: 3px solid #00E69D;
-    border-radius: 20px;
+.icone-voltar-verde-content {
+    /* border: 3px solid purple; */
+
+    width: 100%;
+    height: 4%;
+
+    display: flex;
+    align-items: flex-start;
+}
+
+.logo-brecho-geral-content {
+    /* border: 3px solid purple; */
+
+    height: 45%;
+    width: 95%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.icone-voltar-edicao-brecho {
+    height: 1.4rem;
+    width: 1.4rem;
+    cursor: pointer;
+}
+
+.perfil-brecho-logo {
+    /* border: 3px solid #00E69D; */
+    border-radius: 1.7rem;
     background-color: var(--cor_dezesseis);
   
-    height: 36%;
-    width: 82%;
+    height: 71%;
+    width: 77%;
   
     display: flex;
     align-items: center;
@@ -65,7 +94,7 @@ body {
 
 .info-horario-perfil-brecho {
 
-    border: 3px solid #00E69D;
+    /* border: 3px solid #00E69D; */
     border-top: 3px solid var(--cor_nove_v_tres);
 
     height: 38%;

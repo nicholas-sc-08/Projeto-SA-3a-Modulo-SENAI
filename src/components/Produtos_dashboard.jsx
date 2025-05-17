@@ -137,7 +137,7 @@ function Produtos_dashboard() {
                     </div>
                 </div>
 
-                <div className="container-dois-estoque-produto-dashboard">
+                {/* <div className="container-dois-estoque-produto-dashboard">
                     <div className="alinhamento-containers-informacoes-produtos-dashboard">
                         <div className="grupo-um-informacoes-produto-dashboard">
                             <div className="imagem-produto-dashboard"></div>
@@ -165,6 +165,99 @@ function Produtos_dashboard() {
 
                         </div>
 
+                    </div>
+                </div> */}
+
+                <div className='fundo-container-dados-do-produto'>
+
+                    <div className="container-dados-do-produto">
+
+                        {!barra_de_pesquisa && array_produtos.map((produto, i) => (
+
+                            <div key={i} className="alinhamento-containers-informacoes-produtos-dashboard">
+                                <div className="grupo-um-informacoes-produto-dashboard">
+                                    <div className="imagem-produto-dashboard"></div>
+
+                                    <div className="nome-categoria-produto-dashboard">
+                                        <p className='nome-do-produto-dashboard'>{produto.nome}</p>
+                                        <p className='categoria-cor-dashboard'>Categoria / cor</p>
+                                    </div>
+                                </div>
+
+                                <div className="grupo-dois-informacoes-produto-dashboard">
+                                    <p className="preco-produto-dashboard">R$ 20,00</p>
+
+                                    <div className="alinhamento-informacoes-gerais-unidade-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>10 Unid</p>
+                                    </div>
+
+                                    <div className="alinhamento-informacoes-gerais-conservacao-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>Usado</p>
+                                    </div>
+
+                                    <div className="alinhamento-informacoes-gerais-tamanho-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>GG</p>
+                                    </div>
+
+                                </div>
+
+                                {escolher_qual_excluir && (
+                                    <button
+                                        className="botao-excluir-individual"
+                                        onClick={() => armazenar_id_do_produto(produto._id)}
+                                    >
+                                        <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                                    </button>
+                                )}
+
+                            </div>
+
+                            // <div  className="alinhamento-container-dados-do-produto">
+                            //     <div className="alinhamento-imagem-nome-produto">
+                            //         <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
+                            //         <p>{brecho.nome_brecho}</p>
+                            //     </div>
+
+                            //     <p className='p-email-brechos-dashboard'>{brecho.email}</p>
+                            //     <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
+                            //     <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
+                            //     <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
+
+                            //     {escolher_qual_excluir && (
+                            //         <button
+                            //             className="botao-excluir-individual"
+                            //             onClick={() => armazenar_id_do_brecho(brecho._id)}
+                            //         >
+                            //             <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                            //         </button>
+                            //     )}
+                            // </div>
+                        ))}
+
+                        {barra_de_pesquisa && resultado_de_pesquisa.map((brecho, i) => (
+
+                            <div key={i} className="alinhamento-container-dados-do-brecho">
+                                <div className="alinhamento-imagem-nome-brecho">
+                                    <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
+                                    <p>{brecho.nome_brecho}</p>
+                                </div>
+
+                                <p className='p-email-brechos-dashboard'>{brecho.email}</p>
+                                <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
+                                <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
+                                <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
+
+                                {escolher_qual_excluir && (
+                                    <button
+                                        className="botao-excluir-individual"
+                                        onClick={() => armazenar_id_do_brecho(brecho._id)}
+                                    >
+                                        <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
+                                    </button>
+                                )}
+
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

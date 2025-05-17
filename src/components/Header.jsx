@@ -37,11 +37,13 @@ function Header({ tipo }) {
     const renderIcons = () => {
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
-                <button className='button-sacola-navbar'><img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Sacola" /></button>
-                {tipo === 'brecho' && (
-                    <button className='button-chat-navbar'><img src="./public/img/icons/chat.svg" alt="Chat" /></button>
-                )}
-                <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente"  jva/></button>
+                <div className="button-container-navbar-alinhamento">
+                    <button className='button-sacola-navbar'><img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Sacola" /></button>
+                    {tipo === 'brecho' && (
+                        <button className='button-chat-navbar'><img src="./public/img/icons/chat.svg" alt="Chat" /></button>
+                    )}
+                    <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente" jva /></button>
+                </div>
             </div>
         );
     };
