@@ -1,7 +1,6 @@
 #root,
 body,
 html {
-
   min-height: 100vh;
 
   --cor_um: #466330;
@@ -48,7 +47,6 @@ html {
   background-color: var(--cor_quatro);
   min-height: 100%;
   height: 100vh;
-
 }
 
 .titulo {
@@ -57,7 +55,6 @@ html {
   font-weight: bold;
   color: var(--cor_seis);
   margin-left: 4.2%;
-  /* border: 1px solid red; */
 }
 
 .container-principal {
@@ -66,12 +63,10 @@ html {
   border-radius: 20px;
   padding: 2rem;
   background-color: var(--cor_nove);
-  /* border: red 1px solid; */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   width: 70%;
   align-items: center;
   margin-left: 14%;
-
   margin-bottom: 5%;
 }
 
@@ -93,7 +88,6 @@ html {
   color: var(--cor_seis);
   opacity: 80%;
   max-width: 90%;
-  /* border: 1px solid red; */
   font-family: var(--tipografia_secundaria);
 }
 
@@ -118,60 +112,44 @@ html {
   height: 20px;
 }
 
-.formulario{
-  /* border: 1px solid red; */
+.formulario {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   padding-left: 0%;
   width: 100%;
-  
 }
 
 .formulario label {
   display: block;
-  
   font-weight: 700;
   opacity: 60%;
   font-size: 1rem;
   letter-spacing: 0.1px;
   color: var(--cor_seis);
   padding-bottom: 0.5%;
-font-family: var(--tipografia_primaria);
-  /* border: 1px solid red; */
+  font-family: var(--tipografia_primaria);
 }
 
 .formulario input {
-  /* border: 1px solid blue; */
   width: 100%;
   padding: 1rem;
   height: 50px;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   background-color: #fffefb;
-
   padding-left: 1%;
   margin-bottom: 3%;
-
   outline: none;
   border: 0.1vw solid var(--cor_dois);
   border-radius: 1vw;
-
   font-family: var(--tipografia_secundaria);
   font-size: 1rem;
-
   color: var(--cor_seis);
   background-color: transparent;
 }
 
-.formulario strong{
-  font-weight: 650;
-  color: var(--cor_onze);
-
-}
-
-.formulario input::placeholder{
+.formulario input::placeholder {
   color: var(--cor_seis);
   font-family: var(--tipografia_secundaria);
   font-size: 0.9rem;
@@ -184,12 +162,11 @@ font-family: var(--tipografia_primaria);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 40px;
   margin-top: 1rem;
   cursor: pointer;
   transition: background-color 0.2s;
-
-  width: 40%;
+  width: 28%;
 }
 
 .botao-seguinte:hover {
@@ -201,7 +178,6 @@ font-family: var(--tipografia_primaria);
   background-color: #fff;
   border-left: 1px solid #ddd;
   padding-left: 2rem;
-  
 }
 
 .resumo-produtos h3 {
@@ -209,7 +185,6 @@ font-family: var(--tipografia_primaria);
   margin-bottom: 1rem;
   color: #333;
   padding-bottom: 20px;
-  
 }
 
 .produto {
@@ -259,3 +234,48 @@ font-family: var(--tipografia_primaria);
   font-weight: bold;
   color: green;
 }
+
+.formulario strong {
+  font-weight: 650;
+  color: var(--cor_onze);
+}
+
+/* Container para colocar Validade e CVV lado a lado */
+.formulario-baixo {
+  display: flex;
+  gap: 3%; /* espaço entre os campos */
+}
+
+/* Cada campo dentro desse container deve ocupar metade do espaço */
+.formulario-baixo > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs dentro desses campos mantém seu estilo normal */
+.formulario-baixo input {
+  width: 100%;
+  padding: 1rem;
+  height: 50px;
+  margin-top: 0.3rem;
+  margin-bottom: 3%;
+  border: 0.1vw solid var(--cor_dois);
+  border-radius: 1vw;
+  background-color: transparent;
+  font-family: var(--tipografia_secundaria);
+  font-size: 1rem;
+  color: var(--cor_seis);
+  outline: none;
+}
+
+/* Labels também mantêm o estilo normal */
+.formulario-baixo label {
+  font-weight: 700;
+  opacity: 60%;
+  font-size: 1rem;
+  color: var(--cor_seis);
+  padding-bottom: 0.5%;
+  font-family: var(--tipografia_primaria);
+}
+

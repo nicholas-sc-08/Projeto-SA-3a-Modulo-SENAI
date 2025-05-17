@@ -1,8 +1,8 @@
-import "./Detalhe_Pagamento.css";
+import "./Detalhe_Pagamento_etapa_tres.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-function Detalhe_Pagamento() {
+function Detalhe_Pagamento_etapa_tres() {
   return (
     <div className="container-tela">
       <Header tipo="usuario" />
@@ -16,24 +16,30 @@ function Detalhe_Pagamento() {
 
             <div className="indicador-etapas">
               <span className="etapa ativa"></span>
-              <span className="etapa"></span>
-              <span className="etapa"></span>
+              <span className="etapa ativa"></span>
+              <span className="etapa ativa"></span>
             </div>
 
             <form className="formulario">
-              <label>Nome Completo<strong>*</strong></label>
-              <input type="text" placeholder="Digite seu nome completo" required />
+              <label>Nome do Titular<strong>*</strong></label>
+              <input type="text" placeholder="Digite o nome completo do titular" required />
 
-              <label>Endereço de Email<strong>*</strong></label>
-              <input type="email" placeholder="Digite seu e-mail" required />
+              <label>Número do Cartão<strong>*</strong></label>
+              <input type="text" placeholder="Digite o número do cartão" required />
 
-              <label>Telefone<strong>*</strong></label>
-              <input type="tel" placeholder="Digite seu telefone" required />
+              <div className="formulario-baixo">
+                <div className="campo">
+                  <label>Validade<strong>*</strong></label>
+                  <input type="text" placeholder="MM/AA" required />
+                </div>
 
-              <label>Nome de Contato Alternativo (Opcional)</label>
-              <input type="text" placeholder="Nome alternativo" />
+                <div className="campo">
+                  <label>CVV</label>
+                  <input type="text" placeholder="Digite o código CVV" />
+                </div>
+              </div>
 
-              <button type="submit" className="botao-seguinte">Seguinte</button>
+              <button type="submit" className="botao-seguinte">Comprar</button>
             </form>
           </div>
 
@@ -80,11 +86,10 @@ function Detalhe_Pagamento() {
           </div>
         </div>
       </div>
- 
-    <Footer/>
 
+      <Footer />
     </div>
   );
 }
 
-export default Detalhe_Pagamento;
+export default Detalhe_Pagamento_etapa_tres;

@@ -1,8 +1,8 @@
-import "./Detalhe_Pagamento.css";
+import "./Detalhe_Pagamento_etapa_dois.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-function Detalhe_Pagamento() {
+function Detalhe_Pagamento_etapa_dois() {
   return (
     <div className="container-tela">
       <Header tipo="usuario" />
@@ -16,22 +16,22 @@ function Detalhe_Pagamento() {
 
             <div className="indicador-etapas">
               <span className="etapa ativa"></span>
-              <span className="etapa"></span>
+              <span className="etapa ativa"></span>
               <span className="etapa"></span>
             </div>
 
             <form className="formulario">
-              <label>Nome Completo<strong>*</strong></label>
-              <input type="text" placeholder="Digite seu nome completo" required />
+              <label>CEP<strong>*</strong></label>
+              <input type="text" placeholder="Digite seu CEP" required />
 
-              <label>Endereço de Email<strong>*</strong></label>
-              <input type="email" placeholder="Digite seu e-mail" required />
+              <label>Bairro/Cidade<strong>*</strong></label>
+              <input type="email" placeholder="Digite seu bairro e cidade" required />
 
-              <label>Telefone<strong>*</strong></label>
-              <input type="tel" placeholder="Digite seu telefone" required />
+              <label>Logradouro<strong>*</strong></label>
+              <input type="tel" placeholder="Digite seu logradouro" required />
 
-              <label>Nome de Contato Alternativo (Opcional)</label>
-              <input type="text" placeholder="Nome alternativo" />
+              <label>Numero da casa ou Apartamento</label>
+              <input type="text" placeholder="Digite o número da residência" />
 
               <button type="submit" className="botao-seguinte">Seguinte</button>
             </form>
@@ -87,4 +87,5 @@ function Detalhe_Pagamento() {
   );
 }
 
-export default Detalhe_Pagamento;
+export default Detalhe_Pagamento_etapa_dois;
+  

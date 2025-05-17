@@ -184,12 +184,12 @@ font-family: var(--tipografia_primaria);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 40px;
   margin-top: 1rem;
   cursor: pointer;
   transition: background-color 0.2s;
 
-  width: 40%;
+  width: 28%;
 }
 
 .botao-seguinte:hover {
