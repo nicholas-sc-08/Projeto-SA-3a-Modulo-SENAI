@@ -2,9 +2,12 @@ import { useState } from 'react';
 import "./Perfil_cliente.css";
 import Footer from '../../components/Footer';
 import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
+import Edicao_perfil_brecho from '../Perfil_Brecho/Edicao_perfil_brecho';
+import Edicao_perfil_cliente from './Edicao_perfil_cliente';
 
 function Perfil_cliente() {
-    const [mostrarPopUp, setMostrarPopUp] = useState(false)
+    const [mostrarPopUp, setMostrarPopUp] = useState(false);
+    const [mostrarEdicao, setMostrarEdicao] = useState(false);
 
     const abrirPopUp = () => {
       setMostrarPopUp(true)
@@ -53,7 +56,8 @@ function Perfil_cliente() {
                     <input type="text" placeholder='Senha atual'/>
                     <input type="text" placeholder='Nova senha'/>
                     <input type="text" placeholder='Confirmar senha' />
-                    <button>Editar</button>
+                    <button onClick={() => setMostrarEdicao(true)}>Editar</button>
+                    {mostrarEdicao && <Edicao_perfil_cliente />}
                 </div>
             </div>
         </div>

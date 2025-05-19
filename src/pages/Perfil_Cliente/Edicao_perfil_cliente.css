@@ -1,29 +1,29 @@
-.sideBar-perfil-cliente{
+.sideBar-edicao-perfil-cliente{
     display: flex;
     margin-left: 20%;
     margin-top: 5%;
 }
 
-.sideBar-perfil-cliente h4{
+.sideBar-edicao-perfil-cliente h4{
     color: var(--cor_um_v_um);
     font-weight: 200;
 }
 
-.sideBar-perfil-cliente img{
+.sideBar-edicao-perfil-cliente img{
     position: absolute;
     left: 78%;
     width: 36px;
     color: var(--cor_um_v_um);
 }
 
-.foto-perfil-cliente{
+.foto-edicao-perfil-cliente{
     width: 20%;
     margin-left: 9%;
     margin-top: 15%;
 
 }
 
-.container-perfil-cliente{
+.container-edicao-perfil-cliente{
     margin-left: 20%;
     margin-top: 3%;
     margin-bottom: 77px;
@@ -34,27 +34,27 @@
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
 }
 
-.container-perfil-cliente label{
+.container-edicao-perfil-cliente label{
     display: block;
     margin-bottom: 3%;
     color: var(--cor_dez);
     font-weight: 800;
 }
 
-.info-cliente{
+.info-edicao-cliente{
     position: relative;
     bottom: 55%;
     left: 22%;
     width: 70%;
 }
 
-.cabecario-cliente{
+.cabecario-edicao-cliente{
     margin-left: 28%;
     margin-top: 4%;
     color: var(--cor_um);
 }
 
-.info1{
+.info01{
     display: flex;
     margin-left: 22%;
     margin-top: 5%;
@@ -62,13 +62,13 @@
 
 }
 
-.nome-cliente, .telefone-cliente, .rua-cliente{
+.edicao-nome-cliente, .edicao-telefone-cliente, .edicao-rua-cliente{
     display: flex;
     flex-direction: column;
 
 }
 
-.nome-cliente input{
+.edicao-nome-cliente input{
     height: 2.2vw;
     padding-left: 1%;
     outline: none;
@@ -82,7 +82,7 @@
 
 }
 
-.telefone-cliente input{  
+.edicao-telefone-cliente input{  
     height: 2.2vw;
     padding-left: 1%;
     outline: none;
@@ -96,20 +96,20 @@
 
 }
 
-.info2{
+.info02{
     display: flex;
     margin-left: 22%;
     margin-top: 5%;
     justify-content: space-around;
 }
 
-.email-cliente{
+.edicao-email-cliente{
     display: flex;
     flex-direction: column;
 
 }
 
-.email-cliente input{
+.edicao-email-cliente input{
     height: 2.2vw;
     padding-left: 1%;
     outline: none;
@@ -122,7 +122,7 @@
     background-color: #FCF7E9;
 }
 
-.rua-cliente input{
+.edicao-rua-cliente input{
     height: 2.2vw;
     padding-left: 1%;
     outline: none;
@@ -135,14 +135,14 @@
     background-color: #FCF7E9;
 }
 
-.mudanca-senha{
+.edicao-mudanca-senha{
     display: flex;
     flex-direction: column ;
     margin-left: 29%;
     margin-top: 5%;
 }
 
-.mudanca-senha input{
+.edicao-mudanca-senha input{
     display: block;
     margin-bottom: 3%;
     height: 2.2vw;
@@ -158,7 +158,7 @@
     background-color: #FCF7E9;
 }
 
-.mudanca-senha button{
+.edicao-mudanca-senha button{
     background-color: var(--cor_um);
     color: var(--cor_quatro);
     border: none;
@@ -166,7 +166,17 @@
     width: 30%;
     height: 40px;
     margin-top: 5%;
-    margin-left: 60%;
+
 }
 
+.botoes-edicao-cliente{
+    display: flex;
+    margin-left: 34%;
+    
+}
 
+.but-cancelar-edicao-cliente{
+    background-color: #fbf0ce00;
+    color: black;
+
+}
