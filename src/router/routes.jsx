@@ -21,12 +21,13 @@ import Produto from "../pages/Produto/Produto";
 import Detalhe_Pagamento from "../pages/CheckOut/Detalhe_Pagamento"
 import Detalhe_Pagamento_etapa_dois from "../pages/CheckOut/Detalhe_Pagamento_etapa_dois";
 import Detalhe_Pagamento_etapa_tres from "../pages/CheckOut/Detalhe_Pagamento_etapa_tres";
+import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente";
 
 
 
 
 const router = createBrowserRouter([
-   { path: `/`, element: <Tela_incial /> },
+   { path: `/tela_inicial`, element: <Tela_incial /> },
    { path: `/cadastro_cliente`, element: <Cadastro_cliente /> },
    { path: `/cadastro_brecho`, element: <Cadastro_brecho /> },
    { path: `/login`, element: <Login /> },
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
    { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
    { path: `/detalhe_pagamento_etapa_dois`, element: <Detalhe_Pagamento_etapa_dois /> },
    { path: `/detalhe_pagamento_etapa_tres`, element: <Detalhe_Pagamento_etapa_tres/> },
+   { path: `/edicao_perfil_cliente`, element: <Edicao_perfil_cliente />},
    
 
 
