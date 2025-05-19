@@ -1,5 +1,5 @@
 .tela-inteira-cliente {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     height: 100vh;
     width: 100vw;
     position: fixed;
@@ -20,16 +20,18 @@
 .menu-cliente {
     display: flex;
     flex-direction: column;
+    margin-left: 49%;
+    margin-bottom: 27%;
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    width: 200px;
+    width: 190px;
     max-width: 90%;
     z-index: 1000;
 }
 
 .menu-cliente img {
-    width: 8%;
+    width: 10%;
     align-self: center;
     color: var(--cor_um_v_um);
 }
@@ -37,9 +39,16 @@
 .popUp-inicio,
 .popUp-sacola,
 .popUp-sairConta {
+    display: flex;
     margin: 10px 0;
 }
 
-.popUp-sairConta {
-    margin-top: auto;
+.link-popUp-cliente{
+    margin-left: 5%;
+    text-decoration: none;
+    color: var(--cor_um);
+}
+
+.icon-popUp-cliente img{
+    color: aquamarine;
 }
