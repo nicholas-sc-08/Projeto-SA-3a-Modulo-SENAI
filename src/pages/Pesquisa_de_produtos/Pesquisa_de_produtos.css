@@ -43,7 +43,7 @@
     transition: 0.3s;
 
     width: 20%;
-    height: 45%;
+    height: 35%;
     border: 0.1vw solid transparent;
 }
 
@@ -57,15 +57,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
     width: 90%;
-    height: 50%;
+    height: 70%;
+    
+    margin-bottom: 5%;
+
     border-radius: 1vw;
     background-color: var(--cor_nove_v_dois);
 }
 
 .container_produto_img img{
 
-    width: 100%;
+    width: 70%;
     height: 90%;
 }
 
