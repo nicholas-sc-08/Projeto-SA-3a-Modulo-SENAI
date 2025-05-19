@@ -63,7 +63,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
           <div className="inputs-do-popUp-content">
             <div className="juncao-rua-logra-e-numero-content">
               <div className="rua-logra-input-content">
-                <p className="topicos-input-endereco">Rua/Logradouro</p>
+                <label className="topicos-input-endereco">Rua/Logradouro</label>
                 <input type="text" placeholder='Rua das Flores' 
                 value={enderecoDoBrecho.logradouro} 
                 onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, logradouro: event.target.value}) }
@@ -71,24 +71,24 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
               </div>
 
               <div className="numero-input-content">
-                <p className="topicos-input-endereco">Número</p>
+                <label className="topicos-input-endereco">Número</label>
                 <input type="text" placeholder='200' value={enderecoDoBrecho.numero} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, numero: event.target.value}) }/>
               </div>
             </div>
 
             <div className="complemento-input-content">
-              <p className="topicos-input-endereco">Complemento</p>
+              <label className="topicos-input-endereco">Complemento</label>
               <input type="text" placeholder='Apartamento 02' value={enderecoDoBrecho.complemento} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, complemento: event.target.value}) }/>
             </div>
 
             <div className="juncao-cep-e-bairro-content">
               <div className="cep-input-content">
-                <p className="topicos-input-endereco">CEP</p>
+                <label className="topicos-input-endereco">CEP</label>
                 <input type="text" placeholder='88011-080' maxLength={8}  value={enderecoDoBrecho.cep} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, cep: event.target.value}) }/>
               </div>
 
               <div className="bairro-input-content">
-                <p className="topicos-input-endereco">Bairro</p>
+                <label className="topicos-input-endereco">Bairro</label>
                 <input type="text" placeholder='Rio Vermelho' value={enderecoDoBrecho.bairro} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, bairro: event.target.value}) }/>
               </div>
             </div>

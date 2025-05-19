@@ -26,13 +26,13 @@ function Perfil_Brecho() {
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">
             <div className="logo-brecho-perfil-content">
-              <img src="" alt="" />
+              <img src="" alt="logo-do-brecho" />
             </div>
             <div className="infos-horario-endereco-cadastrou-brecho-content">
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <p className="endereco-cadastrado">exemplo  Rua Irmão Walmir Orsi/Santa Augusta/Criciúma/SC </p>
+                  <span className="endereco-cadastrado">exemplo  Rua Irmão Walmir Orsi/Santa Augusta/Criciúma/SC </span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
@@ -51,17 +51,17 @@ function Perfil_Brecho() {
                 <h1>Brechó Moda Sustentável</h1>
 
                 <div className="icons-edicao-excluir-content">
-                  
+
                   <Link to={"/Edicao_perfil_brecho"} className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
                     <span className="editar-opcao-palavra">Editar</span>
                   </Link>
 
-                    <Link onClick={() => setMostrarPopUpExcluir(true)}  className="excluir-content">
-                      <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
-                      <span className="excluir-opcao-palavra">Excluir</span>
-                    </Link>
-                 
+                  <Link onClick={() => setMostrarPopUpExcluir(true)} className="excluir-content">
+                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
+                    <span className="excluir-opcao-palavra">Excluir</span>
+                  </Link>
+
                 </div>
               </div>
 
@@ -95,13 +95,27 @@ function Perfil_Brecho() {
                       <p>Informações de Contato</p>
                     </div>
                     <div className="infos-cadastradas-sub-div">
-                      <p className="labels-infos">Nome:</p>
 
-                      <p className="labels-infos">Email:</p>
+                      <div className="labels-e-dados-cadastrados-content">
+                        <label className="labels-infos">Nome:</label>
+                        <span className="dados-cadastradas-exibidos"></span>
+                      </div>
 
-                      <p className="labels-infos">Telefone:</p>
+                      <div className="labels-e-dados-cadastrados-content">
+                        <label className="labels-infos">Email:</label>
+                        <span className="dados-cadastradas-exibidos">e</span>
+                      </div>
 
-                      <p className="labels-infos">CNPJ:</p>
+                      <div className="labels-e-dados-cadastrados-content">
+                        <label className="labels-infos">Telefone:</label>
+                        <span className="dados-cadastradas-exibidos"></span>
+                      </div>
+
+                      <div className="labels-e-dados-cadastrados-content">
+                        <label className="labels-infos">CNPJ:</label>
+                        <span className="dados-cadastradas-exibidos"></span>
+                      </div>
+
                     </div>
                   </>
                 )}
@@ -112,7 +126,7 @@ function Perfil_Brecho() {
                       <p>Sobre o Brechó</p>
                     </div> */}
                     <div className="infos-cadastradas-descricao-sub-div">
-                      <p className="descricao-brecho-cadastrado">Brechó focado em moda sustentável, com peças selecionadas e de qualidade.</p>
+                      <span className="descricao-brecho-cadastrado">Brechó focado em moda sustentável, com peças selecionadas e de qualidade.</span>
                     </div>
                   </>
                 )}

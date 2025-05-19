@@ -46,12 +46,12 @@ function Edicao_perfil_brecho() {
               </div>
               <div className="inputs-info-vendedor-content">
                 <div className="input-info-vendedor-subDiv">
-                  <p className="titulo-do-input">Nome</p>
+                  <label className="titulo-do-input">Nome</label>
                   <input type="text" className="inputs-pequenos-infos" placeholder='Nome do Vendedor' />
                 </div>
                 <div className="input-info-vendedor-subDiv">
-                  <p className="titulo-do-input">Data de Nascimento</p>
-                  <input type="text" className="inputs-pequenos-infos" placeholder='+55 (DD) 90000-0000' />
+                  <label className="titulo-do-input">Data de Nascimento</label>
+                  <input type="date" className="inputs-pequenos-infos"  />
                 </div>
               </div>
             </div>
@@ -60,28 +60,28 @@ function Edicao_perfil_brecho() {
                 <p>Informações do Brechó</p>
               </div>
               <div className="inputs-pequenos-infos-brecho">
-                <p className="titulo-do-input">Nome</p>
+                <label className="titulo-do-input">Nome</label>
                 <input type="text" className="inputs-pequenos-infos" placeholder='Nome do Brechó' />
               </div>
               <div className="inputs-pequenos-infos-brecho">
-                <p className="titulo-do-input">Telefone</p>
-                <input type="text" className="inputs-pequenos-infos" placeholder='+55 (DD) 90000-0000' />
+                <label className="titulo-do-input">Telefone</label>
+                <input type="text" className="inputs-pequenos-infos" min={14} maxLength={14} placeholder='(DD) 99123-4567' />
               </div>
               <div className="inputs-pequenos-infos-brecho">
-                <p className="titulo-do-input">Email</p>
-                <input type="text" className="inputs-pequenos-infos" placeholder='brecho@gmail.com' />
+                <label className="titulo-do-input">Email</label>
+                <input type="email" className="inputs-pequenos-infos" placeholder='brecho@gmail.com' />
               </div>
               <div className="inputs-pequenos-infos-brecho">
-                <p className="titulo-do-input">CNPJ</p>
-                <input type="text" className="inputs-pequenos-infos" placeholder='123456780090' />
+                <label className="titulo-do-input">CNPJ</label>
+                <input type="text" className="inputs-pequenos-infos" min={18} maxLength={18} placeholder='00.000.000/0000-00' />
               </div>
             </div>
             <div className="endereco-e-senha-infos-content">
-              <p className="titulo-do-input">Endereço</p>
+              <label className="titulo-do-input">Endereço</label>
               <button onClick={() => setMostrarPopUp(true)}>Clique para alterar</button>
-              <p className="titulo-do-input">Mudança de Senha</p>
-              <input type="text" placeholder="Nova Senha" />
-              <input type="text" placeholder='Confirme sua senha' />
+              <label className="titulo-do-input">Mudança de Senha</label>
+              <input type="password" placeholder="Nova Senha" min={7} maxLength={12} />
+              <input type="password" placeholder='Confirme sua senha' min={7} maxLength={12} />
             </div>
             <div className="botao-editar-content">
               <button>Editar</button>

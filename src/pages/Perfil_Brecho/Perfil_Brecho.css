@@ -418,9 +418,27 @@ body {
     padding-left: 3%;
 }
 
+.labels-e-dados-cadastrados-content {
+    /* border: 3px solid red; */
+
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+}
+
 .labels-infos {
+    padding-right: 1%;
+
     font-family: "Montserrat", sans serif;
     font-weight: 700;
+    font-size: 1rem;
+    color: var(--cor_dezesete);
+}
+
+.dados-cadastradas-exibidos {
+    font-family: "Montserrat", sans serif;
+    font-weight: 500;
     font-size: 1rem;
     color: var(--cor_dezesete);
 }
