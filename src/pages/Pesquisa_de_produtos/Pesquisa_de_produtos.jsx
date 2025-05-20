@@ -6,10 +6,15 @@ import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import Chat from '../../components/chat/Chat';
+import Chat_conversa from '../../components/chat/Chat_conversa';
 
 function Pesquisa_de_produtos() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+    const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+
     const { produto, set_produto } = useContext(GlobalContext);
     const navegar_para_produto = useNavigate(null);
 
@@ -73,6 +78,9 @@ function Pesquisa_de_produtos() {
                 </div>
 
             </div>
+
+            {usuario_logado != `` && !conversa_aberta && <Chat />}
+            {conversa_aberta && <Chat_conversa />}
 
             <Footer />
         </div>

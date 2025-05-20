@@ -1,20 +1,40 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import './Produto.css';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import Header from '../../components/Header';
+import Chat_conversa from '../../components/chat/Chat_conversa';
+import Chat from '../../components/chat/Chat';
 
 function Produto() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
+    const [ imagem_selecionada, set_imagem_selecionada ] = useState(1);
+    const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
     useEffect(() => {
 
         buscar_produtos();
-        console.log(produto);
+        buscar_brechos();
         
     }, []);
+
+    async function buscar_brechos(){
+
+        try {
+
+        const brechos = await api.get(`/brechos`);
+        set_array_brechos(brechos.data);
+            
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
 
     async function buscar_produtos() {
         
@@ -29,6 +49,24 @@ function Produto() {
         };
     };
 
+    function adicionar_conversa_ao_chat(){
+
+        if(usuario_logado != null){
+
+
+        };
+    };
+
+    function imagem_do_brecho(_id){
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
+
+        if(encontrar_brecho){
+
+            return encontrar_brecho.logo;
+        };
+    };
+
   return (
     <div className='container_visualizar_produto'>
 
@@ -40,38 +78,20 @@ function Produto() {
 
                 <div className="container_imagens_do_produto">
 
-                    {/* {produto.imagem.map((url_imagem, i) => (
+                    {produto.imagem.map((url, i) => (
 
-                        <div key={i}>
+                        <div key={i} className='container_outras_opcoes_de_imagens' style={{}}>
 
-                            <img src={url_imagem} alt="" />
+                        <img src={url} alt="" />
 
                         </div>
-                    ))}  */}
-
-                    <div className='container_outras_opcoes_de_imagens'>
-
-                        <img src="./img/Frame 75.svg" alt="" />
-
-                    </div>
-
-                    <div className='container_outras_opcoes_de_imagens'>
-
-                        <img src="./img/Frame 75.svg" alt="" />
-
-                    </div>
-
-                    <div className='container_outras_opcoes_de_imagens'>
-
-                        <img src="./img/Frame 75.svg" alt="" />
-
-                    </div>
+                    ))}
 
                 </div>
 
                 <div className="container_imagem_principal_produto">
 
-                    <img src="./img/Frame 75.svg" alt="" />
+                    <img src={produto.imagem[imagem_selecionada]} alt="" />
 
                 </div>
 
@@ -81,20 +101,20 @@ function Produto() {
 
                 <div className="container_info_do_produto_titulo">
 
-                    <h1>Camiseta OneLife</h1>
-                    <img src="./img/image 53.svg" alt="" />
+                    <h1>{produto.nome}</h1>
+                    <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" />
 
                 </div>
 
                 <div className="container_info_do_produto_preco">
 
-                    <h2>R$39,90</h2>
+                    <h2>R${produto.preco}</h2>
 
                 </div>
 
                 <div className="container_info_do_produto_descricao">
 
-                    <p>This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style. This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style. This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.</p>
+                    <p>{produto.descricao}</p>
 
                 </div>
 
@@ -106,7 +126,7 @@ function Produto() {
                         
                         <div className="container_fundo_info_do_produto_tamanho">
 
-                            <span>PP</span>
+                            <span>{produto.tamanho}</span>
                         
                         </div>
 
@@ -118,7 +138,7 @@ function Produto() {
                         
                         <div className='container_fundo_info_do_produto_cor'>
 
-                            <div className='cor_do_produto'></div>
+                            <div className='cor_do_produto' style={{backgroundColor: produto.cor}}></div>
                             <span>Verde musgo</span>
 
                         </div>
@@ -132,7 +152,7 @@ function Produto() {
                     <div className='container_botoes_do_produto'>
 
                         <button className='botao_comprar_produto'>Comprar</button>
-                        <button className='botao_conversar_com_brecho'><img src="./img/icons/icone_chat.svg" alt="" />Chat</button>
+                        <button className='botao_conversar_com_brecho'><img src="./img/icons/icone_chat.svg" alt="" onClick={() => adicionar_conversa_ao_chat}/>Chat</button>
                     
                     </div>
 

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../contexts/GlobalContext';
 import Footer from '../components/Footer';
@@ -18,6 +19,7 @@ function Tela_incial() {
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const navegar = useNavigate(``);
 
   const [startIndex, setStartIndex] = useState(0);
   const itemsToShow = 4;
@@ -246,7 +248,7 @@ function Tela_incial() {
         </AnimatePresence>
 
         <div className="alinhamento-buttons-secao-tres-lancamentos">
-          <button>Ver todos</button>
+          <button onClick={() => navegar(`/buscarProdutos`)}>Ver todos</button>
         </div>
       </div>
       {/* home page seção tres */}
