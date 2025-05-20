@@ -28,6 +28,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [categorias_dashboard, set_categorias_dashboard] = useState(false);
     const [id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
     const [id_do_brecho_a_excluir, set_id_do_brecho_a_excluir] = useState(``);
+    const [id_do_produto_a_excluir, set_id_do_produto_a_excluir] = useState(``);
     const [abrir_pop_up_dashboard, set_abrir_pop_up_dashboard] = useState(false);
     const [pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard] = useState(false);
     const [pop_up_de_cadastrar_categoria, set_pop_up_de_cadastrar_categoria] = useState(false);
@@ -146,6 +147,9 @@ export const GlobalContextProvider = ({ children }) => {
             set_filtro_de_pesquisa,
             produto,
             set_produto,
+            id_do_produto_a_excluir, 
+            set_id_do_produto_a_excluir,
+
 
             formCadastroBrecho,
             setFormCadastroBrecho,
