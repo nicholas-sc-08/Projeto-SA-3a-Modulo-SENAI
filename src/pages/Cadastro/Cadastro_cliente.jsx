@@ -116,7 +116,7 @@ function Cadastro_cliente() {
 
     if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
 
-      if (!form_de_cadastro_cliente.email.includes('@gmail.com' || '@hotmail.com')) {
+      if (!form_de_cadastro_cliente.email.endsWith('@gmail.com' || '@hotmail.com')) {
         set_mensagem_de_erro(`O email deve conter "@gmail.com" ou "@hotmail.com"`);
         return;
       }

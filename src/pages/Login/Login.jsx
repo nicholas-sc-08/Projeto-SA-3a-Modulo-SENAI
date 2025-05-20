@@ -12,35 +12,35 @@ function Login() {
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
-  const [formulario, set_formulario] = useState({email: '', senha: '' });
+  const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
 
 
   const navegar = useNavigate();
 
   useEffect(() => {
-    
+
     informacoes_clientes();
     informacoes_brechos();
-    
-  
+
+
   }, []);
 
-  async function informacoes_clientes(){
-    
+  async function informacoes_clientes() {
+
     try {
-    
+
       const resultado = await api.get(`/clientes`);
-      set_array_clientes(resultado.data);      
-    
+      set_array_clientes(resultado.data);
+
     } catch (erro) {
-    
+
       console.log(erro);
-      
+
     };
   };
 
-  async function informacoes_brechos(){
+  async function informacoes_brechos() {
 
     try {
 
@@ -48,33 +48,33 @@ function Login() {
       set_array_brechos(brechos.data);
 
     } catch (erro) {
-      
+
       console.error(erro);
     };
   };
 
   function lidar_com_formulario(e) {
-    
+
     e.preventDefault();
 
-    if(formulario.email.trim() == `` || formulario.senha.trim() == ``){
+    if (formulario.email.trim() == `` || formulario.senha.trim() == ``) {
 
       set_erro(`Favor preencher todos os campos!`);
-    
+
     } else {
 
       const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
       const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
       console.log();
-      
+
 
       if (cliente_a_encontrar) {
-        
+
         set_usuario_logado(cliente_a_encontrar);
         set_erro(``);
         navegar(`/`);
-      
-      } else if(brecho_a_encontrar){
+
+      } else if (brecho_a_encontrar) {
 
         set_usuario_logado(brecho_a_encontrar);
         set_erro(``);
@@ -84,28 +84,36 @@ function Login() {
         set_erro('Usuário ou senha incorretos!');
       };
     };
+
+    if (
+      !formulario.email.endsWith('@gmail.com') &&
+      !formulario.email.endsWith('@hotmail.com')
+    ) {
+      set_erro('O email deve conter "@gmail.com" ou "@hotmail.com"');
+      return;
+    }
   };
 
   async function lidar_sucesso(token) {
-    
+
     informacoes_clientes();
     informacoes_brechos();
 
     const { access_token } = token;
-    const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${access_token}`}});
+    const { data } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${access_token}` } });
 
-    const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);      
+    const cliente_existente = array_clientes.find(cliente => cliente.email == data.email);
     const brecho_existente = array_brechos.find(brecho => brecho.email == data.email);
-      
+
     try {
 
       if (cliente_existente) {
-        
+
         set_usuario_logado(cliente_existente);
         navegar('/');
-      
+
       } else {
-       
+
         const novo_cliente = {
           nome: data.name,
           email: data.email,
@@ -118,21 +126,21 @@ function Login() {
         };
 
         const cliente = await api.post(`/clientes`, novo_cliente);
-       
+
         informacoes_clientes();
         set_usuario_logado(cliente.data);
         set_erro(``);
         navegar(`/`);
       };
-    
-      if(brecho_existente){
+
+      if (brecho_existente) {
 
         set_usuario_logado(brecho_existente);
         navegar(`/`);
       };
 
     } catch (erro) {
-      
+
       console.error("Erro ao logar com Google:", erro);
       set_erro(erro.message || erro.toString());
       set_erro_pagina(erro.message || erro.toString());
@@ -141,12 +149,12 @@ function Login() {
   }
 
   function lidar_falha(erro) {
-   
+
     console.error('Erro no login:', erro);
   };
 
   const loginGoogle = useGoogleLogin({
-    
+
     onSuccess: lidar_sucesso,
     onError: lidar_falha
   });
@@ -161,7 +169,7 @@ function Login() {
 
             <label>Email<span>*</span></label>
             <input
-              type="email"
+              type="text"
               className='input-erro'
               value={formulario.email}
               onChange={e => set_formulario({ ...formulario, email: e.target.value })}
