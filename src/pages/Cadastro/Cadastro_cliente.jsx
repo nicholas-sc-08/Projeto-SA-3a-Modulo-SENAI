@@ -60,7 +60,7 @@ function Cadastro_cliente() {
       await api.post(`/enderecos`, endereco_do_cliente_com_fk);
 
       informacoes_clientes();
-      mudar_de_pagina(`/login`);
+      mudar_de_pagina(`/`);
 
     } catch (erro) {
 
