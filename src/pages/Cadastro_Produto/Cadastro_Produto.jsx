@@ -80,28 +80,48 @@ function Cadastro_Produto() {
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
   };
 
-  const adicionarImagem = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("imagem", file);
-      try {
-        const response = await api.post("/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        const imageUrl = response.data.url;
-        const novasImagens = [...imagens, imageUrl];
-        setImagens(novasImagens);
-        setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
-        if (!imagemPrincipal) setImagemPrincipal(imageUrl);
-      } catch (error) {
-        console.error("Erro ao fazer upload da imagem", error);
-        alert("Erro ao enviar a imagem");
-      }
-    }
-  };
+
+function adicionar_imagem(e){
+
+  setArray_cadastro_produto({...array_cadastro_produto, imagem: [...array_cadastro_produto.imagem, e.target.value]});
+  setImagemPrincipal(array_cadastro_produto.imagem[0]);
+};
+
+useEffect(() => {
+
+  console.log(array_cadastro_produto);
+
+}, [array_cadastro_produto]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const removerImagem = (index) => {
     const novasImagens = imagens.filter((_, i) => i !== index);
@@ -196,7 +216,7 @@ function Cadastro_Produto() {
           ))}
           {imagens.length < 3 && (
             <label className="miniatura">
-              <input type="file" onChange={adicionarImagem} hidden />
+              <input type="file" onChange={adicionar_imagem} hidden />
               <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
             </label>
           )}
@@ -207,7 +227,7 @@ function Cadastro_Produto() {
             <img src={imagemPrincipal} alt="Imagem Principal" />
           ) : (
             <label className="botao-adicionar-imagem">
-              <input type="file" onChange={adicionarImagem} hidden />
+              <input type="file" onChange={adicionar_imagem} hidden />
               <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
             </label>
           )}

@@ -27,7 +27,7 @@ import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente
 
 
 const router = createBrowserRouter([
-   { path: `/tela_inicial`, element: <Tela_incial /> },
+   { path: `/`, element: <Tela_incial /> },
    { path: `/cadastro_cliente`, element: <Cadastro_cliente /> },
    { path: `/cadastro_brecho`, element: <Cadastro_brecho /> },
    { path: `/login`, element: <Login /> },
