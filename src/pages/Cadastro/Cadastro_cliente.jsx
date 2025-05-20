@@ -54,7 +54,7 @@ function Cadastro_cliente() {
       const endereco_do_cliente_com_fk = {
 
         ...endereco_do_cliente,
-        fk_id: resposta.data.id
+        fk_id: resposta.data._id
       };
       
       await api.post(`/enderecos`, endereco_do_cliente_com_fk);
@@ -115,6 +115,11 @@ function Cadastro_cliente() {
 
 
     if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
+
+      if (!form_de_cadastro_cliente.email.includes('@')) {
+        set_mensagem_de_erro(`O email deve conter "@"`);
+        return;
+      }
 
       for (let i = 0; i < array_clientes.length; i++) {
 

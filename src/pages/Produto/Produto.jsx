@@ -94,7 +94,7 @@ function Produto() {
 
                 <div className="container_info_do_produto_descricao">
 
-                    <p>This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.</p>
+                    <p>This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style. This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style. This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.</p>
 
                 </div>
 
@@ -118,7 +118,7 @@ function Produto() {
                         
                         <div className='container_fundo_info_do_produto_cor'>
 
-                            <div></div>
+                            <div className='cor_do_produto'></div>
                             <span>Verde musgo</span>
 
                         </div>
@@ -128,9 +128,13 @@ function Produto() {
                 </div>
 
                 <div className="container_info_do_produto_botoes">
+                    
+                    <div className='container_botoes_do_produto'>
 
-                    <button>Comprar</button>
-                    <button><img src="./img/icons/icone_chat.svg" alt="" />Chat</button>
+                        <button className='botao_comprar_produto'>Comprar</button>
+                        <button className='botao_conversar_com_brecho'><img src="./img/icons/icone_chat.svg" alt="" />Chat</button>
+                    
+                    </div>
 
                 </div>
 
