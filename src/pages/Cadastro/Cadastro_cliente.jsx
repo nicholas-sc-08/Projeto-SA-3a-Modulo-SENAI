@@ -60,7 +60,7 @@ function Cadastro_cliente() {
       await api.post(`/enderecos`, endereco_do_cliente_com_fk);
 
       informacoes_clientes();
-      mudar_de_pagina(`/login`);
+      mudar_de_pagina(`/`);
 
     } catch (erro) {
 
@@ -116,8 +116,8 @@ function Cadastro_cliente() {
 
     if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
 
-      if (!form_de_cadastro_cliente.email.includes('@')) {
-        set_mensagem_de_erro(`O email deve conter "@"`);
+      if (!form_de_cadastro_cliente.email.endsWith('@gmail.com' || '@hotmail.com')) {
+        set_mensagem_de_erro(`O email deve conter "@gmail.com" ou "@hotmail.com"`);
         return;
       }
 
