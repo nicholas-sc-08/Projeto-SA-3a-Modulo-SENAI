@@ -19,7 +19,7 @@ function Produto() {
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
-
+    const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
 
     useEffect(() => {
 
@@ -97,9 +97,9 @@ function Produto() {
 
                     {produto.imagem.map((url, i) => (
 
-                        <div key={i} className='container_outras_opcoes_de_imagens' style={{}}>
+                        <div key={i} className='container_outras_opcoes_de_imagens'>
 
-                            <img src={url} alt="" />
+                            <img src={url} alt="" onClick={() => set_imagem_selecionada(i)} style={{border: imagem_selecionada == i ? produto_visualiazado : ``}}/>
 
                         </div>
                     ))}
