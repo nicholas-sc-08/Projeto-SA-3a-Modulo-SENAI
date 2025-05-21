@@ -117,6 +117,8 @@ function Header({ tipo }) {
             )}
 
             <div className="line-navbar"></div>
+
+            <img src="./img/logo/Adidas_Logo.svg" alt="" />
         </div>
     );
 }
