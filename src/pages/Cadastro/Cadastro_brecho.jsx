@@ -30,6 +30,10 @@ function Cadastro_brecho() {
   const diaDeHoje = new Date();
   const navegar_para_outra_tela = useNavigate();
 
+  /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
+  const terminaComGmailOuHotmail = formCadastroBrecho.email.endsWith('@gmail.com') || formCadastroBrecho.email.endsWith('@hotmail.com')
+  const oTextoAntesDoArroba = formCadastroBrecho.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
+
   let senhasIguais = false;
   let emailJaCadastrado = false
   let telefoneJaCadastrado = false
@@ -209,6 +213,7 @@ function Cadastro_brecho() {
 
     } else if (cadastroParteDoisBrecho == true && cadastroParteTresBrecho == false) {
 
+
       for (let i = 0; i < array_brechos.length; i++) {
 
         if (array_brechos[i].email == formCadastroBrecho.email) {
@@ -250,6 +255,19 @@ function Cadastro_brecho() {
         console.log(formCadastroBrecho)
         return
       };
+
+
+      /* Precisa estar depois da verificação dos campos preenchidos */
+      if (!terminaComGmailOuHotmail) {
+        setMensagemErro(`O email deve conter "@gmail.com" ou "@hotmail.com"`);
+        return
+      }
+
+      if (!oTextoAntesDoArroba) {
+        setMensagemErro(`O email deve conter caracteres antes do @`);
+        return
+      }
+      
 
       switch (true) {
 
