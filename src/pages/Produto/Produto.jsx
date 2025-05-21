@@ -18,6 +18,7 @@ function Produto() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
+    const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
 
@@ -59,7 +60,10 @@ function Produto() {
         if(usuario_logado != null){
 
             console.log(produto.fk_id_brecho);
-            
+            if(usuario_logado._id != produto.fk_id_brecho){
+
+                
+            };            
         };
     };
 
@@ -185,8 +189,8 @@ function Produto() {
                     
                     <div className='container_botoes_do_produto'>
 
-                        <button className='botao_comprar_produto'>Comprar</button>
-                        <button className='botao_conversar_com_brecho' onClick={() => adicionar_conversa_ao_chat()}><img src="./img/icons/icone_chat.svg" alt=""/>Chat</button>
+                        <button className='botao_comprar_produto'>Adicionar a Sacola</button>
+                        <button className='botao_conversar_com_brecho' onClick={() => adicionar_conversa_ao_chat()}><img src="./img/icons/icone_chat.png" alt=""/>Chat</button>
                     
                     </div>
 
@@ -195,6 +199,9 @@ function Produto() {
             </div>
 
         </div>
+
+        {usuario_logado != `` && !conversa_aberta && <Chat />}
+        {conversa_aberta && <Chat_conversa />}
 
         <Footer/>
 
