@@ -145,8 +145,8 @@
         justify-content: center;
         align-items: center;
     
-        width: 85%;
-        height: 90%;
+        width: 80%;
+        height: 85%;
 
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
@@ -317,7 +317,7 @@
         padding-left: 1%;
 
         outline: none;
-        border: 0.1vw solid var(--cor_dois);
+        border: 0.1em solid var(--cor_dois);
         border-radius: 1vw;
 
         font-family: var(--tipografia_secundaria);
@@ -411,7 +411,7 @@
         padding-left: 1%;
 
         outline: none;
-        border: 0.1vw solid var(--cor_dois);
+        border: 0.1em solid var(--cor_dois);
         border-radius: 1vw;
 
         font-family: var(--tipografia_secundaria);
@@ -469,8 +469,8 @@
         padding-left: 1%;
 
         outline: none;
-        border: 0.1vw solid var(--cor_dois);
-        border-radius: 1vw;
+        border: 0.1em solid var(--cor_dois);
+        border-radius: 0.7vw;
 
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
