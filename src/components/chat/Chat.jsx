@@ -138,24 +138,6 @@ function Chat() {
       set_chat_aberto(false);
     };
 
-    function ir_para_conversa_com_brecho(_id){
-
-      set_pessoa_com_quem_esta_conversando(brecho_selecionado);
-
-      if(array_chat.length != 0){
-
-        const mensagens_filtradas = array_chat.filter(mensagem => {
-          
-          return mensagem.id_dono_mensagem == usuario_logado._id && mensagem.id_quem_recebeu_mensagem == brecho_selecionado._id || mensagem.id_dono_mensagem == brecho_selecionado._id && mensagem.id_quem_recebeu_mensagem == usuario_logado._id;
-        });
-        
-        set_conversa_atual(mensagens_filtradas);
-      };
-
-      set_conversa_aberta(true);
-      set_chat_aberto(false);
-    };
-
     function ultima_mensagem(_id){
 
       for(let i = array_chat.length - 1; i >= 0; i--){

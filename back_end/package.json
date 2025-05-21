@@ -18,6 +18,7 @@
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.0",
+    "multer": "^2.0.0",
     "nodemon": "^3.1.10",
     "pg": "^8.14.1",
     "socket.io": "^4.8.1"

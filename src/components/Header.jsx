@@ -57,6 +57,18 @@ function Header({ tipo }) {
                     </button>
                 )}
 
+                {tipo === 'brecho' && (
+                    <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+                        <img src="./public/img/icons/MenuHamburger.svg" alt="Menu" />
+                    </button>
+                )}
+
+                {tipo === 'admin' && (
+                    <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+                        <img src="./public/img/icons/MenuHamburger.svg" alt="Menu" />
+                    </button>
+                )}
+
                 <Link to="/" className="header-link-logo">
                     <img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Logo Fly" className='header-link-logo-img' />
                 </Link>
@@ -78,6 +90,24 @@ function Header({ tipo }) {
 
             {/* Sidebar só para usuário */}
             {tipo === 'usuario' && (
+                <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
+                    <button className="close-btn" onClick={() => setMenuOpen(false)}>
+                        <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
+                    </button>
+                    {renderLinks()}
+                </div>
+            )}
+
+            {tipo === 'brecho' && (
+                <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
+                    <button className="close-btn" onClick={() => setMenuOpen(false)}>
+                        <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
+                    </button>
+                    {renderLinks()}
+                </div>
+            )}
+
+            {tipo === 'admin' && (
                 <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
                     <button className="close-btn" onClick={() => setMenuOpen(false)}>
                         <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
