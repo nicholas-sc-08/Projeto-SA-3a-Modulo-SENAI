@@ -77,8 +77,8 @@
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
 
-    color: var(--cor_seis);
-    background-color: #FCF7E9;
+    background-color: #fcf7e900;
+    border: 1px solid var(--cor_dois);
 
 }
 
@@ -91,8 +91,8 @@
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
 
-    color: var(--cor_seis);
-    background-color: #FCF7E9;
+    background-color: #fcf7e900;
+    border: 1px solid var(--cor_um_v_um);
 
 }
 
@@ -119,12 +119,14 @@
     font-size: 1rem;
 
     color: var(--cor_seis);
-    background-color: #FCF7E9;
+    background-color: #fcf7e900;
+    border: 1px solid var(--cor_um_v_um);
 }
 
-.edicao-rua-cliente input{
+.edicao-rua-cliente button{
     height: 2.2vw;
     padding-left: 1%;
+    width: 200px;
     outline: none;
     border: none;
 
@@ -132,7 +134,8 @@
     font-size: 1rem;
 
     color: var(--cor_seis);
-    background-color: #FCF7E9;
+    background-color: #fcf7e900;
+    border: 1px solid var(--cor_um_v_um);
 }
 
 .edicao-mudanca-senha{
@@ -154,16 +157,14 @@
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
 
-    color: var(--cor_seis);
-    background-color: #FCF7E9;
+    background-color: #fcf7e900;
+    border: 1px solid var(--cor_um_v_um);
 }
 
 .edicao-mudanca-senha button{
-    background-color: var(--cor_um);
-    color: var(--cor_quatro);
     border: none;
     border-radius: 19px;
-    width: 30%;
+    width: 43%;
     height: 40px;
     margin-top: 5%;
 
@@ -177,6 +178,10 @@
 
 .but-cancelar-edicao-cliente{
     background-color: #fbf0ce00;
-    color: black;
-
+    font-size: 15px;
+}
+.but-salvar-edicao-cliente{
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    font-size: 15px;
 }

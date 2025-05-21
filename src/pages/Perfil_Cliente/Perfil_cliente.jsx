@@ -21,7 +21,11 @@ function Perfil_cliente() {
     <div>
         <div className='sideBar-perfil-cliente'>
             <p>Bem-vindo(a)</p><h4>Nome do usuario</h4>
-            <img src="./img/Justifyc-icon.svg" alt="" onClick={abrirPopUp} />
+            <img 
+          src={mostrarPopUp ? "./img/close.svg" : "./img/Justifyc-icon.svg"} 
+          alt="Ícone de menu"
+          onClick={mostrarPopUp ? fecharPopUp : abrirPopUp} 
+        />
         </div>
         <div className='container-perfil-cliente'>
             <div className='foto-perfil-cliente'>
