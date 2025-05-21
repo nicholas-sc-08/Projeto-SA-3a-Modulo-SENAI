@@ -73,6 +73,22 @@
     height: 90%;
 }
 
+.container_produto_titulo{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.container_produto_titulo img{
+
+    width: 15%;
+    height: 100%;
+    border-radius: 100vw;
+}
+
 .container_produto_info{
 
     display: flex;
