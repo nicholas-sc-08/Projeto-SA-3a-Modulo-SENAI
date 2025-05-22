@@ -258,8 +258,13 @@ function Cadastro_brecho() {
 
 
       /* Precisa estar depois da verificação dos campos preenchidos */
+      if (!formCadastroBrecho.email.includes('@')) {
+        setMensagemErro('O email deve conter "@"')
+        return
+      }
+
       if (!terminaComGmailOuHotmail) {
-        setMensagemErro(`O email deve conter "@gmail.com" ou "@hotmail.com"`);
+        setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
         return
       }
 
