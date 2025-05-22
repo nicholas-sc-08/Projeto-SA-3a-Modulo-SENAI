@@ -45,13 +45,13 @@
 }
 
 /* Pesquisa */
-.container-pesquisa-navbar {
+/* .container-pesquisa-navbar {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 0.7;
     margin: 0 1vw;
-}
+} */
 
 .input-pesquisa-navbar {
     width: 100%;
@@ -96,7 +96,7 @@
     /* border: 1px solid red; */
 }
 
-.button-perfil-navbar{
+.button-perfil-navbar {
     border: none;
     background: transparent;
 }
@@ -122,8 +122,8 @@
 
 .button-sacola-navbar img {
     width: 2.5vw;
-    
-    
+
+
 
     cursor: pointer;
     transition: 0.4s;
@@ -141,7 +141,7 @@
     transition: 0.4s;
 }
 
-.button-perfil-navbar img:hover{
+.button-perfil-navbar img:hover {
     width: 2.2vw;
 }
 
@@ -211,6 +211,48 @@
     opacity: 20%;
     margin-top: 1vh;
 }
+
+/* Janelinha de pesquisa */
+
+.container-pesquisa-navbar {
+    position: relative;
+    width: 10%;
+    flex-grow: 0.7;
+    /* border: 1px solid red; */
+}
+
+.janelinha-de-pesquisa-header {
+    position: absolute;
+    top: 100%;
+    /* aparece logo abaixo do input */
+    left: -128.5%;
+    background-color: var(--cor_quatro);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 121;
+    margin-top: 40px;
+    width: 262.7%;
+
+    height: 1509%;
+
+    /* border: 1px solid red; */
+}
+
+.overlay-pesquisa {
+    position: fixed;
+    /* Para que cubra toda la pantalla */
+    top: 19%;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background-color: rgba(255, 255, 255, 0.271);
+    /* Negro semi-transparente */
+    z-index: 100;
+    /* Un z-index alto para quedar encima */
+}
+
+/* Janelinha de pesquisa */
 
 /* Mobile */
 @media screen and (max-width: 915px) {

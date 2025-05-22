@@ -7,8 +7,9 @@ import Chat from '../components/chat/Chat';
 import Chat_conversa from '../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '../components/Header';
+// import { motion, AnimatePresence } from 'framer-motion';
 
 
 function Tela_incial() {
@@ -29,6 +30,9 @@ function Tela_incial() {
 
   const [startIndexFeedBack, setStartIndexFeedBack] = useState(0);
   const FeedBackToShow = 4;
+
+  const controlsEstrelaVerde = useAnimation();
+  const controlsEstrelaAmarela = useAnimation();
 
   useEffect(() => {
 
@@ -136,6 +140,23 @@ function Tela_incial() {
     }
   };
 
+  useEffect(() => {
+    const animateEstrela = async (controls) => {
+      while (true) {
+        const escala = Math.random() * 0.5 + 0.9; // entre 0.9 e 1.2
+        const duracao = Math.random() * 2 + 1;     // entre 1s e 3s
+
+        await controls.start({
+          scale: escala,
+          transition: { duration: duracao, ease: 'easeInOut' },
+        });
+      }
+    };
+
+    animateEstrela(controlsEstrelaVerde);
+    animateEstrela(controlsEstrelaAmarela);
+  }, []);
+
   return (
     <div>
 
@@ -152,8 +173,21 @@ function Tela_incial() {
         <div className="container-imagem-roupas-numero-um">
         </div>
 
-        <img className='estrela-verde-home-page' src="img/Estrela_dois_cadastro.svg" alt="estrela verde grande" />
-        <img className='estrela-amarela-home-page' src="img/Estrela_um_cadastro.svg" alt="estrela amarela pequena" />
+        <motion.img
+          className='estrela-verde-home-page'
+          src="img/Estrela_dois_cadastro.svg"
+          alt="estrela verde grande"
+          animate={controlsEstrelaVerde}
+          initial={{ scale: 1 }}
+        />
+        <motion.img
+          className='estrela-amarela-home-page'
+          src="img/Estrela_um_cadastro.svg"
+          alt="estrela amarela pequena"
+          animate={controlsEstrelaAmarela}
+          initial={{ scale: 1 }}
+        />
+
       </div>
 
       <div className="line-home-page-secao-um">
@@ -326,11 +360,11 @@ function Tela_incial() {
           </div>
         </AnimatePresence>
       </div> */}
-        {/* home page seção cinco */}
+      {/* home page seção cinco */}
 
 
-        {usuario_logado != `` && !conversa_aberta && <Chat />}
-        {conversa_aberta && <Chat_conversa />}
+      {usuario_logado != `` && !conversa_aberta && <Chat />}
+      {conversa_aberta && <Chat_conversa />}
 
       <Footer />
     </div>
