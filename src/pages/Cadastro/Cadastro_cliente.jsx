@@ -24,6 +24,11 @@ function Cadastro_cliente() {
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const dia_de_hoje = new Date();
   const mudar_de_pagina = useNavigate(``);
+
+  /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
+  const termina_Com_Gmail_Ou_Hotmail = form_de_cadastro_cliente.email.endsWith('@gmail.com') || form_de_cadastro_cliente.email.endsWith('@hotmail.com')
+  const o_Texto_Antes_Do_Arroba = form_de_cadastro_cliente.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
+
   let email_ja_cadastrado = false;
   let cpf_ja_cadastrado = false;
   let telefone_ja_cadastrado = false;
@@ -116,10 +121,6 @@ function Cadastro_cliente() {
 
     if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
 
-      if (!form_de_cadastro_cliente.email.endsWith('@gmail.com' || '@hotmail.com')) {
-        set_mensagem_de_erro(`O email deve conter "@gmail.com" ou "@hotmail.com"`);
-        return;
-      }
 
       for (let i = 0; i < array_clientes.length; i++) {
 
@@ -150,6 +151,22 @@ function Cadastro_cliente() {
         set_mensagem_de_erro(`Favor preencher todos os campos!`);
         return
       };
+
+      /* Precisa estar depois da verificação dos campos preenchidos */
+      if (!form_de_cadastro_cliente.email.includes('@')) {
+        set_erro('O email deve conter "@"');
+        return;
+      }
+
+      if (!termina_Com_Gmail_Ou_Hotmail) {
+        set_mensagem_de_erro(`O email deve conter "gmail.com" ou "hotmail.com"`);
+        return
+      }
+
+      if (!o_Texto_Antes_Do_Arroba) {
+        set_mensagem_de_erro(`O email deve conter caracteres antes do @`);
+        return
+      }
 
       switch (true) {
 

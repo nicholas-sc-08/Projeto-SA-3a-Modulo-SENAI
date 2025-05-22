@@ -60,8 +60,28 @@ function Login() {
     if (formulario.email.trim() == `` || formulario.senha.trim() == ``) {
 
       set_erro(`Favor preencher todos os campos!`);
+      return;
 
-    } else {
+    }
+    
+
+    if (!formulario.email.includes('@')) {
+      set_erro('O email deve conter "@"');
+      return;
+    }
+  
+    const [antesDoArroba, dominioDoEmail] = formulario.email.split('@');
+  
+    if (!antesDoArroba) {
+      set_erro('O email deve conter caracteres antes do @');
+      return;
+    }
+  
+    if (dominioDoEmail !== 'gmail.com' && dominioDoEmail !== 'hotmail.com') {
+      set_erro('O email deve conter "gmail.com" ou "hotmail.com"');
+      return;
+    }
+  
 
       const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
       const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
@@ -83,15 +103,7 @@ function Login() {
       } else {
         set_erro('Usuário ou senha incorretos!');
       };
-    };
-
-    if (
-      !formulario.email.endsWith('@gmail.com') &&
-      !formulario.email.endsWith('@hotmail.com')
-    ) {
-      set_erro('O email deve conter "@gmail.com" ou "@hotmail.com"');
-      return;
-    }
+    
   };
 
   async function lidar_sucesso(token) {
