@@ -119,12 +119,14 @@ html {
     z-index: 2;
     top: 6%;
     left: 92%;
+
+    width: 5%;
 }
 
 .estrela-amarela-home-page {
     position: absolute;
     z-index: 2;
-    top: 84%;
+    top: 83%;
     left: 45%;
 }
 
