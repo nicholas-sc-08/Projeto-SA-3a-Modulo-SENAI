@@ -5,6 +5,8 @@
     align-items: center;
     justify-content: center;
     display: flex;
+
+    /* border: 1px solid red; */
 }
 
 .container-informacoes-login-cadastro-brecho {
@@ -19,11 +21,13 @@
     flex-direction: column;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    /* border: 1px solid blue; */
 }
 
 .container-informacoes-login-cadastro-brecho h1 {
     font-family: var(--tipografia_primaria);
-    font-size: 35px;
+    font-size: 2rem;
     width: 65%;
     color: var(--cor_um);
     letter-spacing: 1px;
@@ -147,8 +151,8 @@
 }
 
 .inputs-formulario-um-cadastro-brecho input {
-    width: 70%;
-    height: 2.5vw;
+    width: 82%;
+    height: 3vw;
     background-color: transparent;
     border: 0.1em solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
@@ -194,8 +198,8 @@
 }
 
 .inputs-formulario-dois-cadastro-brecho input {
-    width: 70%;
-    height: 2.5vw;
+    width: 82%;
+    height: 3vw;
     background-color: transparent;
     border: 0.1em solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
@@ -264,8 +268,8 @@
 }
 
 .container-inputs-cadastro-brecho-tres input {
-    width: 50%;
-    height: 2.5vw;
+    width: 57%;
+    height: 3vw;
     background-color: transparent;
     border: 0.1em solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
@@ -292,7 +296,7 @@
 
 .container-estado-cidade-cadastro-tres {
     display: flex;
-    width: 24vw;
+    width: 27.4vw;
     justify-content: space-between;
 }
 
@@ -313,7 +317,7 @@
 
 .container-estado-cidade-cadastro-tres input {
     width: 100%;
-    height: 2.5vw;
+    height: 3vw;
     background-color: transparent;
     border: 0.1em solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
@@ -330,7 +334,7 @@
 
 .container-numero-complemento-cadastro-tres {
     display: flex;
-    width: 24vw;
+    width: 27.4vw;
     justify-content: space-between;
 }
 
@@ -341,7 +345,7 @@
 
 .input-numero-complemento-cadastro-tres input {
     width: 100%;
-    height: 2.5vw;
+    height: 3vw;
     background-color: transparent;
     border: 0.1em solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
@@ -388,6 +392,7 @@
     color: var(--cor_quatro);
     font-family: var(--tipografia_secundaria);
     font-size: 0.9em;
+    /* border: 1px solid red; */ 
 }
 
 .formulario-cadastro-brecho-buttons button:hover {

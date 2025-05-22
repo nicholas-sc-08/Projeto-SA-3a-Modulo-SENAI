@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+}
+.tela-inteira-content {
+    /* border: 3px solid #18CA00; */
+    background-color: rgba(0, 0, 0, 0.692);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.divs-centrais-content {
+    /* border: 3px solid #FF0000; */
+    background-color: var(--cor_quatro);
+    height: 75%;
+    width: 34%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.voltar-e-menu-content {
+    /* border: 3px solid #E3C100; */
+    height: 11%;
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1%;
+    padding: 3%;
+}
+.voltar-e-menu-content img {
+    cursor: pointer;
+}
+.popUp-mudar-endereco-content {
+    /* border: 3px solid #E3C100; */
+    height: 87%;
+    width: 99%;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titulo-e-subtitulo-content {
+    /* border: 3px solid #005DD7; */
+    height: 14%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Tag P - Titulo do Pop Up */
+.titulo-endereco-brecho-popUp {
+    font-family: "Poppins", sans serif;
+    font-weight: 590;
+    font-size: 1.9rem;
+    color: var(--cor_um);
+}
+/* Tag P - Subtitulo do Pop Up */
+.subtitulo-endereco-brecho-popUp {
+    font-family: "Poppins", sans serif;
+    font-weight: 450;
+    font-size: 1.2rem;
+    color: var(--cor_dezoito);
+}
+.inputs-do-popUp-content {
+    /* border: 3px solid #005DD7; */
+    height: 62%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+/*--- inputs do pop up ---*/
+.juncao-rua-logra-e-numero-content {
+    /* border: 3px solid #c40000; */
+    height: 19%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.rua-logra-input-content {
+    /* border: 3px solid #00C4C4; */
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+}
+.topicos-input-endereco {
+    font-family: "Poppins", sans serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cor_seis);
+}
+.rua-logra-input-content input {
+    height: 65%;
+    width: 98%;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    outline: none;
+}
+.rua-logra-input-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
+}
+.numero-input-content {
+    /* border: 3px solid #00C4C4; */
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+}
+.numero-input-content input {
+    height: 65%;
+    width: 90%;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    text-align: center;
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    outline: none;
+}
+.numero-input-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
+}
+.complemento-input-content {
+    /* border: 3px solid #00C4C4; */
+    height: 19%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+}
+.complemento-input-content input {
+    height: 63%;
+    width: 98%;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 3%;
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    outline: none;
+}
+.complemento-input-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
+}
+.juncao-cep-e-bairro-content {
+    /* border: 3px solid #c40000; */
+    height: 19%;
+    width: 80%;
+    display: flex;
+}
+.cep-input-content {
+    /* border: 3px solid #00C4C4; */
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+}
+.cep-input-content input {
+    height: 63%;
+    width: 96%;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 6%;
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    outline: none;
+}
+.cep-input-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
+}
+.bairro-input-content {
+    /* border: 3px solid #00C4C4; */
+    height: 100%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+}
+.bairro-input-content input {
+    height: 63%;
+    width: 96%;
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
+    padding-left: 6%;
+    font-family: "Poppins", sans serif;
+    font-size: 1rem;
+    outline: none;
+}
+.bairro-input-content input:focus {
+    border: 1px solid var(--cor_um_v_dois);
+}
+/*--- fim dos inputs do pop up ---*/
+.salvar-endereco-content {
+    /* border: 3px solid #005DD7; */
+    height: 16%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.salvar-endereco-content button {
+    height: 60%;
+    width: 71%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4rem;
+    border: none;
+   
+    background-color: var(--cor_um);
+    font-family: "Poppins", sans serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--cor_nove);
+}
