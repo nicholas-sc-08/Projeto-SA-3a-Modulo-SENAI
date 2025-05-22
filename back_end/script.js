@@ -106,6 +106,21 @@ app.post(`/clientes`, async (req, res) => {
     };
 });
 
+app.put(`/clientes/:_id`, async (req, res) => {
+
+    const { _id } = req.params;
+
+    try {
+
+        const cliente_atualizado = Cliente.findByIdAndUpdate(_id, req.body, {new: true});
+        res.status(200).json(cliente_atualizado);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.delete(`/clientes/:id`, async (req, res) => {
 
     const { id } = req.params;

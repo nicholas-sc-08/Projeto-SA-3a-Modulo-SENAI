@@ -16,35 +16,37 @@
     margin-left: 2%;
 }
 
-.container_imagens_do_produto{
-    
+.container_imagens_do_produto{ 
+
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
 
-    width: 40%;
+    width: 25%;
     height: 80%;
-    margin-top: 9%;
+    margin-top: 11%;
+    margin-left: 10%;
 }
 
 .container_outras_opcoes_de_imagens{
     
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
 
     width: 100%;
     height: 26%;
+
+    border-radius: 1vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: var(--cor_doze);
 }
 
 
 .container_imagens_do_produto img{
 
-    width: 75%;
-    height: 100%;
-    border-radius: 1vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: var(--cor_doze);
+    width: 80%;
+    height: 80%;
 }
 
 .container_imagem_principal_produto{
@@ -54,16 +56,20 @@
     align-items: center;
 
     width: 80%;
-    height: 100%;
+    height: 80%;
+    
+    margin-top: 11%;
+    margin-left: 2%;
+
+    border-radius: 1vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: var(--cor_doze);
 }
 
 .container_imagem_principal_produto img{
 
     width: 95%;
-    height: 77%;
-    border-radius: 1vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: var(--cor_doze);
+    height: 80%;
 }
 
 .container_info_do_produto_conteudo{
@@ -164,9 +170,10 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 
     width: 20%;
+    height: 80%;
 }
 
 .container_info_do_produto_tamanho h3{
@@ -184,9 +191,8 @@
     align-items: center;
 
     width: 30%;
-    height: 40%;
+    height: 45%;
 
-    margin-top: 8%;
     border: 0.1vw solid var(--cor_doze);
     border-radius: 100vw;
     background-color: var(--cor_doze);
@@ -201,12 +207,54 @@
     color: var(--cor_oito_v_dois);
 }
 
+.container_info_do_produto_composto{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 20%;
+    height: 80%;
+}
+
+.container_info_do_produto_composto h3{
+
+    font-size: 1.4rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: 600;
+    color: var(--cor_seis);
+}
+
+.container_fundo_info_do_produto_composto{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40%;
+    height: 45%;
+
+    border: 0.1vw solid var(--cor_doze);
+    border-radius: 100vw;
+    background-color: var(--cor_doze);
+}
+
+.container_fundo_info_do_produto_composto span{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    color: var(--cor_oito_v_dois);
+}
+
 .container_info_do_produto_cor{
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     width: 20%;
+    height: 80%;
 }
 
 .container_info_do_produto_cor h3{
@@ -231,7 +279,6 @@
     padding: 8%;
     border-radius: 100vw;
     margin-right: 5%;
-    background-color: #534933;
 }
 
 .container_fundo_info_do_produto_cor span{
@@ -252,11 +299,10 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: start;
+    justify-content: space-between;
 
     width: 20%;
-    height: 100%;
+    height: 80%;
 }
 
 .container_info_do_produto_quantidade h3{
@@ -265,7 +311,6 @@
     font-weight: 600;
     font-size: 1.4rem;
 
-    margin-top: 2%;
     color: var(--cor_seis);
 }
 
@@ -275,7 +320,7 @@
     align-items: center;
     justify-content: center;
 
-    height: 40%;
+    height: 45%;
     width: 30%;
     border-radius: 100vw;
 
@@ -353,9 +398,9 @@
 .botao_conversar_com_brecho img{
 
     width: 15%;
-    height: 70%;
+    height: 60%;
     margin-right: 5%;
-    margin-left: 15%;
+    margin-left: 12%;
 }
 
 .botao_conversar_com_brecho:hover{
