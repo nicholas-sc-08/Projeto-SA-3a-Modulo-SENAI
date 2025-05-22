@@ -221,24 +221,6 @@
     /* border: 1px solid red; */
 }
 
-.janelinha-de-pesquisa-header {
-    position: absolute;
-    top: 100%;
-    /* aparece logo abaixo do input */
-    left: -128.5%;
-    background-color: var(--cor_quatro);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    z-index: 121;
-    margin-top: 40px;
-    width: 262.7%;
-
-    height: 1509%;
-
-    /* border: 1px solid red; */
-}
-
 .overlay-pesquisa {
     position: fixed;
     /* Para que cubra toda la pantalla */

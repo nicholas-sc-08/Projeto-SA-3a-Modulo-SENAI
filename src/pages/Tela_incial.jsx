@@ -143,8 +143,8 @@ function Tela_incial() {
   useEffect(() => {
     const animateEstrela = async (controls) => {
       while (true) {
-        const escala = Math.random() * 0.5 + 0.9; // entre 0.9 e 1.2
-        const duracao = Math.random() * 2 + 1;     // entre 1s e 3s
+        const escala = Math.random() * 0.6 + 0.7 // entre 0.9 e 1.2
+        const duracao = Math.random() * 1.2 + 0.8     // entre 1s e 3s
 
         await controls.start({
           scale: escala,

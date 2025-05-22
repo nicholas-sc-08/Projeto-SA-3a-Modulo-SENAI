@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import './Janela_de_pesquisa_header.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function Header({ tipo }) {
@@ -118,12 +119,129 @@ function Header({ tipo }) {
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                                >
-                                    uma janelinha qualquer de um site qualquer
-                                    <ul>
-                                        <li>...</li>
-                                    </ul>
+                                    transition={{ duration: 0.3, ease: 'easeOut' }}>
+
+                                    <div className="container-alinhamento-conteudo-janela-de-pesquisa">
+
+                                        <div className="container-alinhamento-historico-de-busquedas-header">
+                                            <h2>Buscas recentes</h2>
+
+                                            <div className="container-historico-de-busquedas-recentes">
+                                                <div className="busquedas-recentes-individual">
+                                                    <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
+
+                                                    <p>Camiseta legal</p>
+                                                </div>
+
+                                                <div className="busquedas-recentes-individual">
+                                                    <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
+
+                                                    <p>Camiseta legal</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="alinhamento-de-container-janela-de-pesquisa">
+                                            <div className="alinhamento-container-de-marcas">
+                                                <h2>Marcas aclamadas pelo público</h2>
+
+                                                <div className="alinahamento-container-marcas-aclamadas">
+                                                    <div className="container-um-marcas-aclamadas">
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_farm_rio.svg" alt="Farm Rio" />
+                                                        </div>
+
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_zara.svg" alt="Zara" />
+                                                        </div>
+
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_le_lis.svg" alt="Le Lis" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="container-dois-marcas-aclamadas">
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_animale.svg" alt="Animale" />
+                                                        </div>
+
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_converse.svg" alt="Converse" />
+                                                        </div>
+
+                                                        <div className="fundo-cinza-marcas">
+                                                            <img src="./img/logo/logo_adidas.svg" alt="Adidas" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="alinhamento-container-de-categorias-especiais">
+                                                <h2>Categorias especiais</h2>
+
+                                                <ul>
+                                                    <li>Roupas de marca</li>
+                                                    <li>Roupas Vintage</li>
+                                                    <li>Oversized</li>
+                                                    <li>Estilo retrô</li>
+                                                    <li>Estilo streetwear</li>
+                                                    <li>Peças customizadas</li>
+                                                </ul>
+                                            </div>
+
+                                            <div className="alinhamento-container-queridinhos-dos-flyers">
+                                                <h2>Queridinhos dos Flyers</h2>
+
+                                                <div className="alinhamento-brechos-queridinhos">
+                                                    <div className="container-brecho-individual-queridinhos">
+                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+
+                                                        <p>Garimpo urbano</p>
+                                                    </div>
+
+                                                    <div className="container-brecho-individual-queridinhos">
+                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+
+                                                        <p>Garimpo urbano</p>
+                                                    </div>
+
+                                                    <div className="container-brecho-individual-queridinhos">
+                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+
+                                                        <p>Garimpo urbano</p>
+                                                    </div>
+                                                    <div className="container-brecho-individual-queridinhos">
+                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+
+                                                        <p>Garimpo urbano</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="alinhamento-container-flytracks">
+                                                <h2>Flytracks</h2>
+
+                                                <p>Trilha sonora para garimpar com estilo.</p>
+
+                                                <div className="container-playlist-spotify">
+                                                    <img className='img-icon-playlist' src="./img/icons/icon_playlist_spotify.svg" alt="icon playlist spotify" />
+
+                                                    <p>Winxstereo</p>
+
+                                                    <img className='logo-spotify' src="./img/logo/logo_spotify.svg" alt="Spotify" />
+                                                </div>
+
+                                                <div className="container-playlist-spotify">
+                                                    <img className='img-icon-playlist' src="./img/icons/icon_playlist_youtube.svg" alt="icon playlist youtube" />
+
+                                                    <p>Mix da Fly</p>
+
+                                                    <img className='logo-youtube' src="./img/logo/logo_youtube.svg" alt="Youtube" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </motion.div>
                             </>
                         )}

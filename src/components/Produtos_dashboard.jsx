@@ -164,7 +164,7 @@ function Produtos_dashboard() {
                                 </div>
 
                                 <div className="grupo-dois-informacoes-produto-dashboard">
-                                    <p className="preco-produto-dashboard">{produto.preco}</p>
+                                    <p className="preco-produto-dashboard">R${produto.preco}</p>
 
                                     <div className="alinhamento-informacoes-gerais-unidade-dashboard">
                                         <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.quantidade}</p>
@@ -213,7 +213,7 @@ function Produtos_dashboard() {
                                 </div>
 
                                 <div className="grupo-dois-informacoes-produto-dashboard">
-                                    <p className="preco-produto-dashboard">{produto.preco}</p>
+                                    <p className="preco-produto-dashboard">R${produto.preco}</p>
 
                                     <div className="alinhamento-informacoes-gerais-unidade-dashboard">
                                         <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.quantidade}</p>
