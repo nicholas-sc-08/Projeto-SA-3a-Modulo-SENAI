@@ -263,11 +263,21 @@ function Chat() {
       };
     };
 
-    useEffect(() => {
+    function exibir_imagem_de_perfil(_id){
 
-      console.log(usuario_logado.conversas);
+      const encontrar_cliente = array_clientes.find(cliente => cliente._id == _id);
+      const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
 
-    }, []);
+      if(encontrar_brecho){
+
+        return encontrar_brecho.logo;
+      };
+
+      if(encontrar_cliente){
+
+        return encontrar_cliente.imagem_de_perfil
+      };
+    };
 
   return (
     <div className='container_chat' style={{height: altura_inicial_chat}}>
@@ -302,7 +312,7 @@ function Chat() {
               
               <div className='container_conversa_chat_imagem_de_perfil'>
 
-               <img src={conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
+               <img src={exibir_imagem_de_perfil(conversa._id)} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
               
               </div>
              
@@ -344,7 +354,7 @@ function Chat() {
               
               <div className='container_conversa_chat_imagem_de_perfil'>
 
-               <img src={conversa.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
+               <img src={conversa.imagem_de_perfil || conversa.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
               
               </div>
              

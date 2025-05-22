@@ -145,7 +145,7 @@ function Produto() {
 
                 <div className="container_imagem_principal_produto">
 
-                    <img src={produto.imagem[imagem_selecionada]} alt="" />
+                    <img src={produto.imagem[imagem_selecionada]} alt=""/>
 
                 </div>
 
@@ -158,8 +158,12 @@ function Produto() {
                     <h1>{produto.nome}</h1>
                     
                     <div className='container_info_brecho_do_produto'>
+                    
+                    <div className='container_info_brecho_logo'>
 
-                    <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                    
+                    </div>
                     {exibir_nome_brecho && <Pop_up_nome_brecho/>}
                     </div>
 
