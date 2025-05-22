@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Produtos_dashboard.css'
 import Header from './Header'
 import { GlobalContext } from '../contexts/GlobalContext';
-import Pop_up_de_excluir from './Pop_up_de_excluir';
-import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
+import Pop_up_excluir_produto_dashboard from './Pop_up_excluir_produto_dashboard';
+import Pop_up_notificacao_excluir_produto from './Pop_up_notificacao_excluir_produto';
 
 function Produtos_dashboard() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { produtos_dashboard, set_produtos_dashboard } = useContext(GlobalContext)
     const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext)
 
@@ -20,6 +21,8 @@ function Produtos_dashboard() {
 
     const { pop_up_notificacao_excluir_dashboard, set_pop_up_notificacao_excluir_dashboard } = useContext(GlobalContext);
     const { abrir_pop_up_dashboard, set_abrir_pop_up_dashboard } = useContext(GlobalContext);
+
+    const { id_do_produto_a_excluir, set_id_do_produto_a_excluir } = useContext(GlobalContext);
 
     function voltar_para_o_inicio() {
         set_inicio_dashboard(true);
@@ -79,9 +82,9 @@ function Produtos_dashboard() {
             <Header tipo='admin' />
 
             {abrir_pop_up_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
-            {abrir_pop_up_dashboard && <Pop_up_de_excluir />}
+            {abrir_pop_up_dashboard && <Pop_up_excluir_produto_dashboard />}
             {pop_up_notificacao_excluir_dashboard && <div className="container_sombra_para_visualizar_pop_up"></div>}
-            {pop_up_notificacao_excluir_dashboard && <Pop_up_de_notificacao_dashboard />}
+            {pop_up_notificacao_excluir_dashboard && <Pop_up_notificacao_excluir_produto />}
 
             <div className="container-alinhamento-imagem-titulo-produtos-dashboard">
                 <div className="container-alinhamento-imagem-produtos-dashboard">
@@ -113,6 +116,8 @@ function Produtos_dashboard() {
                         <div className="alinhamento-input-button-estoque-produto-dashboard">
                             <input type="text"
                                 placeholder='Buscar produto'
+                                value={barra_de_pesquisa}
+                                onChange={e => set_barra_de_pesquisa(e.target.value)}
                             />
 
                             <div className="container_excluir_produto">
@@ -137,37 +142,6 @@ function Produtos_dashboard() {
                     </div>
                 </div>
 
-                {/* <div className="container-dois-estoque-produto-dashboard">
-                    <div className="alinhamento-containers-informacoes-produtos-dashboard">
-                        <div className="grupo-um-informacoes-produto-dashboard">
-                            <div className="imagem-produto-dashboard"></div>
-
-                            <div className="nome-categoria-produto-dashboard">
-                                <p className='nome-do-produto-dashboard'>Nome do produto</p>
-                                <p className='categoria-cor-dashboard'>Categoria / Cor</p>
-                            </div>
-                        </div>
-
-                        <div className="grupo-dois-informacoes-produto-dashboard">
-                            <p className="preco-produto-dashboard">R$ 20,00</p>
-
-                            <div className="alinhamento-informacoes-gerais-unidade-dashboard">
-                                <p className='p-grupo-dois-informacoes-produto-dashboard'>10 Unid</p>
-                            </div>
-
-                            <div className="alinhamento-informacoes-gerais-conservacao-dashboard">
-                                <p className='p-grupo-dois-informacoes-produto-dashboard'>Usado</p>
-                            </div>
-
-                            <div className="alinhamento-informacoes-gerais-tamanho-dashboard">
-                                <p className='p-grupo-dois-informacoes-produto-dashboard'>GG</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div> */}
-
                 <div className='fundo-container-dados-do-produto'>
 
                     <div className="container-dados-do-produto">
@@ -180,81 +154,91 @@ function Produtos_dashboard() {
 
                                     <div className="nome-categoria-produto-dashboard">
                                         <p className='nome-do-produto-dashboard'>{produto.nome}</p>
-                                        <p className='categoria-cor-dashboard'>Categoria / cor</p>
+                                        <p className="categoria-cor-dashboard">
+                                            {array_categorias.find(
+                                                (categoria) => categoria._id === produto.fk_id_categoria
+                                            )?.nome || "Sem categoria"}{" "}
+                                            - {(produto.cor)}
+                                        </p>
                                     </div>
                                 </div>
 
                                 <div className="grupo-dois-informacoes-produto-dashboard">
-                                    <p className="preco-produto-dashboard">R$ 20,00</p>
+                                    <p className="preco-produto-dashboard">{produto.preco}</p>
 
                                     <div className="alinhamento-informacoes-gerais-unidade-dashboard">
-                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>10 Unid</p>
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.quantidade}</p>
                                     </div>
 
                                     <div className="alinhamento-informacoes-gerais-conservacao-dashboard">
-                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>Usado</p>
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.condicao}</p>
                                     </div>
 
                                     <div className="alinhamento-informacoes-gerais-tamanho-dashboard">
-                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>GG</p>
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.tamanho}</p>
                                     </div>
 
                                 </div>
 
                                 {escolher_qual_excluir && (
                                     <button
-                                        className="botao-excluir-individual"
+                                        className="button-deletar-produto-dashboard-individual"
                                         onClick={() => armazenar_id_do_produto(produto._id)}
                                     >
                                         <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                     </button>
                                 )}
 
+                                <div className="linha-pretinha"></div>
+
                             </div>
 
-                            // <div  className="alinhamento-container-dados-do-produto">
-                            //     <div className="alinhamento-imagem-nome-produto">
-                            //         <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
-                            //         <p>{brecho.nome_brecho}</p>
-                            //     </div>
-
-                            //     <p className='p-email-brechos-dashboard'>{brecho.email}</p>
-                            //     <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
-                            //     <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
-                            //     <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
-
-                            //     {escolher_qual_excluir && (
-                            //         <button
-                            //             className="botao-excluir-individual"
-                            //             onClick={() => armazenar_id_do_brecho(brecho._id)}
-                            //         >
-                            //             <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
-                            //         </button>
-                            //     )}
-                            // </div>
                         ))}
 
-                        {barra_de_pesquisa && resultado_de_pesquisa.map((brecho, i) => (
+                        {barra_de_pesquisa && resultado_de_pesquisa.map((produto, i) => (
 
-                            <div key={i} className="alinhamento-container-dados-do-brecho">
-                                <div className="alinhamento-imagem-nome-brecho">
-                                    <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
-                                    <p>{brecho.nome_brecho}</p>
+                            <div key={i} className="alinhamento-containers-informacoes-produtos-dashboard">
+                                <div className="grupo-um-informacoes-produto-dashboard">
+                                    <div className="imagem-produto-dashboard"></div>
+
+                                    <div className="nome-categoria-produto-dashboard">
+                                        <p className='nome-do-produto-dashboard'>{produto.nome}</p>
+                                        <p className="categoria-cor-dashboard">
+                                            {array_categorias.find(
+                                                (categoria) => categoria._id === produto.fk_id_categoria
+                                            )?.nome || "Sem categoria"}{" "}
+                                            - {(produto.cor)}
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <p className='p-email-brechos-dashboard'>{brecho.email}</p>
-                                <p className='p-telefone-brechos-dashboard'>{brecho.telefone || "-"}</p>
-                                <p className='p-cnpj-brechos-dashboard'>{brecho.cnpj || "-"}</p>
-                                <p className='p-senha-brechos-dashboard'>{brecho.senha || "-"}</p>
+                                <div className="grupo-dois-informacoes-produto-dashboard">
+                                    <p className="preco-produto-dashboard">{produto.preco}</p>
+
+                                    <div className="alinhamento-informacoes-gerais-unidade-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.quantidade}</p>
+                                    </div>
+
+                                    <div className="alinhamento-informacoes-gerais-conservacao-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.condicao}</p>
+                                    </div>
+
+                                    <div className="alinhamento-informacoes-gerais-tamanho-dashboard">
+                                        <p className='p-grupo-dois-informacoes-produto-dashboard'>{produto.tamanho}</p>
+                                    </div>
+
+                                </div>
 
                                 {escolher_qual_excluir && (
                                     <button
-                                        className="botao-excluir-individual"
-                                        onClick={() => armazenar_id_do_brecho(brecho._id)}
+                                        className="button-deletar-produto-dashboard-individual"
+                                        onClick={() => armazenar_id_do_produto(produto._id)}
                                     >
                                         <img src="./img/icons/lixeira-vermelha-icon.svg" alt="Excluir" />
                                     </button>
                                 )}
+
+                                <div className="linha-pretinha"></div>
 
                             </div>
                         ))}

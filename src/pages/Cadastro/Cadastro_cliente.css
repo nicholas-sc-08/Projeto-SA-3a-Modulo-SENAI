@@ -21,6 +21,7 @@
     width: 80%;
 
     background-color: var(--cor_quatro);
+    /* border: 1px solid red; */
 }
 
 .container_informacoes_para_o_login{
@@ -39,6 +40,8 @@
     border-radius: 3%;
 
     background-color: var(--cor_tres);
+
+    /* border: 1px solid blue; */
 }
 
 .container_informacoes_para_o_login h1{
@@ -96,9 +99,11 @@
 
     transition: 0.3s;
 
-    left: 1%;
+    left: 2%;
     bottom: 20%;
     position: absolute;
+
+    /* border: 1px solid red; */
 }
 
 .estrela_um_cadastro{
@@ -131,9 +136,11 @@
         text-align: center;
         justify-content: center;
     
-        width: 85%;
+        width: 75%;
     
         background-color: var(--cor_quatro);
+
+        /* border: 1px solid blue; */
     }
     
     .container_informacoes_para_o_login{
@@ -146,7 +153,7 @@
         align-items: center;
     
         width: 80%;
-        height: 85%;
+        height: 85vh;
 
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
@@ -154,17 +161,18 @@
         border-radius: 3%;
     
         background-color: var(--cor_tres);
+        /* border: 1px solid red; */
     }
     
     .container_informacoes_para_o_login h1{
     
         transition: 0.3s;
 
-        width: 80%;
+        width: 65%;
 
         font-family: var(--tipografia_primaria);
         font-weight: 700;
-        font-size: 2.5rem;
+        font-size: 2rem;
     
         color: var(--cor_um);
     }
@@ -172,21 +180,24 @@
     .container_informacoes_para_o_login p{
     
         transition: 0.3s;
+        opacity: 75%;
+        text-align: center;
 
-        width: 60%;
+        width: 50%;
+        font-weight: 400;
+        letter-spacing: 0.5px;
     
-        margin-top: 5%;
-        margin-bottom: 8%;
+        margin-bottom: 5%;
     
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+
     
         color: var(--cor_um_v_um);
     }
     
     .container_informacoes_para_o_login button{
     
-        width: 30%;
+        width: 25%;
         height: 7%;
     
         cursor: pointer;
@@ -194,13 +205,13 @@
         transition: 0.3s;
     
         border-radius: 10vw;
-        border: 0.1vw solid var(--cor_um);
+        border: 0.1vw solid var(--cor_dois);
     
         font-family: var(--tipografia_secundaria);
-        font-size: 1.2rem;
+        font-size: 1rem;
     
         color: var(--cor_quatro);
-        background-color: var(--cor_um);
+        background-color: var(--cor_dois);
     }
     
     .container_informacoes_para_o_login button:hover{
@@ -213,9 +224,9 @@
 
         transition: 0.3s;
         
-        width: 6%;
+        width: 5%;
 
-        left: 1%;
+        left: 3%;
         bottom: 20%;
         position: absolute;
     }
@@ -224,7 +235,7 @@
     
         transition: 0.3s;
 
-        right: 53%;
+        right: 58.5%;
         top: 20%;
         position: absolute;
     }
@@ -233,11 +244,13 @@
 
         width: 90%;
         margin-top: 3%;
+        /* border: 1px solid red; */
     }
 
     .container_logo_etapa_cliente{
 
-        width: 90%;
+        width: 14%;
+        /* border: 1px solid red; */
 
     }
 
@@ -252,7 +265,8 @@
 
     .container_etapa_cliente {
 
-        width: 20%;
+        width: 100%;
+        /* border: 1px solid red; */
 
         display: flex;
         justify-content: space-around;
@@ -312,13 +326,13 @@
 
     .container_inputs_secao_um_e_dois input{        
 
-        width: 90%;
-        height: 3.5vw;
+        width: 70%;
+        height: 3vw;
         padding-left: 1%;
 
         outline: none;
         border: 0.1em solid var(--cor_dois);
-        border-radius: 1vw;
+        border-radius: 0.7vw;
 
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
@@ -333,22 +347,25 @@
 
     .container_formulario_cliente button{
 
+        margin-top: 2%;
         transition: 0.3s;
         cursor: pointer;
 
-        width: 25%;
+        width: 10vw;
         height: 6vh;
 
         border: 0.1vw solid var(--cor_um);
-        border-radius: 15vw;
+        border-radius: 2.5vw;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
+        font-size: 0.9em;
 
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         color: var(--cor_quatro);
         background-color: var(--cor_um);
+
+        /* border: 1px solid red; */
     }
 
     .container_formulario_cliente button:hover{

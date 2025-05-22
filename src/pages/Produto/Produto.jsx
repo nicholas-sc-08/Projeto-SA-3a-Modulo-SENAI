@@ -91,7 +91,7 @@ function Produto() {
   return (
     <div className='container_visualizar_produto'>
 
-        <Header/>
+        <Header tipo = "usuario"/>
 
         <div className="container_info_do_produto">
 

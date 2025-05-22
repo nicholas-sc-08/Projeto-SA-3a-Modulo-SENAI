@@ -163,7 +163,7 @@ function Gestao_Estoque() {
               <span>Estoque</span>
               <span>Conservação</span>
               <span>Tamanho</span>
-              <span></span>
+              {/* <span></span> */}
             </div>
 
             {array_produtos.map((produto, index) => (

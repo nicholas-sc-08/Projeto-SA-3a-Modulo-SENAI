@@ -38,7 +38,7 @@ const router = createBrowserRouter([
    { path: `/gestao_estoque`, element: <GestaoEstoque /> },
    { path: `/cadastro_produto`, element: <Cadastro_Produto /> },
    { path: `/buscarProdutos`, element: <Pesquisa_de_produtos /> },
-   { path: `/produto`, element: <Produto/>},
+   { path: `/produto`, element: <Produto /> },
 
    { path: `/contato`, element: <Contato /> },
    { path: `/sobre_nos`, element: <Sobre_nos /> },
@@ -51,12 +51,8 @@ const router = createBrowserRouter([
    { path: `/perfil_cliente`, element: <Perfil_cliente /> },
    { path: `/detalhe_pagamento`, element: <Detalhe_Pagamento /> },
    { path: `/detalhe_pagamento_etapa_dois`, element: <Detalhe_Pagamento_etapa_dois /> },
-   { path: `/detalhe_pagamento_etapa_tres`, element: <Detalhe_Pagamento_etapa_tres/> },
-   { path: `/edicao_perfil_cliente`, element: <Edicao_perfil_cliente />},
-   
-
-
-   
+   { path: `/detalhe_pagamento_etapa_tres`, element: <Detalhe_Pagamento_etapa_tres /> },
+   { path: `/edicao_perfil_cliente`, element: <Edicao_perfil_cliente /> },
 
 ])
 
