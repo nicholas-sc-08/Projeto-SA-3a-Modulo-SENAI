@@ -13,6 +13,7 @@ import Footer from '../../components/Footer';
 function Produto() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -25,9 +26,24 @@ function Produto() {
     useEffect(() => {
 
         buscar_produtos();
-        buscar_brechos();
+        buscar_brechos();        
+        
+        console.log(usuario_logado);
         
     }, []);
+
+    async function atualizar_cliente(){
+
+        try {
+
+           const usuario_atualiado = await api.put(`/clientes/${usuario_logado._id}`, usuario_logado);
+            console.log(usuario_atualiado.data);
+            
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
 
     async function buscar_brechos(){
 
@@ -55,15 +71,32 @@ function Produto() {
         };
     };
 
-    function adicionar_conversa_ao_chat(){
+    async function adicionar_conversa_ao_chat(){
 
-        if(usuario_logado != null){
+        try {
+            
+            const conversa_com_usuario = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
+        
+            if(usuario_logado != null){
+    
+                if(usuario_logado._id != produto.fk_id_brecho){
+    
+                    const conversa_ja_existente = usuario_logado.conversas.find(conversa => conversa._id == produto.fk_id_brecho);
+                    
+                    if(conversa_ja_existente){
 
-            console.log(produto.fk_id_brecho);
-            if(usuario_logado._id != produto.fk_id_brecho){
 
-                
-            };            
+                    } else {
+
+                        let info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
+                        set_usuario_logado({...usuario_logado, conversas: [...usuario_logado.conversas, info_do_brecho]});
+                    };
+                };            
+            };
+
+        } catch (erro) {
+          
+            console.error(erro);
         };
     };
 
@@ -101,9 +134,9 @@ function Produto() {
 
                     {produto.imagem.map((url, i) => (
 
-                        <div key={i} className='container_outras_opcoes_de_imagens'>
+                        <div key={i} className='container_outras_opcoes_de_imagens' style={{border: imagem_selecionada == i ? produto_visualiazado : ``}}>
 
-                            <img src={url} alt="" onClick={() => set_imagem_selecionada(i)} style={{border: imagem_selecionada == i ? produto_visualiazado : ``}}/>
+                            <img src={url} alt="" onClick={() => set_imagem_selecionada(i)}/>
 
                         </div>
                     ))}
@@ -112,7 +145,7 @@ function Produto() {
 
                 <div className="container_imagem_principal_produto">
 
-                    <img src={produto.imagem[imagem_selecionada]} alt="" />
+                    <img src={produto.imagem[imagem_selecionada]} alt=""/>
 
                 </div>
 
@@ -125,8 +158,12 @@ function Produto() {
                     <h1>{produto.nome}</h1>
                     
                     <div className='container_info_brecho_do_produto'>
+                    
+                    <div className='container_info_brecho_logo'>
 
-                    <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                    
+                    </div>
                     {exibir_nome_brecho && <Pop_up_nome_brecho/>}
                     </div>
 
@@ -170,9 +207,21 @@ function Produto() {
                         
                     </div>
                     
+                    <div className="container_info_do_produto_composto">
+
+                        <h3>Tipo do tecido</h3>
+                        
+                        <div className='container_fundo_info_do_produto_composto'>
+
+                            <span>{produto.composicao}</span>
+
+                        </div>
+
+                    </div>
+
                     <div className="container_info_do_produto_cor">
 
-                        <h3>Cor do tecido</h3>
+                        <h3>Cor do Tecido</h3>
                         
                         <div className='container_fundo_info_do_produto_cor'>
 

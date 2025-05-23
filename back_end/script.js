@@ -106,6 +106,21 @@ app.post(`/clientes`, async (req, res) => {
     };
 });
 
+app.put(`/clientes/:_id`, async (req, res) => {
+
+    const { _id } = req.params;
+
+    try {
+
+        const cliente_atualizado = Cliente.findByIdAndUpdate(_id, req.body, {new: true});
+        res.status(200).json(cliente_atualizado);
+        
+    } catch (erro) {
+      
+        console.error(erro);
+    };
+});
+
 app.delete(`/clientes/:id`, async (req, res) => {
 
     const { id } = req.params;
@@ -467,7 +482,7 @@ app.get(`/produtos/:id`, async (req, res) =>{
 
 app.post(`/produtos`, upload.array(`imagens`), async (req, res) =>{
     
-    const urls = req.files.map(file => `https://0c58-189-8-202-5.ngrok-free.app/uploads/${file.filename}`);
+    const urls = req.files.map(file => `https://615c-189-8-202-5.ngrok-free.app/uploads/${file.filename}`);
     const produto = new Produto({...req.body, imagem: urls});
 
     try {

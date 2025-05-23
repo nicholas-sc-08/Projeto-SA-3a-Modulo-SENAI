@@ -29,6 +29,7 @@ html {
     --cor_dez: #5c5c5c;
     --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
+    --cor_doze_v_um: #e1e1e0;
     --cor_treze: #6d0000;
     --cor_quatorze: #ab9489;
     --cor_quinze: #FFF4D1;
@@ -119,12 +120,14 @@ html {
     z-index: 2;
     top: 6%;
     left: 92%;
+
+    width: 5%;
 }
 
 .estrela-amarela-home-page {
     position: absolute;
     z-index: 2;
-    top: 84%;
+    top: 83%;
     left: 45%;
 }
 

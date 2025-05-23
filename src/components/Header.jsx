@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [containerAberto, setContainerAberto] = useState(false)
+    const containerRef = useRef(null)
+
+    useEffect(() => {
+
+        function clickForaContainer(event) {
+            if (containerRef.current && !containerRef.current.contains(event.target)) {
+                setContainerAberto(false) // aqui ele fecha se clicou fora
+            }
+        }
+
+        document.addEventListener('mousedown', clickForaContainer)
+
+        return () => {
+            document.addEventListener('mousedown', clickForaContainer)
+        }
+
+    }, [])
 
     const renderLinks = () => {
         if (tipo === 'usuario') {
@@ -77,12 +97,37 @@ function Header({ tipo }) {
                     {renderLinks()}
                 </div>
 
-                <div className="container-pesquisa-navbar">
+                <div ref={containerRef} className="container-pesquisa-navbar">
                     <input
                         type="text"
                         className="input-pesquisa-navbar"
                         placeholder="O que você está procurando?"
+                        onFocus={() => setContainerAberto(true)} // Abre quando clica no input
                     />
+
+                    <AnimatePresence>
+                        {containerAberto && (
+                            <>
+                                <div
+                                    className="overlay-pesquisa"
+                                    onClick={() => setContainerAberto(false)}
+                                />
+
+                                <motion.div
+                                    className="janelinha-de-pesquisa-header"
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                                >
+                                    uma janelinha qualquer de um site qualquer
+                                    <ul>
+                                        <li>...</li>
+                                    </ul>
+                                </motion.div>
+                            </>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 {renderIcons()}
@@ -118,7 +163,16 @@ function Header({ tipo }) {
 
             <div className="line-navbar"></div>
 
-            <img src="./img/logo/Adidas_Logo.svg" alt="" />
+            {/* {containerAberto && (
+                <div className="janelinha-de-pesquisa-header">
+
+                    uma janelinha qualquer de um site qualquer
+                    <ul>
+                        <li>...</li>
+                    </ul>
+                </div>
+            )} */}
+
         </div>
     );
 }
