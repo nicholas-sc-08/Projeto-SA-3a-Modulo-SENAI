@@ -15,6 +15,9 @@ function Login() {
   const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
 
+  /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
+  const termina_Com_Gmail_Ou_Hotmail = formulario.email.endsWith('@gmail.com') || formulario.email.endsWith('@hotmail.com')
+  const o_Texto_Antes_Do_Arroba = formulario.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
 
   const navegar = useNavigate();
 
@@ -85,13 +88,6 @@ function Login() {
       };
     };
 
-    if (
-      !formulario.email.endsWith('@gmail.com') &&
-      !formulario.email.endsWith('@hotmail.com')
-    ) {
-      set_erro('O email deve conter "@gmail.com" ou "@hotmail.com"');
-      return;
-    }
   };
 
   async function lidar_sucesso(token) {
