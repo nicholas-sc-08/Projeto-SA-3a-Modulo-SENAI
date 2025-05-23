@@ -717,49 +717,54 @@ html {
         width: 111%;
         height: 300px;
         background-position: center;
+        /* border: 1px solid purple; */
+        position: relative;
+        /* necesario para que ::before se posicione correctamente */
     }
 
     .container-imagem-roupas-numero-um::before {
+        content: '';
+        /* necesario para que el pseudo-elemento aparezca */
         position: absolute;
         inset: 0;
-        background-color: linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 35%);
+        background-image: linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 70%);
         z-index: 1;
         pointer-events: none;
         width: 100%;
-        border: 1px solid red;
         height: 100%;
+        /* border: 1px solid blue; */
     }
+
 
     .estrela-verde-home-page,
     .estrela-amarela-home-page {
         display: none;
     }
 
-    .home-page-secao-dois-container,
+    /* .home-page-secao-dois-container,
     .home-page-secao-tres-container,
     .home-page-container-secao-quatro,
     .home-page-secao-cinco-container {
         padding: 5% 3%;
-    }
+    } */
 
-    .container-titulo-brechos-home-page,
+    /* .container-titulo-brechos-home-page,
     .home-page-titulo-secao-tres,
     .container-titulo-secao-quatro,
     .container-titulo-secao-cinco {
         font-size: 2rem;
         text-align: center;
-    }
+    } */
 
-    .container-brechos-cards-home-page,
+    /* .container-brechos-cards-home-page,
     .container-cards-alinhamento-lancamentos-secao-tres,
     .container-dois-cards-secao-quatro,
     .container-um-cards-secao-quatro,
     .container-alinhamento-avaliacoes {
-        flex-direction: column;
         gap: 2rem;
-    }
+    } */
 
-    .card-brecho-home-page,
+    /* .card-brecho-home-page,
     .card-lancamento-secao-tres,
     .card-um-secao-quatro,
     .card-dois-secao-quatro,
@@ -768,37 +773,39 @@ html {
     .container-cards-alinhamento {
         width: 100%;
         height: auto;
-    }
+    } */
 
-    .card-um-secao-quatro:hover,
+    /* .card-lancamento-secao-tres {
+        width: 90%;
+        height: auto;
+    } */
+
+    /* .card-um-secao-quatro:hover,
     .card-dois-secao-quatro:hover,
     .card-tres-secao-quatro:hover,
     .card-quatro-secao-quatro:hover {
         width: 100%;
-        margin: 0;
-    }
+       
+    } */
 
-    .alinhamento-buttons-secao-tres-lancamentos button,
+    /* .alinhamento-buttons-secao-tres-lancamentos button,
     .button-ver-todos-os-brechos-home-page button {
         width: 60%;
-    }
+        border-radius: 100vw;
+    } */
 
-    .nome-brecho,
+    /* .nome-brecho,
     .nome-roupa-lancamentos-card,
     .preco-roupa-lancamentos-card {
         text-align: center;
-    }
+    } */
 
-    .container-card-imagem-roupa-lancamentos {
-        height: 200px;
-    }
+    /* .container-card-imagem-roupa-lancamentos {
+        width: 55%;
+        height: 300px;
+    } */
 
-    .alinhamento-buttons-anterior-proximo {
+    /* .alinhamento-buttons-anterior-proximo {
         justify-content: center;
-    }
-
-    .home-page-card-avaliacoes {
-        min-height: auto;
-        max-height: none;
-    }
+    } */
 }

@@ -221,9 +221,10 @@ function Header({ tipo }) {
                                             <div className="alinhamento-container-flytracks">
                                                 <h2>Flytracks</h2>
 
-                                                <p>Trilha sonora para garimpar com estilo.</p>
+                                                <p className='subtitulo-flytracks'>Trilha sonora para garimpar com estilo.</p>
 
-                                                <div className="container-playlist-spotify">
+                                                {/* <div className="alinhamento-playlists"> */}
+                                                <div className="container-playlist">
                                                     <img className='img-icon-playlist' src="./img/icons/icon_playlist_spotify.svg" alt="icon playlist spotify" />
 
                                                     <p>Winxstereo</p>
@@ -231,7 +232,7 @@ function Header({ tipo }) {
                                                     <img className='logo-spotify' src="./img/logo/logo_spotify.svg" alt="Spotify" />
                                                 </div>
 
-                                                <div className="container-playlist-spotify">
+                                                <div className="container-playlist">
                                                     <img className='img-icon-playlist' src="./img/icons/icon_playlist_youtube.svg" alt="icon playlist youtube" />
 
                                                     <p>Mix da Fly</p>
@@ -240,6 +241,7 @@ function Header({ tipo }) {
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* </div> */}
 
                                     </div>
                                 </motion.div>
