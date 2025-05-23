@@ -144,7 +144,7 @@ function Perfil_Brecho() {
           </div>
         </div>
       </div>
-      {mostrarPopUp && <Pop_up_menu_cliente onClose={fecharPopUp} />}
+      
       {mostrarPopUpExcluir && (
         <Pop_up_de_excluir_perfil fecharPopUpExcluir={() => setMostrarPopUpExcluir(false)} />
       )}
