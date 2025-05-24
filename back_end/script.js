@@ -482,7 +482,7 @@ app.get(`/produtos/:id`, async (req, res) =>{
 
 app.post(`/produtos`, upload.array(`imagens`), async (req, res) =>{
     
-    const urls = req.files.map(file => `https://615c-189-8-202-5.ngrok-free.app/uploads/${file.filename}`);
+    const urls = req.files.map(file => `http://localhost:3000//uploads/${file.filename}`);
     const produto = new Produto({...req.body, imagem: urls});
 
     try {
