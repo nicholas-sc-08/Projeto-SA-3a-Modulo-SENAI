@@ -176,7 +176,7 @@ function Tela_incial() {
         <motion.img
           className='estrela-verde-home-page'
           src="img/Estrela_dois_cadastro.svg"
-          alt="estrela verde grande"
+      home-page-secao-dois-container    alt="estrela verde grande"
           animate={controlsEstrelaVerde}
           initial={{ scale: 1 }}
         />
@@ -195,7 +195,7 @@ function Tela_incial() {
       {/* home page seção um */}
 
       {/* home page seção dois */}
-      <div className="home-page-secao-dois-container">
+      <div className="">
         <div className="container-sinalizacao-brechos-home-page">
           <div className="icon-quadrado-brechos-home-page"></div>
           <p>Brechós</p>

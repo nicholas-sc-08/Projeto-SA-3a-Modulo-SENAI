@@ -158,6 +158,7 @@ html {
     height: 4vh;
     background-color: var(--cor_um);
     border-radius: 0.2vw;
+    /* border: 1px solid black; */
 }
 
 .container-sinalizacao-brechos-home-page p {
@@ -208,7 +209,6 @@ html {
     justify-content: center;
     border-radius: 0.8vw;
     height: 90%;
-
 }
 
 .nome-brecho {
@@ -685,23 +685,23 @@ html {
         padding-left: 5%;
         padding-right: 5%;
         padding-top: 8%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     .secao-um-texto-container {
         width: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     .secao-um-texto-container h1 {
         font-size: 10vw;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         text-align: left;
     }
 
     .secao-um-texto-container p {
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         text-align: left;
     }
@@ -741,71 +741,120 @@ html {
         display: none;
     }
 
-    /* .home-page-secao-dois-container,
-    .home-page-secao-tres-container,
-    .home-page-container-secao-quatro,
-    .home-page-secao-cinco-container {
-        padding: 5% 3%;
-    } */
+    .home-page-secao-dois-container,
+    .home-page-secao-tres-container {
+        padding-right: 0%;
+        /* border: 1px solid purple; */
+    }
 
-    /* .container-titulo-brechos-home-page,
+    .container-titulo-brechos-home-page,
     .home-page-titulo-secao-tres,
     .container-titulo-secao-quatro,
     .container-titulo-secao-cinco {
         font-size: 2rem;
         text-align: center;
-    } */
+        margin-top: 10%;
+        /* border: 1px solid red; */
+        padding-bottom: 8%;
+    }
 
-    /* .container-brechos-cards-home-page,
-    .container-cards-alinhamento-lancamentos-secao-tres,
-    .container-dois-cards-secao-quatro,
-    .container-um-cards-secao-quatro,
-    .container-alinhamento-avaliacoes {
-        gap: 2rem;
-    } */
+    .icon-quadrado-brechos-home-page,
+    .icon-quadrado-destaques-home-page {
+        display: none;
+    }
 
-    /* .card-brecho-home-page,
-    .card-lancamento-secao-tres,
-    .card-um-secao-quatro,
-    .card-dois-secao-quatro,
-    .card-tres-secao-quatro,
-    .card-quatro-secao-quatro,
-    .container-cards-alinhamento {
-        width: 100%;
+    .container-sinalizacao-brechos-home-page p,
+    .container-sinalizacao-destaques-home-page p {
+        display: none;
+    }
+
+    .card-brecho-home-page,
+    .card-lancamento-secao-tres {
+        width: 80%;
         height: auto;
-    } */
+        /* border: 1px solid purple; */
+    }
 
-    /* .card-lancamento-secao-tres {
-        width: 90%;
+    .card-lancamento-secao-tres {
+        width: 80%;
         height: auto;
-    } */
+        /* border: 1px solid black; */
+    }
 
-    /* .card-um-secao-quatro:hover,
-    .card-dois-secao-quatro:hover,
-    .card-tres-secao-quatro:hover,
-    .card-quatro-secao-quatro:hover {
-        width: 100%;
-       
-    } */
-
-    /* .alinhamento-buttons-secao-tres-lancamentos button,
+    .alinhamento-buttons-secao-tres-lancamentos button,
     .button-ver-todos-os-brechos-home-page button {
         width: 60%;
         border-radius: 100vw;
-    } */
+        /* border: 1px solid red; */
+        margin-top: 10%;
+    }
 
-    /* .nome-brecho,
+    .nome-brecho,
     .nome-roupa-lancamentos-card,
     .preco-roupa-lancamentos-card {
-        text-align: center;
-    } */
+        font-size: 130%;
+    }
 
-    /* .container-card-imagem-roupa-lancamentos {
-        width: 55%;
+    .container-card-imagem-roupa-lancamentos {
+        width: 100%;
         height: 300px;
-    } */
+        border-radius: 5vw;
+        /* border: 1px solid black; */
+    }
 
-    /* .alinhamento-buttons-anterior-proximo {
+    .alinhamento-buttons-anterior-proximo {
         justify-content: center;
-    } */
+        /* border: 1px solid blue; */
+    }
+
+    .buttons-anterior-proximo {
+        /* border: 1px solid red; */
+        margin-right: 2.5%;
+    }
+
+    .buttons-anterior-proximo button {
+        /* border: 1px solid red; */
+        padding: 2.5%;
+        border-radius: 100vw;
+        margin-left: 1.5%;
+        margin-top: 2%;
+    }
+
+    .container-titulo-secao-quatro {
+        /* border: 1px solid purple; */
+        padding-bottom: 8%;
+    }
+
+    .alinhamento-cards-secao-quatro{
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    .container-um-cards-secao-quatro,
+    .container-dois-cards-secao-quatro {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .card-um-secao-quatro,
+    .card-dois-secao-quatro,
+    .card-tres-secao-quatro,
+    .card-quatro-secao-quatro {
+        width: 130%;
+        height: 200px;
+        /* border: 1px solid blue; */
+        margin-bottom: 5%;
+    }
+
+    .card-um-secao-quatro:hover,
+    .card-dois-secao-quatro:hover,
+    .card-tres-secao-quatro:hover,
+    .card-quatro-secao-quatro:hover{
+        width: 135%;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
 }
