@@ -1,116 +1,139 @@
-import React, { useRef, useState } from 'react';
 import Footer from '../../components/Footer';
-import "./Sobre_nos.css";
 import Header from '../../components/Header';
+import './Sobre_nos.css';
 
-export default function Sobre_nos() {
-  const carrosselRef = useRef(null);
-  const [indiceAtual, setIndiceAtual] = useState(0);
-
-  const equipe = [
-    { nome: "Maria Eduarda Wolf", 
-      funcao: "Desenvolvedora front-end", 
-      foto: "./public/img/Ale.jpg", 
-      linkedin: "https://www.linkedin.com/in/maria-eduarda-wolf-luiz-051825344/", 
-      instagram: "https://www.instagram.com/wolf_eduarda12?igsh=MTFqY3Nncm02dDZyYw==", 
-      github: "https://github.com/dudawl18" },
-
-
-    { nome: "Mayara Storl", 
-      funcao: "Desenvolvedora front-end", 
-      foto: "./public/img/May.jpg", 
-      linkedin: "https://www.linkedin.com/in/mayara-storl-315ab9346", 
-      instagram: "https://www.instagram.com/storl_may/?igsh=ZzdpZHFlbXNjYzNn#", 
-      github: "https://github.com/MayaraStorl" },
-
-
-    { nome: "Rinmarys Alejandra", 
-      funcao: "Desenvolvedora front-end", 
-      foto: "./public/img/Dudinha.jpg", 
-      linkedin: "#", 
-      instagram: "#", 
-      github: "https://github.com/dudawl18" },
-
-
-    { nome: "Gabriel Fernandes", 
-      funcao: "Desenvolvedor back-end", 
-      foto: "./public/img/Gabriel.jpg", 
-      linkedin: "#", 
-      instagram: "#", 
-      github: "https://github.com/dudawl18" },
-
-
-    { nome: "Nicholas Serencovich", 
-      funcao: "Desenvolvedor back-end", 
-      foto: "./public/img/Nicholas.jpeg", 
-      linkedin: "#", 
-      instagram: "#", 
-      github: "https://github.com/dudawl18" }
-  ];
-
-  function mudarSlide(index) {
-    const { current } = carrosselRef;
-    const larguraSlide = current.offsetWidth;
-    current.scrollTo({ left: larguraSlide * index, behavior: "smooth" });
-    setIndiceAtual(index);
-  }
-
+function Sobre_nos() {
   return (
     <div>
-      <Header tipo='usuario' />
+      <Header tipo="usuario" />
 
-      <div className='bibliografia-fly'>
-        <div className='sobre'>
-          <h1>Nossa História</h1>
-          <p>A plataforma Fly foi criada com o objetivo de conectar brechós a um público mais amplo, proporcionando uma experiência de compra prática, eficiente e consciente. 
-            A ideia surgiu a partir da experiência de um dos membros do nosso time, cuja mãe é dona de um brechó e enfrenta, todos os dias, a dificuldade de alcançar novos 
-            clientes e dar visibilidade ao seu negócio. Motivados por essa realidade, decidimos criar uma solução tecnológica que beneficie tanto pequenos empreendedores quanto 
-            consumidores que buscam opções mais acessíveis e sustentáveis no mundo da moda.</p>
-          <p> O Fly tem como missão transformar a forma como as pessoas descobrem e interagem com brechós, incentivando o consumo consciente e valorizando peças únicas e cheias de 
-            história. Ao facilitar o acesso a essas alternativas, queremos não apenas apoiar pequenos negócios, mas também promover a moda sustentável, oferecendo uma maneira mais 
-            prática de encontrar e comprar peças com personalidade. Acreditamos que, com essa plataforma, podemos gerar um impacto positivo tanto na indústria da moda quanto na forma 
-            como as pessoas consomem de maneira mais responsável.</p>
+      <div className="alinhamento-all-page-sobrenos">
+        <div className="alinhamento-sobre-a-fly-sobrenos">
+          <div className="alinhamento-container-um-sobre-a-fly">
+            <h2>Sobre a Fly</h2>
+
+            <p>A Fly é uma plataforma criada para conectar brechós a um público maior, tornando a experiência de compra mais prática, acessível e consciente. A ideia surgiu da vivência de um dos nossos membros, cuja mãe, dona de brechó, enfrentava dificuldades para alcançar novos clientes.</p>
+
+            <p>Inspirados por essa realidade, desenvolvemos uma solução que apoia pequenos empreendedores e promove a moda sustentável. Nossa missão é transformar a forma como as pessoas descobrem e consomem moda, valorizando peças únicas, cheias de história e com impacto positivo.</p>
+          </div>
+
+          <img src="./img/imagem-em-grupo-fly.svg" alt="Imagem com os integrantes de grupo" />
         </div>
-        <img className='imgEmGrupo' src="./public/img/notebook.jpeg" alt="Equipe reunida" />
-      </div>
 
-      <div className='apresentando-equipe'>
-        <div className='carrossel-container'>
-          <div className='carrossel-scroll' ref={carrosselRef}>
-            {equipe.map((membro, index) => (
-              <div className='card-membro' key={index}>
-                <img src={membro.foto} alt={membro.nome} />
-                <h3>{membro.nome}</h3>
-                <p>{membro.funcao}</p>
-                <div className='icons-redesSociais'>
-                  <a href={membro.linkedin} target="_blank" rel="noreferrer">
-                    <img src="./public/img/LinkedIn-icon.svg" alt="Linkedin" />
-                  </a>
-                  <a href={membro.instagram} target="_blank" rel="noreferrer">
-                    <img src="./public/img/Instagram-icon.svg" alt="Instagram" />
-                  </a>
-                  <a href={membro.github} target="_blank" rel="noreferrer">
-                    <img src="./public/img/Github-icon.svg" alt="Github" />
-                  </a>
+        <div className="alinhamento-nossa-misao-sobrenos">
+
+          <h2>Nossa Misão</h2>
+
+          <div className="alinhamento-container-dois-nossa-misao">
+
+            <div className="container-um-nossa-misao">
+              <img src="./img/icons/consumo_consciente.svg" alt="" />
+
+              <h3>Consumo com consciência</h3>
+
+              <p>Valorizar o que já existe e incentivar a moda circular.</p>
+            </div>
+
+            <div className="container-dois-nossa-misao">
+              <img src="./img/icons/estrela_nossa_missao.svg" alt="" />
+
+              <h3>Estilo acessível</h3>
+
+              <p>Facilitar o acesso à moda sustentável para todos.</p>
+            </div>
+
+            <div className="container-tres-nossa-misao">
+              <img src="./img/icons/apoio_aos_pequenos.svg" alt="" />
+
+              <h3>Apoio Local</h3>
+
+              <p>Dar visibilidade a brechós locais e empreendedores independentes.</p>
+            </div>
+
+            <div className="container-quatro-nossa-misao">
+              <img src="./img/icons/moda_com_proposito.svg" alt="" />
+
+              <h3>Moda com propósito</h3>
+
+              <p>Conectar estilo e significado em cada escolha.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="container-quem-esta-por-tras">
+
+          <h2>Quem está por trás?</h2>
+
+          <div class="container-equipe-quem-esta-por-tras-sobrenos">
+
+            <div class="membro-da-equipe">
+              <img src="./img/maria_eduarda.svg" alt="Maria Eduarda" />
+              <div class="hover-redes-nome-dos-membros">
+                <div className='redes-sociais'>
+                  <p className='nome-do-membro'>Maria Eduarda</p>
+                  <a href="https://www.linkedin.com/in/maria-eduarda-wolf-luiz-051825344/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/wolf_eduarda12?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com/dudawl18"><i class="fab fa-github"></i></a>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* BOLINHAS DE NAVEGAÇÃO */}
-          <div className='bolinhas-navegacao'>
-            {equipe.map((_, index) => (
-              <span
-                key={index}
-                className={indiceAtual === index ? "bolinha ativa" : "bolinha"}
-                onClick={() => mudarSlide(index)}
-              />
-            ))}
+            <div class="membro-da-equipe">
+              <img src="./img/gabriel.svg" alt="Gabriel Lacerda" />
+              <div class="hover-redes-nome-dos-membros">
+                <div className='redes-sociais'>
+                  <p className='nome-do-membro'>Gabriel Lacerda</p>
+                  <a href="https://www.linkedin.com/in/gabriel-fernandes-a90649329/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/_.lac.z?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com/GabrielFerLacerda"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="membro-da-equipe">
+              <img src="./img/mayara.svg" alt="Mayara" />
+              <div class="hover-redes-nome-dos-membros">
+                <div className='redes-sociais'>
+                  <p className='nome-do-membro'>Mayara Storl</p>
+                  <a href="https://www.linkedin.com/in/mayara-storl-315ab9346/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/storl_may?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com/MayaraStorl"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="membro-da-equipe">
+              <img src="./img/nicholas.svg" alt="Nicholas" />
+              <div class="hover-redes-nome-dos-membros">
+                <div className='redes-sociais'>
+                  <p className='nome-do-membro'>Nicholas Serencovich</p>
+                  <a href="https://www.linkedin.com/in/nicholas-carvalho-2b73a5297/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/nicholasserencovich/"><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com/nicholas-sc-08"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="membro-da-equipe">
+              <img src="./img/alejandra.svg" alt="Alejandra" />
+              <div class="hover-redes-nome-dos-membros">
+                <div className='redes-sociais'>
+                  <p className='nome-do-membro'>Rinmarys Alejandra</p>
+                  <a href="https://www.linkedin.com/in/rinmarys-monagas-a30083316/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/rinmarys/"><i class="fab fa-instagram"></i></a>
+                  <a href="https://github.com/rinmarys"><i class="fab fa-github"></i></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
 
       <Footer />
     </div>
-  );
+  )
 }
+
+export default Sobre_nos
+

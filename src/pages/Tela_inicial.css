@@ -151,6 +151,9 @@ html {
 .container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
+    /* border: 1px solid red; */
+    margin-left: 5%;
+    margin-top: 4%;
 }
 
 .icon-quadrado-brechos-home-page {
@@ -158,7 +161,6 @@ html {
     height: 4vh;
     background-color: var(--cor_um);
     border-radius: 0.2vw;
-    /* border: 1px solid black; */
 }
 
 .container-sinalizacao-brechos-home-page p {
@@ -167,6 +169,7 @@ html {
     padding-left: 0.7%;
     font-weight: 600;
     font-size: 90%;
+    /* border: 1px solid red; */
 }
 
 .container-titulo-brechos-home-page {
@@ -240,6 +243,7 @@ html {
     height: 3rem;
     padding: 0 1rem;
     transition: 0.4s;
+    margin-bottom: 5%;
 }
 
 .button-ver-todos-os-brechos-home-page button:hover {
@@ -262,7 +266,6 @@ html {
     padding-right: 5%;
     padding-left: 5%;
     height: fit-content;
-
 }
 
 .container-sinalizacao-destaques-home-page {
@@ -374,9 +377,9 @@ html {
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     border-radius: 2vw;
-    width: 12%;
+    width: 14%;
     height: 3rem;
-
+    padding: 0 1rem;
     transition: 0.4s;
 }
 
@@ -847,7 +850,9 @@ html {
         width: 130%;
         height: 200px;
         /* border: 1px solid blue; */
-        margin-bottom: 5%;
+        margin-bottom: 6%;
+        border-radius: 5vw;
+        padding: 3%;
     }
 
     .card-um-secao-quatro:hover,
