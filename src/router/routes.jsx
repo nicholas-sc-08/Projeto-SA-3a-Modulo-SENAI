@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"
-import Tela_incial from "../pages/Tela_incial";
+import Tela_inicial from '../pages/Inicio/Tela_incial.jsx';
 import Cadastro_cliente from "../pages/Cadastro/Cadastro_cliente";
 import Login from "../pages/Login/Login";
 import DashBoard from "../pages/DashBoard/DashBoard";
@@ -27,7 +27,7 @@ import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente
 
 
 const router = createBrowserRouter([
-   { path: `/`, element: <Tela_incial /> },
+   { path: `/`, element: <Tela_inicial /> },
    { path: `/cadastro_cliente`, element: <Cadastro_cliente /> },
    { path: `/cadastro_brecho`, element: <Cadastro_brecho /> },
    { path: `/login`, element: <Login /> },

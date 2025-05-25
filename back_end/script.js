@@ -2,7 +2,6 @@ const express = require(`express`);
 const cors = require(`cors`);
 const body_parser = require(`body-parser`);
 const http = require(`http`);
-const ip = `10.3.61.122`;
 const app = express();
 const { Server } = require(`socket.io`);
 const porta = 3000;
