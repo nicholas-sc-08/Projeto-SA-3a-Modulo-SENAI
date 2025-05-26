@@ -49,6 +49,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: [], categoria_filtrada: ``});
     const [exibir_nome_brecho, set_exibir_nome_brecho] = useState(false);
     const [nome_do_brecho, set_nome_do_brecho] = useState(``);
+    const [ exibir_produtos_filtrados, set_exibir_produtos_filtrados ] = useState(false);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -149,6 +150,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_filtro_de_pesquisa,
             produto,
             set_produto,
+            exibir_produtos_filtrados,
+            set_exibir_produtos_filtrados,
 
             id_do_produto_a_excluir, 
             set_id_do_produto_a_excluir,
