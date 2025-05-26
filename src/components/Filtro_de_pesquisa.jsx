@@ -7,6 +7,8 @@ import api from '../services/api';
 function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+    const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [ botao_titulo_precos_deg, set_botao_titulo_precos_deg ] = useState(`rotate(0deg)`);
     const [ botao_filtro_um_deg, set_botao_filtro_um_deg ] = useState(`rotate(0deg)`);
     const [ botao_filtro_dois_deg, set_botao_filtro_dois_deg ] = useState(`rotate(0deg)`);
@@ -24,8 +26,7 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_dois, set_exibir_estilo_dois ] = useState(false);
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
-    const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
-    const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);    
 
     useEffect(() => {
 
@@ -398,7 +399,7 @@ function Filtro_de_pesquisa() {
             <div className="container_botao_filtro_de_pesquisa">
                 
                 <button className='botao_filtro_de_pesquisa_limpar' onClick={() => limpar_filtro_de_pesquisa()}>Limpar</button>
-                <button className='botao_filtro_de_pesquisa_aplicar'>Aplicar Filtro</button>
+                <button className='botao_filtro_de_pesquisa_aplicar'onClick={() => set_exibir_produtos_filtrados(true)}>Aplicar Filtro</button>
 
             </div>
 

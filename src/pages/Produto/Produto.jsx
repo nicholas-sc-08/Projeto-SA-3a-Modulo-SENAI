@@ -20,6 +20,7 @@ function Produto() {
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+    const [ pop_up_chat_nao_adicionado, set_pop_up_chat_nao_adicionado ] = useState(false);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
 
@@ -27,10 +28,14 @@ function Produto() {
 
         buscar_produtos();
         buscar_brechos();        
-        
-        console.log(usuario_logado);
-        
+                
     }, []);
+
+    useEffect(() => {
+
+        atualizar_cliente();
+        
+    }, [usuario_logado]);
 
     async function atualizar_cliente(){
 

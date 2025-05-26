@@ -50,17 +50,21 @@ function Chat() {
 
     useEffect(() => {
 
-      const encontrar_cliente = array_clientes.find(_id => usuario_logado._id == _id);
+      const encontrar_cliente = array_clientes.find(_id => _id == usuario_logado._id);
       const encontrar_brecho = array_brechos.find(_id => usuario_logado._id == _id);
+      console.log(encontrar_cliente);
+      console.log(usuario_logado);
+      
 
       if(encontrar_cliente){
 
-        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(brecho => brecho.nome_vendedor.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
+        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(brecho => brecho.nome_brecho.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
       };
       
       if(encontrar_brecho){        
         
         set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLocaleLowerCase())));
+        
       };
 
     }, [inpt_de_pesquisa_chat]);
