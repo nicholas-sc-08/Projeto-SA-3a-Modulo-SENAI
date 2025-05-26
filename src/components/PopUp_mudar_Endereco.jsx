@@ -2,10 +2,11 @@ import '../components/PopUp_mudar_Endereco.css'
 import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 import { useNavigate } from 'react-router-dom'
+import { IMaskInput } from 'react-imask';
 
 function PopUp_mudar_Endereco({ fecharPopUp }) {
 
-  const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({cep: ``, bairro: ``, logradouro: ``, estado: ``, cidade: ``, numero: ``, complemento: ``})
+  const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, estado: ``, cidade: ``, numero: ``, complemento: `` })
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext)
   const navegar = useNavigate(``)
 
@@ -47,7 +48,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   return (
     <div className="tela-inteira-content">
       <div className="divs-centrais-content">
-        
+
         <div className="voltar-e-menu-content">
           <img src="./img/icons/Voltar-icone-verde.svg" alt="Voltar" onClick={fecharPopUp} />
           {/* <img src="./img/icons/Menu-hamburguer-verde-escuro.svg" alt="Menu" /> */}
@@ -64,32 +65,41 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
             <div className="juncao-rua-logra-e-numero-content">
               <div className="rua-logra-input-content">
                 <label className="topicos-input-endereco">Rua/Logradouro</label>
-                <input type="text" placeholder='Rua das Flores' 
-                value={enderecoDoBrecho.logradouro} 
-                onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, logradouro: event.target.value}) }
+                <input
+                  type="text"
+                  placeholder='Rua das Flores'
+                  value={enderecoDoBrecho.logradouro}
+                  onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, logradouro: event.target.value })}
                 />
               </div>
 
               <div className="numero-input-content">
                 <label className="topicos-input-endereco">Número</label>
-                <input type="text" placeholder='200' value={enderecoDoBrecho.numero} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, numero: event.target.value}) }/>
+                <input type="text" placeholder='200' value={enderecoDoBrecho.numero} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, numero: event.target.value })} />
               </div>
             </div>
 
             <div className="complemento-input-content">
               <label className="topicos-input-endereco">Complemento</label>
-              <input type="text" placeholder='Apartamento 02' value={enderecoDoBrecho.complemento} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, complemento: event.target.value}) }/>
+              <input type="text" placeholder='Apartamento 02' value={enderecoDoBrecho.complemento} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, complemento: event.target.value })} />
             </div>
 
             <div className="juncao-cep-e-bairro-content">
               <div className="cep-input-content">
                 <label className="topicos-input-endereco">CEP</label>
-                <input type="text" placeholder='88011-080' maxLength={8}  value={enderecoDoBrecho.cep} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, cep: event.target.value}) }/>
+                <IMaskInput
+                  mask="00000-000"
+                  unmask="typed"
+                  placeholder='00000-000'
+                  value={enderecoDoBrecho.cep}
+                  onAccept={(value) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+                  // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
+                />
               </div>
 
               <div className="bairro-input-content">
                 <label className="topicos-input-endereco">Bairro</label>
-                <input type="text" placeholder='Rio Vermelho' value={enderecoDoBrecho.bairro} onChange={(event) => setEnderecoDoBrecho ( {... enderecoDoBrecho, bairro: event.target.value}) }/>
+                <input type="text" placeholder='Rio Vermelho' value={enderecoDoBrecho.bairro} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, bairro: event.target.value })} />
               </div>
             </div>
 

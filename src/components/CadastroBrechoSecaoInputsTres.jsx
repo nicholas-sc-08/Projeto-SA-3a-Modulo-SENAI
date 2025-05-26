@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 
+import { IMaskInput } from 'react-imask';
+
 function CadastroBrechoSecaoInputsTres() {
 
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext);
@@ -41,7 +43,15 @@ function CadastroBrechoSecaoInputsTres() {
       <div className="container-inputs-cadastro-brecho-tres">
 
         <label>CEP<span className='span-obrigatorio-cadastro-brecho-tres'>*</span></label>
-        <input type="text" placeholder='00000-000' maxLength={8} required value={enderecoDoBrecho.cep} onChange={e => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: e.target.value })} />
+        <IMaskInput 
+        mask="00000-000" 
+        unmask="typed"
+        placeholder='00000-000' 
+        required 
+        value={enderecoDoBrecho.cep} 
+        onAccept={(value) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+        // onChange={e => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: e.target.value })} 
+        />
 
         <label>Bairro</label>
         <input type="text" placeholder='Digite seu bairro' required value={enderecoDoBrecho.bairro} onChange={e => setEnderecoDoBrecho({ ...enderecoDoBrecho, bairro: e.target.value })} />

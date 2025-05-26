@@ -2,6 +2,7 @@ import '../components/Pop_up_mudar_endereco_cliente.css';
 import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { IMaskInput } from 'react-imask';
 
 function Pop_up_mudar_endereco_cliente({ onClose }) {
   const [enderecoDoCliente, setEnderecoDoCliente] = useState({
@@ -98,12 +99,13 @@ function Pop_up_mudar_endereco_cliente({ onClose }) {
             <div className="juncao-cep-e-bairro-content">
               <div className="cep-input-content">
                 <label className="topicos-input-endereco">CEP</label>
-                <input type="text" placeholder='88011-080' maxLength={8} 
+                <IMaskInput
+                  mask="00000-000"
+                  unmask="typed"
+                  placeholder='00000-000'
                   value={enderecoDoCliente.cep} 
-                  onChange={(event) => setEnderecoDoCliente({ 
-                    ...enderecoDoCliente, 
-                    cep: event.target.value 
-                  })} 
+                  onAccept={(value) => setEnderecoDoCliente({ ...enderecoDoCliente, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+                // onChange={(event) => setEnderecoDoCliente({ ...enderecoDoCliente, cep: event.target.value })} 
                 />
               </div>
 

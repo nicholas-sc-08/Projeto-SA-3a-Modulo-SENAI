@@ -5,6 +5,8 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import '../pages/Cadastro/Cadastro_cliente.css';
 import { useNavigate } from 'react-router-dom';
 
+import { IMaskInput } from 'react-imask';
+
 function Cadastro_cliente_secao_inputs_tres() {
     
     const { endereco_do_cliente, set_endereco_do_cliente } = useContext(GlobalContext);
@@ -49,7 +51,15 @@ function Cadastro_cliente_secao_inputs_tres() {
         <div className="secao_inputs_tres_p_um">
 
             <label>CEP<span>*</span></label>
-            <input type="number" maxLength={8} placeholder='00000-000' required value={endereco_do_cliente.cep} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}/>
+            <IMaskInput 
+            mask="00000-000" 
+            unmask="typed"
+            placeholder='00000-000' 
+            required 
+            value={endereco_do_cliente.cep} 
+            onAccept={(value) => set_endereco_do_cliente({ ...endereco_do_cliente, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+            // onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}
+            />
 
             <label>Bairro<span>*</span></label>
             <input type="text" placeholder='Digite seu bairro' value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
