@@ -428,3 +428,12 @@
     border: 0.1vw solid var(--cor_dois_v_um);
     background-color: var(--cor_dois_v_um);
 }
+
+.fundo_do_pop_up_conversa_adicionada{
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 5;
+    background-color: var(--cor_oito_v_dois);
+}

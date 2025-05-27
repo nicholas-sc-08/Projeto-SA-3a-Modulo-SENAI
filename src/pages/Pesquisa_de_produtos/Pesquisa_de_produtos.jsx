@@ -62,7 +62,7 @@ function Pesquisa_de_produtos() {
         const preco_separado = String(preco).split(`.`);
         const decimal = preco_separado[preco_separado.length -1];
 
-        return decimal < 10 ? `${preco_separado[0]}.${decimal}0 ` : preco;
+        return decimal < 10 ? `${preco_separado[0]},${decimal}0 ` : `${preco_separado[0]},${decimal}`;
     };
 
     function imagem_de_perfil_brecho(_id){
