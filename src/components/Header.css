@@ -121,16 +121,13 @@
 }
 
 .button-sacola-navbar img {
-    width: 2.5vw;
-
-
-
+    width: 2vw;
     cursor: pointer;
     transition: 0.4s;
 }
 
 .button-sacola-navbar img:hover {
-    width: 2.7vw;
+    width: 2.2vw;
 }
 
 .button-perfil-navbar img {
