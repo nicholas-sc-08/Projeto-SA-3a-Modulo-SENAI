@@ -24,8 +24,8 @@
 }
 
 .container-edicao-perfil-cliente{
+    font-family: "Poppins", sans serif;
     margin-left: 20%;
-    margin-top: 3%;
     margin-bottom: 77px;
     width: 60%;
     height: 676px;
@@ -43,7 +43,7 @@
 
 .info-edicao-cliente{
     position: relative;
-    bottom: 55%;
+    bottom: 67%;
     left: 22%;
     width: 70%;
 }
@@ -52,6 +52,7 @@
     margin-left: 28%;
     margin-top: 4%;
     color: var(--cor_um);
+    font-size: 24px;
 }
 
 .info01{
