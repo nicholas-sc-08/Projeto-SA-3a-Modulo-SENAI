@@ -1,44 +1,3 @@
-#root,
-body,
-html {
-
-    min-height: 100vh;
-
-    --cor_um: #466330;
-    --cor_um_v_um: #466330b5;
-    --cor_um_v_dois: #2d411f;
-    --cor_um_v_tres: #466330c2;
-    --cor_um_v_quatro: #46633053;
-    --cor_um_v_cinco: #4663306a;
-    --cor_dois: #9DA650;
-    --cor_dois_v_um: #8f9749;
-    --cor_dois_v_dois: #9da65058;
-    --cor_tres: #E7E8CE;
-    --cor_quatro: #FFFDF7;
-    --cor_quatro_v_um: #e2e0da;
-    --cor_cinco: #E4CD80;
-    --cor_seis: #3E2A21;
-    --cor_seis_v_um: #3e2a219e;
-    --cor_sete: #FF3333;
-    --cor_sete_v_um: #ff333399;
-    --cor_oito: #2f2e304d;
-    --cor_oito_v_um: #0000001a;
-    --cor_nove: #FFFFFF;
-    --cor_nove_v_um: #ffffff96;
-    --cor_nove_v_dois: #F0F0F0;
-    --cor_dez: #5c5c5c;
-    --cor_onze: #9D0000;
-    --cor_doze: #F0EEED;
-    --cor_doze_v_um: #e1e1e0;
-    --cor_treze: #6d0000;
-    --cor_quatorze: #ab9489;
-    --cor_quinze: #FFF4D1;
-
-    --tipografia_primaria: "Montserrat", serif;
-    --tipografia_secundaria: "Poppins", serif;
-}
-
-/* home page secao um */
 .home-page-secao-um-container {
     display: flex;
     justify-content: space-between;
@@ -86,6 +45,7 @@ html {
     width: 28%;
 
     transition: 0.4s;
+    /* border: 1px solid red; */
 }
 
 .secao-um-texto-container button:hover {
@@ -151,6 +111,9 @@ html {
 .container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
+    /* border: 1px solid red; */
+    margin-left: 5%;
+    margin-top: 4%;
 }
 
 .icon-quadrado-brechos-home-page {
@@ -166,6 +129,7 @@ html {
     padding-left: 0.7%;
     font-weight: 600;
     font-size: 90%;
+    /* border: 1px solid red; */
 }
 
 .container-titulo-brechos-home-page {
@@ -208,7 +172,6 @@ html {
     justify-content: center;
     border-radius: 0.8vw;
     height: 90%;
-
 }
 
 .nome-brecho {
@@ -240,6 +203,7 @@ html {
     height: 3rem;
     padding: 0 1rem;
     transition: 0.4s;
+    margin-bottom: 5%;
 }
 
 .button-ver-todos-os-brechos-home-page button:hover {
@@ -262,7 +226,6 @@ html {
     padding-right: 5%;
     padding-left: 5%;
     height: fit-content;
-
 }
 
 .container-sinalizacao-destaques-home-page {
@@ -374,10 +337,11 @@ html {
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     border-radius: 2vw;
-    width: 12%;
+    width: 14%;
     height: 3rem;
-
+    padding: 0 1rem;
     transition: 0.4s;
+    /* border: 1px solid red; */
 }
 
 .alinhamento-buttons-secao-tres-lancamentos button:hover {
@@ -677,39 +641,43 @@ html {
     font-size: 0.9rem;
 }
 
-/* home page secao cinco */
-
 @media (max-width: 768px) {
     .home-page-secao-um-container {
         flex-direction: column;
         padding-left: 5%;
         padding-right: 5%;
         padding-top: 8%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     .secao-um-texto-container {
         width: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .secao-um-texto-container h1 {
         font-size: 10vw;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         text-align: left;
     }
 
     .secao-um-texto-container p {
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         text-align: left;
     }
 
     .secao-um-texto-container button {
-        width: 100%;
+        width: 93%;
         padding-top: 5%;
         padding-bottom: 5%;
+        /* border: 1px solid red; */
+        height: 60px;
     }
 
     .container-imagem-roupas-numero-um {
@@ -717,18 +685,24 @@ html {
         width: 111%;
         height: 300px;
         background-position: center;
+        /* border: 1px solid purple; */
+        position: relative;
+        /* necesario para que ::before se posicione correctamente */
     }
 
     .container-imagem-roupas-numero-um::before {
+        content: '';
+        /* necesario para que el pseudo-elemento aparezca */
         position: absolute;
         inset: 0;
-        background-color: linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 35%);
+        background-image: linear-gradient(to bottom, var(--cor_quatro) 0.2%, transparent 70%);
         z-index: 1;
         pointer-events: none;
         width: 100%;
-        border: 1px solid red;
         height: 100%;
+        /* border: 1px solid blue; */
     }
+
 
     .estrela-verde-home-page,
     .estrela-amarela-home-page {
@@ -736,10 +710,9 @@ html {
     }
 
     .home-page-secao-dois-container,
-    .home-page-secao-tres-container,
-    .home-page-container-secao-quatro,
-    .home-page-secao-cinco-container {
-        padding: 5% 3%;
+    .home-page-secao-tres-container {
+        padding-right: 0%;
+        /* border: 1px solid purple; */
     }
 
     .container-titulo-brechos-home-page,
@@ -748,57 +721,110 @@ html {
     .container-titulo-secao-cinco {
         font-size: 2rem;
         text-align: center;
+        margin-top: 10%;
+        /* border: 1px solid red; */
+        padding-bottom: 8%;
     }
 
-    .container-brechos-cards-home-page,
-    .container-cards-alinhamento-lancamentos-secao-tres,
-    .container-dois-cards-secao-quatro,
-    .container-um-cards-secao-quatro,
-    .container-alinhamento-avaliacoes {
-        flex-direction: column;
-        gap: 2rem;
+    .icon-quadrado-brechos-home-page,
+    .icon-quadrado-destaques-home-page {
+        display: none;
+    }
+
+    .container-sinalizacao-brechos-home-page p,
+    .container-sinalizacao-destaques-home-page p {
+        display: none;
     }
 
     .card-brecho-home-page,
-    .card-lancamento-secao-tres,
+    .card-lancamento-secao-tres {
+        width: 80%;
+        height: auto;
+        /* border: 1px solid purple; */
+    }
+
+    .card-lancamento-secao-tres {
+        width: 80%;
+        height: auto;
+        /* border: 1px solid black; */
+    }
+
+    .alinhamento-buttons-secao-tres-lancamentos button,
+    .button-ver-todos-os-brechos-home-page button {
+        width: 60%;
+        border-radius: 100vw;
+        /* border: 1px solid red; */
+        margin-top: 10%;
+    }
+
+    .nome-brecho,
+    .nome-roupa-lancamentos-card,
+    .preco-roupa-lancamentos-card {
+        font-size: 130%;
+    }
+
+    .container-card-imagem-roupa-lancamentos {
+        width: 100%;
+        height: 300px;
+        border-radius: 5vw;
+        /* border: 1px solid black; */
+    }
+
+    .alinhamento-buttons-anterior-proximo {
+        justify-content: center;
+        /* border: 1px solid blue; */
+    }
+
+    .buttons-anterior-proximo {
+        /* border: 1px solid red; */
+        margin-right: 2.5%;
+    }
+
+    .buttons-anterior-proximo button {
+        /* border: 1px solid red; */
+        padding: 2.5%;
+        border-radius: 100vw;
+        margin-left: 1.5%;
+        margin-top: 2%;
+    }
+
+    .container-titulo-secao-quatro {
+        /* border: 1px solid purple; */
+        padding-bottom: 8%;
+    }
+
+    .alinhamento-cards-secao-quatro {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    .container-um-cards-secao-quatro,
+    .container-dois-cards-secao-quatro {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
     .card-um-secao-quatro,
     .card-dois-secao-quatro,
     .card-tres-secao-quatro,
-    .card-quatro-secao-quatro,
-    .container-cards-alinhamento {
-        width: 100%;
-        height: auto;
+    .card-quatro-secao-quatro {
+        width: 130%;
+        height: 200px;
+        /* border: 1px solid blue; */
+        margin-bottom: 6%;
+        border-radius: 5vw;
+        padding: 3%;
     }
 
     .card-um-secao-quatro:hover,
     .card-dois-secao-quatro:hover,
     .card-tres-secao-quatro:hover,
     .card-quatro-secao-quatro:hover {
-        width: 100%;
-        margin: 0;
-    }
-
-    .alinhamento-buttons-secao-tres-lancamentos button,
-    .button-ver-todos-os-brechos-home-page button {
-        width: 60%;
-    }
-
-    .nome-brecho,
-    .nome-roupa-lancamentos-card,
-    .preco-roupa-lancamentos-card {
-        text-align: center;
-    }
-
-    .container-card-imagem-roupa-lancamentos {
-        height: 200px;
-    }
-
-    .alinhamento-buttons-anterior-proximo {
-        justify-content: center;
-    }
-
-    .home-page-card-avaliacoes {
-        min-height: auto;
-        max-height: none;
+        width: 135%;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     }
 }

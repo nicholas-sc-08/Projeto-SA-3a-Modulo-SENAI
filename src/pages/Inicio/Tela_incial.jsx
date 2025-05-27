@@ -1,3 +1,377 @@
+// import React, { useContext, useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+// import { GlobalContext } from '../../contexts/GlobalContext';
+// import Footer from '../../components/Footer';
+// import Chat from '../../components/chat/Chat';
+// import Chat_conversa from '../../components/chat/Chat_conversa';
+// import './Tela_inicial.css'
+// import { Link } from 'react-router-dom';
+// import { motion, AnimatePresence, useAnimation } from "framer-motion";
+// import Header from '../../components/Header';
+// // import { motion, AnimatePresence } from 'framer-motion';
+
+
+// function Tela_incial() {
+
+//   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+//   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+//   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+//   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
+//   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+//   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+//   const navegar = useNavigate(``);
+
+//   const [startIndex, setStartIndex] = useState(0);
+//   const itemsToShow = 4;
+
+//   const [startIndexLancamentos, setStartIndexLancamentos] = useState(0);
+//   const lancamentosToShow = 4;
+
+//   const [startIndexFeedBack, setStartIndexFeedBack] = useState(0);
+//   const FeedBackToShow = 4;
+
+//   const controlsEstrelaVerde = useAnimation();
+//   const controlsEstrelaAmarela = useAnimation();
+
+//   useEffect(() => {
+
+//     informacoes_clientes();
+//     informacoes_brechos();
+//     informacoes_produtos();
+
+//   }, []);
+
+//   async function informacoes_clientes() {
+
+//     try {
+
+//       const resultado = await axios.get(`http://localhost:3000/clientes`);
+//       set_array_clientes(resultado.data);
+
+//     } catch (erro) {
+
+//       console.log(erro);
+//     };
+//   };
+
+//   async function informacoes_brechos() {
+
+//     try {
+
+//       const resultado = await axios.get(`http://localhost:3000/brechos`);
+//       set_array_brechos(resultado.data);
+
+//     } catch (erro) {
+
+//       console.log(erro);
+//     };
+//   };
+
+//   async function informacoes_produtos() {
+
+//     try {
+
+//       const resultado = await axios.get(`http://localhost:3000/produtos`);
+//       set_array_produtos(resultado.data);
+
+//     } catch (erro) {
+
+//       console.log(erro);
+//     };
+//   };
+
+//   const next = () => {
+//     if (startIndex + itemsToShow < array_brechos.length) {
+//       setStartIndex(startIndex + 1);
+//     }
+//   };
+
+//   const prev = () => {
+//     if (startIndex > 0) {
+//       setStartIndex(startIndex - 1);
+//     }
+//   };
+
+//   const lancamentos = [
+//     { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
+//     { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
+//   ];
+
+//   const nextLancamentos = () => {
+//     if (startIndexLancamentos + lancamentosToShow < 8) { // ajusta pro total de lançamentos
+//       setStartIndexLancamentos(startIndexLancamentos + 1);
+//     }
+//   };
+
+//   const prevLancamentos = () => {
+//     if (startIndexLancamentos > 0) {
+//       setStartIndexLancamentos(startIndexLancamentos - 1);
+//     }
+//   };
+
+//   const comentarios = [
+//     { nome: "Sarah M.", texto: "Adorei as peças!" },
+//     { nome: "João K.", texto: "Entrega super rápida!" },
+//     { nome: "Lúcia R.", texto: "Tudo impecável. Voltarei!" },
+//     { nome: "Sarah M.", texto: "Adorei as peças!" },
+//     { nome: "João K.", texto: "Entrega super rápida!" },
+//     { nome: "Lúcia R.", texto: "Tudo impecável. Voltarei!" },
+//     { nome: "Sarah M.", texto: "Adorei as peças!" },
+//     { nome: "João K.", texto: "Entrega super rápida!" },
+//   ];
+
+
+//   const nextFeedBack = () => {
+//     if (startIndexFeedBack + FeedBackToShow < 8) {
+//       setStartIndexFeedBack(startIndexFeedBack + 1);
+//     }
+//   };
+
+//   const prevFeedBack = () => {
+//     if (startIndexFeedBack > 0) {
+//       setStartIndexFeedBack(startIndexFeedBack - 1);
+//     }
+//   };
+
+//   useEffect(() => {
+//     const animateEstrela = async (controls) => {
+//       while (true) {
+//         const escala = Math.random() * 0.5 + 0.9; // entre 0.9 e 1.2
+//         const duracao = Math.random() * 2 + 1;     // entre 1s e 3s
+
+//         await controls.start({
+//           scale: escala,
+//           transition: { duration: duracao, ease: 'easeInOut' },
+//         });
+//       }
+//     };
+
+//     animateEstrela(controlsEstrelaVerde);
+//     animateEstrela(controlsEstrelaAmarela);
+//   }, []);
+
+//   return (
+//     <div>
+
+//       <Header tipo="usuario" />
+
+//       {/* home page seção um */}
+//       <div className="home-page-secao-um-container">
+//         <div className="secao-um-texto-container">
+//           <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
+//           <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
+//           <button>Compre Já</button>
+//         </div>
+
+//         <div className="container-imagem-roupas-numero-um">
+//         </div>
+
+//         <motion.img
+//           className='estrela-verde-home-page'
+//           src="img/Estrela_dois_cadastro.svg"
+//           alt="estrela verde grande"
+//           animate={controlsEstrelaVerde}
+//           initial={{ scale: 1 }}
+//         />
+//         <motion.img
+//           className='estrela-amarela-home-page'
+//           src="img/Estrela_um_cadastro.svg"
+//           alt="estrela amarela pequena"
+//           animate={controlsEstrelaAmarela}
+//           initial={{ scale: 1 }}
+//         />
+
+//       </div>
+
+//       <div className="line-home-page-secao-um">
+//       </div>
+//       {/* home page seção um */}
+
+//       {/* home page seção dois */}
+//       <div className="home-page-secao-dois-container">
+//         <div className="container-sinalizacao-brechos-home-page">
+//           <div className="icon-quadrado-brechos-home-page"></div>
+//           <p>Brechós</p>
+//         </div>
+
+//         <div className="container-titulo-brechos-home-page">
+//           <p>BRECHÓS</p>
+//         </div>
+
+//         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
+//         <div className="buttons-anterior-proximo">
+//           <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+//           <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+//         </div>
+//         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
+
+//         <AnimatePresence mode="wait">
+//           <div className="carousel-wrapper">
+//             <motion.div
+//               animate={{ x: -startIndex * 390 }} // ajuste se o card for 270px, inclua margens
+//               transition={{ type: "spring", stiffness: 100, damping: 20 }}
+//               className="container-brechos-cards-home-page"
+//             >
+//               {array_brechos.map((brecho, i) => (
+//                 <div className="card-brecho-home-page" key={i}>
+//                   <div className="container-imagem-brecho-cinza">
+//                     <div className="container-imagem-brecho">
+//                       <img src={brecho.logo} alt={brecho.nome_brecho} />
+//                     </div>
+//                   </div>
+//                   <h2 className="nome-brecho">{brecho.nome_brecho}</h2>
+//                 </div>
+//               ))}
+//             </motion.div>
+//           </div>
+//         </AnimatePresence>
+
+//         <div className="button-ver-todos-os-brechos-home-page">
+//           <button>Ver todos</button>
+//         </div>
+//       </div>
+//       {/* home page seção dois */}
+
+//       {/* home page seção tres */}
+//       <div className="home-page-secao-tres-container">
+//         <div className="container-sinalizacao-destaques-home-page">
+//           <div className="icon-quadrado-destaques-home-page"></div>
+//           <p>Destaques</p>
+//         </div>
+
+//         <div className="home-page-titulo-secao-tres">
+//           <p>LANÇAMENTOS</p>
+//         </div>
+
+//         <div className="buttons-anterior-proximo">
+//           <button className='button-anterior-carrossel' onClick={prevLancamentos}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+//           <button className='button-proximo-carrossel' onClick={nextLancamentos}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+//         </div>
+
+//         <AnimatePresence mode="wait">
+//           <div className="carousel-wrapper">
+//             <motion.div
+//               animate={{ x: -startIndexLancamentos * 390 }}
+//               transition={{ type: "spring", stiffness: 100, damping: 20 }}
+//               className="container-cards-alinhamento-lancamentos-secao-tres"
+//             >
+//               {lancamentos.map((l, i) => (
+//                 <div className="card-lancamento-secao-tres" key={i}>
+//                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
+//                     <img src="./img/img_perfil_provisorio.svg" alt="" />
+//                     <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brechó Sustentável</Link>
+//                   </div>
+//                   <div className="container-card-imagem-roupa-lancamentos">
+//                     <img src={l.img} alt={l.nome} />
+//                   </div>
+//                   <div className="alinhamento-preco-roupa-card-lancamento">
+//                     <p className='nome-roupa-lancamentos-card'>Camiseta bonita {i + 1}</p>
+//                     <p className='preco-roupa-lancamentos-card'>R$ 21.50</p>
+//                   </div>
+//                 </div>
+//               ))}
+//             </motion.div>
+//           </div>
+//         </AnimatePresence>
+
+//         <div className="alinhamento-buttons-secao-tres-lancamentos">
+//           <button onClick={() => navegar(`/buscarProdutos`)}>Ver todos</button>
+//         </div>
+//       </div>
+//       {/* home page seção tres */}
+
+//       {/* home page seção quatro */}
+//       <div className="home-page-container-secao-quatro">
+//         <div className="container-titulo-secao-quatro">
+//           <p>ENCONTRE O QUE PROCURA</p>
+//         </div>
+
+//         <div className="alinhamento-cards-secao-quatro">
+//           <div className="container-um-cards-secao-quatro">
+//             <div className="card-um-secao-quatro">
+//               {/* <img src="./img/imagens_telaInicial/CardImagemUmTelaInicial.svg" alt="Roupas" /> */}
+//               <p>Roupas</p>
+//             </div>
+
+//             <div className="card-dois-secao-quatro">
+//               {/* <img src="./img/imagens_telaInicial/CardImagemDoisTelaInicial.svg" alt="Accesórios" /> */}
+//               <p>Acessórios</p>
+//             </div>
+//           </div>
+
+//           <div className="container-dois-cards-secao-quatro">
+//             <div className="card-tres-secao-quatro">
+//               {/* <img src="./img/imagens_telaInicial/CardImagemTresTelaInicial.svg" alt="Doações" /> */}
+//               <p>Doações</p>
+//             </div>
+
+//             <div className="card-quatro-secao-quatro">
+//               {/* <img src="./img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg" alt="Calçados" /> */}
+//               <p>Calçados</p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       {/* home page seção quatro */}
+
+//       {/* home page seção cinco */}
+//       {/* <div className="home-page-secao-cinco-container">
+//         <div className="container-sinalizacao-avalicacoes-home-page">
+//           <div className="icon-quadrado-avaliacoes-home-page"></div>
+//           <p>Avaliações</p>
+//         </div>
+
+//         <div className="container-titulo-secao-cinco">
+//           <p>NOSSOS FEEDBACKS</p>
+//         </div>
+
+//         <div className="alinhamento-buttons-anterior-proximo">
+//           <button className='button-anterior-carrossel' onClick={prevFeedBack}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+//           <button className='button-proximo-carrossel' onClick={nextFeedBack}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+//         </div>
+
+//         <AnimatePresence mode="wait">
+//           <div className="carousel-wrapper">
+//             <motion.div
+//               animate={{ x: -startIndexFeedBack * 355 }}
+//               transition={{ type: "spring", stiffness: 100, damping: 20 }}
+//               className="container-alinhamento-avaliacoes"
+//             >
+//               {comentarios.map((c, i) => (
+//                 <div className="container-cards-alinhamento">
+//                   <div className="home-page-card-avaliacoes" key={i}>
+//                     <div className="alinhamento-imagem-perfil-usuario-nome-usuario">
+//                       <img src="./img/img_perfil_provisorio.svg" alt="" />
+//                       <p className="nome-pessoa-avaliacoes">{c.nome}</p>
+//                     </div>
+
+//                     <p className="comentario-avaliacao">{c.texto}</p>
+//                   </div>
+//                 </div>
+//               ))}
+//             </motion.div>
+//           </div>
+//         </AnimatePresence>
+//       </div> */}
+//       {/* home page seção cinco */}
+
+
+//       {usuario_logado != `` && !conversa_aberta && <Chat />}
+//       {conversa_aberta && <Chat_conversa />}
+
+//       <Footer />
+//     </div>
+//   )
+// }
+// export default Tela_incial
+
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -143,8 +517,8 @@ function Tela_incial() {
   useEffect(() => {
     const animateEstrela = async (controls) => {
       while (true) {
-        const escala = Math.random() * 0.5 + 0.9; // entre 0.9 e 1.2
-        const duracao = Math.random() * 2 + 1;     // entre 1s e 3s
+        const escala = Math.random() * 0.6 + 0.7 // entre 0.9 e 1.2
+        const duracao = Math.random() * 1.2 + 0.8     // entre 1s e 3s
 
         await controls.start({
           scale: escala,
@@ -176,7 +550,7 @@ function Tela_incial() {
         <motion.img
           className='estrela-verde-home-page'
           src="img/Estrela_dois_cadastro.svg"
-          alt="estrela verde grande"
+      home-page-secao-dois-container    alt="estrela verde grande"
           animate={controlsEstrelaVerde}
           initial={{ scale: 1 }}
         />
@@ -195,7 +569,7 @@ function Tela_incial() {
       {/* home page seção um */}
 
       {/* home page seção dois */}
-      <div className="home-page-secao-dois-container">
+      <div className="">
         <div className="container-sinalizacao-brechos-home-page">
           <div className="icon-quadrado-brechos-home-page"></div>
           <p>Brechós</p>
