@@ -30,6 +30,25 @@ function Produto() {
 
     useEffect(() => {
 
+        let array_sortido = [];
+
+        for(let i = 0; i < 2; i++){
+
+            array_sortido.push(array_produtos[Math.floor(Math.random() * 4)]);
+
+        };
+        set_array_de_produtos_aleatorios(array_sortido);
+
+    }, []);
+
+    useEffect(() => {
+
+            console.log(array_de_produtos_aleatorios);        
+
+    }, [array_de_produtos_aleatorios]);
+
+    useEffect(() => {
+
         buscar_produtos();
         buscar_brechos();   
         buscar_clientes();     
@@ -171,6 +190,21 @@ function Produto() {
         };
     };
 
+    function imagem_de_perfil_brecho(_id){
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
+
+        return encontrar_brecho.logo;
+    };
+
+    function preco_do_produto_vitrine(preco){
+
+        const separar_preco = String(preco).split(`.`);
+        const decimal = separar_preco[separar_preco.length - 1];
+
+        return decimal < 10 ? `R$${separar_preco[0]},${decimal}0` : `R$${separar_preco[0]},${decimal}`;
+    };
+
   return (
     <div className='container_visualizar_produto'>
 
@@ -309,8 +343,40 @@ function Produto() {
         
         <div className="container_roupas_que_usuario_possa_gostar">
 
-            <h1>Você também pode gostar</h1>
+            <div className='container_roupas_titulo'>
 
+                <h1>Você também pode gostar</h1>
+            
+            </div>
+
+            <div className="container_roupas_vitrine">
+
+                {array_de_produtos_aleatorios.map((produto, i) => (
+
+                    <div key={i} className='container_produto_vitrine'>
+                    
+                        <div className="container_imagem_do_produto_vitrine">
+
+                            <img src={produto.imagem[0]} alt="" />
+
+                        </div>
+
+                        <div className="container_titulo_produto_vitrine">
+
+                            <h4>{produto.nome}</h4>
+                            <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
+                        
+                        </div>
+                    
+                        <div className="container_preco_produto_vitrine">
+
+                            <span>{preco_do_produto_vitrine(produto.preco)}</span>
+
+                        </div>
+                    </div>
+                ))}
+
+            </div>
             
         </div>
 
