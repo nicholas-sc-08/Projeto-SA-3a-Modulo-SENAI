@@ -1,45 +1,82 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import "./Edicao_perfil_cliente.css";
 import Footer from '../../components/Footer';
 import Pop_up_mudar_endereco_cliente from '../../components/Pop_up_mudar_endereco_cliente';
-import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente'; // Certifique-se de importar o componente
+import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
 
 function Edicao_perfil_cliente() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
   const [exibirPopUp, setExibirPopUp] = useState(false);
   const [mostrarEdicao, setMostrarEdicao] = useState(false);
 
-  // Função para abrir o pop-up de menu
-  const abrirPopUp = () => {
-    setMostrarPopUp(true);
-    setExibirPopUp(false); // Garantir que o pop-up de endereço seja fechado
+  // Estado para a imagem do perfil
+  const [imgPerfil, setImgPerfil] = useState('./img/fotoPerfil.png');
+  // Referência para o input file
+  const inputFileRef = useRef(null);
+
+  const alternarPopUpMenu = () => {
+    setMostrarPopUp(prev => !prev);
+    setExibirPopUp(false);
+    console.log("Alternando pop-up de menu:", !mostrarPopUp);
   }
 
-  // Função para fechar o pop-up de menu
   const fecharPopUp = () => {
     setMostrarPopUp(false);
+    console.log("Fechando pop-up de menu");
   }
 
-  // Função para fechar o pop-up de alteração de endereço
   const fecharExibirPopUp = () => {
     setExibirPopUp(false);
+    console.log("Fechando pop-up de endereço");
+  };
+
+  // Função para abrir o seletor de arquivos ao clicar na imagem
+  const handleImageClick = () => {
+    if (inputFileRef.current) {
+      inputFileRef.current.click();
+    }
+  };
+
+  // Função para ler o arquivo selecionado e atualizar a imagem
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImgPerfil(e.target.result); // Atualiza a imagem com o conteúdo do arquivo
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <div>
       <div className='sideBar-edicao-perfil-cliente'>
         <p>Bem-vindo(a)</p><h4>Nome do usuario</h4>
-        
+
         <img 
           src={mostrarPopUp ? "./img/close.svg" : "./img/Justifyc-icon.svg"} 
           alt="Ícone de menu"
-          onClick={mostrarPopUp ? fecharPopUp : abrirPopUp} 
+          onClick={alternarPopUpMenu} 
         />
       </div>
 
       <div className='container-edicao-perfil-cliente'>
         <div className='foto-edicao-perfil-cliente'>
-          <img src="./img/fotoPerfil.png" alt="" />
+          <img 
+            src={imgPerfil} 
+            alt="Foto de perfil"
+            onClick={handleImageClick}
+            style={{ cursor: 'pointer' }}
+          />
+          {/* Input file escondido */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={inputFileRef}
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
         </div>
 
         <div className='info-edicao-cliente'>
@@ -79,7 +116,7 @@ function Edicao_perfil_cliente() {
         </div>
       </div>
 
-      {/* Garantir que o pop-up do menu seja fechado ao abrir o pop-up de endereço */}
+      {/* Componentes de pop-up */}
       {mostrarPopUp && <Pop_up_menu_cliente onClose={fecharPopUp} />}
       {exibirPopUp && <Pop_up_mudar_endereco_cliente onClose={fecharExibirPopUp} />}
 

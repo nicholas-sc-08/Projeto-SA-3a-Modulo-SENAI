@@ -52,3 +52,13 @@
 .icon-popUp-cliente img{
     color: aquamarine;
 }
+
+.botao-fechar-popUp {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
