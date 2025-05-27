@@ -9,6 +9,8 @@ import Chat_conversa from '../../components/chat/Chat_conversa';
 import Chat from '../../components/chat/Chat';
 import Pop_up_nome_brecho from '../../components/Pop_up_nome_brecho';
 import Footer from '../../components/Footer';
+import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
+import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
 
 function Produto() {
 
@@ -20,22 +22,41 @@ function Produto() {
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
-    const [ pop_up_chat_nao_adicionado, set_pop_up_chat_nao_adicionado ] = useState(false);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
+    const [ pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado ] = useState(false);
+    const [ pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado ] = useState(false);
+    const [ array_de_produtos_aleatorios, set_array_de_produtos_aleatorios ] = useState([]);
 
     useEffect(() => {
 
         buscar_produtos();
-        buscar_brechos();        
+        buscar_brechos();   
+        buscar_clientes();     
                 
     }, []);
 
     useEffect(() => {
 
-        atualizar_cliente();
-        
-    }, [usuario_logado]);
+        if(pop_de_chat_ja_adicionado){
+
+            setTimeout(() => {
+
+                set_pop_de_chat_ja_adicionado(false);
+
+            }, 2000);
+        };
+
+        if(pop_up_de_usuario_nao_logado){
+
+            setTimeout(() => {
+
+                set_pop_up_de_usuario_nao_logado(true);
+
+            }, 2000);
+        };
+
+    }, [pop_de_chat_ja_adicionado, pop_up_de_usuario_nao_logado]);
 
     async function atualizar_cliente(){
 
@@ -76,27 +97,43 @@ function Produto() {
         };
     };
 
-    async function adicionar_conversa_ao_chat(){
+    async function buscar_clientes(){
 
         try {
+
+            const clientes = await api.get(`/clientes`);
+            set_array_clientes(clientes.data);
             
-            const conversa_com_usuario = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
+
+    async function adicionar_conversa_ao_chat(){
         
-            if(usuario_logado != null){
-    
+        try {            
+
+            if(usuario_logado){
+                
+                const conversa_com_usuario = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
+
                 if(usuario_logado._id != produto.fk_id_brecho){
     
                     const conversa_ja_existente = usuario_logado.conversas.find(conversa => conversa._id == produto.fk_id_brecho);
-                    
+
                     if(conversa_ja_existente){
 
+                        set_pop_de_chat_ja_adicionado(true);
 
                     } else {
 
                         let info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
                         set_usuario_logado({...usuario_logado, conversas: [...usuario_logado.conversas, info_do_brecho]});
+                        atualizar_cliente();
                     };
-                };            
+                };
+
             };
 
         } catch (erro) {
@@ -115,6 +152,14 @@ function Produto() {
         };
     };
 
+    function exibir_preco(preco){
+
+        const preco_convertido = String(preco).split(`.`);
+        const decimal = preco_convertido[preco_convertido.length - 1];
+
+        return decimal < 10 ? `${preco_convertido[0]},${decimal}0` : `${preco_convertido[0]},${decimal}`;
+    };
+
     function exibir_nome_do_brecho(_id){
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
@@ -128,6 +173,11 @@ function Produto() {
 
   return (
     <div className='container_visualizar_produto'>
+
+        {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada/>}
+        {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
+        {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
+        {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
 
         <Header tipo = "usuario"/>
 
@@ -176,7 +226,7 @@ function Produto() {
 
                 <div className="container_info_do_produto_preco">
 
-                    <h2>R${produto.preco}</h2>
+                    <h2>R${exibir_preco(produto.preco)}</h2>
 
                 </div>
 
@@ -256,6 +306,13 @@ function Produto() {
 
         {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}
+        
+        <div className="container_roupas_que_usuario_possa_gostar">
+
+            <h1>Você também pode gostar</h1>
+
+            
+        </div>
 
         <Footer/>
 

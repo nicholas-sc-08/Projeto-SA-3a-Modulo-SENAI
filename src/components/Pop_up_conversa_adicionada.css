@@ -1,0 +1,41 @@
+.container_pop_up_conversa_adicionado{
+
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+}
+
+.container_informacoes_do_pop_up{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 20%;
+    height: 40%;
+
+    border-radius: 1vw;
+
+    background-color: var(--cor_quatro);
+    z-index: 7;
+}
+
+.container_informacoes_do_pop_up span{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 550;
+
+    margin-top: 20%;
+    color: var(--cor_seis);
+}
+
+.container_informacoes_do_pop_up img{
+
+    width: 35%;
+}
