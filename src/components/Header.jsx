@@ -1,14 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import './Janela_de_pesquisa_header.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GlobalContext } from '../contexts/GlobalContext';
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const [containerAberto, setContainerAberto] = useState(false)
+    const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
     const containerRef = useRef(null)
+    const buttonPerfilRef = useRef(null)
+
+    const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -22,6 +27,22 @@ function Header({ tipo }) {
 
         return () => {
             document.addEventListener('mousedown', clickForaContainer)
+        }
+
+    }, [])
+
+    useEffect(() => {
+
+        function clickForaContainerPerfil(event) {
+            if (buttonPerfilRef.current && !buttonPerfilRef.current.contains(event.target)) {
+                setButtonPefilAberto(false) // aqui ele fecha se clicou fora
+            }
+        }
+
+        document.addEventListener('mousedown', clickForaContainerPerfil)
+
+        return () => {
+            document.removeEventListener('mousedown', clickForaContainerPerfil)
         }
 
     }, [])
@@ -58,12 +79,27 @@ function Header({ tipo }) {
     const renderIcons = () => {
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
-                <div className="button-container-navbar-alinhamento">
-                    <button className='button-sacola-navbar'><img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Sacola" /></button>
+                <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
+                    <button className='button-sacola-navbar'><img src="./public/img/icons/IconeSacola.svg" alt="Sacola" /></button>
                     {tipo === 'brecho' && (
                         <button className='button-chat-navbar'><img src="./public/img/icons/chat.svg" alt="Chat" /></button>
                     )}
-                    <button className='button-perfil-navbar'><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente" jva /></button>
+                    <button className='button-perfil-navbar' onClick={() => setButtonPefilAberto(!buttonPerfilAberto)}><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente" /></button>
+
+                    <AnimatePresence>
+                        {buttonPerfilAberto && (
+                            <motion.div
+                                className="menu-perfil-desplegable"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <Link to="/login" onClick={() => setButtonPerfilAberto(false)}>Login</Link>
+                                <Link to="/cadastrar" onClick={() => setButtonPerfilAberto(false)}>Cadastrar</Link>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </div>
         );

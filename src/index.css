@@ -1,19 +1,15 @@
-*{
-
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#root, body, html{
+#root,
+body,
+html {
 
     min-height: 100vh;
 
     --cor_um: #466330;
     --cor_um_v_um: #466330b5;
     --cor_um_v_dois: #2d411f;
-    --cor_um_v_tres_a: #466330c2;
-    --cor_um_v_quatro: #4663303f;
+    --cor_um_v_tres: #466330c2;
+    --cor_um_v_quatro: #46633053;
+    --cor_um_v_cinco: #4663306a;
     --cor_dois: #9DA650;
     --cor_dois_v_um: #8f9749;
     --cor_dois_v_dois: #9da65058;
@@ -27,24 +23,17 @@
     --cor_sete_v_um: #ff333399;
     --cor_oito: #2f2e304d;
     --cor_oito_v_um: #0000001a;
-    --cor_oito_v_dois: #00000086;
     --cor_nove: #FFFFFF;
     --cor_nove_v_um: #ffffff96;
     --cor_nove_v_dois: #F0F0F0;
-    --cor_nove_v_tres: #e6e6e696;
-    --cor_dez:#5c5c5c;
-    --cor_onze: #D23D3D;
+    --cor_dez: #5c5c5c;
+    --cor_onze: #9D0000;
     --cor_doze: #F0EEED;
-    --cor_treze: #A62424;
+    --cor_doze_v_um: #e1e1e0;
+    --cor_treze: #6d0000;
     --cor_quatorze: #ab9489;
     --cor_quinze: #FFF4D1;
-    --cor_dezesseis: #F0EEED;
-    --cor_dezesete:#593F28;
-    --cor_dezoito: #3e2a21af;
-    --cor_dezenove  : #FFFDF7;
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
-
-    scrollbar-color: var(--cor_um) var(--cor_quatro);
 }
