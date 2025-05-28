@@ -3,8 +3,12 @@ import "./Cadastro_Produto.css";
 import Header from "../../components/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
+import Chat from "../../components/chat/Chat";
+import Chat_conversa from "../../components/chat/Chat_conversa";
 
 function Cadastro_Produto() {
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { conversa_aberta, set_converas_aberta } = useContext(GlobalContext);
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
@@ -30,6 +34,7 @@ function Cadastro_Produto() {
     fk_id_categoria: "",
     tamanho: "",
     quantidade: 1,
+    fk_id_brecho: usuario_logado._id
   });
 
   useEffect(() => {
@@ -80,48 +85,37 @@ function Cadastro_Produto() {
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
   };
 
+  const adicionar_imagem = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-function adicionar_imagem(e){
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "Fly_Brecho"); 
+  try {
+  
+    const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-  setArray_cadastro_produto({...array_cadastro_produto, imagem: [...array_cadastro_produto.imagem, e.target.value]});
-  setImagemPrincipal(array_cadastro_produto.imagem[0]);
+    const data = await response.json();
+
+    if (data.secure_url) {
+      const novaLista = [...imagens, data.secure_url];
+      setImagens(novaLista);
+      setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
+      if (!imagemPrincipal) setImagemPrincipal(data.secure_url);
+    }
+  } catch (error) {
+    console.error("Erro ao fazer upload da imagem:", error);
+  }
 };
 
-useEffect(() => {
 
-  console.log(array_cadastro_produto);
-
-}, [array_cadastro_produto]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  useEffect(() => {
+    console.log(array_cadastro_produto);
+  }, [array_cadastro_produto]);
 
   const removerImagem = (index) => {
     const novasImagens = imagens.filter((_, i) => i !== index);
@@ -379,7 +373,9 @@ useEffect(() => {
         </div>
       </div>
 
-      
+      {usuario_logado != `` && !conversa_aberta && <Chat />}
+      {conversa_aberta && <Chat_conversa />}
+
     </div>
   );
 }

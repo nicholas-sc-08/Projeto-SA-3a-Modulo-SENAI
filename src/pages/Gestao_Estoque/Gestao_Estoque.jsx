@@ -4,11 +4,14 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
 import Header from "../../components/Header";
 import api from "../../services/api";
-
+import Chat from "../../components/chat/Chat";
+import Chat_conversa from "../../components/chat/Chat_conversa";
 
 // ...imports mantidos
 
 function Gestao_Estoque() {
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
@@ -173,7 +176,7 @@ function Gestao_Estoque() {
               >
                 <div className="produto-info">
                   <div className="produto-imagem">
-                    <img src={produto.imagem} alt="" />
+                    <img src={produto.imagem[0]} alt="" />
                   </div>
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
@@ -203,6 +206,10 @@ function Gestao_Estoque() {
           </div>
         </div>
       </div>
+
+      {usuario_logado != `` && !conversa_aberta && <Chat />}
+      {conversa_aberta && <Chat_conversa />}
+
     </div>
   );
 }

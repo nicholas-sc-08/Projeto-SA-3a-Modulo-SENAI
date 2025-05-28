@@ -12,7 +12,8 @@ const produto_schema = new mongoose.Schema({
     quantidade: { type: Number, required: true},
     descricao: { type: String, required: true },
     tamanho: {type: String, required: true},
-    composicao: {type: String, required: true}
+    composicao: {type: String, required: true},
+    fk_id_brecho: {type: String, requried: true}
 });
 
 const novo_produto = mongoose.model(`Produto`, produto_schema);

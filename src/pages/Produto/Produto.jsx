@@ -53,9 +53,8 @@ function Produto() {
 
     useEffect(() => {
 
-            console.log(array_de_produtos_aleatorios);        
-
-    }, [array_de_produtos_aleatorios]);
+        console.log(usuario_logado);
+    }, []);
 
     useEffect(() => {
 
