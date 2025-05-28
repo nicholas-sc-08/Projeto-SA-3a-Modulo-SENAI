@@ -401,9 +401,6 @@ function Produto() {
             </div>
 
         </div>
-
-        {usuario_logado != `` && !conversa_aberta && <Chat />}
-        {conversa_aberta && <Chat_conversa />}
         
         <div className="container_roupas_que_usuario_possa_gostar">
 
@@ -443,6 +440,9 @@ function Produto() {
             </div>
             
         </div>
+
+        {usuario_logado != `` && !conversa_aberta && <Chat />}
+        {conversa_aberta && <Chat_conversa />}
 
         <Footer/>
 
