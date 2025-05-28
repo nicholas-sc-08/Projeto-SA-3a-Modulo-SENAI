@@ -1,3 +1,8 @@
+.container_visualizar_produto{
+
+    transition: 0.5s ease;
+}
+
 .container_info_do_produto{
 
     display: flex;
@@ -109,7 +114,6 @@
     align-items: center;
     justify-content: center;
     width: 30%;
-    height: 100%;
 }
 
 .container_info_brecho_do_produto{
@@ -435,7 +439,7 @@
     height: 100%;
     position: fixed;
     z-index: 5;
-    background-color: var(--cor_oito_v_dois);
+    background-color: var(--cor_oito);
 }
 
 .container_roupas_que_usuario_possa_gostar{
@@ -444,6 +448,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 3%;
+    margin-bottom: 4%;
     width: 100%;
     height: 60vh;
 }
@@ -460,9 +465,9 @@
 .container_roupas_vitrine{
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    height: 65%;
+    height: 100%;
     margin-top: 4%;
 }
 
@@ -471,10 +476,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
     transition: 0.3s;
-    width: 15%;
+    width: 20%;
     height: 100%;
+    margin-right: 2%;
     border: 0.1vw solid var(--cor_quatro);
 
 }
