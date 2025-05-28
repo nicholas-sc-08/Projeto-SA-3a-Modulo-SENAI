@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Produto.css';
@@ -22,24 +22,12 @@ function Produto() {
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+    const { array_de_produtos_aleatorios, set_array_de_produtos_aleatorios } = useContext(GlobalContext);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
     const [ pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado ] = useState(false);
     const [ pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado ] = useState(false);
-    const [ array_de_produtos_aleatorios, set_array_de_produtos_aleatorios ] = useState([]);
-
-    useEffect(() => {
-
-        let array_sortido = [];
-
-        for(let i = 0; i < 2; i++){
-
-            array_sortido.push(array_produtos[Math.floor(Math.random() * 4)]);
-
-        };
-        set_array_de_produtos_aleatorios(array_sortido);
-
-    }, []);
+    const refencia_do_produto = useRef(null);
 
     useEffect(() => {
 
@@ -52,7 +40,8 @@ function Produto() {
         buscar_produtos();
         buscar_brechos();   
         buscar_clientes();     
-                
+        sortear_produtos();   
+        
     }, []);
 
     useEffect(() => {
@@ -161,6 +150,21 @@ function Produto() {
         };
     };
 
+    function ir_para_produto_selecionado(produto_selecionado){
+
+        refencia_do_produto.current.scrollIntoView({behavior: `smooth`});
+        set_produto(produto_selecionado);
+    };
+
+    function sortear_produtos(){
+
+        for(let i = 0; i < 2; i++){
+
+            const numero_sorteado = Math.floor(Math.random() * 2);
+            set_array_de_produtos_aleatorios([...array_de_produtos_aleatorios, array_produtos[numero_sorteado]]);
+        };        
+    };
+
     function imagem_do_brecho(_id){
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
@@ -206,7 +210,7 @@ function Produto() {
     };
 
   return (
-    <div className='container_visualizar_produto'>
+    <div className='container_visualizar_produto' ref={refencia_do_produto}>
 
         {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada/>}
         {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
@@ -350,10 +354,10 @@ function Produto() {
             </div>
 
             <div className="container_roupas_vitrine">
+                
+                 {array_de_produtos_aleatorios.map((produto, i) => (
 
-                {array_de_produtos_aleatorios.map((produto, i) => (
-
-                    <div key={i} className='container_produto_vitrine'>
+                    <div key={i} className='container_produto_vitrine' onClick={() => ir_para_produto_selecionado(produto)}>
                     
                         <div className="container_imagem_do_produto_vitrine">
 
