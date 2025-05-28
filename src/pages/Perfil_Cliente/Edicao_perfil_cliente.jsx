@@ -3,6 +3,7 @@ import "./Edicao_perfil_cliente.css";
 import Footer from '../../components/Footer';
 import Pop_up_mudar_endereco_cliente from '../../components/Pop_up_mudar_endereco_cliente';
 import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
+import { IMaskInput } from 'react-imask';
 
 function Edicao_perfil_cliente() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
@@ -69,7 +70,7 @@ function Edicao_perfil_cliente() {
             onClick={handleImageClick}
             style={{ cursor: 'pointer' }}
           />
-          {/* Input file escondido */}
+          {/* Input que fica escondido até passar o mouse em cima e atraves dele o cliente consegue trocar foto*/}
           <input
             type="file"
             accept="image/*"
@@ -77,6 +78,13 @@ function Edicao_perfil_cliente() {
             style={{ display: 'none' }}
             onChange={handleFileChange}
           />
+          {/* Balão de escolha de foto que aparece ao passar o mouse */}
+          <div className='busca-img-galeria' onClick={handleImageClick}>
+            <div className='aviso-mudar-img'>
+              <img src="./img/edit.svg" alt="Editar" />
+              <h3>Escolher foto</h3>
+            </div>
+          </div>
         </div>
 
         <div className='info-edicao-cliente'>
@@ -88,7 +96,13 @@ function Edicao_perfil_cliente() {
             </div>
             <div className='edicao-telefone-cliente'>
               <label>Telefone</label>
-              <input type="text" placeholder='+55 (DD) 99999-9999'/>
+              <IMaskInput
+                  mask="(00) 00000-0000"
+                  unmask="typed"
+                  placeholder='(DD) 90000-0000'
+                  className="inputs-pequenos-infos"
+                //onAccept
+                />
             </div>
           </div>
 
@@ -105,9 +119,9 @@ function Edicao_perfil_cliente() {
 
           <div className='edicao-mudanca-senha'>
             <label>Mudança de senha</label>
-            <input type="text" placeholder='Senha atual'/>
-            <input type="text" placeholder='Nova senha'/>
-            <input type="text" placeholder='Confirmar senha' />
+            <input type="password" placeholder="Atual Senha" min={7} maxLength={12}/>
+            <input type="password" placeholder="Nova Senha" min={7} maxLength={12}/>
+            <input type="password" placeholder="Confirmar Senha" min={7} maxLength={12} />
             <div className='botoes-edicao-cliente'>
               <button className='but-cancelar-edicao-cliente'>Cancelar</button>
               <button className='but-salvar-edicao-cliente'>Salvar Alterações</button>
