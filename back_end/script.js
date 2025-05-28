@@ -479,21 +479,18 @@ app.get(`/produtos/:id`, async (req, res) =>{
     }
 })
 
-app.post(`/produtos`, upload.array(`imagens`), async (req, res) =>{
-    
-    const urls = req.files.map(file => `http://localhost:3000//uploads/${file.filename}`);
-    const produto = new Produto({...req.body, imagem: urls});
-
-    try {
-        
-        const novo_produto = await produto.save();
-        res.status(201).json(novo_produto);
-
-    } catch (error) {
-
-        console.error(error)
-    };
+app.post('/produtos', async (req, res) => {
+  try {
+    // req.body já deve conter o array de URLs da imagem no campo "imagem"
+    const produto = new Produto({...req.body});
+    const novo_produto = await produto.save();
+    res.status(201).json(novo_produto);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao salvar produto' });
+  }
 });
+
 
 app.put(`/produtos/:id`, async (req, res) =>{
     
