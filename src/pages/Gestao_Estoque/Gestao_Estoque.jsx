@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
 import Header from "../../components/Header";

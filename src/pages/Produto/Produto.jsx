@@ -28,6 +28,28 @@ function Produto() {
     const [ pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado ] = useState(false);
     const [ pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado ] = useState(false);
     const refencia_do_produto = useRef(null);
+    const cores_simplificadas = [
+        { nome: "Preto", hex: "#000000" },
+        { nome: "Branco", hex: "#FFFFFF" },
+        { nome: "Vermelho", hex: "#FF0000" },
+        { nome: "Verde", hex: "#008000" },
+        { nome: "Azul", hex: "#0000FF" },
+        { nome: "Amarelo", hex: "#FFFF00" },
+        { nome: "Laranja", hex: "#FFA500" },
+        { nome: "Roxo", hex: "#800080" },
+        { nome: "Marrom", hex: "#8B4513" },
+        { nome: "Cinza", hex: "#808080" },
+        { nome: "Rosa", hex: "#FFC0CB" },
+        { nome: "Ciano", hex: "#00FFFF" },
+        { nome: "Magenta", hex: "#FF00FF" },
+        { nome: "Vinho", hex: "#800000" },
+        { nome: "Dourado", hex: "#FFD700" },
+        { nome: "Prateado", hex: "#C0C0C0" },
+        { nome: "Bege", hex: "#F5F5DC" },
+        { nome: "Turquesa", hex: "#40E0D0" },
+        { nome: "Lima", hex: "#00FF00" },
+        { nome: "Lavanda", hex: "#E6E6FA" },
+      ];
 
     useEffect(() => {
 
@@ -208,6 +230,44 @@ function Produto() {
 
         return decimal < 10 ? `R$${separar_preco[0]},${decimal}0` : `R$${separar_preco[0]},${decimal}`;
     };
+    
+      function hexParaRGB(hex) {
+        if (typeof hex !== "string") return null;
+        if (!hex.startsWith("#")) hex = "#" + hex;
+    
+        const match = hex.match(/^#([0-9a-fA-F]{6})$/);
+        if (!match) return null;
+    
+        const bigint = parseInt(match[1], 16);
+        return {
+          r: (bigint >> 16) & 255,
+          g: (bigint >> 8) & 255,
+          b: bigint & 255,
+        };
+      };
+
+    function cor_mais_proxima(hex) {
+        const rgb = hexParaRGB(hex);
+        if (!rgb) return "Cor desconhecida";
+    
+        let corMaisPerto = null;
+        let menorDiferenca = Infinity;
+    
+        cores_simplificadas.forEach((cor) => {
+          const corRGB = hexParaRGB(cor.hex);
+          const diferenca =
+            Math.abs(rgb.r - corRGB.r) +
+            Math.abs(rgb.g - corRGB.g) +
+            Math.abs(rgb.b - corRGB.b);
+    
+          if (diferenca < menorDiferenca) {
+            menorDiferenca = diferenca;
+            corMaisPerto = cor.nome;
+          }
+        });
+    
+        return corMaisPerto || "Cor desconhecida";
+      }
 
   return (
     <div className='container_visualizar_produto' ref={refencia_do_produto}>
@@ -319,7 +379,7 @@ function Produto() {
                         <div className='container_fundo_info_do_produto_cor'>
 
                             <div className='cor_do_produto' style={{backgroundColor: produto.cor}}></div>
-                            <span>Verde musgo</span>
+                            <span>{cor_mais_proxima(produto.cor[0])}</span>
 
                         </div>
 
