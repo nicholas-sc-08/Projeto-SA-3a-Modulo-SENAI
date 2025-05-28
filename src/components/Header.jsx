@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import './Janela_de_pesquisa_header.css';
+import './Janela_button_perfil.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../contexts/GlobalContext';
 
@@ -26,7 +27,7 @@ function Header({ tipo }) {
         document.addEventListener('mousedown', clickForaContainer)
 
         return () => {
-            document.addEventListener('mousedown', clickForaContainer)
+            document.removeEventListener('mousedown', clickForaContainer)
         }
 
     }, [])
@@ -76,15 +77,33 @@ function Header({ tipo }) {
         }
     };
 
+    console.log(usuario_logado)
+
     const renderIcons = () => {
+        const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
+
+        console.log("usuario_logado:", usuario_logado);
+        console.log("estaLogado:", estaLogado);
+
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
-                    <button className='button-sacola-navbar'><img src="./public/img/icons/IconeSacola.svg" alt="Sacola" /></button>
+                    <button className="button-sacola-navbar">
+                        <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                    </button>
+
                     {tipo === 'brecho' && (
-                        <button className='button-chat-navbar'><img src="./public/img/icons/chat.svg" alt="Chat" /></button>
+                        <button className="button-chat-navbar">
+                            <img src="/img/icons/chat.svg" alt="Chat" />
+                        </button>
                     )}
-                    <button className='button-perfil-navbar' onClick={() => setButtonPefilAberto(!buttonPerfilAberto)}><img src="./public/img/icons/IconePerfil.svg" alt="Perfil" /><link to="/perfil_cliente" /></button>
+
+                    <button
+                        className="button-perfil-navbar"
+                        onClick={() => setButtonPefilAberto(!buttonPerfilAberto)}
+                    >
+                        <img src="/img/icons/IconePerfil.svg" alt="Perfil" />
+                    </button>
 
                     <AnimatePresence>
                         {buttonPerfilAberto && (
@@ -95,8 +114,21 @@ function Header({ tipo }) {
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.2 }}
                             >
-                                <Link to="/login" onClick={() => setButtonPerfilAberto(false)}>Login</Link>
-                                <Link to="/cadastrar" onClick={() => setButtonPerfilAberto(false)}>Cadastrar</Link>
+                                {estaLogado ? (
+                                    <>
+                                        <div className='janela_button_perfil'>
+                                            <Link to='/perfil_cliente' className='container-imagem-pefil-usuario-header'><img src="./img/img_perfil_provisorio.svg" alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <button onClick={() => set_usuario_logado([])}>Sair</button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="janela_button_perfil">
+                                            <Link to="/login">Login</Link>
+                                            <Link to="/cadastro_cliente">Cadastrar</Link>
+                                        </div>
+                                    </>
+                                )}
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -104,6 +136,7 @@ function Header({ tipo }) {
             </div>
         );
     };
+
 
     return (
         <div className="alinhamento-navbar-usuario">
