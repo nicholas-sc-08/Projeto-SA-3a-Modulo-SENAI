@@ -105,13 +105,13 @@
     padding-right: 5%;
     padding-left: 5%;
     height: 150%;
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 .container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     margin-left: 5%;
     margin-top: 4%;
 }
@@ -154,14 +154,21 @@
     padding-top: 2%;
     padding-bottom: 2%;
     display: flex;
+
+    padding-left: 5%;
+    margin-right: 5%;
+
     gap: 3%;
+    border: 1px solid purple;
 }
 
 .card-brecho-home-page {
     width: 23%;
-    height: auto;
+    max-width: 23%;
+    height: 400px;
     flex: none;
     margin-right: 16px;
+    border: 1px solid purple;
 }
 
 .container-imagem-brecho-cinza {
@@ -172,6 +179,13 @@
     justify-content: center;
     border-radius: 0.8vw;
     height: 90%;
+
+    border: 1px solid blue;
+}
+
+.container-imagem-brecho-cinza img{
+    border: 1px solid red;
+    width: 100%;
 }
 
 .nome-brecho {
