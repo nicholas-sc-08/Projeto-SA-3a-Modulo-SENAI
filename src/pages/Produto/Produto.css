@@ -439,7 +439,7 @@
     height: 100%;
     position: fixed;
     z-index: 5;
-    background-color: var(--cor_oito_v_dois);
+    background-color: var(--cor_oito);
 }
 
 .container_roupas_que_usuario_possa_gostar{

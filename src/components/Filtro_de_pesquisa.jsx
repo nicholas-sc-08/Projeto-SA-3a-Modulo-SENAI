@@ -7,6 +7,7 @@ import api from '../services/api';
 function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+    const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
     const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [ botao_titulo_precos_deg, set_botao_titulo_precos_deg ] = useState(`rotate(0deg)`);
@@ -27,18 +28,49 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
     const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);    
+    const [ preco_exibido, set_preco_exibido ] = useState(``);  
+    const [ preco_maximo, set_preco_maximo ] = useState(0);
 
     useEffect(() => {
 
         buscar_categorias();
+        buscar_produtos();
+
+        for(let i = 0; i < array_produtos.length; i++){
+
+            if(array_produtos[i].preco > preco_maximo){
+
+                set_preco_maximo(array_produtos[i].preco);                
+            };
+        };
 
     }, []);
 
     useEffect(() => {
 
-        console.log(filtro_de_pesquisa);
+        if(filtro_de_pesquisa.preco == preco_maximo){
+
+            set_preco_exibido(`Qualquer preço`);
+        } else {
+
+            set_preco_exibido(`R$${filtro_de_pesquisa.preco}`);
+        };
+        console.log(preco_maximo);
 
     }, [filtro_de_pesquisa]);
+
+    async function buscar_produtos(){
+
+        try {
+
+            const produtos = await api.get(`/produtos`);
+            set_array_produtos(produtos.data);
+
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
 
     async function buscar_categorias(){
 
@@ -275,12 +307,12 @@ function Filtro_de_pesquisa() {
 
             <div className="container_selecionar_preco_filtro_de_pesquisa">
 
-                <input type="range" min={0} max={200} step={1} value={filtro_de_pesquisa.preco} onChange={e => set_filtro_de_pesquisa({...filtro_de_pesquisa, preco: e.target.value})}/>
+                <input type="range" min={0} max={preco_maximo} step={0.01} value={filtro_de_pesquisa.preco} onChange={e => set_filtro_de_pesquisa({...filtro_de_pesquisa, preco: e.target.value})}/>
 
                 <div className="container_exibir_preco_filtro_de_pesquisa">
 
                     <p>R$ 0,00</p>
-                    <p>R$ {filtro_de_pesquisa.preco},00</p>
+                    <p>{preco_exibido}</p>
 
                 </div>
 
