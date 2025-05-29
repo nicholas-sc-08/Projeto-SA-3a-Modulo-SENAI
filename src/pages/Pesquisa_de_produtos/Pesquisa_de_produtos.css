@@ -25,7 +25,6 @@
 .container_exibir_produtos{
 
     display: flex;
-    justify-content: start;
     flex-wrap: wrap;
     overflow-y: hidden;
     
@@ -42,8 +41,8 @@
     justify-content: center;
     transition: 0.3s;
 
-    width: 20%;
-    height: 35%;
+    width: 22%;
+    height: 37%;
     border: 0.1vw solid transparent;
 }
 
@@ -69,8 +68,7 @@
 
 .container_produto_img img{
 
-    width: 70%;
-    height: 90%;
+    width: 65%;
 }
 
 .container_produto_titulo{

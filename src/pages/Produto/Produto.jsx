@@ -377,7 +377,7 @@ function Produto() {
                         
                         <div className='container_fundo_info_do_produto_cor'>
 
-                            <div className='cor_do_produto' style={{backgroundColor: produto.cor}}></div>
+                            <div className='cor_do_produto' style={{backgroundColor: produto.cor[0]}}></div>
                             <span>{cor_mais_proxima(produto.cor[0])}</span>
 
                         </div>

@@ -159,6 +159,18 @@ function Tela_incial() {
     animateEstrela(controlsEstrelaAmarela);
   }, []);
 
+  useEffect(() => {
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+    const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado);
+
+    if(encontrar_brecho){
+
+      
+    };
+
+  }, []);
+
   return (
     <div>
 
