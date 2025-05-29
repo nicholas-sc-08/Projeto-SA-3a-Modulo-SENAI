@@ -35,7 +35,9 @@ function Edicao_perfil_brecho() {
 
             <div className="logo-brecho-geral-content">
               <div className="perfil-brecho-logo">
-                <img src="./img/fotoPerfil.png" alt="" />
+                <img
+                src="./img/fotoPerfil.png" 
+                alt="" />
               </div>
             </div>
 

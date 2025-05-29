@@ -7,7 +7,7 @@
 
     display: flex;
     justify-content: center;
-
+    
 }
 
 .pop_up_de_excluir{
@@ -62,8 +62,8 @@
     font-weight: bold;
 
     border-radius: 15vw;
-    border: 0.1vw solid var(--cor_sete);
-    background-color: var(--cor_sete);
+    border: 0.1vw solid var(--cor_dois);
+    background-color: var(--cor_dois);
     color: var(--cor_quatro);
 }
 

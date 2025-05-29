@@ -22,8 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    border-radius: 0.5rem;
+    border-radius: 0.5                                                                                                                              r                                                                                                   em;
 }
 .voltar-e-menu-content {
     /* border: 3px solid #E3C100; */
