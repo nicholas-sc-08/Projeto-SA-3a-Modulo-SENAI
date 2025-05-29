@@ -10,7 +10,7 @@
     padding: 0.7%;
     border-radius: 0.5vw;
     right: 4%;
-    width: 9%;
+    width: 10%;
     z-index: 3;
 }
 
@@ -38,19 +38,45 @@
     font-weight: 550;
 }
 
-.janela_button_perfil img{
+.janela_button_perfil_logout{
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.container-imagem-pefil-usuario-header img{
     /* border: 1px solid red; */
     width: 30%;
     padding-right: 5%;
 }
-.container-imagem-pefil-usuario-header{
+
+.janela_button_perfil_logout a{
     /* border: 1px solid red; */
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--cor_seis);
+    font-weight: 500;
+
+    transition: 0.4s;
+    /* border: 1px solid red; */
+}
+
+.janela_button_perfil_logout a:hover{
+    color: var(--cor_um_v_dois);
+    font-weight: 550;
+}
+
+
+.container-imagem-pefil-usuario-header{
     display: flex;
     align-items: center;
-    margin-bottom: 12%;
-    padding-left: 1.5%;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
+    padding: 1.5%;
+    width: 75%;
 }
 
 .container-imagem-pefil-usuario-header:hover{
@@ -58,18 +84,22 @@
     border-radius: 0.3vw;
 }
 
-.janela_button_perfil button{
+.janela_button_perfil_logout button{
     border: none;
-    background-color: var(--cor_um);
-    border-radius: 2vw;
-    color: var(--cor_quatro);
-    font-family: var(--tipografia_secundaria);
-    height: 25px;
+    background-color: transparent;
+    border-radius: 0.5vw;
+    padding: 1.5%;
     font-size: 0.8rem;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.janela_button_perfil button:hover{
-    background-color: var(--cor_um_v_dois);
+.janela_button_perfil_logout button:hover{
+    background-color: var(--cor_doze_v_um);
+}
+
+.img-sair-da-conta img{
+    /* border: 1px solid red; */
+    width: 80%;
+    height: 25px;
 }
