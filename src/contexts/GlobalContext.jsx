@@ -51,6 +51,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [nome_do_brecho, set_nome_do_brecho] = useState(``);
     const [ exibir_produtos_filtrados, set_exibir_produtos_filtrados ] = useState(false);
     const [ array_de_produtos_aleatorios, set_array_de_produtos_aleatorios ] = useState([]);
+    const [ tipo_de_header, set_tipo_de_header ] = useState(`usuario`);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -155,6 +156,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_exibir_produtos_filtrados,
             array_de_produtos_aleatorios,
             set_array_de_produtos_aleatorios,
+            tipo_de_header,
+            set_tipo_de_header,
 
             id_do_produto_a_excluir, 
             set_id_do_produto_a_excluir,

@@ -16,12 +16,28 @@ function Pesquisa_de_produtos() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
+    const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const navegar_para_produto = useNavigate(null);
 
     useEffect(() => {
 
         buscar_produtos();
         buscar_brechos();
+
+    }, []);
+
+    useEffect(() => {
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+
+        if(encontrar_brecho){
+
+            set_tipo_de_header(`brecho`);
+
+        } else {
+
+            set_tipo_de_header(`usuario`);
+        };
 
     }, []);
 
@@ -77,7 +93,7 @@ function Pesquisa_de_produtos() {
 
     return (
         <div className='container-alinhamento-all-pages'>
-            <Header tipo='usuario' />
+            <Header tipo={tipo_de_header} />
 
             <div className="container_conteudo_pesquisa_produtos">
 
@@ -112,6 +128,32 @@ function Pesquisa_de_produtos() {
 
                         </div>
                     ))}
+
+                </div>
+
+            </div>
+
+            <div className="container_botoes_de_paginas">
+
+                <div className="container_alinhamento_do_conteudo_de_paginas">
+
+                    <div className="container_botao_voltar_pagina_esquerdo">
+
+                        <button><img src='./img/icons/icone_seta_esquerda.svg'/></button>
+
+                    </div>
+
+                    <div className="container_numero_de_paginas">
+
+                    <span>a</span>
+
+                    </div>
+
+                    <div className="container_botao_voltar_pagina_direito">
+
+                        <button><img src='./img/icons/icone_seta_direita.svg'/></button>
+
+                    </div>
 
                 </div>
 
