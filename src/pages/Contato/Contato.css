@@ -1,113 +1,42 @@
-.container-contato{
+.cabecalho-tela-contato{
     display: flex;
-    margin-left: 6%;
-    margin-top: 2.5%;
-}
-
-.p-bege{
-    color: var(--cor_dez);
-}
-
-.info-para-contato{
-    display: flex;
-    flex-direction: column;
-    margin-top: 10%;
-    margin-left: 4%;
-    border: none;
-    border-radius: 10px;
-    width: 55%;
-    height: 95%;
-    background-color: var(--cor_quatro);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.info-para-contato p{
-    margin-left: 4%;
-    margin-top: 5%;
-    color: var(--cor_seis);
-}
-
-.info-para-contato h4{
-    margin-left: 4%;
-    margin-top: 7%;
-    color: var(--cor_um_v_tres);
-}
-
-.telefoneCirculo{
-    width: 50px;     
-    height: 50px;      
-    background-color: var(--cor_um_v_dois);  
-    border-radius: 50%;
-}
-
-.cabecario-ft{
-    display: flex;
-    margin-left: 4%;
-    margin-top: 4%;
-}
-
-.cabecario-ft h3{
-    margin-top: 3%;
-    margin-left: 5%;
-    color: var(--cor_seis);
-}
-
-.linha-contato{
-    border-bottom: 2px var(--cor_quatorze) solid;
-    width: 92%;
-    opacity: 20%;
-    margin-left: 4%;
-    margin-top: 3%;
-}
-
-.fale-conosco{
-    position: relative;
-    bottom: 95%;
-    left: 67%;
-    width: 760px;
-    height: 55%;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.telemovel{
-    margin-left: 40%;
-}
-.email{
-    margin-left: 43%;
-}
-
-.descricao{
-    display: flex;
-    justify-content:space-between ;
-    color: var(--cor_dez);
-    font-weight: 800;
-    width: 75%;
-}
-
-.forms{
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-}
-
-.forms input{
-    width: 30%;
-    height: 40px;
-    margin-left: 5%;
-    cursor: pointer;
-    outline: none;
-    border: 0.1vw solid var(--cor_dois);
-    border-radius: 1vw;
-
+    padding: 30px 0 0 90px;
     font-family: var(--tipografia_secundaria);
-    font-size: 1rem;
-
-    color: var(--cor_seis);
-    background-color: transparent;
-
-
+    font-size: 12px;
 }
+
+.link-tela-contato{
+    text-decoration: none;
+    color: var(--cor_um);
+}
+
+.container-info-contato{
+    border: 1px solid green;
+    width: 20%;
+    height: 365px;
+
+    margin: 70px 0 0 390px;
+    border-radius: 19px;
+    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+}
+
+.cabecario-info-contato{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.cabecalho-info-contato h3 {
+    color: var(--cor_seis_v_um);
+}
+
+.circulo-icon-contato{
+    width: 50px;         
+    height: 50px;         
+    background-color: green; 
+    border-radius: 50%
+}
+
 
 
 
