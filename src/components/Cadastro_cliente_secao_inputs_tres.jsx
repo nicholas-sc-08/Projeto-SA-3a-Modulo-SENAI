@@ -57,7 +57,7 @@ function Cadastro_cliente_secao_inputs_tres() {
             placeholder='00000-000' 
             required 
             value={endereco_do_cliente.cep} 
-            onAccept={(value) => set_endereco_do_cliente({ ...endereco_do_cliente, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+            onAccept={(value) => set_endereco_do_cliente({ ...endereco_do_cliente, cep: value || ''})} // o onAccept é o método recomendado pela documentação do react-imask
             // onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}
             />
 

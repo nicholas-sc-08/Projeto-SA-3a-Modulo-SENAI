@@ -20,7 +20,7 @@ function Cadastro_cliente_secao_inputs_dois() {
         placeholder='(DD) 90000-0000'
         required
         value={form_de_cadastro_cliente.telefone}
-        onAccept={(value) => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, telefone: value })} // o onAccept é o método recomendado pela documentação do react-imask
+        onAccept={(value) => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, telefone: value || '' })} // o onAccept é o método recomendado pela documentação do react-imask
         // onChange={e => set_form_de_cadastro_cliente({...form_de_cadastro_cliente, telefone: e.target.value})}
       />
 
@@ -31,7 +31,7 @@ function Cadastro_cliente_secao_inputs_dois() {
         unmask="typed"
         placeholder='000.000.000-00'
         value={form_de_cadastro_cliente.cpf}
-        onAccept={(value) => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, cpf: value })}
+        onAccept={(value) => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, cpf: value || '' })}
         // onChange={e => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, cpf: e.target.value })}
       />
 
