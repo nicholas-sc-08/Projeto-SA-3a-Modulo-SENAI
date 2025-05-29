@@ -17,13 +17,18 @@
     align-items: center;
     justify-content: center;
 
-    width: 30%;
-    height: 45%;
+    width: 35%;
+    height: 49%;
     margin-top: 8%;
 
     border-radius: 1.5vw;
 
     background-color: var(--cor_quatro);
+}
+
+.pop_up_de_excluir img {
+    height: 6.2rem;
+    width: 6.2rem;
 }
 
 .pop_up_de_excluir p{
@@ -32,8 +37,8 @@
     text-align: center;
 
     font-family: var(--tipografia_primaria);
-    font-weight: bold;
-    font-size: 1rem;
+    font-weight: 620;
+    font-size: 1.2rem;
 
     margin-top: 10%;
     margin-bottom: 10%;
@@ -42,8 +47,8 @@
 
 .pop_up_de_excluir_botoes{
 
-    width: 100%;
-    height: 15%;
+    width: 73%;
+    height: 21%;
 
     display: flex;
     justify-content: center;
@@ -54,16 +59,17 @@
     transition: 0.3s;
     cursor: pointer;
 
-    width: 32%;
+    width: 43%;
+    height: 59%;
     margin-right: 5%;
 
     font-family: var(--tipografia_primaria);
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 500;
 
     border-radius: 15vw;
-    border: 0.1vw solid var(--cor_sete);
-    background-color: var(--cor_sete);
+    border: 0.1vw solid var(--cor_dois);
+    background-color: var(--cor_dois);
     color: var(--cor_quatro);
 }
 
@@ -72,11 +78,12 @@
     transition: 0.3s;
     cursor: pointer;
 
-    width: 32%;
+    width: 43%;
+    height: 59%;
 
     font-family: var(--tipografia_primaria);
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 500;
 
     border-radius: 15vw;
     border: 0.1vw solid var(--cor_um);
@@ -92,6 +99,6 @@
 
 .pop_up_de_excluir_botao_sair:hover{
 
-    border: 0.1vw solid var(--cor_onze);
-    background-color: var(--cor_onze);
+    border: 0.1vw solid var(--cor_dois_v_um);
+    background-color: var(--cor_dois_v_um);
 }
