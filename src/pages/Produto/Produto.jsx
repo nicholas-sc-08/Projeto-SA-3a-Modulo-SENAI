@@ -22,6 +22,7 @@ function Produto() {
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+    const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { array_de_produtos_aleatorios, set_array_de_produtos_aleatorios } = useContext(GlobalContext);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
@@ -50,20 +51,28 @@ function Produto() {
         { nome: "Lima", hex: "#00FF00" },
         { nome: "Lavanda", hex: "#E6E6FA" },
       ];
-
+      
     useEffect(() => {
-
-        console.log(usuario_logado);
-    }, []);
-
-    useEffect(() => {
-
+      
         buscar_produtos();
         buscar_brechos();   
         buscar_clientes();     
-        sortear_produtos();   
-        
+        sortear_produtos();    
     }, []);
+
+    useEffect(() => {
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+    
+        if(encontrar_brecho){
+    
+          set_tipo_de_header(`brecho`);
+        } else {
+    
+          set_tipo_de_header(`usuario`);
+        };
+    
+      }, []);
 
     useEffect(() => {
 
@@ -179,9 +188,9 @@ function Produto() {
 
     function sortear_produtos(){
 
-        for(let i = 0; i < 2; i++){
+        for(let i = 0; i < 4; i++){
 
-            const numero_sorteado = Math.floor(Math.random() * 2);
+            const numero_sorteado = Math.floor(Math.random() * 4);
             set_array_de_produtos_aleatorios([...array_de_produtos_aleatorios, array_produtos[numero_sorteado]]);
         };        
     };

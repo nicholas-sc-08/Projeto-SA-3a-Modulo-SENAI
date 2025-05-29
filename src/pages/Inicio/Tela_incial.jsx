@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import Footer from '../../components/Footer';
 import Chat from '../../components/chat/Chat';
@@ -22,6 +22,7 @@ function Tela_incial() {
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   const [startIndex, setStartIndex] = useState(0);
@@ -48,7 +49,7 @@ function Tela_incial() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/clientes`);
+      const resultado = await api.get(`/clientes`);
       set_array_clientes(resultado.data);
 
     } catch (erro) {
@@ -61,7 +62,7 @@ function Tela_incial() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/brechos`);
+      const resultado = await api.get(`/brechos`);
       set_array_brechos(resultado.data);
 
     } catch (erro) {
@@ -74,7 +75,7 @@ function Tela_incial() {
 
     try {
 
-      const resultado = await axios.get(`http://localhost:3000/produtos`);
+      const resultado = await api.get(`/produtos`);
       set_array_produtos(resultado.data);
 
     } catch (erro) {
@@ -162,11 +163,13 @@ function Tela_incial() {
   useEffect(() => {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
-    const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado);
 
     if(encontrar_brecho){
 
-      
+      set_tipo_de_header(`brecho`);
+    } else {
+
+      set_tipo_de_header(`usuario`);
     };
 
   }, []);
@@ -174,7 +177,7 @@ function Tela_incial() {
   return (
     <div>
 
-      <Header tipo="brecho" />
+      <Header tipo={tipo_de_header} />
 
       {/* home page seção um */}
       <div className="home-page-secao-um-container">
