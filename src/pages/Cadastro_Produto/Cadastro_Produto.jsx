@@ -5,6 +5,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
+import "../Produto/Produto.css"
 
 function Cadastro_Produto() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -133,7 +134,7 @@ function Cadastro_Produto() {
       try {
         const eyeDropper = new window.EyeDropper();
         const result = await eyeDropper.open();
-        if (coresSelecionadas.length < 3) {
+        if (coresSelecionadas.length < 2) {
           const novasCores = [...coresSelecionadas, result.sRGBHex];
           setCoresSelecionadas(novasCores);
           setArray_cadastro_produto({ ...array_cadastro_produto, cor: novasCores });
@@ -201,31 +202,34 @@ function Cadastro_Produto() {
     <div>
       <Header tipo='brecho' />
       <h2 className="titulo">Cadastro Produto</h2>
-      <div className="container-cadastro-produto">
-        <div className="galeria">
-          {imagens.map((imagem, index) => (
-            <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
-              <img src={imagem} alt={`Imagem ${index}`} />
-            </div>
-          ))}
-          {imagens.length < 3 && (
-            <label className="miniatura">
-              <input type="file" onChange={adicionar_imagem} hidden />
-              <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
-            </label>
-          )}
-        </div>
+     <div className="container-cadastro-produto">
+  <div className="galeria">
+    {[0, 1, 2].map((_, index) => {
+      const imagem = imagens[index];
 
-        <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
-          {imagemPrincipal ? (
-            <img src={imagemPrincipal} alt="Imagem Principal" />
-          ) : (
-            <label className="botao-adicionar-imagem">
-              <input type="file" onChange={adicionar_imagem} hidden />
-              <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
-            </label>
-          )}
+      return imagem ? (
+        <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
+          <img src={imagem} alt={`Imagem ${index}`} />
         </div>
+      ) : (
+        <label key={index} className="miniatura">
+          <input type="file" onChange={adicionar_imagem} hidden />
+          <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
+        </label>
+      );
+    })}
+  </div>
+
+  <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
+    {imagemPrincipal ? (
+      <img src={imagemPrincipal} alt="Imagem Principal" />
+    ) : (
+      <label className="botao-adicionar-imagem">
+        <input type="file" onChange={adicionar_imagem} hidden />
+        <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
+      </label>
+    )}
+  </div>
 
         <div className="detalhes-produto">
           {editandoNome ? (

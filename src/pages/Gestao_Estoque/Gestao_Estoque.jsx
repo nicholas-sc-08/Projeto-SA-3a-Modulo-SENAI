@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_estoque.css";
@@ -7,14 +7,13 @@ import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 
-// ...imports mantidos
-
 function Gestao_Estoque() {
-  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+  const { usuario_logado } = useContext(GlobalContext);
+  const { conversa_aberta } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+  const [filtrar_produto_brecho_id, set_filtrar_produto_brecho_id] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,6 +21,13 @@ function Gestao_Estoque() {
     buscar_produtos();
     buscar_categorias();
   }, []);
+
+  useEffect(() => {
+    if (usuario_logado && array_produtos.length > 0) {
+      const filtrados = array_produtos.filter(produto => produto.fk_id_brecho === usuario_logado._id);
+      set_filtrar_produto_brecho_id(filtrados);
+    }
+  }, [usuario_logado, array_produtos]);
 
   async function buscar_produtos() {
     try {
@@ -121,7 +127,6 @@ function Gestao_Estoque() {
     const produtoSelecionado = array_produtos.find(
       (produto) => produto._id === _id
     );
-    console.log(produtoSelecionado);
     set_informacoes_editar_produto(produtoSelecionado);
     navigate("/cadastro_produto");
   }
@@ -165,10 +170,9 @@ function Gestao_Estoque() {
               <span>Estoque</span>
               <span>Conservação</span>
               <span>Tamanho</span>
-              {/* <span></span> */}
             </div>
 
-            {array_produtos.map((produto, index) => (
+            {filtrar_produto_brecho_id.map((produto, index) => (
               <div
                 className="produto-linha"
                 key={index}
@@ -183,8 +187,7 @@ function Gestao_Estoque() {
                     <p className="produto-categoria">
                       {array_categorias.find(
                         (categoria) => categoria._id === produto.fk_id_categoria
-                      )?.nome || "Sem categoria"}{" "}
-                      - {corMaisProxima(produto.cor)}
+                      )?.nome || "Sem categoria"} - {corMaisProxima(produto.cor)}
                     </p>
                   </div>
                 </div>
@@ -207,9 +210,8 @@ function Gestao_Estoque() {
         </div>
       </div>
 
-      {usuario_logado != `` && !conversa_aberta && <Chat />}
+      {usuario_logado !== "" && !conversa_aberta && <Chat />}
       {conversa_aberta && <Chat_conversa />}
-
     </div>
   );
 }

@@ -55,46 +55,41 @@ body {
 }
 
 .miniatura, .imagem-principal {
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     background: #F3F1EF;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative; /* Permite que o botão de remoção fique posicionado sobre a imagem */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .miniatura {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 155px;
     cursor: pointer;
 }
 
-.miniatura img, .imagem-principal img {
+.miniatura img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
+.imagem-principal img {
+     width: 100%;
+     height: 100%;
+    object-fit: cover;
+}
+
+
 .imagem-principal {
     width: 400px;
-    height: 450px;
+    height: 500px;
     border-radius: 15px;
 }
 
-/* Botão para remover imagem */
-.botao-remover-imagem {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-}
 
 /* ========================
    DETALHES DO PRODUTO

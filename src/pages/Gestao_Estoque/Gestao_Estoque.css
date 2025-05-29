@@ -28,13 +28,9 @@ body {
   justify-content: center;
   align-items: center;
   font-family: var(--tipografia_secundaria);
+  margin-bottom: 10%;
 }
-/* 
-h2 {
-  color: var(--cor_seis);
-  font-family: var(--tipografia_secundaria);
-  padding-bottom: 20px;
-} */
+
 
 .estoque-header {
   display: flex;
