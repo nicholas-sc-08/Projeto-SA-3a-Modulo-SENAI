@@ -10,7 +10,7 @@ function Edicao_perfil_cliente() {
   const [exibirPopUp, setExibirPopUp] = useState(false);
   const [mostrarEdicao, setMostrarEdicao] = useState(false);
 
-  // Estado para a imagem do perfil
+  // Definindo uma imagem para padrão no perfil cliente
   const [imgPerfil, setImgPerfil] = useState('./img/fotoPerfil.png');
   // Referência para o input file
   const inputFileRef = useRef(null);
@@ -100,7 +100,6 @@ function Edicao_perfil_cliente() {
                   mask="(00) 00000-0000"
                   unmask="typed"
                   placeholder='(DD) 90000-0000'
-                  className="inputs-pequenos-infos"
                 //onAccept
                 />
             </div>
