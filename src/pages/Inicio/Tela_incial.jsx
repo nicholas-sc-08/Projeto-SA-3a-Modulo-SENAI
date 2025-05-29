@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -95,16 +93,16 @@ function Tela_incial() {
     }
   };
 
-  const lancamentos = [
-    { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
-    { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
-  ];
+  // const lancamentos = [
+  //   { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
+  //   { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
+  // ];
 
   const nextLancamentos = () => {
     if (startIndexLancamentos + lancamentosToShow < 8) { // ajusta pro total de lançamentos
@@ -162,7 +160,7 @@ function Tela_incial() {
   return (
     <div>
 
-      <Header tipo="brecho" />
+      <Header tipo="usuario" />
 
       {/* home page seção um */}
       <div className="home-page-secao-um-container">
@@ -208,7 +206,7 @@ function Tela_incial() {
         </div>
 
         {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
-        <div className="buttons-anterior-proximo">
+        <div className="buttons-anterior-proximo-container-dois">
           <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
           <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
@@ -252,7 +250,7 @@ function Tela_incial() {
           <p>LANÇAMENTOS</p>
         </div>
 
-        <div className="buttons-anterior-proximo">
+        <div className="buttons-anterior-proximo-container-tres">
           <button className='button-anterior-carrossel' onClick={prevLancamentos}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
           <button className='button-proximo-carrossel' onClick={nextLancamentos}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
         </div>
@@ -264,18 +262,18 @@ function Tela_incial() {
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="container-cards-alinhamento-lancamentos-secao-tres"
             >
-              {lancamentos.map((l, i) => (
+              {array_produtos.map((produto, i) => (
                 <div className="card-lancamento-secao-tres" key={i}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                    <img src="./img/img_perfil_provisorio.svg" alt="" />
+                    <img src={produto.imagem} alt="" />
                     <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brechó Sustentável</Link>
                   </div>
                   <div className="container-card-imagem-roupa-lancamentos">
-                    <img src={l.img} alt={l.nome} />
+                    <img src={produto.imagem} alt={produto.nome} />
                   </div>
                   <div className="alinhamento-preco-roupa-card-lancamento">
-                    <p className='nome-roupa-lancamentos-card'>Camiseta bonita {i + 1}</p>
-                    <p className='preco-roupa-lancamentos-card'>R$ 21.50</p>
+                    <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
+                    <p className='preco-roupa-lancamentos-card'>R${produto.preco}</p>
                   </div>
                 </div>
               ))}

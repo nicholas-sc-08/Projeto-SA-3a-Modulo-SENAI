@@ -105,13 +105,13 @@
     padding-right: 5%;
     padding-left: 5%;
     height: 150%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-left: 5%;
     margin-top: 4%;
 }
@@ -143,11 +143,12 @@
     font-weight: 800;
 }
 
-.buttons-anterior-proximo {
+.buttons-anterior-proximo-container-dois{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0.5%;
+    padding-right: 5%;
 }
 
 .container-brechos-cards-home-page {
@@ -158,34 +159,42 @@
     padding-left: 5%;
     margin-right: 5%;
 
-    gap: 3%;
-    border: 1px solid purple;
+    gap: 0.8%;
+    /* border: 1px solid black; */
 }
 
 .card-brecho-home-page {
     width: 23%;
-    max-width: 23%;
-    height: 400px;
+    height: 350px;
     flex: none;
     margin-right: 16px;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
 }
 
 .container-imagem-brecho-cinza {
-    background-color: var(--cor_nove_v_dois);
+    background-color: var(--cor_doze);
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.8vw;
-    height: 90%;
+    border-radius: 1.5vw;
+    height: 300px;
+    width: 95%;
+    cursor: pointer;
+    transition: 0.4s;
 
-    border: 1px solid blue;
+    /* border: 1px solid black; */
+}
+
+.container-imagem-brecho-cinza:hover{
+    background-color: var(--cor_doze_v_um);
 }
 
 .container-imagem-brecho-cinza img{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
+    height: 250px;
+    border-radius: 1.5vw;
 }
 
 .nome-brecho {
@@ -272,6 +281,13 @@
     font-size: 3.5rem;
     font-weight: 800;
     padding-bottom: 2.5%;
+}
+
+.buttons-anterior-proximo-container-tres{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5%;
 }
 
 .container-cards-alinhamento-lancamentos-secao-tres {
@@ -784,17 +800,15 @@
         /* border: 1px solid black; */
     }
 
-    .alinhamento-buttons-anterior-proximo {
-        justify-content: center;
-        /* border: 1px solid blue; */
-    }
-
-    .buttons-anterior-proximo {
+    .buttons-anterior-proximo-container-dois,
+    .buttons-anterior-proximo-container-tres {
         /* border: 1px solid red; */
-        margin-right: 2.5%;
+        width: 100%;
+        padding-right: 3%;
     }
 
-    .buttons-anterior-proximo button {
+    .buttons-anterior-proximo-container-dois button,
+    .buttons-anterior-proximo-container-tres button {
         /* border: 1px solid red; */
         padding: 2.5%;
         border-radius: 100vw;
