@@ -158,6 +158,31 @@
     height: 100%;
 }
 
+.contianer_pop_up_nome_do_brecho{
+
+    position: fixed;
+    right: 12%;
+    width: fit-content;
+
+    padding: 1%;
+    
+    border-top-left-radius: 100vw;
+    border-top-right-radius: 0vw;
+    border-bottom-left-radius: 100vw;
+    border-bottom-right-radius: 100vw;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    background-color: var(--cor_quatro);
+}
+.contianer_pop_up_nome_do_brecho span{
+
+    font-weight: 550;
+    font-size: 0.8rem;
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis);
+}
+
 .container_info_do_produto_titulo h1{
 
     width: 100%;

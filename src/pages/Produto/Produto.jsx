@@ -8,10 +8,10 @@ import api from '../../services/api';
 import Header from '../../components/Header';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import Chat from '../../components/chat/Chat';
-import Pop_up_nome_brecho from '../../components/Pop_up_nome_brecho';
 import Footer from '../../components/Footer';
 import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Produto() {
 
@@ -332,10 +332,28 @@ function Produto() {
                     
                     <div className='container_info_brecho_logo'>
 
-                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 100)}/>
                     
                     </div>
-                    {exibir_nome_brecho && <Pop_up_nome_brecho/>}
+
+                    <AnimatePresence>
+
+                        {exibir_nome_brecho && 
+                        
+                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+                            
+                            <div className='contianer_pop_up_nome_do_brecho'>
+    
+                                <span>{nome_do_brecho}</span>
+
+                            </div>
+
+                        </motion.div>
+                        
+                        }
+
+                    </AnimatePresence>
+
                     </div>
 
                 </div>

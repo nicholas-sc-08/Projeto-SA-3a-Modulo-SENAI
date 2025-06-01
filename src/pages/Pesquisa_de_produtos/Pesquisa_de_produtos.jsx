@@ -18,18 +18,24 @@ function Pesquisa_de_produtos() {
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
+    
+    useEffect(() => {
+        
+        buscar_produtos();
+        buscar_brechos();
+    }, []);
 
     useEffect(() => {
 
-        buscar_produtos();
-        buscar_brechos();
+        const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+        set_produtos_embaralhados(embaralhar);
 
-    }, []);
-
+    }, [array_produtos]);
+    
     const produtos_por_pagina = 12;
     const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
-    const produtos_embaralhados = [...array_produtos].sort(() => Math.random() - 0.5);
 
     useEffect(() => {
 
