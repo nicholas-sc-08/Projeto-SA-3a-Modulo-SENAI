@@ -160,7 +160,7 @@
 
 .contianer_pop_up_nome_do_brecho{
 
-    position: fixed;
+    position: absolute;
     right: 12%;
     width: fit-content;
 

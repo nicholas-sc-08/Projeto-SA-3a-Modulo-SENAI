@@ -145,7 +145,7 @@ function Produto() {
 
             if(usuario_logado){
                 
-                const conversa_com_usuario = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
+                const brecho_selecionado = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
 
                 if(usuario_logado._id != produto.fk_id_brecho){
     
@@ -157,13 +157,16 @@ function Produto() {
 
                     } else {
 
-                        const info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
-                        const nova_conversa = [...usuario_logado.conversas, info_do_brecho]; 
+                        const info_do_brecho = {_id: brecho_selecionado._id, nome_brecho: brecho_selecionado.nome_brecho, logo: brecho_selecionado.logo}
+                        const nova_conversa_com_brecho = [...usuario_logado.conversas, info_do_brecho];
                     
-                        await api.put(`/clientes/${usuario_logado._id}`, {conversas: nova_conversa});
+                        await api.put(`/clientes/${usuario_logado._id}`, {conversas: nova_conversa_com_brecho});
                         set_usuario_logado({...usuario_logado, conversas: [...usuario_logado.conversas, info_do_brecho]});
-                        buscar_clientes();
-                    
+                        
+                        const info_do_cliente = {_id: usuario_logado._id, nome: usuario_logado.nome, imagem_de_perfil: usuario_logado.imagem_de_perfil};
+                        const nova_conversa_com_cliente = [...brecho_selecionado.conversas, info_do_cliente];
+                        
+                        await api.put(`/brechos/${brecho_selecionado._id}`, {conversas: nova_conversa_com_cliente});                    
                     };
                 };
 
@@ -280,7 +283,7 @@ function Produto() {
         {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
         {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
 
-        <Header tipo = "usuario"/>
+        <Header tipo = {tipo_de_header}/>
 
         <div className="container_voltar_para_buscar_produtos">
 
