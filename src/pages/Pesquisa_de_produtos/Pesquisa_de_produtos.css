@@ -1,11 +1,11 @@
 .all-page-informacoes-alinhamento{
-    /* border: 1px solid blue; */
     display: flex;
     justify-content: flex-end;
+    margin-top: 3%;
     padding-top: 1%;
     padding-right: 2%;
-    height: 900px;
     width: 25%;
+    height: 1200px;
 }
 
 .container-alinhamento-all-pages{
@@ -28,7 +28,7 @@
     flex-wrap: wrap;
     overflow-y: hidden;
     
-    margin-top: 1%;
+    margin-top: 4%;
     padding-bottom: 1%;
     width: 70%;
     height: fit-content;

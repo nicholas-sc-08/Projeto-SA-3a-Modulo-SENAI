@@ -29,6 +29,7 @@ function Pesquisa_de_produtos() {
 
     const produtos_por_pagina = 12;
     const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
+    const produtos_embaralhados = [...array_produtos].sort(() => Math.random() - 0.5);
 
     useEffect(() => {
 
@@ -107,7 +108,7 @@ function Pesquisa_de_produtos() {
 
                 <div className="container_exibir_produtos">
 
-                    {array_produtos.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                    {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
                         
                         <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
                             
