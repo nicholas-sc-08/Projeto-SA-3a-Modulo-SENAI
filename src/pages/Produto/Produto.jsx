@@ -71,6 +71,9 @@ function Produto() {
     
           set_tipo_de_header(`usuario`);
         };
+
+        console.log(produto);
+        
     
       }, []);
 
@@ -239,7 +242,7 @@ function Produto() {
         return decimal < 10 ? `R$${separar_preco[0]},${decimal}0` : `R$${separar_preco[0]},${decimal}`;
     };
     
-      function hexParaRGB(hex) {
+      function hexa_para_rgb(hex) {
         if (typeof hex !== "string") return null;
         if (!hex.startsWith("#")) hex = "#" + hex;
     
@@ -255,26 +258,26 @@ function Produto() {
       };
 
     function cor_mais_proxima(hex) {
-        const rgb = hexParaRGB(hex);
+        const rgb = hexa_para_rgb(hex);
         if (!rgb) return "Cor desconhecida";
     
-        let corMaisPerto = null;
-        let menorDiferenca = Infinity;
+        let cor_mais_proxima = null;
+        let menor_diferença = Infinity;
     
         cores_simplificadas.forEach((cor) => {
-          const corRGB = hexParaRGB(cor.hex);
+          const cor_rgb = hexa_para_rgb(cor.hex);
           const diferenca =
-            Math.abs(rgb.r - corRGB.r) +
-            Math.abs(rgb.g - corRGB.g) +
-            Math.abs(rgb.b - corRGB.b);
+            Math.abs(rgb.r - cor_rgb.r) +
+            Math.abs(rgb.g - cor_rgb.g) +
+            Math.abs(rgb.b - cor_rgb.b);
     
-          if (diferenca < menorDiferenca) {
-            menorDiferenca = diferenca;
-            corMaisPerto = cor.nome;
+          if (diferenca < menor_diferença) {
+            menor_diferença = diferenca;
+            cor_mais_proxima = cor.nome;
           }
         });
     
-        return corMaisPerto || "Cor desconhecida";
+        return cor_mais_proxima || "Cor desconhecida";
       }
 
   return (
@@ -410,44 +413,6 @@ function Produto() {
 
         </div>
         
-        <div className="container_roupas_que_usuario_possa_gostar">
-
-            <div className='container_roupas_titulo'>
-
-                <h1>Você também pode gostar</h1>
-            
-            </div>
-
-            <div className="container_roupas_vitrine">
-                
-                 {array_de_produtos_aleatorios.map((produto, i) => (
-
-                    <div key={i} className='container_produto_vitrine' onClick={() => ir_para_produto_selecionado(produto)}>
-                    
-                        <div className="container_imagem_do_produto_vitrine">
-
-                            <img src={produto.imagem[0]} alt="" />
-
-                        </div>
-
-                        <div className="container_titulo_produto_vitrine">
-
-                            <h4>{produto.nome}</h4>
-                            <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
-                        
-                        </div>
-                    
-                        <div className="container_preco_produto_vitrine">
-
-                            <span>{preco_do_produto_vitrine(produto.preco)}</span>
-
-                        </div>
-                    </div>
-                ))}
-
-            </div>
-            
-        </div>
 
         {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}

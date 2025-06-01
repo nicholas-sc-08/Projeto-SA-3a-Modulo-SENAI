@@ -76,7 +76,7 @@
     margin-left: 2%;
 
     border-radius: 1vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background-color: var(--cor_doze);
 }
 
@@ -106,6 +106,7 @@
     width: 80%;
     height: 8%;
     margin-top: 4%;
+    margin-bottom: 2%;
 }  
 
 .container_info_brecho_logo{
@@ -114,6 +115,7 @@
     align-items: center;
     justify-content: center;
     width: 30%;
+    height: 100%;
 }
 
 .container_info_brecho_do_produto{
@@ -130,7 +132,7 @@
     font-family: var(--tipografia_primaria);
     font-size: 2.3rem;
     font-weight: 600;
-
+    margin-bottom: 2%;
     color: var(--cor_seis);
 }
 
@@ -138,9 +140,11 @@
 
     cursor: pointer;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
     width: 95%;
-    height: 100%;
-    border-radius: 100vw;
+    height: 90%;
+    border-radius: 100%;
 }
 
 .container_info_do_produto_preco{
@@ -165,7 +169,7 @@
     display: flex;
     align-items: center;
     height: fit-content;
-    margin-top: 4%;
+    margin-top: 2%;
     margin-bottom: 2%;
 }
 
