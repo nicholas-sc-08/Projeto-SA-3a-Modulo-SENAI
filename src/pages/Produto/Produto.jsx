@@ -2,6 +2,7 @@ import { useContext, useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Produto.css';
+import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import Header from '../../components/Header';
@@ -289,6 +290,12 @@ function Produto() {
         {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
 
         <Header tipo = "usuario"/>
+
+        <div className="container_voltar_para_buscar_produtos">
+
+            <Link to={`/buscarProdutos`}><img src='./img/icons/icone_seta_esquerda.svg'/>Voltar</Link>
+
+        </div>
 
         <div className="container_info_do_produto">
 
