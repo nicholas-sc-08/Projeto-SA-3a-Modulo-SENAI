@@ -114,10 +114,11 @@ app.post(`/clientes`, async (req, res) => {
 app.put(`/clientes/:_id`, async (req, res) => {
 
     const { _id } = req.params;
+    delete req.body._id;
 
     try {
 
-        const cliente_atualizado = Cliente.findByIdAndUpdate(_id, req.body, {new: true});
+        const cliente_atualizado = await Cliente.findByIdAndUpdate(_id, req.body, {new: true});
         res.status(200).json(cliente_atualizado);
         
     } catch (erro) {

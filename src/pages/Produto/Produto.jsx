@@ -100,19 +100,6 @@ function Produto() {
 
     }, [pop_de_chat_ja_adicionado, pop_up_de_usuario_nao_logado]);
 
-    async function atualizar_cliente(){
-
-        try {
-
-           const usuario_atualiado = await api.put(`/clientes/${usuario_logado._id}`, usuario_logado);
-            console.log(usuario_atualiado.data);
-            
-        } catch (erro) {
-          
-            console.error(erro);
-        };
-    };
-
     async function buscar_brechos(){
 
         try {
@@ -170,9 +157,13 @@ function Produto() {
 
                     } else {
 
-                        let info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
+                        const info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
+                        const nova_conversa = [...usuario_logado.conversas, info_do_brecho]; 
+                    
+                        await api.put(`/clientes/${usuario_logado._id}`, {conversas: nova_conversa});
                         set_usuario_logado({...usuario_logado, conversas: [...usuario_logado.conversas, info_do_brecho]});
-                        atualizar_cliente();
+                        buscar_clientes();
+                    
                     };
                 };
 
