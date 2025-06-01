@@ -247,7 +247,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_filtro_dois">
 
-                    <p style={{color: botao_filtro_dois_deg == `rotate(90deg)` ? `#3E2A21` : `#3e2a219e`}}>{categorias_principais(`shorts`)}</p>
+                    <p style={{color: botao_filtro_dois_deg == `rotate(90deg)` ? `#3E2A21` : `#3e2a219e`}}>{categorias_principais(`short`)}</p>
                     <button onClick={() => exibir_sub_categorias(`filtro_dois`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{transform: botao_filtro_dois_deg}}/></button>
                 
                 </div>
@@ -256,7 +256,7 @@ function Filtro_de_pesquisa() {
                 
                     <div className="container_resultado_pesquisa_filtro_dois">
 
-                    {sub_categorias_das_principais(`shorts`).map((sub_categoria) => (
+                    {sub_categorias_das_principais(`short`).map((sub_categoria) => (
 
                         <div key={sub_categoria._id}>
 

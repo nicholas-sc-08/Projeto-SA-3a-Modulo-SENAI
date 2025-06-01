@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
     
     width: 90%;
     height: 25vh;
@@ -73,6 +74,11 @@
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 1vw;
     background-color: var(--cor_nove_v_dois);
+}
+
+.container_produto_img:hover{
+
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_produto_img img{

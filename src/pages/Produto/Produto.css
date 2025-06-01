@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     width: 5.5%;
+    transition: 0.2s;
     
     text-decoration: none;
     font-family: var(--tipografia_secundaria);
@@ -136,7 +137,7 @@
     width: 80%;
     height: 8%;
     margin-top: 4%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }  
 
 .container_info_brecho_logo{
@@ -144,7 +145,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 70%;
     height: 100%;
 }
 
@@ -153,16 +154,16 @@
     display: flex;
     flex-direction: column;
     align-items: end;
-    width: 25%;
+    width: 10%;
     height: 100%;
 }
 
 .container_info_do_produto_titulo h1{
 
+    width: 100%;
     font-family: var(--tipografia_primaria);
     font-size: 2.3rem;
     font-weight: 600;
-    margin-bottom: 2%;
     color: var(--cor_seis);
 }
 
@@ -271,7 +272,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    width: 20%;
+    width: 24%;
     height: 80%;
 }
 
@@ -289,9 +290,9 @@
     justify-content: center;
     align-items: center;
 
-    width: 40%;
+    width: fit-content;
     height: 45%;
-
+    padding: 6%;
     border: 0.1vw solid var(--cor_doze);
     border-radius: 100vw;
     background-color: var(--cor_doze);
