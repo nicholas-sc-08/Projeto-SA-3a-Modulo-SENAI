@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Pesquisa_de_produtos.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -17,14 +17,25 @@ function Pesquisa_de_produtos() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
+    const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
+    
+    useEffect(() => {
+        
+        buscar_produtos();
+        buscar_brechos();
+    }, []);
 
     useEffect(() => {
 
-        buscar_produtos();
-        buscar_brechos();
+        const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+        set_produtos_embaralhados(embaralhar);
 
-    }, []);
+    }, [array_produtos]);
+    
+    const produtos_por_pagina = 12;
+    const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
 
     useEffect(() => {
 
@@ -103,7 +114,7 @@ function Pesquisa_de_produtos() {
 
                 <div className="container_exibir_produtos">
 
-                    {array_produtos.map((produto, i) => (
+                    {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
                         
                         <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
                             
@@ -139,19 +150,19 @@ function Pesquisa_de_produtos() {
 
                     <div className="container_botao_voltar_pagina_esquerdo">
 
-                        <button><img src='./img/icons/icone_seta_esquerda.svg'/></button>
+                        <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg'/></button>
 
                     </div>
 
                     <div className="container_numero_de_paginas">
 
-                    <span>a</span>
+                    <span>{pagina_atual} de {total_de_paginas}</span>
 
                     </div>
 
                     <div className="container_botao_voltar_pagina_direito">
 
-                        <button><img src='./img/icons/icone_seta_direita.svg'/></button>
+                        <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg'/></button>
 
                     </div>
 

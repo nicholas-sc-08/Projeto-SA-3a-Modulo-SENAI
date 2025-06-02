@@ -1,12 +1,10 @@
 const express = require(`express`);
 const cors = require(`cors`);
-const body_parser = require(`body-parser`);
 const http = require(`http`);
 const app = express();
 const { Server } = require(`socket.io`);
 const porta = 3000;
 const server = http.createServer(app);
-const upload = require(`./config/multer.js`);
 const conectar_com_mongo = require(`./mongo/mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
 const Endereco = require(`./models/Endereco.js`);
@@ -28,7 +26,7 @@ const io = new Server(server, {
     }
 });
 
-app.use(body_parser.json());
+app.use(express.json());
 app.use(`/uploads`, express.static(`uploads`));
 
 app.use((req, res, next) => {
@@ -39,17 +37,25 @@ app.use((req, res, next) => {
 
 server.listen(porta,  () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
+
+// o io.on vai escuta novas conexões de clientes ou seja quando um usuário conectar, é criado um socket exclusivo para ele
 io.on(`connection`, (socket) => {
-        
+
+    // aqui o cliente no caso o usuario logado ali, ele vai ta enviando uma mensagem com o evento "nova_mensagem"
+    // o servidor recebendo essa mensagem enviada pelo usuario logado e retransmite para todos os outros usuarios conectados menos pra quem envio essa mensagem
     socket.on(`nova_mensagem`, (mensagem) => {
 
         socket.broadcast.emit(`receber_mensagem`, mensagem);
     });
 
+    // esse aqui é a mesma coisa que o nova_mensagem mais tipo esse evento já seria para editar ou excluir
+
     socket.on(`mensagem_a_atualizar`, mensagem => {
 
         socket.broadcast.emit(`receber_mensagem`, mensagem);
     })
+
+    //quando o cliente sai da pagina, no caso o chat. ele disconecta ele do servidor
 
     socket.on(`disconnect`, () => {
 
@@ -108,10 +114,11 @@ app.post(`/clientes`, async (req, res) => {
 app.put(`/clientes/:_id`, async (req, res) => {
 
     const { _id } = req.params;
+    delete req.body._id;
 
     try {
 
-        const cliente_atualizado = Cliente.findByIdAndUpdate(_id, req.body, {new: true});
+        const cliente_atualizado = await Cliente.findByIdAndUpdate(_id, req.body, {new: true});
         res.status(200).json(cliente_atualizado);
         
     } catch (erro) {

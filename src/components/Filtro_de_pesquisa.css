@@ -3,8 +3,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 85%;
-    height: 86%;
+    width: 90%;
+    height: 84%;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 1vw;
@@ -49,7 +49,7 @@
     transition: 0.2s;
 
     font-family: var(--tipografia_secundaria);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     
     color: var(--cor_seis_v_um);
 }
@@ -355,7 +355,7 @@
     transition: 0.2s;
 
     font-family: var(--tipografia_secundaria);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     
     color: var(--cor_seis_v_um);
 }
@@ -454,7 +454,7 @@
     align-items: center;
     width: 90%;
     height: 8%;
-    margin-top: 5%;
+    margin-top: 15%;
 }
 
 .botao_filtro_de_pesquisa_aplicar{

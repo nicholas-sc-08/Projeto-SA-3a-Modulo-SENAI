@@ -2,15 +2,16 @@ import { useContext, useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Produto.css';
+import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import Chat from '../../components/chat/Chat';
-import Pop_up_nome_brecho from '../../components/Pop_up_nome_brecho';
 import Footer from '../../components/Footer';
 import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Produto() {
 
@@ -71,6 +72,9 @@ function Produto() {
     
           set_tipo_de_header(`usuario`);
         };
+
+        console.log(produto);
+        
     
       }, []);
 
@@ -95,19 +99,6 @@ function Produto() {
         };
 
     }, [pop_de_chat_ja_adicionado, pop_up_de_usuario_nao_logado]);
-
-    async function atualizar_cliente(){
-
-        try {
-
-           const usuario_atualiado = await api.put(`/clientes/${usuario_logado._id}`, usuario_logado);
-            console.log(usuario_atualiado.data);
-            
-        } catch (erro) {
-          
-            console.error(erro);
-        };
-    };
 
     async function buscar_brechos(){
 
@@ -154,7 +145,7 @@ function Produto() {
 
             if(usuario_logado){
                 
-                const conversa_com_usuario = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
+                const brecho_selecionado = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
 
                 if(usuario_logado._id != produto.fk_id_brecho){
     
@@ -166,9 +157,16 @@ function Produto() {
 
                     } else {
 
-                        let info_do_brecho = {_id: conversa_com_usuario._id, nome_brecho: conversa_com_usuario.nome_brecho, logo: conversa_com_usuario.logo}
+                        const info_do_brecho = {_id: brecho_selecionado._id, nome_brecho: brecho_selecionado.nome_brecho, logo: brecho_selecionado.logo}
+                        const nova_conversa_com_brecho = [...usuario_logado.conversas, info_do_brecho];
+                    
+                        await api.put(`/clientes/${usuario_logado._id}`, {conversas: nova_conversa_com_brecho});
                         set_usuario_logado({...usuario_logado, conversas: [...usuario_logado.conversas, info_do_brecho]});
-                        atualizar_cliente();
+                        
+                        const info_do_cliente = {_id: usuario_logado._id, nome: usuario_logado.nome, imagem_de_perfil: usuario_logado.imagem_de_perfil};
+                        const nova_conversa_com_cliente = [...brecho_selecionado.conversas, info_do_cliente];
+                        
+                        await api.put(`/brechos/${brecho_selecionado._id}`, {conversas: nova_conversa_com_cliente});                    
                     };
                 };
 
@@ -239,7 +237,7 @@ function Produto() {
         return decimal < 10 ? `R$${separar_preco[0]},${decimal}0` : `R$${separar_preco[0]},${decimal}`;
     };
     
-      function hexParaRGB(hex) {
+      function hexa_para_rgb(hex) {
         if (typeof hex !== "string") return null;
         if (!hex.startsWith("#")) hex = "#" + hex;
     
@@ -255,26 +253,26 @@ function Produto() {
       };
 
     function cor_mais_proxima(hex) {
-        const rgb = hexParaRGB(hex);
+        const rgb = hexa_para_rgb(hex);
         if (!rgb) return "Cor desconhecida";
     
-        let corMaisPerto = null;
-        let menorDiferenca = Infinity;
+        let cor_mais_proxima = null;
+        let menor_diferença = Infinity;
     
         cores_simplificadas.forEach((cor) => {
-          const corRGB = hexParaRGB(cor.hex);
+          const cor_rgb = hexa_para_rgb(cor.hex);
           const diferenca =
-            Math.abs(rgb.r - corRGB.r) +
-            Math.abs(rgb.g - corRGB.g) +
-            Math.abs(rgb.b - corRGB.b);
+            Math.abs(rgb.r - cor_rgb.r) +
+            Math.abs(rgb.g - cor_rgb.g) +
+            Math.abs(rgb.b - cor_rgb.b);
     
-          if (diferenca < menorDiferenca) {
-            menorDiferenca = diferenca;
-            corMaisPerto = cor.nome;
+          if (diferenca < menor_diferença) {
+            menor_diferença = diferenca;
+            cor_mais_proxima = cor.nome;
           }
         });
     
-        return corMaisPerto || "Cor desconhecida";
+        return cor_mais_proxima || "Cor desconhecida";
       }
 
   return (
@@ -285,7 +283,13 @@ function Produto() {
         {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
         {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
 
-        <Header tipo = "usuario"/>
+        <Header tipo = {tipo_de_header}/>
+
+        <div className="container_voltar_para_buscar_produtos">
+
+            <Link to={`/buscarProdutos`}><img src='./img/icons/icone_seta_esquerda.svg'/>Voltar</Link>
+
+        </div>
 
         <div className="container_info_do_produto">
 
@@ -322,10 +326,28 @@ function Produto() {
                     
                     <div className='container_info_brecho_logo'>
 
-                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 1000)}/>
+                        <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => {set_exibir_nome_brecho(false)}, 100)}/>
                     
                     </div>
-                    {exibir_nome_brecho && <Pop_up_nome_brecho/>}
+
+                    <AnimatePresence>
+
+                        {exibir_nome_brecho && 
+                        
+                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+                            
+                            <div className='contianer_pop_up_nome_do_brecho'>
+    
+                                <span>{nome_do_brecho}</span>
+
+                            </div>
+
+                        </motion.div>
+                        
+                        }
+
+                    </AnimatePresence>
+
                     </div>
 
                 </div>
@@ -410,44 +432,6 @@ function Produto() {
 
         </div>
         
-        <div className="container_roupas_que_usuario_possa_gostar">
-
-            <div className='container_roupas_titulo'>
-
-                <h1>Você também pode gostar</h1>
-            
-            </div>
-
-            <div className="container_roupas_vitrine">
-                
-                 {array_de_produtos_aleatorios.map((produto, i) => (
-
-                    <div key={i} className='container_produto_vitrine' onClick={() => ir_para_produto_selecionado(produto)}>
-                    
-                        <div className="container_imagem_do_produto_vitrine">
-
-                            <img src={produto.imagem[0]} alt="" />
-
-                        </div>
-
-                        <div className="container_titulo_produto_vitrine">
-
-                            <h4>{produto.nome}</h4>
-                            <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
-                        
-                        </div>
-                    
-                        <div className="container_preco_produto_vitrine">
-
-                            <span>{preco_do_produto_vitrine(produto.preco)}</span>
-
-                        </div>
-                    </div>
-                ))}
-
-            </div>
-            
-        </div>
 
         {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}
