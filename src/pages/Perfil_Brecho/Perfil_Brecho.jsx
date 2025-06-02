@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
 import Footer from '../../components/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header'
