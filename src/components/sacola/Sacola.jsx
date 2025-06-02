@@ -20,14 +20,14 @@ function Sacola() {
 
         <div className="container_produtos_no_carrinho">
 
-            {usuario_logado.sacola.map((produto, i) => (
+            {/* {usuario_logado.sacola.map((produto, i) => (
 
                 <div key={i}>
                     
 
 
                 </div>
-            ))}
+            ))} */}
 
         </div>
 
