@@ -222,6 +222,20 @@ function Produto() {
         };
     };
 
+    async function adicionar_a_sacola(){
+
+        const encontrar_produto = array_produtos.find(p => p._id == produto._id);
+
+        try {
+
+            
+            
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
+
     function imagem_de_perfil_brecho(_id){
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
@@ -421,7 +435,7 @@ function Produto() {
                     
                     <div className='container_botoes_do_produto'>
 
-                        <button className='botao_comprar_produto'>Adicionar a Sacola</button>
+                        <button className='botao_comprar_produto' onClick={() => adicionar_a_sacola()}>Adicionar a Sacola</button>
                         <button className='botao_conversar_com_brecho' onClick={() => adicionar_conversa_ao_chat()}><img src="./img/icons/icone_chat.png" alt=""/>Chat</button>
                     
                     </div>
