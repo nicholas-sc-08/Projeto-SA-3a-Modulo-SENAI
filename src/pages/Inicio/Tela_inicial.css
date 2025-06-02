@@ -49,7 +49,7 @@
 }
 
 .secao-um-texto-container button:hover {
-    background-color: var(--cor_um);
+    background-color: var(--cor_dois_v_um);
 }
 
 /* Degrade de imagem */
@@ -149,11 +149,11 @@
     align-items: center;
     gap: 0.5%;
     padding-right: 5%;
+    /* border: 1px solid red; */
 }
 
 .container-brechos-cards-home-page {
     padding-top: 2%;
-    padding-bottom: 2%;
     display: flex;
 
     padding-left: 5%;
@@ -168,7 +168,6 @@
     height: 350px;
     flex: none;
     margin-right: 16px;
-    /* border: 1px solid purple; */
 }
 
 .container-imagem-brecho-cinza {
@@ -182,6 +181,7 @@
     width: 95%;
     cursor: pointer;
     transition: 0.4s;
+    padding: 6.5%;
 
     /* border: 1px solid black; */
 }
@@ -204,6 +204,7 @@
     height: fit-content;
     margin-bottom: 70%;
     margin-top: 4%;
+    /* border: 1px solid red; */
 
 }
 
@@ -227,10 +228,12 @@
     padding: 0 1rem;
     transition: 0.4s;
     margin-bottom: 5%;
+    cursor: pointer;
+    /* border: 1px solid red; */
 }
 
 .button-ver-todos-os-brechos-home-page button:hover {
-    background-color: var(--cor_dois);
+    background-color: var(--cor_um_v_dois);
 }
 
 .carousel-wrapper {
@@ -249,6 +252,7 @@
     padding-right: 5%;
     padding-left: 5%;
     height: fit-content;
+    /* border: 1px solid red; */
 }
 
 .container-sinalizacao-destaques-home-page {
@@ -295,6 +299,7 @@
     padding-bottom: 2%;
     display: flex;
     gap: 3%;
+    /* border: 1px solid red; */
 }
 
 .card-lancamento-secao-tres {
@@ -302,6 +307,8 @@
     height: auto;
     flex: none;
     margin-right: 16px;
+    /* border: 1px solid blue; */
+    cursor: pointer;
 }
 
 .alinhamento-img-perfil-nome-usuario-secao-tres {
@@ -314,6 +321,7 @@
     width: 10%;
     opacity: 65%;
     padding: 1%;
+    /* border: 1px solid black; */
 }
 
 .nome-brech-card-lancamento {
@@ -331,9 +339,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #8f97496b;
+    background-color: var(--cor_doze);
     border-radius: 1vw;
+    /* border: 1px solid purple; */
+    transition: 0.4s;
+}
 
+.container-card-imagem-roupa-lancamentos:hover{
+    background-color: var(--cor_doze_v_um);
+}
+
+.container-card-imagem-roupa-lancamentos img{
+    /* border: 1px solid black; */
+    width: 75%;
+    height: 220px;
 }
 
 .nome-roupa-lancamentos-card {
@@ -371,11 +390,11 @@
     height: 3rem;
     padding: 0 1rem;
     transition: 0.4s;
-    /* border: 1px solid red; */
+    cursor: pointer;
 }
 
 .alinhamento-buttons-secao-tres-lancamentos button:hover {
-    background-color: var(--cor_dois);
+    background-color: var(--cor_um_v_dois);
 }
 
 /* home page secao tres */
@@ -599,11 +618,11 @@
     border-radius: 2vw;
 
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .button-anterior-carrossel:hover {
-    background-color: var(--cor_um);
-    content: url('./img/icons/CarrosselAnteriorBranco.svg');
+    background-color: var(--cor_doze_v_um);
 }
 
 .button-proximo-carrossel {
@@ -616,11 +635,11 @@
     border-radius: 2vw;
 
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .button-proximo-carrossel:hover {
-    background-color: var(--cor_um);
-    content: url('./img/icons/CarrosselProximoBranco.svg');
+    background-color: var(--cor_doze_v_um);
 }
 
 .container-alinhamento-avaliacoes {
@@ -766,11 +785,10 @@
         display: none;
     }
 
-    .card-brecho-home-page,
-    .card-lancamento-secao-tres {
+    .card-brecho-home-page{
         width: 80%;
-        height: auto;
-        /* border: 1px solid purple; */
+        height: 350px;
+     /* border: 1px solid red; */
     }
 
     .card-lancamento-secao-tres {

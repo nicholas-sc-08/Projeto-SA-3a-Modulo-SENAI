@@ -6,6 +6,7 @@
 .container-alinhamento-imagem-produtos-dashboard {
     display: flex;
     justify-content: space-between;
+    /* border: 1px solid red; */
 }
 
 .container-alinhamento-imagem-titulo-quantidade-produtos-dashboard {
@@ -81,6 +82,8 @@
     border-radius: 2vw;
 
     /* border: 1px solid red; */
+
+    margin-bottom: 5%;
 }
 
 .alinhamento-container-dois-estoque-produto-dashboard {

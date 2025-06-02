@@ -2,7 +2,7 @@
     /* border: 1px solid red; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     position: absolute;
-    top: 12.9%;
+    top: 13.5%;
     background-color: var(--cor_quatro);
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
     padding: 0.7%;
     border-radius: 0.5vw;
     right: 4%;
-    width: 10%;
+    width: 12%;
     z-index: 3;
 }
 
@@ -24,11 +24,11 @@
 
 .janela_button_perfil a{
     font-family: var(--tipografia_secundaria);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     cursor: pointer;
     text-decoration: none;
     color: var(--cor_seis);
-    font-weight: 500;
+    font-weight: 520;
 
     transition: 0.4s;
 }
