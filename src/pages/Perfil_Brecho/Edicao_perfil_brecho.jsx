@@ -11,6 +11,9 @@ function Edicao_perfil_brecho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
 
   const abrirPopUp = () => {
     setMostrarPopUp(true)
@@ -40,11 +43,11 @@ function Edicao_perfil_brecho() {
     }
   }, [brecho_logado])
 
-  // // essa função atualiza estado local ao editar input de info no perfil
-  // const alterarCampo = (e) => {
-  //   const { name, value } = e.target;  // name é o nome do input
-  //   setDadosBrecho(prev => ({ ...prev, [name]: value }));  // prev vem de (previousState, ou seja, estado anterior)
-  // }
+  // essa função atualiza estado local ao editar input de info no perfil
+  const alterarCampo = (e) => {
+    const { name, value } = e.target;  // name é o nome do input
+    setFormCadastroBrecho(prev => ({ ...prev, [name]: value }));  // prev vem de (previousState, ou seja, estado anterior)
+  }
 
   // const enviarFormulario = (e) => {
 
@@ -72,7 +75,7 @@ function Edicao_perfil_brecho() {
 
       <div className="tela-antes-da-div-central">
 
-        <form className="edicao-perfil-brecho-content" onSubmit={enviarFormulario}>
+         <form className="edicao-perfil-brecho-content" >  {/*onSubmit={enviarFormulario} */}
 
 
           <div className="parte-esquerda-div-central">
@@ -120,7 +123,7 @@ function Edicao_perfil_brecho() {
                     name="nome_vendedor"
                     className="inputs-pequenos-infos"
                     placeholder='Nome do Vendedor'
-                    value={dadosBrecho.nome_vendedor}
+                    value={formCadastroBrecho.nome_vendedor}
                     onChange={alterarCampo}
                   />
                 </div>
@@ -130,7 +133,7 @@ function Edicao_perfil_brecho() {
                     type="date"
                     name="data_de_nascimento_vendedor"
                     className="inputs-pequenos-infos"
-                    value={dadosBrecho.data_de_nascimento_vendedor}
+                    value={formCadastroBrecho.data_de_nascimento_vendedor}
                     onChange={alterarCampo}
                   />
                 </div>
@@ -149,7 +152,7 @@ function Edicao_perfil_brecho() {
                   name="nome_brecho"
                   className="inputs-pequenos-infos"
                   placeholder='Nome do Brechó'
-                  value={dadosBrecho.nome_brecho}
+                  value={formCadastroBrecho.nome_brecho}
                   onChange={alterarCampo}
                 />
               </div>
@@ -162,8 +165,8 @@ function Edicao_perfil_brecho() {
                   name="telefone"
                   placeholder='(DD) 90000-0000'
                   className="inputs-pequenos-infos"
-                  value={dadosBrecho.telefone}
-                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, telefone: value }))}
+                  value={formCadastroBrecho.telefone}
+                  onAccept={(value) => setFormCadastroBrecho(prev => ({ ...prev, telefone: value }))}
                 />
               </div>
 
@@ -174,7 +177,7 @@ function Edicao_perfil_brecho() {
                   name="email"
                   className="inputs-pequenos-infos"
                   placeholder='brecho@gmail.com'
-                  value={dadosBrecho.email}
+                  value={formCadastroBrecho.email}
                   onChange={alterarCampo}
                 />
               </div>
@@ -187,8 +190,8 @@ function Edicao_perfil_brecho() {
                   name="cnpj"
                   placeholder='00.000.000/0000-00'
                   className="inputs-pequenos-infos"
-                  value={dadosBrecho.cnpj}
-                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, cnpj: value }))}
+                  value={formCadastroBrecho.cnpj}
+                  onAccept={(value) => setFormCadastroBrecho(prev => ({ ...prev, cnpj: value }))}
                 />
               </div>
 
@@ -201,14 +204,14 @@ function Edicao_perfil_brecho() {
                 type="password"
                 name="nova_senha"
                 placeholder="Nova Senha"
-                value={dadosBrecho.nova_senha}
+                value={formCadastroBrecho.nova_senha}
                 onChange={alterarCampo}
               />
               <input
                 type="password"
                 name="confirmar_senha"
                 placeholder='Confirme sua senha'
-                value={dadosBrecho.confirmar_senha}
+                value={formCadastroBrecho.confirmar_senha}
                 onChange={alterarCampo}
               />
             </div>

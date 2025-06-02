@@ -9,7 +9,8 @@ const cliente_schema = new mongoose.Schema({
     cpf: { type: String, required: false, unique: false},
     data_de_nascimento: { type: Date, required: true},
     imagem_de_perfil: { type: String, required: true},
-    conversas: { type: Array, required: false}
+    conversas: { type: Array, required: false},
+    sacola: {type: Array, required: false }
 }, { timestamps: true});
 
 const Cliente = mongoose.model(`Clientes`, cliente_schema);
