@@ -14,6 +14,8 @@ const Categoria = require(`./models/Categoria.js`);
 const Brecho = require(`./models/Brecho.js`);
 const Produto = require(`./models/Produto.js`);
 
+`MONGO_URL = mongodb+srv://Admin:senha123@cluster0.dba5y1x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+
 conectar_com_mongo();
 app.use(cors());
   
