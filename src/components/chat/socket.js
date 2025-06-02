@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-const socket = io(`http://localhost:3000`, {
+const socket = io(`https://f07c-189-8-202-5.ngrok-free.app`, {
   transports: ['websocket'],
   extraHeaders: { 'ngrok-skip-browser-warning': 'true' }
 });
