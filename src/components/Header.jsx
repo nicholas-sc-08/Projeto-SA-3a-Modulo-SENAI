@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import './Janela_de_pesquisa_header.css';
 import './Janela_button_perfil.css';
@@ -13,6 +13,9 @@ function Header({ tipo }) {
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
     const containerRef = useRef(null)
     const buttonPerfilRef = useRef(null)
+
+    const [ termoBuscado, setTermoBuscado ] = useState('')
+    const navigate = useNavigate()
 
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
 
@@ -138,6 +141,16 @@ function Header({ tipo }) {
     };
 
 
+    const handleBusca = (e) => {
+        if (e.key === 'Enter' && termoBuscado.trim() !== '') {
+
+            navigate(`/buscar?query=${encodeURIComponent(termoBuscado.trim())}`);
+            setContainerAberto(false)
+        
+        }
+    }
+
+
     return (
         <div className="alinhamento-navbar-usuario">
             <nav className="navbar-usuario">
@@ -173,6 +186,10 @@ function Header({ tipo }) {
                         className="input-pesquisa-navbar"
                         placeholder="O que você está procurando?"
                         onFocus={() => setContainerAberto(true)} // Abre quando clica no input
+
+                        value={termoBuscado}
+                        onChange={(e) => setTermoBuscado(e.target.value)}
+                        onKeyDown={handleBusca}
                     />
 
                     <AnimatePresence>
