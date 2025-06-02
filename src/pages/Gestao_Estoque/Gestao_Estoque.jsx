@@ -8,14 +8,14 @@ import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 
 function Gestao_Estoque() {
-  const { usuario_logado } = useContext(GlobalContext);
-  const { conversa_aberta } = useContext(GlobalContext);
+
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  const [filtrar_produto_brecho_id, set_filtrar_produto_brecho_id] = useState([]);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,13 +28,21 @@ function Gestao_Estoque() {
   }, []);
 
   useEffect(() => {
-    if (usuario_logado && array_produtos.length > 0) {
-      const filtrados = array_produtos.filter(produto => produto.fk_id_brecho === usuario_logado._id);
-      set_filtrar_produto_brecho_id(filtrados);
-    }
-  }, [usuario_logado, array_produtos]);
 
-  async function buscar_produtos() {
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+
+    if(encontrar_brecho){
+
+      set_tipo_de_header(`brecho`);
+    } else {
+
+      set_tipo_de_header(`usuario`);
+    };
+
+  }, []);
+
+  async function buscar_brechos(){
+
     try {
 
       const brechos = await api.get(`/brechos`);

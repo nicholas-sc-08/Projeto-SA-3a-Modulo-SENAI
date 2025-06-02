@@ -1,11 +1,11 @@
 .all-page-informacoes-alinhamento{
-    /* border: 1px solid blue; */
     display: flex;
     justify-content: flex-end;
+    margin-top: 3%;
     padding-top: 1%;
     padding-right: 2%;
-    height: 900px;
     width: 25%;
+    height: 1200px;
 }
 
 .container-alinhamento-all-pages{
@@ -28,9 +28,10 @@
     flex-wrap: wrap;
     overflow-y: hidden;
     
-    margin-top: 1%;
-    padding-bottom: 10%;
+    margin-top: 4%;
+    padding-bottom: 1%;
     width: 70%;
+    height: fit-content;
 }
 
 .container_produto{
@@ -44,6 +45,11 @@
 
     width: 22%;
     height: 40%;
+    margin-right: 1%;
+    margin-bottom: 3%;
+    padding-bottom: 2%;
+
+    border-radius: 1vw;
     border: 0.1vw solid transparent;
 }
 
@@ -57,14 +63,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
     
     width: 90%;
-    height: 70%;
+    height: 25vh;
     
+    margin-top: 6%;
     margin-bottom: 5%;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 1vw;
     background-color: var(--cor_nove_v_dois);
+}
+
+.container_produto_img:hover{
+
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_produto_img img{
@@ -83,8 +97,10 @@
 
 .container_produto_titulo img{
 
-    width: 15%;
-    height: 4vh;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+    width: 16%;
+    height: 3.5vh;
     border-radius: 100vw;
 }
 
@@ -133,25 +149,81 @@
 
 .container_alinhamento_do_conteudo_de_paginas{
 
-    margin-right: 12%;
+    margin-right: 10.5%;
     width: 65%;
     display: flex;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     justify-content: space-between;
-    background-color: blue;
     border-top: 0.1vw solid var(--cor_oito);
+}
+
+.container_numero_de_paginas{
+
+    display: flex;
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_numero_de_paginas span{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor_seis);
 }
 
 .container_botao_voltar_pagina_esquerdo{
 
     display: flex;
     align-items: center;
-    width: 5%;
-    background-color: red;
+    width: 6%;
 }
 
 .container_botao_voltar_pagina_esquerdo button{
 
-    padding: 20%;
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 80%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: 0px;
+    border-radius: 0.6vw;
+    background-color: var(--cor_quatro);
+}
+
+.container_botao_voltar_pagina_esquerdo button:hover{
+
+    background-color: var(--cor_quatro_v_dois);
+}
+
+.container_botao_voltar_pagina_direito{
+
+    display: flex;
+    align-items: center;
+    width: 6%;
+}
+
+.container_botao_voltar_pagina_direito button{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 80%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: 0px;
+    border-radius: 0.6vw;
+    background-color: var(--cor_quatro);
+}
+
+.container_botao_voltar_pagina_direito button:hover{
+
+    background-color: var(--cor_quatro_v_dois);
 }

@@ -80,10 +80,10 @@ function Login() {
       return;
     }
   
-    if (dominioDoEmail !== 'gmail.com' && dominioDoEmail !== 'hotmail.com') {
-      set_erro('O email deve conter "gmail.com" ou "hotmail.com"');
-      return;
-    }
+    // if (dominioDoEmail !== 'gmail.com' && dominioDoEmail !== 'hotmail.com') {
+    //   set_erro('O email deve conter "gmail.com" ou "hotmail.com"');
+    //   return;
+    // }
   
 
       const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);

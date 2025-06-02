@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { IMaskInput } from 'react-imask';
+import { GlobalContext } from '../../contexts/GlobalContext';
+
 import Footer from '../../components/Footer'
 import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
-import { Link } from 'react-router-dom';
-import { IMaskInput } from 'react-imask';
 
 function Edicao_perfil_brecho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false)
+
+  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
 
   const abrirPopUp = () => {
     setMostrarPopUp(true)
@@ -16,7 +20,51 @@ function Edicao_perfil_brecho() {
     setMostrarPopUp(false)
   }
 
-  
+  const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+    (brecho) => brecho._id === usuario_logado._id
+  )
+
+  useEffect(() => {
+    if (brecho_logado) {
+      setFormCadastroBrecho({
+        nome_vendedor: brecho_logado.nome_vendedor || '',
+        data_de_nascimento_vendedor: brecho_logado.data_de_nascimento_vendedor || '',
+        nome_brecho: brecho_logado.nome_brecho || '',
+        telefone: brecho_logado.telefone || '',
+        email: brecho_logado.email || '',
+        cnpj: brecho_logado.cnpj || '',
+        horario_funcionamento: brecho_logado.horario_funcionamento || '',
+        nova_senha: '',
+        confirmar_senha: '',
+      })
+    }
+  }, [brecho_logado])
+
+  // // essa função atualiza estado local ao editar input de info no perfil
+  // const alterarCampo = (e) => {
+  //   const { name, value } = e.target;  // name é o nome do input
+  //   setDadosBrecho(prev => ({ ...prev, [name]: value }));  // prev vem de (previousState, ou seja, estado anterior)
+  // }
+
+  // const enviarFormulario = (e) => {
+
+  //   e.preventDefault()
+
+  //   // Verifica o que mudou em relação ao formCadastroBrecho original
+  //   const dadosAlterados = {};
+  //   for (const chave in dadosBrecho) {
+  //     if (dadosBrecho[chave] !== formCadastroBrecho[chave] && dadosBrecho[chave] !== '') {
+  //       dadosAlterados[chave] = dadosBrecho[chave]
+  //     }
+  //   }
+
+  //   console.log(`Dados alterados para atualizar: ${dadosAlterados}`)
+
+  //   // atualiza o contexto com os novos dados (junta eles)
+  //   setFormCadastroBrecho(prev => ({ ...prev, ...dadosAlterados }))
+
+  //   console.log('Perfil atualizado com sucesso!')
+  // }
 
   return (
 
@@ -24,7 +72,9 @@ function Edicao_perfil_brecho() {
 
       <div className="tela-antes-da-div-central">
 
-        <div className="edicao-perfil-brecho-content">
+        <form className="edicao-perfil-brecho-content" onSubmit={enviarFormulario}>
+
+
           <div className="parte-esquerda-div-central">
 
             <div className="icone-voltar-verde-content">
@@ -36,13 +86,19 @@ function Edicao_perfil_brecho() {
             <div className="logo-brecho-geral-content">
               <div className="perfil-brecho-logo">
                 <img
-                src="./img/fotoPerfil.png" 
-                alt="" />
+                  src="./img/fotoPerfil.png"
+                  alt="" />
               </div>
             </div>
 
             <div className="info-horario-perfil-brecho">
-              <textarea name="" className="horario-preenchido-brecho" id="" placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00"></textarea>
+              <textarea
+                name="horario_funcionamento"
+                className="horario-preenchido-brecho"
+                // value={dadosBrecho.horario_funcionamento}
+                placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00">
+                {/* onChange={alterarCampo} */}
+              </textarea>
             </div>
 
           </div>
@@ -59,11 +115,24 @@ function Edicao_perfil_brecho() {
               <div className="inputs-info-vendedor-content">
                 <div className="input-info-vendedor-subDiv">
                   <label className="titulo-do-input">Nome</label>
-                  <input type="text" className="inputs-pequenos-infos" placeholder='Nome do Vendedor' />
+                  <input
+                    type="text"
+                    name="nome_vendedor"
+                    className="inputs-pequenos-infos"
+                    placeholder='Nome do Vendedor'
+                    value={dadosBrecho.nome_vendedor}
+                    onChange={alterarCampo}
+                  />
                 </div>
                 <div className="input-info-vendedor-subDiv">
                   <label className="titulo-do-input">Data de Nascimento</label>
-                  <input type="date" className="inputs-pequenos-infos" />
+                  <input
+                    type="date"
+                    name="data_de_nascimento_vendedor"
+                    className="inputs-pequenos-infos"
+                    value={dadosBrecho.data_de_nascimento_vendedor}
+                    onChange={alterarCampo}
+                  />
                 </div>
               </div>
             </div>
@@ -75,7 +144,14 @@ function Edicao_perfil_brecho() {
 
               <div className="inputs-pequenos-infos-brecho">
                 <label className="titulo-do-input">Nome</label>
-                <input type="text" className="inputs-pequenos-infos" placeholder='Nome do Brechó' />
+                <input
+                  type="text"
+                  name="nome_brecho"
+                  className="inputs-pequenos-infos"
+                  placeholder='Nome do Brechó'
+                  value={dadosBrecho.nome_brecho}
+                  onChange={alterarCampo}
+                />
               </div>
 
               <div className="inputs-pequenos-infos-brecho">
@@ -83,18 +159,23 @@ function Edicao_perfil_brecho() {
                 <IMaskInput
                   mask="(00) 00000-0000"
                   unmask="typed"
+                  name="telefone"
                   placeholder='(DD) 90000-0000'
                   className="inputs-pequenos-infos"
-                //onAccept
+                  value={dadosBrecho.telefone}
+                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, telefone: value }))}
                 />
               </div>
 
               <div className="inputs-pequenos-infos-brecho">
                 <label className="titulo-do-input">Email</label>
                 <input
-                  type="email"
+                  type="text"
+                  name="email"
                   className="inputs-pequenos-infos"
                   placeholder='brecho@gmail.com'
+                  value={dadosBrecho.email}
+                  onChange={alterarCampo}
                 />
               </div>
 
@@ -103,9 +184,11 @@ function Edicao_perfil_brecho() {
                 <IMaskInput
                   mask="00.000.000/0000-00"
                   unmask="typed"
+                  name="cnpj"
                   placeholder='00.000.000/0000-00'
                   className="inputs-pequenos-infos"
-                //onAccept
+                  value={dadosBrecho.cnpj}
+                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, cnpj: value }))}
                 />
               </div>
 
@@ -114,14 +197,28 @@ function Edicao_perfil_brecho() {
               <label className="titulo-do-input">Endereço</label>
               <button onClick={() => setMostrarPopUp(true)}>Clique para alterar</button>
               <label className="titulo-do-input">Mudança de Senha</label>
-              <input type="password" placeholder="Nova Senha" min={7} maxLength={12} />
-              <input type="password" placeholder='Confirme sua senha' min={7} maxLength={12} />
+              <input
+                type="password"
+                name="nova_senha"
+                placeholder="Nova Senha"
+                value={dadosBrecho.nova_senha}
+                onChange={alterarCampo}
+              />
+              <input
+                type="password"
+                name="confirmar_senha"
+                placeholder='Confirme sua senha'
+                value={dadosBrecho.confirmar_senha}
+                onChange={alterarCampo}
+              />
             </div>
             <div className="botao-editar-content">
-              <button>Editar</button>
+              <button type="submit">Editar</button>
             </div>
           </div>
-        </div>
+
+        </form>
+
       </div>
       {mostrarPopUp && (
         <PopUp_mudar_Endereco fecharPopUp={() => setMostrarPopUp(false)} />
