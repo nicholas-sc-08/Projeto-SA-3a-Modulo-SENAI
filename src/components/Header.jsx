@@ -14,7 +14,7 @@ function Header({ tipo }) {
     const containerRef = useRef(null)
     const buttonPerfilRef = useRef(null)
 
-    const [ termoBuscado, setTermoBuscado ] = useState('')
+    const [termoBuscado, setTermoBuscado] = useState('')
     const navigate = useNavigate()
 
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -144,12 +144,11 @@ function Header({ tipo }) {
     const handleBusca = (e) => {
         if (e.key === 'Enter' && termoBuscado.trim() !== '') {
 
-            navigate(`/buscar?query=${encodeURIComponent(termoBuscado.trim())}`);
+            navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
             setContainerAberto(false)
-        
+
         }
     }
-
 
     return (
         <div className="alinhamento-navbar-usuario">
