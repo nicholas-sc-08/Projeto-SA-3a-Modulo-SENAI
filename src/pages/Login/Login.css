@@ -1,21 +1,22 @@
-.ladoEsquerdo-container{
-    
+.ladoEsquerdo-container {
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-left: 15%;
+    margin-left: 9%;
     height: 45%;
     font-family: "Montserrat", sans serif;
     overflow-y: hidden;
 
+    /* border: 1px solid red; */
 }
 
-.info-login{
+.info-login {
     display: flex;
     flex-direction: column;
 }
 
-.logo-camadinha{
+.logo-camadinha {
 
     margin-left: 8%;
     margin-top: 2%;
@@ -23,12 +24,12 @@
 }
 
 
-.ladoEsquerdo-container img{
+.ladoEsquerdo-container img {
     width: 150px;
 }
 
-.ladoEsquerdo-container input{
-   
+.ladoEsquerdo-container input {
+
     width: 30%;
     height: 3.1vw;
     padding-left: 1%;
@@ -44,24 +45,24 @@
 
 }
 
-.ladoEsquerdo-container span{
+.ladoEsquerdo-container span {
     color: var(--cor_sete_v_um);
 }
 
-.ladoEsquerdo-container label{
+.ladoEsquerdo-container label {
     color: var(--cor_seis_v_um);
     font-weight: 800;
     margin-top: 3%;
     margin-bottom: 1%;
 }
 
-.ladoEsquerdo-container h1{
+.ladoEsquerdo-container h1 {
     color: var(--cor_seis);
     width: 30%;
     margin-top: 2%;
 }
 
-.fazer_login_butao{
+.fazer_login_butao {
     border: none;
     border-radius: 30px;
     background-color: var(--cor_um);
@@ -73,10 +74,10 @@
     cursor: pointer;
 }
 
-.fazer_login_butao button:hover{
+.fazer_login_butao button:hover {
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
-    
+
 }
 
 
@@ -94,20 +95,20 @@
     transition: background-color 0.3s ease;
     margin-top: 20px;
     width: 30%;
-  }
-  
-  .botao-google-custom:hover {
+}
+
+.botao-google-custom:hover {
     background-color: #f7f7f7;
-  }
-  
-  .botao-google-custom img {
+}
+
+.botao-google-custom img {
     width: 35px;
     height: 20px;
-  }
+}
 
 /* --------------------------------------------------------LADO DIREITO--------------------------------------- */
 
-.ladoDireito-container{
+.ladoDireito-container {
     border-radius: 19px;
     background-color: #E7E8CE;
     width: 40%;
@@ -117,23 +118,42 @@
     left: 45%;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    border: 1px solid red;
 }
-.info-ladoDireito{
+
+.ladoDireito-container.animar-sair {
+    animation: sairParaEsquerda 0.5s ease forwards;
+}
+
+@keyframes sairParaEsquerda {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}   
+
+.info-ladoDireito {
     left: 27%;
     width: 50%;
 }
 
-.info-ladoDireito h1{
+.info-ladoDireito h1 {
     transition: 0.3s;
     font-family: var(--tipografia_primaria);
     font-size: 2.4rem;
     width: 120%;
     margin-left: 50%;
-    
-    color: var(--cor_um);
-}   
 
-.info-ladoDireito p{
+    color: var(--cor_um);
+}
+
+.info-ladoDireito p {
     transition: 0.3s;
     width: 120%;
     margin-top: 10%;
@@ -143,11 +163,11 @@
     color: var(--cor_um_v_um);
     margin-left: 42%;
     text-align: center;
-} 
+}
 
 
 
-.info-ladoDireito button{
+.info-ladoDireito button {
     position: relative;
     top: 26px;
     border: none;
@@ -162,12 +182,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.info-ladoDireito button:hover{
+.info-ladoDireito button:hover {
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
 }
 
-.estrelaMenor{
+.estrelaMenor {
     margin-left: 95%;
     margin-top: 16%;
 }
@@ -189,7 +209,7 @@
 
 /* Responsividade Mobile*/
 @media (max-width: 768px) {
-    .logo-camadinha{
+    .logo-camadinha {
         margin-left: 15%;
     }
 
@@ -198,17 +218,17 @@
         bottom: 14px;
         right: 3%;
     }
-    
-    .info-login{
+
+    .info-login {
         margin-top: 8%;
 
     }
 
-    .info-login input{
+    .info-login input {
         width: 80%;
     }
 
-    .ladoEsquerdo-container button{
+    .ladoEsquerdo-container button {
         width: 75%;
         margin-top: 14%;
         margin-left: 2.5%;

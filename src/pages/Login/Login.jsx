@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import "./Login.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
@@ -16,19 +16,17 @@ function Login() {
   const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
 
-  const location = useLocation();
-
   /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
   const termina_Com_Gmail_Ou_Hotmail = formulario.email.endsWith('@gmail.com') || formulario.email.endsWith('@hotmail.com')
   const o_Texto_Antes_Do_Arroba = formulario.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
 
   const navegar = useNavigate();
+  const [animandoCadastro, setAnimandoCadastro] = useState(false);
 
   useEffect(() => {
 
     informacoes_clientes();
     informacoes_brechos();
-
 
   }, []);
 
@@ -177,14 +175,15 @@ function Login() {
     onError: lidar_falha
   });
 
+  const LoginCadastro = () => {
+    setAnimandoCadastro(true); // ativa animação
+    setTimeout(() => {
+      navegar('/cadastro_brecho');
+    }, 1000);
+  };
+
   return (
-    <motion.div
-      className='container-corpo-login'
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.6, ease: [0.6, 0.01, -0.05, 0.9] }}
-    >
+    <div className='container-corpo-login'>
       <form onSubmit={lidar_com_formulario}>
         <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
         <div className='ladoEsquerdo-container'>
@@ -220,17 +219,17 @@ function Login() {
           {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
         </div>
 
-        <div className='ladoDireito-container'>
-          <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
-          <div className='info-ladoDireito'>
-            <h1>Novo por aqui? Crie sua conta!</h1>
-            <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
-            <button onClick={() => navegar('/cadastro_cliente')} type='button'>Cadastrar-se</button>
+          <div className= {`ladoDireito-container ${animandoCadastro ? 'animar-sair' : ''}`}>
+            <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
+            <div className='info-ladoDireito'>
+              <h1>Novo por aqui? Crie sua conta!</h1>
+              <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
+              <button onClick={() => navegar('/cadastro_brecho')} type='button'>Cadastrar-se</button>
+            </div>
+            <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
           </div>
-          <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
-        </div>
       </form>
-    </motion.div>
+    </div>
   );
 }
 

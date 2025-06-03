@@ -25,9 +25,8 @@ import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente
 import Escolha_cadastro from "../pages/Escolha_cadastro/Escolha_cadastro.jsx";
 
 
-
-
 const router = createBrowserRouter([
+   
    { path: `/`, element: <Tela_inicial /> },
    { path: `/cadastro_cliente`, element: <Cadastro_cliente /> },
    { path: `/cadastro_brecho`, element: <Cadastro_brecho /> },
