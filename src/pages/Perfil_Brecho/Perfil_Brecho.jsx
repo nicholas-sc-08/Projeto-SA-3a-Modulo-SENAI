@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 import Footer from '../../components/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header'
 import Pop_up_de_excluir_perfil from '../../components/Pop_up_de_excluir_perfil'
+import { GlobalContext } from '../../contexts/GlobalContext'
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
-
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
+
+  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -38,8 +39,9 @@ function Perfil_Brecho() {
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
-                  <p className="horario-cadastrado">Segunda à Sexta: 08:00 - 16:00 </p>
-                  <p className="horario-cadastrado">Sábado à Domingo: 10:00 - 17:00 </p>
+                  <p className="horario-cadastrado">
+                    {formCadastroBrecho.horario_funcionamento || 'Não informado'}
+                  </p>
                 </div>
               </div>
               <div className="data-cadastrouSe-content">
@@ -100,22 +102,30 @@ function Perfil_Brecho() {
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Nome:</label>
-                        <span className="dados-cadastradas-exibidos"></span>
+                        <span className="dados-cadastradas-exibidos">
+
+                        </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Email:</label>
-                        <span className="dados-cadastradas-exibidos">e</span>
+                        <span className="dados-cadastradas-exibidos">
+
+                        </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Telefone:</label>
-                        <span className="dados-cadastradas-exibidos"></span>
+                        <span className="dados-cadastradas-exibidos">
+
+                        </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">CNPJ:</label>
-                        <span className="dados-cadastradas-exibidos"></span>
+                        <span className="dados-cadastradas-exibidos">
+                          
+                        </span>
                       </div>
 
                     </div>
@@ -146,7 +156,7 @@ function Perfil_Brecho() {
           </div>
         </div>
       </div>
-      
+
       {mostrarPopUpExcluir && (
         <Pop_up_de_excluir_perfil fecharPopUpExcluir={() => setMostrarPopUpExcluir(false)} />
       )}
