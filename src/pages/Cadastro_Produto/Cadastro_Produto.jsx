@@ -5,7 +5,7 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
-import "../Produto/Produto.css"
+import "../Produto/Produto.css";
 
 function Cadastro_Produto() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -35,7 +35,7 @@ function Cadastro_Produto() {
     fk_id_categoria: "",
     tamanho: "",
     quantidade: 1,
-    fk_id_brecho: usuario_logado._id
+    fk_id_brecho: usuario_logado._id,
   });
 
   useEffect(() => {
@@ -55,6 +55,7 @@ function Cadastro_Produto() {
         fk_id_categoria: informacoes_editar_produto.fk_id_categoria || "",
         tamanho: informacoes_editar_produto.tamanho || "",
         quantidade: informacoes_editar_produto.quantidade || 1,
+        fk_id_brecho: usuario_logado._id,
       });
       setQuantidade(informacoes_editar_produto.quantidade || 1);
       setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
@@ -87,59 +88,85 @@ function Cadastro_Produto() {
   };
 
   const adicionar_imagem = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", "Fly_Brecho"); 
-  try {
-  
-    const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
-      method: "POST",
-      body: formData,
-    });
+    // Criar URL local para mostrar a imagem imediatamente
+    const urlLocal = URL.createObjectURL(file);
+    const novaListaTemporaria = [...imagens, urlLocal];
+    setImagens(novaListaTemporaria);
+    setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaListaTemporaria });
+    if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
-    const data = await response.json();
+    // Upload para Cloudinary
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "Fly_Brecho");
 
-    if (data.secure_url) {
-      const novaLista = [...imagens, data.secure_url];
-      setImagens(novaLista);
-      setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
-      if (!imagemPrincipal) setImagemPrincipal(data.secure_url);
+    try {
+      const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+
+      if (data.secure_url) {
+        // Substituir a URL temporária pela URL real
+        const novaLista = novaListaTemporaria.map((img) => (img === urlLocal ? data.secure_url : img));
+        setImagens(novaLista);
+        setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
+
+        if (imagemPrincipal === urlLocal) {
+          setImagemPrincipal(data.secure_url);
+        }
+
+        // Liberar a URL local para evitar vazamento de memória
+        URL.revokeObjectURL(urlLocal);
+      }
+    } catch (error) {
+      console.error("Erro ao fazer upload da imagem:", error);
     }
-  } catch (error) {
-    console.error("Erro ao fazer upload da imagem:", error);
-  }
-};
-
+  };
 
   useEffect(() => {
     console.log(array_cadastro_produto);
   }, [array_cadastro_produto]);
 
+
   const removerImagem = (index) => {
-    const novasImagens = imagens.filter((_, i) => i !== index);
-    setImagens(novasImagens);
-    setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novasImagens });
-    if (imagemPrincipal === imagens[index]) {
-      setImagemPrincipal(novasImagens[0] || null);
-    }
+    setImagens((prevImagens) => {
+      const novasImagens = prevImagens.filter((_, i) => i !== index);
+      setArray_cadastro_produto((prevProduto) => ({
+        ...prevProduto,
+        imagem: novasImagens,
+      }));
+
+  
+      if (prevImagens[index] === imagemPrincipal) {
+        setImagemPrincipal(novasImagens[0] || "");
+      }
+
+      return novasImagens;
+    });
   };
 
-  const selecionarImagemPrincipal = (imagem) => setImagemPrincipal(imagem);
+  const selecionarImagemPrincipal = (imagem) => {
+    if (imagens.includes(imagem)) {
+      setImagemPrincipal(imagem);
+    }
+  };
 
   const selecionarCorEyeDropper = async () => {
     if (window.EyeDropper) {
       try {
         const eyeDropper = new window.EyeDropper();
         const result = await eyeDropper.open();
-        if (coresSelecionadas.length < 2) {
+        if (coresSelecionadas.length < 3) {
           const novasCores = [...coresSelecionadas, result.sRGBHex];
           setCoresSelecionadas(novasCores);
           setArray_cadastro_produto({ ...array_cadastro_produto, cor: novasCores });
         } else {
-          alert("Você já selecionou o número máximo de cores (3).")
+          alert("Você já selecionou o número máximo de cores (3).");
         }
       } catch (error) {
         console.error("Erro ao selecionar cor", error);
@@ -200,36 +227,47 @@ function Cadastro_Produto() {
 
   return (
     <div>
-      <Header tipo='brecho' />
+      <Header tipo="brecho" />
       <h2 className="titulo">Cadastro Produto</h2>
-     <div className="container-cadastro-produto">
-  <div className="galeria">
-    {[0, 1, 2].map((_, index) => {
-      const imagem = imagens[index];
+      <div className="container-cadastro-produto">
+        <div className="galeria">
+          {[0, 1, 2].map((_, index) => {
+            const imagem = imagens[index];
 
-      return imagem ? (
-        <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
-          <img src={imagem} alt={`Imagem ${index}`} />
+            return imagem ? (
+              <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
+                <img src={imagem} alt={`Imagem ${index}`} />
+                <button
+                  type="button"
+                  className="botao-remover-imagem"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Para não disparar o onClick do pai que seleciona a imagem principal
+                    removerImagem(index);
+                  }}
+                  aria-label={`Remover imagem ${index + 1}`}
+                >
+                  &times;
+                </button>
+              </div>
+            ) : (
+              <label key={index} className="miniatura">
+                <input type="file" onChange={adicionar_imagem} hidden />
+                <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
+              </label>
+            );
+          })}
         </div>
-      ) : (
-        <label key={index} className="miniatura">
-          <input type="file" onChange={adicionar_imagem} hidden />
-          <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
-        </label>
-      );
-    })}
-  </div>
 
-  <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
-    {imagemPrincipal ? (
-      <img src={imagemPrincipal} alt="Imagem Principal" />
-    ) : (
-      <label className="botao-adicionar-imagem">
-        <input type="file" onChange={adicionar_imagem} hidden />
-        <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
-      </label>
-    )}
-  </div>
+        <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
+          {imagemPrincipal ? (
+            <img src={imagemPrincipal} alt="Imagem Principal" />
+          ) : (
+            <label className="botao-adicionar-imagem">
+              <input type="file" onChange={adicionar_imagem} hidden />
+              <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
+            </label>
+          )}
+        </div>
 
         <div className="detalhes-produto">
           {editandoNome ? (
@@ -242,7 +280,9 @@ function Cadastro_Produto() {
               className="inpt-edit"
             />
           ) : (
-            <span className="nome-produto" onClick={() => setEditandoNome(true)}>{nomeExibido}</span>
+            <span className="nome-produto" onClick={() => setEditandoNome(true)}>
+              {nomeExibido}
+            </span>
           )}
 
           {editandoPreco ? (
@@ -255,7 +295,9 @@ function Cadastro_Produto() {
               className="inpt-edit-preco"
             />
           ) : (
-            <span className="preco-produto" onClick={() => setEditandoPreco(true)}>R$ {array_cadastro_produto.preco || "Preço"}</span>
+            <span className="preco-produto" onClick={() => setEditandoPreco(true)}>
+              R$ {array_cadastro_produto.preco || "Preço"}
+            </span>
           )}
 
           <div className="input-group-descricao">
@@ -281,6 +323,7 @@ function Cadastro_Produto() {
                     className="cor-selecionada"
                     style={{ backgroundColor: cor }}
                     onClick={() => substituirCor(index)}
+                    title="Clique para substituir essa cor"
                   ></div>
                 ))}
               </div>
@@ -303,9 +346,13 @@ function Cadastro_Produto() {
           <hr />
 
           <div className="quantidade">
-            <button className="botao-quantidade" onClick={diminuirQuantidade}><img src="./img/menos.svg" alt="-" /></button>
+            <button className="botao-quantidade" onClick={diminuirQuantidade}>
+              <img src="./img/menos.svg" alt="-" />
+            </button>
             <span className="quantidade-numero">{quantidade}</span>
-            <button className="botao-quantidade" onClick={aumentarQuantidade}><img src="./img/mais.svg" alt="+" /></button>
+            <button className="botao-quantidade" onClick={aumentarQuantidade}>
+              <img src="./img/mais.svg" alt="+" />
+            </button>
           </div>
         </div>
       </div>
@@ -354,35 +401,35 @@ function Cadastro_Produto() {
           <div className="input-group-direita">
             <label>Categoria</label>
             <select
-          className="input"
-          value={array_cadastro_produto.fk_id_categoria}
-          onChange={(e) =>
-          setArray_cadastro_produto({
-          ...array_cadastro_produto,
-          fk_id_categoria: e.target.value,
-          })
-        }
-          >
-        <option value="">Selecione uma categoria</option>
-        {Array.isArray(categorias) &&
-        categorias.map((categoria) => (
-        <option key={categoria._id} value={categoria._id}>
-        {categoria.nome}
-        </option>
-        ))}
-        </select>
+              className="input"
+              value={array_cadastro_produto.fk_id_categoria}
+              onChange={(e) =>
+                setArray_cadastro_produto({
+                  ...array_cadastro_produto,
+                  fk_id_categoria: e.target.value,
+                })
+              }
+            >
+              <option value="">Selecione uma categoria</option>
+              {Array.isArray(categorias) &&
+                categorias.map((categoria) => (
+                  <option key={categoria._id} value={categoria._id}>
+                    {categoria.nome}
+                  </option>
+                ))}
+            </select>
 
-            <button onClick={cadastrar_produto} className="botao-cadastrar">Cadastrar Produto</button>
+            <button onClick={cadastrar_produto} className="botao-cadastrar">
+              Cadastrar Produto
+            </button>
           </div>
         </div>
       </div>
 
       {usuario_logado != `` && !conversa_aberta && <Chat />}
       {conversa_aberta && <Chat_conversa />}
-
     </div>
   );
 }
 
 export default Cadastro_Produto;
-

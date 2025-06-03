@@ -54,6 +54,26 @@ body {
     align-items: center;
 }
 
+.botao-remover-imagem {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+
 .miniatura, .imagem-principal {
     border-radius: 20px;
     overflow: hidden;
@@ -71,8 +91,31 @@ body {
     cursor: pointer;
 }
 
+.AddImage {
+    width: 40px;       /* largura fixa pequena */
+    height: 40px;      /* altura fixa pequena */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.AddImage img {
+    width: 70%;       /* ou um valor que fique bom dentro do botão */
+    height: auto;
+    object-fit: contain;
+}
+
+
+.miniatura:not(.has-image) img.AddImage {
+  width: 50px;   /* tamanho do ícone */
+  height: 50px;
+}
+
 .miniatura img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
 }
