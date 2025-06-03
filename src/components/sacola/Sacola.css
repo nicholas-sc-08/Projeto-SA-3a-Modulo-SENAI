@@ -24,7 +24,214 @@
 .container_header_sacola h1{
 
     font-family: var(--tipografia_secundaria);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--cor_seis);
+}
+
+.container_produtos_na_sacola{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    width: 100%;
+}
+
+.container_produtos_a_exibir_sacola{
+
+    display: flex;
+
+    transition: 0.3s;
+    width: 90%;
+    height: 22%;
+
+    margin-top: 4%;
+    
+    border-radius: 0.5vw;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--cor_quatro);
+}
+
+.container_imagem_do_produto_sacola{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    width: 25%;
+    height: 100%;
+ 
+    border-top-left-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+ 
+    background-color: var(--cor_doze_v_um);
+}
+
+.container_info_produto_nome_sacola{
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.container_info_produto_sacola{
+
+    width: 78%;
+    height: 100%;
+}
+
+.container_info_produto_titulo_sacola h3{
+
+    width: 100%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    color: var(--cor_seis);
+}
+
+.container_contador_de_produtos{
+
+    width: 100%;
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.container_contador_de_produtos span{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+
+}
+
+.diminuir_quantidade_de_produto{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15%;
+    height: 2vh;
+
+    border-top-left-radius: 0.3vw;
+    border-bottom-left-radius: 0.3vw;
+    border: 0.1vw solid var(--cor_doze_v_um);
+
+    color: var(--cor_seis);
+    background-color: var(--cor_doze_v_um);
+}
+
+.diminuir_quantidade_de_produto :hover{
+
+    border: 0.1vw solid var(--cor_doze_v_dois);
+    background-color: var(--cor_doze_v_dois);
+}
+
+.aumentar_quantidade_de_produto{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15%;
+    height: 2vh;
+
+    border-top-right-radius: 0.3vw;
+    border-bottom-right-radius: 0.3vw;
+    border: 0.1vw solid var(--cor_doze_v_um);
+
+    color: var(--cor_seis);
+    background-color: var(--cor_doze_v_um);
+}
+
+.aumentar_quantidade_de_produto :hover{
+
+    border: 0.1vw solid var(--cor_doze_v_dois);
+    background-color: var(--cor_doze_v_dois);
+}
+
+.container_info_produto_quantidade_e_nome{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.container_info_produto_titulo_sacola{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 100%;
+    height: 30%;
+}
+
+.container_imagem_do_produto_sacola img{
+
+    width: 80%;
+}
+
+.preco_do_produto_sacola{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.container_info_produto_preco_e_logo{
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-around;
+    width: 40%;
+    height: 100%;
+    padding-right: 5%;
+}
+
+.container_info_produto_preco_e_logo img{
+
+    border-radius: 100vw;
+    width: 35%;
+}
+
+.nenhum_item_adicionado{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.nenhum_item_adicionado p{
+
+    margin-top: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: 500;
+
+    color: var(--cor_seis_v_um);
+}
+
+.nenhum_item_adicionado img{
+
+    width: 15%;
 }
