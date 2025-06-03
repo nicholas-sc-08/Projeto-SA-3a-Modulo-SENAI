@@ -32,7 +32,7 @@ function Perfil_cliente() {
                 <img src="./img/fotoPerfil.png" alt="" />
             </div>
             <div className='info-cliente'>
-                <div className='cabecario-cliente'><h2>Edite seu Perfil</h2></div>
+                <div className='cabecario-cliente'><p>Edite seu Perfil</p></div>
                 <div className='info1'>
                 <div className='nome-cliente'>
                     <label>Nome</label>
@@ -60,8 +60,7 @@ function Perfil_cliente() {
                     <input type="text" placeholder='Senha atual'/>
                     <input type="text" placeholder='Nova senha'/>
                     <input type="text" placeholder='Confirmar senha' />
-                    <button onClick={() => setMostrarEdicao(true)}>Editar</button>
-                    {mostrarEdicao && <Edicao_perfil_cliente />}
+                    <button onClick={() => navegar('/edicao_perfil_cliente')} type='button'>Editar</button>
                 </div>
             </div>
         </div>
