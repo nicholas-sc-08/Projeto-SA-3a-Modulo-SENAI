@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import "./Login.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
@@ -20,12 +21,12 @@ function Login() {
   const o_Texto_Antes_Do_Arroba = formulario.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
 
   const navegar = useNavigate();
+  const [animandoCadastro, setAnimandoCadastro] = useState(false);
 
   useEffect(() => {
 
     informacoes_clientes();
     informacoes_brechos();
-
 
   }, []);
 
@@ -66,47 +67,47 @@ function Login() {
       return;
 
     }
-    
+
 
     if (!formulario.email.includes('@')) {
       set_erro('O email deve conter "@"');
       return;
     }
-  
+
     const [antesDoArroba, dominioDoEmail] = formulario.email.split('@');
-  
+
     if (!antesDoArroba) {
       set_erro('O email deve conter caracteres antes do @');
       return;
     }
-  
+
     // if (dominioDoEmail !== 'gmail.com' && dominioDoEmail !== 'hotmail.com') {
     //   set_erro('O email deve conter "gmail.com" ou "hotmail.com"');
     //   return;
     // }
-  
-
-      const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
-      const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
-      console.log();
 
 
-      if (cliente_a_encontrar) {
+    const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
+    const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
+    console.log();
 
-        set_usuario_logado(cliente_a_encontrar);
-        set_erro(``);
-        navegar(`/`);
 
-      } else if (brecho_a_encontrar) {
+    if (cliente_a_encontrar) {
 
-        set_usuario_logado(brecho_a_encontrar);
-        set_erro(``);
-        navegar(`/`);
+      set_usuario_logado(cliente_a_encontrar);
+      set_erro(``);
+      navegar(`/`);
 
-      } else {
-        set_erro('Usuário ou senha incorretos!');
-      };
-    
+    } else if (brecho_a_encontrar) {
+
+      set_usuario_logado(brecho_a_encontrar);
+      set_erro(``);
+      navegar(`/`);
+
+    } else {
+      set_erro('Usuário ou senha incorretos!');
+    };
+
   };
 
   async function lidar_sucesso(token) {
@@ -174,6 +175,13 @@ function Login() {
     onError: lidar_falha
   });
 
+  const LoginCadastro = () => {
+    setAnimandoCadastro(true); // ativa animação
+    setTimeout(() => {
+      navegar('/cadastro_brecho');
+    }, 1000);
+  };
+
   return (
     <div className='container-corpo-login'>
       <form onSubmit={lidar_com_formulario}>
@@ -211,15 +219,15 @@ function Login() {
           {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
         </div>
 
-        <div className='ladoDireito-container'>
-          <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
-          <div className='info-ladoDireito'>
-            <h1>Novo por aqui? Crie sua conta!</h1>
-            <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
-            <button onClick={() => navegar('/cadastro_cliente')} type='button'>Cadastrar-se</button>
+          <div className= {`ladoDireito-container ${animandoCadastro ? 'animar-sair' : ''}`}>
+            <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
+            <div className='info-ladoDireito'>
+              <h1>Novo por aqui? Crie sua conta!</h1>
+              <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
+              <button onClick={() => navegar('/cadastro_brecho')} type='button'>Cadastrar-se</button>
+            </div>
+            <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
           </div>
-          <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
-        </div>
       </form>
     </div>
   );

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '../../components/Header';
 // import { motion, AnimatePresence } from 'framer-motion';
+// import { useSearch } from '@/contexts/SearchContext';
 
 
 function Tela_incial() {
@@ -34,6 +35,8 @@ function Tela_incial() {
 
   const controlsEstrelaVerde = useAnimation();
   const controlsEstrelaAmarela = useAnimation();
+
+  // const { setValorBuscado } = useSearch();
 
   useEffect(() => {
 
@@ -161,6 +164,11 @@ function Tela_incial() {
 
   }, []);
 
+  // const handleCategoryClick = (categoria: string) => {
+  //   setValorBuscado(categoria)
+  //   navigate('/buscarProdutos')
+  // }
+
   return (
     <div>
 
@@ -238,7 +246,7 @@ function Tela_incial() {
         </AnimatePresence>
 
         <div className="button-ver-todos-os-brechos-home-page">
-            <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
+          <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
         </div>
       </div>
       {/* home page seção dois */}
@@ -299,25 +307,22 @@ function Tela_incial() {
 
         <div className="alinhamento-cards-secao-quatro">
           <div className="container-um-cards-secao-quatro">
+            {/* <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}> */}
             <div className="card-um-secao-quatro">
-              {/* <img src="./img/imagens_telaInicial/CardImagemUmTelaInicial.svg" alt="Roupas" /> */}
               <p>Roupas</p>
             </div>
 
             <div className="card-dois-secao-quatro">
-              {/* <img src="./img/imagens_telaInicial/CardImagemDoisTelaInicial.svg" alt="Accesórios" /> */}
               <p>Acessórios</p>
             </div>
           </div>
 
           <div className="container-dois-cards-secao-quatro">
             <div className="card-tres-secao-quatro">
-              {/* <img src="./img/imagens_telaInicial/CardImagemTresTelaInicial.svg" alt="Doações" /> */}
               <p>Doações</p>
             </div>
 
             <div className="card-quatro-secao-quatro">
-              {/* <img src="./img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg" alt="Calçados" /> */}
               <p>Calçados</p>
             </div>
           </div>
