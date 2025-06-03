@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import "./Login.css";
+import { motion } from "framer-motion";
 
 function Login() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
@@ -14,6 +15,8 @@ function Login() {
 
   const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
+
+  const location = useLocation();
 
   /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
   const termina_Com_Gmail_Ou_Hotmail = formulario.email.endsWith('@gmail.com') || formulario.email.endsWith('@hotmail.com')
@@ -66,47 +69,47 @@ function Login() {
       return;
 
     }
-    
+
 
     if (!formulario.email.includes('@')) {
       set_erro('O email deve conter "@"');
       return;
     }
-  
+
     const [antesDoArroba, dominioDoEmail] = formulario.email.split('@');
-  
+
     if (!antesDoArroba) {
       set_erro('O email deve conter caracteres antes do @');
       return;
     }
-  
+
     // if (dominioDoEmail !== 'gmail.com' && dominioDoEmail !== 'hotmail.com') {
     //   set_erro('O email deve conter "gmail.com" ou "hotmail.com"');
     //   return;
     // }
-  
-
-      const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
-      const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
-      console.log();
 
 
-      if (cliente_a_encontrar) {
+    const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
+    const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
+    console.log();
 
-        set_usuario_logado(cliente_a_encontrar);
-        set_erro(``);
-        navegar(`/`);
 
-      } else if (brecho_a_encontrar) {
+    if (cliente_a_encontrar) {
 
-        set_usuario_logado(brecho_a_encontrar);
-        set_erro(``);
-        navegar(`/`);
+      set_usuario_logado(cliente_a_encontrar);
+      set_erro(``);
+      navegar(`/`);
 
-      } else {
-        set_erro('Usuário ou senha incorretos!');
-      };
-    
+    } else if (brecho_a_encontrar) {
+
+      set_usuario_logado(brecho_a_encontrar);
+      set_erro(``);
+      navegar(`/`);
+
+    } else {
+      set_erro('Usuário ou senha incorretos!');
+    };
+
   };
 
   async function lidar_sucesso(token) {
@@ -175,7 +178,13 @@ function Login() {
   });
 
   return (
-    <div className='container-corpo-login'>
+    <motion.div
+      className='container-corpo-login'
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.6, ease: [0.6, 0.01, -0.05, 0.9] }}
+    >
       <form onSubmit={lidar_com_formulario}>
         <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
         <div className='ladoEsquerdo-container'>
@@ -221,7 +230,7 @@ function Login() {
           <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }
 
