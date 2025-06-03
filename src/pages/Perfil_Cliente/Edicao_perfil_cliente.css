@@ -1,7 +1,7 @@
 .sideBar-edicao-perfil-cliente{
     display: flex;
-    margin-left: 20%;
-    margin-top: 5%;
+    margin-left: 10%;
+    margin-top: 2%;
 }
 
 .sideBar-edicao-perfil-cliente h4{
@@ -11,7 +11,7 @@
 
 .sideBar-edicao-perfil-cliente img{
     position: absolute;
-    left: 78%;
+    left: 87%;
     width: 36px;
     color: var(--cor_um_v_um);
 }
@@ -36,7 +36,7 @@
     width: 242px;
     height: 242px;
     bottom: 3%;
-    left: 53%;
+    left: 48%;
     transform: translateX(-50%); /* Centraliza o balão em relação à imagem */
     background-color: rgba(0, 0, 0, 0.466);
     color: white;
@@ -60,9 +60,9 @@
 .container-edicao-perfil-cliente{
     font-family: "Poppins", sans serif;
     margin-top: 3%;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-bottom: 77px;
-    width: 60%;
+    width: 80%;
     height: 676px;
     border-radius: 13px;
     border: 1px solid  #fbf0ce;
@@ -71,23 +71,25 @@
 
 .container-edicao-perfil-cliente label{
     display: block;
-    margin-bottom: 3%;
+    margin-bottom: 0.5%;
     color: var(--cor_dez);
     font-weight: 800;
 }
 
 .info-edicao-cliente{
     position: relative;
-    bottom: 62%;
+    bottom: 65%;
     left: 22%;
     width: 70%;
 }
 
 .cabecario-edicao-cliente{
-    margin-left: 28%;
+    margin-left: 24%;
     margin-top: 4%;
+    font-family: "Poppins", sans serif;
+    font-weight: 495;
+    font-size: 1.8rem;
     color: var(--cor_um);
-    font-size: 24px;
 }
 
 .info01{
@@ -105,8 +107,9 @@
 }
 
 .edicao-nome-cliente input{
-    height: 2.2vw;
-    padding-left: 1%;
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 4%;
     outline: none;
     border: none;
 
@@ -114,13 +117,15 @@
     font-size: 1rem;
 
     background-color: #fcf7e900;
+    border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
 
 }
 
 .edicao-telefone-cliente input{  
-    height: 2.2vw;
-    padding-left: 1%;
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 4%;
     outline: none;
     border: none;
 
@@ -128,7 +133,8 @@
     font-size: 1rem;
 
     background-color: #fcf7e900;
-    border: 1px solid var(--cor_um_v_um);
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
 
 }
 
@@ -146,8 +152,9 @@
 }
 
 .edicao-email-cliente input{
-    height: 2.2vw;
-    padding-left: 1%;
+    height: 2.9vw;
+    width: 310px;
+    padding-left: 4%;
     outline: none;
     border: none;
 
@@ -156,13 +163,14 @@
 
     color: var(--cor_seis);
     background-color: #fcf7e900;
-    border: 1px solid var(--cor_um_v_um);
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
 }
 
 .edicao-rua-cliente button{
-    height: 2.2vw;
+    height: 2.9vw;
+    width: 310px;
     padding-left: 1%;
-    width: 200px;
     outline: none;
     border: none;
 
@@ -171,22 +179,23 @@
 
     color: var(--cor_seis);
     background-color: #fcf7e900;
-    border: 1px solid var(--cor_um_v_um);
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
 }
 
 .edicao-mudanca-senha{
     display: flex;
     flex-direction: column ;
-    margin-left: 29%;
+    margin-left: 24%;
     margin-top: 5%;
 }
 
 .edicao-mudanca-senha input{
     display: block;
-    margin-bottom: 3%;
-    height: 2.2vw;
-    width: 512px;
-    padding-left: 1%;
+    margin-bottom: 2%;
+    height: 2.9vw;
+    width: 655px;
+    padding-left: 2%;
     outline: none;
     border: none;
 
@@ -194,15 +203,18 @@
     font-size: 1rem;
 
     background-color: #fcf7e900;
-    border: 1px solid var(--cor_um_v_um);
+    border-radius: 0.3rem;
+    border: 1px solid var(--cor_dois);
 }
 
 .edicao-mudanca-senha button{
+    font-family: var(--tipografia_secundaria);
     border: none;
     border-radius: 19px;
-    width: 43%;
+    width: 41%;
     height: 40px;
     margin-top: 5%;
+    margin-left: 7%;
 
 }
 
