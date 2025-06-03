@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import './Janela_de_pesquisa_header.css';
 import './Janela_button_perfil.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../contexts/GlobalContext';
+import Sacola from './sacola/Sacola';
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +15,11 @@ function Header({ tipo }) {
     const containerRef = useRef(null)
     const buttonPerfilRef = useRef(null)
 
+    const [termoBuscado, setTermoBuscado] = useState('')
+    const navigate = useNavigate()
+
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -87,10 +92,23 @@ function Header({ tipo }) {
 
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
+                
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
-                    <button className="button-sacola-navbar">
+                    
+                    <button className="button-sacola-navbar" onClick={() => set_sacola_aberta(!sacola_aberta)}>
                         <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
                     </button>
+                    
+                    <AnimatePresence>
+
+                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+
+                            {sacola_aberta && <Sacola/>}
+
+                        </motion.div>
+
+                    </AnimatePresence>
+
 
                     {tipo === 'brecho' && (
                         <button className="button-chat-navbar">
@@ -138,6 +156,15 @@ function Header({ tipo }) {
     };
 
 
+    const handleBusca = (e) => {
+        if (e.key === 'Enter' && termoBuscado.trim() !== '') {
+
+            navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
+            setContainerAberto(false)
+
+        }
+    }
+
     return (
         <div className="alinhamento-navbar-usuario">
             <nav className="navbar-usuario">
@@ -173,6 +200,10 @@ function Header({ tipo }) {
                         className="input-pesquisa-navbar"
                         placeholder="O que você está procurando?"
                         onFocus={() => setContainerAberto(true)} // Abre quando clica no input
+
+                        value={termoBuscado}
+                        onChange={(e) => setTermoBuscado(e.target.value)}
+                        onKeyDown={handleBusca}
                     />
 
                     <AnimatePresence>

@@ -10,7 +10,9 @@ const brecho_schema = new mongoose.Schema({
     telefone: { type: String, required: true},
     cnpj: { type: String, required: false },
     logo: { type: String, required: true },
-    conversas: { type: Array, required: true }
+    conversas: { type: Array, required: true },
+    sacola: {type: Array, required: false }
+
 }, {timestamps: true});
 
 const novo_brecho = mongoose.model(`Brecho`, brecho_schema);

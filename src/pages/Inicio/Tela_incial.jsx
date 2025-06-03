@@ -94,17 +94,6 @@ function Tela_incial() {
     }
   };
 
-  // const lancamentos = [
-  //   { nome: "Brechó Moda Sustentavel", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Carla Dias Brechó", nota: "3.5/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Brechó da Su", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Brechó Diferenciado", nota: "4.5/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Brechó da Luli", nota: "4.2/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Achadinhos da Pri", nota: "4.7/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Garimpo da Ju", nota: "4.3/5", img: "./img/img_perfil_provisorio.svg" },
-  //   { nome: "Closet da Bella", nota: "4.8/5", img: "./img/img_perfil_provisorio.svg" },
-  // ];
-
   const nextLancamentos = () => {
     if (startIndexLancamentos + lancamentosToShow < 8) { // ajusta pro total de lançamentos
       setStartIndexLancamentos(startIndexLancamentos + 1);
@@ -162,7 +151,7 @@ function Tela_incial() {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
 
-    if(encontrar_brecho){
+    if (encontrar_brecho) {
 
       set_tipo_de_header(`brecho`);
     } else {
@@ -182,7 +171,7 @@ function Tela_incial() {
         <div className="secao-um-texto-container">
           <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
           <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
-          <button>Compre Já</button>
+          <button onClick={() => navegar(`/buscarProdutos`)}>Compre Já</button>
         </div>
 
         <div className="container-imagem-roupas-numero-um">
@@ -191,7 +180,7 @@ function Tela_incial() {
         <motion.img
           className='estrela-verde-home-page'
           src="img/Estrela_dois_cadastro.svg"
-      home-page-secao-dois-container    alt="estrela verde grande"
+          home-page-secao-dois-container alt="estrela verde grande"
           animate={controlsEstrelaVerde}
           initial={{ scale: 1 }}
         />
@@ -249,7 +238,7 @@ function Tela_incial() {
         </AnimatePresence>
 
         <div className="button-ver-todos-os-brechos-home-page">
-          <button>Ver todos</button>
+            <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
         </div>
       </div>
       {/* home page seção dois */}
@@ -277,7 +266,7 @@ function Tela_incial() {
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="container-cards-alinhamento-lancamentos-secao-tres"
             >
-              {array_produtos.map((produto, i) => (
+              {[...array_produtos].reverse().map((produto, i) => (
                 <div className="card-lancamento-secao-tres" key={i}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
                     <img src={produto.imagem} alt="" />

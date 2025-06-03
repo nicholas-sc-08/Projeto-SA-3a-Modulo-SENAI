@@ -11,6 +11,9 @@ function Edicao_perfil_brecho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
 
   const abrirPopUp = () => {
     setMostrarPopUp(true)
@@ -38,33 +41,24 @@ function Edicao_perfil_brecho() {
         confirmar_senha: '',
       })
     }
-  }, [brecho_logado])
+  }, [brecho_logado, array_brechos])
 
-  // // essa função atualiza estado local ao editar input de info no perfil
-  // const alterarCampo = (e) => {
-  //   const { name, value } = e.target;  // name é o nome do input
-  //   setDadosBrecho(prev => ({ ...prev, [name]: value }));  // prev vem de (previousState, ou seja, estado anterior)
-  // }
+  async function atualizarBrecho() {
+    try {
+      await api.put(`/brechos/${usuario_logado._id}`, formCadastroBrecho) // faz com que as informações sejam atualizadas no backend
 
-  // const enviarFormulario = (e) => {
+      console.log('Brechó atualizado com sucesso!');
 
-  //   e.preventDefault()
+      // aqui ele atualiza as informações no array dos brechos
+      const novosBrechos = array_brechos.map(brecho =>
+        brecho._id === usuario_logado._id ? { ...brecho, ...formCadastroBrecho } : brecho
+      );
+      set_array_brechos(novosBrechos)
 
-  //   // Verifica o que mudou em relação ao formCadastroBrecho original
-  //   const dadosAlterados = {};
-  //   for (const chave in dadosBrecho) {
-  //     if (dadosBrecho[chave] !== formCadastroBrecho[chave] && dadosBrecho[chave] !== '') {
-  //       dadosAlterados[chave] = dadosBrecho[chave]
-  //     }
-  //   }
-
-  //   console.log(`Dados alterados para atualizar: ${dadosAlterados}`)
-
-  //   // atualiza o contexto com os novos dados (junta eles)
-  //   setFormCadastroBrecho(prev => ({ ...prev, ...dadosAlterados }))
-
-  //   console.log('Perfil atualizado com sucesso!')
-  // }
+    } catch (error) {
+      console.error('Erro ao atualizar o brechó:', error)
+    }
+  }
 
   return (
 
@@ -72,7 +66,7 @@ function Edicao_perfil_brecho() {
 
       <div className="tela-antes-da-div-central">
 
-        <form className="edicao-perfil-brecho-content" onSubmit={enviarFormulario}>
+        <div className="edicao-perfil-brecho-content" >
 
 
           <div className="parte-esquerda-div-central">
@@ -95,9 +89,15 @@ function Edicao_perfil_brecho() {
               <textarea
                 name="horario_funcionamento"
                 className="horario-preenchido-brecho"
-                // value={dadosBrecho.horario_funcionamento}
-                placeholder="Segunda à Sexta: 08:00 - 16:00 --- Sábado à Domingo: 10:00 - 17:00">
-                {/* onChange={alterarCampo} */}
+                placeholder={`Segunda à Sexta: 08:00 - 16:00\nSábado à Domingo: 10:00 - 17:00`}
+                value={formCadastroBrecho.horario_funcionamento}
+                onChange={(e) =>
+                  setFormCadastroBrecho({
+                    ...formCadastroBrecho,
+                    horario_funcionamento: e.target.value
+                  })
+                }
+                rows={4}>
               </textarea>
             </div>
 
@@ -120,8 +120,13 @@ function Edicao_perfil_brecho() {
                     name="nome_vendedor"
                     className="inputs-pequenos-infos"
                     placeholder='Nome do Vendedor'
-                    value={dadosBrecho.nome_vendedor}
-                    onChange={alterarCampo}
+                    value={formCadastroBrecho.nome_vendedor}
+                    onChange={(e) =>
+                      setFormCadastroBrecho({
+                        ...formCadastroBrecho,
+                        nome_vendedor: e.target.value
+                      })
+                    }
                   />
                 </div>
                 <div className="input-info-vendedor-subDiv">
@@ -130,8 +135,13 @@ function Edicao_perfil_brecho() {
                     type="date"
                     name="data_de_nascimento_vendedor"
                     className="inputs-pequenos-infos"
-                    value={dadosBrecho.data_de_nascimento_vendedor}
-                    onChange={alterarCampo}
+                    value={formCadastroBrecho.data_de_nascimento_vendedor}
+                    onChange={(e) =>
+                      setFormCadastroBrecho({
+                        ...formCadastroBrecho,
+                        data_de_nascimento_vendedor: e.target.value
+                      })
+                    }
                   />
                 </div>
               </div>
@@ -149,8 +159,13 @@ function Edicao_perfil_brecho() {
                   name="nome_brecho"
                   className="inputs-pequenos-infos"
                   placeholder='Nome do Brechó'
-                  value={dadosBrecho.nome_brecho}
-                  onChange={alterarCampo}
+                  value={formCadastroBrecho.nome_brecho}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      nome_brecho: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -162,8 +177,13 @@ function Edicao_perfil_brecho() {
                   name="telefone"
                   placeholder='(DD) 90000-0000'
                   className="inputs-pequenos-infos"
-                  value={dadosBrecho.telefone}
-                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, telefone: value }))}
+                  value={formCadastroBrecho.telefone}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      telefone: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -174,8 +194,13 @@ function Edicao_perfil_brecho() {
                   name="email"
                   className="inputs-pequenos-infos"
                   placeholder='brecho@gmail.com'
-                  value={dadosBrecho.email}
-                  onChange={alterarCampo}
+                  value={formCadastroBrecho.email}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      email: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -187,8 +212,13 @@ function Edicao_perfil_brecho() {
                   name="cnpj"
                   placeholder='00.000.000/0000-00'
                   className="inputs-pequenos-infos"
-                  value={dadosBrecho.cnpj}
-                  onAccept={(value) => setDadosBrecho(prev => ({ ...prev, cnpj: value }))}
+                  value={formCadastroBrecho.cnpj}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      cnpj: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -201,23 +231,33 @@ function Edicao_perfil_brecho() {
                 type="password"
                 name="nova_senha"
                 placeholder="Nova Senha"
-                value={dadosBrecho.nova_senha}
-                onChange={alterarCampo}
+                value={formCadastroBrecho.nova_senha}
+                onChange={(e) =>
+                  setFormCadastroBrecho({
+                    ...formCadastroBrecho,
+                    nova_senha: e.target.value
+                  })
+                }
               />
               <input
                 type="password"
                 name="confirmar_senha"
                 placeholder='Confirme sua senha'
-                value={dadosBrecho.confirmar_senha}
-                onChange={alterarCampo}
+                value={formCadastroBrecho.confirmar_senha}
+                onChange={(e) =>
+                  setFormCadastroBrecho({
+                    ...formCadastroBrecho,
+                    confirmar_senha: e.target.value
+                  })
+                }
               />
             </div>
             <div className="botao-editar-content">
-              <button type="submit">Editar</button>
+              <button onClick={atualizarBrecho}>Editar</button>
             </div>
           </div>
 
-        </form>
+        </div>
 
       </div>
       {mostrarPopUp && (

@@ -1,0 +1,30 @@
+.container_sacola{
+
+    position: absolute;
+    top: 12%;
+    right: 8%;
+    width: 20%;
+    height: 50%;
+
+    border-radius: 1vw;
+
+    z-index: 8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: var(--cor_quatro);
+}
+
+.container_header_sacola{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15%;
+}
+
+.container_header_sacola h1{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cor_seis);
+}

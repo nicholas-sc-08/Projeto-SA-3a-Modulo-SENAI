@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 
@@ -17,15 +17,29 @@ function Pesquisa_de_produtos() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-    const [ pagina_atual, set_pagina_atual ] = useState(1);
-    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
+    const [pagina_atual, set_pagina_atual] = useState(1);
+    const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const navegar_para_produto = useNavigate(null);
-    
+
+    const location = useLocation();
+
+    function obterQueryDaUrl() {
+        const params = new URLSearchParams(location.search);
+        return params.get('query') || '';
+    }
+
+    const termoBuscado = obterQueryDaUrl().toLowerCase();
+
+    // useEffect(() => {
+
+    //     buscar_produtos();
+    //     buscar_brechos();
+    // }, []);
+
     useEffect(() => {
-        
         buscar_produtos();
         buscar_brechos();
-    }, []);
+    }, [termoBuscado]);
 
     useEffect(() => {
 
@@ -33,7 +47,7 @@ function Pesquisa_de_produtos() {
         set_produtos_embaralhados(embaralhar);
 
     }, [array_produtos]);
-    
+
     const produtos_por_pagina = 12;
     const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
 
@@ -41,7 +55,7 @@ function Pesquisa_de_produtos() {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
 
-        if(encontrar_brecho){
+        if (encontrar_brecho) {
 
             set_tipo_de_header(`brecho`);
 
@@ -52,51 +66,56 @@ function Pesquisa_de_produtos() {
 
     }, []);
 
-    async function buscar_brechos(){
+    async function buscar_brechos() {
 
         try {
 
             const brechos = await api.get(`/brechos`);
             set_array_brechos(brechos.data);
-            
+
         } catch (erro) {
-          
+
             console.error(erro);
         };
     };
 
-    async function buscar_produtos(){
+    async function buscar_produtos() {
 
         try {
-            
             const produtos = await api.get(`/produtos`);
-            set_array_produtos(produtos.data);
+            const todos = produtos.data;
 
+            // Aplica o filtro pelo termo de busca
+            const filtrados = todos.filter(produto =>
+                produto.nome.toLowerCase().includes(termoBuscado) ||
+                produto.descricao?.toLowerCase().includes(termoBuscado)
+            );
+
+            set_array_produtos(filtrados);
         } catch (erro) {
-          
             console.error(erro);
         };
     };
 
-    function ir_para_produto(produto){
+    function ir_para_produto(produto) {
 
         set_produto(produto);
         navegar_para_produto(`/produto`);
     };
 
-    function preco_do_produto(preco){
+    function preco_do_produto(preco) {
 
         const preco_separado = String(preco).split(`.`);
-        const decimal = preco_separado[preco_separado.length -1];
+        const decimal = preco_separado[preco_separado.length - 1];
 
         return decimal < 10 ? `${preco_separado[0]},${decimal}0 ` : `${preco_separado[0]},${decimal}`;
     };
 
-    function imagem_de_perfil_brecho(_id){
+    function imagem_de_perfil_brecho(_id) {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
-        
-        if(encontrar_brecho){
+
+        if (encontrar_brecho) {
 
             return encontrar_brecho.logo;
         };
@@ -112,33 +131,41 @@ function Pesquisa_de_produtos() {
                     <Filtro_de_pesquisa />
                 </div>
 
-                <div className="container_exibir_produtos">
+                <div className="alinhamento-resultados-pesquisa">
+                    
+                    <div className="alinhamento-resultados-de-pesquisa-texto">
+                        <h3 className='resultados-de-pesquisa'>Resultados para: <span>"{termoBuscado}"</span></h3>
+                    </div>
 
-                    {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
-                        
-                        <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
-                            
-                            <div className="container_produto_img">
+                    <div className="container_exibir_produtos">
 
-                                <img src={produto.imagem[0]} alt="aa" />
+                        {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
-                            </div>
+                            <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
-                            <div className="container_produto_info">
+                                <div className="container_produto_img">
 
-                                <div className='container_produto_titulo'>
-
-                                    <h2>{produto.nome}</h2>
-                                    <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
+                                    <img src={produto.imagem[0]} alt="aa" />
 
                                 </div>
-                                
-                                <span>R${preco_do_produto(produto.preco)}</span>
-                            
-                            </div>
 
-                        </div>
-                    ))}
+                                <div className="container_produto_info">
+
+                                    <div className='container_produto_titulo'>
+
+                                        <h2>{produto.nome}</h2>
+                                        <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
+
+                                    </div>
+
+                                    <span>R${preco_do_produto(produto.preco)}</span>
+
+                                </div>
+
+                            </div>
+                        ))}
+
+                    </div>
 
                 </div>
 
@@ -150,19 +177,19 @@ function Pesquisa_de_produtos() {
 
                     <div className="container_botao_voltar_pagina_esquerdo">
 
-                        <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg'/></button>
+                        <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
 
                     </div>
 
                     <div className="container_numero_de_paginas">
 
-                    <span>{pagina_atual} de {total_de_paginas}</span>
+                        <span>{pagina_atual} de {total_de_paginas}</span>
 
                     </div>
 
                     <div className="container_botao_voltar_pagina_direito">
 
-                        <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg'/></button>
+                        <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg' /></button>
 
                     </div>
 
