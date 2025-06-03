@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IMaskInput } from 'react-imask';
-import { GlobalContext } from '../../contexts/GlobalContext';
+import { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { IMaskInput } from 'react-imask'
+import { GlobalContext } from '../../contexts/GlobalContext'
+import api from '../../services/api'
 
 import Footer from '../../components/Footer'
 import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
@@ -42,6 +43,33 @@ function Edicao_perfil_brecho() {
       })
     }
   }, [brecho_logado, array_brechos])
+
+  async function  pegarInfoBrecho() {
+
+    try {
+
+      const resultado = await api.get(`/brechos`);
+      set_array_brechos(resultado.data);
+      console.log(`${resultado.data}, As informações do brechó foram achadas!! `);
+
+    } catch (erro) {
+
+      console.log('Erro ao tentar achar as informações do brechó:', erro);
+    };
+  }
+
+  // async function pegarInfoBrecho() {
+  //   try {
+  //     await api.get(`/brechos${brecho_logado._id}`, formCadastroBrecho)
+
+  //     console.log('As informações do brechó foram achadas!!')
+
+      
+
+  //   } catch (error) {
+  //     console.error( error)
+  //   }
+  // }
 
   async function atualizarBrecho() {
     try {

@@ -88,7 +88,7 @@ function Edicao_perfil_cliente() {
         </div>
 
         <div className='info-edicao-cliente'>
-          <div className='cabecario-edicao-cliente'><h2>Edite seu Perfil</h2></div>
+          <div className='cabecario-edicao-cliente'><p>Edite seu Perfil</p></div>
           <div className='info01'>
             <div className='edicao-nome-cliente'>
               <label>Nome</label>
