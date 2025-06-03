@@ -16,7 +16,7 @@ function Sacola() {
 
         if(usuario_logado){
 
-            set_sacola(usuario_logado.sacola);
+            set_sacola(usuario_logado.sacola);            
         };
 
     }, [usuario_logado]);
@@ -99,7 +99,7 @@ function Sacola() {
                                 <div className="container_contador_de_produtos">
 
                                     <button className='diminuir_quantidade_de_produto'>-</button>
-                                    <span>1</span>
+                                    <h5>1</h5>
                                     <button className='aumentar_quantidade_de_produto'>+</button>
                                 </div>
                             
@@ -120,7 +120,12 @@ function Sacola() {
                 </div>
             
             )) : <div className='nenhum_item_adicionado'> <img src="./img/icons/lupa.png" alt="" /><p>Nenhum item adicionado</p> </div>}
+                
+                        <div className="container_botao_da_sacola">
 
+                            <button>Visualizar Sacola</button>
+
+                        </div>
         </div>
 
     </div>

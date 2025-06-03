@@ -60,7 +60,9 @@ function Produto() {
         buscar_brechos();   
         buscar_clientes();     
         sortear_produtos();    
-    }, []);
+        console.log(usuario_logado);
+        
+    }, [usuario_logado]);
 
     useEffect(() => {
 
