@@ -82,13 +82,8 @@ function Header({ tipo }) {
         }
     };
 
-    console.log(usuario_logado)
-
     const renderIcons = () => {
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
-
-        console.log("usuario_logado:", usuario_logado);
-        console.log("estaLogado:", estaLogado);
 
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>

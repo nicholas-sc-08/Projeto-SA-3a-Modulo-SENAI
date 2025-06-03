@@ -19,6 +19,7 @@ function Produto() {
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
+    const { sacola, set_sacola } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
@@ -59,7 +60,9 @@ function Produto() {
         buscar_brechos();   
         buscar_clientes();     
         sortear_produtos();    
-    }, []);
+        console.log(usuario_logado);
+        
+    }, [usuario_logado]);
 
     useEffect(() => {
 
@@ -72,9 +75,6 @@ function Produto() {
     
           set_tipo_de_header(`usuario`);
         };
-
-        console.log(produto);
-        
     
       }, []);
 
@@ -225,22 +225,30 @@ function Produto() {
     async function adicionar_a_sacola(){
 
         const encontrar_produto = array_produtos.find(p => p._id == produto._id);
-
+        const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
+        
         try {
 
-            
+            if(usuario_logado){
+
+                set_usuario_logado({...usuario_logado, sacola: [...usuario_logado.sacola, encontrar_produto]});
+                set_sacola(usuario_logado.sacola);
+
+                if(encontrar_cliente){
+
+                    const cliente = await api.put(`/clientes/${usuario_logado._id}`, usuario_logado);
+                    set_usuario_logado(cliente.data);
+                };
+
+            } else{
+
+                set_sacola({...sacola, encontrar_produto});
+            };
             
         } catch (erro) {
           
             console.error(erro);
         };
-    };
-
-    function imagem_de_perfil_brecho(_id){
-
-        const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
-
-        return encontrar_brecho.logo;
     };
 
     function preco_do_produto_vitrine(preco){
