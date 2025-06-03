@@ -52,7 +52,7 @@ function Perfil_Brecho() {
           <div className="parte-direita-content">
             <div className="parte-superior-div-direita-content">
               <div className="nome-brecho-icons-content">
-                <h1>Brechó Moda Sustentável</h1>
+                <h1>{formCadastroBrecho.nome_brecho}</h1>
 
                 <div className="icons-edicao-excluir-content">
 
@@ -103,28 +103,28 @@ function Perfil_Brecho() {
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Nome:</label>
                         <span className="dados-cadastradas-exibidos">
-
+                          {formCadastroBrecho.nome_vendedor}
                         </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Email:</label>
                         <span className="dados-cadastradas-exibidos">
-
+                          {formCadastroBrecho.email}
                         </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">Telefone:</label>
                         <span className="dados-cadastradas-exibidos">
-
+                          {formCadastroBrecho.telefone}
                         </span>
                       </div>
 
                       <div className="labels-e-dados-cadastrados-content">
                         <label className="labels-infos">CNPJ:</label>
                         <span className="dados-cadastradas-exibidos">
-                          
+                          {formCadastroBrecho.cnpj || 'Não informado'}
                         </span>
                       </div>
 
