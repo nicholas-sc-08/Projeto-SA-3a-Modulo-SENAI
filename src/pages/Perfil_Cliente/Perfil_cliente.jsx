@@ -60,7 +60,7 @@ function Perfil_cliente() {
                     <input type="text" placeholder='Senha atual'/>
                     <input type="text" placeholder='Nova senha'/>
                     <input type="text" placeholder='Confirmar senha' />
-                    <button onClick={() => navegar('/edicao_perfil_cliente')} type='button'>Editar</button>
+                    <button onClick={() => navegar('/login')} type='button'>Editar</button>
                 </div>
             </div>
         </div>
