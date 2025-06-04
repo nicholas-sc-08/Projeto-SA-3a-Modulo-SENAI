@@ -162,7 +162,7 @@ function Sacola() {
             return `R$${dividir_preco[0]},${centavos}0`;
         } else {
 
-            return `R$${produto_selecionado.preco}`;
+            return `R$${produto_selecionado.preco},${centavos}`;
         };
     };
 

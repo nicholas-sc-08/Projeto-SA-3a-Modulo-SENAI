@@ -164,6 +164,41 @@ function Tela_incial() {
 
   }, []);
 
+  function nome_brechos(fk_id){
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == fk_id);
+
+    if(encontrar_brecho){
+
+      return encontrar_brecho.nome_brecho;
+    };
+  };
+
+  function imagem_brechos(fk_id_brecho){
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == fk_id_brecho);
+
+    if(encontrar_brecho){
+
+      return encontrar_brecho.logo;
+    };
+  };
+
+  function preco_produtos(produto_selecionado){
+
+    const dividir_preco = String(produto_selecionado).split(`.`);
+    const centavos = dividir_preco[dividir_preco.length - 1];
+    
+    
+    if(centavos < 10){
+
+        return `R$${dividir_preco[0]},${centavos}0`;
+    } else {
+
+        return `R$${produto_selecionado},${centavos}`;
+    };
+  };
+
   // const handleCategoryClick = (categoria: string) => {
   //   setValorBuscado(categoria)
   //   navigate('/buscarProdutos')
@@ -277,15 +312,15 @@ function Tela_incial() {
               {[...array_produtos].reverse().map((produto, i) => (
                 <div className="card-lancamento-secao-tres" key={i}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                    <img src={produto.imagem[0]} alt="" />
-                    <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brechó Sustentável</Link>
+                    <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
+                    <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{nome_brechos(produto.fk_id_brecho)}</Link>
                   </div>
                   <div className="container-card-imagem-roupa-lancamentos">
                     <img src={produto.imagem[0]} alt={produto.nome} />
                   </div>
                   <div className="alinhamento-preco-roupa-card-lancamento">
                     <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
-                    <p className='preco-roupa-lancamentos-card'>R${produto.preco}</p>
+                    <p className='preco-roupa-lancamentos-card'>{preco_produtos(produto.preco)}</p>
                   </div>
                 </div>
               ))}

@@ -14,6 +14,8 @@
     z-index: 2;
 }
 
+.alinhamento-img-perfil-nome-usuario-secao-tres
+
 .secao-um-texto-container h1 {
     font-family: var(--tipografia_primaria);
     font-size: 2.8vw;
@@ -318,9 +320,10 @@
 }
 
 .alinhamento-img-perfil-nome-usuario-secao-tres img {
-    width: 10%;
-    opacity: 65%;
-    padding: 1%;
+    width: 12%;
+    opacity: 85%;
+    border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     /* border: 1px solid black; */
 }
 
