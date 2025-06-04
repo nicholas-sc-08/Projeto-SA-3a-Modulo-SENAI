@@ -176,58 +176,74 @@ function Login() {
   });
 
   const LoginCadastro = () => {
-    setAnimandoCadastro(true); // ativa animação
+    setAnimandoCadastro(true); // dispara animação de saída
+
+    // espera 800ms pra redirecionar após a animação
     setTimeout(() => {
       navegar('/cadastro_brecho');
-    }, 1000);
+    }, 600);
   };
 
   return (
     <div className='container-corpo-login'>
       <form onSubmit={lidar_com_formulario}>
-        <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" />
-        <div className='ladoEsquerdo-container'>
-          <h1>Sua conta te espera!</h1>
-          <div className='info-login'>
+        <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" onClick={() => navegar('/')} />
 
-            <label>Email<span>*</span></label>
-            <input
-              type="text"
-              className='input-erro'
-              value={formulario.email}
-              onChange={e => set_formulario({ ...formulario, email: e.target.value })}
-              placeholder='Ex: exemplo@gmail.com'
-            />
+        <div className="alinhamento-container-login">
+          <div className='ladoEsquerdo-container'>
+            <h1>Sua conta te espera!</h1>
+            <div className='info-login'>
 
-            <label>Senha<span>*</span></label>
-            <input
-              type="password"
-              className='input-erro'
-              value={formulario.senha}
-              onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
-              placeholder='Senha pessoal'
-            />
-          </div>
+              <label>Email<span>*</span></label>
+              <input
+                type="text"
+                className='input-erro'
+                value={formulario.email}
+                onChange={e => set_formulario({ ...formulario, email: e.target.value })}
+                placeholder='Ex: exemplo@gmail.com'
+              />
 
-          <button type="button" onClick={loginGoogle} className="botao-google-custom">
-            <img src="/img/google-icon.png" alt="Google" />
-            Continuar com o Google
-          </button>
-
-          <button type='submit' className='fazer_login_butao'>Fazer login</button>
-
-          {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
-        </div>
-
-          <div className= {`ladoDireito-container ${animandoCadastro ? 'animar-sair' : ''}`}>
-            <img className='estrelaMenor' src="./img/estrelaMenor.png" alt="" />
-            <div className='info-ladoDireito'>
-              <h1>Novo por aqui? Crie sua conta!</h1>
-              <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
-              <button onClick={() => navegar('/cadastro_brecho')} type='button'>Cadastrar-se</button>
+              <label>Senha<span>*</span></label>
+              <input
+                type="password"
+                className='input-erro'
+                value={formulario.senha}
+                onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
+                placeholder='Senha pessoal'
+              />
             </div>
-            <img className='estrelaGrande' src="./img/estrelaGrande.png" alt="" />
+
+            <button type="button" onClick={loginGoogle} className="botao-google-custom">
+              <img src="/img/google-icon.png" alt="Google" />
+              Continuar com o Google
+            </button>
+
+            <button type='submit' className='fazer_login_butao'>Fazer login</button>
+
+            {erro && <p className='erro-campo erro-geral'>{erro.toString()}</p>}
           </div>
+
+          <div className="container-ir-para-tela-cadastro-alinhamento">
+            <AnimatePresence>
+              {!animandoCadastro && (
+                <motion.div
+                  className="container-informacoes-login-cadastro"
+                  initial={{ opacity: 2, x: 0 }}
+                  exit={{ opacity: 10, x: -760 }} // ~300px pra esquerda: ainda visível
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
+
+                  <h1>Novo por aqui? Crie sua conta!</h1>
+                  <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
+                  <button onClick={LoginCadastro} type='button'>Cadastrar-se</button>
+
+                  <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </form>
     </div>
   );
