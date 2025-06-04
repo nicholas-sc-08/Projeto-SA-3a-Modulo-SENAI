@@ -277,11 +277,11 @@ function Tela_incial() {
               {[...array_produtos].reverse().map((produto, i) => (
                 <div className="card-lancamento-secao-tres" key={i}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                    <img src={produto.imagem} alt="" />
+                    <img src={produto.imagem[0]} alt="" />
                     <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>Brechó Sustentável</Link>
                   </div>
                   <div className="container-card-imagem-roupa-lancamentos">
-                    <img src={produto.imagem} alt={produto.nome} />
+                    <img src={produto.imagem[0]} alt={produto.nome} />
                   </div>
                   <div className="alinhamento-preco-roupa-card-lancamento">
                     <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
