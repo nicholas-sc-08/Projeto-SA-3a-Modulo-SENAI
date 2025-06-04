@@ -146,7 +146,7 @@ function Brechos_dashboard() {
 
                                     <div key={i} className="alinhamento-container-dados-do-brecho">
                                         <div className="alinhamento-imagem-nome-brecho">
-                                            <img src={brecho.logo} alt="logo" className='logo-brecho-dashboard' />
+                                            <img src={brecho.logo} alt="logo"  referrerPolicy="no-referrer" crossOrigin="anonymous" className='logo-brecho-dashboard' />
                                             <p>{brecho.nome_brecho}</p>
                                         </div>
 

@@ -188,7 +188,7 @@ function Clientes_dashboard() {
 
                         <div className="container_coluna_imagem_de_perfil_cliente">
 
-                          <img src={cliente.imagem_de_perfil} alt="" />
+                          <img src={cliente.imagem_de_perfil}  referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" />
 
                         </div>
 
