@@ -257,7 +257,7 @@
     cursor: pointer;
     transition: 0.3s;
 
-    width: 50%;
+    width: 90%;
     height: 65%;
 
     border: 0.1vw solid var(--cor_um);
