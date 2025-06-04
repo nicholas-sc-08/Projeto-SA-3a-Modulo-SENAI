@@ -25,11 +25,11 @@ function Produto() {
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-    const { array_de_produtos_aleatorios, set_array_de_produtos_aleatorios } = useContext(GlobalContext);
     const [ imagem_selecionada, set_imagem_selecionada ] = useState(0);
     const [ produto_visualiazado, set_produto_visualizado ] = useState(`0.1vw solid var(--cor_um)`);
     const [ pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado ] = useState(false);
     const [ pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado ] = useState(false);
+    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const refencia_do_produto = useRef(null);
     const cores_simplificadas = [
         { nome: "Preto", hex: "#000000" },
@@ -59,10 +59,14 @@ function Produto() {
         buscar_produtos();
         buscar_brechos();   
         buscar_clientes();     
-        sortear_produtos();    
-        console.log(usuario_logado);
         
     }, [usuario_logado]);
+
+    useEffect(() => {
+
+        sortear_produtos();
+
+    }, []);
 
     useEffect(() => {
 
@@ -178,19 +182,18 @@ function Produto() {
         };
     };
 
+    function sortear_produtos(){
+
+        const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+        const produtos_selecionados = embaralhar.slice(0, 4);
+        set_produtos_embaralhados(produtos_selecionados);
+    };
+
     function ir_para_produto_selecionado(produto_selecionado){
 
         refencia_do_produto.current.scrollIntoView({behavior: `smooth`});
         set_produto(produto_selecionado);
-    };
-
-    function sortear_produtos(){
-
-        for(let i = 0; i < 4; i++){
-
-            const numero_sorteado = Math.floor(Math.random() * 4);
-            set_array_de_produtos_aleatorios([...array_de_produtos_aleatorios, array_produtos[numero_sorteado]]);
-        };        
+        sortear_produtos();
     };
 
     function imagem_do_brecho(_id){
@@ -208,7 +211,7 @@ function Produto() {
         const preco_convertido = String(preco).split(`.`);
         const decimal = preco_convertido[preco_convertido.length - 1];
 
-        return decimal < 10 ? `${preco_convertido[0]},${decimal}0` : `${preco_convertido[0]},${decimal}`;
+        return decimal < 10 ? `R$${preco_convertido[0]},${decimal}0` : `R$${preco_convertido[0]},${decimal}`;
     };
 
     function exibir_nome_do_brecho(_id){
@@ -250,16 +253,8 @@ function Produto() {
             console.error(erro);
         };
     };
-
-    function preco_do_produto_vitrine(preco){
-
-        const separar_preco = String(preco).split(`.`);
-        const decimal = separar_preco[separar_preco.length - 1];
-
-        return decimal < 10 ? `R$${separar_preco[0]},${decimal}0` : `R$${separar_preco[0]},${decimal}`;
-    };
     
-      function hexa_para_rgb(hex) {
+    function hexa_para_rgb(hex) {
         if (typeof hex !== "string") return null;
         if (!hex.startsWith("#")) hex = "#" + hex;
     
@@ -272,7 +267,7 @@ function Produto() {
           g: (bigint >> 8) & 255,
           b: bigint & 255,
         };
-      };
+    };
 
     function cor_mais_proxima(hex) {
         const rgb = hexa_para_rgb(hex);
@@ -376,7 +371,7 @@ function Produto() {
 
                 <div className="container_info_do_produto_preco">
 
-                    <h2>R${exibir_preco(produto.preco)}</h2>
+                    <h2>{exibir_preco(produto.preco)}</h2>
 
                 </div>
 
@@ -449,6 +444,50 @@ function Produto() {
                     </div>
 
                 </div>
+
+            </div>
+
+        </div>
+
+        <div className="container_voce_tambem_pode_gostar">
+
+            <div className="container_voce_tambem_pode_gostar_titulo">
+
+                <h2>Você tembém pode gostar</h2>
+
+            </div>
+            
+            <div className="container_produtos_embaralhados">
+
+                {produtos_embaralhados.map((produto_embaralhado, i) => (
+                    
+                    <div key={i} className='container_produto_embaralhado'onClick={() => ir_para_produto_selecionado(produto_embaralhado)}>
+
+                        <div className="container_imagem_do_produto">
+
+                            <img src={produto_embaralhado.imagem[0]} alt="" />
+
+                        </div>
+
+                        <div className="container_produto_embaralhado_info">
+
+                            <div className="contianer_produto_embaralhado_titulo">
+
+                                <h5>{produto_embaralhado.nome}</h5>
+                                <img src={imagem_do_brecho(produto_embaralhado.fk_id_brecho)} alt="" />
+
+                            </div>
+
+                            <div className="container_produto_embaralhado_preco">
+
+                                <span>{exibir_preco(produto_embaralhado.preco)}</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                ))}
 
             </div>
 

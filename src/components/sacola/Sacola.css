@@ -224,12 +224,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 75%;
 }
 
 .nenhum_item_adicionado p{
 
-    margin-top: 5%;
+    margin-top: 10%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
@@ -240,7 +240,7 @@
 
 .nenhum_item_adicionado img{
 
-    width: 15%;
+    width: 20%;
 }
 
 .container_botao_da_sacola{

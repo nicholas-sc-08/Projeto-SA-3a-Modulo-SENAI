@@ -28,6 +28,14 @@ function Edicao_perfil_brecho() {
     (brecho) => brecho._id === usuario_logado._id
   )
 
+
+  // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
+  useEffect(() => {
+    if (!array_brechos.length) {
+      pegarInfoBrecho();
+    }
+  }, [])
+
   useEffect(() => {
     if (brecho_logado) {
       setFormCadastroBrecho({
@@ -44,32 +52,15 @@ function Edicao_perfil_brecho() {
     }
   }, [brecho_logado, array_brechos])
 
-  async function  pegarInfoBrecho() {
-
+ async function pegarInfoBrecho() {
     try {
-
-      const resultado = await api.get(`/brechos`);
+      const resultado = await api.get('/brechos');
       set_array_brechos(resultado.data);
-      console.log(`${resultado.data}, As informações do brechó foram achadas!! `);
-
+      console.log('As informações do brechó foram encontradas!');
     } catch (erro) {
-
       console.log('Erro ao tentar achar as informações do brechó:', erro);
-    };
+    }
   }
-
-  // async function pegarInfoBrecho() {
-  //   try {
-  //     await api.get(`/brechos${brecho_logado._id}`, formCadastroBrecho)
-
-  //     console.log('As informações do brechó foram achadas!!')
-
-      
-
-  //   } catch (error) {
-  //     console.error( error)
-  //   }
-  // }
 
   async function atualizarBrecho() {
     try {
