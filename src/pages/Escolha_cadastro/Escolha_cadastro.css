@@ -1,5 +1,4 @@
 .ladoEsquerdo-container-escolha-cadastro{
-    border-radius: 19px;
     background-color: #E7E8CE;
     width: 40%;
     height: 90%;
@@ -55,4 +54,43 @@
 .info-ladoEsquerdo-escolha-cadastro button:hover{
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
+}
+
+.estrelaMenor{
+    margin-left: 95%;
+    margin-top: 15%;
+}
+.estrelaGrande{
+   padding-top: 10%;
+}
+
+.ladoDireito-container-escolha-cadastro{
+    margin-left: 53%;
+    margin-top: 10%;
+    font-family: var(--tipografia_secundaria);
+}
+
+.ladoDireito-container-escolha-cadastro h1{
+    color: var(--cor_seis);
+    font-size: 40px;
+}
+.ladoDireito-container-escolha-cadastro p{
+    color: var(--cor_seis_v_um);
+    font-size: 19px;
+}
+
+.quero-comprar{
+    display: flex;
+}
+
+.info-quero-comprar{
+    display: block;
+    padding-top: 3%;
+    padding-left: 1%;
+    color: var(--cor_seis);
+
+}
+
+.info-quero-comprar p{
+    font-size: 14px;
 }
