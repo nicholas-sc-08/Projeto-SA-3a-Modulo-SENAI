@@ -150,7 +150,11 @@ function Produtos_dashboard() {
 
                             <div key={i} className="alinhamento-containers-informacoes-produtos-dashboard">
                                 <div className="grupo-um-informacoes-produto-dashboard">
-                                    <div className="imagem-produto-dashboard"></div>
+                                    <div className="imagem-produto-dashboard">
+
+                                        <img src={produto.imagem[0]} alt="" />
+
+                                    </div>
 
                                     <div className="nome-categoria-produto-dashboard">
                                         <p className='nome-do-produto-dashboard'>{produto.nome}</p>
