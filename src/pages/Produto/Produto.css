@@ -91,7 +91,7 @@
 .container_imagens_do_produto img{
 
     width: 80%;
-    height: 80%;
+    height: 70%;
 }
 
 .container_imagem_principal_produto{
@@ -277,6 +277,8 @@
     width: 30%;
     height: 45%;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
     border: 0.1vw solid var(--cor_doze);
     border-radius: 100vw;
     background-color: var(--cor_doze);
@@ -317,9 +319,13 @@
 
     width: fit-content;
     height: 45%;
+
     padding: 6%;
+
     border: 0.1vw solid var(--cor_doze);
     border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
     background-color: var(--cor_doze);
 }
 
@@ -363,6 +369,8 @@
     padding: 8%;
     border-radius: 100vw;
     margin-right: 5%;
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 .container_fundo_info_do_produto_cor span{
@@ -407,6 +415,8 @@
     height: 45%;
     width: 30%;
     border-radius: 100vw;
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_doze);
 }
@@ -573,6 +583,8 @@
 
     margin-top: 5%;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
     border-radius: 2vw;
     background-color: var(--cor_nove_v_dois);
 }
@@ -633,7 +645,7 @@
     display: flex;
     align-items: end;
     width: 90%;
-    height: 25%;
+    height: 10%;
 }
 
 .container_produto_embaralhado_preco span{
