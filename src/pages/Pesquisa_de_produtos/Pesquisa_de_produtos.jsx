@@ -30,15 +30,11 @@ function Pesquisa_de_produtos() {
 
     const termoBuscado = obterQueryDaUrl().toLowerCase();
 
-    // useEffect(() => {
-
-    //     buscar_produtos();
-    //     buscar_brechos();
-    // }, []);
-
     useEffect(() => {
+      
         buscar_produtos();
         buscar_brechos();
+    
     }, [termoBuscado]);
 
     useEffect(() => {

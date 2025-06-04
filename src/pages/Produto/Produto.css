@@ -502,18 +502,27 @@
     background-color: var(--cor_oito);
 }
 
-.container_roupas_que_usuario_possa_gostar{
-   
+.container_voce_tambem_pode_gostar{
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3%;
-    margin-bottom: 4%;
+    justify-content: space-between;
+
     width: 100%;
-    height: 60vh;
+    height: 75vh;
 }
 
-.container_roupas_que_usuario_possa_gostar h1{
+.container_voce_tambem_pode_gostar_titulo{
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 90%;
+    height: 15%;
+}
+
+.container_voce_tambem_pode_gostar_titulo h2{
 
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
@@ -522,70 +531,86 @@
     color: var(--cor_seis);
 }
 
-.container_roupas_vitrine{
+.container_produtos_embaralhados{
 
     display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin-top: 4%;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 75%;
 }
 
-.container_produto_vitrine{
+.container_produto_embaralhado{
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer;
+    width: 20%;
+    height: 90%;
 
     transition: 0.3s;
-    width: 20%;
-    height: 100%;
-    margin-right: 2%;
-    border: 0.1vw solid var(--cor_quatro);
+    cursor: pointer;
 
+    border-radius: 2vw;
+    border: 0.1vw solid var(--cor_quatro);
 }
 
-.container_produto_vitrine:hover{
+.container_produto_embaralhado:hover{
 
     border: 0.1vw solid var(--cor_seis);
 }
 
-.container_imagem_do_produto_vitrine{
+.container_imagem_do_produto{
 
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 80%;
+    justify-content: center;
+
+    transition: 0.3s;
+
+    width: 90%;
     height: 70%;
+
     margin-top: 5%;
-    margin-bottom: 2%;
-    border-radius: 1vw;
-    background-color: var(--cor_doze);
+
+    border-radius: 2vw;
+    background-color: var(--cor_nove_v_dois);
 }
 
-.container_imagem_do_produto_vitrine img{
+.container_imagem_do_produto:hover{
+
+    background-color: var(--cor_doze_v_um);
+}
+
+.container_imagem_do_produto img{
 
     width: 80%;
-    height: 70%;
 }
 
-.container_titulo_produto_vitrine{
+.container_produto_embaralhado_info{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+}
+
+.contianer_produto_embaralhado_titulo{
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
-    height: 13%;
+    width: 90%;
+    height: 55%;
 }
 
-.container_titulo_produto_vitrine h4{
+.contianer_produto_embaralhado_titulo h5{
 
-    width: 80%;
-
+    width: 70%;
     font-family: var(--tipografia_primaria);
-    font-size: 1rem;
-    font-weight: 650;
+    font-size: 1.1rem;
+    font-weight: 600;
 
     white-space: nowrap;
     overflow: hidden;
@@ -594,18 +619,27 @@
     color: var(--cor_seis);
 }
 
-.container_titulo_produto_vitrine img{
+.contianer_produto_embaralhado_titulo img{
 
-    width: 15%;
+    width: 18%;
+    height: 70%;
     border-radius: 100vw;
+
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
-.container_preco_produto_vitrine{
+.container_produto_embaralhado_preco{
 
-    width: 80%;
+    display: flex;
+    align-items: end;
+    width: 90%;
+    height: 25%;
+}
 
-    font-family: var(--tipografia_primaria);
+.container_produto_embaralhado_preco span{
+
     font-size: 1.2rem;
+    font-family: var(--tipografia_primaria);
     font-weight: 700;
 
     color: var(--cor_seis);
