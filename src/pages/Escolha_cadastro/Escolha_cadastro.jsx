@@ -17,7 +17,15 @@ function Escolha_cadastro() {
         <div className='ladoDireito-container-escolha-cadastro'>
             <h1>Crie sua conta Fly!</h1>
             <p>Qual caminho você quer seguir?</p>
-
+            <div className='escolha-container'>
+            <div className='quero-comprar'>
+            <input type="radio" />
+            <div className='info-quero-comprar'>
+            <h3>Quero Comprar</h3>
+            <p>Explore peças únicas nos nossos brechós</p>
+            </div>
+        </div>
+        </div>
 
         </div>
     </div>
