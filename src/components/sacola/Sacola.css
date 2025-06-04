@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 85%;
+    height: 62%;
     width: 100%;
 }
 
@@ -44,7 +44,7 @@
 
     transition: 0.3s;
     width: 90%;
-    height: 22%;
+    height: 30%;
 
     margin-top: 4%;
     
@@ -71,7 +71,7 @@
 .container_info_produto_nome_sacola{
 
     display: flex;
-    width: 100%;
+    width: 68%;
     height: 100%;
 }
 
@@ -88,6 +88,10 @@
     font-family: var(--tipografia_primaria);
     font-size: 0.8rem;
     font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     color: var(--cor_seis);
 }
@@ -240,6 +244,7 @@
 
 .nenhum_item_adicionado img{
 
+    margin-top: 15%;
     width: 20%;
 }
 

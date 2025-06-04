@@ -228,24 +228,29 @@ function Produto() {
     async function adicionar_a_sacola(){
 
         const encontrar_produto = array_produtos.find(p => p._id == produto._id);
-        const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
+        const encontrar_produto_sacola = sacola.find(p => p._id == produto._id);
         
         try {
-
-            if(usuario_logado){
-
-                set_usuario_logado({...usuario_logado, sacola: [...usuario_logado.sacola, encontrar_produto]});
-                set_sacola(usuario_logado.sacola);
-
-                if(encontrar_cliente){
-
-                    const cliente = await api.put(`/clientes/${usuario_logado._id}`, usuario_logado);
+            
+            if(!encontrar_produto_sacola){
+                
+                const produto_na_sacola = {...encontrar_produto, quantidade_selecionada: 1};
+   
+                if(usuario_logado){
+                    
+                    const usuario_atualizado = {...usuario_logado, sacola: [...usuario_logado.sacola, produto_na_sacola]};
+                    
+                    set_usuario_logado(usuario_atualizado);
+                    set_sacola(usuario_atualizado.sacola);
+                    
+                    const cliente = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                     set_usuario_logado(cliente.data);
+                    
+                } else{
+                    
+                    set_sacola({...sacola, produto_na_sacola});
                 };
-
-            } else{
-
-                set_sacola({...sacola, encontrar_produto});
+            
             };
             
         } catch (erro) {
