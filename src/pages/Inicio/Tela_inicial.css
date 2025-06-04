@@ -321,7 +321,6 @@
 
 .alinhamento-img-perfil-nome-usuario-secao-tres img {
     width: 12%;
-    opacity: 85%;
     border-radius: 100vw;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     /* border: 1px solid black; */
@@ -330,10 +329,9 @@
 .nome-brech-card-lancamento {
     padding-left: 2%;
     font-family: var(--tipografia_secundaria);
-    font-size: 85%;
+    font-size: 1rem;
     color: var(--cor_seis);
     font-weight: 450;
-    opacity: 65%;
     text-decoration: none;
 }
 

@@ -130,10 +130,14 @@ function Sacola() {
 
     function exibir_produtos_na_sacola(){
 
-        if(sacola.length > 3){
+        if(sacola){
 
-            const produtos_exibidos = sacola.slice(0, 3);
-            set_produtos_exibido_na_sacola(produtos_exibidos);
+            if(sacola.length > 3){
+
+                const produtos_exibidos = sacola.slice(0, 3);
+                set_produtos_exibido_na_sacola(produtos_exibidos);
+    
+            };
 
         } else {
 
@@ -177,7 +181,7 @@ function Sacola() {
 
         <div className="container_produtos_na_sacola">
 
-            {sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
+            {sacola ? produtos_exibido_na_sacola.map((produto, i) => (
 
                 <div key={i} className='container_produtos_a_exibir_sacola'>
 

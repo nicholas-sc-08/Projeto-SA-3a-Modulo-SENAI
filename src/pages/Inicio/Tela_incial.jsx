@@ -22,6 +22,7 @@ function Tela_incial() {
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
+  const { produto, set_produto } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   const [startIndex, setStartIndex] = useState(0);
@@ -199,6 +200,12 @@ function Tela_incial() {
     };
   };
 
+  function ir_ate_produto(produto_selecionado){
+
+    set_produto(produto_selecionado);
+    navegar(`/produto`);
+  };
+
   // const handleCategoryClick = (categoria: string) => {
   //   setValorBuscado(categoria)
   //   navigate('/buscarProdutos')
@@ -310,7 +317,7 @@ function Tela_incial() {
               className="container-cards-alinhamento-lancamentos-secao-tres"
             >
               {[...array_produtos].reverse().map((produto, i) => (
-                <div className="card-lancamento-secao-tres" key={i}>
+                <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
                   <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
                     <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
                     <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{nome_brechos(produto.fk_id_brecho)}</Link>
