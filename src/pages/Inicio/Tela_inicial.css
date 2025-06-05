@@ -9,14 +9,12 @@
     position: relative;
 }
 
-.secao-um-texto-container {
+.secao-um-texto-container-home-page {
     width: 50%;
     z-index: 2;
 }
 
-.alinhamento-img-perfil-nome-usuario-secao-tres
-
-.secao-um-texto-container h1 {
+.secao-um-texto-container-home-page h1 {
     font-family: var(--tipografia_primaria);
     font-size: 2.8vw;
     font-weight: 800;
@@ -25,7 +23,7 @@
     /* border: 1px solid blue; */
 }
 
-.secao-um-texto-container p {
+.secao-um-texto-container-home-page p {
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
     color: var(--cor_seis);
@@ -34,7 +32,7 @@
     /* border: 1px solid red; */
 }
 
-.secao-um-texto-container button {
+.secao-um-texto-container-home-page button {
     background-color: var(--cor_dois);
     color: white;
     padding: 0.8rem 2rem;
@@ -50,7 +48,7 @@
     /* border: 1px solid red; */
 }
 
-.secao-um-texto-container button:hover {
+.secao-um-texto-container-home-page button:hover {
     background-color: var(--cor_dois_v_um);
 }
 
