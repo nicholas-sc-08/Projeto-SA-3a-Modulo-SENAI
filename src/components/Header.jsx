@@ -238,7 +238,7 @@ function Header({ tipo }) {
 
                                         <div className="alinhamento-de-container-janela-de-pesquisa">
                                             <div className="alinhamento-container-de-marcas">
-                                                <h2>Marcas aclamadas pelo público</h2>
+                                                <h2>Marcas populares entre o público</h2>
 
                                                 <div className="alinahamento-container-marcas-aclamadas">
                                                     <div className="container-um-marcas-aclamadas">
