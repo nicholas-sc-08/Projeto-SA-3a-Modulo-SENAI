@@ -399,7 +399,7 @@ function Cadastro_Produto() {
 
         <div className="formulario-direito">
           <div className="input-group-direita">
-            <label>Categoria</label>
+            <label className="input-categoria-label">Categoria</label>
             <select
               className="input"
               value={array_cadastro_produto.fk_id_categoria}
