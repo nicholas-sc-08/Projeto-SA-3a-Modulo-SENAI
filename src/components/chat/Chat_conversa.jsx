@@ -13,6 +13,7 @@ function Chat_conversa() {
     const { array_chat, set_array_chat } = useContext(GlobalContext);
     const { conversa_atual, set_conversa_atual } = useContext(GlobalContext);
     const { array_clientes, set_array_clientes } = useContext(GlobalContext);
+    const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -32,6 +33,7 @@ function Chat_conversa() {
       buscar_clientes();
       buscar_conversas();
       atualizar_mensagem();
+      buscar_brechos();
       
       //ele vai conecta com o servidor socket que esta conectando com o servidor do back end. lá no arquivo socket.js
       socket.connect();
@@ -109,6 +111,19 @@ function Chat_conversa() {
       
     };
 
+    async function buscar_brechos(){
+
+      try {
+
+        const brechos = await api.get(`/brechos`);
+        set_array_brechos(brechos.data);
+        
+      } catch (erro) {
+        
+        console.error(erro);
+      };
+    };
+
     async function buscar_clientes(){
 
       try {
@@ -169,6 +184,20 @@ function Chat_conversa() {
       set_inpt_mensagem({mensagem: ``});
     };
 
+    function exibir_imagem_de_perfil(_id){
+
+      const encontrar_cliente = array_clientes.find(cliente => cliente._id == _id);
+      const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
+
+      if(encontrar_cliente){
+
+        return encontrar_cliente.imagem_de_perfil;
+      } else {
+
+        return encontrar_brecho.logo;
+      };
+    };
+
     function buscar_data_da_conversa(data_da_conversa) {
       
       const hoje = new Date();
@@ -220,7 +249,7 @@ function Chat_conversa() {
         
         <button onClick={fechar_conversa} className='botao_sair_conversa_chat'><img src="./img/Seta sair da conversa.svg" alt="" /></button>
         
-        <img src={pessoa_com_quem_esta_conversando.logo || pessoa_com_quem_esta_conversando.imagem_de_perfil} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" className='container_header_chat_conversa_imagem'/>
+        <img src={exibir_imagem_de_perfil(pessoa_com_quem_esta_conversando._id)} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="" className='container_header_chat_conversa_imagem'/>
         
         <div className="container_header_info_chat">
 
