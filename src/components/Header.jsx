@@ -58,7 +58,7 @@ function Header({ tipo }) {
             return (
                 <>
                     <Link to="/doacoes" className="link-texto-navbar-usuario">Doações</Link>
-                    <Link to="/lancamentos" className="link-texto-navbar-usuario">Lançamentos</Link>
+                    <Link to="/buscarProdutos" className="link-texto-navbar-usuario">Produtos</Link>
                     <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </>
             );
@@ -90,10 +90,13 @@ function Header({ tipo }) {
                 
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
                     
-                    <button className="button-sacola-navbar" onClick={() => set_sacola_aberta(!sacola_aberta)}>
+                    {tipo == 'usuario' && (
+
+                        <button className="button-sacola-navbar" onClick={() => set_sacola_aberta(!sacola_aberta)}>
                         <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
                     </button>
                     
+                    )}
                         {sacola_aberta && <Sacola/>}
 
                     {tipo === 'brecho' && (

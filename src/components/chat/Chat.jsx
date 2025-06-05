@@ -253,17 +253,35 @@ function Chat() {
       ref_inpt_de_pesquisa.current.focus();
     };
 
-    function pegar_nome_brecho(nome){
+    function pegar_nome_brecho(contato){
 
-      const pegar_sobrenome = nome.trim().split(` `);
+      const encontrar_cliente = array_clientes.find(cliente => cliente._id == contato._id);
+      const encontrar_brecho = array_brechos.find(brecho => brecho._id == contato._id);
 
-      if(pegar_sobrenome.length != 1 ){
+      if(encontrar_cliente){
 
-        return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
-      
+        const pegar_sobrenome = contato.nome.trim().split(` `);
+        
+        if(pegar_sobrenome.length != 1 ){
+          
+          return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
+          
+        } else {
+          
+          return pegar_sobrenome[0];
+        };
       } else {
 
-        return pegar_sobrenome[0];
+        const pegar_sobrenome = contato.nome_brecho.trim().split(` `);
+        
+        if(pegar_sobrenome.length != 1 ){
+          
+          return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
+          
+        } else {
+          
+          return contato.nome_brecho;
+        };
       };
     };
 
@@ -324,7 +342,7 @@ function Chat() {
               
                 <div className='container_conversa_chat_titulo_info'>
                   
-                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho || conversa.nome) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
+                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
                   <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
                 
                 </div>
