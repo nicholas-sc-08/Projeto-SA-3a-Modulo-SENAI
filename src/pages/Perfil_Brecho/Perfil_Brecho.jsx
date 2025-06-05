@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Footer from '../../components/Footer'
@@ -12,6 +12,42 @@ function Perfil_Brecho() {
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+
+  const [ naoEBrecho, setNaoEBrecho] = useState(false)
+
+
+  useEffect(() => {
+    const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+      (brecho) => brecho._id === usuario_logado._id
+    )
+
+    if (!brecho_logado) {
+      setNaoEBrecho(true)
+    } else {
+      setNaoEBrecho(false)
+    }
+  }, [array_brechos, usuario_logado])
+
+
+  // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
+  useEffect(() => {
+    if (usuario_logado) {
+      setFormCadastroBrecho({
+        nome_vendedor: usuario_logado.nome_vendedor || '',
+        data_de_nascimento_vendedor: usuario_logado.data_de_nascimento_vendedor || '',
+        nome_brecho: usuario_logado.nome_brecho || '',
+        telefone: usuario_logado.telefone || '',
+        email: usuario_logado.email || '',
+        cnpj: usuario_logado.cnpj || '',
+        horario_funcionamento: usuario_logado.horario_funcionamento || '',
+        nova_senha: '',
+        confirmar_senha: '',
+      })
+    }
+  }, [usuario_logado])
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -54,7 +90,7 @@ function Perfil_Brecho() {
               <div className="nome-brecho-icons-content">
                 <h1>{formCadastroBrecho.nome_brecho}</h1>
 
-                <div className="icons-edicao-excluir-content">
+                {!naoEBrecho && <div className="icons-edicao-excluir-content">
 
                   <Link to={"/Edicao_perfil_brecho"} className="editar-content">
                     <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
@@ -65,8 +101,7 @@ function Perfil_Brecho() {
                     <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
                     <span className="excluir-opcao-palavra">Excluir</span>
                   </Link>
-
-                </div>
+                </div>}
               </div>
 
               <div className="entrar-em-contato-content">

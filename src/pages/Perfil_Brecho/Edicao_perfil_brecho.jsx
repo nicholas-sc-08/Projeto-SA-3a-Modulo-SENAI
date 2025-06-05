@@ -15,6 +15,10 @@ function Edicao_perfil_brecho() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
+  /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
+  const terminaComGmailOuHotmail = formCadastroBrecho.email.endsWith('@gmail.com') || formCadastroBrecho.email.endsWith('@hotmail.com')
+  const oTextoAntesDoArroba = formCadastroBrecho.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
+  const [mensagemErro, setMensagemErro] = useState(``)
 
   const abrirPopUp = () => {
     setMostrarPopUp(true)
@@ -52,7 +56,7 @@ function Edicao_perfil_brecho() {
     }
   }, [brecho_logado, array_brechos])
 
- async function pegarInfoBrecho() {
+  async function pegarInfoBrecho() {
     try {
       const resultado = await api.get('/brechos');
       set_array_brechos(resultado.data);
@@ -78,6 +82,27 @@ function Edicao_perfil_brecho() {
       console.error('Erro ao atualizar o brechó:', error)
     }
   }
+
+
+  useEffect(() => { // precisa ser posto em um useEffect porque se não o setMensagemErroo vai ficar em loop
+
+  if (!formCadastroBrecho.email.includes('@')) {
+    setMensagemErro('O email deve conter "@"')
+    return
+  }
+   else if (!terminaComGmailOuHotmail) {
+    setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
+    return
+  }
+  else if (!oTextoAntesDoArroba) {
+    setMensagemErro(`O email deve conter caracteres antes do @`);
+    return
+  } else {
+    setMensagemErro('')  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
+  }
+
+
+  }, [formCadastroBrecho.email])
 
   return (
 
@@ -272,6 +297,7 @@ function Edicao_perfil_brecho() {
               />
             </div>
             <div className="botao-editar-content">
+              {mensagemErro && <p>{mensagemErro}</p>}
               <button onClick={atualizarBrecho}>Editar</button>
             </div>
           </div>

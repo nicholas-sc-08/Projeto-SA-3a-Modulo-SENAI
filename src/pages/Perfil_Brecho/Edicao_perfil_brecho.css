@@ -335,6 +335,15 @@ body {
     justify-content: flex-end;
     align-items: center;
     padding-right: 4%;
+    gap: 1%;
+}
+
+.botao-editar-content p {
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    font-weight: 550;
+    letter-spacing: 0.5px;
+    color: var(--cor_sete);
 }
 
 .botao-editar-content button {

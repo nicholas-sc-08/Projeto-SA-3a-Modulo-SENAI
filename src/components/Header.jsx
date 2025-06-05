@@ -130,7 +130,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_cliente' className='container-imagem-pefil-usuario-header'><img src="./img/img_perfil_provisorio.svg" alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src="./img/img_perfil_provisorio.svg" alt="" /> Olá! {usuario_logado.nome}</Link>
                                             <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
