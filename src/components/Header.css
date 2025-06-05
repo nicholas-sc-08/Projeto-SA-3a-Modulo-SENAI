@@ -56,12 +56,13 @@
 .input-pesquisa-navbar {
     width: 100%;
     max-width: 590px;
-    height: 5.3vh;
     background-color: #FCF7E9;
     border-radius: 2vw;
     font-size: 1rem;
     padding-left: 3.5rem;
     padding-right: 1rem;
+    padding-top: 2%;
+    padding-bottom: 2%;
     color: var(--cor_seis);
     box-shadow: 0 4px 12px #c4bab1;
     font-family: var(--tipografia_secundaria);
