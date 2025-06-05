@@ -17,12 +17,12 @@ function Sobre_nos() {
             <p>Inspirados por essa realidade, desenvolvemos uma solução que apoia pequenos empreendedores e promove a moda sustentável. Nossa missão é transformar a forma como as pessoas descobrem e consomem moda, valorizando peças únicas, cheias de história e com impacto positivo.</p>
           </div>
 
-          <img src="./img/imagem-em-grupo-fly.svg" alt="Imagem com os integrantes de grupo" />
+          <img src="./img/imagem_grupal.jpeg" alt="Imagem com os integrantes de grupo" />
         </div>
 
         <div className="alinhamento-nossa-misao-sobrenos">
 
-          <h2>Nossa Misão</h2>
+          <h2>Nossa Missão</h2>
 
           <div className="alinhamento-container-dois-nossa-misao">
 
