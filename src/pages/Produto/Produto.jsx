@@ -275,12 +275,12 @@ function Produto() {
 
                 const produto_na_sacola = {...encontrar_produto, quantidade_selecionada: 1};
                 
-                if(typeof sacola != Array){
+                if(Array.isArray(sacola)){
 
-                    set_sacola([produto_na_sacola]);
+                    set_sacola([...sacola, produto_na_sacola]);
                 } else {
                     
-                    set_sacola([...sacola, produto_na_sacola]);
+                    set_sacola([produto_na_sacola]);
                 };
             };
 

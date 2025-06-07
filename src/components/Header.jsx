@@ -180,7 +180,7 @@ function Header({ tipo }) {
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
                     >
-                        <img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil : `./img/icons/IconePerfil.svg`} alt="Perfil" />
+                        <img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
                     </button>
 
                     <AnimatePresence>
@@ -195,7 +195,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil : ``} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : ``} alt="" /> Olá! {usuario_logado.nome}</Link>
                                             <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>

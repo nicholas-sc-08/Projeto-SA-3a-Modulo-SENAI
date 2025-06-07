@@ -157,6 +157,8 @@
     border-radius: 100vw;
     
     font-size: 0.8rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: 550;
 
     color: var(--cor_quatro);
     background-color: var(--cor_vinte);
@@ -165,7 +167,7 @@
 .button-perfil-navbar img {
     
     margin-top: 5%;
-    width: 2vw;
+    width: 2.2vw;
     cursor: pointer;
     transition: 0.4s;
     border-radius: 100vw;
