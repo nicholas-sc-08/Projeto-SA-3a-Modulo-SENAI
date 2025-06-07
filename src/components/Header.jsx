@@ -141,11 +141,11 @@ function Header({ tipo }) {
                 
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
                     
-                    {tipo == `usuario` && (<span>{quantidade_de_produtos_sacola()}</span>)}
                     {tipo == 'usuario' && (
 
                         <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>
                         <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                        <span>{quantidade_de_produtos_sacola()}</span>
                     </button>
                     
                     )}

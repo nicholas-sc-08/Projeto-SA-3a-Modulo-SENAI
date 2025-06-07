@@ -94,7 +94,9 @@
 .button-sacola-navbar {
     border: none;
     background: transparent;
-    /* border: 1px solid red; */
+    display: flex;
+    align-items: start;
+    height: 100%;
 }
 
 .button-perfil-navbar {
@@ -127,20 +129,33 @@
     transition: 0.4s;
 }
 
-.button-sacola-navbar img:hover {
-    width: 2.2vw;
+.button-sacola-navbar span{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -30%;
+
+    width: 40%; 
+    height: 2.1vh;
+
+    cursor: pointer;
+
+    border: 0.1vw solid var(--cor_vinte);
+    border-radius: 100vw;
+    
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_vinte);
 }
 
 .button-perfil-navbar img {
+    
+    margin-top: 5%;
     width: 2vw;
-    max-width: 35px;
-
     cursor: pointer;
     transition: 0.4s;
-}
-
-.button-perfil-navbar img:hover {
-    width: 2.2vw;
 }
 
 /* Hamburger menu */
