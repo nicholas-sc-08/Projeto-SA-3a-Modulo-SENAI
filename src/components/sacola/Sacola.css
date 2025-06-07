@@ -71,14 +71,26 @@
 .container_info_produto_nome_sacola{
 
     display: flex;
-    width: 68%;
+    justify-content: space-between;
+    width: 100%;
     height: 100%;
 }
 
 .container_info_produto_sacola{
 
-    width: 78%;
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
     height: 100%;
+}
+
+.container_info_produto_titulo_sacola{
+    
+    display: flex;
+    align-items: center;
+    
+    width: 130%;
+    height: 30%;
 }
 
 .container_info_produto_titulo_sacola h3{
@@ -109,11 +121,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
+    width: 20%;
 
     font-family: var(--tipografia_primaria);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 550;
 
     color: var(--cor_seis);
 }
@@ -127,21 +139,16 @@
     align-items: center;
     justify-content: center;
 
-    width: 15%;
+    width: 20%;
     height: 2.2vh;
 
     border-top-left-radius: 0.3vw;
     border-bottom-left-radius: 0.3vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border: 0.1vw solid var(--cor_doze_v_um);
 
     color: var(--cor_seis);
     background-color: var(--cor_doze_v_um);
-}
-
-.diminuir_quantidade_de_produto :hover{
-
-    border: 0.1vw solid var(--cor_doze_v_dois);
-    background-color: var(--cor_doze_v_dois);
 }
 
 .aumentar_quantidade_de_produto{
@@ -153,21 +160,15 @@
     align-items: center;
     justify-content: center;
 
-    width: 15%;
+    width: 20%;
     height: 2.2vh;
 
     border-top-right-radius: 0.3vw;
     border-bottom-right-radius: 0.3vw;
     border: 0.1vw solid var(--cor_doze_v_um);
-
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     color: var(--cor_seis);
     background-color: var(--cor_doze_v_um);
-}
-
-.aumentar_quantidade_de_produto :hover{
-
-    border: 0.1vw solid var(--cor_doze_v_dois);
-    background-color: var(--cor_doze_v_dois);
 }
 
 .container_info_produto_quantidade_e_nome{
@@ -175,19 +176,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 100%;
+    width: 50%;
     height: 100%;
     margin-left: 5%;
-}
-
-.container_info_produto_titulo_sacola{
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    width: 100%;
-    height: 30%;
 }
 
 .container_imagem_do_produto_sacola img{
@@ -219,6 +210,7 @@
 
     border-radius: 100vw;
     width: 35%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .nenhum_item_adicionado{

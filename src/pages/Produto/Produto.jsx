@@ -228,10 +228,14 @@ function Produto() {
     async function adicionar_a_sacola(){
 
         const encontrar_produto = array_produtos.find(p => p._id == produto._id);
+        console.log(encontrar_produto);
+        
         
         try {
             
             if(usuario_logado){
+
+                if(sacola){
 
                 const encontrar_produto_sacola = sacola.find(p => p._id == produto._id);
                 
@@ -255,6 +259,7 @@ function Produto() {
                     };
                 
                 };
+            };
 
             } else {
 
@@ -262,6 +267,7 @@ function Produto() {
 
                 set_sacola([...sacola, produto_na_sacola]);
             };
+
             
         } catch (erro) {
           
