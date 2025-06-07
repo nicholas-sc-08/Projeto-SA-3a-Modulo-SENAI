@@ -123,7 +123,7 @@ function Login() {
 
     try {
 
-      if (cliente_existente) {
+      if (cliente_existente._id) {
 
         set_usuario_logado(cliente_existente);
         navegar('/');

@@ -20,6 +20,7 @@ function Header({ tipo }) {
 
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+    const { sacola, set_sacola } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -52,6 +53,12 @@ function Header({ tipo }) {
         }
 
     }, [])
+
+    useEffect(() => {
+
+        quantidade_de_produtos_sacola();
+
+    }, [sacola]);
 
     function renderLinks(){
         if (tipo === 'usuario') {
@@ -115,6 +122,17 @@ function Header({ tipo }) {
         };
     };
 
+    function quantidade_de_produtos_sacola(){        
+
+        if(Array.isArray(sacola)){
+
+            return sacola.length;
+        } else {
+
+            return 0;
+        };
+    };
+
     function renderIcons (){
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
@@ -123,6 +141,7 @@ function Header({ tipo }) {
                 
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
                     
+                    {tipo == `usuario` && (<span>{quantidade_de_produtos_sacola()}</span>)}
                     {tipo == 'usuario' && (
 
                         <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>

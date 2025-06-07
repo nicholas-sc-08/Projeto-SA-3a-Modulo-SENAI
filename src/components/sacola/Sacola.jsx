@@ -157,10 +157,10 @@ function Sacola() {
 
     function exibir_preco(produto_selecionado) {
 
-    const preco_total = produto_selecionado.preco * produto_selecionado.quantidade_selecionada;
-    const preco_formatado = preco_total.toFixed(2).replace('.', ',');
+        const preco_total = produto_selecionado.preco * produto_selecionado.quantidade_selecionada;
+        const preco_formatado = preco_total.toFixed(2).replace('.', ',');
 
-    return `R$${preco_formatado}`;
+        return `R$${preco_formatado}`;
     };
 
     return (
@@ -186,7 +186,7 @@ function Sacola() {
 
                             <div className="container_imagem_do_produto_sacola">
 
-                                <img src={produto.imagem[0] || ``} alt="" />
+                                <img src={produto._id ? produto.imagem[0] : ``} alt="" />
 
                             </div>
 
