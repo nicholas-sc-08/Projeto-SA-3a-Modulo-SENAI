@@ -91,12 +91,22 @@
     /* border: 1px solid red; */
 }
 
+.container_botao_sacola_header{
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+}
+
 .button-sacola-navbar {
     border: none;
     background: transparent;
     display: flex;
+    justify-content: start;
     align-items: start;
     height: 100%;
+    width: 80%;
 }
 
 .button-perfil-navbar {
@@ -124,27 +134,29 @@
 }
 
 .button-sacola-navbar img {
-    width: 2vw;
+    width: 2.2vw;
     cursor: pointer;
     transition: 0.4s;
 }
 
-.button-sacola-navbar span{
+.container_botao_sacola_header span{
 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -30%;
 
-    width: 40%; 
-    height: 2.1vh;
+    margin-left: -45%;
+
+    min-width: 1.3rem;
+    height: 2.2vh;
+    padding: 2%;
 
     cursor: pointer;
 
     border: 0.1vw solid var(--cor_vinte);
     border-radius: 100vw;
     
-    font-size: 1rem;
+    font-size: 0.8rem;
 
     color: var(--cor_quatro);
     background-color: var(--cor_vinte);
@@ -156,6 +168,7 @@
     width: 2vw;
     cursor: pointer;
     transition: 0.4s;
+    border-radius: 100vw;
 }
 
 /* Hamburger menu */
