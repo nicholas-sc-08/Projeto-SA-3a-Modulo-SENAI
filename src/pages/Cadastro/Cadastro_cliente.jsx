@@ -6,7 +6,7 @@ import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tr
 import axios from 'axios';
 import api from '../../services/api.js';
 import { Link, useNavigate } from 'react-router-dom';
-import './Cadastro_cliente.css';
+import { AnimatePresence, motion } from "framer-motion";
 
 function Cadastro_cliente() {
 
@@ -24,6 +24,8 @@ function Cadastro_cliente() {
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const dia_de_hoje = new Date();
   const mudar_de_pagina = useNavigate(``);
+
+  const [animandoCadastro, setAnimandoCadastro] = useState(false);
 
   /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
   const termina_Com_Gmail_Ou_Hotmail = form_de_cadastro_cliente.email.endsWith('@gmail.com') || form_de_cadastro_cliente.email.endsWith('@hotmail.com')
@@ -61,13 +63,13 @@ function Cadastro_cliente() {
         ...endereco_do_cliente,
         fk_id: resposta.data._id
       };
-      
+
       await api.post(`/enderecos`, endereco_do_cliente_com_fk);
 
       informacoes_clientes();
 
       mudar_de_pagina(`/`);
-      
+
 
     } catch (erro) {
 
@@ -132,9 +134,9 @@ function Cadastro_cliente() {
         };
       };
 
-      for(let i = 0; i < array_brechos; i++){
+      for (let i = 0; i < array_brechos; i++) {
 
-        if(array_brechos[i].email == form_de_cadastro_cliente.email){
+        if (array_brechos[i].email == form_de_cadastro_cliente.email) {
 
           email_ja_cadastrado = true;
         };
@@ -210,9 +212,9 @@ function Cadastro_cliente() {
         };
       };
 
-      for(let i = 0; i < array_brechos.length; i++){
+      for (let i = 0; i < array_brechos.length; i++) {
 
-        if(array_brechos[i].telefone == form_de_cadastro_cliente.telefone){
+        if (array_brechos[i].telefone == form_de_cadastro_cliente.telefone) {
 
           telefone_ja_cadastrado = true;
         };
@@ -271,10 +273,20 @@ function Cadastro_cliente() {
     };
   };
 
-  return (
-    <div className='container_cadastro_cliente'>
+  const LoginCadastro = () => {
+    setAnimandoCadastro(true); // dispara animação de saída
 
-      <div className="container_ir_para_login_cliente">
+    // espera 800ms pra redirecionar após a animação
+    setTimeout(() => {
+      mudar_de_pagina('/login');
+    }, 600);
+  };
+
+  return (
+    <div>
+      <div className='container_cadastro_cliente'>
+
+        {/* <div className="container_ir_para_login_cliente">
 
         <img src="./img/Estrela_um_cadastro.svg" alt="estrela" className='estrela_um_cadastro' />
 
@@ -288,53 +300,75 @@ function Cadastro_cliente() {
 
         </div>
 
-      </div>
+      </div> */}
 
-      <div className="container_formulario_cliente">
+        <div className="container-ir-para-tela-login-alinhamento">
+          <AnimatePresence>
+            {!animandoCadastro && (
+              <motion.div
+                className="container-informacoes-login-cadastro-cliente"
+                initial={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 10, x: 755 }} // Se mueve a la derecha
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
 
-        <form onSubmit={lidar_com_formulario}>
+                <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
+                <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível.</p>
+                <button onClick={LoginCadastro} type='button'>Entrar</button>
 
-          <div className="container_logo_etapa_cliente">
+                <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-            <div className="container_etapa_cliente_alinhamento">
+        <div className="container_formulario_cliente">
 
-              <div className="container_etapa_cliente">
+          <form onSubmit={lidar_com_formulario}>
 
-                <img src='./img/Elipse_verde.svg' />
+            <div className="container_logo_etapa_cliente">
 
-                {cadastro_parte_dois_cliente || cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
-                {cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+              <div className="container_etapa_cliente_alinhamento">
 
-              </div>
+                <div className="container_etapa_cliente">
 
-              <div className="container_logo_fly_cliente">
+                  <img src='./img/Elipse_verde.svg' />
 
-                <Link to={`/`}><img src="./img/logo-verdeCamadinha 2.svg" alt="" /></Link>
+                  {cadastro_parte_dois_cliente || cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                  {cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+
+                </div>
+
+                <div className="container_logo_fly_cliente">
+
+                  <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" /></Link>
+
+                </div>
 
               </div>
 
             </div>
 
-          </div>
+            <div className="container_cadastro_cliente_titulo">
 
-          <div className="container_cadastro_cliente_titulo">
+              <h1>Cadastro de usuário</h1>
+              <p>{sub_titulo_cadastro_cliente}</p>
+            </div>
 
-            <h1>Cadastro de usuário</h1>
-            <p>{sub_titulo_cadastro_cliente}</p>
-          </div>
+            {cadastro_parte_um_cliente && <Secao_inputs_um />}
+            {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
+            {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
 
-          {cadastro_parte_um_cliente && <Secao_inputs_um />}
-          {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
-          {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
+            <div className="dv_formulario_botoes">
 
-          <div className="dv_formulario_botoes">
+              {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
+              {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
+              <p>{mensagem_de_erro}</p>
 
-            {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
-            {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-            <p>{mensagem_de_erro}</p>
-
-          </div>
-        </form>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

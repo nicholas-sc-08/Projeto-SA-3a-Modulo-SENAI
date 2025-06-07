@@ -134,10 +134,14 @@
 }
 
 .ladoEsquerdo-container label {
+    margin-top: 4%;
+    margin-bottom: 1%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: bold;
+
     color: var(--cor_seis_v_um);
-    font-weight: 800;
-    margin-top: 5%;
-    margin-bottom: 2%;
     /* border: 1px solid red; */
 }
 
@@ -163,7 +167,7 @@
 .fazer_login_butao button:hover {
     background-color: var(--cor_um_v_dois);
 }
-
+    
 .botao-google-custom {
     display: flex;
     align-items: center;

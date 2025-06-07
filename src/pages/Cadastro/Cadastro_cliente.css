@@ -1,133 +1,96 @@
-
-.container_cadastro_cliente{
-
-    transition: 0.3s;
-
+.container_cadastro_cliente {
     display: flex;
-
-    height: 100vh;
-}
-
-.container_ir_para_login_cliente{
-
-    transition: 0.3s;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-
-    width: 80%;
-
-    background-color: var(--cor_quatro);
     /* border: 1px solid red; */
 }
 
-.container_informacoes_para_o_login{
+.container-ir-para-tela-login-alinhamento {
 
-    transition: 0.3s;
+    width: 45%;
+    height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    display: flex;
 
-    width: 85%;
-    height: 85%;
+    /* border: 1px solid red; */
+}
 
-    border: 1% solid var(--cor_tres);
-    border-radius: 3%;
-
+.container-informacoes-login-cadastro-cliente {
+    width: 80%;
+    height: 90vh;
+    border-radius: 25px;
     background-color: var(--cor_tres);
 
-    /* border: 1px solid blue; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 100;
 }
 
-.container_informacoes_para_o_login h1{
-
-    transition: 0.3s;
-
+.container-informacoes-login-cadastro-cliente h1 {
     font-family: var(--tipografia_primaria);
-    font-weight: 700;
-    font-size: 2.2rem;
-
+    font-size: 2rem;
+    width: 65%;
     color: var(--cor_um);
+    letter-spacing: 1px;
+    line-height: 45px;
+    font-weight: bold;
+    text-align: center;
+
+    padding-bottom: 4%;
 }
 
-.container_informacoes_para_o_login p{
-
-    transition: 0.3s;
-
-    width: 60%;
-
-    margin-top: 5%;
-    margin-bottom: 8%;
-
+.container-informacoes-login-cadastro-cliente p {
     font-family: var(--tipografia_secundaria);
-    font-size: 1rem;
+    color: var(--cor_um);
+    opacity: 75%;
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 
-    color: var(--cor_um_v_um);
+    padding-bottom: 5%;
 }
 
-.container_informacoes_para_o_login button{
-
-    width: 30%;
-    height: 8%;
+.container-informacoes-login-cadastro-cliente button {
+    width: 25%;
+    height: 7%;
 
     cursor: pointer;
 
     transition: 0.3s;
 
     border-radius: 10vw;
-    border: 0.1vw solid var(--cor_um);
+    border: none;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
 
     color: var(--cor_quatro);
-    background-color: var(--cor_um);
+    background-color: var(--cor_dois);
 }
 
-.container_informacoes_para_o_login button:hover{
-
-    border: 0.1vw solid var(--cor_um_v_dois);
-    background-color: var(--cor_um_v_dois);
-}
-
-.container_informacoes_para_o_login img{
-
+.container-informacoes-login-cadastro-cliente button:hover {
     transition: 0.3s;
-
-    left: 2%;
-    bottom: 20%;
-    position: absolute;
-
-    /* border: 1px solid red; */
+    background-color: var(--cor_dois_v_um);
 }
 
-.estrela_um_cadastro{
+@media only screen and (min-width: 1201px) {
 
-    transition: 0.3s;
-
-    right: 53.5%;
-    top: 20%;
-    position: absolute;
-}
-
-@media only screen and (min-width: 1201px){
-
-    .container_cadastro_cliente{
+    .container_cadastro_cliente {
 
         transition: 0.3s;
 
         display: flex;
-    
+
         height: 100vh;
     }
-    
-    .container_ir_para_login_cliente{
-    
+
+    .container_ir_para_login_cliente {
+
         transition: 0.3s;
 
         display: flex;
@@ -135,23 +98,23 @@
         align-items: center;
         text-align: center;
         justify-content: center;
-    
+
         width: 75%;
-    
+
         background-color: var(--cor_quatro);
 
         /* border: 1px solid blue; */
     }
-    
-    .container_informacoes_para_o_login{
-    
+
+    .container_informacoes_para_o_login {
+
         transition: 0.3s;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
+
         width: 80%;
         height: 85vh;
 
@@ -159,13 +122,13 @@
 
         border: 1% solid var(--cor_tres);
         border-radius: 3%;
-    
+
         background-color: var(--cor_tres);
         /* border: 1px solid red; */
     }
-    
-    .container_informacoes_para_o_login h1{
-    
+
+    .container_informacoes_para_o_login h1 {
+
         transition: 0.3s;
 
         width: 65%;
@@ -173,12 +136,12 @@
         font-family: var(--tipografia_primaria);
         font-weight: 700;
         font-size: 2rem;
-    
+
         color: var(--cor_um);
     }
-    
-    .container_informacoes_para_o_login p{
-    
+
+    .container_informacoes_para_o_login p {
+
         transition: 0.3s;
         opacity: 75%;
         text-align: center;
@@ -186,53 +149,53 @@
         width: 50%;
         font-weight: 400;
         letter-spacing: 0.5px;
-    
+
         margin-bottom: 5%;
-    
+
         font-family: var(--tipografia_secundaria);
 
-    
+
         color: var(--cor_um_v_um);
     }
-    
-    .container_informacoes_para_o_login button{
-    
+
+    .container_informacoes_para_o_login button {
+
         width: 25%;
         height: 7%;
-    
+
         cursor: pointer;
-    
+
         transition: 0.3s;
-    
+
         border-radius: 10vw;
         border: 0.1vw solid var(--cor_dois);
-    
+
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
-    
+
         color: var(--cor_quatro);
         background-color: var(--cor_dois);
     }
-    
-    .container_informacoes_para_o_login button:hover{
-    
+
+    .container_informacoes_para_o_login button:hover {
+
         border: 0.1vw solid var(--cor_um_v_dois);
         background-color: var(--cor_um_v_dois);
     }
-    
-    .container_informacoes_para_o_login img{
+
+    .container_informacoes_para_o_login img {
 
         transition: 0.3s;
-        
+
         width: 5%;
 
         left: 3%;
         bottom: 20%;
         position: absolute;
     }
-    
-    .estrela_um_cadastro{
-    
+
+    .estrela_um_cadastro {
+
         transition: 0.3s;
 
         right: 58.5%;
@@ -240,150 +203,139 @@
         position: absolute;
     }
 
-    .container_formulario_cliente{
+    .container_formulario_cliente {
 
-        width: 90%;
-        margin-top: 3%;
+        width: 35%;
+
         /* border: 1px solid red; */
     }
 
-    .container_logo_etapa_cliente{
-
-        width: 14%;
-        /* border: 1px solid red; */
-
-    }
-
-    .container_etapa_cliente_alinhamento{
-
-        margin-top: 2%;
+    .container_etapa_cliente_alinhamento {
 
         display: flex;
+        height: fit-content;
+
         align-items: center;
         justify-content: space-between;
+
+        margin-top: 4vh;
+        width: 48vw;
+        /* border: 1px solid red; */
     }
 
     .container_etapa_cliente {
-
-        width: 100%;
-        /* border: 1px solid red; */
-
+        height: fit-content;
+        width: 13%;
+        justify-content: space-between;
+        align-items: center;
         display: flex;
-        justify-content: space-around;
     }
 
-    .container_cadastro_cliente_titulo{
-
-        width: 70%;
+    .container_cadastro_cliente_titulo {
+        width: 85%;
+        /* border: 1px solid red; */
     }
 
-    .container_cadastro_cliente_titulo h1{
+    .container_cadastro_cliente_titulo h1 {
+        font-family: var(--tipografia_primaria);
+        color: var(--cor_seis);
+        width: fit-content;
+        letter-spacing: 1px;
+
+        margin-top: -1.5vw;
+    }
+
+    .container_cadastro_cliente_titulo p {
+        font-family: var(--tipografia_secundaria);
+        letter-spacing: 0.5px;
+        color: var(--cor_seis);
+        opacity: 85%;
+        font-size: 105%;
+        padding-top: 1%;
+    }
+
+    .container_inputs_secao_um_e_dois {
 
         margin-top: 3%;
 
-        font-family: var(--tipografia_primaria);
-        font-size: 2.2rem;
-
-        color: var(--cor_seis);
-    }
-
-    .container_cadastro_cliente_titulo p{
-
-        width: 95%;
-
-        font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
-
-        color: var(--cor_seis_v_um);
-    }
-
-    .container_inputs_secao_um_e_dois{
-
-        margin-top: 2%;
-
-        width: 70%;
+        width: 90%;
 
         display: flex;
         flex-direction: column;
+        /* border: 1px solid red; */
     }
 
-    .container_inputs_secao_um_e_dois label{
-
-        margin-top: 2%;
-        margin-bottom: 2%;
+    .container_inputs_secao_um_e_dois label {
+        padding-top: 2.5%;
+        padding-bottom: 1%;
 
         font-family: var(--tipografia_secundaria);
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: bold;
 
         color: var(--cor_seis_v_um);
     }
 
-    .container_inputs_secao_um_e_dois span{
-
-        color: var(--cor_sete_v_um);
+    .container_inputs_secao_um_e_dois span {
+        color: var(--cor_sete);
     }
 
-    .container_inputs_secao_um_e_dois input{        
-
-        width: 70%;
+    .container_inputs_secao_um_e_dois input {
+        width: 87%;
         height: 3vw;
-        padding-left: 1%;
-
-        outline: none;
-        border: 0.1em solid var(--cor_dois);
-        border-radius: 0.7vw;
-
-        font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
-
-        color: var(--cor_seis);
         background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 1vw;
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
         padding-right: 3%;
     }
 
-    .container_formulario_cliente button{
+    .container_inputs_secao_um_e_dois input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+    }
 
-        margin-top: 2%;
-        transition: 0.3s;
-        cursor: pointer;
+    .container_inputs_secao_um_e_dois input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
 
+    .container_formulario_cliente button {
+
+        border: none;
+        background-color: var(--cor_um);
         width: 10vw;
-        height: 6vh;
-
-        border: 0.1vw solid var(--cor_um);
+        height: 3vw;
         border-radius: 2.5vw;
-
+        color: var(--cor_quatro);
         font-family: var(--tipografia_secundaria);
         font-size: 0.9em;
-
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-        color: var(--cor_quatro);
-        background-color: var(--cor_um);
+        transition: 0.4s;
 
         /* border: 1px solid red; */
     }
 
-    .container_formulario_cliente button:hover{
+    .container_formulario_cliente button:hover {
 
         background-color: var(--cor_um_v_dois);
     }
 
-    .dv_formulario_botoes{
+    .dv_formulario_botoes {
 
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 2%;
+        margin-top: 4%;
     }
 
-    .dv_formulario_botoes p{
+    .dv_formulario_botoes p {
 
-        width: 40%;
+        width: 70%;
 
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
@@ -392,9 +344,10 @@
         margin-left: 3%;
 
         color: var(--cor_sete);
+        /* border: 1px solid red; */
     }
 
-    .secao_inputs_tres_p_um{
+    .secao_inputs_tres_p_um {
 
         margin-top: 2%;
 
@@ -404,7 +357,7 @@
         flex-direction: column;
     }
 
-    .secao_inputs_tres_p_um label{
+    .secao_inputs_tres_p_um label {
 
         margin-top: 2%;
         margin-bottom: 2%;
@@ -416,53 +369,62 @@
         color: var(--cor_seis_v_um);
     }
 
-    .secao_inputs_tres_p_um span{
+    .secao_inputs_tres_p_um span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .secao_inputs_tres_p_um input{        
-
-        width: 90%;
-        height: 3.2vw;
-        padding-left: 1%;
-
-        outline: none;
-        border: 0.1em solid var(--cor_dois);
-        border-radius: 1vw;
-
-        font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
-
-        color: var(--cor_seis);
+    .secao_inputs_tres_p_um input {
+        width: 128%;
+        height: 3vw;
         background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 1vw;
+        /* border: 1px solid red; */
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_alinhamento{
+    .secao_inputs_tres_p_um input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
+    .secao_inputs_tres_p_um input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_alinhamento {
 
         display: flex;
         justify-content: start;
 
-        width: 70%;
+        width: 100%;
+        /* border: 1px solid red; */
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um {
 
         display: flex;
         flex-direction: column;
 
         width: 40%;
+        /* border: 1px solid blue; */
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois {
 
         display: flex;
         flex-direction: column;
 
         width: 40%;
+        /* border: 1px solid red; */
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um label{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um label {
 
         margin-top: 4%;
         margin-bottom: 2%;
@@ -474,78 +436,89 @@
         color: var(--cor_seis_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um span{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um input{        
-
-        width: 90%;
-        height: 3.2vw;
-        padding-left: 1%;
-
-        outline: none;
-        border: 0.1em solid var(--cor_dois);
-        border-radius: 0.7vw;
-
-        font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
-
-        color: var(--cor_seis);
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input {
+        width: 92%;
+        height: 3vw;
         background-color: transparent;
-    }
-
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label{
-
-        margin-top: 4%;
-        margin-bottom: 2%;
-
-        font-family: var(--tipografia_secundaria);
-        font-size: 1rem;
-        font-weight: bold;
-
-        color: var(--cor_seis_v_um);
-    }
-
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span{
-
-        color: var(--cor_sete_v_um);
-    }
-
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input{        
-
-        width: 90%;
-        height: 3.2vw;
-        padding-left: 1%;
-
-        outline: none;
         border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
         border-radius: 1vw;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label {
+
+        margin-top: 4%;
+        margin-bottom: 2%;
 
         font-family: var(--tipografia_secundaria);
         font-size: 1rem;
+        font-weight: bold;
 
-        color: var(--cor_seis);
-        background-color: transparent;
+        color: var(--cor_seis_v_um);
     }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span {
+
+        color: var(--cor_sete_v_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input {
+        width: 92%;
+        height: 3vw;
+        background-color: transparent;
+        border: 0.1vw solid var(--cor_dois);
+        font-family: var(--tipografia_secundaria);
+        color: var(--cor_seis);
+        padding-left: 1%;
+        border-radius: 1vw;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input:focus {
+        outline: none;
+        border: 0.1em solid var(--cor_um);
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input::placeholder {
+        color: var(--cor_seis);
+        opacity: 75%;
+        padding-left: 1%;
+    }
+
 }
 
 @media (max-width: 768px) {
 
-    .container_cadastro_cliente{
+    .container_cadastro_cliente {
 
         transition: 0.3s;
 
         display: flex;
         flex-direction: column;
         align-items: center;
-    
+
         height: 100vh;
     }
-    
-    .container_ir_para_login_cliente{
-    
+
+    .container_ir_para_login_cliente {
+
         transition: 0.3s;
 
         display: flex;
@@ -553,23 +526,23 @@
         align-items: center;
         text-align: center;
         justify-content: center;
-    
+
         width: 90%;
 
         margin-top: 5%;
-    
+
         background-color: var(--cor_quatro);
     }
-    
-    .container_informacoes_para_o_login{
-    
+
+    .container_informacoes_para_o_login {
+
         transition: 0.3s;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
+
         width: 85%;
         height: 65vh;
 
@@ -577,12 +550,12 @@
 
         border: 1% solid var(--cor_tres);
         border-radius: 3%;
-    
+
         background-color: var(--cor_tres);
     }
-    
-    .container_informacoes_para_o_login h1{
-    
+
+    .container_informacoes_para_o_login h1 {
+
         transition: 0.3s;
 
         width: 80%;
@@ -590,64 +563,64 @@
         font-family: var(--tipografia_primaria);
         font-weight: 700;
         font-size: 1.4rem;
-    
+
         color: var(--cor_um);
     }
-    
-    .container_informacoes_para_o_login p{
-    
+
+    .container_informacoes_para_o_login p {
+
         transition: 0.3s;
 
         width: 60%;
-    
+
         margin-top: 5%;
         margin-bottom: 8%;
-    
+
         font-family: var(--tipografia_secundaria);
         font-size: 0.8rem;
-    
+
         color: var(--cor_um_v_um);
     }
-    
-    .container_informacoes_para_o_login button{
-    
+
+    .container_informacoes_para_o_login button {
+
         width: 30%;
         height: 5vh;
         margin-top: 5%;
-    
+
         cursor: pointer;
-    
+
         transition: 0.3s;
-    
+
         border-radius: 10vw;
         border: 0.1vw solid var(--cor_um);
-    
+
         font-family: var(--tipografia_secundaria);
         font-size: 0.8rem;
-    
+
         color: var(--cor_quatro);
         background-color: var(--cor_um);
     }
-    
-    .container_informacoes_para_o_login button:hover{
-    
+
+    .container_informacoes_para_o_login button:hover {
+
         border: 0.1vw solid var(--cor_um_v_dois);
         background-color: var(--cor_um_v_dois);
     }
-    
-    .container_informacoes_para_o_login img{
+
+    .container_informacoes_para_o_login img {
 
         transition: 0.3s;
-        
+
         width: 12%;
 
         left: 6%;
         bottom: 35%;
         position: absolute;
     }
-    
-    .estrela_um_cadastro{
-    
+
+    .estrela_um_cadastro {
+
         width: 10%;
         transition: 0.3s;
 
@@ -656,20 +629,20 @@
         position: absolute;
     }
 
-    .container_formulario_cliente{
+    .container_formulario_cliente {
 
         width: 90%;
         text-align: center;
     }
 
-    .container_logo_etapa_cliente{
+    .container_logo_etapa_cliente {
 
         width: 90%;
 
         margin-left: 5%;
     }
 
-    .container_etapa_cliente_alinhamento{
+    .container_etapa_cliente_alinhamento {
 
         margin-top: 1%;
 
@@ -688,12 +661,12 @@
         justify-content: space-around;
     }
 
-    .container_etapa_cliente img{
+    .container_etapa_cliente img {
 
         width: 20%;
     }
 
-    .container_cadastro_cliente_titulo{
+    .container_cadastro_cliente_titulo {
 
         display: flex;
         flex-direction: column;
@@ -702,7 +675,7 @@
         width: 100%;
     }
 
-    .container_cadastro_cliente_titulo h1{
+    .container_cadastro_cliente_titulo h1 {
 
         font-family: var(--tipografia_primaria);
         font-size: 1.4rem;
@@ -710,7 +683,7 @@
         color: var(--cor_seis);
     }
 
-    .container_cadastro_cliente_titulo p{
+    .container_cadastro_cliente_titulo p {
 
         width: 55%;
 
@@ -720,7 +693,7 @@
         color: var(--cor_seis_v_um);
     }
 
-    .container_inputs_secao_um_e_dois{
+    .container_inputs_secao_um_e_dois {
 
         margin-top: 7%;
 
@@ -731,7 +704,7 @@
         align-items: center;
     }
 
-    .container_inputs_secao_um_e_dois label{
+    .container_inputs_secao_um_e_dois label {
 
         margin-top: 2%;
         margin-bottom: 2%;
@@ -743,12 +716,12 @@
         color: var(--cor_seis_v_um);
     }
 
-    .container_inputs_secao_um_e_dois span{
+    .container_inputs_secao_um_e_dois span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .container_inputs_secao_um_e_dois input{        
+    .container_inputs_secao_um_e_dois input {
 
         width: 70%;
         height: 12vw;
@@ -770,12 +743,12 @@
     }
 
     .container_formulario_cliente {
-       
+
         display: flex;
         justify-content: center;
     }
 
-    .container_formulario_cliente button{
+    .container_formulario_cliente button {
 
         transition: 0.3s;
         cursor: pointer;
@@ -795,12 +768,12 @@
         background-color: var(--cor_um);
     }
 
-    .container_formulario_cliente button:hover{
+    .container_formulario_cliente button:hover {
 
         background-color: var(--cor_um_v_dois);
     }
 
-    .dv_formulario_botoes{
+    .dv_formulario_botoes {
 
         display: flex;
         flex-direction: column;
@@ -810,7 +783,7 @@
         margin-top: 4%;
     }
 
-    .dv_formulario_botoes p{
+    .dv_formulario_botoes p {
 
         width: 40%;
 
@@ -823,7 +796,7 @@
         color: var(--cor_sete);
     }
 
-    .secao_inputs_tres_p_um{
+    .secao_inputs_tres_p_um {
 
         margin-top: 6%;
 
@@ -835,7 +808,7 @@
 
     }
 
-    .secao_inputs_tres_p_um label{
+    .secao_inputs_tres_p_um label {
 
         margin-top: 2%;
         margin-bottom: 2%;
@@ -847,12 +820,12 @@
         color: var(--cor_seis_v_um);
     }
 
-    .secao_inputs_tres_p_um span{
+    .secao_inputs_tres_p_um span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .secao_inputs_tres_p_um input{        
+    .secao_inputs_tres_p_um input {
 
         width: 100%;
         height: 12vw;
@@ -869,7 +842,7 @@
         background-color: transparent;
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_alinhamento{
+    .container_cadastro_cliente_secao_inputs_tres_alinhamento {
 
         display: flex;
         flex-direction: column;
@@ -877,15 +850,7 @@
         width: 100%;
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um{
-
-        display: flex;
-        flex-direction: column; 
-
-        width: 100%;
-    }
-
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um {
 
         display: flex;
         flex-direction: column;
@@ -893,7 +858,15 @@
         width: 100%;
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um label{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois {
+
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um label {
 
         margin-top: 4%;
         margin-bottom: 2%;
@@ -905,12 +878,12 @@
         color: var(--cor_seis_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um span{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_um input{        
+    .container_cadastro_cliente_secao_inputs_tres_coluna_um input {
 
         width: 100%;
         height: 12vw;
@@ -927,7 +900,7 @@
         background-color: transparent;
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois label {
 
         margin-top: 4%;
         margin-bottom: 2%;
@@ -939,12 +912,12 @@
         color: var(--cor_seis_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span{
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois span {
 
         color: var(--cor_sete_v_um);
     }
 
-    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input{        
+    .container_cadastro_cliente_secao_inputs_tres_coluna_dois input {
 
         width: 100%;
         height: 12vw;
@@ -958,6 +931,6 @@
         text-align: center;
 
         color: var(--cor_seis);
-        background-color: transparent; 
+        background-color: transparent;
     }
 }
