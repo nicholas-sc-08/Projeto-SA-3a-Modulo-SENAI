@@ -108,7 +108,7 @@ function Sobre_nos() {
                 <div className='redes-sociais'>
                   <p className='nome-do-membro'>Nicholas Serencovich</p>
                   <a href="https://www.linkedin.com/in/nicholas-carvalho-2b73a5297/"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://www.instagram.com/nchls.08/?utm_source=ig_web_button_share_sheet"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.instagram.com/nchls.08/"><i class="fab fa-instagram"></i></a>
                   <a href="https://github.com/nicholas-sc-08"><i class="fab fa-github"></i></a>
                 </div>
               </div>

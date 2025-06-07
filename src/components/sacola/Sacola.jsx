@@ -12,7 +12,7 @@ function Sacola() {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
-    const [produtos_exibido_na_sacola, set_produtos_exibido_na_sacola] = useState([]);
+    const [ produtos_exibido_na_sacola, set_produtos_exibido_na_sacola ] = useState([]);
 
     useEffect(() => {
 
@@ -35,6 +35,7 @@ function Sacola() {
 
         buscar_brechos();
         buscar_clientes();
+        exibir_produtos_na_sacola();
 
     }, []);
 
@@ -113,7 +114,7 @@ function Sacola() {
 
         if (sacola && sacola.length > 3) {
 
-            const produtos_exibidos = usuario_logado.sacola.slice(0, 3);
+            const produtos_exibidos = sacola.slice(0, 3);
             set_produtos_exibido_na_sacola(produtos_exibidos);
 
         } else {
@@ -164,7 +165,7 @@ function Sacola() {
 
                 <div className="container_produtos_na_sacola">
 
-                    {produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
+                    { produtos_exibido_na_sacola && produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
 
                         <div key={i} className='container_produtos_a_exibir_sacola'>
 
