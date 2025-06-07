@@ -64,7 +64,7 @@ function Header({ tipo }) {
         if (tipo === 'usuario') {
             return (
                 <>
-                    <Link to="/doacoes" className="link-texto-navbar-usuario">Doações</Link>
+                    <Link to="/estamosChegando" className="link-texto-navbar-usuario">Doações</Link>
                     <Link to="/buscarProdutos" className="link-texto-navbar-usuario">Produtos</Link>
                     <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </>

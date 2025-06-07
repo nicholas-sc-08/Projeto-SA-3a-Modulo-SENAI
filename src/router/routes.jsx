@@ -23,6 +23,7 @@ import Detalhe_Pagamento_etapa_dois from "../pages/CheckOut/Detalhe_Pagamento_et
 import Detalhe_Pagamento_etapa_tres from "../pages/CheckOut/Detalhe_Pagamento_etapa_tres";
 import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente";
 import Escolha_cadastro from "../pages/Cadastro/Escolha_cadastro.jsx";
+import TelaEmAndamento from "../pages/Em_andamento/TelaEmAndamento.jsx";
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,9 @@ const router = createBrowserRouter([
    { path: `/detalhe_pagamento_etapa_dois`, element: <Detalhe_Pagamento_etapa_dois /> },
    { path: `/detalhe_pagamento_etapa_tres`, element: <Detalhe_Pagamento_etapa_tres /> },
    { path: `/edicao_perfil_cliente`, element: <Edicao_perfil_cliente /> },
+
+
+   { path: `/estamosChegando`, element: <TelaEmAndamento /> }
 ])
 
 export default router;
