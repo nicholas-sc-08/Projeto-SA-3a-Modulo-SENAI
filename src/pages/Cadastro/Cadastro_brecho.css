@@ -71,7 +71,7 @@
 
 .container-informacoes-login-cadastro-brecho button:hover {
     transition: 0.3s;
-    background-color: var(--cor_um);
+    background-color: var(--cor_dois_v_um);
 }
 
 .estrela-um-cadastro {
@@ -85,6 +85,7 @@
 
 .alinhamento-fases-container-cadastro {
     display: flex;
+    /* border: 1px solid red; */
 }
 
 .alinhamento-elipses-logo {
@@ -94,8 +95,9 @@
     align-items: center;
     justify-content: space-between;
 
-    margin-top: 4vh;
+    margin-top: 4%;
     width: 48vw;
+    /* border: 1px solid red; */
 }
 
 .elipse-container {
@@ -109,6 +111,7 @@
 /* FORMULARIO UM INPUTS CADASTRO BRECHO  */
 .container-formulario-um-cadastro-brecho {
     width: 70%;
+    /* border: 1px solid red; */
 }
 
 .container-formulario-um-cadastro-brecho h1 {
@@ -133,18 +136,18 @@
     display: flex;
     flex-direction: column;
     padding-top: 2%;
+    /* border: 1px solid red; */
 }
 
 .inputs-formulario-um-cadastro-brecho label {
-    font-family: var(--tipografia_secundaria);
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: var(--cor_seis);
-    opacity: 70%;
-    font-size: 18px;
+    margin-top: 2.5%;
+    margin-bottom: 1%;
 
-    padding-top: 2.5%;
-    padding-bottom: 1%;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--cor_seis_v_um);
 }
 
 .inputs-formulario-um-cadastro-brecho span {
@@ -179,18 +182,14 @@
 }
 
 .inputs-formulario-dois-cadastro-brecho label {
+    margin-top: 2.5%;
+    margin-bottom: 1%;
+
     font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    color: var(--cor_seis);
-    opacity: 70%;
-    font-size: 18px;
 
-    padding-top: 2.5%;
-    padding-bottom: 1%;
-
-    align-items: center;
-    display: flex;
+    color: var(--cor_seis_v_um);
 }
 
 .span-obrigatoria-cadastro-brecho-dois {
@@ -201,12 +200,11 @@
     width: 82%;
     height: 3vw;
     background-color: transparent;
-    border: 0.1em solid var(--cor_dois);
+    border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
-    font-size: 1em;
     color: var(--cor_seis);
     padding-left: 1%;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
 }
 
 .inputs-formulario-dois-cadastro-brecho input:focus {
@@ -219,26 +217,29 @@
     opacity: 75%;
 }
 
-.adicionar-imagem-perfil-cadastro-brecho{
+.adicionar-imagem-perfil-cadastro-brecho {
     display: flex;
     width: 88%;
     justify-content: space-between;
+    /* border: 1px solid red; */
 }
 
-.adicionar-imagem-perfil-cadastro-brecho span{
-   color: var(--cor_sete);
+.adicionar-imagem-perfil-cadastro-brecho span {
+    color: var(--cor_sete);
 }
 
-.adicionar-imagem-perfil-cadastro-brecho img{
+.adicionar-imagem-perfil-cadastro-brecho img {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
     border: none;
+    /* border: 1px solid red; */
+    padding-right: 8%;
 }
 
 /* .container-inputs-cadastro-brecho-tres{
@@ -253,17 +254,15 @@
 }
 
 .container-inputs-cadastro-brecho-tres label {
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+
     font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    color: var(--cor_seis);
-    opacity: 70%;
-    font-size: 18px;
 
-    padding-top: 2.5%;
-    padding-bottom: 0.5%;
+    color: var(--cor_seis_v_um);
 
-    align-items: center;
     display: flex;
 }
 
@@ -271,12 +270,11 @@
     width: 57%;
     height: 3vw;
     background-color: transparent;
-    border: 0.1em solid var(--cor_dois);
+    border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
-    font-size: 1em;
     color: var(--cor_seis);
     padding-left: 1%;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
 }
 
 .container-inputs-cadastro-brecho-tres input:focus {
@@ -296,35 +294,39 @@
 
 .container-estado-cidade-cadastro-tres {
     display: flex;
-    width: 27.4vw;
+    width: 25vw;
+    /* border: 1px solid red; */
     justify-content: space-between;
 }
 
 .container-estado-cidade-cadastro-tres label {
-    font-family: var(--tipografia_secundaria);
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: var(--cor_seis);
-    opacity: 70%;
-    font-size: 18px;
 
-    padding-top: 7%;
-    padding-bottom: 0.5%;
-
-    align-items: center;
     display: flex;
+    flex-direction: column;
+    margin-top: 3.5%;
+    margin-bottom: 1%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--cor_seis_v_um);
 }
 
 .container-estado-cidade-cadastro-tres input {
-    width: 100%;
+    width: 124%;
     height: 3vw;
     background-color: transparent;
-    border: 0.1em solid var(--cor_dois);
+    border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
-    font-size: 1em;
     color: var(--cor_seis);
-    padding-left: 1%;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
+}
+
+.container-estado-cidade-cadastro-tres input::placeholder {
+    color: var(--cor_seis);
+    opacity: 75%;
+    padding-left: 3%;
 }
 
 .container-estado-cidade-cadastro-tres input:focus {
@@ -334,7 +336,7 @@
 
 .container-numero-complemento-cadastro-tres {
     display: flex;
-    width: 27.4vw;
+    width: 25vw;
     justify-content: space-between;
 }
 
@@ -344,15 +346,13 @@
 }
 
 .input-numero-complemento-cadastro-tres input {
-    width: 100%;
+    width: 124%;
     height: 3vw;
     background-color: transparent;
-    border: 0.1em solid var(--cor_dois);
+    border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
-    font-size: 1em;
     color: var(--cor_seis);
-    padding-left: 1%;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
 }
 
 .input-numero-complemento-cadastro-tres input:focus {
@@ -360,19 +360,22 @@
     border: 0.1em solid var(--cor_um);
 }
 
-.input-numero-complemento-cadastro-tres label {
-    font-family: var(--tipografia_secundaria);
-    font-weight: bold;
-    letter-spacing: 0.5px;
+.input-numero-complemento-cadastro-tres input::placeholder {
     color: var(--cor_seis);
-    opacity: 70%;
-    font-size: 18px;
+    opacity: 75%;
+    padding-left: 3%;
+}
 
-    padding-top: 7%;
-    padding-bottom: 0.5%;
-
-    align-items: center;
+.input-numero-complemento-cadastro-tres label {
     display: flex;
+    margin-top: 3.5%;
+    margin-bottom: 1%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--cor_seis_v_um);
 }
 
 /* FORMULARIO UM INPUTS CADASTRO BRECHO  */
@@ -380,7 +383,7 @@
 .formulario-cadastro-brecho-buttons {
     width: fit-content;
 
-    padding-top: 4%;
+    padding-top: 3%;
 }
 
 .formulario-cadastro-brecho-buttons button {
@@ -392,17 +395,12 @@
     color: var(--cor_quatro);
     font-family: var(--tipografia_secundaria);
     font-size: 0.9em;
-    /* border: 1px solid red; */ 
+    /* border: 1px solid red; */
+    transition: 0.4s;
 }
 
 .formulario-cadastro-brecho-buttons button:hover {
-    background-color: var(--cor_dois);
-    transition: 0.3s;
-}
-
-.formulario-cadastro-brecho-buttons button:not(:hover) {
-    background-color: var(--cor_um);
-    transition: 0.3s;
+    background-color: var(--cor_um_v_dois);
 }
 
 .formulario-cadastro-brecho-buttons {
@@ -419,4 +417,5 @@
     font-weight: 550;
     letter-spacing: 0.5px;
     color: var(--cor_sete);
+    /* border: 1px solid red; */
 }

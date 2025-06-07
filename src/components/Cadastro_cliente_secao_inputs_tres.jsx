@@ -61,10 +61,10 @@ function Cadastro_cliente_secao_inputs_tres() {
             // onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}
             />
 
-            <label>Bairro<span>*</span></label>
+            <label>Bairro</label>
             <input type="text" placeholder='Digite seu bairro' value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
 
-            <label>Logradouro<span>*</span></label>
+            <label>Logradouro</label>
             <input type="text" placeholder='Digite sua rua, avenida, etc..' required value={endereco_do_cliente.logradouro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, logradouro: e.target.value})}/>
         
        </div>
@@ -73,7 +73,7 @@ function Cadastro_cliente_secao_inputs_tres() {
         
             <div className="container_cadastro_cliente_secao_inputs_tres_coluna_um">
 
-                <label>Estado<span>*</span></label>
+                <label>Estado</label>
                 <input type="text" placeholder='Digite o estado' maxLength={2} value={endereco_do_cliente.estado} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, estado: e.target.value})}/>
 
                 <label>Número<span>*</span></label>
@@ -83,10 +83,10 @@ function Cadastro_cliente_secao_inputs_tres() {
 
             <div className="container_cadastro_cliente_secao_inputs_tres_coluna_dois">
 
-                <label>Cidade<span>*</span></label>
+                <label>Cidade</label>
                 <input type="text" placeholder='Digite sua cidade' value={endereco_do_cliente.cidade} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cidade: e.target.value})}/>
 
-                <label>Complemento</label>
+                <label>Complemento<span>*</span></label>
                 <input type="text" placeholder='( Opcional )' value={endereco_do_cliente.complemento} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, complemento: e.target.value})}/>
                 
             </div>

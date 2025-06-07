@@ -180,7 +180,7 @@ function Login() {
 
     // espera 800ms pra redirecionar após a animação
     setTimeout(() => {
-      navegar('/cadastro_brecho');
+      navegar('/escolha_cadastro');
     }, 600);
   };
 
