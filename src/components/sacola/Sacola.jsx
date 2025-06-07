@@ -89,8 +89,6 @@ function Sacola() {
                 const produtos = sacola.map(produto => produto._id == produto_selecionado._id ? produto_atualizado : produto);
                 
                 if(usuario_logado._id){
-
-
                     
                     const usuario_atualizado = {...usuario_logado, sacola: produtos};                
                     const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
@@ -159,17 +157,10 @@ function Sacola() {
 
     function exibir_preco(produto_selecionado) {
 
-        const dividir_preco = String(produto_selecionado.preco * produto_selecionado.quantidade_selecionada).split(`.`);
-        const centavos = dividir_preco[dividir_preco.length - 1];
+    const preco_total = produto_selecionado.preco * produto_selecionado.quantidade_selecionada;
+    const preco_formatado = preco_total.toFixed(2).replace('.', ',');
 
-
-        if (centavos < 10) {
-
-            return `R$${dividir_preco[0]},${centavos}0`;
-        } else {
-
-            return `R$${dividir_preco[0]},${centavos}`;
-        };
+    return `R$${preco_formatado}`;
     };
 
     return (

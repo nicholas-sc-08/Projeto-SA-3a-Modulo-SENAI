@@ -243,7 +243,7 @@ function Produto() {
         
         try {
             
-            if(usuario_logado && usuario_logado._id){
+            if(usuario_logado._id){
 
                 if(sacola){
 
