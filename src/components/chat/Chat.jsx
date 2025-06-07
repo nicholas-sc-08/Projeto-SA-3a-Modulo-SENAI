@@ -326,7 +326,7 @@ function Chat() {
 
       <div className="container_conversas_chat">
 
-        {inpt_de_pesquisa_chat == `` ? usuario_logado.conversas.map((conversa, i ) => (
+        {/* {inpt_de_pesquisa_chat == `` && usuario_logado.conversas ? usuario_logado.conversas.map((conversa, i ) => (
 
           <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
 
@@ -410,7 +410,7 @@ function Chat() {
 
           </div>
         ))
-      }
+      } */}
 
       </div>
 

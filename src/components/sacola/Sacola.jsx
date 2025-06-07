@@ -14,18 +14,22 @@ function Sacola() {
     const { sacola, set_sacola } = useContext(GlobalContext);
     const [produtos_exibido_na_sacola, set_produtos_exibido_na_sacola] = useState([]);
 
-
     useEffect(() => {
 
         if (usuario_logado) {
 
             set_sacola(usuario_logado.sacola);
-            exibir_produtos_na_sacola();
         };
 
         console.log(sacola);
 
     }, [usuario_logado]);
+
+    useEffect(() => {
+
+        exibir_produtos_na_sacola();
+
+    }, [sacola]);
 
     useEffect(() => {
 
@@ -63,39 +67,26 @@ function Sacola() {
     async function diminuir_produto(produto_selecionado) {
 
         try {
-            const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
-            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada -= 1 };
-            const encontrar_index_produto = usuario_logado.sacola.indexOf(produto_selecionado);
+           
+            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada - 1 };
+            
+            if(produto_atualizado.quantidade_selecionada == 0){
 
-            if (produto_atualizado.quantidade_selecionada == 0) {
-
-                const usuario_logado_atualizado = { ...usuario_logado, sacola: usuario_logado.sacola.splice(encontrar_index_produto, 1) };
-
-                if (encontrar_cliente) {
-
-                    await api.put(`/clientes/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-                } else {
-
-                    await api.put(`/brechos/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-                };
-
-                set_usuario_logado(usuario_logado_atualizado);
-
+                const filtrar_produtos = sacola.filter(produto => produto._id != produto_selecionado._id);
+                const usuario_atualizado = {...usuario_logado, sacola: filtrar_produtos};
+                const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+                set_usuario_logado(cliente_atualizado.data);
+            
             } else {
-
-                const usuario_logado_atualizado = { ...usuario_logado, sacola: usuario_logado.sacola.splice(encontrar_index_produto, 1, produto_atualizado) };
-
-                if (encontrar_cliente) {
-
-                    await api.put(`/clientes/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-                } else {
-
-                    await api.put(`/brechos/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-                };
-
-                set_usuario_logado(usuario_logado_atualizado);
+  
+                const produtos = sacola.map(produto => produto._id == produto_selecionado._id ? produto_atualizado : produto);
+                const usuario_atualizado = {...usuario_logado, sacola: produtos};                
+                const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+                set_usuario_logado(cliente_atualizado.data);
             };
-
+            
+            
+        
         } catch (erro) {
 
             console.error(erro);
@@ -105,22 +96,12 @@ function Sacola() {
     async function aumentar_produto(produto_selecionado) {
 
         try {
-            const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id);
-            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada += 1 };
-            const encontrar_index_produto = usuario_logado.sacola.indexOf(produto_selecionado);
-            const usuario_logado_atualizado = { ...usuario_logado, sacola: [...usuario_logado.sacola, usuario_logado.sacola.splice(encontrar_index_produto, 1, produto_atualizado)] };
-            console.log(usuario_logado_atualizado);
 
-            if (encontrar_cliente) {
-
-                await api.put(`/clientes/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-            } else {
-
-                await api.put(`/brechos/${usuario_logado_atualizado._id}`, usuario_logado_atualizado);
-            };
-
-            set_usuario_logado(usuario_logado_atualizado);
-
+            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada + 1 };
+            const produtos = sacola.map(produto => produto._id == produto_selecionado._id ? produto_atualizado : produto);
+            const usuario_atualizado = {...usuario_logado, sacola: produtos};
+            const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+            set_usuario_logado(cliente_atualizado.data);
 
         } catch (erro) {
 
@@ -130,9 +111,9 @@ function Sacola() {
 
     function exibir_produtos_na_sacola() {
 
-        if (sacola.length > 3) {
+        if (sacola && sacola.length > 3) {
 
-            const produtos_exibidos = sacola.slice(0, 3);
+            const produtos_exibidos = usuario_logado.sacola.slice(0, 3);
             set_produtos_exibido_na_sacola(produtos_exibidos);
 
         } else {
@@ -183,7 +164,7 @@ function Sacola() {
 
                 <div className="container_produtos_na_sacola">
 
-                    {sacola ? produtos_exibido_na_sacola.map((produto, i) => (
+                    {produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
 
                         <div key={i} className='container_produtos_a_exibir_sacola'>
 
