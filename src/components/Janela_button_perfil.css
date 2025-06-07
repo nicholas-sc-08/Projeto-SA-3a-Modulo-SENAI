@@ -10,7 +10,7 @@
     padding: 0.7%;
     border-radius: 0.5vw;
     right: 4%;
-    width: 12%;
+    width: 14%;
     z-index: 3;
 }
 
@@ -50,7 +50,8 @@
 .container-imagem-pefil-usuario-header img{
     /* border: 1px solid red; */
     width: 30%;
-    padding-right: 5%;
+    border-radius: 100vw;
+    margin-right: 5%;
 }
 
 .janela_button_perfil_logout a{
