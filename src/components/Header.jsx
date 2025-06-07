@@ -53,7 +53,7 @@ function Header({ tipo }) {
 
     }, [])
 
-    const renderLinks = () => {
+    function renderLinks(){
         if (tipo === 'usuario') {
             return (
                 <>
@@ -82,7 +82,40 @@ function Header({ tipo }) {
         }
     };
 
-    const renderIcons = () => {
+    function sacola_perfil(parametro){
+
+        if(parametro == `sacola` && sacola_aberta == false){
+
+            set_sacola_aberta(true);
+            setButtonPefilAberto(false);
+            setContainerAberto(false);
+        } else {
+
+            set_sacola_aberta(false);
+        };
+
+        if(parametro == `perfil` && buttonPerfilAberto == false){
+
+            setButtonPefilAberto(true);
+            set_sacola_aberta(false);
+            setContainerAberto(false);
+        } else {
+
+            setButtonPefilAberto(false);
+        };
+
+        if(parametro == `container` && containerAberto == false){
+
+            setContainerAberto(true);
+            set_sacola_aberta(false);
+            setButtonPefilAberto(false);
+        } else {
+
+            setContainerAberto(false);
+        };
+    };
+
+    function renderIcons (){
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
         return (
@@ -92,7 +125,7 @@ function Header({ tipo }) {
                     
                     {tipo == 'usuario' && (
 
-                        <button className="button-sacola-navbar" onClick={() => set_sacola_aberta(!sacola_aberta)}>
+                        <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>
                         <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
                     </button>
                     
@@ -107,7 +140,7 @@ function Header({ tipo }) {
 
                     <button
                         className="button-perfil-navbar"
-                        onClick={() => setButtonPefilAberto(!buttonPerfilAberto)}
+                        onClick={() => sacola_perfil(`perfil`)}
                     >
                         <img src="/img/icons/IconePerfil.svg" alt="Perfil" />
                     </button>
@@ -145,7 +178,7 @@ function Header({ tipo }) {
     };
 
 
-    const handleBusca = (e) => {
+    function handleBusca(e){
         if (e.key === 'Enter' && termoBuscado.trim() !== '') {
 
             navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
@@ -188,7 +221,7 @@ function Header({ tipo }) {
                         type="text"
                         className="input-pesquisa-navbar"
                         placeholder="O que você está procurando?"
-                        onFocus={() => setContainerAberto(true)} // Abre quando clica no input
+                        onFocus={() => sacola_perfil(`container`)} // Abre quando clica no input
 
                         value={termoBuscado}
                         onChange={(e) => setTermoBuscado(e.target.value)}
