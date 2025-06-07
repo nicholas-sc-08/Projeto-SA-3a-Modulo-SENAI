@@ -64,6 +64,15 @@ function Produto() {
 
     useEffect(() => {
 
+        console.log(`sacola`, sacola);
+        console.log(usuario_logado);
+        
+        
+
+    }, [sacola]);
+
+    useEffect(() => {
+
         sortear_produtos();
 
     }, []);
@@ -193,6 +202,7 @@ function Produto() {
 
         refencia_do_produto.current.scrollIntoView({behavior: `smooth`});
         set_produto(produto_selecionado);
+        set_imagem_selecionada(0);
         sortear_produtos();
     };
 
@@ -233,7 +243,7 @@ function Produto() {
         
         try {
             
-            if(usuario_logado){
+            if(usuario_logado && usuario_logado._id){
 
                 if(sacola){
 
@@ -255,7 +265,7 @@ function Produto() {
                         
                     } else{
                         
-                        set_sacola({...sacola, produto_na_sacola});
+                        set_sacola([...sacola, produto_na_sacola]);
                     };
                 
                 };
@@ -264,8 +274,14 @@ function Produto() {
             } else {
 
                 const produto_na_sacola = {...encontrar_produto, quantidade_selecionada: 1};
+                
+                if(typeof sacola != Array){
 
-                set_sacola([...sacola, produto_na_sacola]);
+                    set_sacola([produto_na_sacola]);
+                } else {
+                    
+                    set_sacola([...sacola, produto_na_sacola]);
+                };
             };
 
             
