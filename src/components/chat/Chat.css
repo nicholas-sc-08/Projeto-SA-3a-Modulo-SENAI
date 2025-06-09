@@ -122,10 +122,10 @@
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     width: 100%;
     height: 85%;
-
 }
 
 .container_conversa_com_pessoa{

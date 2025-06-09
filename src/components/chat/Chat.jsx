@@ -16,7 +16,6 @@ function Chat() {
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const [ inpt_de_pesquisa_chat, set_inpt_de_pesquisa_chat ] = useState(``);
-    const [ array_de_pesquisa_chat, set_array_de_pesquisa_chat ] = useState([]);
     const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
@@ -175,9 +174,7 @@ function Chat() {
           return array_chat[i].hora;
         };
       };
-      
-      return `00:00`;
-    };
+};
 
     function verificar_mensagens_nao_lida(_id){
 
@@ -302,7 +299,7 @@ function Chat() {
       {pop_up_notificacao_excluir_conversa && <div className='fundo_escuro_para_notificacao'></div>}
       {pop_up_notificacao_excluir_conversa && <Pop_up_excluir_conversa/>}
 
-      <div className="container_conversas_chat">
+      <div className="container_conversas_chat" style={{opacity: 1}}>
 
         { conversas_entre_usuarios.length > 0 ? conversas_entre_usuarios.map((conversa, i) => (
 
