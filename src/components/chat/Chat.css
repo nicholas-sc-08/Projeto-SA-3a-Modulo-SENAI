@@ -124,6 +124,8 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
+    transition: 0.3s;
+
     width: 100%;
     height: 85%;
 }
@@ -176,7 +178,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.3rem;
     font-family: var(--tipografia_primaria);
 
