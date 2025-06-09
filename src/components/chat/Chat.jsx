@@ -28,12 +28,13 @@ function Chat() {
         buscar_clientes();
         buscar_chat();
         buscar_brechos();
-        console.log(conversas_entre_usuarios);
-        set_conversas_entre_usuarios(usuario_logado.conversas)
+        console.log(usuario_logado);
 
     }, []);
 
     useEffect(() => {
+
+      set_conversas_entre_usuarios(usuario_logado.conversas);
 
     }, [usuario_logado]);
     
@@ -50,20 +51,15 @@ function Chat() {
 
     }, [pop_up_notificacao_excluir_conversa]);
 
-    useEffect(() => {
+    useEffect(() => {      
 
-      const encontrar_cliente = array_clientes.find(_id => _id == usuario_logado._id);
-      const encontrar_brecho = array_brechos.find(_id => usuario_logado._id == _id);     
+      if(inpt_de_pesquisa_chat != ``){
 
-      if(encontrar_cliente){
+        const filtrar_conversas = usuario_logado.conversas.filter(conversa => conversa.nome_brecho.trim(` `).toUpperCase().includes(inpt_de_pesquisa_chat.trim(` `).toUpperCase()));
+        set_conversas_entre_usuarios(filtrar_conversas);
+      } else {
 
-        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(brecho => brecho.nome_brecho.toLowerCase().includes(inpt_de_pesquisa_chat.toLowerCase())));
-      };
-      
-      if(encontrar_brecho){        
-        
-        set_array_de_pesquisa_chat(usuario_logado.conversas.filter(cliente => cliente.nome.toLowerCase().includes(inpt_de_pesquisa_chat.toLocaleLowerCase())));
-        
+        set_conversas_entre_usuarios(usuario_logado.conversas);
       };
 
     }, [inpt_de_pesquisa_chat]);
@@ -327,7 +323,7 @@ function Chat() {
 
               <div className="container_conversa_hora_ultima_mensagem">
 
-                <span>{hora_da_ultima_mensagem(conversa._id)}</span>
+                <span className='hora_da_ultima_mensagem' style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</span>
 
                 {exibir_contador(conversa._id) && 
                   

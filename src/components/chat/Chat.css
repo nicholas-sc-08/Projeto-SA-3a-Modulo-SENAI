@@ -206,5 +206,28 @@
     align-items: center;
     width: 23%;
     height: 100%;
-    background-color: red;
+}
+
+.hora_da_ultima_mensagem{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.1rem;
+    font-weight: 600;    
+}
+
+.container_contador_de_mensagens_nao_lida{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 20%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1rem;
+    font-weight: 500;
+
+    border-radius: 100vw;
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
 }
