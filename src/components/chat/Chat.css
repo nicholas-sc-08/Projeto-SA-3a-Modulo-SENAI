@@ -124,6 +124,8 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
+    transition: 0.3s;
+
     width: 100%;
     height: 85%;
 }

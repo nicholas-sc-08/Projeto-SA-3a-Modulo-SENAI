@@ -128,7 +128,7 @@
     
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
-    font-weight: 550;
+    font-weight: 500;
     
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-top-left-radius: 1vw;
@@ -197,7 +197,7 @@
     
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
-    font-weight: 550;
+    font-weight: 500;
     
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-top-left-radius: 0px;

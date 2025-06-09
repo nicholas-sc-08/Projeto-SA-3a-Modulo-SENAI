@@ -248,7 +248,6 @@ function Chat() {
     function pegar_nome_brecho(contato){
 
       const encontrar_cliente = array_clientes.find(cliente => cliente._id == contato._id);
-      const encontrar_brecho = array_brechos.find(brecho => brecho._id == contato._id);
 
       if(encontrar_cliente){
 
@@ -299,7 +298,7 @@ function Chat() {
       {pop_up_notificacao_excluir_conversa && <div className='fundo_escuro_para_notificacao'></div>}
       {pop_up_notificacao_excluir_conversa && <Pop_up_excluir_conversa/>}
 
-      <div className="container_conversas_chat" style={{opacity: 1}}>
+      <div className="container_conversas_chat" style={{opacity: altura_inicial_chat == `70%` ? 1 : 0}}>
 
         { conversas_entre_usuarios.length > 0 ? conversas_entre_usuarios.map((conversa, i) => (
 
