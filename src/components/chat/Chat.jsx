@@ -28,6 +28,8 @@ function Chat() {
         buscar_clientes();
         buscar_chat();
         buscar_brechos();
+        console.log(conversas_entre_usuarios);
+        set_conversas_entre_usuarios(usuario_logado.conversas)
 
     }, []);
 
@@ -51,10 +53,7 @@ function Chat() {
     useEffect(() => {
 
       const encontrar_cliente = array_clientes.find(_id => _id == usuario_logado._id);
-      const encontrar_brecho = array_brechos.find(_id => usuario_logado._id == _id);
-      console.log(encontrar_cliente);
-      console.log(usuario_logado);
-      
+      const encontrar_brecho = array_brechos.find(_id => usuario_logado._id == _id);     
 
       if(encontrar_cliente){
 
@@ -285,34 +284,17 @@ function Chat() {
       };
     };
 
-    function exibir_imagem_de_perfil(_id){
-
-      const encontrar_cliente = array_clientes.find(cliente => cliente._id == _id);
-      const encontrar_brecho = array_brechos.find(brecho => brecho._id == _id);
-
-      if(encontrar_brecho){
-
-        return encontrar_brecho.logo;
-      };
-
-      if(encontrar_cliente){
-
-        return encontrar_cliente.imagem_de_perfil
-      };
-    };
-
   return (
     <div className='container_chat' style={{height: altura_inicial_chat}}>
       
       <div className="container_header_chat" style={{height: altura_inicial_header_chat}}>
         
         <div className='container_header_chat_pesquisa'>
-          
-          <h2>ChatFly</h2>
+
           <div className="container_inpt_pesquisa_chat" onClick={acionar_inpt_de_pesquisa}>
 
           <img src="./img/LupaIcon.svg" alt="" />
-          <input type="text" placeholder='Pesquise' ref={ref_inpt_de_pesquisa} value={inpt_de_pesquisa_chat} onChange={e => set_inpt_de_pesquisa_chat(e.target.value)}/>
+          <input type="text" placeholder='Buscar por conversas' ref={ref_inpt_de_pesquisa} value={inpt_de_pesquisa_chat} onChange={e => set_inpt_de_pesquisa_chat(e.target.value)}/>
           </div>
         
         </div>
@@ -326,74 +308,28 @@ function Chat() {
 
       <div className="container_conversas_chat">
 
-        {/* {inpt_de_pesquisa_chat == `` && usuario_logado.conversas ? usuario_logado.conversas.map((conversa, i ) => (
+        { conversas_entre_usuarios.length > 0 ? conversas_entre_usuarios.map((conversa, i) => (
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
+          <div key={i} className='container_conversa_com_pessoa' onClick={() => ir_para_conversa(conversa._id)}>
 
-            <div className='container_usuario_chat'>
-              
-              <div className='container_conversa_chat_imagem_de_perfil'>
+              <div className="container_conversa_imagem_de_pefil">
 
-               <img src={exibir_imagem_de_perfil(conversa._id)} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
-              
+                <img src={conversa.imagem_de_perfil || conversa.logo} alt="" />
+
               </div>
-             
-              <div className="container_conversa_chat_titulo">
-              
-                <div className='container_conversa_chat_titulo_info'>
-                  
-                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
-                
-                </div>
-                
-                <div className='container_ultima_mensagem_chat'>
-                
-                  <p>{ultima_mensagem(conversa._id)}</p>
-                  
-                  {exibir_contador(conversa._id) && 
-                  
-                    <div className="container_contador_de_mensagens_nao_lida">
 
-                      <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
-                  
-                    </div>
-                  }
+              <div className="container_conversa_nome_e_ultima_mensagem">
 
-                </div>
-             
+                <h3>{pegar_nome_brecho(conversa)}</h3>
+                <span>{ultima_mensagem(conversa._id)}</span>
+
               </div>
-            
-            </div>
 
-          </div>
-        ))
-        : array_de_pesquisa_chat.map((conversa, i) => (
+              <div className="container_conversa_hora_ultima_mensagem">
 
-          <div key={i} className='container_corversa_chat' onClick={() => ir_para_conversa(conversa._id)}>
+                <span>{hora_da_ultima_mensagem(conversa._id)}</span>
 
-            <div className='container_usuario_chat' onClick={() => ir_para_conversa(conversa._id)}>
-              
-              <div className='container_conversa_chat_imagem_de_perfil'>
-
-               <img src={conversa.imagem_de_perfil || conversa.logo} referrerPolicy="no-referrer" crossOrigin="anonymous" alt=""/>
-              
-              </div>
-             
-              <div className="container_conversa_chat_titulo">
-              
-                <div className='container_conversa_chat_titulo_info'>
-                  
-                  <h2>{conversa._id != usuario_logado._id ? pegar_nome_brecho(conversa.nome_brecho) : ``}{conversa._id == usuario_logado._id ? `(você)` : ``}</h2>
-                  <p style={{color: cor_do_horario_da_mensagem(conversa._id)}}>{hora_da_ultima_mensagem(conversa._id)}</p>
-                
-                </div>
-                
-                <div className='container_ultima_mensagem_chat'>
-                
-                  <p>{ultima_mensagem(conversa._id)}</p>
-                  
-                  {exibir_contador(conversa._id) && 
+                {exibir_contador(conversa._id) && 
                   
                   <div className="container_contador_de_mensagens_nao_lida">
 
@@ -402,15 +338,20 @@ function Chat() {
                   </div>
                   }
 
-                </div>
-             
               </div>
-            
-            </div>
 
           </div>
-        ))
-      } */}
+
+        )) : 
+        
+        <div className='container_nenhuma_conversa_chat'>
+
+          <img src="./img/icons/icone_nenhuma_conversa_chat.svg" alt="" />  
+          <span>Nenhuma conversa encontrada</span>
+
+        </div>
+        
+        }
 
       </div>
 
