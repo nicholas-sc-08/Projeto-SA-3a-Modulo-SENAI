@@ -251,28 +251,10 @@ function Chat() {
 
       if(encontrar_cliente){
 
-        const pegar_sobrenome = contato.nome.trim().split(` `);
-        
-        if(pegar_sobrenome.length != 1 ){
-          
-          return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
-          
-        } else {
-          
-          return pegar_sobrenome[0];
-        };
+        return contato.nome;
       } else {
 
-        const pegar_sobrenome = contato.nome_brecho.trim().split(` `);
-        
-        if(pegar_sobrenome.length != 1 ){
-          
-          return `${pegar_sobrenome[0]} ${pegar_sobrenome[pegar_sobrenome.length - 1]}`;
-          
-        } else {
-          
-          return contato.nome_brecho;
-        };
+        return contato.nome_brecho;
       };
     };
 
