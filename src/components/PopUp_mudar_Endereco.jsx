@@ -66,17 +66,19 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
       }
     }
 
-useEffect(() => {
     const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
       (brecho) => brecho._id === usuario_logado._id
     )
+
+useEffect(() => {
+   
 
     if (!brecho_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [array_brechos, usuario_logado, brecho_logado])
+  }, [brecho_logado])
 
   useEffect(() => {
     if (usuario_logado) {

@@ -20,17 +20,19 @@ function Perfil_Brecho() {
   const [ naoEBrecho, setNaoEBrecho] = useState(false)
 
 
+ 
+
   useEffect(() => {
     const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
       (brecho) => brecho._id === usuario_logado._id
     )
-
+    
     if (!brecho_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [array_brechos, usuario_logado, brecho_logado])
+  }, [array_brechos, usuario_logado])
 
   useEffect(() => {
     if (usuario_logado) {
@@ -38,7 +40,7 @@ function Perfil_Brecho() {
         cep: usuario_logado.cep || '',
         bairro: usuario_logado.bairro || '',
         logradouro: usuario_logado.logradouro || '',
-        cidade: usuario_logado.ciadade || '',
+        cidade: usuario_logado.cidade || '',
         estado: usuario_logado.estado || '',
         numero: usuario_logado.numero || '',
         complemento: usuario_logado.complemento || '',
