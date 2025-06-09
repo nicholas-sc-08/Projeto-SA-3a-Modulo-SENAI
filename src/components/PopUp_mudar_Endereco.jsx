@@ -6,9 +6,14 @@ import { IMaskInput } from 'react-imask';
 
 function PopUp_mudar_Endereco({ fecharPopUp }) {
 
-  const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, estado: ``, cidade: ``, numero: ``, complemento: `` })
+  const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext)
   const navegar = useNavigate(``)
+
+  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
   useEffect(() => {
 
@@ -44,6 +49,49 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     }
   }
 
+  async function atualizarEnderecoBrecho() {
+      try {
+        await api.put(`/brechos/${usuario_logado._id}`, formCadastroBrecho) // faz com que as informações sejam atualizadas no backend
+  
+        console.log('Brechó atualizado com sucesso!');
+  
+        // aqui ele atualiza as informações no array dos brechos
+        const novosBrechos = array_brechos.map(brecho =>
+          brecho._id === usuario_logado._id ? { ...brecho, ...formCadastroBrecho } : brecho
+        );
+        set_array_brechos(novosBrechos)
+  
+      } catch (error) {
+        console.error('Erro ao atualizar o brechó:', error)
+      }
+    }
+
+useEffect(() => {
+    const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+      (brecho) => brecho._id === usuario_logado._id
+    )
+
+    if (!brecho_logado) {
+      setNaoEBrecho(true)
+    } else {
+      setNaoEBrecho(false)
+    }
+  }, [array_brechos, usuario_logado, brecho_logado])
+
+  useEffect(() => {
+    if (usuario_logado) {
+      setEnderecoDoBrecho({
+        cep: usuario_logado.cep || '',
+        bairro: usuario_logado.bairro || '',
+        logradouro: usuario_logado.logradouro || '',
+        cidade: usuario_logado.ciadade || '',
+        estado: usuario_logado.estado || '',
+        numero: usuario_logado.numero || '',
+        complemento: usuario_logado.complemento || '',
+      })
+    }
+  }, [usuario_logado])
+
 
   return (
     <div className="tela-inteira-content">
@@ -69,7 +117,12 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
                   type="text"
                   placeholder='Rua das Flores'
                   value={enderecoDoBrecho.logradouro}
-                  onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, logradouro: event.target.value })}
+                  onChange={(event) => 
+                    setEnderecoDoBrecho({ 
+                      ...enderecoDoBrecho, 
+                      logradouro: event.target.value 
+                    })
+                  }
                 />
               </div>
 
@@ -93,7 +146,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
                   placeholder='00000-000'
                   value={enderecoDoBrecho.cep}
                   onAccept={(value) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
-                  // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
+                // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
                 />
               </div>
 
@@ -106,7 +159,8 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
           </div>
 
           <div className="salvar-endereco-content">
-            <button>Salvar Endereço</button>
+            {mensagemErro && <p>{mensagemErro}</p>}
+            <button onClick={atualizarEnderecoBrecho}>Salvar Endereço</button>
           </div>
 
         </div>

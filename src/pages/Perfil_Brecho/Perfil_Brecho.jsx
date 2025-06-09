@@ -12,6 +12,7 @@ function Perfil_Brecho() {
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
@@ -29,7 +30,21 @@ function Perfil_Brecho() {
     } else {
       setNaoEBrecho(false)
     }
-  }, [array_brechos, usuario_logado])
+  }, [array_brechos, usuario_logado, brecho_logado])
+
+  useEffect(() => {
+    if (usuario_logado) {
+      setEnderecoDoBrecho({
+        cep: usuario_logado.cep || '',
+        bairro: usuario_logado.bairro || '',
+        logradouro: usuario_logado.logradouro || '',
+        cidade: usuario_logado.ciadade || '',
+        estado: usuario_logado.estado || '',
+        numero: usuario_logado.numero || '',
+        complemento: usuario_logado.complemento || '',
+      })
+    }
+  }, [usuario_logado])
 
 
   // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
