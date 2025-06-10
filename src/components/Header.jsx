@@ -25,6 +25,8 @@ function Header({ tipo }) {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
+    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
+    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
 
@@ -69,8 +71,6 @@ function Header({ tipo }) {
         set_queridinhos_flyers(embaralhar);
 
     }, [array_brechos]);
-    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
-    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     useEffect(() => {
 

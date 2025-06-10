@@ -8,6 +8,8 @@ import api from '../../services/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 function Pesquisa_de_produtos() {
 
@@ -31,10 +33,10 @@ function Pesquisa_de_produtos() {
     const termoBuscado = obterQueryDaUrl().toLowerCase();
 
     useEffect(() => {
-      
+
         buscar_produtos();
         buscar_brechos();
-    
+
     }, [termoBuscado]);
 
     useEffect(() => {
@@ -118,86 +120,90 @@ function Pesquisa_de_produtos() {
     };
 
     return (
-        <div className='container-alinhamento-all-pages'>
-            <Header tipo={tipo_de_header} />
 
-            <div className="container_conteudo_pesquisa_produtos">
+        <AnimatePresence>
 
-                <div className="all-page-informacoes-alinhamento">
-                    <Filtro_de_pesquisa />
-                </div>
+            <motion.div className='container-alinhamento-all-pages' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
+                <Header tipo={tipo_de_header} />
 
-                <div className="alinhamento-resultados-pesquisa">
-                    
-                    <div className="alinhamento-resultados-de-pesquisa-texto">
-                        <h3 className='resultados-de-pesquisa'>Resultados para: <span>"{termoBuscado}"</span></h3>
+                <div className="container_conteudo_pesquisa_produtos">
+
+                    <div className="all-page-informacoes-alinhamento">
+                        <Filtro_de_pesquisa />
                     </div>
 
-                    <div className="container_exibir_produtos">
+                    <div className="alinhamento-resultados-pesquisa">
 
-                        {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                        <div className="alinhamento-resultados-de-pesquisa-texto">
+                            <h3 className='resultados-de-pesquisa'>Resultados para: <span>"{termoBuscado}"</span></h3>
+                        </div>
 
-                            <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
+                        <div className="container_exibir_produtos">
 
-                                <div className="container_produto_img">
+                            {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
-                                    <img src={produto.imagem[0]} alt="aa" />
+                                <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
-                                </div>
+                                    <div className="container_produto_img">
 
-                                <div className="container_produto_info">
-
-                                    <div className='container_produto_titulo'>
-
-                                        <h2>{produto.nome}</h2>
-                                        <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
+                                        <img src={produto.imagem[0]} alt="aa" />
 
                                     </div>
 
-                                    <span>R${preco_do_produto(produto.preco)}</span>
+                                    <div className="container_produto_info">
+
+                                        <div className='container_produto_titulo'>
+
+                                            <h2>{produto.nome}</h2>
+                                            <img src={imagem_de_perfil_brecho(produto.fk_id_brecho)} alt="" />
+
+                                        </div>
+
+                                        <span>R${preco_do_produto(produto.preco)}</span>
+
+                                    </div>
 
                                 </div>
+                            ))}
 
-                            </div>
-                        ))}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div className="container_botoes_de_paginas">
-
-                <div className="container_alinhamento_do_conteudo_de_paginas">
-
-                    <div className="container_botao_voltar_pagina_esquerdo">
-
-                        <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
-
-                    </div>
-
-                    <div className="container_numero_de_paginas">
-
-                        <span>{pagina_atual} de {total_de_paginas}</span>
-
-                    </div>
-
-                    <div className="container_botao_voltar_pagina_direito">
-
-                        <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg' /></button>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div className="container_botoes_de_paginas">
 
-            {usuario_logado != `` && !conversa_aberta && <Chat />}
-            {conversa_aberta && <Chat_conversa />}
+                    <div className="container_alinhamento_do_conteudo_de_paginas">
 
-            <Footer />
-        </div>
+                        <div className="container_botao_voltar_pagina_esquerdo">
+
+                            <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
+
+                        </div>
+
+                        <div className="container_numero_de_paginas">
+
+                            <span>{pagina_atual} de {total_de_paginas}</span>
+
+                        </div>
+
+                        <div className="container_botao_voltar_pagina_direito">
+
+                            <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg' /></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {usuario_logado != `` && !conversa_aberta && <Chat />}
+                {conversa_aberta && <Chat_conversa />}
+
+                <Footer />
+            </motion.div>
+        </AnimatePresence>
     )
 }
 

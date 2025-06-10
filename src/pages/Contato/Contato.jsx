@@ -16,15 +16,38 @@ export default function Contato() {
 
       <div className='container-info-contato'>
         <div className='cabecario-info-contato'>
-          <div className='circulo-icon-contato'><img src=".img/telefone" alt="" /></div>
+          <div className='circulo-icon-contato'><img src=".img/telefone.svg" alt="" /></div>
           <h3>Ligue Para Nós</h3>
         </div>
+
       </div>
 
       <div className='container-entre-em-contato'>
-
+      <div className='info-importante-entre-em-contato'>
+      <div className='nome-entre-em-contato'>
+        <label>Nome Completo</label>
+        <input type="text" />
+      </div>
+      <div className='email-entre-em-contato'>
+        <label>Email</label>
+        <input type="text" />
+      </div>
+      <div className='telefone-entre-em-contato'>
+        <label>Telefone</label>
+        <input type="number" />
+      </div>
       </div>
 
+      <div className='menssagem-cliente-entre-em-contato'>
+        <input type="text" placeholder='Escreva sua Menssagem'/>
+      </div>
+
+      <button className='but-entre-em-contato'>Enviar Menssagem</button>
+      </div>
+
+      <Footer />
     </div>
   )
 }
+
+
