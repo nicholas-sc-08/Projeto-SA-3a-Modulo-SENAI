@@ -8,6 +8,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext)
+  const [mensagemErro, setMensagemErro] = useState(``)
   const navegar = useNavigate(``)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
@@ -51,18 +52,18 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
   async function atualizarEnderecoBrecho() {
       try {
-        await api.put(`/brechos/${usuario_logado._id}`, formCadastroBrecho) // faz com que as informações sejam atualizadas no backend
+        await api.put(`/Enderecos/${usuario_logado._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
   
-        console.log('Brechó atualizado com sucesso!');
+        console.log('Endereço do brechó atualizado com sucesso!');
   
         // aqui ele atualiza as informações no array dos brechos
-        const novosBrechos = array_brechos.map(brecho =>
-          brecho._id === usuario_logado._id ? { ...brecho, ...formCadastroBrecho } : brecho
+        const novosEnderecos = array_brechos.map(brecho =>
+          brecho._id === usuario_logado._id ? { ...brecho, ...enderecoDoBrecho } : brecho
         );
-        set_array_brechos(novosBrechos)
+        set_array_brechos(novosEnderecos)
   
       } catch (error) {
-        console.error('Erro ao atualizar o brechó:', error)
+        console.error('Erro ao atualizar o endereço do brechó:', error)
       }
     }
 
@@ -80,19 +81,19 @@ useEffect(() => {
     }
   }, [brecho_logado])
 
-  useEffect(() => {
-    if (usuario_logado) {
-      setEnderecoDoBrecho({
-        cep: usuario_logado.cep || '',
-        bairro: usuario_logado.bairro || '',
-        logradouro: usuario_logado.logradouro || '',
-        cidade: usuario_logado.ciadade || '',
-        estado: usuario_logado.estado || '',
-        numero: usuario_logado.numero || '',
-        complemento: usuario_logado.complemento || '',
-      })
-    }
-  }, [usuario_logado])
+  // useEffect(() => {
+  //   if (usuario_logado) {
+  //     setEnderecoDoBrecho({
+  //       cep: usuario_logado.cep || '',
+  //       bairro: usuario_logado.bairro || '',
+  //       logradouro: usuario_logado.logradouro || '',
+  //       cidade: usuario_logado.ciadade || '',
+  //       estado: usuario_logado.estado || '',
+  //       numero: usuario_logado.numero || '',
+  //       complemento: usuario_logado.complemento || '',
+  //     })
+  //   }
+  // }, [usuario_logado])
 
 
   return (
@@ -130,13 +131,30 @@ useEffect(() => {
 
               <div className="numero-input-content">
                 <label className="topicos-input-endereco">Número</label>
-                <input type="text" placeholder='200' value={enderecoDoBrecho.numero} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, numero: event.target.value })} />
+                <input type="text" 
+                placeholder='200' 
+                value={enderecoDoBrecho.numero} 
+                onChange={(event) => 
+                setEnderecoDoBrecho({ 
+                  ...enderecoDoBrecho, 
+                  numero: event.target.value 
+                  })
+                  } 
+                  />
               </div>
             </div>
 
             <div className="complemento-input-content">
               <label className="topicos-input-endereco">Complemento</label>
-              <input type="text" placeholder='Apartamento 02' value={enderecoDoBrecho.complemento} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, complemento: event.target.value })} />
+              <input type="text" 
+              placeholder='Apartamento 02' 
+              value={enderecoDoBrecho.complemento} 
+              onChange={(event) => setEnderecoDoBrecho({ 
+                ...enderecoDoBrecho, 
+                complemento: event.target.value 
+                })
+                } 
+                />
             </div>
 
             <div className="juncao-cep-e-bairro-content">
@@ -147,14 +165,24 @@ useEffect(() => {
                   unmask="typed"
                   placeholder='00000-000'
                   value={enderecoDoBrecho.cep}
-                  onAccept={(value) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
+                  onAccept={(value) => setEnderecoDoBrecho({  // o onAccept é o método recomendado pela documentação do react-imask
+                    ...enderecoDoBrecho, 
+                    cep: value })
+                  } 
                 // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
                 />
               </div>
 
               <div className="bairro-input-content">
                 <label className="topicos-input-endereco">Bairro</label>
-                <input type="text" placeholder='Rio Vermelho' value={enderecoDoBrecho.bairro} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, bairro: event.target.value })} />
+                <input type="text" 
+                placeholder='Rio Vermelho' 
+                value={enderecoDoBrecho.bairro} 
+                onChange={(event) => setEnderecoDoBrecho({ 
+                  ...enderecoDoBrecho, 
+                  bairro: event.target.value })
+                  } 
+                  />
               </div>
             </div>
 
