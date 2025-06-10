@@ -621,6 +621,7 @@
 }
 
 .button-anterior-carrossel:hover {
+    
     background-color: var(--cor_doze_v_um);
 }
 

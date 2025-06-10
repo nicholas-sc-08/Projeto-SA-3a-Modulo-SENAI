@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from "../../services/api";
+import { useNavigate } from 'react-router-dom';
 
 function Sacola() {
 
@@ -12,7 +13,8 @@ function Sacola() {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
-    const [ produtos_exibido_na_sacola, set_produtos_exibido_na_sacola ] = useState([]);
+    const [produtos_exibido_na_sacola, set_produtos_exibido_na_sacola] = useState([]);
+    const ir_para_sacola = useNavigate(null);
 
     useEffect(() => {
 
@@ -66,31 +68,31 @@ function Sacola() {
     async function diminuir_produto(produto_selecionado) {
 
         try {
-           
+
             const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada - 1 };
-            
-            if(produto_atualizado.quantidade_selecionada == 0){
+
+            if (produto_atualizado.quantidade_selecionada == 0) {
 
                 const filtrar_produtos = sacola.filter(produto => produto._id != produto_selecionado._id);
-                
-                if(usuario_logado._id){
 
-                    
-                    const usuario_atualizado = {...usuario_logado, sacola: filtrar_produtos};
+                if (usuario_logado._id) {
+
+
+                    const usuario_atualizado = { ...usuario_logado, sacola: filtrar_produtos };
                     const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                     set_usuario_logado(cliente_atualizado.data);
                 } else {
 
                     set_sacola(filtrar_produtos);
                 };
-            
+
             } else {
-  
+
                 const produtos = sacola.map(produto => produto._id == produto_selecionado._id ? produto_atualizado : produto);
-                
-                if(usuario_logado._id){
-                    
-                    const usuario_atualizado = {...usuario_logado, sacola: produtos};                
+
+                if (usuario_logado._id) {
+
+                    const usuario_atualizado = { ...usuario_logado, sacola: produtos };
                     const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                     set_usuario_logado(cliente_atualizado.data);
                 } else {
@@ -98,9 +100,9 @@ function Sacola() {
                     set_sacola(produtos);
                 };
             };
-            
-            
-        
+
+
+
         } catch (erro) {
 
             console.error(erro);
@@ -113,14 +115,14 @@ function Sacola() {
 
             const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada + 1 };
             const produtos = sacola.map(produto => produto._id == produto_selecionado._id ? produto_atualizado : produto);
-            
-            if(usuario_logado._id){
 
-                
-                const usuario_atualizado = {...usuario_logado, sacola: produtos};
+            if (usuario_logado._id) {
+
+
+                const usuario_atualizado = { ...usuario_logado, sacola: produtos };
                 const cliente_atualizado = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_usuario_logado(cliente_atualizado.data);
-            
+
             } else {
 
                 set_sacola(produtos);
@@ -180,7 +182,7 @@ function Sacola() {
 
                 <div className="container_produtos_na_sacola">
 
-                    { produtos_exibido_na_sacola && produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
+                    {produtos_exibido_na_sacola && produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
 
                         <div key={i} className='container_produtos_a_exibir_sacola'>
 
@@ -229,7 +231,7 @@ function Sacola() {
                 </div>
                 <div className="container_botao_da_sacola">
 
-                    <button>Visualizar Sacola</button>
+                    <button onClick={() => ir_para_sacola(`/sacola`)}>Visualizar Sacola</button>
 
                 </div>
 
