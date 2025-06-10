@@ -249,6 +249,7 @@
     box-sizing: border-box;
     overflow: hidden;
     line-height: 1.5;
+    color: var(--cor_seis);
     background-color: transparent;
 }
 

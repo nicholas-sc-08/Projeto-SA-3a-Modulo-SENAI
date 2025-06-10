@@ -24,6 +24,7 @@ import Detalhe_Pagamento_etapa_tres from "../pages/CheckOut/Detalhe_Pagamento_et
 import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente";
 import Escolha_cadastro from "../pages/Cadastro/Escolha_cadastro.jsx";
 import TelaEmAndamento from "../pages/Em_andamento/TelaEmAndamento.jsx";
+import Sacola_geral from "../pages/Sacola/Sacola_geral.jsx";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
    { path: `/cadastro_brecho`, element: <Cadastro_brecho /> },
    { path: `/escolha_cadastro`, element: <Escolha_cadastro /> },
    { path: `/login`, element: <Login /> },
+   { path: `/sacola`, element: <Sacola_geral/>},
    { path: `/dashboard`, element: <DashBoard /> },
 
    { path: `/footer`, element: <Footer /> },

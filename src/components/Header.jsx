@@ -69,6 +69,8 @@ function Header({ tipo }) {
         set_queridinhos_flyers(embaralhar);
 
     }, [array_brechos]);
+    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
+    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -88,8 +90,6 @@ function Header({ tipo }) {
 
     useEffect(() => {
 
-        quantidade_de_produtos_sacola();
-
         function clickForaContainerPerfil(event) {
             if (buttonPerfilRef.current && !buttonPerfilRef.current.contains(event.target)) {
                 setButtonPefilAberto(false) // aqui ele fecha se clicou fora
@@ -108,7 +108,7 @@ function Header({ tipo }) {
 
         quantidade_de_produtos_sacola();
 
-    }, [sacola]);
+    }, [usuario_logado]);
 
     function renderLinks() {
         if (tipo === 'usuario') {
@@ -146,6 +146,14 @@ function Header({ tipo }) {
             set_sacola_aberta(true);
             setButtonPefilAberto(false);
             setContainerAberto(false);
+            set_altura_inicial_chat(`10%`);
+
+            setTimeout(() => {
+
+                set_altura_inicial_header_chat(`100%`);
+
+            }, 325);
+
         } else {
 
             set_sacola_aberta(false);
@@ -183,6 +191,12 @@ function Header({ tipo }) {
         };
     };
 
+    function deslogar_usuario(){
+
+        set_usuario_logado([]);
+        set_sacola([]);
+    };
+
     function renderIcons() {
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
@@ -210,9 +224,8 @@ function Header({ tipo }) {
                     <button
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
-                    >
-
-                        <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
+                    >  
+                        <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="Perfil" />
                     </button>
 
                     <AnimatePresence>
@@ -227,8 +240,8 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
-                                            <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <button onClick={() => deslogar_usuario()} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
                                 ) : (
