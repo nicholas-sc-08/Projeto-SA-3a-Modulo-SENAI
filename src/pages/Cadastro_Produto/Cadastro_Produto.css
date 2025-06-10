@@ -4,7 +4,7 @@
 .container-cadastro-produto {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 10px;
     background: #FFFDF7;
     border-radius: 10px;
     width: 90%;
@@ -130,7 +130,7 @@ body {
 
 .imagem-principal {
     width: 400px;
-    height: 450px;
+    height: 485px;
     border-radius: 15px;
 }
 
@@ -192,31 +192,81 @@ body {
 }
 
 .tamanho {
-    padding: 8px 15px;
+    padding: 8px 0;                 /* padding vertical */
     background: #F3F1EF;
-    border: none;
+    margin-top: 5px;
+    margin-left: 14px;
     border-radius: 20px;
-    cursor: pointer;
-    font-size: 1rem;
+    cursor: text;
+    font-size: 0.7rem;
+    width: 37px;                    /* largura fixa ideal p/ 2 caracteres */
+    height: 20px;                   /* altura igual à largura → bolinha/quadradinho */
+    text-align: center;             /* centraliza texto horizontalmente */
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
     transition: 0.2s;
-    width: 40%;
-    
-}
-
-.input-tamanho{
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-}
-
-.tamanho.selecionado {
-    background: #466330;
-    color: white;
+    transform: scale(1.6);
+    transform-origin: center center; /* Faz a escala acontecer a partir do centro */
+    outline: none;
+    border: 1px solid #d9d9d9; /* borda bem clarinha */
 }
 
 .tamanho:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(70, 99, 48, 0.4);
+    box-shadow: 0 0 0 1px rgba(70, 99, 48, 0.5);
+}
+
+
+
+.input-tamanho{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    
+}
+
+.tamanho.selecionado {
+  background: #466330;
+  color: white;
+  padding: 4px 8px;      /* menos espaço interno */
+  font-size: 12px;       /* texto menor */
+  height: 24px;          /* altura menor */
+  line-height: 24px;     /* alinhamento vertical */
+  border-radius: 4px;    /* cantos mais finos */
+  display: inline-block; /* garantir que não expanda demais */
+  min-width: 40px;       /* largura mínima, ajusta conforme quiser */
+  text-align: center;    /* centraliza texto */
+}
+
+
+
+
+
+.input-tecido{
+    display: flex;
+    flex-direction: column;
+    width: 21%;
+
+}
+
+.Tecido{
+     padding: 8px 0;                 /* padding vertical */
+    background: #F3F1EF;
+    margin-top: 5px;
+    margin-left: 32px;
+    border-radius: 20px;
+    cursor: text;
+    font-size: 0.7rem;
+    width: 60%;                    /* largura fixa ideal p/ 2 caracteres */
+    height: 20px;                   /* altura igual à largura → bolinha/quadradinho */
+    text-align: center;             /* centraliza texto horizontalmente */
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    transition: 0.2s;
+    transform: scale(1.6);
+    transform-origin: center center; /* Faz a escala acontecer a partir do centro */
+    outline: none;
+    border: 1px solid #d9d9d9; /* borda bem clarinha */
 }
 
 /* ========================
@@ -225,21 +275,25 @@ body {
 .quantidade {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 0px;
     margin-bottom: 5%;
-    height: 45px;
+    height: 40px;
     width: 60%;
     justify-content: center;
     border-radius: 20px;
     background-color: #F3F1EF;
+    transform: scale(0.8);
+    transform-origin: center center; /* Faz a escala acontecer a partir do centro */
+    border: 1px solid #d9d9d9; /* borda bem clarinha */
 
 }
 
 .quantidade-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* ou flex-start se quiser alinhado à esquerda */
-    gap: 5px;
+    align-items: flex-start; /* ou flex-start se quiser alinhado à esquerda */
+    
+    
 }
 
 .quantidade-titulo {
@@ -247,9 +301,9 @@ body {
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--cor_seis);
-    margin-bottom: 5px; /* espaçamento com o .quantidade */
     padding: 0; /* Remover o padding-left que você tinha */
     text-align: center;
+    height: 27px;
 }
 
 .container-cadastro-produto hr {
@@ -261,32 +315,35 @@ body {
 }
 
 .botao-quantidade {
-    width: 40px;         /* largura maior */
-    height: 35px;        /* altura maior */
     border: none;
     background: transparent;
-    border-radius: 10px; /* borda um pouco mais arredondada */
+
     cursor: pointer;
     transition: 0.2s;
-    font-size: 20px;     /* tamanho do símbolo + e - */
-    font-weight: 500;   /* deixar o símbolo em negrito */
+    font-size: 20px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
-
 
 .quantidade-numero {
-    width: 10px;
+    min-width: 30px;      /* largura mínima (10px era muito pequeno) */
+    padding: 0 5px;       /* espaço interno */
+    text-align: center;   /* centralizar número */
+    font-size: 18px;      /* garantir legibilidade */
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #3E2A21;
 }
+
 
 
 
 .input-group-alinhados{
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     font-size: 1.4rem;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -445,9 +502,11 @@ body {
     overflow: hidden;
     height: auto;
     outline: none;
-    min-height: 120px;
+    min-height: 200px;
     font-family: "Poppins", sans-serif;
-    color: var(--cor_seis);
+    color: #3e2a2186;
+    font-weight: 500;
+    font-size: 0.9rem;
 
 
 }

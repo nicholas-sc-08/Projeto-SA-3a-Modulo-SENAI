@@ -10,7 +10,7 @@ import "../Produto/Produto.css";
 
 
 function Cadastro_Produto() {
-  
+
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { conversa_aberta, set_converas_aberta } = useContext(GlobalContext);
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
@@ -337,48 +337,63 @@ function Cadastro_Produto() {
           )}
 
           <div className="input-group-descricao">
-            <label>Descrição</label>
             <textarea
               placeholder="Descrição do produto"
               value={array_cadastro_produto.descricao}
               onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, descricao: e.target.value })}
             ></textarea>
-            
-            
+
+
           </div>
           <hr />
 
           <div className="input-group-alinhados">
 
 
-             <div className="input-tamanho">
-                <label>Tamanho</label>
-                  <input
-                    type="text"
-                    className="tamanho"
-                    placeholder=""
-                    value={array_cadastro_produto.tamanho}
-                    onChange={(e) => {
-                    setTamanhoSelecionado(e.target.value); // opcional, se ainda quiser manter esse estado
-                    setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value });
-                  }}
-                />
+            <div className="input-tamanho">
+              <label>Tamanho</label>
+              <input
+                type="text"
+                className="tamanho"
+                placeholder=""
+                maxlength="2"
+                value={array_cadastro_produto.tamanho}
+                onChange={(e) => {
+                  setTamanhoSelecionado(e.target.value); // opcional, se ainda quiser manter esse estado
+                  setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value });
+                }}
+              />
             </div>
 
 
-             <div className="quantidade-container">
-    <div className="quantidade-titulo">Quantidade</div>
-    <div className="quantidade">
-        <button className="botao-quantidade" onClick={diminuirQuantidade}>{" <"}</button>
-        <div className="quantidade-numero">{quantidade}</div>
-        <button className="botao-quantidade" onClick={aumentarQuantidade}>{">"}</button>
-    </div>
-</div>
+            <div className="quantidade-container">
+              <div className="quantidade-titulo">Quantidade</div>
+              <div className="quantidade">
+                <button className="botao-quantidade" onClick={diminuirQuantidade}>
+                  <img src="./public/img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
+                </button>
 
+                <div className="quantidade-numero">{quantidade}</div>
 
+                <button className="botao-quantidade" onClick={aumentarQuantidade}>
+                  <img src="./public/img/icons/seta-direita.png" alt="Aumentar" className="icone-quantidade" />
+                </button>
 
+              </div>
 
-            
+            </div>
+
+            <div className="input-tecido">
+            <label>Tipo do Tecido</label>
+            <input
+              className="Tecido"
+              type="text"
+              onChange={(e) => 
+                setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value })}
+              value={array_cadastro_produto.composicao}
+            />
+          </div>
+
             <div className="cores">
               <label>Seleção de Cores</label>
               <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
@@ -396,13 +411,8 @@ function Cadastro_Produto() {
                 ))}
               </div>
             </div>
-            
+
           </div>
-
-         
-          
-
-          
         </div>
       </div>
 
@@ -436,14 +446,7 @@ function Cadastro_Produto() {
             </select>
           </div>
 
-          <div className="input-group">
-            <label>Materiais e composição</label>
-            <input
-              type="text"
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value })}
-              value={array_cadastro_produto.composicao}
-            />
-          </div>
+          
         </div>
 
         <div className="formulario-direito">
