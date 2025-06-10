@@ -211,6 +211,7 @@ function Tela_incial() {
   const handleCategoryClick = (categoria) => {
     setTermoBuscado(categoria);
     navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
+    setTermoBuscado('')
   };
 
   return (
@@ -351,22 +352,21 @@ function Tela_incial() {
 
         <div className="alinhamento-cards-secao-quatro">
           <div className="container-um-cards-secao-quatro">
-            {/* <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}> */}
             <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
               <p>Roupas</p>
             </div>
 
-            <div className="card-dois-secao-quatro">
+            <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
               <p>Acessórios</p>
             </div>
           </div>
 
           <div className="container-dois-cards-secao-quatro">
-            <div className="card-tres-secao-quatro">
+            <div className="card-tres-secao-quatro" onClick={() => handleCategoryClick('doações')}>
               <p>Doações</p>
             </div>
 
-            <div className="card-quatro-secao-quatro">
+            <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
               <p>Calçados</p>
             </div>
           </div>

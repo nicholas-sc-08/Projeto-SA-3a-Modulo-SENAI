@@ -210,13 +210,6 @@ function Header({ tipo }) {
         }
     };
 
-
-    // useEffect(() => {
-    //     if (termoBuscado) {
-    //         handleSearch(termoBuscado);
-    //     }
-    // }, [termoBuscado]);
-
     return (
         <div className="alinhamento-navbar-usuario">
             <nav className="navbar-usuario">

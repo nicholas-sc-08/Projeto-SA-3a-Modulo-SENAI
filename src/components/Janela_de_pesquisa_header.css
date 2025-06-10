@@ -167,8 +167,9 @@
 
 @media (max-width: 1920px) {
     .janelinha-de-pesquisa-header {
-        left: -128.6%;
-        width: 263%;
+        left: -120%;
+        width: 260%;
+        /* border: 1px solid blue; */
     }
 
     .container-alinhamento-historico-de-busquedas-header h2 {
