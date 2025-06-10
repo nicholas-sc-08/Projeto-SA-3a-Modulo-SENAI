@@ -232,6 +232,8 @@
     .alinhamento-brechos-queridinhos {
         /* border: 1px solid red; */
         margin-top: -4%;
+        margin-bottom: 4%;
+        width: 80%;
     }
 
     .container-brecho-individual-queridinhos {
@@ -255,7 +257,9 @@
 
     .container-brecho-individual-queridinhos img {
         /* border: 1px solid blue; */
-        width: 15%;
+        width: 18%;
+        height: 41px;
+        border-radius: 2vw;
     }
 
     .container-brecho-individual-queridinhos p {
