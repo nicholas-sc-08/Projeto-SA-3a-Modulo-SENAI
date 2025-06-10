@@ -1,18 +1,22 @@
 import React from 'react';
 import './Pop_up_excluir_conversa.css';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 function Pop_up_excluir_conversa() {
   return (
-    <div className='container_pop_up_excluir_conversa_notificacao'>
+    <AnimatePresence initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+      <motion.div className='container_pop_up_excluir_conversa_notificacao'>
 
-        <div className="container_pop_up_de_notificacao_de_conversa_excluida">
+          <div className="container_pop_up_de_notificacao_de_conversa_excluida">
 
-            <img src="./img/Certificacao.svg" alt="" />
-            <span>Conversa apagada com sucesso!</span>
+              <img src="./img/Certificacao.svg" alt="" />
+              <span>Conversa apagada com sucesso!</span>
 
-        </div>
+          </div>
 
-    </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

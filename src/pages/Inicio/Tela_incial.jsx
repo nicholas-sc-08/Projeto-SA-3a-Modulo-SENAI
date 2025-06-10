@@ -23,6 +23,7 @@ function Tela_incial() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { produto, set_produto } = useContext(GlobalContext);
+  const { sacola, set_sacola } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   const [startIndex, setStartIndex] = useState(0);
@@ -48,6 +49,12 @@ function Tela_incial() {
     informacoes_produtos();
 
   }, []);
+
+  useEffect(() => {
+
+    quantidade_de_produtos_sacola();
+
+  }, [sacola]);
 
   async function informacoes_clientes() {
 
@@ -87,6 +94,17 @@ function Tela_incial() {
       console.log(erro);
     };
   };
+
+  function quantidade_de_produtos_sacola() {
+
+    if (Array.isArray(sacola)) {
+
+        return sacola.length;
+    } else {
+
+        return 0;
+    };
+};
 
   const next = () => {
     if (startIndex + itemsToShow < array_brechos.length) {

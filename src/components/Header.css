@@ -73,6 +73,27 @@
     border: none;
 }
 
+.button-sacola-navbar span{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -30%;
+
+    width: 40%; 
+    height: 2.1vh;
+
+    cursor: pointer;
+
+    border: 0.1vw solid var(--cor_vinte);
+    border-radius: 100vw;
+    
+    font-size: 0.9rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_vinte);
+}
+
 .input-pesquisa-navbar:focus {
     outline: none;
 }

@@ -46,6 +46,7 @@
 
     font-family: var(--tipografia_primaria);
     font-size: 1.5rem;
+    font-weight: 580;
     color: var(--cor_quatro);
 }
 
