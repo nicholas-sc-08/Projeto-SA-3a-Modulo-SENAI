@@ -16,7 +16,7 @@ function Cadastro_cliente_secao_inputs_dois() {
       <IMaskInput
         type="text"
         mask="(00) 00000-0000" 
-        unmask="typed"
+        // unmask="typed"
         placeholder='(DD) 90000-0000'
         required
         value={form_de_cadastro_cliente.telefone}
@@ -28,7 +28,7 @@ function Cadastro_cliente_secao_inputs_dois() {
       <IMaskInput
         type="text"
         mask="000.000.000-00" 
-        unmask="typed"
+        // unmask="typed"
         placeholder='000.000.000-00'
         value={form_de_cadastro_cliente.cpf}
         onAccept={(value) => set_form_de_cadastro_cliente({ ...form_de_cadastro_cliente, cpf: value || '' })}

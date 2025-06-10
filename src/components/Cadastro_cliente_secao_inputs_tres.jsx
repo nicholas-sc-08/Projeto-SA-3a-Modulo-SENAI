@@ -53,7 +53,7 @@ function Cadastro_cliente_secao_inputs_tres() {
             <label>CEP<span>*</span></label>
             <IMaskInput 
             mask="00000-000" 
-            unmask="typed"
+            // unmask="typed"
             placeholder='00000-000' 
             required 
             value={endereco_do_cliente.cep} 

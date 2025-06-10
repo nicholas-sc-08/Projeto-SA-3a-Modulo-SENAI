@@ -217,7 +217,7 @@ function Edicao_perfil_brecho() {
                 <label className="titulo-do-input">Telefone</label>
                 <IMaskInput
                   mask="(00) 00000-0000"
-                  unmask="typed"
+                  // unmask="typed"
                   name="telefone"
                   placeholder='(DD) 90000-0000'
                   className="inputs-pequenos-infos"
@@ -252,7 +252,7 @@ function Edicao_perfil_brecho() {
                 <label className="titulo-do-input">CNPJ</label>
                 <IMaskInput
                   mask="00.000.000/0000-00"
-                  unmask="typed"
+                  // unmask="typed"
                   name="cnpj"
                   placeholder='00.000.000/0000-00'
                   className="inputs-pequenos-infos"

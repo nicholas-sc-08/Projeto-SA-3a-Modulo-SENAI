@@ -35,18 +35,18 @@ function Perfil_Brecho() {
   }, [array_brechos, usuario_logado, brecho_logado])
 
   useEffect(() => {
-    if (brecho_logado) {
+    if (usuario_logado) {
       setEnderecoDoBrecho({
-        cep: brecho_logado.cep || '',
-        bairro: brecho_logado.bairro || '',
-        logradouro: brecho_logado.logradouro || '',
-        cidade: brecho_logado.cidade || '',
-        estado: brecho_logado.estado || '',
-        numero: brecho_logado.numero || '',
-        complemento: brecho_logado.complemento || '',
+        cep: usuario_logado.cep || '',
+        bairro: usuario_logado.bairro || '',
+        logradouro: usuario_logado.logradouro || '',
+        cidade: usuario_logado.cidade || '',
+        estado: usuario_logado.estado || '',
+        numero: usuario_logado.numero || '',
+        complemento: usuario_logado.complemento || '',
       })
     }
-  }, [brecho_logado])
+  }, [usuario_logado])
 
 
   // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
@@ -88,7 +88,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">`{enderecoDoBrecho.logradouro }{enderecoDoBrecho.numero}/{enderecoDoBrecho.bairro}/{enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`</span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro }${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
