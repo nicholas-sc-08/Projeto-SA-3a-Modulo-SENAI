@@ -247,8 +247,8 @@ function Header({ tipo }) {
                                 ) : (
                                     <>
                                         <div className="janela_button_perfil">
-                                            <Link to="/login">Login</Link>
-                                            <Link to="/cadastro_cliente">Cadastrar</Link>
+                                            <button className='janela_button_perfil_cadastrar-se' onClick={() => navigate('/escolha_cadastro')}>Cadastrar-se</button>
+                                            <button className='janela_button_perfil_login' onClick={() => navigate('/login')}>Fazer Login</button>
                                         </div>
                                     </>
                                 )}

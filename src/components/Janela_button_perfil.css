@@ -1,4 +1,4 @@
-.menu-perfil-desplegable{
+.menu-perfil-desplegable {
     /* border: 1px solid red; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     position: absolute;
@@ -10,35 +10,57 @@
     padding: 0.7%;
     border-radius: 0.5vw;
     right: 4%;
-    width: 14%;
+    width: 24%;
+    height: 80px;
     z-index: 3;
+    justify-content: center;
 }
 
-.janela_button_perfil{
-    /* border: 1px solid red; */
-    background-color: var(--cor_quatro);
-    display: flex;
-    flex-direction: column;
+.janela_button_perfil {
+    /* border: 1px solid blue; */
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.janela_button_perfil a{
+.janela_button_perfil_cadastrar-se {
+    border: none;
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
     font-family: var(--tipografia_secundaria);
     font-size: 0.9rem;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--cor_seis);
-    font-weight: 520;
-
+    border-radius: 2vw;
+    width: 48%;
+    height: 2.8rem;
+    padding: 0 1rem;
     transition: 0.4s;
+    cursor: pointer;
 }
 
-.janela_button_perfil a:hover{
-    color: var(--cor_um_v_dois);
-    font-weight: 550;
+.janela_button_perfil_cadastrar-se:hover{
+    background-color: var(--cor_um_v_dois);
 }
 
-.janela_button_perfil_logout{
+.janela_button_perfil_login {
+    border: none;
+    background-color: var(--cor_dois);
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    border-radius: 2vw;
+    width: 48%;
+    height: 2.8rem;
+    padding: 0 1rem;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.janela_button_perfil_login:hover{
+    background-color: var(--cor_dois_v_um);
+}
+
+.janela_button_perfil_logout {
     display: flex;
     /* border: 1px solid red; */
     justify-content: space-between;
@@ -47,14 +69,14 @@
 
 }
 
-.container-imagem-pefil-usuario-header img{
+.container-imagem-pefil-usuario-header img {
     /* border: 1px solid red; */
-    width: 30%;
+    width: 20%;
     border-radius: 100vw;
     margin-right: 5%;
 }
 
-.janela_button_perfil_logout a{
+.janela_button_perfil_logout a {
     /* border: 1px solid red; */
     font-family: var(--tipografia_secundaria);
     font-size: 0.8rem;
@@ -67,25 +89,25 @@
     /* border: 1px solid red; */
 }
 
-.janela_button_perfil_logout a:hover{
+.janela_button_perfil_logout a:hover {
     color: var(--cor_um_v_dois);
     font-weight: 550;
 }
 
 
-.container-imagem-pefil-usuario-header{
+.container-imagem-pefil-usuario-header {
     display: flex;
     align-items: center;
     padding: 1.5%;
     width: 75%;
 }
 
-.container-imagem-pefil-usuario-header:hover{
+.container-imagem-pefil-usuario-header:hover {
     background-color: var(--cor_doze);
     border-radius: 0.3vw;
 }
 
-.janela_button_perfil_logout button{
+.janela_button_perfil_logout button {
     border: none;
     background-color: transparent;
     border-radius: 0.5vw;
@@ -95,11 +117,11 @@
     transition: 0.2s;
 }
 
-.janela_button_perfil_logout button:hover{
+.janela_button_perfil_logout button:hover {
     background-color: var(--cor_doze_v_um);
 }
 
-.img-sair-da-conta img{
+.img-sair-da-conta img {
     /* border: 1px solid red; */
     width: 80%;
     height: 25px;
