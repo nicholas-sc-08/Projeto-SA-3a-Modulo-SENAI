@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './Sacola.css';
-import { motion } from 'framer-motion';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from "../../services/api";
 import { useNavigate } from 'react-router-dom';
@@ -166,14 +165,14 @@ function Sacola() {
     };
 
     return (
-        <AnimatePresence>
-            <motion.div initial={{ opacity: 0, y: -10 }}
+        <AnimatePresence mode="wait">
+            <motion.div
+                className='container_sacola'
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className='container_sacola'
             >
-
                 <div className="container_header_sacola">
 
                     <h1>Sacola</h1>
