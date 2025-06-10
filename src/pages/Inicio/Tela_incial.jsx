@@ -37,6 +37,8 @@ function Tela_incial() {
   const controlsEstrelaVerde = useAnimation();
   const controlsEstrelaAmarela = useAnimation();
 
+  const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
+
   // const { setValorBuscado } = useSearch();
 
   useEffect(() => {
@@ -165,51 +167,52 @@ function Tela_incial() {
 
   }, []);
 
-  function nome_brechos(fk_id){
+  function nome_brechos(fk_id) {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == fk_id);
 
-    if(encontrar_brecho){
+    if (encontrar_brecho) {
 
       return encontrar_brecho.nome_brecho;
     };
   };
 
-  function imagem_brechos(fk_id_brecho){
+  function imagem_brechos(fk_id_brecho) {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == fk_id_brecho);
 
-    if(encontrar_brecho){
+    if (encontrar_brecho) {
 
       return encontrar_brecho.logo;
     };
   };
 
-  function preco_produtos(produto_selecionado){
+  function preco_produtos(produto_selecionado) {
 
     const dividir_preco = String(produto_selecionado).split(`.`);
     const centavos = dividir_preco[dividir_preco.length - 1];
-    
-    
-    if(centavos < 10){
 
-        return `R$${dividir_preco[0]},${centavos}0`;
+
+    if (centavos < 10) {
+
+      return `R$${dividir_preco[0]},${centavos}0`;
     } else {
 
-        return `R$${produto_selecionado},${centavos}`;
+      return `R$${produto_selecionado},${centavos}`;
     };
   };
 
-  function ir_ate_produto(produto_selecionado){
+  function ir_ate_produto(produto_selecionado) {
 
     set_produto(produto_selecionado);
     navegar(`/produto`);
   };
 
-  // const handleCategoryClick = (categoria: string) => {
-  //   setValorBuscado(categoria)
-  //   navigate('/buscarProdutos')
-  // }
+  const handleCategoryClick = (categoria) => {
+    setTermoBuscado(categoria);
+    navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
+    setTermoBuscado('')
+  };
 
   return (
     <div>
@@ -349,22 +352,21 @@ function Tela_incial() {
 
         <div className="alinhamento-cards-secao-quatro">
           <div className="container-um-cards-secao-quatro">
-            {/* <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}> */}
-            <div className="card-um-secao-quatro">
+            <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
               <p>Roupas</p>
             </div>
 
-            <div className="card-dois-secao-quatro">
+            <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
               <p>Acessórios</p>
             </div>
           </div>
 
           <div className="container-dois-cards-secao-quatro">
-            <div className="card-tres-secao-quatro">
+            <div className="card-tres-secao-quatro" onClick={() => handleCategoryClick('doações')}>
               <p>Doações</p>
             </div>
 
-            <div className="card-quatro-secao-quatro">
+            <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
               <p>Calçados</p>
             </div>
           </div>

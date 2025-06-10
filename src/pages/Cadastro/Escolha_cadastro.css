@@ -1,4 +1,9 @@
-.ladoEsquerdo-container-escolha-cadastro{
+.alinhamento-pagina-escolha-cadastro{
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+/* .ladoEsquerdo-container-escolha-cadastro{
     background-color: #E7E8CE;
     width: 40%;
     height: 90%;
@@ -7,6 +12,7 @@
     left: 5%;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid red;
 }
 
 .info-ladoEsquerdo-escolha-cadastro{
@@ -62,12 +68,13 @@
 }
 .estrelaGrande{
    padding-top: 10%;
-}
+} */
 
 .ladoDireito-container-escolha-cadastro{
-    margin-left: 53%;
+    /* margin-left: 53%; */
     margin-top: 10%;
     font-family: var(--tipografia_secundaria);
+    /* border: 1px solid red; */
 }
 
 .ladoDireito-container-escolha-cadastro h1{
