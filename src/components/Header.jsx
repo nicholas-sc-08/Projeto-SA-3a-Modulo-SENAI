@@ -67,6 +67,8 @@ function Header({ tipo }) {
 
     useEffect(() => {
 
+        quantidade_de_produtos_sacola();
+
         function clickForaContainerPerfil(event) {
             if (buttonPerfilRef.current && !buttonPerfilRef.current.contains(event.target)) {
                 setButtonPefilAberto(false) // aqui ele fecha se clicou fora
@@ -188,7 +190,8 @@ function Header({ tipo }) {
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
                     >
-                        <img src="/img/icons/IconePerfil.svg" alt="Perfil" />
+                        
+                        <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
                     </button>
 
                     <AnimatePresence>
@@ -203,7 +206,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src="./img/img_perfil_provisorio.svg" alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
                                             <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
