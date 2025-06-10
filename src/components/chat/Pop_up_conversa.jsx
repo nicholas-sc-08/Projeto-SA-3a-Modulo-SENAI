@@ -9,8 +9,8 @@ function Pop_up_conversa() {
   const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
 
   return (
-    <AnimatePresence initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
-      <motion.div className='container_pop_up_conversa_atual'>
+    <AnimatePresence>
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className='container_pop_up_conversa_atual'>
 
         <div className="container_pop_up">
 
