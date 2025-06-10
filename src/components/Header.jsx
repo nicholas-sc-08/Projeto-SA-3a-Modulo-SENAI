@@ -6,9 +6,12 @@ import './Janela_button_perfil.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../contexts/GlobalContext';
 import Sacola from './sacola/Sacola';
+import api from '../services/api'
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const { array_categorias, set_array_categorias } = useContext(GlobalContext)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -21,6 +24,30 @@ function Header({ tipo }) {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
+
+    useEffect(() => {
+
+        informacoes_categorias()
+
+    }, []);
+
+    useEffect(() => {
+
+        console.log(array_categorias)
+
+    }, [array_categorias]);
+    async function informacoes_categorias() {
+
+        try {
+
+            const resultado = await api.get(`/categorias`);
+            set_array_categorias(resultado.data);
+
+        } catch (erro) {
+
+            console.log(erro);
+        };
+    };
 
     useEffect(() => {
 
@@ -277,12 +304,6 @@ function Header({ tipo }) {
 
                                                     <p>Camiseta legal</p>
                                                 </div>
-
-                                                <div className="busquedas-recentes-individual">
-                                                    <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
-
-                                                    <p>Camiseta legal</p>
-                                                </div>
                                             </div>
                                         </div>
 
@@ -325,12 +346,9 @@ function Header({ tipo }) {
                                                 <h2>Categorias especiais</h2>
 
                                                 <ul>
-                                                    <li>Roupas de marca</li>
-                                                    <li>Roupas Vintage</li>
-                                                    <li>Oversized</li>
-                                                    <li>Estilo retrô</li>
-                                                    <li>Estilo streetwear</li>
-                                                    <li>Peças customizadas</li>
+                                                    {[...array_categorias].reverse().slice(0, 6).map((categoria, i) => (
+                                                        <li key={i}>{categoria.nome}</li>
+                                                    ))}
                                                 </ul>
                                             </div>
 
