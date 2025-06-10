@@ -6,9 +6,15 @@ import { IMaskInput } from 'react-imask';
 
 function PopUp_mudar_Endereco({ fecharPopUp }) {
 
-  const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, estado: ``, cidade: ``, numero: ``, complemento: `` })
+  const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext)
+  const [mensagemErro, setMensagemErro] = useState(``)
   const navegar = useNavigate(``)
+
+  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
+  const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
   useEffect(() => {
 
@@ -44,6 +50,51 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     }
   }
 
+  async function atualizarEnderecoBrecho() {
+      try {
+        await api.put(`/Enderecos/${usuario_logado._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
+  
+        console.log('Endereço do brechó atualizado com sucesso!');
+  
+        // aqui ele atualiza as informações no array dos brechos
+        const novosEnderecos = array_brechos.map(brecho =>
+          brecho._id === usuario_logado._id ? { ...brecho, ...enderecoDoBrecho } : brecho
+        );
+        set_array_brechos(novosEnderecos)
+  
+      } catch (error) {
+        console.error('Erro ao atualizar o endereço do brechó:', error)
+      }
+    }
+
+    const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+      (brecho) => brecho._id === usuario_logado._id
+    )
+
+useEffect(() => {
+   
+
+    if (!brecho_logado) {
+      setNaoEBrecho(true)
+    } else {
+      setNaoEBrecho(false)
+    }
+  }, [brecho_logado])
+
+  // useEffect(() => {
+  //   if (usuario_logado) {
+  //     setEnderecoDoBrecho({
+  //       cep: usuario_logado.cep || '',
+  //       bairro: usuario_logado.bairro || '',
+  //       logradouro: usuario_logado.logradouro || '',
+  //       cidade: usuario_logado.ciadade || '',
+  //       estado: usuario_logado.estado || '',
+  //       numero: usuario_logado.numero || '',
+  //       complemento: usuario_logado.complemento || '',
+  //     })
+  //   }
+  // }, [usuario_logado])
+
 
   return (
     <div className="tela-inteira-content">
@@ -69,19 +120,41 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
                   type="text"
                   placeholder='Rua das Flores'
                   value={enderecoDoBrecho.logradouro}
-                  onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, logradouro: event.target.value })}
+                  onChange={(event) => 
+                    setEnderecoDoBrecho({ 
+                      ...enderecoDoBrecho, 
+                      logradouro: event.target.value 
+                    })
+                  }
                 />
               </div>
 
               <div className="numero-input-content">
                 <label className="topicos-input-endereco">Número</label>
-                <input type="text" placeholder='200' value={enderecoDoBrecho.numero} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, numero: event.target.value })} />
+                <input type="text" 
+                placeholder='200' 
+                value={enderecoDoBrecho.numero} 
+                onChange={(event) => 
+                setEnderecoDoBrecho({ 
+                  ...enderecoDoBrecho, 
+                  numero: event.target.value 
+                  })
+                  } 
+                  />
               </div>
             </div>
 
             <div className="complemento-input-content">
               <label className="topicos-input-endereco">Complemento</label>
-              <input type="text" placeholder='Apartamento 02' value={enderecoDoBrecho.complemento} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, complemento: event.target.value })} />
+              <input type="text" 
+              placeholder='Apartamento 02' 
+              value={enderecoDoBrecho.complemento} 
+              onChange={(event) => setEnderecoDoBrecho({ 
+                ...enderecoDoBrecho, 
+                complemento: event.target.value 
+                })
+                } 
+                />
             </div>
 
             <div className="juncao-cep-e-bairro-content">
@@ -92,21 +165,32 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
                   unmask="typed"
                   placeholder='00000-000'
                   value={enderecoDoBrecho.cep}
-                  onAccept={(value) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
-                  // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
+                  onAccept={(value) => setEnderecoDoBrecho({  // o onAccept é o método recomendado pela documentação do react-imask
+                    ...enderecoDoBrecho, 
+                    cep: value })
+                  } 
+                // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
                 />
               </div>
 
               <div className="bairro-input-content">
                 <label className="topicos-input-endereco">Bairro</label>
-                <input type="text" placeholder='Rio Vermelho' value={enderecoDoBrecho.bairro} onChange={(event) => setEnderecoDoBrecho({ ...enderecoDoBrecho, bairro: event.target.value })} />
+                <input type="text" 
+                placeholder='Rio Vermelho' 
+                value={enderecoDoBrecho.bairro} 
+                onChange={(event) => setEnderecoDoBrecho({ 
+                  ...enderecoDoBrecho, 
+                  bairro: event.target.value })
+                  } 
+                  />
               </div>
             </div>
 
           </div>
 
           <div className="salvar-endereco-content">
-            <button>Salvar Endereço</button>
+            {mensagemErro && <p>{mensagemErro}</p>}
+            <button onClick={atualizarEnderecoBrecho}>Salvar Endereço</button>
           </div>
 
         </div>

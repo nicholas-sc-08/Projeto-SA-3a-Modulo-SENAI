@@ -15,21 +15,12 @@ function Header({ tipo }) {
     const containerRef = useRef(null)
     const buttonPerfilRef = useRef(null)
 
-    const [termoBuscado, setTermoBuscado] = useState('')
+    const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
     const navigate = useNavigate()
 
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
-
-    useEffect(() => {
-   
-        if (usuario_logado) {
-    
-                set_sacola(usuario_logado.sacola);
-        };
-    
-    }, [usuario_logado]);
 
     useEffect(() => {
 
@@ -69,11 +60,11 @@ function Header({ tipo }) {
 
     }, [sacola]);
 
-    function renderLinks(){
+    function renderLinks() {
         if (tipo === 'usuario') {
             return (
                 <>
-                    <Link to="/estamosChegando" className="link-texto-navbar-usuario">Doações</Link>
+                    <Link to="/EstamosChegando" className="link-texto-navbar-usuario">Doações</Link>
                     <Link to="/buscarProdutos" className="link-texto-navbar-usuario">Produtos</Link>
                     <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </>
@@ -98,9 +89,9 @@ function Header({ tipo }) {
         }
     };
 
-    function sacola_perfil(parametro){
+    function sacola_perfil(parametro) {
 
-        if(parametro == `sacola` && sacola_aberta == false){
+        if (parametro == `sacola` && sacola_aberta == false) {
 
             set_sacola_aberta(true);
             setButtonPefilAberto(false);
@@ -110,7 +101,7 @@ function Header({ tipo }) {
             set_sacola_aberta(false);
         };
 
-        if(parametro == `perfil` && buttonPerfilAberto == false){
+        if (parametro == `perfil` && buttonPerfilAberto == false) {
 
             setButtonPefilAberto(true);
             set_sacola_aberta(false);
@@ -120,7 +111,7 @@ function Header({ tipo }) {
             setButtonPefilAberto(false);
         };
 
-        if(parametro == `container` && containerAberto == false){
+        if (parametro == `container` && containerAberto == false) {
 
             setContainerAberto(true);
             set_sacola_aberta(false);
@@ -131,44 +122,34 @@ function Header({ tipo }) {
         };
     };
 
-    function quantidade_de_produtos_sacola(){        
+    function quantidade_de_produtos_sacola() {
 
-        if(Array.isArray(sacola)){
+        if (Array.isArray(sacola)) {
 
-            if(sacola.length < 10){
-
-
-                return `${sacola.length}`;
-            } else {
-
-                return sacola.length;
-            };
+            return sacola.length;
         } else {
 
             return 0;
         };
     };
 
-    function renderIcons (){
+    function renderIcons() {
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
-                
+
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
-                    
+
                     {tipo == 'usuario' && (
-                        <div className="container_botao_sacola_header">
 
                         <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>
-                        <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                            <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                            <span>{quantidade_de_produtos_sacola()}</span>
                         </button>
-                        <span>{quantidade_de_produtos_sacola()}</span>
-                        
-                        </div>
-                    
+
                     )}
-                        {sacola_aberta && <Sacola/>}
+                    {sacola_aberta && <Sacola />}
 
                     {tipo === 'brecho' && (
                         <button className="button-chat-navbar">
@@ -180,7 +161,7 @@ function Header({ tipo }) {
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
                     >
-                        <img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
+                        <img src="/img/icons/IconePerfil.svg" alt="Perfil" />
                     </button>
 
                     <AnimatePresence>
@@ -195,7 +176,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : ``} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src="./img/img_perfil_provisorio.svg" alt="" /> Olá! {usuario_logado.nome}</Link>
                                             <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
@@ -215,15 +196,26 @@ function Header({ tipo }) {
         );
     };
 
-
-    function handleBusca(e){
-        if (e.key === 'Enter' && termoBuscado.trim() !== '') {
-
+    const handleSearch = () => {
+        if (termoBuscado.trim() !== '') {
             navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
-            setContainerAberto(false)
-
+            setTermoBuscado('');      // limpiar input después de navegar
+            setContainerAberto(false);
         }
-    }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
+
+    // useEffect(() => {
+    //     if (termoBuscado) {
+    //         handleSearch(termoBuscado);
+    //     }
+    // }, [termoBuscado]);
 
     return (
         <div className="alinhamento-navbar-usuario">
@@ -263,7 +255,7 @@ function Header({ tipo }) {
 
                         value={termoBuscado}
                         onChange={(e) => setTermoBuscado(e.target.value)}
-                        onKeyDown={handleBusca}
+                        onKeyDown={handleKeyDown}
                     />
 
                     <AnimatePresence>

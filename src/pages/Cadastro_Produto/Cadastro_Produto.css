@@ -5,12 +5,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 40px;
     background: #FFFDF7;
     border-radius: 10px;
-    width: 85%;
-    margin: 20px auto;
+    width: 90%;
+    margin: 10px auto;
     font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
 }
 
 body {
@@ -22,8 +22,9 @@ body {
 =========================== */
 .titulo, .titulo2 {
     padding-top: 2%;
-    padding-left: 10%;
+    padding-left: 2%;
     font-family: "Montserrat", sans-serif;
+    font-weight: 550;
 }
 
 .titulo {
@@ -86,8 +87,8 @@ body {
 }
 
 .miniatura {
-    width: 150px;
-    height: 155px;
+    width: 140px;
+    height: 140px;
     cursor: pointer;
 }
 
@@ -129,7 +130,7 @@ body {
 
 .imagem-principal {
     width: 400px;
-    height: 500px;
+    height: 450px;
     border-radius: 15px;
 }
 
@@ -142,7 +143,7 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .inpt-edit, .inpt-edit-preco {
@@ -150,33 +151,35 @@ body {
     outline: none;
     border: 0;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #3E2A21;
 }
 
 .inpt-edit {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .inpt-edit-preco {
-    font-size: 1.7rem;
-    color: #466330;
+    font-size: 2rem;
+    color: var(--cor_seis);
+    margin-top: -20px;
 }
 
 .nome-produto {
     font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 2.5rem;
+    font-weight: 600;
     color: #3E2A21;
     cursor: pointer;
 }
 
 .preco-produto {
     font-family: "Montserrat", sans-serif;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 600;
-    color: #466330;
+    color: #3E2A21;
     cursor: pointer;
+    margin-top: -20px;
 }
 
 /* ========================
@@ -196,11 +199,24 @@ body {
     cursor: pointer;
     font-size: 1rem;
     transition: 0.2s;
+    width: 40%;
+    
+}
+
+.input-tamanho{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
 }
 
 .tamanho.selecionado {
     background: #466330;
     color: white;
+}
+
+.tamanho:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(70, 99, 48, 0.4);
 }
 
 /* ========================
@@ -210,12 +226,30 @@ body {
     display: flex;
     align-items: center;
     gap: 25px;
-    margin-top: 15px;
+    margin-bottom: 5%;
     height: 45px;
-    width: 21%;
+    width: 60%;
     justify-content: center;
     border-radius: 20px;
     background-color: #F3F1EF;
+
+}
+
+.quantidade-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ou flex-start se quiser alinhado à esquerda */
+    gap: 5px;
+}
+
+.quantidade-titulo {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--cor_seis);
+    margin-bottom: 5px; /* espaçamento com o .quantidade */
+    padding: 0; /* Remover o padding-left que você tinha */
+    text-align: center;
 }
 
 .container-cadastro-produto hr {
@@ -227,18 +261,40 @@ body {
 }
 
 .botao-quantidade {
-    width: 30px;
-    height: 30px;
+    width: 40px;         /* largura maior */
+    height: 35px;        /* altura maior */
     border: none;
     background: transparent;
-    border-radius: 5px;
+    border-radius: 10px; /* borda um pouco mais arredondada */
     cursor: pointer;
     transition: 0.2s;
+    font-size: 20px;     /* tamanho do símbolo + e - */
+    font-weight: 500;   /* deixar o símbolo em negrito */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
+
 
 .quantidade-numero {
     width: 10px;
 }
+
+
+
+.input-group-alinhados{
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: var(--cor_seis);
+}
+
+
+
 
 /* ========================
    FORMULÁRIO DE DETALHES
@@ -377,6 +433,9 @@ body {
     background-color: transparent;
     border-radius: 5px;
     border: 0;
+    font-family: "Poppins", sans-serif;
+    
+    height: 30%;
 }
 
 .input-group-descricao textarea {
@@ -386,7 +445,11 @@ body {
     overflow: hidden;
     height: auto;
     outline: none;
-    min-height: 50px;
+    min-height: 120px;
+    font-family: "Poppins", sans-serif;
+    color: var(--cor_seis);
+
+
 }
 
 /* ========================
@@ -394,10 +457,12 @@ body {
 =========================== */
 .cores {
     display: flex;
-    gap: 10px;
+    
     align-items: center;
+    flex-direction: column;
     flex-wrap: nowrap; /* Garante que as cores não vão para a linha de baixo */
     justify-content: flex-start; /* Alinha as cores à esquerda */
+
 }
 
 

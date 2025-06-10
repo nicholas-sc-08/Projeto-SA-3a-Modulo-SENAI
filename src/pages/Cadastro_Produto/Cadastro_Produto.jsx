@@ -1,3 +1,4 @@
+// Importações de bibliotecas e componentes
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
 import Header from "../../components/Header";
@@ -7,22 +8,38 @@ import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
 
+
 function Cadastro_Produto() {
+  
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { conversa_aberta, set_converas_aberta } = useContext(GlobalContext);
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
 
+  // Estado de quantidade do produto
   const [quantidade, setQuantidade] = useState(1);
+
+  // Estado do tamanho selecionado
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState("");
+
+  // Estado de imagens (urls das imagens do produto)
   const [imagens, setImagens] = useState([]);
+
+  // Estado da imagem principal (a que será exibida em destaque)
   const [imagemPrincipal, setImagemPrincipal] = useState(null);
+
+  // Estado das cores selecionadas com EyeDropper
   const [coresSelecionadas, setCoresSelecionadas] = useState([]);
+
+  // Lista de categorias disponíveis
   const [categorias, setCategorias] = useState([]);
+
+  // Estados para controlar edição inline (nome e preço)
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
 
+  // Estado principal que representa os dados do produto a ser cadastrado
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
     nome: "",
     descricao: "",
@@ -35,13 +52,16 @@ function Cadastro_Produto() {
     fk_id_categoria: "",
     tamanho: "",
     quantidade: 1,
-    fk_id_brecho: usuario_logado._id,
+    fk_id_brecho: usuario_logado._id, // brechó vinculado ao produto
   });
 
+  // useEffect que roda quando o componente é carregado
+  // Busca produtos e categorias + carrega dados caso esteja editando um produto
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
 
+    // Se estiver em modo de edição, carrega as informações do produto que será editado
     if (informacoes_editar_produto != null && informacoes_editar_produto.nome !== "") {
       setArray_cadastro_produto({
         nome: informacoes_editar_produto.nome || "",
@@ -65,6 +85,7 @@ function Cadastro_Produto() {
     }
   }, []);
 
+  // Função para aumentar a quantidade
   const aumentarQuantidade = () =>
     setQuantidade((q) => {
       const novaQuantidade = q + 1;
@@ -72,6 +93,7 @@ function Cadastro_Produto() {
       return novaQuantidade;
     });
 
+  // Função para diminuir a quantidade (mínimo = 1)
   const diminuirQuantidade = () => {
     if (quantidade > 1) {
       setQuantidade((q) => {
@@ -82,23 +104,25 @@ function Cadastro_Produto() {
     }
   };
 
+  // Função que define o tamanho selecionado do produto
   const selecionarTamanho = (t) => {
     setTamanhoSelecionado(t);
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
   };
 
+  // Função que adiciona uma imagem (faz upload no Cloudinary)
   const adicionar_imagem = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Criar URL local para mostrar a imagem imediatamente
+    // Cria uma URL temporária para exibir a imagem imediatamente na tela
     const urlLocal = URL.createObjectURL(file);
     const novaListaTemporaria = [...imagens, urlLocal];
     setImagens(novaListaTemporaria);
     setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaListaTemporaria });
     if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
-    // Upload para Cloudinary
+    // Upload no Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "Fly_Brecho");
@@ -111,16 +135,17 @@ function Cadastro_Produto() {
       const data = await response.json();
 
       if (data.secure_url) {
-        // Substituir a URL temporária pela URL real
+        // Substitui a URL local temporária pela URL do Cloudinary
         const novaLista = novaListaTemporaria.map((img) => (img === urlLocal ? data.secure_url : img));
         setImagens(novaLista);
         setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
 
+        // Atualiza imagem principal, se for o caso
         if (imagemPrincipal === urlLocal) {
           setImagemPrincipal(data.secure_url);
         }
 
-        // Liberar a URL local para evitar vazamento de memória
+        // Libera a URL temporária
         URL.revokeObjectURL(urlLocal);
       }
     } catch (error) {
@@ -128,11 +153,12 @@ function Cadastro_Produto() {
     }
   };
 
+  // useEffect auxiliar para ver no console as alterações no array_cadastro_produto
   useEffect(() => {
     console.log(array_cadastro_produto);
   }, [array_cadastro_produto]);
 
-
+  // Função que remove uma imagem (também atualiza imagem principal, se necessário)
   const removerImagem = (index) => {
     setImagens((prevImagens) => {
       const novasImagens = prevImagens.filter((_, i) => i !== index);
@@ -141,7 +167,7 @@ function Cadastro_Produto() {
         imagem: novasImagens,
       }));
 
-  
+      // Se remover a imagem principal, seta uma nova ou limpa
       if (prevImagens[index] === imagemPrincipal) {
         setImagemPrincipal(novasImagens[0] || "");
       }
@@ -150,12 +176,14 @@ function Cadastro_Produto() {
     });
   };
 
+  // Função que define qual imagem será a imagem principal
   const selecionarImagemPrincipal = (imagem) => {
     if (imagens.includes(imagem)) {
       setImagemPrincipal(imagem);
     }
   };
 
+  // Função para abrir o seletor de cores (EyeDropper API)
   const selecionarCorEyeDropper = async () => {
     if (window.EyeDropper) {
       try {
@@ -176,6 +204,7 @@ function Cadastro_Produto() {
     }
   };
 
+  // Função para substituir uma cor existente
   const substituirCor = async (index) => {
     try {
       const eyeDropper = new window.EyeDropper();
@@ -189,11 +218,13 @@ function Cadastro_Produto() {
     }
   };
 
+  // Função que remove todas as cores selecionadas
   const removerCor = () => {
     setCoresSelecionadas([]);
     setArray_cadastro_produto({ ...array_cadastro_produto, cor: [] });
   };
 
+  // Função que busca categorias do backend (usada no carregamento inicial)
   async function buscar_categorias() {
     try {
       const res = await api.get("/categorias");
@@ -203,6 +234,7 @@ function Cadastro_Produto() {
     }
   }
 
+  // Função que busca produtos do backend (usada no carregamento inicial e após cadastrar produto)
   async function buscar_produtos() {
     try {
       const res = await api.get("/produtos");
@@ -212,10 +244,11 @@ function Cadastro_Produto() {
     }
   }
 
+  // Função que faz o cadastro do produto (chama a API POST /produtos)
   async function cadastrar_produto() {
     try {
       await api.post("/produtos", array_cadastro_produto);
-      buscar_produtos();
+      buscar_produtos(); // Atualiza lista de produtos
       alert("Produto cadastrado com sucesso!");
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
@@ -223,7 +256,10 @@ function Cadastro_Produto() {
     }
   }
 
+  // Constante auxiliar para mostrar um texto de fallback no nome do produto
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
+
+
 
   return (
     <div>
@@ -307,12 +343,44 @@ function Cadastro_Produto() {
               value={array_cadastro_produto.descricao}
               onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, descricao: e.target.value })}
             ></textarea>
-            <hr />
+            
+            
           </div>
+          <hr />
 
-          <div className="input-group-descricao">
-            <label>Seleção de Cores</label>
+          <div className="input-group-alinhados">
+
+
+             <div className="input-tamanho">
+                <label>Tamanho</label>
+                  <input
+                    type="text"
+                    className="tamanho"
+                    placeholder=""
+                    value={array_cadastro_produto.tamanho}
+                    onChange={(e) => {
+                    setTamanhoSelecionado(e.target.value); // opcional, se ainda quiser manter esse estado
+                    setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value });
+                  }}
+                />
+            </div>
+
+
+             <div className="quantidade-container">
+    <div className="quantidade-titulo">Quantidade</div>
+    <div className="quantidade">
+        <button className="botao-quantidade" onClick={diminuirQuantidade}>{" <"}</button>
+        <div className="quantidade-numero">{quantidade}</div>
+        <button className="botao-quantidade" onClick={aumentarQuantidade}>{">"}</button>
+    </div>
+</div>
+
+
+
+
+            
             <div className="cores">
+              <label>Seleção de Cores</label>
               <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
                 <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
               </button>
@@ -328,32 +396,13 @@ function Cadastro_Produto() {
                 ))}
               </div>
             </div>
-            <hr />
+            
           </div>
 
-          <p>Escolha o Tamanho</p>
-          <div className="tamanhos">
-            {["PP", "P", "M", "G", "GG"].map((tamanho) => (
-              <button
-                key={tamanho}
-                className={`tamanho ${tamanhoSelecionado === tamanho ? "selecionado" : ""}`}
-                onClick={() => selecionarTamanho(tamanho)}
-              >
-                {tamanho}
-              </button>
-            ))}
-          </div>
-          <hr />
+         
+          
 
-          <div className="quantidade">
-            <button className="botao-quantidade" onClick={diminuirQuantidade}>
-              <img src="./img/menos.svg" alt="-" />
-            </button>
-            <span className="quantidade-numero">{quantidade}</span>
-            <button className="botao-quantidade" onClick={aumentarQuantidade}>
-              <img src="./img/mais.svg" alt="+" />
-            </button>
-          </div>
+          
         </div>
       </div>
 

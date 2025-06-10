@@ -46,12 +46,12 @@ export const GlobalContextProvider = ({ children }) => {
     const [altura_inicial_chat, set_altura_inicial_chat] = useState(`10%`);
     const [altura_inicial_header_chat, set_altura_inicial_header_chat] = useState(`100%`);
     const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null);
-    const [ filtro_de_pesquisa, set_filtro_de_pesquisa ] = useState({preco: `20` ,tamanhos: [], categoria_filtrada: ``});
+    const [filtro_de_pesquisa, set_filtro_de_pesquisa] = useState({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
     const [exibir_nome_brecho, set_exibir_nome_brecho] = useState(false);
     const [nome_do_brecho, set_nome_do_brecho] = useState(``);
-    const [exibir_produtos_filtrados, set_exibir_produtos_filtrados ] = useState(false);
-    const [array_de_produtos_aleatorios, set_array_de_produtos_aleatorios ] = useState([]);
-    const [tipo_de_header, set_tipo_de_header ] = useState(`usuario`);
+    const [exibir_produtos_filtrados, set_exibir_produtos_filtrados] = useState(false);
+    const [array_de_produtos_aleatorios, set_array_de_produtos_aleatorios] = useState([]);
+    const [tipo_de_header, set_tipo_de_header] = useState(`usuario`);
     const [sacola_aberta, set_sacola_aberta] = useState(false);
     const [sacola, set_sacola] = useState([]);
 
@@ -66,6 +66,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_lancamentos, set_array_lancamnetos] = useState('')
 
     const [pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard] = useState(``)
+
+    const [termoBuscado, setTermoBuscado] = useState('')
 
     return (
         <GlobalContext.Provider value={{
@@ -165,9 +167,9 @@ export const GlobalContextProvider = ({ children }) => {
             sacola,
             set_sacola,
 
-            id_do_produto_a_excluir, 
+            id_do_produto_a_excluir,
             set_id_do_produto_a_excluir,
-      
+
             exibir_nome_brecho,
             set_exibir_nome_brecho,
             nome_do_brecho,
@@ -191,6 +193,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_id_do_brecho_a_excluir,
             pop_up_notificacao_excluir_brechos_dashboard,
             set_pop_up_notificacao_excluir_brechos_dashboard,
+            termoBuscado,
+            setTermoBuscado,
         }}>
             {children}
         </GlobalContext.Provider>

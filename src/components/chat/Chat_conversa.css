@@ -3,7 +3,7 @@
     position: fixed;
 
     height: 70%;
-    width: 24%;
+    width: 26%;
 
     right: 4%;
     bottom: 0%;
@@ -36,7 +36,7 @@
 
 .container_header_chat_conversa_imagem{
 
-    width: 15%;
+    width: 12%;
     border-radius: 100vw;
 }
 
@@ -147,7 +147,7 @@
 
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .container_hora_dono{
@@ -161,7 +161,7 @@
 
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .container_hora_recebedor{
@@ -316,7 +316,7 @@
 .escurecer_tela_chat_conversa{
 
     position: fixed;
-    width: 24%;
+    width: 26%;
     height: 100%;
     background-color: #00000041;
 }

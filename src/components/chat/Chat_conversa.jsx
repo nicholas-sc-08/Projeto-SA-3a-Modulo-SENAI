@@ -84,9 +84,16 @@ function Chat_conversa() {
 
     function pegar_primeiro_nome(nome){
       
-      const nome_a_exibir = nome.split(` `);
+      const buscar_cliente = array_clientes.find(cliente => cliente._id == pessoa_com_quem_esta_conversando._id);
+      if(buscar_cliente){
 
-      return nome_a_exibir[0];
+        const nome_a_exibir = nome.split(` `);
+        return nome_a_exibir[0];
+      
+      } else {
+
+        return nome;
+      };
     };
 
     async function atualizar_mensagem(){
