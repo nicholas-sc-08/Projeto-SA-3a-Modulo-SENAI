@@ -6,30 +6,71 @@ import './Janela_button_perfil.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../contexts/GlobalContext';
 import Sacola from './sacola/Sacola';
+import api from '../services/api'
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const { array_categorias, set_array_categorias } = useContext(GlobalContext)
+    const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
     const containerRef = useRef(null)
     const buttonPerfilRef = useRef(null)
 
-    const [termoBuscado, setTermoBuscado] = useState('')
+    const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
     const navigate = useNavigate()
 
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
+    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
+    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
+
+    const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
 
     useEffect(() => {
-   
-        if (usuario_logado) {
-    
-                set_sacola(usuario_logado.sacola);
+
+        informacoes_categorias()
+        informacoes_brechos()
+
+    }, []);
+
+
+
+    async function informacoes_categorias() {
+
+        try {
+
+            const resultado = await api.get(`/categorias`);
+            set_array_categorias(resultado.data);
+
+        } catch (erro) {
+
+            console.log(erro);
         };
-    
-    }, [usuario_logado]);
+    };
+
+    async function informacoes_brechos() {
+
+        try {
+
+            const resultado = await api.get(`/brechos`);
+            set_array_brechos(resultado.data);
+
+        } catch (erro) {
+
+            console.log(erro);
+        };
+    };
+
+    useEffect(() => {
+
+        const embaralhar = [...array_brechos].sort(() => Math.random() - 0.5);
+        set_queridinhos_flyers(embaralhar);
+
+    }, [array_brechos]);
 
     useEffect(() => {
 
@@ -67,13 +108,13 @@ function Header({ tipo }) {
 
         quantidade_de_produtos_sacola();
 
-    }, [sacola]);
+    }, [usuario_logado]);
 
-    function renderLinks(){
+    function renderLinks() {
         if (tipo === 'usuario') {
             return (
                 <>
-                    <Link to="/doacoes" className="link-texto-navbar-usuario">Doações</Link>
+                    <Link to="/EstamosChegando" className="link-texto-navbar-usuario">Doações</Link>
                     <Link to="/buscarProdutos" className="link-texto-navbar-usuario">Produtos</Link>
                     <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </>
@@ -98,19 +139,27 @@ function Header({ tipo }) {
         }
     };
 
-    function sacola_perfil(parametro){
+    function sacola_perfil(parametro) {
 
-        if(parametro == `sacola` && sacola_aberta == false){
+        if (parametro == `sacola` && sacola_aberta == false) {
 
             set_sacola_aberta(true);
             setButtonPefilAberto(false);
             setContainerAberto(false);
+            set_altura_inicial_chat(`10%`);
+
+            setTimeout(() => {
+
+                set_altura_inicial_header_chat(`100%`);
+
+            }, 325);
+
         } else {
 
             set_sacola_aberta(false);
         };
 
-        if(parametro == `perfil` && buttonPerfilAberto == false){
+        if (parametro == `perfil` && buttonPerfilAberto == false) {
 
             setButtonPefilAberto(true);
             set_sacola_aberta(false);
@@ -120,7 +169,7 @@ function Header({ tipo }) {
             setButtonPefilAberto(false);
         };
 
-        if(parametro == `container` && containerAberto == false){
+        if (parametro == `container` && containerAberto == false) {
 
             setContainerAberto(true);
             set_sacola_aberta(false);
@@ -131,44 +180,40 @@ function Header({ tipo }) {
         };
     };
 
-    function quantidade_de_produtos_sacola(){        
+    function quantidade_de_produtos_sacola() {
 
-        if(Array.isArray(sacola)){
+        if (Array.isArray(sacola)) {
 
-            if(sacola.length < 10){
-
-
-                return `${sacola.length}`;
-            } else {
-
-                return sacola.length;
-            };
+            return sacola.length;
         } else {
 
             return 0;
         };
     };
 
-    function renderIcons (){
+    function deslogar_usuario(){
+
+        set_usuario_logado([]);
+        set_sacola([]);
+    };
+
+    function renderIcons() {
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
         return (
             <div className={`buttons-container-navbar-alinhamento${tipo === 'brecho' ? '-brecho' : ''}`}>
-                
+
                 <div className="button-container-navbar-alinhamento" ref={buttonPerfilRef}>
-                    
+
                     {tipo == 'usuario' && (
-                        <div className="container_botao_sacola_header">
 
                         <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>
-                        <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                            <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                            <span>{quantidade_de_produtos_sacola()}</span>
                         </button>
-                        <span>{quantidade_de_produtos_sacola()}</span>
-                        
-                        </div>
-                    
+
                     )}
-                        {sacola_aberta && <Sacola/>}
+                    {sacola_aberta && <Sacola />}
 
                     {tipo === 'brecho' && (
                         <button className="button-chat-navbar">
@@ -179,8 +224,8 @@ function Header({ tipo }) {
                     <button
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
-                    >
-                        <img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
+                    >  
+                        <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="Perfil" />
                     </button>
 
                     <AnimatePresence>
@@ -195,8 +240,8 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : ``} alt="" /> Olá! {usuario_logado.nome}</Link>
-                                            <button onClick={() => set_usuario_logado([])} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
+                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <button onClick={() => deslogar_usuario()} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
                                 ) : (
@@ -215,15 +260,32 @@ function Header({ tipo }) {
         );
     };
 
-
-    function handleBusca(e){
-        if (e.key === 'Enter' && termoBuscado.trim() !== '') {
-
+    const handleSearch = () => {
+        if (termoBuscado.trim() !== '') {
             navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
-            setContainerAberto(false)
-
+            setTermoBuscado('');      // limpiar input después de navegar
+            setContainerAberto(false);
         }
-    }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
+    // buscar por marcas
+    const buscarMarcas = (marca) => {
+    setTermoBuscado(marca);
+    navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
+    setTermoBuscado('')
+  };
+
+  const buscarCategoria = (categoria) => {
+    setTermoBuscado(categoria);
+    navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
+    setTermoBuscado('')
+  };
 
     return (
         <div className="alinhamento-navbar-usuario">
@@ -263,7 +325,7 @@ function Header({ tipo }) {
 
                         value={termoBuscado}
                         onChange={(e) => setTermoBuscado(e.target.value)}
-                        onKeyDown={handleBusca}
+                        onKeyDown={handleKeyDown}
                     />
 
                     <AnimatePresence>
@@ -292,12 +354,6 @@ function Header({ tipo }) {
 
                                                     <p>Camiseta legal</p>
                                                 </div>
-
-                                                <div className="busquedas-recentes-individual">
-                                                    <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
-
-                                                    <p>Camiseta legal</p>
-                                                </div>
                                             </div>
                                         </div>
 
@@ -307,29 +363,29 @@ function Header({ tipo }) {
 
                                                 <div className="alinahamento-container-marcas-aclamadas">
                                                     <div className="container-um-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('farm' || 'farm rio')}>
                                                             <img src="./img/logo/logo_farm_rio.svg" alt="Farm Rio" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('zara')}>
                                                             <img src="./img/logo/logo_zara.svg" alt="Zara" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('Le lis')}>
                                                             <img src="./img/logo/logo_le_lis.svg" alt="Le Lis" />
                                                         </div>
                                                     </div>
 
                                                     <div className="container-dois-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('animale')}>
                                                             <img src="./img/logo/logo_animale.svg" alt="Animale" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('converse' || 'all star')}>
                                                             <img src="./img/logo/logo_converse.svg" alt="Converse" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('adidas')}>
                                                             <img src="./img/logo/logo_adidas.svg" alt="Adidas" />
                                                         </div>
                                                     </div>
@@ -340,42 +396,24 @@ function Header({ tipo }) {
                                                 <h2>Categorias especiais</h2>
 
                                                 <ul>
-                                                    <li>Roupas de marca</li>
-                                                    <li>Roupas Vintage</li>
-                                                    <li>Oversized</li>
-                                                    <li>Estilo retrô</li>
-                                                    <li>Estilo streetwear</li>
-                                                    <li>Peças customizadas</li>
+                                                    {[...array_categorias].reverse().slice(0, 6).map((categoria, i) => (
+                                                        <li key={i} onClick={() => buscarCategoria(categoria.nome)}>{categoria.nome}</li>
+                                                    ))}
                                                 </ul>
                                             </div>
 
                                             <div className="alinhamento-container-queridinhos-dos-flyers">
                                                 <h2>Queridinhos dos Flyers</h2>
 
-                                                <div className="alinhamento-brechos-queridinhos">
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+                                                {queridinhos_flyers.slice(0, 4).map((brecho, i) => (
+                                                    <div className="alinhamento-brechos-queridinhos">
+                                                        <div className="container-brecho-individual-queridinhos" key={i}>
+                                                            <img src={brecho.logo} alt="Brecho logo" />
 
-                                                        <p>Garimpo urbano</p>
+                                                            <p>{brecho.nome_brecho}</p>
+                                                        </div>
                                                     </div>
-
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-                                                </div>
+                                                ))}
                                             </div>
 
                                             <div className="alinhamento-container-flytracks">

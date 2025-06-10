@@ -1,0 +1,71 @@
+.alinhamento-tela-em-andamento{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-fly-tela-em-andamento {
+    width: 10vw;
+    height: fit-content;
+    /* border: 1px solid red; */
+}
+
+.container-alinhamento-um-tela-em-andamento {
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8%;
+    /* border: 1px solid blue; */
+}
+
+.container-alinhamento-um-tela-em-andamento h1 {
+    font-family: 'Montserrat';
+    color: #3E2A21;
+}
+
+.container-alinhamento-um-tela-em-andamento p {
+    font-family: 'Poppins';
+    color: #3E2A21;
+    opacity: 0.8;
+    margin-top: 0.3vw;
+}
+
+.alinhamento-letras-tela-em-andamento{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: -2vw;
+}
+
+/* CSS media query dentro de um stylesheet */
+@media screen and (min-width: 375px) and (max-width: 667px) {
+
+    body {
+        margin-top: 75vw;
+    }
+
+    .logo-fly-tela-em-andamento {
+        width: 28vw;
+    }
+
+    .container-alinhamento-um-tela-em-andamento h1 {
+        font-size: 5vw;
+    }
+
+    .container-alinhamento-um-tela-em-andamento p {
+        margin-top: -1vw;
+    }
+
+    .alinhamento-letras-tela-em-andamento {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: -4vw;
+    }
+}

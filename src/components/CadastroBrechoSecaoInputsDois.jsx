@@ -53,7 +53,7 @@ function CadastroBrechoSecaoInputsDois() {
           <label>Telefone do brechó<span className='span-obrigatoria-cadastro-brecho-dois'>*</span></label>
           <IMaskInput 
           mask="(00) 00000-0000" 
-          unmask="typed" 
+          // unmask="typed" 
           placeholder='(DD) 90000-0000' 
           required 
           value={formCadastroBrecho.telefone} 
@@ -66,7 +66,7 @@ function CadastroBrechoSecaoInputsDois() {
           <label>CNPJ<span className='span-opcional-cadastro-brecho'>(opcional)</span></label>
           <IMaskInput
           mask="00.000.000/0000-00" 
-          unmask="typed" 
+          // unmask="typed" 
           placeholder='00.000.000/0000-00' 
           value={formCadastroBrecho.cnpj}
           onAccept={(value) => setFormCadastroBrecho({ ...formCadastroBrecho, cnpj: value })}

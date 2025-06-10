@@ -116,7 +116,7 @@
 
     transition: 0.3s;
 
-    width: 95%;
+    width: 80%;
     height: 65%;
 }
 
@@ -596,7 +596,7 @@
 
 .container_imagem_do_produto img{
 
-    width: 80%;
+    width: 75%;
 }
 
 .container_produto_embaralhado_info{

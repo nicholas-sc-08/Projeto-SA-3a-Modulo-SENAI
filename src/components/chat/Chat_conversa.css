@@ -3,7 +3,7 @@
     position: fixed;
 
     height: 70%;
-    width: 24%;
+    width: 26%;
 
     right: 4%;
     bottom: 0%;
@@ -36,7 +36,7 @@
 
 .container_header_chat_conversa_imagem{
 
-    width: 15%;
+    width: 12%;
     border-radius: 100vw;
 }
 
@@ -46,6 +46,7 @@
 
     font-family: var(--tipografia_primaria);
     font-size: 1.5rem;
+    font-weight: 580;
     color: var(--cor_quatro);
 }
 
@@ -147,7 +148,7 @@
 
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .container_hora_dono{
@@ -161,7 +162,7 @@
 
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .container_hora_recebedor{
@@ -248,6 +249,7 @@
     box-sizing: border-box;
     overflow: hidden;
     line-height: 1.5;
+    color: var(--cor_seis);
     background-color: transparent;
 }
 
@@ -304,7 +306,7 @@
 
 .container_campos_conversa_atual img{
 
-    width: 50%;
+    width: 40%;
 }
 
 .container_pop_up_excluir_msg_chat{
@@ -316,7 +318,7 @@
 .escurecer_tela_chat_conversa{
 
     position: fixed;
-    width: 24%;
+    width: 26%;
     height: 100%;
     background-color: #00000041;
 }

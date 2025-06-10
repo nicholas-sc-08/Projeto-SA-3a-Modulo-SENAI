@@ -12,6 +12,7 @@ function Perfil_Brecho() {
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
@@ -19,17 +20,33 @@ function Perfil_Brecho() {
   const [ naoEBrecho, setNaoEBrecho] = useState(false)
 
 
-  useEffect(() => {
-    const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+ const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
       (brecho) => brecho._id === usuario_logado._id
     )
 
+  useEffect(() => {
+    
+    
     if (!brecho_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [array_brechos, usuario_logado])
+  }, [array_brechos, usuario_logado, brecho_logado])
+
+  useEffect(() => {
+    if (usuario_logado) {
+      setEnderecoDoBrecho({
+        cep: usuario_logado.cep || '',
+        bairro: usuario_logado.bairro || '',
+        logradouro: usuario_logado.logradouro || '',
+        cidade: usuario_logado.cidade || '',
+        estado: usuario_logado.estado || '',
+        numero: usuario_logado.numero || '',
+        complemento: usuario_logado.complemento || '',
+      })
+    }
+  }, [usuario_logado])
 
 
   // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
@@ -71,7 +88,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">exemplo  Rua Irmão Walmir Orsi/Santa Augusta/Criciúma/SC </span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro }${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>

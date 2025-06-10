@@ -12,6 +12,7 @@ function Login() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { sacola, set_sacola } = useContext(GlobalContext);
 
   const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
@@ -126,6 +127,7 @@ function Login() {
       if (cliente_existente) {
 
         set_usuario_logado(cliente_existente);
+        set_sacola([cliente_existente.sacola]);
         navegar('/');
 
       } else {
@@ -152,6 +154,7 @@ function Login() {
       if (brecho_existente) {
 
         set_usuario_logado(brecho_existente);
+        set_sacola(brecho_existente.sacola);
         navegar(`/`);
       };
 
