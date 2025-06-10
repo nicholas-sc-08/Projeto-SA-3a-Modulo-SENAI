@@ -196,6 +196,7 @@
 .container_conversa_nome_e_ultima_mensagem span {
 
     width: 100%;
+    height: 50%;
 
     white-space: nowrap;
     overflow: hidden;
@@ -231,7 +232,7 @@
     align-items: center;
     justify-content: center;
     width: 25%;
-    height: 20%;
+    min-height: 23%;
 
     font-family: var(--tipografia_primaria);
     font-size: 1rem;
