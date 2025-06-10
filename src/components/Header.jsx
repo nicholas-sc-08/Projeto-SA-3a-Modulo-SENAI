@@ -12,6 +12,7 @@ function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext)
+    const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -25,17 +26,17 @@ function Header({ tipo }) {
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
 
+    const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
+
     useEffect(() => {
 
         informacoes_categorias()
+        informacoes_brechos()
 
     }, []);
 
-    useEffect(() => {
 
-        console.log(array_categorias)
 
-    }, [array_categorias]);
     async function informacoes_categorias() {
 
         try {
@@ -48,6 +49,26 @@ function Header({ tipo }) {
             console.log(erro);
         };
     };
+
+    async function informacoes_brechos() {
+
+        try {
+
+            const resultado = await api.get(`/brechos`);
+            set_array_brechos(resultado.data);
+
+        } catch (erro) {
+
+            console.log(erro);
+        };
+    };
+
+    useEffect(() => {
+
+        const embaralhar = [...array_brechos].sort(() => Math.random() - 0.5);
+        set_queridinhos_flyers(embaralhar);
+
+    }, [array_brechos]);
 
     useEffect(() => {
 
@@ -190,7 +211,7 @@ function Header({ tipo }) {
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
                     >
-                        
+
                         <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="Perfil" />
                     </button>
 
@@ -239,6 +260,19 @@ function Header({ tipo }) {
             handleSearch();
         }
     };
+
+    // buscar por marcas
+    const buscarMarcas = (marca) => {
+    setTermoBuscado(marca);
+    navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
+    setTermoBuscado('')
+  };
+
+  const buscarCategoria = (categoria) => {
+    setTermoBuscado(categoria);
+    navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
+    setTermoBuscado('')
+  };
 
     return (
         <div className="alinhamento-navbar-usuario">
@@ -316,29 +350,29 @@ function Header({ tipo }) {
 
                                                 <div className="alinahamento-container-marcas-aclamadas">
                                                     <div className="container-um-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('farm' || 'farm rio')}>
                                                             <img src="./img/logo/logo_farm_rio.svg" alt="Farm Rio" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('zara')}>
                                                             <img src="./img/logo/logo_zara.svg" alt="Zara" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('Le lis')}>
                                                             <img src="./img/logo/logo_le_lis.svg" alt="Le Lis" />
                                                         </div>
                                                     </div>
 
                                                     <div className="container-dois-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('animale')}>
                                                             <img src="./img/logo/logo_animale.svg" alt="Animale" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('converse' || 'all star')}>
                                                             <img src="./img/logo/logo_converse.svg" alt="Converse" />
                                                         </div>
 
-                                                        <div className="fundo-cinza-marcas">
+                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('adidas')}>
                                                             <img src="./img/logo/logo_adidas.svg" alt="Adidas" />
                                                         </div>
                                                     </div>
@@ -350,7 +384,7 @@ function Header({ tipo }) {
 
                                                 <ul>
                                                     {[...array_categorias].reverse().slice(0, 6).map((categoria, i) => (
-                                                        <li key={i}>{categoria.nome}</li>
+                                                        <li key={i} onClick={() => buscarCategoria(categoria.nome)}>{categoria.nome}</li>
                                                     ))}
                                                 </ul>
                                             </div>
@@ -358,30 +392,15 @@ function Header({ tipo }) {
                                             <div className="alinhamento-container-queridinhos-dos-flyers">
                                                 <h2>Queridinhos dos Flyers</h2>
 
-                                                <div className="alinhamento-brechos-queridinhos">
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
+                                                {queridinhos_flyers.slice(0, 4).map((brecho, i) => (
+                                                    <div className="alinhamento-brechos-queridinhos">
+                                                        <div className="container-brecho-individual-queridinhos" key={i}>
+                                                            <img src={brecho.logo} alt="Brecho logo" />
 
-                                                        <p>Garimpo urbano</p>
+                                                            <p>{brecho.nome_brecho}</p>
+                                                        </div>
                                                     </div>
-
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-                                                    <div className="container-brecho-individual-queridinhos">
-                                                        <img src="./img/img_perfil_provisorio.svg" alt="" />
-
-                                                        <p>Garimpo urbano</p>
-                                                    </div>
-                                                </div>
+                                                ))}
                                             </div>
 
                                             <div className="alinhamento-container-flytracks">
