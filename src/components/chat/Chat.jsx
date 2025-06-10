@@ -19,6 +19,7 @@ function Chat() {
   const { pop_up_notificacao_excluir_conversa, set_pop_up_notificacao_excluir_conversa } = useContext(GlobalContext);
   const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
   const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
+  const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
   const ref_inpt_de_pesquisa = useRef(null);
   const [conversas_entre_usuarios, set_conversas_entre_usuarios] = useState([]);
 
@@ -231,6 +232,7 @@ function Chat() {
 
       set_altura_inicial_chat(`70%`);
       set_altura_inicial_header_chat(`15%`);
+      set_sacola_aberta(false);
     
     } else {
 
