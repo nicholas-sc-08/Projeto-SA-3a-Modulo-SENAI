@@ -20,21 +20,17 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
 
-  const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
-    (brecho) => brecho._id === usuario_logado._id
-  )
-
   useEffect(() => {
 
-    if (!brecho_logado) {
+    if (!usuario_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [brecho_logado])
+  }, [usuario_logado])
 
   const enderecoEDoBrecho = array_enderecos.find(
-    (endereco) => endereco.id_brecho === brecho_logado?._id
+    (endereco) => endereco.id_brecho === usuario_logado?._id
   )
 
   useEffect(() => {
@@ -76,7 +72,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
       // aqui ele atualiza as informações no array dos brechos
       const novosEnderecos = array_enderecos.map(endereco =>
-        endereco.id_brecho === brecho_logado._id ? { ...endereco, ...enderecoDoBrecho } : endereco
+        endereco.id_brecho === usuario_logado._id ? { ...endereco, ...enderecoDoBrecho } : endereco
       );
       set_array_brechos(novosEnderecos)
 

@@ -28,9 +28,10 @@ function Edicao_perfil_brecho() {
     setMostrarPopUp(false)
   }
 
-  const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
-    (brecho) => brecho._id === usuario_logado._id
-  )
+  // essa separação já esta sendo feita no login
+  // const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
+  //   (brecho) => brecho._id === usuario_logado._id
+  // )
 
 
   // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
@@ -41,20 +42,20 @@ function Edicao_perfil_brecho() {
   }, [])
 
   useEffect(() => {
-    if (brecho_logado) {
+    if (usuario_logado) {
       setFormCadastroBrecho({
-        nome_vendedor: brecho_logado.nome_vendedor || '',
-        data_de_nascimento_vendedor: brecho_logado.data_de_nascimento_vendedor || '',
-        nome_brecho: brecho_logado.nome_brecho || '',
-        telefone: brecho_logado.telefone || '',
-        email: brecho_logado.email || '',
-        cnpj: brecho_logado.cnpj || '',
-        horario_funcionamento: brecho_logado.horario_funcionamento || '',
-        nova_senha: '',
-        confirmar_senha: '',
+        nome_vendedor: usuario_logado.nome_vendedor || '',
+        data_de_nascimento_vendedor: usuario_logado.data_de_nascimento_vendedor || '',
+        nome_brecho: usuario_logado.nome_brecho || '',
+        telefone: usuario_logado.telefone || '',
+        email: usuario_logado.email || '',
+        cnpj: usuario_logado.cnpj || '',
+        horario_funcionamento: usuario_logado.horario_funcionamento || '',
+        nova_senha: usuario_logado.senha || '',
+        confirmar_senha: usuario_logado.confirmarSenha || '',
       })
     }
-  }, [brecho_logado, array_brechos])
+  }, [usuario_logado, array_brechos])
 
   async function pegarInfoBrecho() {
     try {
