@@ -35,6 +35,42 @@
     background-color: var(--cor_quatro);
 }
 
+.container_produtos_na_sacola_geral{
+
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    height: 100%;
+    background-color: yellow;
+}
+
+.container_produto_sacola_geral{
+
+    display: flex;
+    align-items: center;
+    width: 95%;
+    height: 30%;
+    background-color: red;
+}
+
+.container_imagem_do_produto_sacola_geral{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 80%;
+
+    border-radius: 1vw;
+    border: 0.1vw solid var(--cor_nove_v_dois);
+    background-color: var(--cor_nove_v_dois);
+}
+
+.container_imagem_do_produto_sacola_geral img{
+
+    width: 80%;
+}
+
 .container_nenhum_item_sacola_geral{
 
     display: flex;
