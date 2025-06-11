@@ -13,6 +13,7 @@ function Header({ tipo }) {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext)
     const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+    const { array_produtos, set_array_produtos } = useContext(GlobalContext)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -34,10 +35,22 @@ function Header({ tipo }) {
 
         informacoes_categorias()
         informacoes_brechos()
+        informacoes_produtos()
 
     }, []);
 
+    async function informacoes_produtos() {
 
+        try {
+
+            const resultado = await api.get(`/produtos`);
+            set_array_produtos(resultado.data);
+
+        } catch (erro) {
+
+            console.log(erro);
+        };
+    };
 
     async function informacoes_categorias() {
 
@@ -191,7 +204,7 @@ function Header({ tipo }) {
         };
     };
 
-    function deslogar_usuario(){
+    function deslogar_usuario() {
 
         set_usuario_logado([]);
         set_sacola([]);
@@ -224,7 +237,7 @@ function Header({ tipo }) {
                     <button
                         className="button-perfil-navbar"
                         onClick={() => sacola_perfil(`perfil`)}
-                    >  
+                    >
                         <img src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} referrerPolicy="no-referrer" crossOrigin="anonymous" alt="Perfil" />
                     </button>
 
@@ -247,8 +260,14 @@ function Header({ tipo }) {
                                 ) : (
                                     <>
                                         <div className="janela_button_perfil">
-                                            <button className='janela_button_perfil_cadastrar-se' onClick={() => navigate('/escolha_cadastro')}>Cadastrar-se</button>
-                                            <button className='janela_button_perfil_login' onClick={() => navigate('/login')}>Fazer Login</button>
+                                            <div className="texto_janela_buttons">
+                                                <h2>Você está a um clique de descobrir brechós incríveis!</h2>
+                                            </div>
+
+                                            <div className="container-alinhamento-janela-button-perfil">
+                                                <button className='janela_button_perfil_cadastrar-se' onClick={() => navigate('/escolha_cadastro')}>Cadastrar-se</button>
+                                                <button className='janela_button_perfil_login' onClick={() => navigate('/login')}>Fazer Login</button>
+                                            </div>
                                         </div>
                                     </>
                                 )}
@@ -259,6 +278,15 @@ function Header({ tipo }) {
             </div>
         );
     };
+
+    const filteredProducts = array_produtos.filter((produto) => {
+        const term = termoBuscado.toLowerCase();
+        return (
+            produto.nombre?.toLowerCase().includes(term) ||
+            produto.marca?.toLowerCase().includes(term) ||
+            produto.categoria?.toLowerCase().includes(term)
+        );
+    });
 
     const handleSearch = () => {
         if (termoBuscado.trim() !== '') {
@@ -276,16 +304,16 @@ function Header({ tipo }) {
 
     // buscar por marcas
     const buscarMarcas = (marca) => {
-    setTermoBuscado(marca);
-    navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
-    setTermoBuscado('')
-  };
+        setTermoBuscado(marca);
+        navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
+        setTermoBuscado('')
+    };
 
-  const buscarCategoria = (categoria) => {
-    setTermoBuscado(categoria);
-    navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
-    setTermoBuscado('')
-  };
+    const buscarCategoria = (categoria) => {
+        setTermoBuscado(categoria);
+        navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
+        setTermoBuscado('')
+    };
 
     return (
         <div className="alinhamento-navbar-usuario">
