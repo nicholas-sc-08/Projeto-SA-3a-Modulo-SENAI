@@ -19,7 +19,21 @@ export default function Contato() {
           <div className='circulo-icon-contato'><img src=".img/telefone.svg" alt="" /></div>
           <h3>Ligue Para Nós</h3>
         </div>
-
+          <p>Estamos disponíveis 24 horas por dia, 7 dias por semana.</p>
+          <div className='detalhe-entre-em-contato'>
+            <h3>Telefone:</h3>
+            <h4>+55 (48) 9999-9999</h4>
+          </div>
+          <hr />
+          <div className='cabecario-info-contato'>
+          <div className='circulo-icon-contato'><img src=".img/telefone.svg" alt="" /></div>
+          <h3>Ligue Para Nós</h3>
+        </div>
+        <p>Preencha nosso formulário e entraremos em contato com você em até 24 horas.</p>
+          <div className='detalhe-entre-em-contato'>
+            <h3>Emails:</h3>
+            <h4>customer@exclusive.com</h4>
+          </div>
       </div>
 
       <div className='container-entre-em-contato'>

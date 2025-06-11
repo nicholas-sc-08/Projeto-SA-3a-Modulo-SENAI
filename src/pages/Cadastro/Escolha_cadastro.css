@@ -77,6 +77,10 @@
     /* border: 1px solid red; */
 }
 
+.ladoDireito-container-escolha-cadastro img{
+    margin-left: 595px;
+}
+
 .ladoDireito-container-escolha-cadastro h1{
     color: var(--cor_seis);
     font-size: 40px;
@@ -86,18 +90,49 @@
     font-size: 19px;
 }
 
-.quero-comprar{
+.escolha-container{
+    padding-top: 10%;
+}
+
+.quero-comprar, .quero-vender{
     display: flex;
 }
 
 .info-quero-comprar{
     display: block;
     padding-top: 3%;
-    padding-left: 1%;
+    padding-left: 3%;
     color: var(--cor_seis);
 
 }
 
 .info-quero-comprar p{
     font-size: 14px;
+}
+
+.info-quero-vender{
+    display: block;
+    padding-top: 8%;
+    padding-left: 3%;
+    color: var(--cor_seis);
+
+}
+
+.info-quero-vender p{
+    font-size: 14px;
+}
+
+.but-continuar-escolha-cadastro{
+    width: 45%;
+    height: 7%;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10vw;
+    border: none;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+    margin-top: 15%;
 }
