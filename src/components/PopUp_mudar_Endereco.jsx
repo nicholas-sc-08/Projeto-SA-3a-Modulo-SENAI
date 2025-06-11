@@ -124,7 +124,6 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   }, [])
 
 
-
   useEffect(() => {
     if (usuario_logado) {
       setEnderecoDoBrecho({

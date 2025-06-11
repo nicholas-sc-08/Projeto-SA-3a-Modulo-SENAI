@@ -28,7 +28,7 @@ function Edicao_perfil_brecho() {
     setMostrarPopUp(false)
   }
 
-  // essa separação já esta sendo feita no login
+  // ---- essa separação já esta sendo feita no login ----
   // const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
   //   (brecho) => brecho._id === usuario_logado._id
   // )
@@ -51,21 +51,29 @@ function Edicao_perfil_brecho() {
         email: usuario_logado.email || '',
         cnpj: usuario_logado.cnpj || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
-        nova_senha: usuario_logado.senha || '',
+        nova_senha: '',
         confirmar_senha: usuario_logado.confirmarSenha || '',
       })
     }
-  }, [usuario_logado, array_brechos])
 
-  async function pegarInfoBrecho() {
+        
+  }, [usuario_logado, array_brechos])
+    
+  async function pegarInfoBrecho() {  // pega as informações do backend
     try {
       const resultado = await api.get('/brechos');
+
       set_array_brechos(resultado.data);
       console.log('As informações do brechó foram encontradas!');
+
     } catch (erro) {
       console.log('Erro ao tentar achar as informações do brechó:', erro);
     }
   }
+
+  // // inicialmente a data de nascimento vem com ano/mes/dia e também o horário e fuso horário (Exp:  2006-09-15T00:00:00.000Z). Aqui ele vai tirar a partir do T até o Z e então vai converter para um array [  ]
+  // const data_nasc_vendedor_formatada = new Date(dataNascimento).toISOString().split("T")[0]
+
 
   async function atualizarBrecho() {
     try {
@@ -180,7 +188,10 @@ function Edicao_perfil_brecho() {
                     type="date"
                     name="data_de_nascimento_vendedor"
                     className="inputs-pequenos-infos"
-                    value={formCadastroBrecho.data_de_nascimento_vendedor}
+                    value={formCadastroBrecho.data_de_nascimento_vendedor
+                        // ? new Date(formCadastroBrecho.data_de_nascimento_vendedor).toISOString().split("T")[0]
+                        // : ""
+                    }
                     onChange={(e) =>
                       setFormCadastroBrecho({
                         ...formCadastroBrecho,
