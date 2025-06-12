@@ -20,21 +20,17 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
 
-  const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
-    (brecho) => brecho._id === usuario_logado._id
-  )
-
   useEffect(() => {
 
-    if (!brecho_logado) {
+    if (!usuario_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [brecho_logado])
+  }, [usuario_logado])
 
   const enderecoEDoBrecho = array_enderecos.find(
-    (endereco) => endereco.id_brecho === brecho_logado?._id
+    (endereco) => endereco.id_brecho === usuario_logado?._id
   )
 
   useEffect(() => {
@@ -44,7 +40,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     } else {
       setEnderecoDoBrecho({
         cep: '',
-        bairro: '',
+        bairro: 'a',
         logradouro: '',
         cidade: '',
         estado: '',
@@ -54,7 +50,12 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     }
   }, [enderecoEDoBrecho])
 
-
+  // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
+  useEffect(() => {
+    if (!array_brechos.length) {
+      pegarInfoBrecho();
+    }
+  }, [])
 
   async function pegarInfoBrecho() {
     try {
@@ -68,6 +69,59 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     }
   }
 
+
+  // -- não mexer nessa parte de buscar o cep --
+  
+  useEffect(() => {
+  const cepLimpo = enderecoDoBrecho.cep.replace(/\D/g, '') // remove tudo que não for número
+
+  if (cepLimpo.length === 8) {
+    buscar_cep(cepLimpo)
+  }
+}, [enderecoDoBrecho.cep])
+  
+  async function buscar_cep() {
+    
+    try {
+      
+      const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
+      const dados_do_endereco = await resposta.json();
+      
+      setEnderecoDoBrecho((prev) => ({
+        ...prev,
+        bairro: dados_do_endereco.bairro,
+        logradouro: dados_do_endereco.logradouro,
+        estado: dados_do_endereco.uf,
+        cidade: dados_do_endereco.localidade,
+        numero: dados_do_endereco.numero,
+        complemento: dados_do_endereco.complemento
+      }))
+      
+    } catch (erro) {
+      
+      console.error(erro);
+      setMensagemErro('Erro ao buscar o CEP digitado. Verifique se ele está correto.');
+      set_erro_pagina(erro);
+      navegar(`/erro`);
+    }
+  }
+
+
+  
+  useEffect(() => {
+    if (usuario_logado) {  // talvez tenha q mudar a variavel para enderecoEDoBrecho
+      setEnderecoDoBrecho({
+        cep: usuario_logado.cep || '',
+        bairro: usuario_logado.bairro || '',
+        logradouro: usuario_logado.logradouro || '',
+        cidade: usuario_logado.cidade || '',
+        estado: usuario_logado.estado || '',
+        numero: usuario_logado.numero || '',
+        complemento: usuario_logado.complemento || '',
+      })
+    }
+  }, [usuario_logado])
+  
   async function atualizarEnderecoBrecho() {
     try {
       await api.put(`/Enderecos/${usuario_logado._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
@@ -76,7 +130,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
       // aqui ele atualiza as informações no array dos brechos
       const novosEnderecos = array_enderecos.map(endereco =>
-        endereco.id_brecho === brecho_logado._id ? { ...endereco, ...enderecoDoBrecho } : endereco
+        endereco.id_brecho === usuario_logado._id ? { ...endereco, ...enderecoDoBrecho } : endereco
       );
       set_array_brechos(novosEnderecos)
 
@@ -84,66 +138,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
       console.error('Erro ao atualizar o endereço do brechó:', error)
     }
   }
-
-
-  useEffect(() => {
-
-    if (enderecoDoBrecho.cep.length === 8) {
-
-      buscar_cep();
-    };
-
-  }, []);
-
-  async function buscar_cep() {
-
-    try {
-
-      const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
-      const dados_do_endereco = await resposta.json();
-
-      setEnderecoDoBrecho({
-        ...enderecoDoBrecho,
-        bairro: dados_do_endereco.bairro,
-        logradouro: dados_do_endereco.logradouro,
-        estado: dados_do_endereco.uf,
-        cidade: dados_do_endereco.localidade,
-        numero: dados_do_endereco.numero,
-        complemento: dados_do_endereco.complemento
-      })
-
-    } catch (erro) {
-
-      console.error(erro);
-      set_erro_pagina(erro);
-      navegar(`/erro`);
-    }
-  }
-
-  // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
-  useEffect(() => {
-    if (!array_brechos.length) {
-      pegarInfoBrecho();
-    }
-  }, [])
-
-
-
-  useEffect(() => {
-    if (usuario_logado) {
-      setEnderecoDoBrecho({
-        cep: usuario_logado.cep || '',
-        bairro: usuario_logado.bairro || '',
-        logradouro: usuario_logado.logradouro || '',
-        cidade: usuario_logado.ciadade || '',
-        estado: usuario_logado.estado || '',
-        numero: usuario_logado.numero || '',
-        complemento: usuario_logado.complemento || '',
-      })
-    }
-  }, [usuario_logado])
-
-
+  
   return (
     <div className="tela-inteira-content">
       <div className="divs-centrais-content">

@@ -13,26 +13,22 @@ function Perfil_Brecho() {
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
+  const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
   const [ naoEBrecho, setNaoEBrecho] = useState(false)
 
-
- const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
-      (brecho) => brecho._id === usuario_logado._id
-    )
-
   useEffect(() => {
     
     
-    if (!brecho_logado) {
+    if (!usuario_logado) {
       setNaoEBrecho(true)
     } else {
       setNaoEBrecho(false)
     }
-  }, [array_brechos, usuario_logado, brecho_logado])
+  }, [array_brechos, usuario_logado ])
 
   useEffect(() => {
     if (usuario_logado) {
@@ -88,7 +84,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro }${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro }${ enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>

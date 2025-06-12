@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import Header from '../../components/Header';
+import './Sacola_geral.css';
+import Footer from '../../components/Footer';
 
 function Sacola_geral() {
 
@@ -18,7 +20,9 @@ function Sacola_geral() {
         
         <Header tipo={tipo_de_header} />
 
-        <h1>Sacola</h1>
+        <div className="alinhamento_conteudo_tela_sacola_geral">
+
+        <h1 className='titulo_tela_sacola'>Sacola</h1>
 
         <div className="container_conteudo_sacola_geral">
 
@@ -28,13 +32,34 @@ function Sacola_geral() {
 
                     <div key={i} className='container_produto_sacola_geral'>
 
-                        
+                        <div className="container_imagem_do_produto_sacola_geral">
+
+                            <img src={produto.imagem[0]} alt="" />
+
+                        </div>
+
+                        <div className="container_info_produto_sacola_geral">
+
+                            <div className="container_titulo_produto_sacola_geral">
+
+                                <h2>{produto.nome}</h2>
+                                <button><img src="./img/Lixeiraicon.svg"alt="" /></button>
+
+                            </div>
+
+                            <span>Tamanho: {produto.tamanho}</span>
+                            <span>Cor: {produto.cor[0]}</span>
+
+                            <span>{produto.preco}</span>
+
+                        </div>
 
                     </div>
                 )) : 
                 
                 <div className='container_nenhum_item_sacola_geral'>
                     
+                    <img src="./img/icons/icone_sacola_a.svg" alt="" />
                     <span>Hmm... Parece que você ainda não adicionou um item a sacola!</span>
                 
                 </div>}
@@ -44,8 +69,12 @@ function Sacola_geral() {
             <div className="container_resumo_do_pedido_sacola_geral">
 
                 <h3>Resumo do Pedido</h3>
+                
+                <div className="container_texto_do_resumo_pedido">
 
                 <p>Seu carrinho está pronto! Verifique todos os seus itens, certifique-se de que tudo está correto e finalize sua compra com segurança e tranquilidade.</p>
+                
+                </div>
 
                 <div className="container_valores_sacola_geral">
 
@@ -74,6 +103,10 @@ function Sacola_geral() {
             </div>
 
         </div>
+
+        </div>
+
+        <Footer/>
 
         </motion.div>
 
