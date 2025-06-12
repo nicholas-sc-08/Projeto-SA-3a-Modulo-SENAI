@@ -198,6 +198,7 @@ function Header({ tipo }) {
     };
 
     function renderIcons() {
+        
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
         return (

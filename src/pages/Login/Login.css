@@ -114,11 +114,11 @@
 .ladoEsquerdo-container input {
 
     width: 100%;
-    height: 3.1vw;
+    height: 6vh;
     padding-left: 1%;
     outline: none;
     border: 0.1vw solid var(--cor_dois);
-    border-radius: 1vw;
+    border-radius: 0.1vw;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1em;
@@ -134,7 +134,7 @@
 }
 
 .ladoEsquerdo-container label {
-    margin-top: 4%;
+    margin-top: 8%;
     margin-bottom: 1%;
 
     font-family: var(--tipografia_secundaria);
@@ -152,19 +152,21 @@
 }
 
 .fazer_login_butao {
-    border: none;
-    border-radius: 30px;
+    border: 0.1vw solid var(--cor_um);
+    border-radius: 0.1vw;
     background-color: var(--cor_um);
     color: var(--cor_quatro);
     width: 100%;
-    height: 50px;
+    height: 6vh;
     font-size: 1rem;
-    margin-top: 4%;
+    margin-top: 5%;
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
-.fazer_login_butao button:hover {
+.fazer_login_butao button:hover{
+
+    border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
 }
     
@@ -175,13 +177,15 @@
     gap: 9px;
     padding: 12px 19px;
     border: 1px solid #dadce0;
-    border-radius: 30px;
+    border-radius: 0.1vw;
     background-color: transparent;
+    cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
+    margin-top: 8%;
     width: 100%;
+    height: 6vh;
     color: var(--cor_seis);
 }
 

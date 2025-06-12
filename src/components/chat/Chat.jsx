@@ -233,7 +233,7 @@ function Chat() {
       set_altura_inicial_chat(`70%`);
       set_altura_inicial_header_chat(`15%`);
       set_sacola_aberta(false);
-    
+
     } else {
 
       setTimeout(() => {
@@ -272,7 +272,6 @@ function Chat() {
   function pegar_imagem_de_perfil(conversa) {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == conversa._id);
-    const encontrar_cliente = array_clientes.find(cliente => cliente == conversa._id);
 
     if (encontrar_brecho) {
 
@@ -317,28 +316,23 @@ function Chat() {
 
             </div>
 
-            <div className="container_conversa_nome_e_ultima_mensagem">
+            <div className="container_info_das_conversas_chat">
 
-              <h3>{pegar_nome_brecho(conversa)}</h3>
-              <span>{ultima_mensagem(conversa._id)}</span>
+              <div className="container_conversa_nome_e_hora">
 
-            </div>
+                <h3>{pegar_nome_brecho(conversa)}</h3>
+                <span className='hora_da_ultima_mensagem' style={{ color: cor_do_horario_da_mensagem(conversa._id) }}>{hora_da_ultima_mensagem(conversa._id)}</span>
 
-            <div className="container_conversa_hora_ultima_mensagem">
+              </div>
 
-              <span className='hora_da_ultima_mensagem' style={{ color: cor_do_horario_da_mensagem(conversa._id) }}>{hora_da_ultima_mensagem(conversa._id)}</span>
+              <div className="container_conversa_contador_e_ultima_mensagem">
 
-              {exibir_contador(conversa._id) &&
+                <p>{ultima_mensagem(conversa._id)}</p>
+                {true &&<div className='container_contador_mensagens_nao_lida'><span className='contador_de_mensagens_nao_lida'>{verificar_mensagens_nao_lida(conversa._id)}</span></div>}
 
-                <div className="container_contador_de_mensagens_nao_lida">
-
-                  <span>{verificar_mensagens_nao_lida(conversa._id)}</span>
-
-                </div>
-              }
+              </div>
 
             </div>
-
           </div>
 
         )) :
