@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
@@ -15,6 +15,25 @@ function Sacola_geral() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+
+    function preco_dos_produtos(preco){
+
+        const preco_final = preco.toFixed(2).replace(`.`, `,`);
+
+        return `R$${preco_final}`;
+    };
+
+    function preco_total_dos_produtos(){
+
+        let contador = 0;
+
+        for(let i = 0; i < sacola.length; i++){
+
+            contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+        };
+
+        return `R$${contador.toFixed(2).replace(`.`, `,`)}`;
+    };
 
     return (
 
@@ -47,7 +66,7 @@ function Sacola_geral() {
                                         <div className="container_titulo_produto_sacola_geral">
 
                                             <h2>{produto.nome}</h2>
-                                            <button><img src="./img/Lixeiraicon.svg" alt="" /></button>
+                                            <button><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
 
                                         </div>
 
@@ -61,7 +80,7 @@ function Sacola_geral() {
 
                                         <div className="container_preco_produto_sacola_geral">
 
-                                            <span>{produto.preco}</span>
+                                            <span>{preco_dos_produtos(produto.preco)}</span>
                                         
                                         </div>
 
@@ -94,14 +113,14 @@ function Sacola_geral() {
                                 <div className="container_sub_total_sacola_geral">
 
                                     <span>Subtotal</span>
-                                    <span>R$564,99</span>
+                                    <span>{preco_total_dos_produtos()}</span>
 
                                 </div>
 
                                 <div className="container_total_sacola_geral">
 
                                     <span>Total</span>
-                                    <span>R$564,99</span>
+                                    <span>{preco_total_dos_produtos()}</span>
 
                                 </div>
 
