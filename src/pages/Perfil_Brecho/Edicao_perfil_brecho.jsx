@@ -12,6 +12,7 @@ function Edicao_perfil_brecho() {
   const [mostrarPopUp, setMostrarPopUp] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+  const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
@@ -56,9 +57,9 @@ function Edicao_perfil_brecho() {
       })
     }
 
-        
+
   }, [usuario_logado, array_brechos])
-    
+
   async function pegarInfoBrecho() {  // pega as informações do backend
     try {
       const resultado = await api.get('/brechos');
@@ -71,8 +72,19 @@ function Edicao_perfil_brecho() {
     }
   }
 
-  // // inicialmente a data de nascimento vem com ano/mes/dia e também o horário e fuso horário (Exp:  2006-09-15T00:00:00.000Z). Aqui ele vai tirar a partir do T até o Z e então vai converter para um array [  ]
+  // ---- resolve o problema do valor da data de nascimento do vendedor vir com horario e fuso horario -----
+
+  // // 
   // const data_nasc_vendedor_formatada = new Date(dataNascimento).toISOString().split("T")[0]
+
+  function formatarDataParaInput(dataISO) {
+    if (!dataISO)   // aqui ele tá verificando se o dataISO não veio um valor ou se ele é undefined (indefinido), ou null etc
+    return ""    // e se ele for uma das definições acima ele para a execução aqui.
+     const data = new Date(dataISO)  // nessa linha, um objeto é criado se baseando na string do DataISO.
+    if (isNaN(data.getTime())) // o data.getTime vai verificar se a data é válida, se for inválida, vai retornar como NaN. o isNaN verifica se náo é um número.
+    return "" // se for inválida, retorna ""
+     return data.toISOString().split("T")[0] // inicialmente a data de nascimento vem com ano/mes/dia e também o horário e fuso horário (Exp:  2006-09-15T00:00:00.000Z). Aqui ele vai tirar a partir do T até o Z e então vai converter para um array [  ]
+  }                               // o 0 é porque ele ta pegando a primeira parte do array, ou seja, a data de nascimento.
 
 
   async function atualizarBrecho() {
@@ -95,20 +107,20 @@ function Edicao_perfil_brecho() {
 
   useEffect(() => { // precisa ser posto em um useEffect porque se não o setMensagemErroo vai ficar em loop
 
-  if (!formCadastroBrecho.email.includes('@')) {
-    setMensagemErro('O email deve conter "@"')
-    return
-  }
-   else if (!terminaComGmailOuHotmail) {
-    setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
-    return
-  }
-  else if (!oTextoAntesDoArroba) {
-    setMensagemErro(`O email deve conter caracteres antes do @`);
-    return
-  } else {
-    setMensagemErro('')  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
-  }
+    if (!formCadastroBrecho.email.includes('@')) {
+      setMensagemErro('O email deve conter "@"')
+      return
+    }
+    else if (!terminaComGmailOuHotmail) {
+      setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
+      return
+    }
+    else if (!oTextoAntesDoArroba) {
+      setMensagemErro(`O email deve conter caracteres antes do @`);
+      return
+    } else {
+      setMensagemErro('')  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
+    }
 
 
   }, [formCadastroBrecho.email])
@@ -188,10 +200,7 @@ function Edicao_perfil_brecho() {
                     type="date"
                     name="data_de_nascimento_vendedor"
                     className="inputs-pequenos-infos"
-                    value={formCadastroBrecho.data_de_nascimento_vendedor
-                        // ? new Date(formCadastroBrecho.data_de_nascimento_vendedor).toISOString().split("T")[0]
-                        // : ""
-                    }
+                    value={formatarDataParaInput(formCadastroBrecho.data_de_nascimento_vendedor)}
                     onChange={(e) =>
                       setFormCadastroBrecho({
                         ...formCadastroBrecho,

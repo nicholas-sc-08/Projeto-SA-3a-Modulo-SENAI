@@ -13,6 +13,7 @@ function Perfil_Brecho() {
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
+  const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
