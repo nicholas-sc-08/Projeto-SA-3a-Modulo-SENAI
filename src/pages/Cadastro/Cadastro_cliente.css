@@ -86,6 +86,7 @@
 
         display: flex;
 
+        width: 100%;
         height: 100vh;
     }
 
@@ -206,8 +207,7 @@
     .container_formulario_cliente {
 
         width: 35%;
-
-        /* border: 1px solid red; */
+        height: 100%;
     }
 
     .container_etapa_cliente_alinhamento {
@@ -266,7 +266,7 @@
     }
 
     .container_inputs_secao_um_e_dois label {
-        padding-top: 2.5%;
+        padding-top: 4.5%;
         padding-bottom: 1%;
 
         font-family: var(--tipografia_secundaria);
@@ -281,14 +281,14 @@
     }
 
     .container_inputs_secao_um_e_dois input {
-        width: 87%;
+        width: 85%;
         height: 3vw;
         background-color: transparent;
         border: 0.1vw solid var(--cor_dois);
         font-family: var(--tipografia_secundaria);
         color: var(--cor_seis);
         padding-left: 1%;
-        border-radius: 1vw;
+        border-radius: 0.1vw;
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -303,26 +303,6 @@
     .container_inputs_secao_um_e_dois input:focus {
         outline: none;
         border: 0.1em solid var(--cor_um);
-    }
-
-    .container_formulario_cliente button {
-
-        border: none;
-        background-color: var(--cor_um);
-        width: 10vw;
-        height: 3vw;
-        border-radius: 2.5vw;
-        color: var(--cor_quatro);
-        font-family: var(--tipografia_secundaria);
-        font-size: 0.9em;
-        transition: 0.4s;
-
-        /* border: 1px solid red; */
-    }
-
-    .container_formulario_cliente button:hover {
-
-        background-color: var(--cor_um_v_dois);
     }
 
     .dv_frm_cadastro_cliente_botoes {
@@ -345,6 +325,31 @@
 
         color: var(--cor_sete);
         /* border: 1px solid red; */
+    }
+
+    .dv_frm_cadastro_cliente_botoes button{
+
+        width: 265%;
+        min-height: 5vh;
+
+        cursor: pointer;
+        transition: 0.3s;
+
+        font-family: var(--tipografia_secundaria);
+        font-size: 1rem;
+        font-weight: 500;
+
+        border-radius: 0.1vw;
+        border: 0.1vw solid var(--cor_um);
+        
+        color: var(--cor_quatro);
+        background-color: var(--cor_um);
+    }
+
+    .dv_frm_cadastro_cliente_botoes button:hover{
+
+        border: 0.1vw solid var(--cor_um_v_dois);
+        background-color: var(--cor_um_v_dois);
     }
 
     .secao_inputs_tres_p_um {
@@ -794,11 +799,6 @@
         margin-top: 5%;
 
         color: var(--cor_sete);
-    }
-
-    .dv_frm_cadastro_cliente_botoes button {
-
-        
     }
 
     .secao_inputs_tres_p_um {

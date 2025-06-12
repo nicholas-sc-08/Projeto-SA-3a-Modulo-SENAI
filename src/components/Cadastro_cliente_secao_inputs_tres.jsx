@@ -6,7 +6,6 @@ import '../pages/Cadastro/Cadastro_cliente.css';
 import { useNavigate } from 'react-router-dom';
 
 import { IMaskInput } from 'react-imask';
-import api from '../services/api';
 import axios from 'axios';
 
 function Cadastro_cliente_secao_inputs_tres() {
