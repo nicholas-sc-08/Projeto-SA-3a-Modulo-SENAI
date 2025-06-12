@@ -6,6 +6,8 @@ import '../pages/Cadastro/Cadastro_cliente.css';
 import { useNavigate } from 'react-router-dom';
 
 import { IMaskInput } from 'react-imask';
+import api from '../services/api';
+import axios from 'axios';
 
 function Cadastro_cliente_secao_inputs_tres() {
     
@@ -15,7 +17,7 @@ function Cadastro_cliente_secao_inputs_tres() {
 
     useEffect(() => {
 
-        if(endereco_do_cliente.cep.length === 8){
+        if(endereco_do_cliente.cep.length == 9){
 
             buscar_cep();
         };
@@ -26,21 +28,20 @@ function Cadastro_cliente_secao_inputs_tres() {
 
             try {
                 
-                const resposta = await fetch(`https://viacep.com.br/ws/${endereco_do_cliente.cep}/json/`);
-                const dados_do_endereco = await resposta.json();
+                const resposta = await axios.get(`https://viacep.com.br/ws/${endereco_do_cliente.cep}/json/`);
 
                 set_endereco_do_cliente({
                     ...endereco_do_cliente, 
-                    bairro: dados_do_endereco.bairro,
-                    logradouro: dados_do_endereco.logradouro,
-                    estado: dados_do_endereco.uf,
-                    cidade: dados_do_endereco.localidade
+                    bairro: resposta.data.bairro,
+                    logradouro: resposta.data.logradouro,
+                    estado: resposta.data.uf,
+                    cidade: resposta.data.localidade
                 });
 
             } catch (erro) {
               
                 console.error(erro);
-                set_erro_pagina(erro);
+                set_erro_pagina(erro.massege);
                 navegar(`/erro`);
             };
     };
@@ -57,12 +58,12 @@ function Cadastro_cliente_secao_inputs_tres() {
             placeholder='00000-000' 
             required 
             value={endereco_do_cliente.cep} 
-            onAccept={(value) => set_endereco_do_cliente({ ...endereco_do_cliente, cep: value || ''})} // o onAccept é o método recomendado pela documentação do react-imask
+            onAccept={(e) => set_endereco_do_cliente({ ...endereco_do_cliente, cep: e || ''})} // o onAccept é o método recomendado pela documentação do react-imask
             // onChange={e => set_endereco_do_cliente({...endereco_do_cliente, cep: e.target.value})}
             />
 
             <label>Bairro</label>
-            <input type="text" placeholder='Digite seu bairro' value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
+            <input type="text" placeholder='Digite seu bairro' required value={endereco_do_cliente.bairro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, bairro: e.target.value})}/>
 
             <label>Logradouro</label>
             <input type="text" placeholder='Digite sua rua, avenida, etc..' required value={endereco_do_cliente.logradouro} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, logradouro: e.target.value})}/>
@@ -74,7 +75,7 @@ function Cadastro_cliente_secao_inputs_tres() {
             <div className="container_cadastro_cliente_secao_inputs_tres_coluna_um">
 
                 <label>Estado</label>
-                <input type="text" placeholder='Digite o estado' maxLength={2} value={endereco_do_cliente.estado} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, estado: e.target.value})}/>
+                <input type="text" placeholder='Digite o estado' minLength={2} maxLength={2} value={endereco_do_cliente.estado} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, estado: e.target.value})}/>
 
                 <label>Número<span>*</span></label>
                 <input type="text" placeholder='Número da residência' required value={endereco_do_cliente.numero} onChange={e => set_endereco_do_cliente({...endereco_do_cliente, numero: e.target.value})}/>

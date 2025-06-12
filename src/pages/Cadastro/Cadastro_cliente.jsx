@@ -360,11 +360,11 @@ function Cadastro_cliente() {
             {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
             {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
 
-            <div className="dv_formulario_botoes">
+            <div className="dv_frm_cadastro_cliente_botoes">
 
               {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
               {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-              <p>{mensagem_de_erro}</p>
+              <p>{mensagem_de_erro.massege}</p>
 
             </div>
           </form>
