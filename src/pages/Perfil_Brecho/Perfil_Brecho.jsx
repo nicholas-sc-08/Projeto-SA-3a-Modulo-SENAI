@@ -55,6 +55,7 @@ function Perfil_Brecho() {
         telefone: usuario_logado.telefone || '',
         email: usuario_logado.email || '',
         cnpj: usuario_logado.cnpj || '',
+        logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
         nova_senha: '',
         confirmar_senha: '',
@@ -78,7 +79,7 @@ function Perfil_Brecho() {
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">
             <div className="logo-brecho-perfil-content">
-              <img src="" alt="logo-do-brecho" />
+              <img src={formCadastroBrecho.logo} alt="logo-do-brecho" />
             </div>
             <div className="infos-horario-endereco-cadastrou-brecho-content">
               <div className="endereco-e-horarios-contents">

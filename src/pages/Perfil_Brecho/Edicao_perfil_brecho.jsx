@@ -15,11 +15,9 @@ function Edicao_perfil_brecho() {
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
-
-  /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
-  const terminaComGmailOuHotmail = formCadastroBrecho.email.endsWith('@gmail.com') || formCadastroBrecho.email.endsWith('@hotmail.com')
-  const oTextoAntesDoArroba = formCadastroBrecho.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
   const [mensagemErro, setMensagemErro] = useState(``)
+
+  const [foiSubmetido, setFoiSubmetido] = useState(false) // serve para ver se o botão de editar foi clicado ou não, ai sim a validação dos inputs é ativada
 
   const abrirPopUp = () => {
     setMostrarPopUp(true)
@@ -29,10 +27,11 @@ function Edicao_perfil_brecho() {
     setMostrarPopUp(false)
   }
 
-  // ---- essa separação já esta sendo feita no login ----
-  // const brecho_logado = array_brechos.find(   // ve se o usuario logado é um brecho e puxa o tbm o brecho q esta logado atualmente
-  //   (brecho) => brecho._id === usuario_logado._id
-  // )
+  let senhasIguais = false;
+  let emailJaCadastrado = false
+  let telefoneJaCadastrado = false
+  let CNPJJaCadastrado = false
+  let nomeBrechoJaCadastrado = false
 
 
   // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
@@ -51,8 +50,9 @@ function Edicao_perfil_brecho() {
         telefone: usuario_logado.telefone || '',
         email: usuario_logado.email || '',
         cnpj: usuario_logado.cnpj || '',
+        logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
-        nova_senha: '',
+        nova_senha: usuario_logado.nova_senha || '',
         confirmar_senha: usuario_logado.confirmarSenha || '',
       })
     }
@@ -74,20 +74,64 @@ function Edicao_perfil_brecho() {
 
   // ---- resolve o problema do valor da data de nascimento do vendedor vir com horario e fuso horario -----
 
-  // // 
-  // const data_nasc_vendedor_formatada = new Date(dataNascimento).toISOString().split("T")[0]
-
   function formatarDataParaInput(dataISO) {
     if (!dataISO)   // aqui ele tá verificando se o dataISO não veio um valor ou se ele é undefined (indefinido), ou null etc
-    return ""    // e se ele for uma das definições acima ele para a execução aqui.
-     const data = new Date(dataISO)  // nessa linha, um objeto é criado se baseando na string do DataISO.
+      return ""    // e se ele for uma das definições acima ele para a execução aqui.
+    const data = new Date(dataISO)  // nessa linha, um objeto é criado se baseando na string do DataISO.
     if (isNaN(data.getTime())) // o data.getTime vai verificar se a data é válida, se for inválida, vai retornar como NaN. o isNaN verifica se náo é um número.
-    return "" // se for inválida, retorna ""
-     return data.toISOString().split("T")[0] // inicialmente a data de nascimento vem com ano/mes/dia e também o horário e fuso horário (Exp:  2006-09-15T00:00:00.000Z). Aqui ele vai tirar a partir do T até o Z e então vai converter para um array [  ]
+      return "" // se for inválida, retorna ""
+    return data.toISOString().split("T")[0] // inicialmente a data de nascimento vem com ano/mes/dia e também o horário e fuso horário (Exp:  2006-09-15T00:00:00.000Z). Aqui ele vai tirar a partir do T até o Z e então vai converter para um array [  ]
   }                               // o 0 é porque ele ta pegando a primeira parte do array, ou seja, a data de nascimento.
 
 
   async function atualizarBrecho() {
+    setFoiSubmetido(true) // indica que o botão de editar foi clicado
+
+    /* Para a verificação do input de email -- se possui caracteres antes do @ e se há os dominios "gmail.com" e "hotmail.com" */
+    const terminaComGmailOuHotmail = formCadastroBrecho.email.endsWith('@gmail.com') || formCadastroBrecho.email.endsWith('@hotmail.com')
+    const oTextoAntesDoArroba = formCadastroBrecho.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
+    
+
+    // if (formCadastroBrecho.email == '') {  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
+    //   setMensagemErro('')
+    //   return
+    // }
+     if (!formCadastroBrecho.email.includes('@')) {
+      setMensagemErro(`O email deve conter "@"`)
+      return
+    }
+    else if (!terminaComGmailOuHotmail) {
+      setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
+      return
+    }
+    else if (!oTextoAntesDoArroba) {
+      setMensagemErro(`O email deve conter caracteres antes do @`);
+      return
+    } else {
+      setMensagemErro('') 
+    }
+
+
+    // verificação se o numero de telefone tem os 11 números + os símbolos que o InputMask coloca.
+    if (formCadastroBrecho.telefone.length !== 15) {
+      setMensagemErro('Número de telefone inválido!')
+      return
+    } else {
+      setMensagemErro('') 
+    }
+
+    // só entra nessa verificação se a pessoa fez o cadastro do seu brechó com o cnpj. Se não, mesmo que a pessoa não tenha cadastrado um cnpj, input vai se tornar obrigatório de preencher
+    // verificação se o cnpj tem os 14 números + os símbolos que o InputMask coloca.
+    if (formCadastroBrecho.cnpj && formCadastroBrecho.cnpj.length !== 18) {
+      setMensagemErro('Número de cnpj é inválido!')
+      return
+
+    } 
+
+    
+
+
+    // Aqui ele vai enviar as informações e atualizar no banco de dados
     try {
       await api.put(`/brechos/${usuario_logado._id}`, formCadastroBrecho) // faz com que as informações sejam atualizadas no backend
 
@@ -103,27 +147,6 @@ function Edicao_perfil_brecho() {
       console.error('Erro ao atualizar o brechó:', error)
     }
   }
-
-
-  useEffect(() => { // precisa ser posto em um useEffect porque se não o setMensagemErroo vai ficar em loop
-
-    if (!formCadastroBrecho.email.includes('@')) {
-      setMensagemErro('O email deve conter "@"')
-      return
-    }
-    else if (!terminaComGmailOuHotmail) {
-      setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
-      return
-    }
-    else if (!oTextoAntesDoArroba) {
-      setMensagemErro(`O email deve conter caracteres antes do @`);
-      return
-    } else {
-      setMensagemErro('')  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
-    }
-
-
-  }, [formCadastroBrecho.email])
 
   return (
 
@@ -145,7 +168,7 @@ function Edicao_perfil_brecho() {
             <div className="logo-brecho-geral-content">
               <div className="perfil-brecho-logo">
                 <img
-                  src="./img/fotoPerfil.png"
+                  src={formCadastroBrecho.logo}
                   alt="" />
               </div>
             </div>
@@ -318,7 +341,7 @@ function Edicao_perfil_brecho() {
               />
             </div>
             <div className="botao-editar-content">
-              {mensagemErro && <p>{mensagemErro}</p>}
+            {foiSubmetido && mensagemErro && <p>{mensagemErro}</p>}
               <button onClick={atualizarBrecho}>Editar</button>
             </div>
           </div>
