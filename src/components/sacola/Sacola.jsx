@@ -17,7 +17,7 @@ function Sacola() {
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        if (usuario_logado.sacola) {
 
             set_sacola(usuario_logado.sacola);
         };
@@ -99,8 +99,6 @@ function Sacola() {
                     set_sacola(produtos);
                 };
             };
-
-
 
         } catch (erro) {
 

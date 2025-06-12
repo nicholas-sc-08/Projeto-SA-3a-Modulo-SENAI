@@ -99,12 +99,12 @@ function Tela_incial() {
 
     if (Array.isArray(sacola)) {
 
-        return sacola.length;
+      return sacola.length;
     } else {
 
-        return 0;
+      return 0;
     };
-};
+  };
 
   const next = () => {
     if (startIndex + itemsToShow < array_brechos.length) {
@@ -207,17 +207,9 @@ function Tela_incial() {
 
   function preco_produtos(produto_selecionado) {
 
-    const dividir_preco = String(produto_selecionado).split(`.`);
-    const centavos = dividir_preco[dividir_preco.length - 1];
+    const preco_formatado = produto_selecionado.toFixed(2).replace('.', ',');
 
-
-    if (centavos < 10) {
-
-      return `R$${dividir_preco[0]},${centavos}0`;
-    } else {
-
-      return `R$${produto_selecionado},${centavos}`;
-    };
+    return `R$${preco_formatado}`;
   };
 
   function ir_ate_produto(produto_selecionado) {
