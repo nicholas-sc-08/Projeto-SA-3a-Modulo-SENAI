@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import './Sacola_geral.css';
 import Footer from '../../components/Footer';
@@ -15,6 +16,8 @@ function Sacola_geral() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
+    const { produto, set_produto } = useContext(GlobalContext);
+    const navegar_tela_produto = useNavigate(null);
 
     function preco_dos_produtos(preco){
 
@@ -35,6 +38,12 @@ function Sacola_geral() {
         return `R$${contador.toFixed(2).replace(`.`, `,`)}`;
     };
 
+    function ir_para_produto(produto_selecionado){
+
+        set_produto(produto_selecionado);
+        navegar_tela_produto(`/produto`);
+    };
+
     return (
 
         <AnimatePresence>
@@ -51,13 +60,13 @@ function Sacola_geral() {
 
                         <div className="container_produtos_na_sacola_geral">
 
-                            {sacola && sacola.length > 0 ? sacola.map((produto, i) => (
+                            {sacola && sacola.length > 0 ? sacola.map((produto_sacola, i) => (
 
-                                <div key={i} className='container_produto_sacola_geral'>
+                                <div key={i} className='container_produto_sacola_geral' onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className="container_imagem_do_produto_sacola_geral">
 
-                                        <img src={produto.imagem[0]} alt="" />
+                                        <img src={produto_sacola.imagem[0]} alt="" />
 
                                     </div>
 
@@ -65,7 +74,7 @@ function Sacola_geral() {
 
                                         <div className="container_titulo_produto_sacola_geral">
 
-                                            <h2>{produto.nome}</h2>
+                                            <h2>{produto_sacola.nome}</h2>
                                             <button><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
 
                                         </div>
@@ -73,14 +82,14 @@ function Sacola_geral() {
                                         <div className="container_info_extra_produto">
 
 
-                                            <p>Tamanho: <span>{produto.tamanho}</span></p>
-                                            <p>Cor: <span>{produto.cor[0]}</span></p>
+                                            <p>Tamanho: <span>{produto_sacola.tamanho}</span></p>
+                                            <p>Cor: <span>{produto_sacola.cor[0]}</span></p>
 
                                         </div>
 
                                         <div className="container_preco_produto_sacola_geral">
 
-                                            <span>{preco_dos_produtos(produto.preco)}</span>
+                                            <span>{preco_dos_produtos(produto_sacola.preco)}</span>
                                         
                                         </div>
 

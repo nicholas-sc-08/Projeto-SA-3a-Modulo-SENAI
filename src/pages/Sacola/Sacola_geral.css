@@ -53,9 +53,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
 
+    cursor: pointer;
+    border-radius: 1vw;
     width: 100%;
     min-height: 30%;
+    background-color: transparent;
+}
+
+.container_produto_sacola_geral:hover{
+
+    background-color: var(--cor_quatro_v_dois);
 }
 
 .container_imagem_do_produto_sacola_geral {
