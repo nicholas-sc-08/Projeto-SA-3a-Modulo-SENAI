@@ -121,6 +121,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
       })
     }
   }, [usuario_logado])
+
   
   async function atualizarEnderecoBrecho() {
     try {
