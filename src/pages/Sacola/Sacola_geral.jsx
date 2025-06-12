@@ -11,6 +11,7 @@ function Sacola_geral() {
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
+    
   return (
     
     <AnimatePresence>
