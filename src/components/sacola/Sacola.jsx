@@ -13,7 +13,6 @@ function Sacola() {
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
-    const [produtos_exibido_na_sacola, set_produtos_exibido_na_sacola] = useState([]);
     const ir_para_sacola = useNavigate(null);
 
     useEffect(() => {
@@ -27,15 +26,8 @@ function Sacola() {
 
     useEffect(() => {
 
-        exibir_produtos_na_sacola();
-
-    }, [sacola]);
-
-    useEffect(() => {
-
         buscar_brechos();
         buscar_clientes();
-        exibir_produtos_na_sacola();
 
     }, []);
 
@@ -132,19 +124,6 @@ function Sacola() {
         };
     };
 
-    function exibir_produtos_na_sacola() {
-
-        if (sacola && sacola.length > 3) {
-
-            const produtos_exibidos = sacola.slice(0, 3);
-            set_produtos_exibido_na_sacola(produtos_exibidos);
-
-        } else {
-
-            set_produtos_exibido_na_sacola(sacola);
-        };
-    };
-
     function imagem_do_brecho(id_brecho) {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == id_brecho);
@@ -186,7 +165,7 @@ function Sacola() {
 
                 <div className="container_produtos_na_sacola">
 
-                    {produtos_exibido_na_sacola && produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
+                    {sacola && sacola.length > 0 ? sacola.map((produto, i) => (
 
                         <div key={i} className='container_produtos_a_exibir_sacola'>
 
