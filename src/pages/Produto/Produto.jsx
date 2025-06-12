@@ -64,16 +64,8 @@ function Produto() {
 
     useEffect(() => {
 
-        console.log(`sacola`, sacola);
-        console.log(usuario_logado);
-        
-        
-
-    }, [sacola]);
-
-    useEffect(() => {
-
         sortear_produtos();
+        refencia_do_produto.current.scrollIntoView();
 
     }, []);
 

@@ -68,12 +68,18 @@
     padding-bottom: 2%;
 
     border-radius: 1vw;
-    border: 0.1vw solid transparent;
+    border: none;
+    background-color: transparent;
+}
+
+.container_produto:hover .container_produto_img{
+
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_produto:hover{
 
-    border: 0.1vw solid var(--cor_seis);
+    background-color: var(--cor_quatro_v_dois);
 }
 
 .container_produto_img{
@@ -92,11 +98,6 @@
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 1vw;
     background-color: var(--cor_nove_v_dois);
-}
-
-.container_produto_img:hover{
-
-    background-color: var(--cor_doze_v_um);
 }
 
 .container_produto_img img{
