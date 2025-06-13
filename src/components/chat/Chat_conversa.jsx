@@ -18,7 +18,7 @@ function Chat_conversa() {
     const { chat_aberto, set_chat_aberto } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { excluir_conversa_chat, set_excluir_conversa_chat } = useContext(GlobalContext);
-    const [ inpt_mensagem, set_inpt_mensagem ] = useState({mensagem: ``});
+    const [ inpt_mensagem, set_inpt_mensagem ] = useState(``);
     const { pessoa_com_quem_esta_conversando, set_pessoa_com_quem_esta_conversando } = useContext(GlobalContext);
     const [ pop_up_excluir_conversa, set_pop_up_excluir_conversa ] = useState(false);
     const { excluir_mensagens_chat, set_excluir_mensagens_chat } = useContext(GlobalContext);
@@ -196,7 +196,7 @@ function Chat_conversa() {
         
         console.error(erro);
       };
-      set_inpt_mensagem({mensagem: ``});
+      set_inpt_mensagem(``);
     };
 
     function exibir_imagem_de_perfil(_id){
@@ -356,7 +356,7 @@ function Chat_conversa() {
 
           <div className="campo_de_texto_da_conversa_atual">
 
-            <textarea rows={1} placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem.mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
+            <textarea rows={1} placeholder='Mensagem' ref={referencia_inpt_de_msg} value={inpt_mensagem} onChange={e => set_inpt_mensagem(e.target.value)} onKeyDown={e => e.key == "Enter" ? enviar_mensagem(e) : `` } />
 
           </div>
 

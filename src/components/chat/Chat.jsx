@@ -183,7 +183,7 @@ function Chat() {
 
     for (let i = 0; i < array_chat.length; i++) {
 
-      if (array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado != _id) {
+      if (array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && array_chat[i].mensagem_lida_quem_recebeu == usuario_logado._id) {
 
         contador += 1;
       };
@@ -192,28 +192,13 @@ function Chat() {
     return contador;
   };
 
-  function exibir_contador(_id) {
-
-    let aparecer_contador = false;
-
-    for (let i = 0; i < array_chat.length; i++) {
-
-      if (array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado._id != _id) {
-
-        aparecer_contador = true;
-      };
-    };
-
-    return aparecer_contador;
-  };
-
   function cor_do_horario_da_mensagem(_id) {
 
     let cor_da_hora = `#3e2a219e`;
 
     for (let i = 0; i < array_chat.length; i++) {
 
-      if (array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && usuario_logado._id != _id) {
+      if (array_chat[i].id_dono_mensagem == _id && array_chat[i].mensagem_lida_quem_recebeu == false && array_chat[i].mensagem_lida_quem_recebeu == usuario_logado._id) {
 
         cor_da_hora = `#466330`;
       };
@@ -263,6 +248,7 @@ function Chat() {
     if (encontrar_cliente) {
 
       return contato.nome;
+    
     } else {
 
       return contato.nome_brecho;
@@ -328,7 +314,7 @@ function Chat() {
               <div className="container_conversa_contador_e_ultima_mensagem">
 
                 <p>{ultima_mensagem(conversa._id)}</p>
-                {exibir_contador(conversa._id) &&<div className='container_contador_mensagens_nao_lida'><span className='contador_de_mensagens_nao_lida'>{verificar_mensagens_nao_lida(conversa._id)}</span></div>}
+                {verificar_mensagens_nao_lida(conversa._id) > 0 && <div className='container_contador_mensagens_nao_lida'><span className='contador_de_mensagens_nao_lida'>{verificar_mensagens_nao_lida(conversa._id)}</span></div>}
 
               </div>
 
