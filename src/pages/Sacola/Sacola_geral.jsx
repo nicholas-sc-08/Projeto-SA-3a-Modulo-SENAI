@@ -9,6 +9,7 @@ import './Sacola_geral.css';
 import Footer from '../../components/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
+import api from '../../services/api';
 
 function Sacola_geral() {
 
@@ -19,18 +20,41 @@ function Sacola_geral() {
     const { produto, set_produto } = useContext(GlobalContext);
     const navegar_tela_produto = useNavigate(null);
 
-    function preco_dos_produtos(preco){
+    async function remover_produto_sacola(produto_selecionado) {
+
+        try {
+
+            const array_com_produto_removido = sacola.filter(p => p._id != produto_selecionado._id);
+
+            if (usuario_logado._id) {
+
+                const usuario_atualizado = { ...usuario_logado, sacola: array_com_produto_removido };
+                const atualizar_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+                set_usuario_logado(atualizar_usuario.data);
+
+            } else {
+
+                set_sacola(array_com_produto_removido);
+            };
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
+    function preco_dos_produtos(preco) {
 
         const preco_final = preco.toFixed(2).replace(`.`, `,`);
 
         return `R$${preco_final}`;
     };
 
-    function preco_total_dos_produtos(){
+    function preco_total_dos_produtos() {
 
         let contador = 0;
 
-        for(let i = 0; i < sacola.length; i++){
+        for (let i = 0; i < sacola.length; i++) {
 
             contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
         };
@@ -38,7 +62,7 @@ function Sacola_geral() {
         return `R$${contador.toFixed(2).replace(`.`, `,`)}`;
     };
 
-    function ir_para_produto(produto_selecionado){
+    function ir_para_produto(produto_selecionado) {
 
         set_produto(produto_selecionado);
         navegar_tela_produto(`/produto`);
@@ -61,7 +85,7 @@ function Sacola_geral() {
                         <div className="container_produtos_na_sacola_geral">
 
                             {sacola && sacola.length > 0 ? sacola.map((produto_sacola, i) => (
-
+                                
                                 <div key={i} className='container_produto_sacola_geral' onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className="container_imagem_do_produto_sacola_geral">
@@ -75,7 +99,9 @@ function Sacola_geral() {
                                         <div className="container_titulo_produto_sacola_geral">
 
                                             <h2>{produto_sacola.nome}</h2>
-                                            <button><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
+                                            
+                                            {/* O stopPropagation ele via impedir de que "suba" para o pai, tipo aqui quando eu clicar na lixeira ele atyivaria as duas funções tanto a de ir para o produto quando a da lixeira em si, então para resolver isso, eu utilizei o stopPropation; */}
+                                            <button onClick={ e => { e.stopPropagation(); remover_produto_sacola(produto_sacola);}}><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
 
                                         </div>
 
@@ -90,7 +116,7 @@ function Sacola_geral() {
                                         <div className="container_preco_produto_sacola_geral">
 
                                             <span>{preco_dos_produtos(produto_sacola.preco)}</span>
-                                        
+
                                         </div>
 
                                     </div>
