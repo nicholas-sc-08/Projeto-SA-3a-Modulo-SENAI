@@ -43,9 +43,10 @@ function Sacola_geral() {
         };
     };
 
-    function preco_dos_produtos(preco) {
+    function preco_dos_produtos(produto_sacola) {
 
-        const preco_final = preco.toFixed(2).replace(`.`, `,`);
+        const calcular_preco = produto_sacola.preco * produto_sacola.quantidade_selecionada;
+        const preco_final = calcular_preco.toFixed(2).replace(`.`, `,`);
 
         return `R$${preco_final}`;
     };
@@ -115,7 +116,7 @@ function Sacola_geral() {
 
                                         <div className="container_preco_produto_sacola_geral">
 
-                                            <span>{preco_dos_produtos(produto_sacola.preco)}</span>
+                                            <span>{preco_dos_produtos(produto_sacola)}</span>
 
                                         </div>
 
