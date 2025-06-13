@@ -328,7 +328,7 @@ function Chat() {
               <div className="container_conversa_contador_e_ultima_mensagem">
 
                 <p>{ultima_mensagem(conversa._id)}</p>
-                {true &&<div className='container_contador_mensagens_nao_lida'><span className='contador_de_mensagens_nao_lida'>{verificar_mensagens_nao_lida(conversa._id)}</span></div>}
+                {exibir_contador(conversa._id) &&<div className='container_contador_mensagens_nao_lida'><span className='contador_de_mensagens_nao_lida'>{verificar_mensagens_nao_lida(conversa._id)}</span></div>}
 
               </div>
 

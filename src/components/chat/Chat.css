@@ -184,13 +184,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 95%;
     height: 25%;
 }
 
 .container_conversa_nome_e_hora h3 {
 
-    width: 65%;
+    width: 70%;
 
     white-space: nowrap;
     overflow: hidden;
@@ -215,7 +215,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
     height: 55%;
 }
 
@@ -236,7 +236,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
+    width: 12%;
     height: 100%;
 }
 
@@ -245,7 +245,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 80%;
     height: 100%;
 
     font-family: var(--tipografia_primaria);

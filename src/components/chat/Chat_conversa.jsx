@@ -40,9 +40,12 @@ function Chat_conversa() {
     
       function lidar_com_a_nova_mensagem(mensagem){
       
-        //aqui toda vez que uma mensagem é cadastrada lá no socket, que eu fiz ali quando vai postar no banco de dados, eu já lanço no servidor socket também para ele atualizar em tempo real aqui, fazendo com que chame está função por mais que o useEffect seja chamado somente uma vez aqui ele chama esta função mais de uma vezz
-        console.log(`Nova mensagem recebida:`, mensagem);
         set_conversa_atual(mensagens_anteriores => [...mensagens_anteriores, mensagem]);
+
+        if(mensagem.id_dono_mensagem == pessoa_com_quem_esta_conversando._id && conversa_aberta){
+
+          atualizar_mensagem();
+        };
       };
     
       //aqui ele vai conecta com o servidor socket
@@ -59,8 +62,13 @@ function Chat_conversa() {
 
     useEffect(() => {
 
-      atualizar_mensagem();
-    }, []);
+      
+      if(conversa_aberta && pessoa_com_quem_esta_conversando._id){
+        
+        atualizar_mensagem();
+      };
+      
+    }, [conversa_aberta, pessoa_com_quem_esta_conversando]);
 
     useEffect(() => {
 
