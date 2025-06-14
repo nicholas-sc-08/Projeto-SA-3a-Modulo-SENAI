@@ -115,10 +115,14 @@
 
 .container_contador_de_produtos{
 
-    width: 100%;
     display: flex;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    justify-content: space-between;
+    width: 70%;
+    height: 35%;
+
+    border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    background-color: var(--cor_nove_v_dois);
 }
 
 .container_contador_de_produtos h5{
@@ -144,15 +148,19 @@
     align-items: center;
     justify-content: center;
 
-    width: 20%;
-    height: 2.2vh;
+    width: 30%;
+    height: 100%;
 
-    border-top-left-radius: 0.3vw;
-    border-bottom-left-radius: 0.3vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border: 0.1vw solid var(--cor_doze_v_um);
+    border: none;
 
     color: var(--cor_seis);
+    background-color: transparent;
+}
+
+.diminuir_quantidade_de_produto:hover{
+
+    border-top-left-radius: 100vw;
+    border-bottom-left-radius: 100vw;
     background-color: var(--cor_doze_v_um);
 }
 
@@ -165,16 +173,22 @@
     align-items: center;
     justify-content: center;
 
-    width: 20%;
-    height: 2.2vh;
+    width: 30%;
+    height: 100%;
 
-    border-top-right-radius: 0.3vw;
-    border-bottom-right-radius: 0.3vw;
-    border: 0.1vw solid var(--cor_doze_v_um);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: none;
+
     color: var(--cor_seis);
+    background-color: transparent;
+}
+
+.aumentar_quantidade_de_produto:hover{
+
+    border-top-right-radius: 100vw;
+    border-bottom-right-radius: 100vw;
     background-color: var(--cor_doze_v_um);
 }
+
 
 .container_info_produto_quantidade_e_nome{
     
