@@ -78,7 +78,7 @@ function Sacola_geral() {
 
             if (usuario_logado._id) {
 
-                const cliente_atualizado = {...usuario_logado, sacola: produtos};
+                const cliente_atualizado = { ...usuario_logado, sacola: produtos };
                 const dados_do_cliente = await api.put(`./clientes/${cliente_atualizado._id}`, cliente_atualizado);
                 set_usuario_logado(dados_do_cliente.data);
                 set_sacola(produtos);
@@ -145,9 +145,9 @@ function Sacola_geral() {
 
                                             <div className="container_contador_quantidade_produtos">
 
-                                                <button className='botao_diminuir_contador_sacola_geral' onClick={e => {e.stopPropagation(); diminuir_quantia_selecionada(produto_sacola);}}>-</button>
+                                                <button disabled={produto_sacola.quantidade_selecionada == 1} className='botao_diminuir_contador_sacola_geral' onClick={e => { e.stopPropagation(); diminuir_quantia_selecionada(produto_sacola); }}>-</button>
                                                 <span>{produto_sacola.quantidade_selecionada}</span>
-                                                <button className='botao_aumentar_contador_sacola_geral'>+</button>
+                                                <button disabled={produto_sacola.quantidade_selecionada == produto_sacola.quantidade} className='botao_aumentar_contador_sacola_geral' onClick={e => { e.stopPropagation(); }}>+</button>
 
                                             </div>
                                         </div>
