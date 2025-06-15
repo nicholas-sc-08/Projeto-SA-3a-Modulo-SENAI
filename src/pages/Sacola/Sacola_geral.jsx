@@ -69,9 +69,29 @@ function Sacola_geral() {
         navegar_tela_produto(`/produto`);
     };
 
-    function diminuir_quantia_selecionada(){
+    async function diminuir_quantia_selecionada(produto_selecionado) {
 
-        
+        try {
+
+            const produto_atualizado = { ...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada - 1 };
+            const produtos = sacola.map(p => p._id == produto_selecionado._id ? produto_atualizado : p);
+
+            if (usuario_logado._id) {
+
+                const cliente_atualizado = {...usuario_logado, sacola: produtos};
+                const dados_do_cliente = await api.put(`./clientes/${cliente_atualizado._id}`, cliente_atualizado);
+                set_usuario_logado(dados_do_cliente.data);
+                set_sacola(produtos);
+
+            } else {
+
+                set_sacola(produtos);
+            };
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
     };
 
     return (
@@ -91,7 +111,7 @@ function Sacola_geral() {
                         <div className="container_produtos_na_sacola_geral">
 
                             {sacola && sacola.length > 0 ? sacola.map((produto_sacola, i) => (
-                                
+
                                 <div key={i} className='container_produto_sacola_geral' onClick={() => ir_para_produto(produto_sacola)}>
 
                                     <div className="container_imagem_do_produto_sacola_geral">
@@ -105,9 +125,9 @@ function Sacola_geral() {
                                         <div className="container_titulo_produto_sacola_geral">
 
                                             <h2>{produto_sacola.nome}</h2>
-                                            
+
                                             {/* O stopPropagation ele via impedir de que "suba" para o pai, tipo aqui quando eu clicar na lixeira ele atyivaria as duas funções tanto a de ir para o produto quando a da lixeira em si, então para resolver isso, eu utilizei o stopPropation; */}
-                                            <button onClick={ e => { e.stopPropagation(); remover_produto_sacola(produto_sacola);}}><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
+                                            <button onClick={e => { e.stopPropagation(); remover_produto_sacola(produto_sacola); }}><img src="./img/Lixeira_icon_v_tres.svg" alt="" /></button>
 
                                         </div>
 
@@ -125,7 +145,7 @@ function Sacola_geral() {
 
                                             <div className="container_contador_quantidade_produtos">
 
-                                                <button className='botao_diminuir_contador_sacola_geral'>-</button>
+                                                <button className='botao_diminuir_contador_sacola_geral' onClick={e => {e.stopPropagation(); diminuir_quantia_selecionada(produto_sacola);}}>-</button>
                                                 <span>{produto_sacola.quantidade_selecionada}</span>
                                                 <button className='botao_aumentar_contador_sacola_geral'>+</button>
 
