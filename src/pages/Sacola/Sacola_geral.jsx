@@ -69,6 +69,11 @@ function Sacola_geral() {
         navegar_tela_produto(`/produto`);
     };
 
+    function diminuir_quantia_selecionada(){
+
+        
+    };
+
     return (
 
         <AnimatePresence>
@@ -116,8 +121,15 @@ function Sacola_geral() {
 
                                         <div className="container_preco_produto_sacola_geral">
 
-                                            <span>{preco_dos_produtos(produto_sacola)}</span>
+                                            <p>{preco_dos_produtos(produto_sacola)}</p>
 
+                                            <div className="container_contador_quantidade_produtos">
+
+                                                <button className='botao_diminuir_contador_sacola_geral'>-</button>
+                                                <span>{produto_sacola.quantidade_selecionada}</span>
+                                                <button className='botao_aumentar_contador_sacola_geral'>+</button>
+
+                                            </div>
                                         </div>
 
                                     </div>

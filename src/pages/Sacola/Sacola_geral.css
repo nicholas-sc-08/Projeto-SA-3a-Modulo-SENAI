@@ -29,11 +29,11 @@
 
     width: 80%;
     height: 85%;
-    
+
     border-radius: 1vw;
     border: 0.1vw solid var(--cor_quatro);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    
+
     background-color: var(--cor_quatro);
 }
 
@@ -63,7 +63,7 @@
     background-color: transparent;
 }
 
-.container_produto_sacola_geral:hover{
+.container_produto_sacola_geral:hover {
 
     background-color: var(--cor_quatro_v_dois);
 }
@@ -179,18 +179,93 @@
 .container_preco_produto_sacola_geral {
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 95%;
     height: 20%;
 }
 
-.container_preco_produto_sacola_geral span {
+.container_preco_produto_sacola_geral p {
 
     font-family: var(--tipografia_primaria);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
 
     color: var(--cor_seis);
+}
+
+.container_contador_quantidade_produtos {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 17%;
+    height: 100%;
+
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_nove_v_dois);
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    background-color: var(--cor_nove_v_dois);
+}
+
+.container_contador_quantidade_produtos span{
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 550;
+
+    color: var(--cor_seis);
+}
+
+.botao_diminuir_contador_sacola_geral{
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    width: 30%;
+    height: 100%;
+
+    border-top-left-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border: none;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    font-weight: 650;
+
+    color: var(--cor_seis);
+    background-color: var(--cor_nove_v_dois);
+}
+
+.botao_diminuir_contador_sacola_geral:hover{
+
+    background-color: var(--cor_doze_v_um);
+}
+
+.botao_aumentar_contador_sacola_geral{
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    width: 30%;
+    height: 100%;
+
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    border: none;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.5rem;
+    font-weight: 650;
+
+    color: var(--cor_seis);
+    background-color: var(--cor_nove_v_dois);
+}
+
+.botao_aumentar_contador_sacola_geral:hover{
+
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_nenhum_item_sacola_geral {
@@ -334,7 +409,7 @@
     font-size: 1rem;
     font-weight: 500;
 
-    border-radius: 0.5vw;
+    border-radius: 100vw;
     border: 0.1vw solid var(--cor_um);
 
     color: var(--cor_quatro);

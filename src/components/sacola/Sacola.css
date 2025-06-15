@@ -1,4 +1,4 @@
-.container_sacola{
+.container_sacola {
 
     position: absolute;
     top: 12%;
@@ -13,7 +13,7 @@
     background-color: var(--cor_quatro);
 }
 
-.container_header_sacola{
+.container_header_sacola {
 
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
     height: 15%;
 }
 
-.container_header_sacola h1{
+.container_header_sacola h1 {
 
     font-family: var(--tipografia_secundaria);
     font-size: 1.2rem;
@@ -29,7 +29,7 @@
     color: var(--cor_seis);
 }
 
-.container_produtos_na_sacola{
+.container_produtos_na_sacola {
 
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     scrollbar-width: none;
 }
 
-.container_produtos_a_exibir_sacola{
+.container_produtos_a_exibir_sacola {
 
     display: flex;
 
@@ -52,28 +52,28 @@
     min-height: 28%;
 
     margin-top: 5%;
-    
+
     border-radius: 0.5vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background-color: var(--cor_quatro);
 }
 
-.container_imagem_do_produto_sacola{
+.container_imagem_do_produto_sacola {
 
     display: flex;
     align-items: center;
     justify-content: center;
- 
+
     width: 25%;
     height: 100%;
- 
+
     border-top-left-radius: 0.5vw;
     border-bottom-left-radius: 0.5vw;
- 
+
     background-color: var(--cor_doze_v_um);
 }
 
-.container_info_produto_nome_sacola{
+.container_info_produto_nome_sacola {
 
     display: flex;
     justify-content: space-between;
@@ -81,7 +81,7 @@
     height: 100%;
 }
 
-.container_info_produto_sacola{
+.container_info_produto_sacola {
 
     display: flex;
     justify-content: space-between;
@@ -89,16 +89,16 @@
     height: 100%;
 }
 
-.container_info_produto_titulo_sacola{
-    
+.container_info_produto_titulo_sacola {
+
     display: flex;
     align-items: center;
-    
+
     width: 130%;
     height: 30%;
 }
 
-.container_info_produto_titulo_sacola h3{
+.container_info_produto_titulo_sacola h3 {
 
     width: 100%;
 
@@ -113,19 +113,19 @@
     color: var(--cor_seis);
 }
 
-.container_contador_de_produtos{
+.container_contador_de_produtos {
 
     display: flex;
     justify-content: space-between;
     width: 70%;
-    height: 35%;
+    height: 30%;
 
     border-radius: 100vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background-color: var(--cor_nove_v_dois);
 }
 
-.container_contador_de_produtos h5{
+.container_contador_de_produtos h5 {
 
     display: flex;
     align-items: center;
@@ -139,7 +139,7 @@
     color: var(--cor_seis);
 }
 
-.diminuir_quantidade_de_produto{
+.diminuir_quantidade_de_produto {
 
     cursor: pointer;
     transition: 0.3s;
@@ -148,23 +148,27 @@
     align-items: center;
     justify-content: center;
 
-    width: 30%;
+    width: 35%;
     height: 100%;
 
     border: none;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.4rem;
+    font-weight: 500;
 
     color: var(--cor_seis);
     background-color: transparent;
 }
 
-.diminuir_quantidade_de_produto:hover{
+.diminuir_quantidade_de_produto:hover {
 
     border-top-left-radius: 100vw;
     border-bottom-left-radius: 100vw;
     background-color: var(--cor_doze_v_um);
 }
 
-.aumentar_quantidade_de_produto{
+.aumentar_quantidade_de_produto {
 
     cursor: pointer;
     transition: 0.3s;
@@ -173,16 +177,20 @@
     align-items: center;
     justify-content: center;
 
-    width: 30%;
+    width: 35%;
     height: 100%;
 
     border: none;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 1.4rem;
+    font-weight: 450;
 
     color: var(--cor_seis);
     background-color: transparent;
 }
 
-.aumentar_quantidade_de_produto:hover{
+.aumentar_quantidade_de_produto:hover {
 
     border-top-right-radius: 100vw;
     border-bottom-right-radius: 100vw;
@@ -190,8 +198,8 @@
 }
 
 
-.container_info_produto_quantidade_e_nome{
-    
+.container_info_produto_quantidade_e_nome {
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -200,12 +208,12 @@
     margin-left: 5%;
 }
 
-.container_imagem_do_produto_sacola img{
+.container_imagem_do_produto_sacola img {
 
     width: 80%;
 }
 
-.preco_do_produto_sacola{
+.preco_do_produto_sacola {
 
     font-family: var(--tipografia_primaria);
     font-size: 0.9rem;
@@ -214,7 +222,7 @@
     color: var(--cor_seis);
 }
 
-.container_info_produto_preco_e_logo{
+.container_info_produto_preco_e_logo {
 
     display: flex;
     flex-direction: column;
@@ -225,14 +233,14 @@
     padding-right: 5%;
 }
 
-.container_info_produto_preco_e_logo img{
+.container_info_produto_preco_e_logo img {
 
     border-radius: 100vw;
     width: 35%;
     box-shadow: rgba(0, 0, 0, 0.01) 0px 1px 3px 0px, rgba(21, 25, 28, 0.15) 0px 0px 0px 1px;
 }
 
-.nenhum_item_adicionado{
+.nenhum_item_adicionado {
 
     display: flex;
     flex-direction: column;
@@ -242,7 +250,7 @@
     height: 75%;
 }
 
-.nenhum_item_adicionado p{
+.nenhum_item_adicionado p {
 
     margin-top: 10%;
 
@@ -253,31 +261,31 @@
     color: var(--cor_seis_v_um);
 }
 
-.nenhum_item_adicionado img{
+.nenhum_item_adicionado img {
 
     margin-top: 15%;
     width: 20%;
 }
 
-.container_botao_da_sacola{
+.container_botao_da_sacola {
 
     display: flex;
     align-items: end;
     justify-content: center;
     width: 100%;
-    height: 18%;
+    height: 15%;
 }
 
-.container_botao_da_sacola button{
+.container_botao_da_sacola button {
 
     cursor: pointer;
     transition: 0.3s;
 
     width: 90%;
-    height: 65%;
+    height: 80%;
 
     border: 0.1vw solid var(--cor_um);
-    border-radius: 0.5vw;
+    border-radius: 100vw;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
@@ -287,7 +295,7 @@
     background-color: var(--cor_um);
 }
 
-.container_botao_da_sacola button:hover{
+.container_botao_da_sacola button:hover {
 
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
