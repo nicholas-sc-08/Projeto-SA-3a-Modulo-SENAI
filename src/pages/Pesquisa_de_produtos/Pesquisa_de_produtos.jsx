@@ -47,15 +47,6 @@ function Pesquisa_de_produtos() {
 
     useEffect(() => {
 
-        if(exibir_produtos_filtrados){
-
-            
-        };
-
-    }, [exibir_produtos_filtrados]);
-
-    useEffect(() => {
-
         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
         set_produtos_embaralhados(embaralhar);
 
@@ -157,7 +148,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            { array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -181,7 +172,7 @@ function Pesquisa_de_produtos() {
                                     </div>
 
                                 </div>
-                            ))}
+                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/icons/icone_sacola_a.svg' alt='produtos'/><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
 
                         </div>
 

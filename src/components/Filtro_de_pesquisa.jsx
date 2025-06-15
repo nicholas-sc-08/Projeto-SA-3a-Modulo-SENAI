@@ -29,22 +29,28 @@ function Filtro_de_pesquisa() {
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
     const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);    
     const [ preco_exibido, set_preco_exibido ] = useState(``);  
-    const [ preco_maximo, set_preco_maximo ] = useState(0);
+    const [ preco_maximo, set_preco_maximo ] = useState(300);
 
     useEffect(() => {
 
         buscar_categorias();
         buscar_produtos();
 
-        for(let i = 0; i < array_produtos.length; i++){
+    }, []);
 
-            if(array_produtos[i].preco > preco_maximo){
+        useEffect(() => {
 
-                set_preco_maximo(array_produtos[i].preco);                
-            };
+        if(exibir_produtos_filtrados){
+
+            const filtrar_produtos_selecionados = array_produtos.filter(p => p.preco <= filtro_de_pesquisa.preco);
+            set_array_produtos(filtrar_produtos_selecionados);
+        
+        } else {
+
+            buscar_produtos();
         };
 
-    }, []);
+    }, [exibir_produtos_filtrados]);
 
     useEffect(() => {
 
