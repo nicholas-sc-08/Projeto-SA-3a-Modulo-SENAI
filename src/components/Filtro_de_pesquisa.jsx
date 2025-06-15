@@ -168,8 +168,8 @@ function Filtro_de_pesquisa() {
 
     function limpar_filtro_de_pesquisa(){
 
-        set_filtro_de_pesquisa({preco: `20`, tamanho: []});
-        set_tamanhos_selecionados([]);
+        set_filtro_de_pesquisa({ preco: `20`, tamanhos: [], categoria_filtrada: ``});
+        set_exibir_produtos_filtrados(false);
     };
 
     function girar_botao_titulo_preco(){

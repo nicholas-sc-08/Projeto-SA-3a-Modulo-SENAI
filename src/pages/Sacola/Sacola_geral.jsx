@@ -1,15 +1,16 @@
-import { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import Header from '../../components/Header';
-import './Sacola_geral.css';
 import Footer from '../../components/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import api from '../../services/api';
+import './Sacola_geral.css';
 
 function Sacola_geral() {
 
@@ -18,7 +19,10 @@ function Sacola_geral() {
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+
     const navegar_tela_produto = useNavigate(null);
+    const referencia_sacola = useRef(null);
 
     async function remover_produto_sacola(produto_selecionado) {
 
@@ -102,7 +106,7 @@ function Sacola_geral() {
 
                 <Header tipo={tipo_de_header} />
 
-                <div className="alinhamento_conteudo_tela_sacola_geral">
+                <div className="alinhamento_conteudo_tela_sacola_geral" ref={referencia_sacola}>
 
                     <h1 className='titulo_tela_sacola'>Sacola</h1>
 

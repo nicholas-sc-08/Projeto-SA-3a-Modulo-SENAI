@@ -22,6 +22,8 @@ function Pesquisa_de_produtos() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
+    const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [pagina_atual, set_pagina_atual] = useState(1);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const navegar_para_produto = useNavigate(null);
@@ -42,6 +44,15 @@ function Pesquisa_de_produtos() {
         buscar_brechos();
 
     }, [termoBuscado]);
+
+    useEffect(() => {
+
+        if(exibir_produtos_filtrados){
+
+            
+        };
+
+    }, [exibir_produtos_filtrados]);
 
     useEffect(() => {
 
