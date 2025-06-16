@@ -11,6 +11,7 @@ function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
 
+  const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
@@ -43,10 +44,21 @@ function Perfil_Brecho() {
     }
   }, [usuario_logado])
 
+  useEffect(() => {
+
+    if(brecho_selecionado){
+
+      setFormCadastroBrecho({nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento});
+    };
+
+  }, [brecho_selecionado]);
 
   // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
   useEffect(() => {
-    if (usuario_logado) {
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+
+    if (encontrar_brecho) {
       setFormCadastroBrecho({
         nome_vendedor: usuario_logado.nome_vendedor || '',
         data_de_nascimento_vendedor: usuario_logado.data_de_nascimento_vendedor || '',

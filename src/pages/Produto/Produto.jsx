@@ -1,9 +1,12 @@
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import './Produto.css';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Chat_conversa from '../../components/chat/Chat_conversa';
@@ -11,7 +14,7 @@ import Chat from '../../components/chat/Chat';
 import Footer from '../../components/Footer';
 import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
-import { motion, AnimatePresence } from 'framer-motion';
+import './Produto.css';
 
 function Produto() {
 
@@ -25,34 +28,16 @@ function Produto() {
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
+    const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
     const [imagem_selecionada, set_imagem_selecionada] = useState(0);
     const [produto_visualiazado, set_produto_visualizado] = useState(`0.1vw solid var(--cor_um)`);
     const [pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado] = useState(false);
     const [pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado] = useState(false);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const refencia_do_produto = useRef(null);
-    const cores_simplificadas = [
-        { nome: "Preto", hex: "#000000" },
-        { nome: "Branco", hex: "#FFFFFF" },
-        { nome: "Vermelho", hex: "#FF0000" },
-        { nome: "Verde", hex: "#008000" },
-        { nome: "Azul", hex: "#0000FF" },
-        { nome: "Amarelo", hex: "#FFFF00" },
-        { nome: "Laranja", hex: "#FFA500" },
-        { nome: "Roxo", hex: "#800080" },
-        { nome: "Marrom", hex: "#8B4513" },
-        { nome: "Cinza", hex: "#808080" },
-        { nome: "Rosa", hex: "#FFC0CB" },
-        { nome: "Ciano", hex: "#00FFFF" },
-        { nome: "Magenta", hex: "#FF00FF" },
-        { nome: "Vinho", hex: "#800000" },
-        { nome: "Dourado", hex: "#FFD700" },
-        { nome: "Prateado", hex: "#C0C0C0" },
-        { nome: "Bege", hex: "#F5F5DC" },
-        { nome: "Turquesa", hex: "#40E0D0" },
-        { nome: "Lima", hex: "#00FF00" },
-        { nome: "Lavanda", hex: "#E6E6FA" },
-    ];
+    const ir_para_perfil = useNavigate(null);
+
+    const cores_simplificadas = [{ nome: "Preto", hex: "#000000" },{ nome: "Branco", hex: "#FFFFFF" },{ nome: "Vermelho", hex: "#FF0000" },{ nome: "Verde", hex: "#008000" },{ nome: "Azul", hex: "#0000FF" },{ nome: "Amarelo", hex: "#FFFF00" },{ nome: "Laranja", hex: "#FFA500" },{ nome: "Roxo", hex: "#800080" },{ nome: "Marrom", hex: "#8B4513" },{ nome: "Cinza", hex: "#808080" },{ nome: "Rosa", hex: "#FFC0CB" },{ nome: "Ciano", hex: "#00FFFF" },{ nome: "Magenta", hex: "#FF00FF" },{ nome: "Vinho", hex: "#800000" },{ nome: "Dourado", hex: "#FFD700" },{ nome: "Prateado", hex: "#C0C0C0" },{ nome: "Bege", hex: "#F5F5DC" },{ nome: "Turquesa", hex: "#40E0D0" },{ nome: "Lima", hex: "#00FF00" },{ nome: "Lavanda", hex: "#E6E6FA" },];
 
     useEffect(() => {
 
@@ -187,12 +172,14 @@ function Produto() {
 
         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
         const produtos_selecionados = embaralhar.slice(0, 4);
+        
         set_produtos_embaralhados(produtos_selecionados);
     };
 
     function ir_para_produto_selecionado(produto_selecionado) {
 
-        refencia_do_produto.current.scrollIntoView({ behavior: `smooth` });
+        refencia_do_produto.current.scrollIntoView();
+        
         set_produto(produto_selecionado);
         set_imagem_selecionada(0);
         sortear_produtos();
@@ -225,6 +212,14 @@ function Produto() {
             set_exibir_nome_brecho(true);
             set_nome_do_brecho(encontrar_brecho.nome_brecho);
         };
+    };
+
+    function ir_para_perfil_brecho(id_brecho){
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id == id_brecho);
+
+        set_brecho_selecionado(encontrar_brecho);
+        ir_para_perfil(`/perfil_brecho`);
     };
 
     async function adicionar_a_sacola() {
@@ -288,13 +283,25 @@ function Produto() {
     };
 
     function hexa_para_rgb(hex) {
-        if (typeof hex !== "string") return null;
-        if (!hex.startsWith("#")) hex = "#" + hex;
+        if (typeof hex !== "string"){
+
+            return null;
+        }
+        
+        if (!hex.startsWith("#")){
+
+            hex = "#" + hex;
+        } 
 
         const match = hex.match(/^#([0-9a-fA-F]{6})$/);
-        if (!match) return null;
+        
+        if (!match){
+
+            return null
+        };
 
         const bigint = parseInt(match[1], 16);
+        
         return {
             r: (bigint >> 16) & 255,
             g: (bigint >> 8) & 255,
@@ -304,7 +311,10 @@ function Produto() {
 
     function cor_mais_proxima(hex) {
         const rgb = hexa_para_rgb(hex);
-        if (!rgb) return "Cor desconhecida";
+        if (!rgb){
+
+            return "Cor desconhecida"
+        };
 
         let cor_mais_proxima = null;
         let menor_diferença = Infinity;
@@ -326,7 +336,9 @@ function Produto() {
     }
 
     return (
-        <div className='container_visualizar_produto' ref={refencia_do_produto}>
+        <AnimatePresence>
+
+        <motion.div className='container_visualizar_produto' ref={refencia_do_produto}  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
 
             {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada />}
             {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
@@ -376,7 +388,7 @@ function Produto() {
 
                             <div className='container_info_brecho_logo'>
 
-                                <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onMouseLeave={() => setTimeout(() => { set_exibir_nome_brecho(false) }, 100)} />
+                                <img src={imagem_do_brecho(produto.fk_id_brecho)} alt="" onMouseEnter={() => exibir_nome_do_brecho(produto.fk_id_brecho)} onClick={() => ir_para_perfil_brecho(produto.fk_id_brecho)} onMouseLeave={() => set_exibir_nome_brecho(false)} />
 
                             </div>
 
@@ -384,7 +396,7 @@ function Produto() {
 
                                 {exibir_nome_brecho &&
 
-                                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+                                    <motion.div initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
 
                                         <div className='contianer_pop_up_nome_do_brecho'>
 
@@ -532,7 +544,8 @@ function Produto() {
 
             <Footer />
 
-        </div>
+        </motion.div>
+        </AnimatePresence>
     )
 }
 

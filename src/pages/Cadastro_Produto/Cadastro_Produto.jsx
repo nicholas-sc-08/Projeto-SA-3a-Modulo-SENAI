@@ -8,7 +8,6 @@ import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
 
-
 function Cadastro_Produto() {
 
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
@@ -23,7 +22,6 @@ function Cadastro_Produto() {
     "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda",
     "PVC", "EVA", "Neoprene"
   ];
-
 
   // Estado de quantidade do produto
   const [quantidade, setQuantidade] = useState(1);
@@ -66,7 +64,6 @@ function Cadastro_Produto() {
   const [inputTecido, setInputTecido] = useState("");
   const [tecidosFiltrados, setTecidosFiltrados] = useState(tecidos_disponiveis);
 
-
   // useEffect que roda quando o componente é carregado
   // Busca produtos e categorias + carrega dados caso esteja editando um produto
   useEffect(() => {
@@ -97,7 +94,6 @@ function Cadastro_Produto() {
     }
   }, []);
 
-
   useEffect(() => {
     const resultado = tecidos_disponiveis.filter((tecido) =>
       tecido.toLowerCase().includes(inputTecido.toLowerCase())
@@ -105,17 +101,17 @@ function Cadastro_Produto() {
     setTecidosFiltrados(resultado);
   }, [inputTecido]);
 
-
   // Função para aumentar a quantidade
-  const aumentarQuantidade = () =>
+  function aumentarQuantidade() {
     setQuantidade((q) => {
       const novaQuantidade = q + 1;
       setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: novaQuantidade });
       return novaQuantidade;
     });
+  }
 
   // Função para diminuir a quantidade (mínimo = 1)
-  const diminuirQuantidade = () => {
+  function diminuirQuantidade() {
     if (quantidade > 1) {
       setQuantidade((q) => {
         const novaQuantidade = q - 1;
@@ -123,16 +119,16 @@ function Cadastro_Produto() {
         return novaQuantidade;
       });
     }
-  };
+  }
 
   // Função que define o tamanho selecionado do produto
-  const selecionarTamanho = (t) => {
+  function selecionarTamanho(t) {
     setTamanhoSelecionado(t);
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
-  };
+  }
 
   // Função que adiciona uma imagem (faz upload no Cloudinary)
-  const adicionar_imagem = async (e) => {
+  async function adicionar_imagem(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -172,7 +168,7 @@ function Cadastro_Produto() {
     } catch (error) {
       console.error("Erro ao fazer upload da imagem:", error);
     }
-  };
+  }
 
   // useEffect auxiliar para ver no console as alterações no array_cadastro_produto
   useEffect(() => {
@@ -180,7 +176,7 @@ function Cadastro_Produto() {
   }, [array_cadastro_produto]);
 
   // Função que remove uma imagem (também atualiza imagem principal, se necessário)
-  const removerImagem = (index) => {
+  function removerImagem(index) {
     setImagens((prevImagens) => {
       const novasImagens = prevImagens.filter((_, i) => i !== index);
       setArray_cadastro_produto((prevProduto) => ({
@@ -195,17 +191,17 @@ function Cadastro_Produto() {
 
       return novasImagens;
     });
-  };
+  }
 
   // Função que define qual imagem será a imagem principal
-  const selecionarImagemPrincipal = (imagem) => {
+  function selecionarImagemPrincipal(imagem) {
     if (imagens.includes(imagem)) {
       setImagemPrincipal(imagem);
     }
-  };
+  }
 
   // Função para abrir o seletor de cores (EyeDropper API)
-  const selecionarCorEyeDropper = async () => {
+  async function selecionarCorEyeDropper() {
     if (window.EyeDropper) {
       try {
         const eyeDropper = new window.EyeDropper();
@@ -223,10 +219,10 @@ function Cadastro_Produto() {
     } else {
       alert("Seu navegador não suporta a EyeDropper API");
     }
-  };
+  }
 
   // Função para substituir uma cor existente
-  const substituirCor = async (index) => {
+  async function substituirCor(index) {
     try {
       const eyeDropper = new window.EyeDropper();
       const result = await eyeDropper.open();
@@ -237,13 +233,13 @@ function Cadastro_Produto() {
     } catch (error) {
       console.error("Erro ao substituir cor", error);
     }
-  };
+  }
 
   // Função que remove todas as cores selecionadas
-  const removerCor = () => {
+  function removerCor() {
     setCoresSelecionadas([]);
     setArray_cadastro_produto({ ...array_cadastro_produto, cor: [] });
-  };
+  }
 
   // Função que busca categorias do backend (usada no carregamento inicial)
   async function buscar_categorias() {
@@ -279,8 +275,6 @@ function Cadastro_Produto() {
 
   // Constante auxiliar para mostrar um texto de fallback no nome do produto
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
-
-
 
   return (
     <div>
@@ -444,10 +438,11 @@ function Cadastro_Produto() {
 
             <div className="cores">
               <label>Seleção de Cores</label>
-              <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
+              <div className="divisao-cores">
+                <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
                 <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
-              </button>
-              <div className="cores-selecionadas">
+                </button>
+                <div className="cores-selecionadas">
                 {coresSelecionadas.map((cor, index) => (
                   <div
                     key={index}
@@ -456,7 +451,9 @@ function Cadastro_Produto() {
                     onClick={() => substituirCor(index)}
                     title="Clique para substituir essa cor"
                   ></div>
+                  
                 ))}
+                </div>
               </div>
             </div>
 

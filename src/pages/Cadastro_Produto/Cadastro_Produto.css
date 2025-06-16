@@ -33,15 +33,21 @@ body {
 
 .titulo2 {
     color: #466330;
+    margin-left: 3.8%;
+    font-size: 1.8rem;
+    transform: scale(1);
+    transform-origin: center center; 
+    font-weight: 600;
+    
 }
 
 .linha-titulo-2 {
     background-color: rgba(0, 0, 0, 0.279);
     opacity: 0.5;
     height: 2px;
-    width: 80%;
+    width: 90%;
     border: none;
-    margin-left: 9.8%;
+    margin-left: 5%;
     margin-top: 9px;
 }
 
@@ -247,17 +253,13 @@ body {
     font-weight: 500;
     transition: 0.2s;
     transform: scale(1.5);
-    transform-origin: center center; /* Faz a escala acontecer a partir do centro */
+    transform-origin: center center; 
     outline: none;
-    border: 1px solid #d9d9d9; /* borda bem clarinha */
+    border: 1px solid #d9d9d9; 
 }
 
 
-input:focus {
-  outline: none;
-  border: 2px solid #466330;
-  
-}
+
 
 .titulo-tecido{
     align-items: center;
@@ -270,14 +272,14 @@ input:focus {
   overflow-y: auto;
   padding: 0;
   margin: 4px 0 0 0;
-  border-radius: 10%;
+  border-radius: 15%;
   background: white;
   position: absolute;
-  width: 100%;
+  width: 120%;
   z-index: 999;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   margin-top: 50%;
-  margin-right: 100px;
+  margin-right: 50%;
 }
 
 .lista-tecidos li {
@@ -537,36 +539,35 @@ input:focus {
 =========================== */
 .cores {
     display: flex;
-    
-    align-items: center;
     flex-direction: column;
     flex-wrap: nowrap; /* Garante que as cores não vão para a linha de baixo */
     justify-content: flex-start; /* Alinha as cores à esquerda */
-
 }
 
 
-.cor-seletor {
+.cor-seletor  {
     background-color: transparent;
+    width: 10%;
     border: 0;
     cursor: pointer;
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
     flex-wrap: wrap; /* Permite que quebrem linha se necessário */
 }
 
-.cor-seletor:hover {
+.cor-seletor:hover img {
     transform: scale(1.1);
 }
 
 .rodaDeCores {
-    width: 40px;
     height: 40px;
     transition: opacity 0.3s ease;
     opacity: 1;
+    display: flex;
+    justify-content: flex-start;
+    
 }
 
 .cor-selecionada {
@@ -576,6 +577,22 @@ input:focus {
     border-radius: 50%;
     margin: 5px;
     cursor: pointer;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.cores-selecionadas {
+    position: relative;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.divisao-cores{
+    display: flex;
+    gap: 10%;
 }
 
 .remover-cor {

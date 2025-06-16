@@ -8,11 +8,11 @@ export default function Contato() {
   return (
     <div>
       <Header tipo='usuario' />
-
       <div className='cabecalho-tela-contato'>
       <Link className='link-tela-contato' to={"/."}>Início</Link>
         <p>/Contato</p>
       </div>
+      <div className='corpo-contato'>
 
       <div className='container-info-contato'>
         <div className='cabecario-info-contato'>
@@ -26,7 +26,7 @@ export default function Contato() {
           </div>
           <hr />
           <div className='cabecario-info-contato'>
-          <div className='circulo-icon-contato'><img src="./img/envelope.svg" alt="" /></div>
+          <div className='circulo-icon-contato'><img src="./img/icons/envelope-mensagem-icon.svg" alt="" /></div>
           <h3>Ligue Para Nós</h3>
         </div>
         <p>Preencha nosso formulário e entraremos em contato com você em até 24 horas.</p>
@@ -58,8 +58,9 @@ export default function Contato() {
 
       <button className='but-entre-em-contato'>Enviar Menssagem</button>
       </div>
-
+      </div>
       <Footer />
+
     </div>
   )
 }

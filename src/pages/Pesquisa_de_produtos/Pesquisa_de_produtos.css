@@ -254,13 +254,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
 }
 
 .container_nenhum_produto_buscar img{
 
-    width: 15%;
-    margin-bottom: 5%;
+    width: 10%;
+    margin-bottom: 2%;
 }
 
 .container_nenhum_produto_buscar p{

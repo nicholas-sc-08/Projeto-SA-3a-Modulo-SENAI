@@ -111,10 +111,9 @@ function Pesquisa_de_produtos() {
 
     function preco_do_produto(preco) {
 
-        const preco_separado = String(preco).split(`.`);
-        const decimal = preco_separado[preco_separado.length - 1];
+        const preco_produto = preco.toFixed(2).replace(`.`, `,`);
 
-        return decimal < 10 ? `${preco_separado[0]},${decimal}0 ` : `${preco_separado[0]},${decimal}`;
+        return preco_produto;
     };
 
     function imagem_de_perfil_brecho(_id) {
@@ -148,7 +147,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            { array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            {array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -172,7 +171,7 @@ function Pesquisa_de_produtos() {
                                     </div>
 
                                 </div>
-                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/icons/icone_sacola_a.svg' alt='produtos'/><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
+                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/Sacola_pesquisar_produtos.svg' alt='produtos' /><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
 
                         </div>
 
@@ -180,7 +179,7 @@ function Pesquisa_de_produtos() {
 
                 </div>
 
-                <div className="container_botoes_de_paginas">
+                {array_produtos.length > 0 ? <div className="container_botoes_de_paginas">
 
                     <div className="container_alinhamento_do_conteudo_de_paginas">
 
@@ -205,6 +204,8 @@ function Pesquisa_de_produtos() {
                     </div>
 
                 </div>
+
+                    : ``}
 
                 {usuario_logado != `` && !conversa_aberta && <Chat />}
                 {conversa_aberta && <Chat_conversa />}

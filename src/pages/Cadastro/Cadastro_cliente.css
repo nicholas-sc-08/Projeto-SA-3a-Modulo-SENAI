@@ -57,7 +57,7 @@
 
 .container-informacoes-login-cadastro-cliente button {
     width: 25%;
-    height: 7%;
+    height: 6%;
 
     cursor: pointer;
 
@@ -162,13 +162,13 @@
     .container_informacoes_para_o_login button {
 
         width: 25%;
-        height: 7%;
+        height: 6%;
 
         cursor: pointer;
 
         transition: 0.3s;
 
-        border-radius: 10vw;
+        border-radius: 100vw;
         border: 0.1vw solid var(--cor_dois);
 
         font-family: var(--tipografia_secundaria);
@@ -288,7 +288,7 @@
         font-family: var(--tipografia_secundaria);
         color: var(--cor_seis);
         padding-left: 1%;
-        border-radius: 0.1vw;
+        border-radius: 0.6vw;
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator {
@@ -330,7 +330,7 @@
     .dv_frm_cadastro_cliente_botoes button{
 
         width: 265%;
-        min-height: 5vh;
+        min-height: 6vh;
 
         cursor: pointer;
         transition: 0.3s;
@@ -339,7 +339,7 @@
         font-size: 1rem;
         font-weight: 500;
 
-        border-radius: 0.1vw;
+        border-radius: 100vw;
         border: 0.1vw solid var(--cor_um);
         
         color: var(--cor_quatro);
@@ -380,6 +380,7 @@
     }
 
     .secao_inputs_tres_p_um input {
+        
         width: 128%;
         height: 3vw;
         background-color: transparent;
@@ -387,7 +388,7 @@
         font-family: var(--tipografia_secundaria);
         color: var(--cor_seis);
         padding-left: 1%;
-        border-radius: 0.1vw;
+        border-radius: 0.6vw;
         /* border: 1px solid red; */
     }
 
@@ -454,7 +455,7 @@
         font-family: var(--tipografia_secundaria);
         color: var(--cor_seis);
         padding-left: 1%;
-        border-radius: 0.1vw;
+        border-radius: 0.6vw;
     }
 
     .container_cadastro_cliente_secao_inputs_tres_coluna_um input:focus {
@@ -493,7 +494,7 @@
         font-family: var(--tipografia_secundaria);
         color: var(--cor_seis);
         padding-left: 1%;
-        border-radius: 0.1vw;
+        border-radius: 0.6vw;
     }
 
     .container_cadastro_cliente_secao_inputs_tres_coluna_dois input:focus {
