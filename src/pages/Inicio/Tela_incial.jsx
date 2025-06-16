@@ -224,6 +224,10 @@ function Tela_incial() {
     setTermoBuscado('')
   };
 
+  const redirecionarParaTelaEmAndamento = () => {
+    navegar(`/estamosChegando`);
+  };
+
   return (
     <div>
 
@@ -372,7 +376,7 @@ function Tela_incial() {
           </div>
 
           <div className="container-dois-cards-secao-quatro">
-            <div className="card-tres-secao-quatro" onClick={() => handleCategoryClick('doações')}>
+            <div className="card-tres-secao-quatro" onClick={() => redirecionarParaTelaEmAndamento()}>
               <p>Doações</p>
             </div>
 
