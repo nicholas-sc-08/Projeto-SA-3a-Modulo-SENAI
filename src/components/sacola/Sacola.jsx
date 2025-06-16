@@ -12,12 +12,12 @@ function Sacola() {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
-    const [produtos_exibido_na_sacola, set_produtos_exibido_na_sacola] = useState([]);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const ir_para_sacola = useNavigate(null);
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        if (usuario_logado.sacola) {
 
             set_sacola(usuario_logado.sacola);
         };
@@ -26,15 +26,8 @@ function Sacola() {
 
     useEffect(() => {
 
-        exibir_produtos_na_sacola();
-
-    }, [sacola]);
-
-    useEffect(() => {
-
         buscar_brechos();
         buscar_clientes();
-        exibir_produtos_na_sacola();
 
     }, []);
 
@@ -100,8 +93,6 @@ function Sacola() {
                 };
             };
 
-
-
         } catch (erro) {
 
             console.error(erro);
@@ -133,19 +124,6 @@ function Sacola() {
         };
     };
 
-    function exibir_produtos_na_sacola() {
-
-        if (sacola && sacola.length > 3) {
-
-            const produtos_exibidos = sacola.slice(0, 3);
-            set_produtos_exibido_na_sacola(produtos_exibidos);
-
-        } else {
-
-            set_produtos_exibido_na_sacola(sacola);
-        };
-    };
-
     function imagem_do_brecho(id_brecho) {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id == id_brecho);
@@ -162,6 +140,12 @@ function Sacola() {
         const preco_formatado = preco_total.toFixed(2).replace('.', ',');
 
         return `R$${preco_formatado}`;
+    };
+
+    function ir_sacola_geral() {
+
+        set_sacola_aberta(false);
+        ir_para_sacola(`/sacola`);
     };
 
     return (
@@ -181,7 +165,7 @@ function Sacola() {
 
                 <div className="container_produtos_na_sacola">
 
-                    {produtos_exibido_na_sacola && produtos_exibido_na_sacola.length > 0 ? produtos_exibido_na_sacola.map((produto, i) => (
+                    {sacola && sacola.length > 0 ? sacola.map((produto, i) => (
 
                         <div key={i} className='container_produtos_a_exibir_sacola'>
 
@@ -230,7 +214,7 @@ function Sacola() {
                 </div>
                 <div className="container_botao_da_sacola">
 
-                    <button onClick={() => ir_para_sacola(`/sacola`)}>Visualizar Sacola</button>
+                    <button onClick={() => ir_sacola_geral()}>Visualizar Sacola</button>
 
                 </div>
 

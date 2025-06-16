@@ -360,6 +360,12 @@
     color: var(--cor_seis);
     font-weight: 660;
 
+    width: 100%;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     padding-top: 2%;
     padding-bottom: 1%;
 }

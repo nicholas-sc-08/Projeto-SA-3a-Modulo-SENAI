@@ -13,6 +13,7 @@ function Perfil_Brecho() {
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
+  const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
@@ -20,7 +21,6 @@ function Perfil_Brecho() {
   const [ naoEBrecho, setNaoEBrecho] = useState(false)
 
   useEffect(() => {
-    
     
     if (!usuario_logado) {
       setNaoEBrecho(true)
@@ -54,6 +54,7 @@ function Perfil_Brecho() {
         telefone: usuario_logado.telefone || '',
         email: usuario_logado.email || '',
         cnpj: usuario_logado.cnpj || '',
+        logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
         nova_senha: '',
         confirmar_senha: '',
@@ -77,7 +78,7 @@ function Perfil_Brecho() {
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">
             <div className="logo-brecho-perfil-content">
-              <img src="" alt="logo-do-brecho" />
+              <img src={formCadastroBrecho.logo} alt="" />
             </div>
             <div className="infos-horario-endereco-cadastrou-brecho-content">
               <div className="endereco-e-horarios-contents">

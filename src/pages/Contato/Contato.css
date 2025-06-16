@@ -12,7 +12,7 @@
 
 .container-info-contato{
     width: 17%;
-    height: 365px;
+    height: 565px;
 
     margin: 70px 0 0 90px;
     border-radius: 19px;
@@ -33,7 +33,7 @@
     width: 50px;         
     height: 50px;         
     background-color: green; 
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .container-entre-em-contato{
@@ -43,7 +43,7 @@
     left:  490px;
     width: 55%;
     height: 465px;
-    bottom: 365px;
+    bottom: 565px;
 
 }
 
@@ -119,4 +119,19 @@
     height: 50px;
     margin-top: 2%;
     margin-left: 76%;
+}
+
+.detalhe-entre-em-contato{
+    display: flex;
+}
+
+.detalhe-entre-em-contato h3{
+    color: var(--cor_seis);
+    font-weight: 300;
+}
+.detalhe-entre-em-contato h4{
+    color: var(--cor_um_v_dois);
+    font-weight: 800;
+    padding-left: 5%;
+    padding-top: 0.9%;
 }

@@ -46,7 +46,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [altura_inicial_chat, set_altura_inicial_chat] = useState(`10%`);
     const [altura_inicial_header_chat, set_altura_inicial_header_chat] = useState(`100%`);
     const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null);
-    const [filtro_de_pesquisa, set_filtro_de_pesquisa] = useState({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
+    const [filtro_de_pesquisa, set_filtro_de_pesquisa] = useState({ preco: `20`, tamanhos: [], categoria_filtrada: ``});
     const [exibir_nome_brecho, set_exibir_nome_brecho] = useState(false);
     const [nome_do_brecho, set_nome_do_brecho] = useState(``);
     const [exibir_produtos_filtrados, set_exibir_produtos_filtrados] = useState(false);
@@ -68,6 +68,25 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard] = useState(``)
 
     const [termoBuscado, setTermoBuscado] = useState('')
+
+
+    // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
+    useEffect(() => {
+        const usuarioSalvo = localStorage.getItem('usuario_logado')
+        if (usuarioSalvo) {
+            set_usuario_logado(JSON.parse(usuarioSalvo))
+        }
+    }, []);
+
+    // 
+    useEffect(() => {
+        if (usuario_logado && Object.keys(usuario_logado).length > 0) { // aqui garante que os valores de usuario_logado existam e que ele salva os dados sempre que o usuario_logado estiver com algum dado que não seja apenas um valor null ou undefined
+            localStorage.setItem('usuario_logado', JSON.stringify(usuario_logado))
+        } else {
+            localStorage.removeItem('usuario_logado')  // quando o usuario fazer logout (sair da conta) o localStorage vai limpar os dados do cache, assim não acontece sobreposição de dados
+        }
+    }, [usuario_logado])
+
 
     return (
         <GlobalContext.Provider value={{

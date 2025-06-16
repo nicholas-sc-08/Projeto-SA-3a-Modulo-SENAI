@@ -91,7 +91,6 @@
 .container_imagens_do_produto img{
 
     width: 80%;
-    height: 70%;
 }
 
 .container_imagem_principal_produto{
@@ -145,7 +144,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;
     height: 100%;
 }
 

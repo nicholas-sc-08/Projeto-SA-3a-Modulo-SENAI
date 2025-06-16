@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './Pesquisa_de_produtos.css';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import { useState } from 'react';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa';
-import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
-import { useLocation, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
+import './Pesquisa_de_produtos.css';
 
 function Pesquisa_de_produtos() {
 
@@ -19,9 +22,12 @@ function Pesquisa_de_produtos() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
+    const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [pagina_atual, set_pagina_atual] = useState(1);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const navegar_para_produto = useNavigate(null);
+    const referencia_pesquisa_produtos = useRef(null);
 
     const location = useLocation();
 
@@ -61,6 +67,8 @@ function Pesquisa_de_produtos() {
 
             set_tipo_de_header(`usuario`);
         };
+
+        referencia_pesquisa_produtos.current.scrollIntoView();
 
     }, []);
 
@@ -123,7 +131,7 @@ function Pesquisa_de_produtos() {
 
         <AnimatePresence>
 
-            <motion.div className='container-alinhamento-all-pages' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
+            <motion.div className='container-alinhamento-all-pages' ref={referencia_pesquisa_produtos} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
                 <Header tipo={tipo_de_header} />
 
                 <div className="container_conteudo_pesquisa_produtos">
@@ -140,7 +148,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            {produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            { array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -164,7 +172,7 @@ function Pesquisa_de_produtos() {
                                     </div>
 
                                 </div>
-                            ))}
+                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/icons/icone_sacola_a.svg' alt='produtos'/><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
 
                         </div>
 

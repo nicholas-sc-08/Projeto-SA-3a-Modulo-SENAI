@@ -62,6 +62,7 @@
     height: 100%;
 
     outline: none;
+
     border: 0px;
     margin-left: 2%;
 
@@ -159,7 +160,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22%;
+    width: 30%;
     height: 100%;
 }
 
@@ -169,54 +170,37 @@
     width: 60%;
 }
 
-.container_conversa_nome_e_ultima_mensagem {
+.container_info_das_conversas_chat {
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 55%;
-    height: 35%;
+    width: 90%;
+    height: 40%;
 }
 
-.container_conversa_nome_e_ultima_mensagem h3 {
+.container_conversa_nome_e_hora {
 
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    height: 25%;
+}
+
+.container_conversa_nome_e_hora h3 {
+
+    width: 70%;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.3rem;
     font-family: var(--tipografia_primaria);
 
     color: var(--cor_seis);
-}
-
-.container_conversa_nome_e_ultima_mensagem span {
-
-    width: 100%;
-    height: 50%;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    font-family: var(--tipografia_primaria);
-    font-size: 0.9rem;
-    font-weight: 500;
-
-    color: var(--cor_seis_v_um);
-}
-
-.container_conversa_hora_ultima_mensagem {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 23%;
-    height: 100%;
 }
 
 .hora_da_ultima_mensagem {
@@ -226,13 +210,43 @@
     font-weight: 600;
 }
 
-.container_contador_de_mensagens_nao_lida {
+.container_conversa_contador_e_ultima_mensagem {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 55%;
+}
+
+.container_conversa_contador_e_ultima_mensagem p {
+
+    width: 75%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-weight: 500;
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis_v_um);
+}
+
+.container_contador_mensagens_nao_lida {
 
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 25%;
-    min-height: 23%;
+    width: 12%;
+    height: 100%;
+}
+
+.contador_de_mensagens_nao_lida {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
 
     font-family: var(--tipografia_primaria);
     font-size: 1rem;

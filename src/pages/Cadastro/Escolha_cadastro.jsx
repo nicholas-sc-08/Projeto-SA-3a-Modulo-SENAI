@@ -41,6 +41,7 @@ function Escolha_cadastro() {
             </div>
 
             <div className='ladoDireito-container-escolha-cadastro'>
+            <img className='logo-ladoDireito' src="./img/logo-verdeCamadinha2.svg" alt="" />
                 <h1>Crie sua conta Fly!</h1>
                 <p>Qual caminho você quer seguir?</p>
                 <div className='escolha-container'>
@@ -51,8 +52,15 @@ function Escolha_cadastro() {
                             <p>Explore peças únicas nos nossos brechós</p>
                         </div>
                     </div>
+                    <div className='quero-vender'>
+                    <input type="radio" />
+                        <div className='info-quero-vender'>
+                            <h3>Quero Vender</h3>
+                            <p>Compartilhe suas peças e dê uma nova vida à moda.</p>
+                        </div>
+                    </div>
                 </div>
-
+                    <button className='but-continuar-escolha-cadastro'>Continuar</button>
             </div>
         </div>
     )

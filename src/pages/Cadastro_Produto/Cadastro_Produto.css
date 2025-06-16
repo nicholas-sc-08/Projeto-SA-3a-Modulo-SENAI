@@ -225,49 +225,70 @@ body {
     
 }
 
-.tamanho.selecionado {
-  background: #466330;
-  color: white;
-  padding: 4px 8px;      /* menos espaço interno */
-  font-size: 12px;       /* texto menor */
-  height: 24px;          /* altura menor */
-  line-height: 24px;     /* alinhamento vertical */
-  border-radius: 4px;    /* cantos mais finos */
-  display: inline-block; /* garantir que não expanda demais */
-  min-width: 40px;       /* largura mínima, ajusta conforme quiser */
-  text-align: center;    /* centraliza texto */
-}
-
-
-
-
-
 .input-tecido{
     display: flex;
     flex-direction: column;
-    width: 21%;
+    width: fit-content;
+    align-items: center;
 
 }
 
-.Tecido{
-     padding: 8px 0;                 /* padding vertical */
+.tecido{              
     background: #F3F1EF;
     margin-top: 5px;
-    margin-left: 32px;
+    
     border-radius: 20px;
     cursor: text;
-    font-size: 0.7rem;
-    width: 60%;                    /* largura fixa ideal p/ 2 caracteres */
-    height: 20px;                   /* altura igual à largura → bolinha/quadradinho */
-    text-align: center;             /* centraliza texto horizontalmente */
+    font-size: 0.6rem;              
+    height: 20px;
+    width: fit-content;                   
+    text-align: center;             
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     transition: 0.2s;
-    transform: scale(1.6);
+    transform: scale(1.5);
     transform-origin: center center; /* Faz a escala acontecer a partir do centro */
     outline: none;
     border: 1px solid #d9d9d9; /* borda bem clarinha */
 }
+
+
+input:focus {
+  outline: none;
+  border: 2px solid #466330;
+  
+}
+
+.titulo-tecido{
+    align-items: center;
+}
+
+.lista-tecidos {
+  list-style: none;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 4px 0 0 0;
+  border-radius: 10%;
+  background: white;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-top: 50%;
+  margin-right: 100px;
+}
+
+.lista-tecidos li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.lista-tecidos li:hover {
+  background-color: #eee;
+}
+
 
 /* ========================
    CONTROLE DE QUANTIDADE

@@ -17,6 +17,14 @@ function Cadastro_Produto() {
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
 
+  const tecidos_disponiveis = [
+    "Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo",
+    "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano",
+    "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda",
+    "PVC", "EVA", "Neoprene"
+  ];
+
+
   // Estado de quantidade do produto
   const [quantidade, setQuantidade] = useState(1);
 
@@ -55,6 +63,10 @@ function Cadastro_Produto() {
     fk_id_brecho: usuario_logado._id, // brechó vinculado ao produto
   });
 
+  const [inputTecido, setInputTecido] = useState("");
+  const [tecidosFiltrados, setTecidosFiltrados] = useState(tecidos_disponiveis);
+
+
   // useEffect que roda quando o componente é carregado
   // Busca produtos e categorias + carrega dados caso esteja editando um produto
   useEffect(() => {
@@ -84,6 +96,15 @@ function Cadastro_Produto() {
       setCoresSelecionadas(informacoes_editar_produto.cor || []);
     }
   }, []);
+
+
+  useEffect(() => {
+    const resultado = tecidos_disponiveis.filter((tecido) =>
+      tecido.toLowerCase().includes(inputTecido.toLowerCase())
+    );
+    setTecidosFiltrados(resultado);
+  }, [inputTecido]);
+
 
   // Função para aumentar a quantidade
   const aumentarQuantidade = () =>
@@ -383,16 +404,43 @@ function Cadastro_Produto() {
 
             </div>
 
-            <div className="input-tecido">
-            <label>Tipo do Tecido</label>
-            <input
-              className="Tecido"
-              type="text"
-              onChange={(e) => 
-                setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value })}
-              value={array_cadastro_produto.composicao}
-            />
-          </div>
+            <div className="input-tecido" style={{ position: "relative" }}>
+              <label className="titulo-tecido">Tecido</label>
+              <input
+                type="text"
+                className="tecido"
+                value={inputTecido}
+                onChange={(e) => {
+                  setInputTecido(e.target.value);
+                  setArray_cadastro_produto({
+                    ...array_cadastro_produto,
+                    composicao: e.target.value,
+                  });
+                }}
+                placeholder="Digite o tecido"
+                autoComplete="off"
+              />
+              {inputTecido && tecidosFiltrados.length > 0 && (
+                <ul className="lista-tecidos">
+                  {tecidosFiltrados.map((tecido, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setInputTecido(tecido);
+                        setArray_cadastro_produto({
+                          ...array_cadastro_produto,
+                          composicao: tecido,
+                        });
+                        setTecidosFiltrados([]);
+                      }}
+                    >
+                      {tecido}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
 
             <div className="cores">
               <label>Seleção de Cores</label>
@@ -446,7 +494,7 @@ function Cadastro_Produto() {
             </select>
           </div>
 
-          
+
         </div>
 
         <div className="formulario-direito">
