@@ -60,7 +60,7 @@ function Footer() {
               <>
                 <Link to={"/"}>Início</Link>
                 <Link>Explorar brechós</Link>
-                <Link>Doações</Link>
+                <Link to={"/estamosChegando"}>Doações</Link>
                 <Link>Buscar</Link>
               </>
 
@@ -83,10 +83,10 @@ function Footer() {
             <h3>FAQ</h3>
             {(divAberta == 'faq' || !isMobile) && (
               <>
-                <Link>Vender no Fly</Link>
-                <Link>Como doar roupas</Link>
-                <Link>Comprar</Link>
-                <Link>Pagamentos</Link>
+                <Link to={"/estamosChegando"}>Vender no Fly</Link>
+                <Link to={"/estamosChegando"}>Como doar roupas</Link>
+                <Link to={"/buscarProdutos"}>Comprar</Link>
+                <Link to={"/estamosChegando"}>Pagamentos</Link>
               </>
             )}
 

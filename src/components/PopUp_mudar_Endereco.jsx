@@ -124,6 +124,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
   
   async function atualizarEnderecoBrecho() {
+    
     try {
       await api.put(`/Enderecos/${usuario_logado._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
 

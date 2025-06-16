@@ -22,7 +22,6 @@ function Perfil_Brecho() {
 
   useEffect(() => {
     
-    
     if (!usuario_logado) {
       setNaoEBrecho(true)
     } else {
@@ -79,7 +78,7 @@ function Perfil_Brecho() {
         <div className="perfil-brecho-content">
           <div className="parte-esquerda-content">
             <div className="logo-brecho-perfil-content">
-              <img src={formCadastroBrecho.logo} alt="logo-do-brecho" />
+              <img src={formCadastroBrecho.logo} alt="" />
             </div>
             <div className="infos-horario-endereco-cadastrou-brecho-content">
               <div className="endereco-e-horarios-contents">
