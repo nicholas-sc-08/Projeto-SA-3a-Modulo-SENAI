@@ -54,6 +54,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [tipo_de_header, set_tipo_de_header] = useState(`usuario`);
     const [sacola_aberta, set_sacola_aberta] = useState(false);
     const [sacola, set_sacola] = useState([]);
+    const [brecho_selecionado, set_brecho_selecionado] = useState(null);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], senha: ``, confirmarSenha: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -188,6 +189,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_sacola_aberta,
             sacola,
             set_sacola,
+            brecho_selecionado,
+            set_brecho_selecionado,
 
             id_do_produto_a_excluir,
             set_id_do_produto_a_excluir,
