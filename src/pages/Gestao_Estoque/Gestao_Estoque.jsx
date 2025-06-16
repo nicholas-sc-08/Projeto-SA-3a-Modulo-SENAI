@@ -121,7 +121,7 @@ function Gestao_Estoque() {
 
   function corMaisProxima(hex) {
     const rgb = hexParaRGB(hex);
-    if (!rgb) return "Cor desconhecida";
+      if (!rgb) return "Cor desconhecida";
 
     let corMaisPerto = null;
     let menorDiferenca = Infinity;

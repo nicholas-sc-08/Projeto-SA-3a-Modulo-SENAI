@@ -545,7 +545,7 @@
     justify-content: space-around;
     align-items: center;
     width: 90%;
-    height: 75%;
+    height: 65%;
 }
 
 .container_produto_embaralhado{
@@ -561,11 +561,12 @@
 
     border-radius: 2vw;
     border: 0.1vw solid var(--cor_quatro);
+    background-color: transparent;
 }
 
 .container_produto_embaralhado:hover{
 
-    border: 0.1vw solid var(--cor_seis);
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_imagem_do_produto{
@@ -587,14 +588,9 @@
     background-color: var(--cor_nove_v_dois);
 }
 
-.container_imagem_do_produto:hover{
-
-    background-color: var(--cor_doze_v_um);
-}
-
 .container_imagem_do_produto img{
 
-    width: 75%;
+    width: 65%;
 }
 
 .container_produto_embaralhado_info{
@@ -612,7 +608,7 @@
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    height: 55%;
+    height: 70%;
 }
 
 .contianer_produto_embaralhado_titulo h5{
@@ -632,7 +628,7 @@
 .contianer_produto_embaralhado_titulo img{
 
     width: 15%;
-    height: 70%;
+    height: 60%;
     border-radius: 100vw;
 
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
