@@ -11,13 +11,38 @@
     border-radius: 0.5vw;
     right: 4%;
     width: 24%;
-    height: 80px;
+    height: 120px;
     z-index: 3;
     justify-content: center;
 }
 
 .janela_button_perfil {
     /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.texto_janela_buttons{
+    /* border: 1px solid red; */
+    width: 100%;
+    color: var(--cor_seis);
+    font-family: var(--tipografia_primaria);
+    font-size: 0.6rem;
+    opacity: 80%;
+    padding-bottom: 3%;
+
+    text-align: center;
+}
+
+.texto_janela_buttons h2{
+    font-weight: 550;
+}
+
+.container-alinhamento-janela-button-perfil{
+    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -32,7 +57,7 @@
     font-size: 0.9rem;
     border-radius: 2vw;
     width: 48%;
-    height: 2.8rem;
+    height: 2.6rem;
     padding: 0 1rem;
     transition: 0.4s;
     cursor: pointer;
@@ -50,7 +75,7 @@
     font-size: 0.9rem;
     border-radius: 2vw;
     width: 48%;
-    height: 2.8rem;
+    height: 2.6rem;
     padding: 0 1rem;
     transition: 0.4s;
     cursor: pointer;
@@ -86,7 +111,6 @@
     font-weight: 500;
 
     transition: 0.4s;
-    /* border: 1px solid red; */
 }
 
 .janela_button_perfil_logout a:hover {
@@ -94,12 +118,12 @@
     font-weight: 550;
 }
 
-
 .container-imagem-pefil-usuario-header {
     display: flex;
     align-items: center;
     padding: 1.5%;
-    width: 75%;
+    width: 88%;
+    /* border: 1px solid red; */
 }
 
 .container-imagem-pefil-usuario-header:hover {
