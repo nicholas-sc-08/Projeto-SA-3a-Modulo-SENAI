@@ -101,6 +101,8 @@ function Header({ tipo }) {
 
     }, [])
 
+// testando uns negocios aqui
+
     useEffect(() => {
 
         function clickForaContainerPerfil(event) {
