@@ -16,7 +16,7 @@ export default function Contato() {
 
       <div className='container-info-contato'>
         <div className='cabecario-info-contato'>
-          <div className='circulo-icon-contato'><img src=".img/telefone.svg" alt="" /></div>
+          <div className='circulo-icon-contato'><img src="./img/telefone.svg" alt="" /></div>
           <h3>Ligue Para Nós</h3>
         </div>
           <p>Estamos disponíveis 24 horas por dia, 7 dias por semana.</p>
@@ -26,7 +26,7 @@ export default function Contato() {
           </div>
           <hr />
           <div className='cabecario-info-contato'>
-          <div className='circulo-icon-contato'><img src=".img/telefone.svg" alt="" /></div>
+          <div className='circulo-icon-contato'><img src="./img/envelope.svg" alt="" /></div>
           <h3>Ligue Para Nós</h3>
         </div>
         <p>Preencha nosso formulário e entraremos em contato com você em até 24 horas.</p>

@@ -11,12 +11,30 @@
 }
 
 .container-info-contato{
-    width: 17%;
-    height: 565px;
+    width: 22%;
+    height: 465px;
 
-    margin: 70px 0 0 90px;
+    margin: 70px 0 8px 90px;
     border-radius: 19px;
+    margin-left: 10%;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
+}
+
+.container-info-contato p{
+    margin-left: 3%;
+    margin-top: 5%;
+    font-size: 18px;
+}
+
+.container-info-contato hr{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.detalhe-entre-em-contato{
+    padding-top: 2%;
+    padding-left: 3%;
 }
 
 .cabecario-info-contato{
@@ -31,19 +49,26 @@
 
 .circulo-icon-contato{
     width: 50px;         
-    height: 50px;         
-    background-color: green; 
+    height: 50px;        
+    background-color: var(--cor_um); 
     border-radius: 50%;
+}
+
+.circulo-icon-contato img{
+
+    width: 55%;
+    margin-left: 23%;
+    margin-top: 19%;
 }
 
 .container-entre-em-contato{
     position: relative;
     border-radius: 19px;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
-    left:  490px;
+    left:  590px;
     width: 55%;
     height: 465px;
-    bottom: 565px;
+    bottom: 465px;
 
 }
 
@@ -67,7 +92,7 @@
 
 .nome-entre-em-contato input, .email-entre-em-contato input, .telefone-entre-em-contato input{
     height: 2.3vw;
-    width: 310px;
+    width: 210px;
     padding-left: 4%;
     outline: none;
     border: none;
@@ -77,15 +102,15 @@
 
     background-color: #fcf7e900;
     border-radius: 0.8rem;
-    border: 1px solid var(--cor_dois);
+    border: 2px solid var(--cor_dois);
 }
 
 .menssagem-cliente-entre-em-contato{
     height: 9.8vw;
-    width: 1005px;
+    width: 795px;
     padding-left: 2%;
     margin-top: 3%;
-    margin-left: 2%;
+    margin-left: 4%;
 
 
     font-family: var(--tipografia_secundaria);
@@ -93,12 +118,12 @@
 
     background-color: #fcf7e900;
     border-radius: 0.8rem;
-    border: 1px solid var(--cor_dois);
+    border: 2px solid var(--cor_dois);
 }
 
 .menssagem-cliente-entre-em-contato input{
     height: 2.3vw;
-    width: 310px;
+    width: 210px;
     padding-left: 2%;
     outline: none;
     border: none;
