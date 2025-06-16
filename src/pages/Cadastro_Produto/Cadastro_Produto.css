@@ -33,15 +33,21 @@ body {
 
 .titulo2 {
     color: #466330;
+    margin-left: 3.8%;
+    font-size: 1.8rem;
+    transform: scale(1);
+    transform-origin: center center; 
+    font-weight: 600;
+    
 }
 
 .linha-titulo-2 {
     background-color: rgba(0, 0, 0, 0.279);
     opacity: 0.5;
     height: 2px;
-    width: 80%;
+    width: 90%;
     border: none;
-    margin-left: 9.8%;
+    margin-left: 5%;
     margin-top: 9px;
 }
 
