@@ -72,7 +72,9 @@ export const GlobalContextProvider = ({ children }) => {
 
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
     useEffect(() => {
+        
         const usuarioSalvo = localStorage.getItem('usuario_logado')
+        
         if (usuarioSalvo) {
             set_usuario_logado(JSON.parse(usuarioSalvo))
         }
@@ -80,6 +82,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     // 
     useEffect(() => {
+        
         if (usuario_logado && Object.keys(usuario_logado).length > 0) { // aqui garante que os valores de usuario_logado existam e que ele salva os dados sempre que o usuario_logado estiver com algum dado que não seja apenas um valor null ou undefined
             localStorage.setItem('usuario_logado', JSON.stringify(usuario_logado))
         } else {

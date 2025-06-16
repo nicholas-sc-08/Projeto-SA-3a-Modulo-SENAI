@@ -27,7 +27,8 @@ function Filtro_de_pesquisa() {
     const [ exibir_estilo_dois, set_exibir_estilo_dois ] = useState(false);
     const [ exibir_estilo_tres, set_exibir_estilo_tres ] = useState(false);
     const [ array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa ] = useState([`PP`, `P`, `M`, `G`]);
-    const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);    
+    const [ tamanhos_selecionados, set_tamanhos_selecionados ] = useState([]);
+    const [ ja_pesquisado, set_ja_pesquisado ] = useState(false);    
     const [ preco_exibido, set_preco_exibido ] = useState(``);  
     const [ preco_maximo, set_preco_maximo ] = useState(300);
 
@@ -213,6 +214,19 @@ function Filtro_de_pesquisa() {
         if(index_da_cateogria != -1){
 
             return array_categorias[index_da_cateogria].nome;
+        };
+    };
+
+    function aplicar_filtro(){
+
+        if(ja_pesquisado){
+
+            
+            
+        } else {
+
+            set_ja_pesquisado(true);
+            set_exibir_produtos_filtrados(true);
         };
     };
 
@@ -437,7 +451,7 @@ function Filtro_de_pesquisa() {
             <div className="container_botao_filtro_de_pesquisa">
                 
                 <button className='botao_filtro_de_pesquisa_limpar' onClick={() => limpar_filtro_de_pesquisa()}>Limpar</button>
-                <button className='botao_filtro_de_pesquisa_aplicar'onClick={() => set_exibir_produtos_filtrados(true)}>Aplicar Filtro</button>
+                <button className='botao_filtro_de_pesquisa_aplicar'onClick={() => aplicar_filtro()}>Aplicar Filtro</button>
 
             </div>
 
