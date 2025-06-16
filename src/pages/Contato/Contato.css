@@ -1,3 +1,7 @@
+.corpo-contato{
+    margin-top: 7%;
+}
+
 .cabecalho-tela-contato{
     display: flex;
     padding: 30px 0 0 90px;
@@ -48,27 +52,26 @@
 }
 
 .circulo-icon-contato{
-    width: 50px;         
-    height: 50px;        
+    width: 45px;         
+    height: 45px;        
     background-color: var(--cor_um); 
     border-radius: 50%;
 }
 
 .circulo-icon-contato img{
-
-    width: 55%;
-    margin-left: 23%;
-    margin-top: 19%;
+    width: 65%;
+    margin-left: 18%;
+    margin-top: 20%;
 }
 
 .container-entre-em-contato{
     position: relative;
     border-radius: 19px;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
-    left:  590px;
+    left:  670px;
     width: 55%;
     height: 465px;
-    bottom: 465px;
+    bottom: 470px;
 
 }
 
@@ -107,10 +110,10 @@
 
 .menssagem-cliente-entre-em-contato{
     height: 9.8vw;
-    width: 795px;
-    padding-left: 2%;
+    width: 910px;
+    padding-left: 1%;
     margin-top: 3%;
-    margin-left: 4%;
+    margin-left: 7%;
 
 
     font-family: var(--tipografia_secundaria);
@@ -124,7 +127,7 @@
 .menssagem-cliente-entre-em-contato input{
     height: 2.3vw;
     width: 210px;
-    padding-left: 2%;
+    padding-left: 1%;
     outline: none;
     border: none;
 
@@ -143,7 +146,7 @@
     width: 20%;
     height: 50px;
     margin-top: 2%;
-    margin-left: 76%;
+    margin-left: 74%;
 }
 
 .detalhe-entre-em-contato{
