@@ -55,7 +55,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [sacola_aberta, set_sacola_aberta] = useState(false);
     const [sacola, set_sacola] = useState([]);
 
-    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], senha: ``, confirmarSenha: `` });
+    const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], senha: ``, confirmarSenha: ``, horario_funcionamento: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
     const [cadastroParteUmBrecho, setCadastroParteUmBrecho] = useState(true)
     const [cadastroParteDoisBrecho, setCadastroParteDoisBrecho] = useState(false)

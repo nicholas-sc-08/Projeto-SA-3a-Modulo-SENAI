@@ -92,6 +92,11 @@ body {
     justify-content: center;
 }
 
+.perfil-brecho-logo img {
+    height: 100%;
+    width: 100%;
+}
+
 .info-horario-perfil-brecho {
 
     /* border: 3px solid #00E69D; */

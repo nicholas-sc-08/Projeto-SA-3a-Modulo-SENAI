@@ -56,8 +56,6 @@ function Perfil_Brecho() {
         cnpj: usuario_logado.cnpj || '',
         logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
-        nova_senha: '',
-        confirmar_senha: '',
       })
     }
   }, [usuario_logado])
