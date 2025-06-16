@@ -28,7 +28,7 @@
     align-items: center;
 
     width: 80%;
-    height: 85%;
+    height: 82%;
 
     border-radius: 1vw;
     border: 0.1vw solid var(--cor_quatro);
@@ -59,7 +59,7 @@
     cursor: pointer;
     border-radius: 1vw;
     width: 100%;
-    min-height: 30%;
+    min-height: 33%;
     background-color: transparent;
 }
 
@@ -86,7 +86,7 @@
 
 .container_imagem_do_produto_sacola_geral img {
 
-    width: 80%;
+    width: 70%;
 }
 
 .container_info_produto_sacola_geral {
@@ -220,6 +220,10 @@
 
 .botao_diminuir_contador_sacola_geral{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     transition: 0.3s;
     cursor: pointer;
 
@@ -244,6 +248,10 @@
 }
 
 .botao_aumentar_contador_sacola_geral{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     transition: 0.3s;
     cursor: pointer;
@@ -403,7 +411,7 @@
     cursor: pointer;
 
     width: 100%;
-    height: 70%;
+    height: 80%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;

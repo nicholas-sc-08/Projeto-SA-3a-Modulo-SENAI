@@ -98,6 +98,27 @@ function Sacola_geral() {
         };
     };
 
+    async function aumentar_quantidade_selecionada(produto_selecionado){
+
+        try {
+            
+            const produto_atualizado = {...produto_selecionado, quantidade_selecionada: produto_selecionado.quantidade_selecionada + 1};
+            const produtos = sacola.map(p => p._id == produto_selecionado._id ? produto_atualizado : p);
+
+            if(usuario_logado._id){
+
+                const usuario_atualizado = {...usuario_logado, sacola: produtos};
+                const dados_do_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+                set_sacola(produtos);
+                set_usuario_logado(dados_do_usuario.data);
+            };
+
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
+
     return (
 
         <AnimatePresence>
@@ -151,7 +172,7 @@ function Sacola_geral() {
 
                                                 <button disabled={produto_sacola.quantidade_selecionada == 1} className='botao_diminuir_contador_sacola_geral' onClick={e => { e.stopPropagation(); diminuir_quantia_selecionada(produto_sacola); }}>-</button>
                                                 <span>{produto_sacola.quantidade_selecionada}</span>
-                                                <button disabled={produto_sacola.quantidade_selecionada == produto_sacola.quantidade} className='botao_aumentar_contador_sacola_geral' onClick={e => { e.stopPropagation(); }}>+</button>
+                                                <button disabled={produto_sacola.quantidade_selecionada == produto_sacola.quantidade} className='botao_aumentar_contador_sacola_geral' onClick={e => { e.stopPropagation(); aumentar_quantidade_selecionada(produto_sacola)}}>+</button>
 
                                             </div>
                                         </div>

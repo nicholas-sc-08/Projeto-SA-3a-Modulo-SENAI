@@ -288,13 +288,25 @@ function Produto() {
     };
 
     function hexa_para_rgb(hex) {
-        if (typeof hex !== "string") return null;
-        if (!hex.startsWith("#")) hex = "#" + hex;
+        if (typeof hex !== "string"){
+
+            return null;
+        }
+        
+        if (!hex.startsWith("#")){
+
+            hex = "#" + hex;
+        } 
 
         const match = hex.match(/^#([0-9a-fA-F]{6})$/);
-        if (!match) return null;
+        
+        if (!match){
+
+            return null
+        };
 
         const bigint = parseInt(match[1], 16);
+        
         return {
             r: (bigint >> 16) & 255,
             g: (bigint >> 8) & 255,
@@ -304,7 +316,10 @@ function Produto() {
 
     function cor_mais_proxima(hex) {
         const rgb = hexa_para_rgb(hex);
-        if (!rgb) return "Cor desconhecida";
+        if (!rgb){
+
+            return "Cor desconhecida"
+        };
 
         let cor_mais_proxima = null;
         let menor_diferença = Infinity;
