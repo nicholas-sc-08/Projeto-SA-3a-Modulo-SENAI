@@ -357,7 +357,7 @@ function Cadastro_brecho() {
   return (
     <div>
       <div className="alinhamento-fases-container-cadastro">
-    
+
         <div className="container-ir-para-tela-login-alinhamento">
           <AnimatePresence>
             {!animandoCadastro && (
