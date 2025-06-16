@@ -1,9 +1,11 @@
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import './Produto.css';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Chat_conversa from '../../components/chat/Chat_conversa';
@@ -11,7 +13,7 @@ import Chat from '../../components/chat/Chat';
 import Footer from '../../components/Footer';
 import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
-import { motion, AnimatePresence } from 'framer-motion';
+import './Produto.css';
 
 function Produto() {
 
@@ -192,7 +194,7 @@ function Produto() {
 
     function ir_para_produto_selecionado(produto_selecionado) {
 
-        refencia_do_produto.current.scrollIntoView({ behavior: `smooth` });
+        refencia_do_produto.current.scrollIntoView();
         set_produto(produto_selecionado);
         set_imagem_selecionada(0);
         sortear_produtos();
@@ -341,7 +343,9 @@ function Produto() {
     }
 
     return (
-        <div className='container_visualizar_produto' ref={refencia_do_produto}>
+        <AnimatePresence>
+
+        <motion.div className='container_visualizar_produto' ref={refencia_do_produto}  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
 
             {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada />}
             {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
@@ -547,7 +551,8 @@ function Produto() {
 
             <Footer />
 
-        </div>
+        </motion.div>
+        </AnimatePresence>
     )
 }
 
