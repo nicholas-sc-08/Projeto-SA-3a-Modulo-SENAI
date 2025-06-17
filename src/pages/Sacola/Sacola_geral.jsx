@@ -111,6 +111,9 @@ function Sacola_geral() {
                 const dados_do_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_sacola(produtos);
                 set_usuario_logado(dados_do_usuario.data);
+            } else {
+
+                set_sacola(produtos);
             };
 
         } catch (erro) {
