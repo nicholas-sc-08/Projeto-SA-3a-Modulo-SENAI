@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     width: 90%;
-    height: 84%;
+    height: 82%;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 1vw;
@@ -352,8 +352,7 @@
     flex-direction: column;
     justify-content: space-around;
     width: 80%;
-    height: 17%;
-    margin-top: 3%;
+    height: 20%;
 }
 
 .container_pesquisa_por_estilos p{
@@ -468,7 +467,7 @@
     transition: 0.3s;
     cursor: pointer;
      
-    width: 60%;
+    width: 55%;
     height: 80%;
 
     border-radius: 2vw;
@@ -493,7 +492,7 @@
     transition: 0.3s;
     cursor: pointer;
      
-    width: 30%;
+    width: 35%;
     height: 80%;
 
     border-radius: 2vw;

@@ -204,19 +204,24 @@ function Filtro_de_pesquisa() {
         buscar_produtos();
     };
 
-function aplicar_filtro() {
-    
-    const encontrar_categoria = array_categorias.find(categoria => categoria.nome.toUpperCase().includes(filtro_de_pesquisa.categoria_filtrada.toUpperCase()));
-    const filtrar_produtos_selecionados = array_produtos_original.filter(p => {
-        
-        const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
-        const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
-        
-        return filtrar_por_preco && filtrar_por_categoria;
-    });
+    function aplicar_filtro() {
 
-    set_array_produtos(filtrar_produtos_selecionados);
-}
+        const encontrar_categoria = array_categorias.find(categoria => categoria.nome.toUpperCase().includes(filtro_de_pesquisa.categoria_filtrada.toUpperCase()));
+        const filtrar_produtos_selecionados = array_produtos_original.filter(p => {
+
+            const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
+
+            if(filtro_de_pesquisa.categoria_filtrada){
+
+                const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
+                return filtrar_por_preco && filtrar_por_categoria;
+            };
+
+            return filtrar_por_preco;
+        });
+
+        set_array_produtos(filtrar_produtos_selecionados);
+    };
 
 
     function categoria_selecionada(categoria) {
