@@ -95,6 +95,7 @@
 
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .container_pesquisa_filtro_dois button{
@@ -518,8 +519,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
@@ -561,8 +561,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
@@ -604,8 +603,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
@@ -647,8 +645,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
@@ -690,8 +687,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
@@ -733,8 +729,7 @@
     flex-direction: column;
     align-items: space-around;
 
-    height: 100%;
-    margin-top: 2%;
+    height: 30%;
     margin-bottom: 2%;
 
     opacity: 0;
