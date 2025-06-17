@@ -24,8 +24,8 @@ function Pesquisa_de_produtos() {
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
     const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
-    const [pagina_atual, set_pagina_atual] = useState(1);
-    const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
+    const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
     const referencia_pesquisa_produtos = useRef(null);
 
@@ -148,7 +148,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            { array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            {array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -172,7 +172,7 @@ function Pesquisa_de_produtos() {
                                     </div>
 
                                 </div>
-                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/Sacola_pesquisar_produtos.svg' alt='produtos'/><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
+                            )) : <div className='container_nenhum_produto_buscar'><img src='./img/Sacola_pesquisar_produtos.svg' alt='produtos' /><p>Não encontramos nenhum produto correspondente à sua pesquisa. Experimente usar outros termos ou alterar os filtros!</p></div>}
 
                         </div>
 
@@ -180,31 +180,34 @@ function Pesquisa_de_produtos() {
 
                 </div>
 
-                <div className="container_botoes_de_paginas">
+                {array_produtos.length > 0 ?
 
-                    <div className="container_alinhamento_do_conteudo_de_paginas">
+                    <div className="container_botoes_de_paginas">
 
-                        <div className="container_botao_voltar_pagina_esquerdo">
+                        <div className="container_alinhamento_do_conteudo_de_paginas">
 
-                            <button onClick={() => set_pagina_atual(pagina => Math.max(pagina - 1, 1))}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
+                            <div className="container_botao_voltar_pagina_esquerdo">
 
-                        </div>
+                                <button onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
 
-                        <div className="container_numero_de_paginas">
+                            </div>
 
-                            <span>{pagina_atual} de {total_de_paginas}</span>
+                            <div className="container_numero_de_paginas">
 
-                        </div>
+                                <span>{pagina_atual} de {total_de_paginas}</span>
 
-                        <div className="container_botao_voltar_pagina_direito">
+                            </div>
 
-                            <button onClick={() => set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas))}><img src='./img/icons/icone_seta_direita.svg' /></button>
+                            <div className="container_botao_voltar_pagina_direito">
+
+                                <button onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
+
+                            </div>
 
                         </div>
 
                     </div>
-
-                </div>
+                    : ``}
 
                 {usuario_logado != `` && !conversa_aberta && <Chat />}
                 {conversa_aberta && <Chat_conversa />}

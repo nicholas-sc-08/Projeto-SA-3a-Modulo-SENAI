@@ -78,7 +78,7 @@
 
     margin-top: 15%;
     border-radius: 1vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: var(--cor_doze);
 }
 
@@ -110,13 +110,16 @@
     background-color: var(--cor_doze);
 }
 
+.container_imagem_principal_produto img:hover{
+
+    width: 85%;
+}
 
 .container_imagem_principal_produto img{
 
     transition: 0.3s;
 
     width: 80%;
-    height: 65%;
 }
 
 .container_info_do_produto_conteudo{
@@ -159,13 +162,14 @@
 .contianer_pop_up_nome_do_brecho{
 
     position: absolute;
-    right: 12%;
+    right: 14%;
+    top: 35%;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 8%;
+    width: 12%;
     height: 5%;
     
     border-top-left-radius: 100vw;
@@ -173,7 +177,7 @@
     border-bottom-left-radius: 100vw;
     border-bottom-right-radius: 100vw;
 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
     background-color: var(--cor_quatro);
 }
@@ -182,6 +186,7 @@
     font-weight: 550;
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
+    
     color: var(--cor_seis);
 }
 

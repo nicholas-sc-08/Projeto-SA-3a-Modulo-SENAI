@@ -396,13 +396,9 @@ function Produto() {
 
                                 {exibir_nome_brecho &&
 
-                                    <motion.div initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
-
-                                        <div className='contianer_pop_up_nome_do_brecho'>
+                                    <motion.div className='contianer_pop_up_nome_do_brecho' initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
 
                                             <span>{nome_do_brecho}</span>
-
-                                        </div>
 
                                     </motion.div>
 
