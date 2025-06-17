@@ -8,7 +8,7 @@ function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-    const [ array_produtos_original, set_array_produtos_original ] = useState([]);
+    const [array_produtos_original, set_array_produtos_original] = useState([]);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
     const [botao_titulo_precos_deg, set_botao_titulo_precos_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_um_deg, set_botao_filtro_um_deg] = useState(`rotate(0deg)`);
@@ -160,12 +160,6 @@ function Filtro_de_pesquisa() {
         return array_a_ser_exibido;
     };
 
-    function limpar_filtro_de_pesquisa() {
-
-        set_filtro_de_pesquisa({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
-        buscar_produtos();
-    };
-
     function girar_botao_titulo_preco() {
 
         botao_titulo_precos_deg == `rotate(0deg)` ? set_botao_titulo_precos_deg(`rotate(180deg)`) : set_botao_titulo_precos_deg(`rotate(0deg)`);
@@ -204,16 +198,31 @@ function Filtro_de_pesquisa() {
         };
     };
 
-    function aplicar_filtro() {
+    function limpar_filtro_de_pesquisa() {
 
-        const filtrar_produtos_selecionados = array_produtos_original.filter(p => p.preco <= filtro_de_pesquisa.preco);
-        set_array_produtos(filtrar_produtos_selecionados);
+        set_filtro_de_pesquisa({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
+        buscar_produtos();
     };
 
-    function categoria_selecionada(categoria){
+function aplicar_filtro() {
+    
+    const encontrar_categoria = array_categorias.find(categoria => categoria.nome.toUpperCase().includes(filtro_de_pesquisa.categoria_filtrada.toUpperCase()));
+    const filtrar_produtos_selecionados = array_produtos_original.filter(p => {
+        
+        const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
+        const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
+        
+        return filtrar_por_preco && filtrar_por_categoria;
+    });
+
+    set_array_produtos(filtrar_produtos_selecionados);
+}
+
+
+    function categoria_selecionada(categoria) {
 
         const esta_selecionada = filtro_de_pesquisa.categoria_filtrada.toUpperCase().includes(categoria.toUpperCase());
-        
+
         return esta_selecionada;
     };
 
