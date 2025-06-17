@@ -1,13 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { useEffect } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import './DashBoard.css';
+import { AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Inicio_dashboard from '../../components/Inicio_dashboard';
 import Clientes_dashboard from '../../components/Clientes_dashboard.jsx';
 import Categorias_dashboard from '../../components/Categorias_dashboard.jsx';
 import Produtos_dashboard from '../../components/Produtos_dashboard.jsx';
-import { useNavigate } from 'react-router-dom';
 import api from '../../services/api.js';
 import Brechos_dashboard from '../../components/Brechos_dashboard.jsx';
+import './DashBoard.css';
 
 function DashBoard() {
 
@@ -93,14 +96,18 @@ function DashBoard() {
     };
 
     return (
-    <div>
-        { inicio_dashboard && <Inicio_dashboard/>}
-        { clientes_dashboard && <Clientes_dashboard/>}
-        { categorias_dashboard && <Categorias_dashboard/>}
-        { produtos_dashboard && <Produtos_dashboard />}
-        { brechos_dashboard && <Brechos_dashboard />}
-    </div>
-  )
+        <AnimatePresence>
+
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+                {inicio_dashboard && <Inicio_dashboard />}
+                {clientes_dashboard && <Clientes_dashboard />}
+                {categorias_dashboard && <Categorias_dashboard />}
+                {produtos_dashboard && <Produtos_dashboard />}
+                {brechos_dashboard && <Brechos_dashboard />}
+            </motion.div>
+        
+        </AnimatePresence>
+    )
 }
 
 export default DashBoard

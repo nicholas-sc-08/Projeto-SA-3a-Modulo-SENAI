@@ -1,16 +1,20 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import { useState } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
-import './Categorias_dashboard.css';
+import { useNavigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Pop_up_de_cadastrar_categoria from './Pop_up_de_cadastrar_categoria.jsx';
-import axios from 'axios';
 import Pop_up_de_notificacao_cadastro_categoria from './Pop_up_de_notificacao_cadastro_categoria.jsx';
 import Pop_up_de_editar_categoria from './Pop_up_de_editar_categoria.jsx';
 import Pop_up_de_notificacao_editar_categoria from './Pop_up_de_notificacao_editar_categoria.jsx';
 import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
 import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
-import { useNavigate } from 'react-router-dom';
 import Header from './Header.jsx';
 import api from '../services/api.js';
+import './Categorias_dashboard.css';
 
 function Categorias_dashboard() {
 
@@ -24,13 +28,13 @@ function Categorias_dashboard() {
   const { pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria } = useContext(GlobalContext);
   const { pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria } = useContext(GlobalContext);
   const { pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria } = useContext(GlobalContext);
+  const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const [editar_categoria, set_editar_categoria] = useState(false);
   const [texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa] = useState(``);
   const [array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa] = useState([]);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState(false);
   const [categorias_filtradas, set_categorias_filtradas] = useState(``);
   const referencia_input = useRef(null);
-  const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   function voltar_para_o_inicio() {
@@ -121,112 +125,116 @@ function Categorias_dashboard() {
   }, [pop_up_notificacao_cadastro_categoria, pop_up_notificacao_editar_categoria, pop_up_notificacao_excluir_categoria]);
 
   return (
-    <div className='container_categorias_dashboard'>
+    <AnimatePresence>
 
-      <Header tipo='admin' />
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className='container_categorias_dashboard'>
 
-      {pop_up_de_cadastrar_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria />}
+        <Header tipo='admin' />
 
-      {pop_up_notificacao_cadastro_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_notificacao_cadastro_categoria && <Pop_up_de_notificacao_cadastro_categoria />}
+        {pop_up_de_cadastrar_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_de_cadastrar_categoria && <Pop_up_de_cadastrar_categoria />}
 
-      {pop_up_de_editar_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_de_editar_categoria && <Pop_up_de_editar_categoria />}
+        {pop_up_notificacao_cadastro_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_notificacao_cadastro_categoria && <Pop_up_de_notificacao_cadastro_categoria />}
 
-      {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria />}
+        {pop_up_de_editar_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_de_editar_categoria && <Pop_up_de_editar_categoria />}
 
-      {pop_up_de_excluir_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_de_excluir_categoria && <Pop_up_de_excluir_categoria />}
+        {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria />}
 
-      {pop_up_notificacao_excluir_categoria && <div className='container_escurecer_tela'></div>}
-      {pop_up_notificacao_excluir_categoria && <Pop_up_de_notificacao_excluir_categoria />}
+        {pop_up_de_excluir_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_de_excluir_categoria && <Pop_up_de_excluir_categoria />}
+
+        {pop_up_notificacao_excluir_categoria && <div className='container_escurecer_tela'></div>}
+        {pop_up_notificacao_excluir_categoria && <Pop_up_de_notificacao_excluir_categoria />}
 
 
-      <div className="container-alinhamento-imagem-titulo-categorias-dashboard">
-        <div className="container-alinhamento-imagem-categorias-dashboard">
-          <div className="container-alinhamento-imagem-titulo-quantidade-categorias-dashboard">
-            <div className="fundo-cinza-imagem-categorias-dashboard">
-              <div className="fundo-verde-imagem-categorias-dashboard">
-                <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="Icone categorias dashboard" />
+        <div className="container-alinhamento-imagem-titulo-categorias-dashboard">
+          <div className="container-alinhamento-imagem-categorias-dashboard">
+            <div className="container-alinhamento-imagem-titulo-quantidade-categorias-dashboard">
+              <div className="fundo-cinza-imagem-categorias-dashboard">
+                <div className="fundo-verde-imagem-categorias-dashboard">
+                  <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="Icone categorias dashboard" />
+                </div>
+              </div>
+
+              <div className="container-alinhamento-titulo-categorias-dashboard">
+                <p className='titulo-um-categorias-dashboard'>Categorias</p>
+                <p className='numero-de-categorias-dashboard'>{array_categorias.length}</p>
               </div>
             </div>
 
-            <div className="container-alinhamento-titulo-categorias-dashboard">
-              <p className='titulo-um-categorias-dashboard'>Categorias</p>
-              <p className='numero-de-categorias-dashboard'>{array_categorias.length}</p>
+            <div className="container-sair-de-categorias-dashboard" onClick={voltar_para_o_inicio}>
+              <p>Voltar</p>
+
+              <img src="./img/icone_dashboard_sair.svg" alt="ir para a tela inicial" />
             </div>
-          </div>
-
-          <div className="container-sair-de-categorias-dashboard" onClick={voltar_para_o_inicio}>
-            <p>Voltar</p>
-
-            <img src="./img/icone_dashboard_sair.svg" alt="ir para a tela inicial" />
           </div>
         </div>
-      </div>
 
 
-      <div className="container_tabela_categorias">
+        <div className="container_tabela_categorias">
 
-        <div className="container_tabela_categorias_header">
+          <div className="container_tabela_categorias_header">
 
-          <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
+            <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
 
-            <img src="./img/LupaIcon.svg" alt="Lupa" />
-            <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)} />
-
-          </div>
-
-          <div className="container_botoes_header_categorias">
-
-
-            <div className="container_tabela_categorias_header_cadastrar_categoria">
-
-              <button onClick={() => set_pop_up_de_cadastrar_categoria(true)}>Nova Categoria</button>
+              <img src="./img/LupaIcon.svg" alt="Lupa" />
+              <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)} />
 
             </div>
 
-            <div className="container_tabela_categorias_header_editar_categoria">
+            <div className="container_botoes_header_categorias">
 
-              <button onClick={() => set_editar_categoria(!editar_categoria)}>Editar Categoria</button>
+
+              <div className="container_tabela_categorias_header_cadastrar_categoria">
+
+                <button onClick={() => set_pop_up_de_cadastrar_categoria(true)}>Nova Categoria</button>
+
+              </div>
+
+              <div className="container_tabela_categorias_header_editar_categoria">
+
+                <button onClick={() => set_editar_categoria(!editar_categoria)}>Editar Categoria</button>
+
+              </div>
 
             </div>
 
           </div>
 
+          <div className="container_subtitulo_tabela_categorias">
+
+            <h2>Categorias</h2>
+
+          </div>
+
+          <div className="container_de_categorias_da_tabela">
+
+            {texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
+
+              <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria._id)}>
+
+                <span>{editar_categoria && "· "}{categoria.nome}</span>
+
+              </div>
+            )) : categorias_filtradas.map((categoria, i) => (
+
+              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria._id)}>
+
+                <span>{editar_categoria && "· "}{categoria.nome}</span>
+
+              </div>
+            ))}
+
+          </div>
+
         </div>
 
-        <div className="container_subtitulo_tabela_categorias">
-
-          <h2>Categorias</h2>
-
-        </div>
-
-        <div className="container_de_categorias_da_tabela">
-
-          {texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
-
-            <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria._id)}>
-
-              <span>{editar_categoria && "· "}{categoria.nome}</span>
-
-            </div>
-          )) : categorias_filtradas.map((categoria, i) => (
-
-            <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria._id)}>
-
-              <span>{editar_categoria && "· "}{categoria.nome}</span>
-
-            </div>
-          ))}
-
-        </div>
-
-      </div>
-
-    </div>
+      </motion.div>
+      
+    </AnimatePresence>
   )
 }
 

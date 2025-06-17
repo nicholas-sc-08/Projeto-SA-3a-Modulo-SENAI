@@ -131,7 +131,7 @@ function Pesquisa_de_produtos() {
 
         <AnimatePresence>
 
-            <motion.div className='container-alinhamento-all-pages' ref={referencia_pesquisa_produtos} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
+            <motion.div className='container-alinhamento-all-pages' ref={referencia_pesquisa_produtos} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
                 <Header tipo={tipo_de_header} />
 
                 <div className="container_conteudo_pesquisa_produtos">
