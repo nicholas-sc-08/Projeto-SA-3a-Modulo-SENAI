@@ -10,7 +10,6 @@ function Filtro_de_pesquisa() {
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const [ array_produtos_original, set_array_produtos_original ] = useState([]);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
-    const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [botao_titulo_precos_deg, set_botao_titulo_precos_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_um_deg, set_botao_filtro_um_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_dois_deg, set_botao_filtro_dois_deg] = useState(`rotate(0deg)`);
@@ -46,8 +45,8 @@ function Filtro_de_pesquisa() {
             set_preco_exibido(`Qualquer preço`);
         } else {
 
-            const preco_exibido = parseFloat(filtro_de_pesquisa.preco).toFixed(2).replace(`.`, `,`);
-            set_preco_exibido(`R$${preco_exibido}`);
+            const preco_total = parseFloat(filtro_de_pesquisa.preco).toFixed(2).replace(`.`, `,`);
+            set_preco_exibido(`R$${preco_total}`);
         };
         console.log(filtro_de_pesquisa.preco);
 
@@ -211,6 +210,13 @@ function Filtro_de_pesquisa() {
         set_array_produtos(filtrar_produtos_selecionados);
     };
 
+    function categoria_selecionada(categoria){
+
+        const esta_selecionada = filtro_de_pesquisa.categoria_filtrada.toUpperCase().includes(categoria.toUpperCase());
+        
+        return esta_selecionada;
+    };
+
     return (
         <div className="container_filtro_de_pesquisa">
 
@@ -225,7 +231,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_filtro_um">
 
-                    <p style={{ color: botao_filtro_um_deg == `rotate(90deg)` ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`camiseta`)}</p>
+                    <p style={{ color: botao_filtro_um_deg == `rotate(90deg)` || categoria_selecionada(`camiseta`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`camiseta`) ? `525` : `500` }}>{categorias_principais(`camiseta`)}</p>
                     <button onClick={() => exibir_sub_categorias(`filtro_um`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_filtro_um_deg }} /></button>
 
                 </div>
@@ -248,7 +254,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_filtro_dois">
 
-                    <p style={{ color: botao_filtro_dois_deg == `rotate(90deg)` ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`short`)}</p>
+                    <p style={{ color: botao_filtro_dois_deg == `rotate(90deg)` || categoria_selecionada(`short`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`short`) ? `525` : `500` }}>{categorias_principais(`short`)}</p>
                     <button onClick={() => exibir_sub_categorias(`filtro_dois`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_filtro_dois_deg }} /></button>
 
                 </div>
@@ -271,7 +277,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_filtro_tres">
 
-                    <p style={{ color: botao_filtro_tres_deg == `rotate(90deg)` ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`tênis`)}</p>
+                    <p style={{ color: botao_filtro_tres_deg == `rotate(90deg)` || categoria_selecionada(`tênis`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`tênis`) ? `525` : `500` }}>{categorias_principais(`tênis`)}</p>
                     <button onClick={() => exibir_sub_categorias(`filtro_tres`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_filtro_tres_deg }} /></button>
 
                 </div>
@@ -325,7 +331,7 @@ function Filtro_de_pesquisa() {
 
             <div className="container_tamanho_titulo_filtro_de_pesquisa">
 
-                <h1>Tamanho</h1>
+                <h1>Tamanhos</h1>
                 <button onClick={() => girar_botao_titulo_tamanho()}><img src="./img/icons/seta_do_filtro_de_pesquisa_titulo.svg" alt="" style={{ transform: botao_titulo_tamanho_deg }} /></button>
 
             </div>
@@ -340,7 +346,7 @@ function Filtro_de_pesquisa() {
 
                             <div key={i} className='container_selecionar_tamanho_do_botao'>
 
-                                <button onClick={() => selecionar_tamanho(tamanho)} style={{ backgroundColor: tamanhos_selecionados.includes(tamanho) ? `#466330` : `#FCF7E9`, color: tamanhos_selecionados.includes(tamanho) ? `#FCF7E9` : `#3E2A21` }}>{tamanho}</button>
+                                <button onClick={() => selecionar_tamanho(tamanho)}>{tamanho}</button>
 
                             </div>
                         ))}
@@ -360,7 +366,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_um">
 
-                    <p style={{ color: exibir_estilo_um ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`casual`)}</p>
+                    <p style={{ color: exibir_estilo_um || categoria_selecionada(`casual`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`casual`) ? `525` : `500` }}>{categorias_principais(`casual`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_um`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_estilo_um_deg }} /></button>
 
                 </div>
@@ -383,7 +389,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_dois">
 
-                    <p style={{ color: exibir_estilo_dois ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`esporte`)}</p>
+                    <p style={{ color: exibir_estilo_dois || categoria_selecionada(`esporte`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`esporte`) ? `525` : `500` }}>{categorias_principais(`esporte`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_dois`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_estilo_dois_deg }} /></button>
 
                 </div>
@@ -406,7 +412,7 @@ function Filtro_de_pesquisa() {
 
                 <div className="container_pesquisa_por_estilo_tres">
 
-                    <p style={{ color: exibir_estilo_tres ? `#3E2A21` : `#3e2a219e` }}>{categorias_principais(`jaqueta`)}</p>
+                    <p style={{ color: exibir_estilo_tres || categoria_selecionada(`jaqueta`) ? `#3E2A21` : `#3e2a219e`, fontWeight: exibir_estilo_tres || categoria_selecionada(`jaqueta`) ? `525` : `500` }}>{categorias_principais(`jaqueta`)}</p>
                     <button onClick={() => exibir_sub_categorias(`estilo_tres`)}><img src="./img/icons/seta_do_filtro_de_pesquisa.svg" alt="" style={{ transform: botao_estilo_tres_deg }} /></button>
 
                 </div>

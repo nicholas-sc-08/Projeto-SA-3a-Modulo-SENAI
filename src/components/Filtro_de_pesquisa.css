@@ -172,6 +172,13 @@
     width: 100%;
     accent-color: var(--cor_um);
     outline: none;
+
+    cursor: grab;
+}
+
+.container_selecionar_preco_filtro_de_pesquisa input:active{
+
+    cursor: grabbing;
 }
 
 .container_preco_titulo_filtro_de_pesquisa{
@@ -306,7 +313,7 @@
     height: 3.5vh;
     border: 0px;
 
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 1vw;
 
     font-family: var(--tipografia_secundaria);
@@ -314,13 +321,12 @@
     font-weight: 500;
 
     color: var(--cor_seis);
-    background-color: var(--cor_quatro);
+    background-color: var(--cor_nove_v_dois);
 }
 
 .container_tamanho_filtro_de_pesquisa button:hover{
 
-    color: var(--cor_quatro);
-    background-color: var(--cor_um);
+    background-color: var(--cor_doze_v_um);
 }
 
 .container_titulo_estilos{
