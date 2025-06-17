@@ -101,7 +101,7 @@ function Header({ tipo }) {
 
     }, [])
 
-// testando uns negocios aqui
+    // testando uns negocios aqui
 
     useEffect(() => {
 
@@ -213,7 +213,7 @@ function Header({ tipo }) {
     };
 
     function renderIcons() {
-        
+
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
 
         return (
@@ -317,6 +317,10 @@ function Header({ tipo }) {
         navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
         setTermoBuscado('')
     };
+
+    function ir_para_perfil_brecho(idBrecho) {
+        navigate(`/perfil_brecho?id=${idBrecho}`);
+    }
 
     return (
         <div className="alinhamento-navbar-usuario">
@@ -438,7 +442,7 @@ function Header({ tipo }) {
 
                                                 {queridinhos_flyers.slice(0, 4).map((brecho, i) => (
                                                     <div className="alinhamento-brechos-queridinhos">
-                                                        <div className="container-brecho-individual-queridinhos" key={i}>
+                                                        <div className="container-brecho-individual-queridinhos" key={i} onClick={() => ir_para_perfil_brecho(brecho._id)}>
                                                             <img src={brecho.logo} alt="Brecho logo" />
 
                                                             <p>{brecho.nome_brecho}</p>
