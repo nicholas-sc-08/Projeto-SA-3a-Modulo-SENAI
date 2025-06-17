@@ -219,15 +219,8 @@ function Filtro_de_pesquisa() {
 
     function aplicar_filtro(){
 
-        if(ja_pesquisado){
-
-            ja_pesquisado = false;
-            
-        } else {
-
-            ja_pesquisado  = true;
-            set_exibir_produtos_filtrados(true);
-        };
+        set_array_produtos([]);
+        set_exibir_produtos_filtrados(true);
     };
 
     return (
