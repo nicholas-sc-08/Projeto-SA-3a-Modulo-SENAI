@@ -8,6 +8,7 @@ function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+    const [ array_produtos_original, set_array_produtos_original ] = useState([]);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
     const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
     const [botao_titulo_precos_deg, set_botao_titulo_precos_deg] = useState(`rotate(0deg)`);
@@ -57,7 +58,8 @@ function Filtro_de_pesquisa() {
         try {
 
             const produtos = await api.get(`/produtos`);
-            set_array_produtos(produtos.data);
+            set_array_produtos(produtos.data)
+            set_array_produtos_original(produtos.data);
 
         } catch (erro) {
 
@@ -205,7 +207,7 @@ function Filtro_de_pesquisa() {
 
     function aplicar_filtro() {
 
-        const filtrar_produtos_selecionados = array_produtos.filter(p => p.preco <= filtro_de_pesquisa.preco);
+        const filtrar_produtos_selecionados = array_produtos_original.filter(p => p.preco <= filtro_de_pesquisa.preco);
         set_array_produtos(filtrar_produtos_selecionados);
     };
 
