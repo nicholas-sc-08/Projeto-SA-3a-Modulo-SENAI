@@ -188,7 +188,8 @@ function Login() {
   };
 
   return (
-    <div className='container-corpo-login'>
+    <AnimatePresence>
+    <motion.div className='container-corpo-login' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
       <form onSubmit={lidar_com_formulario}>
         <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" onClick={() => navegar('/')} />
 
@@ -248,7 +249,8 @@ function Login() {
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
 

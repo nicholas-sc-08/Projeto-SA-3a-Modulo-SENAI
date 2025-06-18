@@ -225,7 +225,9 @@ function Tela_incial() {
   };
 
   return (
-    <div>
+    <AnimatePresence>
+    
+    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
 
       <Header tipo={tipo_de_header} />
 
@@ -430,7 +432,8 @@ function Tela_incial() {
       {conversa_aberta && <Chat_conversa />}
 
       <Footer />
-    </div>
+    </motion.div>
+    </AnimatePresence>
   )
 }
 export default Tela_incial
