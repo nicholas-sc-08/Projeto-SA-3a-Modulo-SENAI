@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import { useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Chat from '../../components/chat/Chat';
@@ -20,6 +22,7 @@ function Sacola_geral() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+    const [ clicou_em_excluir, set_clicou_em_excluir ] = useState(false);
 
     const navegar_tela_produto = useNavigate(null);
     const referencia_sacola = useRef(null);
@@ -127,6 +130,8 @@ function Sacola_geral() {
         <AnimatePresence>
 
             <motion.div className='container_sacola_geral' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+
+                {true && <Pop_up_excluir_produto_sacola/>}
 
                 <Header tipo={tipo_de_header} />
 

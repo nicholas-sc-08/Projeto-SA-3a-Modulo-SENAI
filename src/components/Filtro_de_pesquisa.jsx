@@ -212,7 +212,7 @@ function Filtro_de_pesquisa() {
             const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
 
             if (filtro_de_pesquisa.categoria_filtrada) {
-
+                
                 const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
                 return filtrar_por_preco && filtrar_por_categoria;
             };
@@ -318,13 +318,10 @@ function Filtro_de_pesquisa() {
             <div className="container_preco_titulo_filtro_de_pesquisa">
 
                 <h1>Preços</h1>
-                <button onClick={() => girar_botao_titulo_preco()}><img src="./img/icons/seta_do_filtro_de_pesquisa_titulo.svg" alt="" style={{ transform: botao_titulo_precos_deg }} /></button>
 
             </div>
 
             <div className="container_preco_filtro_de_pesquisa">
-
-                {exibir_filtro_do_preco &&
 
                     <div className="container_selecionar_preco_filtro_de_pesquisa">
 
@@ -339,20 +336,15 @@ function Filtro_de_pesquisa() {
 
                     </div>
 
-                }
-
             </div>
 
             <div className="container_tamanho_titulo_filtro_de_pesquisa">
 
                 <h1>Tamanhos</h1>
-                <button onClick={() => girar_botao_titulo_tamanho()}><img src="./img/icons/seta_do_filtro_de_pesquisa_titulo.svg" alt="" style={{ transform: botao_titulo_tamanho_deg }} /></button>
 
             </div>
 
             <div className="container_tamanho_filtro_de_pesquisa">
-
-                {exibir_filtro_do_tamanho &&
 
                     <div className="container_selecionar_tamanho_filtro_de_pesquisa">
 
@@ -366,7 +358,6 @@ function Filtro_de_pesquisa() {
                         ))}
 
                     </div>
-                }
 
             </div>
 

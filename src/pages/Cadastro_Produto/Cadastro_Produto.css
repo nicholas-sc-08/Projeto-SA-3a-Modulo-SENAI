@@ -380,7 +380,7 @@ body {
    FORMULÁRIO DE DETALHES
 =========================== */
 .formulario {
-    width: 36%;
+    width: 60%;
     padding-top: 20px;
     gap: 20%;
     margin-top: 10px;
@@ -389,28 +389,20 @@ body {
 
 .formulario-direito {
     
-    margin-top: 3px;
+    margin-top: 3.5%;
     font-family: "Poppins", sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     color: #3E2A21;
     margin-right: 30%;
+    width:30% ;
 }
 
-/* Estilo para o formulário direita (maior) */
-.input-group-direita {
-    padding-top: 20px;
-    gap: 20%;
-    margin-top: 10px;
-    height: 40%;
-    justify-content:center;
-    color: #3e2a21b7;
-    font-size: 20px;
-    font-weight: bold;
-}
+
 
 .container-detalhes-produtos {
     display: flex;
     padding: 20px;
+    padding-bottom: 10%;
     width: 100%;
 }
 
@@ -420,7 +412,6 @@ body {
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
     width: 60%;
 }
 
@@ -436,16 +427,18 @@ body {
 }
 
 .input-categoria-label{
-    font-weight: 350;
+    font-weight: 330;
     font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    color: #3e2a216e;
+    font-size: 18px;
+    color: #3e2a2198;
     font-weight: bold;
+    padding-bottom: 5%;
+    
     
 }
 
 .input-group input,
-.input-group textarea, select {
+.input-group textarea, select{
     border: 2px solid #9DA650;
     border-radius: 20px;
     width: 100%;
@@ -455,7 +448,56 @@ body {
     vertical-align: top;
     outline: none;
     margin-left: 130px;
+    
+    
 }
+
+.input-group label{
+    margin-top: 5%;
+}
+
+
+
+.input-categoria {
+    border: 2px solid #9DA650;
+    border-radius: 15px;
+    font-size: 15px;
+    width: 200%;
+    height: 50px;
+    background-color: transparent;
+    text-align: left;
+    vertical-align: top;
+    outline: none;
+    padding-left: 5%;
+    
+}
+
+.lista-categorias {
+  list-style: none;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 4px 0 0 0;
+  border-radius: 15%;
+  background: white;
+  position: absolute;
+  width:85%;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+  margin-right: 50%;
+}
+
+.lista-categorias li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.lista-categorias li:hover {
+  background-color: #eee;
+}
+
 
 /* Ajustando o campo de input direita */
 
@@ -494,7 +536,7 @@ body {
     cursor: pointer;
     font-size: 18px;
     transition: 0.2s;
-    margin-top: 80%;
+    margin-top: 26%;
 
     border-radius: 80px;
 }

@@ -14,6 +14,9 @@ function Login() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { sacola, set_sacola } = useContext(GlobalContext);
 
+  const [icone_senha, set_icone_senha] = useState(`./img/icons/icone_olho_aberto.svg`);
+  const [visualizar_senha, set_visualizar_senha] = useState(false);
+  const [tipo_do_inpt, set_tipo_do_inpt] = useState(`password`);
   const [formulario, set_formulario] = useState({ email: '', senha: '' });
   const [erro, set_erro] = useState('');
 
@@ -165,7 +168,23 @@ function Login() {
       set_erro_pagina(erro.message || erro.toString());
       navegar(`/erro`);
     }
-  }
+  };
+
+  function exibir_senha(){
+
+    if(visualizar_senha){
+
+      set_tipo_do_inpt(`text`);
+      set_icone_senha(`./img/icons/icone_olho_fechado.svg`);
+      set_visualizar_senha(false);
+    
+    } else {
+
+      set_tipo_do_inpt(`password`);
+      set_icone_senha(`./img/icons/icone_olho_aberto.svg`);
+      set_visualizar_senha(true);
+    };
+  };
 
   function lidar_falha(erro) {
 
@@ -208,13 +227,19 @@ function Login() {
                 />
 
                 <label>Senha<span>*</span></label>
-                <input
-                  type="password"
-                  className='input-erro'
-                  value={formulario.senha}
-                  onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
-                  placeholder='Senha pessoal'
-                />
+
+                <div className="container_input_senha">
+
+                  <input
+                    type={tipo_do_inpt}
+                    value={formulario.senha}
+                    onChange={e => set_formulario({ ...formulario, senha: e.target.value })}
+                    placeholder='Senha pessoal'
+                  />
+
+                  <img src={icone_senha} alt="olho" onClick={() => exibir_senha()}/>
+                
+                </div>
               </div>
 
               <button type="button" onClick={loginGoogle} className="botao-google-custom">
