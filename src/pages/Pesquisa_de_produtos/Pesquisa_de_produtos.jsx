@@ -24,8 +24,8 @@ function Pesquisa_de_produtos() {
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
     const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
-    const [pagina_atual, set_pagina_atual] = useState(1);
-    const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
+    const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
     const referencia_pesquisa_produtos = useRef(null);
 
@@ -111,9 +111,10 @@ function Pesquisa_de_produtos() {
 
     function preco_do_produto(preco) {
 
-        const preco_produto = preco.toFixed(2).replace(`.`, `,`);
+        const preco_separado = String(preco).split(`.`);
+        const decimal = preco_separado[preco_separado.length - 1];
 
-        return preco_produto;
+        return decimal < 10 ? `${preco_separado[0]},${decimal}0 ` : `${preco_separado[0]},${decimal}`;
     };
 
     function imagem_de_perfil_brecho(_id) {
@@ -130,7 +131,7 @@ function Pesquisa_de_produtos() {
 
         <AnimatePresence>
 
-            <motion.div className='container-alinhamento-all-pages' ref={referencia_pesquisa_produtos} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
+            <motion.div className='container-alinhamento-all-pages' ref={referencia_pesquisa_produtos} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
                 <Header tipo={tipo_de_header} />
 
                 <div className="container_conteudo_pesquisa_produtos">
@@ -179,32 +180,33 @@ function Pesquisa_de_produtos() {
 
                 </div>
 
-                {array_produtos.length > 0 ? <div className="container_botoes_de_paginas">
+                {array_produtos.length > 0 ?
 
-                    <div className="container_alinhamento_do_conteudo_de_paginas">
+                    <div className="container_botoes_de_paginas">
 
-                        <div className="container_botao_voltar_pagina_esquerdo">
+                        <div className="container_alinhamento_do_conteudo_de_paginas">
 
-                            <button onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
+                            <div className="container_botao_voltar_pagina_esquerdo">
 
-                        </div>
+                                <button onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
 
-                        <div className="container_numero_de_paginas">
+                            </div>
 
-                            <span>{pagina_atual} de {total_de_paginas}</span>
+                            <div className="container_numero_de_paginas">
 
-                        </div>
+                                <span>{pagina_atual} de {total_de_paginas}</span>
 
-                        <div className="container_botao_voltar_pagina_direito">
+                            </div>
 
-                            <button onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView()}}><img src='./img/icons/icone_seta_direita.svg' /></button>
+                            <div className="container_botao_voltar_pagina_direito">
+
+                                <button onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
+
+                            </div>
 
                         </div>
 
                     </div>
-
-                </div>
-
                     : ``}
 
                 {usuario_logado != `` && !conversa_aberta && <Chat />}

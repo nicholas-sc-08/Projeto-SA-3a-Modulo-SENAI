@@ -56,7 +56,7 @@
 .input-pesquisa-navbar {
     width: 100%;
     max-width: 590px;
-    background-color: #FCF7E9;
+    background-color: var(--cor_nove_v_dois);
     border-radius: 2vw;
     font-size: 1rem;
     padding-left: 3.5rem;
@@ -64,7 +64,7 @@
     padding-top: 2%;
     padding-bottom: 2%;
     color: var(--cor_seis);
-    box-shadow: 0 4px 12px #c4bab1;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     font-family: var(--tipografia_secundaria);
     background-image: url('./public/img/icons/Pesquisa.svg');
     background-repeat: no-repeat;
@@ -73,21 +73,21 @@
     border: none;
 }
 
-.button-sacola-navbar span{
+.button-sacola-navbar span {
 
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: -30%;
 
-    width: 40%; 
+    width: 40%;
     height: 2.1vh;
 
     cursor: pointer;
 
     border: 0.1vw solid var(--cor_vinte);
     border-radius: 100vw;
-    
+
     font-size: 0.9rem;
 
     color: var(--cor_quatro);
@@ -112,7 +112,7 @@
     /* border: 1px solid red; */
 }
 
-.container_botao_sacola_header{
+.container_botao_sacola_header {
 
     display: flex;
     align-items: start;
@@ -160,7 +160,7 @@
     transition: 0.4s;
 }
 
-.container_botao_sacola_header span{
+.container_botao_sacola_header span {
 
     display: flex;
     align-items: center;
@@ -176,7 +176,7 @@
 
     border: 0.1vw solid var(--cor_vinte);
     border-radius: 100vw;
-    
+
     font-size: 0.8rem;
     font-family: var(--tipografia_primaria);
     font-weight: 550;
@@ -186,7 +186,7 @@
 }
 
 .button-perfil-navbar img {
-    
+
     margin-top: 5%;
     width: 2.2vw;
     cursor: pointer;

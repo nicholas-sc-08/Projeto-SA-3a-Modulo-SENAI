@@ -36,6 +36,8 @@ body{
     cursor: pointer;
     width: 17%;
 
+    border-radius: 0.6vw;
+
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_quatro);
@@ -140,6 +142,7 @@ body{
     cursor: pointer;
     width: 17%;
 
+    border-radius: 0.6vw;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_quatro);
@@ -212,6 +215,8 @@ body{
     cursor: pointer;
     width: 17%;
 
+    border-radius: 0.6vw;
+    
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_quatro);
@@ -372,6 +377,8 @@ body{
 
     cursor: pointer;
     width: 17%;
+
+    border-radius: 0.6vw;
 
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 

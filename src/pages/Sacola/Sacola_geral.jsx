@@ -111,6 +111,9 @@ function Sacola_geral() {
                 const dados_do_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_sacola(produtos);
                 set_usuario_logado(dados_do_usuario.data);
+            } else {
+
+                set_sacola(produtos);
             };
 
         } catch (erro) {
@@ -123,7 +126,7 @@ function Sacola_geral() {
 
         <AnimatePresence>
 
-            <motion.div className='container_sacola_geral' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}>
+            <motion.div className='container_sacola_geral' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
                 <Header tipo={tipo_de_header} />
 
