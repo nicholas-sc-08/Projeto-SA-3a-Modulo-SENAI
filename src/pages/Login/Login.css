@@ -151,6 +151,41 @@
     margin-top: 2%;
 }
 
+.container_input_senha{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 0.1vw solid var(--cor_dois);
+    border-radius: 0.6vw;
+}
+
+.container_input_senha input{
+
+    width: 85%;
+    border: none;
+}
+
+.container_input_senha img{
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 6%;
+    margin-right: 3%;
+    padding: 1%;
+
+    border-radius: 100vw;
+
+    background-color: transparent;
+}
+
+.container_input_senha img:hover{
+
+    background-color: var(--cor_quatro_v_um);
+}
+
 .fazer_login_butao {
     border: 0.1vw solid var(--cor_um);
     border-radius: 100vw;
