@@ -47,7 +47,7 @@ body{
   
     transition: 0.3s;
     background-color: var(--cor_um_v_dois);
-  }
+}
   
   .dashboard_container_brechos:hover .sombra_dashboard_container_brechos {
   
@@ -59,7 +59,7 @@ body{
     background-color: var(--cor_nove);
   }
 
-  .dashboard_container_brechos:hover h2 {
+  .dashboard_container_brechos:hover .quantidade_de_brechos {
   
     color: var(--cor_nove);
   }
@@ -115,12 +115,46 @@ body{
     height: 100%;
 }
 
-.dashboard_container_brechos h2{
+.quantidade_de_brechos{
 
     margin-top: 5%;
 
     font-family: var(--tipografia_secundaria);
     font-size: 2rem;
+    font-weight: 700;
+
+    color: var(--cor_seis);
+}
+
+.quantidade_de_clientes{
+
+    margin-top: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 2rem;
+    font-weight: 700;
+
+    color: var(--cor_seis);
+}
+
+.quantidade_de_produtos{
+
+    margin-top: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 2rem;
+    font-weight: 700;
+
+    color: var(--cor_seis);
+}
+
+.quantidade_de_categorias{
+
+    margin-top: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 2rem;
+    font-weight: 700;
 
     color: var(--cor_seis);
 }

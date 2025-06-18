@@ -27,6 +27,7 @@ function DashBoard() {
     const navegar = useNavigate(``);
 
 
+
     useEffect(() => {
 
         atualizar_clientes();
@@ -99,6 +100,7 @@ function DashBoard() {
         <AnimatePresence>
 
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+                                
                 {inicio_dashboard && <Inicio_dashboard />}
                 {clientes_dashboard && <Clientes_dashboard />}
                 {categorias_dashboard && <Categorias_dashboard />}
