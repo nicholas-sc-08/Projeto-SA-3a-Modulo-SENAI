@@ -189,15 +189,9 @@ function Login() {
 
   return (
     <AnimatePresence>
-<<<<<<< HEAD
-    <motion.div className='container-corpo-login' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-      <form onSubmit={lidar_com_formulario}>
-        <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" onClick={() => navegar('/')} />
-=======
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className='container-corpo-login'>
         <form onSubmit={lidar_com_formulario}>
           <img className='logo-camadinha' src="./img/logo-verdeCamadinha2.svg" alt="" onClick={() => navegar('/')} />
->>>>>>> f9277cc3e59ce2c14b13ef9ded1d76fce25539e2
 
           <div className="alinhamento-container-login">
             <div className='ladoEsquerdo-container'>
@@ -254,35 +248,8 @@ function Login() {
               </AnimatePresence>
             </div>
           </div>
-<<<<<<< HEAD
-
-          <div className="container-ir-para-tela-cadastro-alinhamento">
-            <AnimatePresence>
-              {!animandoCadastro && (
-                <motion.div
-                  className="container-informacoes-login-cadastro"
-                  initial={{ opacity: 2, x: 0 }}
-                  exit={{ opacity: 10, x: -760 }} // ~300px pra esquerda: ainda visível
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
-
-                  <h1>Novo por aqui? Crie sua conta!</h1>
-                  <p>A moda circular nunca para! Que tal fazer parte desse movimento? <br /> Cadastre-se no Fly!</p>
-                  <button onClick={LoginCadastro} type='button'>Cadastrar-se</button>
-
-                  <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </form>
-    </motion.div>
-=======
         </form>
       </motion.div>
->>>>>>> f9277cc3e59ce2c14b13ef9ded1d76fce25539e2
     </AnimatePresence>
   );
 }

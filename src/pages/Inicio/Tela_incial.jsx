@@ -230,12 +230,7 @@ function Tela_incial() {
 
   return (
     <AnimatePresence>
-<<<<<<< HEAD
-    
-    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-=======
     <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
->>>>>>> f9277cc3e59ce2c14b13ef9ded1d76fce25539e2
 
       <Header tipo={tipo_de_header} />
 
