@@ -1,4 +1,4 @@
-// Importações de bibliotecas e componentes
+// Importações de bibliotecas e componentes necessários para o funcionamento da página
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
 import Header from "../../components/Header";
@@ -7,45 +7,32 @@ import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
+import Footer from '../../components/Footer';
 
 function Cadastro_Produto() {
-
+  // Estados globais via Context API
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-  const { conversa_aberta, set_converas_aberta } = useContext(GlobalContext);
+  const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
 
-  const tecidos_disponiveis = [
-    "Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo",
-    "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano",
-    "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda",
-    "PVC", "EVA", "Neoprene"
-  ];
+  // Tecidos sugeridos para autocomplete
+  const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
 
-  // Estado de quantidade do produto
+  // Estados locais do componente
   const [quantidade, setQuantidade] = useState(1);
-
-  // Estado do tamanho selecionado
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState("");
-
-  // Estado de imagens (urls das imagens do produto)
   const [imagens, setImagens] = useState([]);
-
-  // Estado da imagem principal (a que será exibida em destaque)
   const [imagemPrincipal, setImagemPrincipal] = useState(null);
-
-  // Estado das cores selecionadas com EyeDropper
   const [coresSelecionadas, setCoresSelecionadas] = useState([]);
-
-  // Lista de categorias disponíveis
   const [categorias, setCategorias] = useState([]);
-
-  // Estados para controlar edição inline (nome e preço)
+  const [inputCategoria, setInputCategoria] = useState("");
+  const [categoriasFiltradas, setCategoriasFiltradas] = useState([]);
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
 
-  // Estado principal que representa os dados do produto a ser cadastrado
+  // Objeto com os dados principais do produto a ser cadastrado
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
     nome: "",
     descricao: "",
@@ -58,33 +45,31 @@ function Cadastro_Produto() {
     fk_id_categoria: "",
     tamanho: "",
     quantidade: 1,
-    fk_id_brecho: usuario_logado._id, // brechó vinculado ao produto
+    fk_id_brecho: usuario_logado?._id || "", // Prevê erro se usuário não estiver carregado
   });
 
   const [inputTecido, setInputTecido] = useState("");
   const [tecidosFiltrados, setTecidosFiltrados] = useState(tecidos_disponiveis);
 
-  // useEffect que roda quando o componente é carregado
-  // Busca produtos e categorias + carrega dados caso esteja editando um produto
+  // Carrega categorias, produtos e informações do produto (caso esteja editando)
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
 
-    // Se estiver em modo de edição, carrega as informações do produto que será editado
-    if (informacoes_editar_produto != null && informacoes_editar_produto.nome !== "") {
+    if (informacoes_editar_produto?.nome) {
       setArray_cadastro_produto({
-        nome: informacoes_editar_produto.nome || "",
-        descricao: informacoes_editar_produto.descricao || "",
-        preco: informacoes_editar_produto.preco || "",
-        condicao: informacoes_editar_produto.condicao || "",
-        cor: informacoes_editar_produto.cor || [],
-        imagem: informacoes_editar_produto.imagem || [],
-        marca: informacoes_editar_produto.marca || "",
-        composicao: informacoes_editar_produto.composicao || "",
-        fk_id_categoria: informacoes_editar_produto.fk_id_categoria || "",
-        tamanho: informacoes_editar_produto.tamanho || "",
+        nome: informacoes_editar_produto.nome,
+        descricao: informacoes_editar_produto.descricao,
+        preco: informacoes_editar_produto.preco,
+        condicao: informacoes_editar_produto.condicao,
+        cor: informacoes_editar_produto.cor,
+        imagem: informacoes_editar_produto.imagem,
+        marca: informacoes_editar_produto.marca,
+        composicao: informacoes_editar_produto.composicao,
+        fk_id_categoria: informacoes_editar_produto.fk_id_categoria,
+        tamanho: informacoes_editar_produto.tamanho,
         quantidade: informacoes_editar_produto.quantidade || 1,
-        fk_id_brecho: usuario_logado._id,
+        fk_id_brecho: usuario_logado?._id || "",
       });
       setQuantidade(informacoes_editar_produto.quantidade || 1);
       setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
@@ -94,6 +79,7 @@ function Cadastro_Produto() {
     }
   }, []);
 
+  // Filtra tecidos conforme digitação do usuário
   useEffect(() => {
     const resultado = tecidos_disponiveis.filter((tecido) =>
       tecido.toLowerCase().includes(inputTecido.toLowerCase())
@@ -101,7 +87,15 @@ function Cadastro_Produto() {
     setTecidosFiltrados(resultado);
   }, [inputTecido]);
 
-  // Função para aumentar a quantidade
+  // Filtra categorias conforme digitação
+  useEffect(() => {
+    const resultado = categorias.filter((categoria) =>
+      categoria.nome.toLowerCase().includes(inputCategoria.toLowerCase())
+    );
+    setCategoriasFiltradas(resultado);
+  }, [inputCategoria, categorias]);
+
+  // Atualiza quantidade do produto
   function aumentarQuantidade() {
     setQuantidade((q) => {
       const novaQuantidade = q + 1;
@@ -110,7 +104,6 @@ function Cadastro_Produto() {
     });
   }
 
-  // Função para diminuir a quantidade (mínimo = 1)
   function diminuirQuantidade() {
     if (quantidade > 1) {
       setQuantidade((q) => {
@@ -121,48 +114,43 @@ function Cadastro_Produto() {
     }
   }
 
-  // Função que define o tamanho selecionado do produto
+  // Define o tamanho do produto selecionado
   function selecionarTamanho(t) {
     setTamanhoSelecionado(t);
     setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: t });
   }
 
-  // Função que adiciona uma imagem (faz upload no Cloudinary)
+  // Adiciona imagem localmente e faz upload para Cloudinary
   async function adicionar_imagem(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Cria uma URL temporária para exibir a imagem imediatamente na tela
     const urlLocal = URL.createObjectURL(file);
     const novaListaTemporaria = [...imagens, urlLocal];
     setImagens(novaListaTemporaria);
     setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaListaTemporaria });
     if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
-    // Upload no Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "Fly_Brecho");
 
     try {
-      const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
+      const response = await fetch("https://api.cloudinary.com/v1_1/SEU_CLOUD_NAME/image/upload", {
         method: "POST",
         body: formData,
       });
       const data = await response.json();
 
       if (data.secure_url) {
-        // Substitui a URL local temporária pela URL do Cloudinary
         const novaLista = novaListaTemporaria.map((img) => (img === urlLocal ? data.secure_url : img));
         setImagens(novaLista);
         setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
 
-        // Atualiza imagem principal, se for o caso
         if (imagemPrincipal === urlLocal) {
           setImagemPrincipal(data.secure_url);
         }
 
-        // Libera a URL temporária
         URL.revokeObjectURL(urlLocal);
       }
     } catch (error) {
@@ -170,12 +158,7 @@ function Cadastro_Produto() {
     }
   }
 
-  // useEffect auxiliar para ver no console as alterações no array_cadastro_produto
-  useEffect(() => {
-    console.log(array_cadastro_produto);
-  }, [array_cadastro_produto]);
-
-  // Função que remove uma imagem (também atualiza imagem principal, se necessário)
+  // Remove imagem selecionada
   function removerImagem(index) {
     setImagens((prevImagens) => {
       const novasImagens = prevImagens.filter((_, i) => i !== index);
@@ -184,7 +167,6 @@ function Cadastro_Produto() {
         imagem: novasImagens,
       }));
 
-      // Se remover a imagem principal, seta uma nova ou limpa
       if (prevImagens[index] === imagemPrincipal) {
         setImagemPrincipal(novasImagens[0] || "");
       }
@@ -193,14 +175,14 @@ function Cadastro_Produto() {
     });
   }
 
-  // Função que define qual imagem será a imagem principal
+  // Define imagem principal exibida
   function selecionarImagemPrincipal(imagem) {
     if (imagens.includes(imagem)) {
       setImagemPrincipal(imagem);
     }
   }
 
-  // Função para abrir o seletor de cores (EyeDropper API)
+  // Seleção de cores usando EyeDropper
   async function selecionarCorEyeDropper() {
     if (window.EyeDropper) {
       try {
@@ -221,7 +203,7 @@ function Cadastro_Produto() {
     }
   }
 
-  // Função para substituir uma cor existente
+  // Substitui cor existente usando EyeDropper
   async function substituirCor(index) {
     try {
       const eyeDropper = new window.EyeDropper();
@@ -235,13 +217,13 @@ function Cadastro_Produto() {
     }
   }
 
-  // Função que remove todas as cores selecionadas
+  // Limpa todas as cores selecionadas
   function removerCor() {
     setCoresSelecionadas([]);
     setArray_cadastro_produto({ ...array_cadastro_produto, cor: [] });
   }
 
-  // Função que busca categorias do backend (usada no carregamento inicial)
+  // Busca categorias disponíveis na API
   async function buscar_categorias() {
     try {
       const res = await api.get("/categorias");
@@ -251,7 +233,7 @@ function Cadastro_Produto() {
     }
   }
 
-  // Função que busca produtos do backend (usada no carregamento inicial e após cadastrar produto)
+  // Busca produtos existentes para atualizar listagem
   async function buscar_produtos() {
     try {
       const res = await api.get("/produtos");
@@ -261,11 +243,11 @@ function Cadastro_Produto() {
     }
   }
 
-  // Função que faz o cadastro do produto (chama a API POST /produtos)
+  // Envia os dados do produto para o backend via POST
   async function cadastrar_produto() {
     try {
       await api.post("/produtos", array_cadastro_produto);
-      buscar_produtos(); // Atualiza lista de produtos
+      buscar_produtos();
       alert("Produto cadastrado com sucesso!");
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
@@ -273,9 +255,8 @@ function Cadastro_Produto() {
     }
   }
 
-  // Constante auxiliar para mostrar um texto de fallback no nome do produto
+  // Nome exibido do produto (fallback caso não digitado)
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
-
   return (
     <div>
       <Header tipo="brecho" />
@@ -440,19 +421,19 @@ function Cadastro_Produto() {
               <label>Seleção de Cores</label>
               <div className="divisao-cores">
                 <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
-                <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
+                  <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
                 </button>
                 <div className="cores-selecionadas">
-                {coresSelecionadas.map((cor, index) => (
-                  <div
-                    key={index}
-                    className="cor-selecionada"
-                    style={{ backgroundColor: cor }}
-                    onClick={() => substituirCor(index)}
-                    title="Clique para substituir essa cor"
-                  ></div>
-                  
-                ))}
+                  {coresSelecionadas.map((cor, index) => (
+                    <div
+                      key={index}
+                      className="cor-selecionada"
+                      style={{ backgroundColor: cor }}
+                      onClick={() => substituirCor(index)}
+                      title="Clique para substituir essa cor"
+                    ></div>
+
+                  ))}
                 </div>
               </div>
             </div>
@@ -466,17 +447,19 @@ function Cadastro_Produto() {
 
       <div className="container-detalhes-produtos">
         <div className="formulario">
+          
+
           <div className="input-group">
+            <div>
             <label>Marca do produto</label>
             <input
               type="text"
               placeholder="Buscar marcas"
+              className="input-group"
               onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value })}
               value={array_cadastro_produto.marca}
             />
           </div>
-
-          <div className="input-group">
             <label>Estado do produto</label>
             <select
               value={array_cadastro_produto.condicao}
@@ -495,37 +478,55 @@ function Cadastro_Produto() {
         </div>
 
         <div className="formulario-direito">
-          <div className="input-group-direita">
+          <div style={{ position: "relative" }}>
             <label className="input-categoria-label">Categoria</label>
-            <select
-              className="input"
-              value={array_cadastro_produto.fk_id_categoria}
-              onChange={(e) =>
+            <input
+              type="text"
+              className="input-categoria"
+              placeholder="Digite para buscar categoria"
+              value={inputCategoria}
+              onChange={(e) => {
+                setInputCategoria(e.target.value);
                 setArray_cadastro_produto({
                   ...array_cadastro_produto,
-                  fk_id_categoria: e.target.value,
-                })
-              }
-            >
-              <option value="">Selecione uma categoria</option>
-              {Array.isArray(categorias) &&
-                categorias.map((categoria) => (
-                  <option key={categoria._id} value={categoria._id}>
-                    {categoria.nome}
-                  </option>
+                  fk_id_categoria: "", // limpa o valor antigo
+                });
+              }}
+              autoComplete="off"
+            />
+            {inputCategoria && categoriasFiltradas.length > 0 && (
+              <ul className="lista-categorias">
+                {categoriasFiltradas.map((cat) => (
+                  <li
+                    key={cat._id}
+                    onClick={() => {
+                      setInputCategoria(cat.nome);
+                      setArray_cadastro_produto({
+                        ...array_cadastro_produto,
+                        fk_id_categoria: cat._id,
+                      });
+                      setCategoriasFiltradas([]);
+                    }}
+                  >
+                    {cat.nome}
+                  </li>
                 ))}
-            </select>
-
-            <button onClick={cadastrar_produto} className="botao-cadastrar">
-              Cadastrar Produto
-            </button>
+              </ul>
+            )}
           </div>
+
+
+          <button onClick={cadastrar_produto} className="botao-cadastrar">
+            Cadastrar Produto
+          </button>
         </div>
       </div>
 
-      {usuario_logado != `` && !conversa_aberta && <Chat />}
-      {conversa_aberta && <Chat_conversa />}
+
+      <Footer/>
     </div>
+    
+
   );
 }
 
