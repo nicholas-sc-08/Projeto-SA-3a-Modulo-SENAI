@@ -64,6 +64,11 @@ body{
     color: var(--cor_nove);
   }
 
+  .dashboard_container_produtos:hover .quantidade_de_produtos {
+  
+    color: var(--cor_nove);
+  }
+
   .dashboard_container_brechos:hover span {
   
     color: var(--cor_nove);
