@@ -212,7 +212,7 @@ function Filtro_de_pesquisa() {
             const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
 
             if (filtro_de_pesquisa.categoria_filtrada) {
-
+                
                 const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
                 return filtrar_por_preco && filtrar_por_categoria;
             };

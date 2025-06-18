@@ -111,10 +111,9 @@ function Pesquisa_de_produtos() {
 
     function preco_do_produto(preco) {
 
-        const preco_separado = String(preco).split(`.`);
-        const decimal = preco_separado[preco_separado.length - 1];
+        const preco_final = preco.toFixed(2).replace(`.`, `,`);
 
-        return decimal < 10 ? `${preco_separado[0]},${decimal}0 ` : `${preco_separado[0]},${decimal}`;
+        return `R$${preco_final}`;
     };
 
     function imagem_de_perfil_brecho(_id) {
@@ -167,7 +166,7 @@ function Pesquisa_de_produtos() {
 
                                         </div>
 
-                                        <span>R${preco_do_produto(produto.preco)}</span>
+                                        <span>{preco_do_produto(produto.preco)}</span>
 
                                     </div>
 
