@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import './Janela_de_pesquisa_header.css';
 import './Janela_button_perfil.css';
@@ -14,6 +14,7 @@ function Header({ tipo }) {
     const { array_categorias, set_array_categorias } = useContext(GlobalContext)
     const { array_brechos, set_array_brechos } = useContext(GlobalContext)
     const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+    const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -282,19 +283,19 @@ function Header({ tipo }) {
         );
     };
 
-    const filteredProducts = array_produtos.filter((produto) => {
-        const term = termoBuscado.toLowerCase();
-        return (
-            produto.nombre?.toLowerCase().includes(term) ||
-            produto.marca?.toLowerCase().includes(term) ||
-            produto.categoria?.toLowerCase().includes(term)
-        );
-    });
+    // const filteredProducts = array_produtos.filter((produto) => {
+    //     const term = termoBuscado.toLowerCase();
+    //     return (
+    //         produto.nombre?.toLowerCase().includes(term) ||
+    //         produto.marca?.toLowerCase().includes(term) ||
+    //         produto.categoria?.toLowerCase().includes(term)
+    //     );
+    // });
 
     const handleSearch = () => {
         if (termoBuscado.trim() !== '') {
             navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
-            setTermoBuscado('');      // limpiar input después de navegar
+            setTermoBuscado('');
             setContainerAberto(false);
         }
     };
@@ -303,20 +304,20 @@ function Header({ tipo }) {
         if (e.key === 'Enter') {
             handleSearch();
         }
+    }
+
+    const buscarCategoria = (categoria) => {
+        setTermoBuscado(categoria.nome);
+        set_id_categoria_selecionada(categoria._id);
+        navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
     };
 
     // buscar por marcas
     const buscarMarcas = (marca) => {
-        setTermoBuscado(marca);
         navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
-        setTermoBuscado('')
+        setContainerAberto(false);
     };
 
-    const buscarCategoria = (categoria) => {
-        setTermoBuscado(categoria);
-        navigate(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
-        setTermoBuscado('')
-    };
 
     function ir_para_perfil_brecho(idBrecho) {
         navigate(`/perfil_brecho?id=${idBrecho}`);
@@ -432,7 +433,7 @@ function Header({ tipo }) {
 
                                                 <ul>
                                                     {[...array_categorias].reverse().slice(0, 6).map((categoria, i) => (
-                                                        <li key={i} onClick={() => buscarCategoria(categoria.nome)}>{categoria.nome}</li>
+                                                        <li key={i} onClick={() => buscarCategoria(categoria)}>{categoria.nome}</li>
                                                     ))}
                                                 </ul>
                                             </div>
