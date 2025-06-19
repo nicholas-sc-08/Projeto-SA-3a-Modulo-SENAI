@@ -24,6 +24,7 @@ function Pesquisa_de_produtos() {
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
     const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
     const referencia_pesquisa_produtos = useRef(null);
@@ -42,18 +43,30 @@ function Pesquisa_de_produtos() {
         buscar_produtos();
         buscar_categorias();
         buscar_brechos();
+        
 
     }, [termoBuscado]);
 
     useEffect(() => {
 
-        const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-        set_produtos_embaralhados(embaralhar);
+        if(id_categoria_selecionada){
 
-    }, [array_produtos]);
+            const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
+            console.log(array_com_as_categorias);
+            
+            const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);
+
+        } else {
+
+            const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);  
+        };
+
+    }, [array_produtos, id_categoria_selecionada]);
 
     const produtos_por_pagina = 12;
-    const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
+    const total_de_paginas = Math.ceil(produtos_embaralhados.length / produtos_por_pagina);
 
     useEffect(() => {
 
@@ -69,7 +82,7 @@ function Pesquisa_de_produtos() {
         };
 
         referencia_pesquisa_produtos.current.scrollIntoView();
-
+        
     }, []);
 
     async function buscar_categorias() {
@@ -161,7 +174,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            {array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            {produtos_embaralhados.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -193,7 +206,7 @@ function Pesquisa_de_produtos() {
 
                 </div>
 
-                {array_produtos.length > 0 ?
+                {produtos_embaralhados.length > 0 ?
 
                     <div className="container_botoes_de_paginas">
 

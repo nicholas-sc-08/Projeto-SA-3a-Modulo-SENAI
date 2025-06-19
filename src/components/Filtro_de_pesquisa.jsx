@@ -8,8 +8,9 @@ function Filtro_de_pesquisa() {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
-    const [array_produtos_original, set_array_produtos_original] = useState([]);
+    const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const [array_produtos_original, set_array_produtos_original] = useState([]);
     const [botao_titulo_precos_deg, set_botao_titulo_precos_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_um_deg, set_botao_filtro_um_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_dois_deg, set_botao_filtro_dois_deg] = useState(`rotate(0deg)`);
@@ -35,7 +36,6 @@ function Filtro_de_pesquisa() {
 
         buscar_categorias();
         buscar_produtos();
-
     }, []);
 
     useEffect(() => {
@@ -202,6 +202,7 @@ function Filtro_de_pesquisa() {
 
         set_filtro_de_pesquisa({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
         buscar_produtos();
+        set_id_categoria_selecionada(null);
     };
 
     function aplicar_filtro() {
