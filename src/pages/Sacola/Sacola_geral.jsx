@@ -23,9 +23,21 @@ function Sacola_geral() {
     const { produto, set_produto } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const [ clicou_em_excluir, set_clicou_em_excluir ] = useState(false);
-
     const navegar_tela_produto = useNavigate(null);
     const referencia_sacola = useRef(null);
+
+    useEffect(() => {
+
+        if(clicou_em_excluir){
+        
+            setTimeout(() => {
+
+                set_clicou_em_excluir(false);
+                
+            }, 2000);
+        };
+
+    }, [clicou_em_excluir]);
 
     async function remover_produto_sacola(produto_selecionado) {
 
@@ -43,6 +55,8 @@ function Sacola_geral() {
 
                 set_sacola(array_com_produto_removido);
             };
+
+            set_clicou_em_excluir(true);
 
         } catch (erro) {
 
@@ -131,7 +145,7 @@ function Sacola_geral() {
 
             <motion.div className='container_sacola_geral' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
-                {true && <Pop_up_excluir_produto_sacola/>}
+                {clicou_em_excluir && <Pop_up_excluir_produto_sacola/>}
 
                 <Header tipo={tipo_de_header} />
 

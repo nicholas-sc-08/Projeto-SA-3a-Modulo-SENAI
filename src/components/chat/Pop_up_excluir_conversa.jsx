@@ -1,4 +1,3 @@
-import React from 'react';
 import './Pop_up_excluir_conversa.css';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
@@ -10,7 +9,7 @@ function Pop_up_excluir_conversa() {
 
           <div className="container_pop_up_de_notificacao_de_conversa_excluida">
 
-              <img src="./img/Certificacao.svg" alt="" />
+              <img src="./img/gif/checkAnimation.gif" alt="" />
               <span>Histórico de conversa apagada com sucesso!</span>
 
           </div>

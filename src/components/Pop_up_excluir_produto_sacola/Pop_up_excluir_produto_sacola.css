@@ -12,6 +12,10 @@
 
 .container_pop_up_excluir_produto_sacola{
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     width: 30%;
     height: 40%;
 
@@ -20,7 +24,15 @@
     background-color: var(--cor_quatro);
 }
 
-.gif-animation{
-    border: 1px solid red;
-    width: 500px;
+.container_fundo_pop_up_excluir_poduto_sacola img{
+    width: 30%;
+}
+
+.container_pop_up_excluir_produto_sacola p{
+
+    font-size: 1.2rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: 550;
+
+    color: var(--cor_seis);
 }
