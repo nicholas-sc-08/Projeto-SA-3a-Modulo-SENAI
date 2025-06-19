@@ -126,7 +126,7 @@ function Pesquisa_de_produtos() {
     function preco_do_produto(preco) {
 
         const preco_final = preco.toFixed(2).replace(`.`, `,`);
-
+ 
         return `R$${preco_final}`;
     };
 
