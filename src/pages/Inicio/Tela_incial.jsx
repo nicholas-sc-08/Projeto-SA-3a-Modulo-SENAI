@@ -25,6 +25,7 @@ function Tela_incial() {
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { produto, set_produto } = useContext(GlobalContext);
+  const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
   const { sacola, set_sacola } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
@@ -51,7 +52,8 @@ function Tela_incial() {
     informacoes_clientes();
     informacoes_brechos();
     informacoes_produtos();
-
+    set_id_categoria_selecionada(null);
+    
   }, []);
 
   useEffect(() => {

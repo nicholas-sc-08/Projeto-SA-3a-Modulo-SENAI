@@ -46,7 +46,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [altura_inicial_chat, set_altura_inicial_chat] = useState(`10%`);
     const [altura_inicial_header_chat, set_altura_inicial_header_chat] = useState(`100%`);
     const [informacoes_editar_produto, set_informacoes_editar_produto] = useState(null);
-    const [filtro_de_pesquisa, set_filtro_de_pesquisa] = useState({ preco: `20`, tamanhos: [], categoria_filtrada: ``});
+    const [filtro_de_pesquisa, set_filtro_de_pesquisa] = useState({ preco: `0`, tamanhos: [], categoria_filtrada: ``});
     const [exibir_nome_brecho, set_exibir_nome_brecho] = useState(false);
     const [nome_do_brecho, set_nome_do_brecho] = useState(``);
     const [exibir_produtos_filtrados, set_exibir_produtos_filtrados] = useState(false);

@@ -27,8 +27,7 @@ function Filtro_de_pesquisa() {
     const [exibir_estilo_um, set_exibir_estilo_um] = useState(false);
     const [exibir_estilo_dois, set_exibir_estilo_dois] = useState(false);
     const [exibir_estilo_tres, set_exibir_estilo_tres] = useState(false);
-    const [array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa] = useState([`PP`, `P`, `M`, `G`]);
-    const [tamanhos_selecionados, set_tamanhos_selecionados] = useState([]);
+    const [array_de_tamanhos_de_roupa, set_array_de_tamanhos_de_roupa] = useState([`P`, `M`, `G`, `GG`]);
     const [preco_exibido, set_preco_exibido] = useState(``);
     const [preco_maximo, set_preco_maximo] = useState(300);
 
@@ -48,7 +47,8 @@ function Filtro_de_pesquisa() {
             const preco_total = parseFloat(filtro_de_pesquisa.preco).toFixed(2).replace(`.`, `,`);
             set_preco_exibido(`R$${preco_total}`);
         };
-        console.log(filtro_de_pesquisa.preco);
+        console.log(filtro_de_pesquisa);
+
 
     }, [filtro_de_pesquisa]);
 
@@ -147,44 +147,25 @@ function Filtro_de_pesquisa() {
     function sub_categorias_das_principais(categoria_principal) {
 
         const encontrar_categoria = array_categorias.filter(categoria => categoria.nome.toUpperCase().includes(categoria_principal.toUpperCase()) && categoria.sub_categoria == true);
-        let array_a_ser_exibido = [];
+        const resultado = encontrar_categoria.slice(0, 2);
 
-        for (let i = 0; i < encontrar_categoria.length; i++) {
-
-            if (i < 2) {
-
-                array_a_ser_exibido.push(encontrar_categoria[i]);
-            };
-        };
-
-        return array_a_ser_exibido;
-    };
-
-    function girar_botao_titulo_preco() {
-
-        botao_titulo_precos_deg == `rotate(0deg)` ? set_botao_titulo_precos_deg(`rotate(180deg)`) : set_botao_titulo_precos_deg(`rotate(0deg)`);
-        set_exibir_filtro_do_preco(!exibir_filtro_do_preco);
-    };
-
-    function girar_botao_titulo_tamanho() {
-
-        botao_titulo_tamanho_deg == `rotate(0deg)` ? set_botao_titulo_tamanho_deg(`rotate(180deg)`) : set_botao_titulo_tamanho_deg(`rotate(0deg)`);
-        set_exibir_filtro_do_tamanho(!exibir_filtro_do_tamanho);
+        return resultado;
     };
 
     function selecionar_tamanho(tamanho) {
 
-        const index_tamanho = tamanhos_selecionados.indexOf(tamanho);
+        const index_tamanho = filtro_de_pesquisa.tamanhos.indexOf(tamanho);
+        let tamanhos_novo = [];
 
         if (index_tamanho == -1) {
 
-            set_tamanhos_selecionados([...tamanhos_selecionados, tamanho]);
-            set_filtro_de_pesquisa({ ...filtro_de_pesquisa, tamanhos: tamanhos_selecionados });
+            tamanhos_novo = [...filtro_de_pesquisa.tamanhos, tamanho];
+            set_filtro_de_pesquisa({ ...filtro_de_pesquisa, tamanhos: tamanhos_novo });
 
         } else {
 
-            set_tamanhos_selecionados(tamanhos_selecionados.splice(index_tamanho, 1));
-            set_filtro_de_pesquisa({ ...filtro_de_pesquisa, tamanhos: tamanhos_selecionados });
+            tamanhos_novo = filtro_de_pesquisa.tamanhos.filter(tamanho_analisar => tamanho_analisar != tamanho);
+            set_filtro_de_pesquisa({ ...filtro_de_pesquisa, tamanhos: tamanhos_novo });
         };
     };
 
@@ -200,7 +181,7 @@ function Filtro_de_pesquisa() {
 
     function limpar_filtro_de_pesquisa() {
 
-        set_filtro_de_pesquisa({ preco: `20`, tamanhos: [], categoria_filtrada: `` });
+        set_filtro_de_pesquisa({ preco: `0`, tamanhos: [], categoria_filtrada: `` });
         buscar_produtos();
         set_id_categoria_selecionada(null);
     };
@@ -208,22 +189,18 @@ function Filtro_de_pesquisa() {
     function aplicar_filtro() {
 
         const encontrar_categoria = array_categorias.find(categoria => categoria.nome.toUpperCase().includes(filtro_de_pesquisa.categoria_filtrada.toUpperCase()));
+
         const filtrar_produtos_selecionados = array_produtos_original.filter(p => {
 
-            const filtrar_por_preco = p.preco <= filtro_de_pesquisa.preco;
+            const filtrar_por_preco = p.preco <= parseFloat(filtro_de_pesquisa.preco);
+            const filtrar_por_categoria = filtro_de_pesquisa.categoria_filtrada ? encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : false : true;
+            const filtrar_por_tamanho = filtro_de_pesquisa.tamanhos && filtro_de_pesquisa.tamanhos.length > 0 ? filtro_de_pesquisa.tamanhos.some(tamanho_selecionado => p.tamanho.includes(tamanho_selecionado)) : true;
 
-            if (filtro_de_pesquisa.categoria_filtrada) {
-                
-                const filtrar_por_categoria = encontrar_categoria ? p.fk_id_categoria == encontrar_categoria._id : true;
-                return filtrar_por_preco && filtrar_por_categoria;
-            };
-
-            return filtrar_por_preco;
+            return filtrar_por_preco && filtrar_por_categoria && filtrar_por_tamanho;
         });
 
         set_array_produtos(filtrar_produtos_selecionados);
     };
-
 
     function categoria_selecionada(categoria) {
 
@@ -324,18 +301,18 @@ function Filtro_de_pesquisa() {
 
             <div className="container_preco_filtro_de_pesquisa">
 
-                    <div className="container_selecionar_preco_filtro_de_pesquisa">
+                <div className="container_selecionar_preco_filtro_de_pesquisa">
 
-                        <input type="range" min={0} max={preco_maximo} step={0.01} value={filtro_de_pesquisa.preco} onChange={e => set_filtro_de_pesquisa({ ...filtro_de_pesquisa, preco: e.target.value })} />
+                    <input type="range" min={0} max={preco_maximo} step={0.01} value={filtro_de_pesquisa.preco} onChange={e => set_filtro_de_pesquisa({ ...filtro_de_pesquisa, preco: e.target.value })} />
 
-                        <div className="container_exibir_preco_filtro_de_pesquisa">
+                    <div className="container_exibir_preco_filtro_de_pesquisa">
 
-                            <p>R$ 0,00</p>
-                            <p>{preco_exibido}</p>
-
-                        </div>
+                        <p>R$ 0,00</p>
+                        <p>{preco_exibido}</p>
 
                     </div>
+
+                </div>
 
             </div>
 
@@ -347,18 +324,18 @@ function Filtro_de_pesquisa() {
 
             <div className="container_tamanho_filtro_de_pesquisa">
 
-                    <div className="container_selecionar_tamanho_filtro_de_pesquisa">
+                <div className="container_selecionar_tamanho_filtro_de_pesquisa">
 
-                        {array_de_tamanhos_de_roupa.map((tamanho, i) => (
+                    {array_de_tamanhos_de_roupa.map((tamanho, i) => (
 
-                            <div key={i} className='container_selecionar_tamanho_do_botao'>
+                        <div key={i} className={filtro_de_pesquisa.tamanhos.includes(tamanho) ? `container_botao_selecionado_filtro` : `container_botao_filtro`}>
 
-                                <button onClick={() => selecionar_tamanho(tamanho)}>{tamanho}</button>
+                            <button onClick={() => selecionar_tamanho(tamanho)}>{tamanho}</button>
 
-                            </div>
-                        ))}
+                        </div>
+                    ))}
 
-                    </div>
+                </div>
 
             </div>
 

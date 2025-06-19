@@ -290,13 +290,10 @@
     padding-top: 1%;
     padding-bottom: 1%;
 
-    opacity: 0;
-    transform: translateY(-40%); /* o translateY() faz com que a div fique n% acima da sua posição final*/
     transition: 0.3s;
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
 }
 
-@keyframes animacao_de_selecionar_tamanho {
+@keyframes animacao_de_exibir_sub_categorias {
 
     to{
 
@@ -305,7 +302,7 @@
     }
 }
 
-.container_tamanho_filtro_de_pesquisa button{
+.container_botao_filtro button{
 
     cursor: pointer;
     transition: 0.3s;
@@ -325,8 +322,28 @@
     background-color: var(--cor_nove_v_dois);
 }
 
-.container_tamanho_filtro_de_pesquisa button:hover{
+.container_botao_filtro button:hover{
 
+    background-color: var(--cor_doze_v_um);
+}
+
+.container_botao_selecionado_filtro button{
+
+        cursor: pointer;
+    transition: 0.3s;
+
+    width: 3.3vw;
+    height: 4vh;
+    border: 0px;
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 1vw;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    font-weight: 500;
+
+    color: var(--cor_seis);
     background-color: var(--cor_doze_v_um);
 }
 
@@ -527,7 +544,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_filtro_um button{
@@ -569,7 +586,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_filtro_dois button{
@@ -611,7 +628,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_filtro_tres button{
@@ -653,7 +670,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_estilo_um button{
@@ -695,7 +712,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_estilo_dois button{
@@ -737,7 +754,7 @@
     transform: translateY(-40%);
     transition: 0.3s;
 
-    animation: animacao_de_selecionar_tamanho 0.3s ease forwards;
+    animation: animacao_de_exibir_sub_categorias 0.3s ease forwards;
 }
 
 .container_resultado_pesquisa_estilo_tres button{
