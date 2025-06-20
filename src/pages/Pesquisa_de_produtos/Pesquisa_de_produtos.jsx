@@ -23,7 +23,7 @@ function Pesquisa_de_produtos() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-    const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
     const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
@@ -63,6 +63,8 @@ function Pesquisa_de_produtos() {
             set_produtos_embaralhados(embaralhar);  
         };
 
+        referencia_pesquisa_produtos.current.scrollIntoView();
+
     }, [array_produtos, id_categoria_selecionada]);
 
     const produtos_por_pagina = 12;
@@ -80,8 +82,6 @@ function Pesquisa_de_produtos() {
 
             set_tipo_de_header(`usuario`);
         };
-
-        referencia_pesquisa_produtos.current.scrollIntoView();
         
     }, []);
 

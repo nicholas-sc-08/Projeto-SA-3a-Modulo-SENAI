@@ -10,6 +10,7 @@ function Filtro_de_pesquisa() {
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
     const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+    const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
     const [array_produtos_original, set_array_produtos_original] = useState([]);
     const [botao_titulo_precos_deg, set_botao_titulo_precos_deg] = useState(`rotate(0deg)`);
     const [botao_filtro_um_deg, set_botao_filtro_um_deg] = useState(`rotate(0deg)`);
@@ -199,6 +200,7 @@ function Filtro_de_pesquisa() {
             return filtrar_por_preco && filtrar_por_categoria && filtrar_por_tamanho;
         });
 
+        set_pagina_atual(1);
         set_array_produtos(filtrar_produtos_selecionados);
     };
 
