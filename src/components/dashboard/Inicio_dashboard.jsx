@@ -17,17 +17,22 @@ function Inicio_dashboard() {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+    const { array_marcas, set_array_marcas } = useContext(GlobalContext);
+
     const { clientes_dashboard, set_clientes_dashboard } = useContext(GlobalContext);
     const { brechos_dashboard, set_brechos_dashboard } = useContext(GlobalContext);
     const { produtos_dashboard, set_produtos_dashboard } = useContext(GlobalContext);
     const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
     const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
+    const { marcas_dashboard, set_marcas_dashboard } = useContext(GlobalContext)
+
     const [cor_icone_brecho, set_cor_icone_brecho] = useState(`#FFFFFF`);
     const [mudar_icone_brecho, set_mudar_icone_brecho] = useState(false);
     const [cor_icone_clientes, set_cor_icone_clientes] = useState(`#FFFFFF`);
     const [mudar_icone_clientes, set_mudar_icone_clientes] = useState(false);
     const [cor_icone_produtos, set_cor_icone_produtos] = useState(`#FFFFFF`);
     const [mudar_icone_produtos, set_mudar_icone_produtos] = useState(false);
+
     const contador_brechos = useMotionValue(0);
     const arredondar_valor_brechos = useTransform(() => Math.round(contador_brechos.get()));
     const contador_clientes = useMotionValue(0);
@@ -36,34 +41,43 @@ function Inicio_dashboard() {
     const arredondar_valor_produtos = useTransform(() => Math.round(contador_produtos.get()));
     const contador_categorias = useMotionValue(0);
     const arredondar_valor_categorias = useTransform(() => Math.round(contador_categorias.get()));
+    const contador_marcas = useMotionValue(0);
+    const arredondar_valor_marcas = useTransform(() => Math.round(contador_marcas.get()));
 
     useEffect(() => {
 
         atualizar_clientes();
         atualizar_categorias();
+        atualizar_marcas()
     }, []);
 
     useEffect(() => {
-        
+
         const controle = animate(contador_brechos, array_brechos.length, { duration: 1 });
         return () => controle.stop();
     }, []);
 
     useEffect(() => {
-        
+
         const controle = animate(contador_clientes, array_clientes.length, { duration: 1 });
         return () => controle.stop();
     }, []);
 
     useEffect(() => {
-        
+
         const controle = animate(contador_produtos, array_produtos.length, { duration: 1 });
         return () => controle.stop();
     }, []);
 
     useEffect(() => {
-        
+
         const controle = animate(contador_categorias, array_categorias.length, { duration: 1 });
+        return () => controle.stop();
+    }, []);
+
+    useEffect(() => {
+
+        const controle = animate(contador_marcas, array_marcas.length, { duration: 1 });
         return () => controle.stop();
     }, []);
 
@@ -103,6 +117,16 @@ function Inicio_dashboard() {
         set_produtos_dashboard(false);
         set_categorias_dashboard(true);
         set_inicio_dashboard(false);
+    };
+
+    function ir_para_marcas() {
+
+        set_clientes_dashboard(false);
+        set_brechos_dashboard(false);
+        set_produtos_dashboard(false);
+        set_categorias_dashboard(false);
+        set_inicio_dashboard(false);
+        set_marcas_dashboard(true);
     };;
 
     useEffect(() => {
@@ -146,15 +170,28 @@ function Inicio_dashboard() {
         };
     };
 
-    async function atualizar_categorias(){
+    async function atualizar_categorias() {
 
         try {
 
             const resultado = await api.get(`/categorias`);
             set_array_categorias(resultado.data);
-            
+
         } catch (erro) {
-          
+
+            console.error(erro);
+        };
+    };
+
+    async function atualizar_marcas() {
+
+        try {
+
+            const resultado = await api.get(`/marcas`);
+            set_array_marcas(resultado.data);
+
+        } catch (erro) {
+
             console.error(erro);
         };
     };
@@ -249,6 +286,23 @@ function Inicio_dashboard() {
 
                     <motion.pre className='quantidade_de_categorias'>{arredondar_valor_categorias}</motion.pre>
                     <span>Categorias</span>
+
+                </div>
+
+                <div className="dashboard_container_categorias" onClick={ir_para_marcas}>
+
+                    <div className="sombra_dashboard_container_categorias">
+
+                        <div className='dashboard_container_categorias_borda'>
+                            <div className='dashboard_container_categorias_img'>
+                                <img src="./img/icons/icon-marcas-branco.svg" alt="marcas" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <motion.pre className='quantidade_de_categorias'>{arredondar_valor_marcas}</motion.pre>
+                    <span>Marcas</span>
 
                 </div>
 
