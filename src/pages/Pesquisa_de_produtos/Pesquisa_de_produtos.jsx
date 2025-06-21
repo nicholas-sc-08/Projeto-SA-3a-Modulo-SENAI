@@ -83,6 +83,8 @@ function Pesquisa_de_produtos() {
             set_tipo_de_header(`usuario`);
         };
         
+        set_pagina_atual(1);
+
     }, []);
 
     async function buscar_categorias() {

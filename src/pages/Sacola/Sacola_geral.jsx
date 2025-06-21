@@ -50,7 +50,7 @@ function Sacola_geral() {
                 const usuario_atualizado = { ...usuario_logado, sacola: array_com_produto_removido };
                 const atualizar_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_usuario_logado(atualizar_usuario.data);
-
+ 
             } else {
 
                 set_sacola(array_com_produto_removido);
