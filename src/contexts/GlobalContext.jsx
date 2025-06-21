@@ -26,6 +26,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [clientes_dashboard, set_clientes_dashboard] = useState(false);
     const [brechos_dashboard, set_brechos_dashboard] = useState(false);
     const [produtos_dashboard, set_produtos_dashboard] = useState(false);
+    const [marcas_dashboard, set_marcas_dashboard] = useState(false);
     const [categorias_dashboard, set_categorias_dashboard] = useState(false);
     const [id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
     const [id_do_brecho_a_excluir, set_id_do_brecho_a_excluir] = useState(``);
@@ -130,6 +131,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_brechos_dashboard,
             categorias_dashboard,
             set_categorias_dashboard,
+            marcas_dashboard, 
+            set_marcas_dashboard,
             id_do_cliente_a_excluir,
             set_id_do_cliente_a_excluir,
             abrir_pop_up_dashboard,
