@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Pop_up_de_cadastrar_categoria.css';
-import { GlobalContext } from '../contexts/GlobalContext';
-import api from '../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 
 function Pop_up_de_cadastrar_categoria() {
 

@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 

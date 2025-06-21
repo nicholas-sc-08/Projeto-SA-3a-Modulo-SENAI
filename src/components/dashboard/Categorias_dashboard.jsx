@@ -2,18 +2,18 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import Pop_up_de_cadastrar_categoria from './Pop_up_de_cadastrar_categoria.jsx';
-import Pop_up_de_notificacao_cadastro_categoria from './Pop_up_de_notificacao_cadastro_categoria.jsx';
-import Pop_up_de_editar_categoria from './Pop_up_de_editar_categoria.jsx';
-import Pop_up_de_notificacao_editar_categoria from './Pop_up_de_notificacao_editar_categoria.jsx';
-import Pop_up_de_excluir_categoria from './Pop_up_de_excluir_categoria.jsx';
-import Pop_up_de_notificacao_excluir_categoria from './Pop_up_de_notificacao_excluir_categoria.jsx';
-import Header from './Header.jsx';
-import api from '../services/api.js';
+import Pop_up_de_cadastrar_categoria from '../pop_up_categoria/Pop_up_de_cadastrar_categoria.jsx';
+import Pop_up_de_notificacao_cadastro_categoria from '../Pop_up_de_notificacao_cadastro_categoria.jsx';
+import Pop_up_de_editar_categoria from '../pop_up_categoria/Pop_up_de_editar_categoria.jsx';
+import Pop_up_de_notificacao_editar_categoria from '../Pop_up_de_notificacao_editar_categoria.jsx';
+import Pop_up_de_excluir_categoria from '../pop_up_categoria/Pop_up_de_excluir_categoria.jsx';
+import Pop_up_de_notificacao_excluir_categoria from '../Pop_up_de_notificacao_excluir_categoria.jsx';
+import Header from '../Header/Header.jsx';
+import api from '../../services/api.js';
 import './Categorias_dashboard.css';
 
 function Categorias_dashboard() {

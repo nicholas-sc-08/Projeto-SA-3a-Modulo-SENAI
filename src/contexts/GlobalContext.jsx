@@ -8,6 +8,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_brechos, set_array_brechos] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
+    const [array_marcas, set_array_marcas] = useState([]);
     const [array_enderecos, set_array_enderecos] = useState([]);
     const [array_estoques, set_array_estoques] = useState([])
     const [array_chat, set_array_chat] = useState([]);
@@ -226,6 +227,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_brechos_dashboard,
             termoBuscado,
             setTermoBuscado,
+            array_marcas,
+            set_array_marcas,
         }}>
             {children}
         </GlobalContext.Provider>

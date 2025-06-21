@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import Header from './Header'
-import Pop_up_excluir_produto_dashboard from './Pop_up_excluir_produto_dashboard';
-import Pop_up_notificacao_excluir_produto from './Pop_up_notificacao_excluir_produto';
+import Header from '../Header/Header'
+import Pop_up_excluir_produto_dashboard from '../Pop_up_excluir_produto_dashboard';
+import Pop_up_notificacao_excluir_produto from '../Pop_up_notificacao_excluir_produto';
 import './Produtos_dashboard.css'
 
 function Produtos_dashboard() {

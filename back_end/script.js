@@ -13,6 +13,7 @@ const Estoque = require(`./models/Estoque.js`);
 const Categoria = require(`./models/Categoria.js`);
 const Brecho = require(`./models/Brecho.js`);
 const Produto = require(`./models/Produto.js`);
+const Marca = require(`./models/Marca.js`);
 
 conectar_com_mongo();
 app.use(cors());
@@ -528,3 +529,80 @@ app.delete(`/produtos/:id`, async (req, res) => {
     }
 })
 
+// Marcas
+
+app.get(`/marcas`, async (req, res) => {
+
+    try {
+
+        const marcas = await Marca.find();
+        res.status(200).json(marcas);
+
+    } catch (erro) {
+
+        console.error(erro);
+    };
+});
+
+app.get(`/marcas/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const marca = await Marca.findById(id);
+        res.status(200).json(marca);
+
+    } catch (erro) {
+
+        console.error(erro);
+    };
+});
+
+app.post(`/marcas`, async (req, res) => {
+
+    const marca = new Marca(req.body);
+
+    try {
+
+        const nova_marca = await Marca.save();
+        res.status(201).json(nova_marca);
+
+    } catch (erro) {
+
+        console.error(erro);
+    };
+});
+
+app.put(`/marcas/:id`, async (req, res) => {
+
+    const { id } = req.params;
+    delete req.body._id;
+
+    try {
+
+        const marca = await Marca.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(marca);
+
+    } catch (erro) {
+
+        console.error(erro);
+    };
+});
+
+app.delete(`/marcas/:id`, async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const marca = await Marca.findByIdAndDelete(id);
+        res.status(200).json(marca);
+
+    } catch (erro) {
+
+        console.error(erro);
+    };
+});
+
+// Marcas

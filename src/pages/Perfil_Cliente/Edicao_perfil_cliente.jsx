@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import "./Edicao_perfil_cliente.css";
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 import Pop_up_mudar_endereco_cliente from '../../components/Pop_up_mudar_endereco_cliente';
 import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
 import { IMaskInput } from 'react-imask';

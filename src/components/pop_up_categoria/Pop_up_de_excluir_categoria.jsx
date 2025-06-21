@@ -3,7 +3,7 @@ import './Pop_up_de_excluir_categoria.css';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import axios from 'axios';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 function Pop_up_de_excluir_categoria() {
 

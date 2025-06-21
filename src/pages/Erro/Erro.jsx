@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext'
-import Footer from '../../components/Footer.jsx';
+import Footer from '../../components/Footer/Footer.jsx';
 import './Erro.css';
-import Header from '../../components/Header.jsx';
+import Header from '../../components/Header/Header.jsx';
 
 function Erro() {
 

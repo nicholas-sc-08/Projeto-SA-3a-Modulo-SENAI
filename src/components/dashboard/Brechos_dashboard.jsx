@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import Header from './Header'
-import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
-import api from '../services/api';
-import Pop_up_excluir_brecho from './Pop_up_excluir_brecho';
+import Header from '../Header/Header'
+import Pop_up_de_notificacao_dashboard from '../Pop_up_de_notificacao_dashboard';
+import api from '../../services/api';
+import Pop_up_excluir_brecho from '../Pop_up_excluir_brecho';
 import './Brechos_dashboard.css'
 
 function Brechos_dashboard() {

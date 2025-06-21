@@ -4,12 +4,12 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Inicio_dashboard from '../../components/Inicio_dashboard';
-import Clientes_dashboard from '../../components/Clientes_dashboard.jsx';
-import Categorias_dashboard from '../../components/Categorias_dashboard.jsx';
-import Produtos_dashboard from '../../components/Produtos_dashboard.jsx';
+import Inicio_dashboard from '../../components/dashboard/Inicio_dashboard';
+import Clientes_dashboard from '../../components/dashboard/Clientes_dashboard.jsx';
+import Categorias_dashboard from '../../components/dashboard/Categorias_dashboard.jsx';
+import Produtos_dashboard from '../../components/dashboard/Produtos_dashboard.jsx';
+import Brechos_dashboard from '../../components/dashboard/Brechos_dashboard.jsx';
 import api from '../../services/api.js';
-import Brechos_dashboard from '../../components/Brechos_dashboard.jsx';
 import './DashBoard.css';
 
 function DashBoard() {

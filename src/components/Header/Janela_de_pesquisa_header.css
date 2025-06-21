@@ -2,14 +2,13 @@
     position: absolute;
     top: 100%;
     /* aparece logo abaixo do input */
-    left: -108.5%;
     background-color: var(--cor_quatro);
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 121;
     margin-top: 40px;
-    width: 240%;
+    width: 242%;
 
     height: 1509%;
 
@@ -167,7 +166,7 @@
 
 @media (max-width: 1920px) {
     .janelinha-de-pesquisa-header {
-        left: -120%;
+        left: -125%;
         width: 260%;
         /* border: 1px solid blue; */
     }

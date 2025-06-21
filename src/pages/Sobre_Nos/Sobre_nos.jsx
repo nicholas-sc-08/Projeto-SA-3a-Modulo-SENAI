@@ -1,5 +1,5 @@
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 import './Sobre_nos.css';
 
 function Sobre_nos() {
