@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const EstoqueSchema = new mongoose.Schema({
+const MarcaSchema = new mongoose.Schema({
 
     nome: { type: String, required: true },
 }, { timestamps: true })
 
-const Estoque = mongoose.model("Estoque", EstoqueSchema);
-module.exports = Estoque
+const Marca = mongoose.model("Marca", MarcaSchema);
+module.exports = Marca;

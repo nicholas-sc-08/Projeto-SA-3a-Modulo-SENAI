@@ -246,6 +246,9 @@
     width: 80%;
     height: fit-content;
 
+    overflow-wrap: break-word;
+    white-space: normal;
+
     font-size: 0.9rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 500;
