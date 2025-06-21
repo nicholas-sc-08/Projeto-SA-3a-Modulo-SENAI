@@ -32,6 +32,7 @@ function Categorias_dashboard() {
   const [editar_categoria, set_editar_categoria] = useState(false);
   const [texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa] = useState(``);
   const [array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa] = useState([]);
+  const [array_categorias_ordenado, set_array_categorias_ordenado] = useState([]);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState(false);
   const [categorias_filtradas, set_categorias_filtradas] = useState(``);
   const referencia_input = useRef(null);
@@ -80,6 +81,14 @@ function Categorias_dashboard() {
 
   useEffect(() => {
 
+    // o sensitivity base vai fazer com que ignora a acentuação
+    const categorias_ordenadas = [...array_categorias].sort((primeira_categoria, categoria_seguinte) => primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
+    set_array_categorias_ordenado(categorias_ordenadas);
+
+  }, [array_categorias]);
+
+  useEffect(() => {
+
     for (let i = 0; i < array_da_barra_de_pesquisa.length; i++) {
 
       if (array_da_barra_de_pesquisa[i].toUpperCase() == texto_da_barra_de_pesquisa.toUpperCase()) {
@@ -88,8 +97,9 @@ function Categorias_dashboard() {
       };
     };
 
-    set_categorias_filtradas(array_categorias.filter(categoria => categoria.nome.toLowerCase().includes(texto_da_barra_de_pesquisa.toLowerCase())));
-
+    const filtrar_categorias = array_categorias.filter(categoria => categoria.nome.toUpperCase().includes(texto_da_barra_de_pesquisa.toUpperCase()));
+    const categorias_ordenadas = [...filtrar_categorias].sort((primeira_categoria, categoria_seguinte) => primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
+    set_array_categorias_ordenado(categorias_ordenadas);
 
   }, [texto_da_barra_de_pesquisa]);
 
@@ -212,28 +222,26 @@ function Categorias_dashboard() {
 
           <div className="container_de_categorias_da_tabela">
 
-            {texto_da_barra_de_pesquisa == `` ? array_categorias.map((categoria, i) => (
+            {array_categorias_ordenado.length > 0 ? array_categorias_ordenado.map((categoria, i) => (
 
               <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(categoria._id)}>
 
                 <span>{editar_categoria && "· "}{categoria.nome}</span>
 
               </div>
-            )) : categorias_filtradas.map((categoria, i) => (
+            )) : <div className='container_nenhuma_categoria'>
 
-              <div className="container_conteudo_categoria" key={i} onClick={() => clicar_em_categoria(categoria._id)}>
+              <img src="./img/LupaIcon.svg" alt="" />
+              <p>Nenhuma categoria encontrada</p>
 
-                <span>{editar_categoria && "· "}{categoria.nome}</span>
-
-              </div>
-            ))}
+            </div>}
 
           </div>
 
         </div>
 
       </motion.div>
-      
+
     </AnimatePresence>
   )
 }
