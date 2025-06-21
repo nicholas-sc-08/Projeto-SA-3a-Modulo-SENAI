@@ -24,12 +24,12 @@ function Inicio_dashboard() {
     const { produtos_dashboard, set_produtos_dashboard } = useContext(GlobalContext);
     const { categorias_dashboard, set_categorias_dashboard } = useContext(GlobalContext);
     const { inicio_dashboard, set_inicio_dashboard } = useContext(GlobalContext);
-    const { marcas_dashboard, set_marcas_dashboard } = useContext(GlobalContext)
+    const { marcas_dashboard, set_marcas_dashboard } = useContext(GlobalContext);
 
+    const [caminho_imagem_clientes, set_caminho_imagem_clientes] = useState(`./img/icons/icone_dashboard_clientes_v_um.svg`);
+    const [caminho_imagem_categorias, set_caminho_imagem_categorias] = useState(`./img/icons/icone_dashboard_etiqueta_v_um.svg`);
     const [cor_icone_brecho, set_cor_icone_brecho] = useState(`#FFFFFF`);
     const [mudar_icone_brecho, set_mudar_icone_brecho] = useState(false);
-    const [cor_icone_clientes, set_cor_icone_clientes] = useState(`#FFFFFF`);
-    const [mudar_icone_clientes, set_mudar_icone_clientes] = useState(false);
     const [cor_icone_produtos, set_cor_icone_produtos] = useState(`#FFFFFF`);
     const [mudar_icone_produtos, set_mudar_icone_produtos] = useState(false);
 
@@ -54,31 +54,41 @@ function Inicio_dashboard() {
     useEffect(() => {
 
         const controle = animate(contador_brechos, array_brechos.length, { duration: 1 });
+       
         return () => controle.stop();
+    
     }, [array_brechos]);
 
     useEffect(() => {
 
         const controle = animate(contador_clientes, array_clientes.length, { duration: 1 });
+    
         return () => controle.stop();
+    
     }, [array_clientes]);
 
     useEffect(() => {
 
         const controle = animate(contador_produtos, array_produtos.length, { duration: 1 });
+    
         return () => controle.stop();
+    
     }, [array_produtos]);
 
     useEffect(() => {
 
         const controle = animate(contador_categorias, array_categorias.length, { duration: 1 });
+    
         return () => controle.stop();
+    
     }, [array_categorias]);
 
     useEffect(() => {
 
         const controle = animate(contador_marcas, array_marcas.length, { duration: 1 });
+    
         return () => controle.stop();
+    
     }, []);
 
     function ir_para_clientes() {
@@ -139,14 +149,6 @@ function Inicio_dashboard() {
             set_cor_icone_brecho(`#FFFFFF`);
         };
 
-        if (mudar_icone_clientes) {
-
-            set_cor_icone_clientes(`#466330`);
-        } else {
-
-            set_cor_icone_clientes(`#FFFFFF`);
-        };
-
         if (mudar_icone_produtos) {
 
             set_cor_icone_produtos(`#466330`);
@@ -155,7 +157,7 @@ function Inicio_dashboard() {
             set_cor_icone_produtos(`#FFFFFF`);
         };
 
-    }, [mudar_icone_brecho, mudar_icone_clientes, mudar_icone_produtos]);
+    }, [mudar_icone_brecho, mudar_icone_produtos]);
 
     async function atualizar_clientes() {
 
@@ -231,14 +233,14 @@ function Inicio_dashboard() {
 
                 </div>
 
-                <div className="dashboard_container_clientes" onClick={ir_para_clientes} onMouseLeave={() => set_mudar_icone_clientes(false)} onMouseEnter={() => set_mudar_icone_clientes(true)}>
+                <div className="dashboard_container_clientes" onClick={ir_para_clientes} onMouseEnter={() => set_caminho_imagem_clientes(`./img/icons/icone_dashboard_clientes_v_dois.svg`)} onMouseLeave={() => set_caminho_imagem_clientes(`./img/icons/icone_dashboard_clientes_v_um.svg`)}>
 
                     <div className="sombra_dashboard_container_clientes">
 
                         <div className='dashboard_container_clientes_borda'>
                             <div className='dashboard_container_clientes_img'>
 
-                                <img src="./img/icons/icone_dashboard_clientes_v_um.svg" alt="Clientes" />
+                                <img src={caminho_imagem_clientes} />
 
                             </div>
                         </div>
@@ -272,13 +274,13 @@ function Inicio_dashboard() {
 
                 </div>
 
-                <div className="dashboard_container_categorias" onClick={ir_para_categorias}>
+                <div className="dashboard_container_categorias" onClick={ir_para_categorias} onMouseEnter={() => set_caminho_imagem_categorias(`./img/icons/icone_dashboard_etiqueta_v_dois.svg`)} onMouseLeave={() => set_caminho_imagem_categorias(`./img/icons/icone_dashboard_etiqueta_v_um.svg`)}>
 
                     <div className="sombra_dashboard_container_categorias">
 
                         <div className='dashboard_container_categorias_borda'>
                             <div className='dashboard_container_categorias_img'>
-                                <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="categorias" />
+                                <img src={caminho_imagem_categorias} />
                             </div>
                         </div>
 
