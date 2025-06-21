@@ -9,9 +9,9 @@ import Clientes_dashboard from '../../components/dashboard/Clientes_dashboard.js
 import Categorias_dashboard from '../../components/dashboard/Categorias_dashboard.jsx';
 import Produtos_dashboard from '../../components/dashboard/Produtos_dashboard.jsx';
 import Brechos_dashboard from '../../components/dashboard/Brechos_dashboard.jsx';
+import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
 import api from '../../services/api.js';
 import './DashBoard.css';
-import Marcas_dashboard from '../../components/dashboard/Marcas_dashboard.jsx';
 
 function DashBoard() {
 

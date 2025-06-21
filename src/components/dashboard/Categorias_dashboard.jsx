@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Pop_up_de_cadastrar_categoria from '../pop_up_categoria/Pop_up_de_cadastrar_categoria.jsx';
-import Pop_up_de_notificacao_cadastro_categoria from '../Pop_up_de_notificacao_cadastro_categoria.jsx';
+import Pop_up_de_notificacao_cadastro_categoria from '../pop_up_categoria/Pop_up_de_notificacao_cadastro_categoria.jsx';
 import Pop_up_de_editar_categoria from '../pop_up_categoria/Pop_up_de_editar_categoria.jsx';
-import Pop_up_de_notificacao_editar_categoria from '../Pop_up_de_notificacao_editar_categoria.jsx';
+import Pop_up_de_notificacao_editar_categoria from '../pop_up_categoria/Pop_up_de_notificacao_editar_categoria.jsx';
 import Pop_up_de_excluir_categoria from '../pop_up_categoria/Pop_up_de_excluir_categoria.jsx';
-import Pop_up_de_notificacao_excluir_categoria from '../Pop_up_de_notificacao_excluir_categoria.jsx';
+import Pop_up_de_notificacao_excluir_categoria from '../pop_up_categoria/Pop_up_de_notificacao_excluir_categoria.jsx';
 import Header from '../Header/Header.jsx';
 import api from '../../services/api.js';
 import './Categorias_dashboard.css';
@@ -29,12 +29,14 @@ function Categorias_dashboard() {
   const { pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria } = useContext(GlobalContext);
   const { pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria } = useContext(GlobalContext);
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
+
   const [editar_categoria, set_editar_categoria] = useState(false);
   const [texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa] = useState(``);
   const [array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa] = useState([]);
   const [array_categorias_ordenado, set_array_categorias_ordenado] = useState([]);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState(false);
   const [categorias_filtradas, set_categorias_filtradas] = useState(``);
+  
   const referencia_input = useRef(null);
   const navegar = useNavigate(``);
 

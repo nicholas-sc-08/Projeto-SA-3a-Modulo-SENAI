@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header/Header'
-import Pop_up_de_excluir_perfil from '../../components/Pop_up_de_excluir_perfil'
+import Pop_up_de_excluir_perfil from '../../components/pop_up_usuario/Pop_up_de_excluir_perfil'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 function Perfil_Brecho() {

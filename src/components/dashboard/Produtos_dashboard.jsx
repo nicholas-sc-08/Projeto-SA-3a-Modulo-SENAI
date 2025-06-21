@@ -5,8 +5,8 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Header from '../Header/Header'
-import Pop_up_excluir_produto_dashboard from '../Pop_up_excluir_produto_dashboard';
-import Pop_up_notificacao_excluir_produto from '../Pop_up_notificacao_excluir_produto';
+import Pop_up_excluir_produto_dashboard from '../pop_up_dashboard/Pop_up_excluir_produto_dashboard';
+import Pop_up_notificacao_excluir_produto from '../pop_up_dashboard/Pop_up_notificacao_excluir_produto';
 import './Produtos_dashboard.css'
 
 function Produtos_dashboard() {

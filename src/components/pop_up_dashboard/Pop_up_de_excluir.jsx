@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
 import "./Pop_up_de_excluir.css";
-import { GlobalContext } from '../contexts/GlobalContext';
-import api from '../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 
 function Pop_up_de_excluir() {
 
