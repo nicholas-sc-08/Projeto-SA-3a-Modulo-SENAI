@@ -13,6 +13,7 @@ function Header({ tipo }) {
 
     const { array_categorias, set_array_categorias } = useContext(GlobalContext)
     const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+    const { array_clientes, set_array_clientes } = useContext(GlobalContext)
     const { array_produtos, set_array_produtos } = useContext(GlobalContext)
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
 
@@ -76,6 +77,32 @@ function Header({ tipo }) {
         } catch (erro) {
 
             console.log(erro);
+        };
+    };
+
+    async function informacoes_clientes() {
+
+        try {
+
+            const clientes = await api.get(`/clientes`);
+            set_array_clientes(clientes.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
+    async function informacoes_chats() {
+
+        try {
+
+            const conversas = await api.get(`/chats`);
+            set_array_clientes(conversas.data);
+
+        } catch (erro) {
+
+            console.error(erro);
         };
     };
 
@@ -153,6 +180,33 @@ function Header({ tipo }) {
                 </>
             );
         }
+    };
+
+    function fechar_chat() {
+
+        if (altura_inicial_chat == `10%`) {
+
+            informacoes_clientes();
+            informacoes_chats();
+
+            set_altura_inicial_chat(`70%`);
+            set_altura_inicial_header_chat(`15%`);
+            set_sacola_aberta(false);
+
+        } else {
+
+            setTimeout(() => {
+
+                set_altura_inicial_header_chat(`100%`);
+
+            }, 1500);
+
+            informacoes_clientes();
+            informacoes_chat();
+
+            set_altura_inicial_chat(`10%`);
+            set_conversa_aberta(false);
+        };
     };
 
     function sacola_perfil(parametro) {
@@ -233,7 +287,7 @@ function Header({ tipo }) {
                     {sacola_aberta && <Sacola />}
 
                     {tipo === 'brecho' && (
-                        <button className="button-chat-navbar">
+                        <button className="button-chat-navbar" onClick={() => fechar_chat()}>
                             <img src="/img/icons/chat.svg" alt="Chat" />
                         </button>
                     )}
