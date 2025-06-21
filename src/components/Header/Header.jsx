@@ -199,10 +199,10 @@ function Header({ tipo }) {
 
                 set_altura_inicial_header_chat(`100%`);
 
-            }, 1500);
+            }, 326);
 
             informacoes_clientes();
-            informacoes_chat();
+            informacoes_chats();
 
             set_altura_inicial_chat(`10%`);
             set_conversa_aberta(false);
