@@ -47,25 +47,25 @@ function Inicio_dashboard() {
         
         const controle = animate(contador_brechos, array_brechos.length, { duration: 1 });
         return () => controle.stop();
-    }, []);
+    }, [array_brechos]);
 
     useEffect(() => {
         
         const controle = animate(contador_clientes, array_clientes.length, { duration: 1 });
         return () => controle.stop();
-    }, []);
+    }, [array_clientes]);
 
     useEffect(() => {
         
         const controle = animate(contador_produtos, array_produtos.length, { duration: 1 });
         return () => controle.stop();
-    }, []);
+    }, [array_produtos]);
 
     useEffect(() => {
         
         const controle = animate(contador_categorias, array_categorias.length, { duration: 1 });
         return () => controle.stop();
-    }, []);
+    }, [array_categorias]);
 
     function ir_para_clientes() {
 
