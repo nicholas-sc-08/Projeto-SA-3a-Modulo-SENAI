@@ -50,6 +50,9 @@ function Categorias_dashboard() {
 
       const categorias = await api(`/categorias`);
       set_categorias_dashboard(categorias.data);
+      
+      const categorias_ordenadas = [...array_categorias].sort((primeira_categoria, categoria_seguinte) => primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
+      set_array_categorias_ordenado(categorias_ordenadas);
 
     } catch (erro) {
 
@@ -77,15 +80,8 @@ function Categorias_dashboard() {
   useEffect(() => {
 
     buscar_categorias();
+  
   }, []);
-
-  useEffect(() => {
-
-    // o sensitivity base vai fazer com que ignora a acentuação
-    const categorias_ordenadas = [...array_categorias].sort((primeira_categoria, categoria_seguinte) => primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
-    set_array_categorias_ordenado(categorias_ordenadas);
-
-  }, [array_categorias]);
 
   useEffect(() => {
 
