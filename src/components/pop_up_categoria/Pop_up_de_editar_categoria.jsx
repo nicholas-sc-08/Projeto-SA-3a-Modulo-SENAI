@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext';
 import axios from 'axios';
 import './Pop_up_de_editar_categoria.css';
 

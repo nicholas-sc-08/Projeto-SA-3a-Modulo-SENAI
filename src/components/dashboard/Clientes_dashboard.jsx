@@ -2,14 +2,14 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
-import Pop_up_de_excluir from './Pop_up_de_excluir';
-import Pop_up_de_notificacao_dashboard from './Pop_up_de_notificacao_dashboard';
-import Header from './Header.jsx';
-import api from '../services/api.js';
+import Pop_up_de_excluir from '../Pop_up_de_excluir.jsx';
+import Pop_up_de_notificacao_dashboard from '../Pop_up_de_notificacao_dashboard.jsx';
+import Header from '../Header/Header.jsx';
+import api from '../../services/api.js';
 import './Clientes_dashboard.css';
 
 function Clientes_dashboard() {

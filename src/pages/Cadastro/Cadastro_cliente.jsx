@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import Secao_inputs_um from '../../components/Cadastro_cliente_secao_inputs_um.jsx';
-import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_dois.jsx';
-import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
+import Secao_inputs_um from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_um.jsx';
+import Secao_inputs_dois from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_dois.jsx';
+import Secao_inputs_tres from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
 import api from '../../services/api.js';
 import { Link, useNavigate } from 'react-router-dom';

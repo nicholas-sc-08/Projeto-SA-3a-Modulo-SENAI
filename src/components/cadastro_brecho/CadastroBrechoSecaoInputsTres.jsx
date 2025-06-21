@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext'
+import { GlobalContext } from '../../contexts/GlobalContext'
 
 import { IMaskInput } from 'react-imask';
 

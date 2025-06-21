@@ -4,7 +4,7 @@ import Cadastro_cliente from "../pages/Cadastro/Cadastro_cliente";
 import Login from "../pages/Login/Login";
 import DashBoard from "../pages/DashBoard/DashBoard";
 
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import GestaoEstoque from "../pages/Gestao_Estoque/Gestao_Estoque";
 import Cadastro_Produto from "../pages/Cadastro_Produto/Cadastro_Produto";
 import Cadastro_brecho from "../pages/Cadastro/Cadastro_brecho";

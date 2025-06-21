@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext';
-import '../pages/Cadastro/Cadastro_brecho.css';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import '../../pages/Cadastro/Cadastro_brecho.css';
 
 function CadastroBrechoSecaoInputsUm() {
 

@@ -2,12 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import '../pages/DashBoard/DashBoard.css';
+import '../../pages/DashBoard/DashBoard.css';
 import { useState } from 'react';
-import Header from './Header.jsx';
-import api from '../services/api.js';
+import Header from '../Header/Header.jsx';
+import api from '../../services/api.js';
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
 
 

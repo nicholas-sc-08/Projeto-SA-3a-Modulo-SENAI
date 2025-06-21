@@ -4,9 +4,9 @@ import './Header.css';
 import './Janela_de_pesquisa_header.css';
 import './Janela_button_perfil.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GlobalContext } from '../contexts/GlobalContext';
-import Sacola from './sacola/Sacola';
-import api from '../services/api'
+import { GlobalContext } from '../../contexts/GlobalContext';
+import Sacola from '../sacola/Sacola';
+import api from '../../services/api'
 
 function Header({ tipo }) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -141,7 +141,7 @@ function Header({ tipo }) {
                 <>
                     <Link to="/gestao_estoque" className="link-texto-navbar-usuario">Estoque</Link>
                     <Link to="/informacoes" className="link-texto-navbar-usuario">Informações</Link>
-                    <Link to="/sobreNos" className="link-texto-navbar-usuario">Sobre Nós</Link>
+                    <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre Nós</Link>
                 </>
             );
         }
@@ -149,7 +149,7 @@ function Header({ tipo }) {
             return (
                 <>
                     <Link to="/dashboard" className="link-texto-navbar-usuario">Painel de Controle</Link>
-                    <Link to="/sobreNos" className="link-texto-navbar-usuario">Sobre nós</Link>
+                    <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre nós</Link>
                 </>
             );
         }
@@ -458,7 +458,10 @@ function Header({ tipo }) {
                                                 <p className='subtitulo-flytracks'>Trilha sonora para garimpar com estilo.</p>
 
                                                 {/* <div className="alinhamento-playlists"> */}
-                                                <div className="container-playlist">
+                                                <div className="container-playlist"
+                                                    onClick={() => window.open('https://open.spotify.com/playlist/6GyVKxQJ6ANX6A81sEbed4?si=1ad6da470d24439d', '_blank')}
+                                                    style={{ cursor: 'pointer' }}
+                                                >
                                                     <img className='img-icon-playlist' src="./img/icons/icon_playlist_spotify.svg" alt="icon playlist spotify" />
 
                                                     <p>Winxstereo</p>
@@ -466,7 +469,10 @@ function Header({ tipo }) {
                                                     <img className='logo-spotify' src="./img/logo/logo_spotify.svg" alt="Spotify" />
                                                 </div>
 
-                                                <div className="container-playlist">
+                                                <div className="container-playlist"
+                                                    onClick={() => window.open('https://youtube.com/playlist?list=PLC-bUpM4UXGT2qhcHUs27odkNa2dwNmy-&feature=shared', '_blank')}
+                                                    style={{ cursor: 'pointer' }}
+                                                >
                                                     <img className='img-icon-playlist' src="./img/icons/icon_playlist_youtube.svg" alt="icon playlist youtube" />
 
                                                     <p>Mix da Fly</p>

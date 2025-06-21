@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
-import '../pages/Cadastro/Cadastro_cliente.css';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import '../../pages/Cadastro/Cadastro_cliente.css';
 
 function Cadastro_cliente_secao_inputs_um() {
   

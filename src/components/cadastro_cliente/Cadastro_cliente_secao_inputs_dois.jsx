@@ -1,7 +1,7 @@
 import React from 'react'
 import { useContext } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
-import '../pages/Cadastro/Cadastro_cliente.css';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import '../../pages/Cadastro/Cadastro_cliente.css';
 
 import { IMaskInput } from 'react-imask';
 

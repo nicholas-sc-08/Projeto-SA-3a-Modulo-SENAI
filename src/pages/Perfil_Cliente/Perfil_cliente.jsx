@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "./Perfil_cliente.css";
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
 import Edicao_perfil_brecho from '../Perfil_Brecho/Edicao_perfil_brecho';
 import Edicao_perfil_cliente from './Edicao_perfil_cliente';

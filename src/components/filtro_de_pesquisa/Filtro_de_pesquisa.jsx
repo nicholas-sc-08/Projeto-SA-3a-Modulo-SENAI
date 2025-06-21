@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Filtro_de_pesquisa.css';
 import { useContext } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
-import api from '../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 
 function Filtro_de_pesquisa() {
 
