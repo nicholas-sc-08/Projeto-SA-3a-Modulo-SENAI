@@ -7,8 +7,9 @@
 
     right: 4%;
     bottom: 0%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
@@ -96,7 +97,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     width: 100%;
     height: 95%;
 }
@@ -112,11 +113,11 @@
     margin-top: 5%;
 
     text-align: center;
-    
+
     font-size: 1.15rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 550;
-    
+
     color: var(--cor_seis_v_um);
 }
 
@@ -149,51 +150,51 @@
 }
 
 .container_conversa_com_pessoa {
-    
+
     display: flex;
     align-items: center;
-    
+
     width: 100%;
     height: 25%;
-    
+
     transition: 0.3s;
     cursor: pointer;
 }
 
 .container_conversa_imagem_de_pefil {
-    
-    
+
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    flex-shrink: 0; 
 
-    width: 25%;    
+    flex-shrink: 0;
+
+    width: 25%;
     height: 100%;
 }
 
 .container_conversa_imagem_de_pefil img {
-    
+
     border-radius: 100vw;
     width: 60%;
 }
 
 .container_info_das_conversas_chat {
-   
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     width: 75%;
 }
 
 .container_conversa_nome_e_hora {
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     width: 95%;
 }
 
@@ -213,7 +214,7 @@
 }
 
 .hora_da_ultima_mensagem {
-    
+
     white-space: nowrap;
     font-size: 1rem;
     font-family: var(--tipografia_secundaria);
@@ -227,7 +228,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     width: 95%;
     height: 55%;
 }
