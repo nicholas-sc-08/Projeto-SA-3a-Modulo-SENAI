@@ -1,9 +1,9 @@
-import '../components/PopUp_mudar_Endereco.css'
+import './PopUp_mudar_Endereco.css'
 import { useContext, useEffect, useState } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext'
+import { GlobalContext } from '../../contexts/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 import { IMaskInput } from 'react-imask'
-import api from '../services/api'
+import api from '../../services/api'
 
 function PopUp_mudar_Endereco({ fecharPopUp }) {
 

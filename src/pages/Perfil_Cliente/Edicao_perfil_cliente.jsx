@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import "./Edicao_perfil_cliente.css";
 import Footer from '../../components/Footer/Footer';
-import Pop_up_mudar_endereco_cliente from '../../components/Pop_up_mudar_endereco_cliente';
-import Pop_up_menu_cliente from '../../components/Pop_up_menu_cliente';
+import Pop_up_mudar_endereco_cliente from '../../components/pop_up_usuario/Pop_up_mudar_endereco_cliente';
+import Pop_up_menu_cliente from '../../components/pop_up_usuario/Pop_up_menu_cliente';
 import { IMaskInput } from 'react-imask';
 
 function Edicao_perfil_cliente() {

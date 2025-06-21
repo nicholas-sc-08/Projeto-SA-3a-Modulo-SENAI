@@ -1,6 +1,6 @@
-import '../components/Pop_up_mudar_endereco_cliente.css';
+import './Pop_up_mudar_endereco_cliente.css';
 import { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '../contexts/GlobalContext';
+import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { IMaskInput } from 'react-imask';
 

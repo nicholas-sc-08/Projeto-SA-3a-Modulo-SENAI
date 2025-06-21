@@ -5,7 +5,7 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 import api from '../../services/api'
 
 import Footer from '../../components/Footer/Footer'
-import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
+import PopUp_mudar_Endereco from '../../components/pop_up_brechos/PopUp_mudar_Endereco'
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
 
 function Edicao_perfil_brecho() {

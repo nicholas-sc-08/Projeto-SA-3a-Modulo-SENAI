@@ -1,4 +1,4 @@
-import '../components/Pop_up_menu_cliente.css';
+import './Pop_up_menu_cliente.css';
 import { Link } from 'react-router-dom';
 
 function Pop_up_menu_cliente({ onClose }) {

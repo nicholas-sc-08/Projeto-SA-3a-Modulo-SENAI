@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext';
-import api from '../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import api from '../../services/api';
 
 function Pop_up_excluir_brecho() {
 
