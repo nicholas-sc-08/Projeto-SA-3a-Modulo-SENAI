@@ -61,7 +61,7 @@ function Footer() {
                 <Link to={"/"}>Início</Link>
                 <Link>Explorar brechós</Link>
                 <Link to={"/estamosChegando"}>Doações</Link>
-                <Link>Buscar</Link>
+                <Link to={"/buscarProdutos"}>Buscar</Link>
               </>
 
             )}
