@@ -71,11 +71,12 @@ export const GlobalContextProvider = ({ children }) => {
     const [imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho] = useState(null)
     const [array_lancamentos, set_array_lancamnetos] = useState('')
 
-    const [pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca] = useState(false);
-
     const [pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard] = useState(``)
-
+    
     const [termoBuscado, setTermoBuscado] = useState('')
+    
+    const [pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca] = useState(false);
+    const [ imagemLogoMarca, setImagemLogoMarca ] = useState(null)
 
 
     // função para quando alguém der F5/atualizar a página, os dados do usuário logado sejam guardados no localStorage
@@ -239,6 +240,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_id_marca,
             pop_up_de_cadastrar_marca, 
             set_pop_up_de_cadastrar_marca,
+            imagemLogoMarca, 
+            setImagemLogoMarca,
         }}>
             {children}
         </GlobalContext.Provider>
