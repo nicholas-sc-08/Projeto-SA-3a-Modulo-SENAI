@@ -258,23 +258,23 @@ function Produto() {
 
             } else {
 
-                const encontrar_produto_sacola = sacola.find(p => p._id == produto._id);
+                if (sacola){
 
-                if (!encontrar_produto_sacola) {
+                    const encontrar_produto_sacola = sacola.find(p => p._id == produto._id);
 
-                    const produto_na_sacola = { ...encontrar_produto, quantidade_selecionada: 1 };
+                    if (!encontrar_produto_sacola) {
 
-                    if (Array.isArray(sacola)) {
+                        const produto_na_sacola = { ...encontrar_produto, quantidade_selecionada: 1 };
 
                         set_sacola([...sacola, produto_na_sacola]);
 
-                    } else {
-
-                        set_sacola([produto_na_sacola]);
                     };
+                    
+                } else {
+
+                    set_sacola([{ ...produto, quantidade_selecionada: 1 }]);
                 };
             };
-
 
         } catch (erro) {
 

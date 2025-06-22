@@ -76,9 +76,12 @@ function Sacola_geral() {
 
         let contador = 0;
 
-        for (let i = 0; i < sacola.length; i++) {
+        if(sacola){
 
-            contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+            for (let i = 0; i < sacola.length; i++) {
+                
+                contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+            };
         };
 
         return `R$${contador.toFixed(2).replace(`.`, `,`)}`;
