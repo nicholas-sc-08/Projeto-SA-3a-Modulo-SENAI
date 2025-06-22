@@ -8,12 +8,12 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import Chat from '../../components/chat/Chat';
-import Footer from '../../components/Footer';
-import Pop_up_conversa_adicionada from '../../components/Pop_up_conversa_adicionada';
-import Pop_up_usuario_nao_logado from '../../components/Pop_up_usuario_nao_logado';
+import Footer from '../../components/Footer/Footer';
+import Pop_up_conversa_adicionada from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada';
+import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado';
 import './Produto.css';
 
 function Produto() {

@@ -1,0 +1,328 @@
+.container_categorias_dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-alinhamento-imagem-titulo-categorias-dashboard {
+    width: 80%;
+    padding-top: 2%;
+}
+
+.container-alinhamento-imagem-categorias-dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-alinhamento-imagem-titulo-quantidade-categorias-dashboard {
+    display: flex;
+    align-items: center;
+    width: 15.5%;
+    justify-content: space-between;
+}
+
+.fundo-cinza-imagem-categorias-dashboard {
+    width: 80%;
+    height: 100%;
+    border-radius: 2vw;
+    background-color: var(--cor_dezesseis);
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.fundo-verde-imagem-categorias-dashboard {
+    background-color: var(--cor_um);
+    width: 75%;
+    height: 75%;
+    border-radius: 2vw;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.fundo-verde-imagem-categorias-dashboard img {
+    width: 72%;
+}
+
+.container-alinhamento-titulo-categorias-dashboard {
+    padding-left: 12%;
+}
+
+.titulo-um-categorias-dashboard {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 650;
+    color: var(--cor_seis);
+}
+
+.numero-de-categorias-dashboard {
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--cor_um);
+}
+
+.container-sair-de-categorias-dashboard {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container-sair-de-categorias-dashboard p {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    font-weight: 650;
+    font-size: 1rem;
+    margin-right: 7%;
+}
+
+.container-sair-de-categorias-dashboard img {
+    width: 30%;
+}
+
+.container_tabela_categorias {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 85vh;
+
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+
+    border-radius: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
+    background-color: var(--cor_quatro);
+}
+
+.container_tabela_categorias_header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 20%;
+    border-top-right-radius: 2vw;
+    border-top-left-radius: 2vw;
+
+    background-color: var(--cor_um);
+    /* border: 1px solid black; */
+}
+
+.container_tabela_categorias_header_barra_de_pesquisa {
+
+    display: flex;
+    align-items: center;
+
+    cursor: text;
+
+    width: 38%;
+    height: 35%;
+
+    margin-left: 3%;
+    padding-left: 1%;
+
+    border-radius: 100vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+    background-color: var(--cor_quatro);
+}
+
+.container_tabela_categorias_header_barra_de_pesquisa input {
+
+    margin-left: 2%;
+    width: 90%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+
+    outline: none;
+
+    border: none;
+    background-color: transparent;
+}
+
+.container_tabela_categorias_header_barra_de_pesquisa input::placeholder{
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-family: var(--tipografia_secundaria);
+}
+
+.container_tabela_categorias_header_cadastrar_categoria {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    margin-right: 5%;
+
+    height: 100%;
+}
+
+.container_tabela_categorias_header_cadastrar_categoria button {
+
+    width: 100%;
+    height: 40%;
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    border: 1% solid var(--cor_dois);
+    border-radius: 100vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+
+    color: var(--cor_nove);
+    background-color: var(--cor_dois);
+}
+
+.container_tabela_categorias_header_cadastrar_categoria button:hover {
+
+    border: 1% solid var(--cor_dois_v_um);
+    background-color: var(--cor_dois_v_um);
+}
+
+.container_tabela_categorias_header_editar_categoria {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+.container_tabela_categorias_header_editar_categoria button {
+
+    width: 100%;
+    height: 40%;
+
+    transition: 0.3s;
+    cursor: pointer;
+
+    border: 1% solid var(--cor_dois);
+    border-radius: 100vw;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    font-weight: 450;
+
+    color: var(--cor_nove);
+    background-color: var(--cor_um_v_um);
+}
+
+.container_botoes_header_categorias {
+
+    display: flex;
+    width: 35%;
+    height: 100%;
+
+    padding-right: 5%;
+}
+
+.container_subtitulo_tabela_categorias {
+
+    display: flex;
+    width: 90%;
+    height: 10%;
+    align-items: center;
+
+    font-family: var(--tipografia_primaria);
+    font-weight: bold;
+    font-size: 1rem;
+
+    border-bottom: 1px solid var(--cor_oito_v_um);
+
+    color: var(--cor_seis);
+}
+
+.container_escurecer_tela {
+
+    position: fixed;
+
+    width: 100%;
+    height: 1000vh;
+
+    background-color: #00000088;
+}
+
+.container_de_categorias_da_tabela {
+
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+
+    width: 90%;
+    height: 65%;
+
+    padding-top: 1%;
+}
+
+.container_conteudo_categoria {
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cor_um_v_tres);
+
+    padding: 1%;
+    margin: 0.5%;
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_um_v_tres);
+}
+
+.container_conteudo_categoria:hover {
+
+    border: 0.1vw solid var(--cor_um);
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+}
+
+.container_nenhuma_categoria{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.container_nenhuma_categoria img{
+
+    width: 7%;
+    margin-bottom: 3%;
+}
+
+.container_nenhuma_categoria p{
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    color: var(--cor_seis_v_um);
+}

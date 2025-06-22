@@ -8,6 +8,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [array_brechos, set_array_brechos] = useState([]);
     const [array_produtos, set_array_produtos] = useState([]);
     const [array_categorias, set_array_categorias] = useState([]);
+    const [array_marcas, set_array_marcas] = useState([]);
     const [array_enderecos, set_array_enderecos] = useState([]);
     const [array_estoques, set_array_estoques] = useState([])
     const [array_chat, set_array_chat] = useState([]);
@@ -25,6 +26,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [clientes_dashboard, set_clientes_dashboard] = useState(false);
     const [brechos_dashboard, set_brechos_dashboard] = useState(false);
     const [produtos_dashboard, set_produtos_dashboard] = useState(false);
+    const [marcas_dashboard, set_marcas_dashboard] = useState(false);
     const [categorias_dashboard, set_categorias_dashboard] = useState(false);
     const [id_do_cliente_a_excluir, set_id_do_cliente_a_excluir] = useState(``);
     const [id_do_brecho_a_excluir, set_id_do_brecho_a_excluir] = useState(``);
@@ -35,6 +37,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [pop_up_notificacao_cadastro_categoria, set_pop_up_notificacao_cadastro_categoria] = useState(false);
     const [pop_up_de_editar_categoria, set_pop_up_de_editar_categoria] = useState(false);
     const [id_categoria, set_id_categoria] = useState(``);
+    const [id_marca, set_id_marca] = useState(``);
     const [pop_up_notificacao_editar_categoria, set_pop_up_notificacao_editar_categoria] = useState(false);
     const [pop_up_de_excluir_categoria, set_pop_up_de_excluir_categoria] = useState(false);
     const [pop_up_notificacao_excluir_categoria, set_pop_up_notificacao_excluir_categoria] = useState(false);
@@ -56,6 +59,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [sacola, set_sacola] = useState([]);
     const [brecho_selecionado, set_brecho_selecionado] = useState(null);
     const [id_categoria_selecionada, set_id_categoria_selecionada] = useState(null);
+    const [pagina_atual, set_pagina_atual] = useState(1);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], senha: ``, confirmarSenha: ``, horario_funcionamento: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -66,6 +70,8 @@ export const GlobalContextProvider = ({ children }) => {
     const [arrayBrechos, setArrayBrechos] = useState([])
     const [imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho] = useState(null)
     const [array_lancamentos, set_array_lancamnetos] = useState('')
+
+    const [pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca] = useState(false);
 
     const [pop_up_notificacao_excluir_brechos_dashboard, set_pop_up_notificacao_excluir_brechos_dashboard] = useState(``)
 
@@ -128,6 +134,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_brechos_dashboard,
             categorias_dashboard,
             set_categorias_dashboard,
+            marcas_dashboard, 
+            set_marcas_dashboard,
             id_do_cliente_a_excluir,
             set_id_do_cliente_a_excluir,
             abrir_pop_up_dashboard,
@@ -194,6 +202,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_brecho_selecionado,
             id_categoria_selecionada,
             set_id_categoria_selecionada,
+            pagina_atual,
+            set_pagina_atual,
 
             id_do_produto_a_excluir,
             set_id_do_produto_a_excluir,
@@ -223,6 +233,12 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_notificacao_excluir_brechos_dashboard,
             termoBuscado,
             setTermoBuscado,
+            array_marcas,
+            set_array_marcas,
+            id_marca,
+            set_id_marca,
+            pop_up_de_cadastrar_marca, 
+            set_pop_up_de_cadastrar_marca,
         }}>
             {children}
         </GlobalContext.Provider>

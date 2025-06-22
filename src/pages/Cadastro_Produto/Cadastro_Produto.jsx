@@ -1,13 +1,13 @@
 // Importações de bibliotecas e componentes necessários para o funcionamento da página
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 
 function Cadastro_Produto() {
   // Estados globais via Context API

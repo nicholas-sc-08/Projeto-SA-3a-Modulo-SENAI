@@ -7,8 +7,8 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import api from '../../services/api';
@@ -50,7 +50,7 @@ function Sacola_geral() {
                 const usuario_atualizado = { ...usuario_logado, sacola: array_com_produto_removido };
                 const atualizar_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_usuario_logado(atualizar_usuario.data);
-
+ 
             } else {
 
                 set_sacola(array_com_produto_removido);
