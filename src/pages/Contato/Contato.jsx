@@ -4,6 +4,7 @@
  import Header from '../../components/Header/Header';
  import { Link } from 'react-router-dom';
  import emailjs from "emailjs-com";
+ import { IMaskInput } from 'react-imask';
  import Pop_up_menssagem_enviada_contato from '../../components/pop_up_usuario/Pop_up_menssagem_enviada_contato';
 
  export default function Contato() {
