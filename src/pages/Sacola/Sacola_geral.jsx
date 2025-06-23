@@ -41,7 +41,7 @@ function Sacola_geral() {
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        if (usuario_logado._id) {
 
             set_sacola(usuario_logado.sacola);
         };

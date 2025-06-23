@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './Sacola.css';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -17,7 +17,7 @@ function Sacola() {
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        if (usuario_logado._id) {
 
             set_sacola(usuario_logado.sacola);
         };
