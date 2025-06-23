@@ -63,12 +63,19 @@ body {
     border-radius: 20px;
     background-color: var(--cor_dezesseis);
 
-    height: 40%;
+    height: 42%;
     width: 72%;
 
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.logo-brecho-perfil-content img {
+    height: 100%;
+    width: 100%;
+    
+    border-radius: 1.7rem;
 }
 
 .infos-horario-endereco-cadastrou-brecho-content {
