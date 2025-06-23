@@ -19,16 +19,23 @@ function Perfil_Brecho() {
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
-  const [ naoEBrecho, setNaoEBrecho] = useState(false)
+  const [ naoEBrecho, setNaoEBrecho] = useState(true)
+
+
 
   useEffect(() => {
     
-    if (!usuario_logado) {
-      setNaoEBrecho(true)
-    } else {
+ const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
+
+    if (encontrar_brecho) {
       setNaoEBrecho(false)
+      return 
+
+    } else {
+      setNaoEBrecho(true)
+      return
     }
-  }, [array_brechos, usuario_logado ])
+  }, [ usuario_logado ])
 
   useEffect(() => {
     if (usuario_logado) {
@@ -99,7 +106,7 @@ function Perfil_Brecho() {
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
                   <p className="horario-cadastrado">
-                    {formCadastroBrecho.horario_funcionamento || 'Não informado'}
+                    {formCadastroBrecho.horario_funcionamento}
                   </p>
                 </div>
               </div>
