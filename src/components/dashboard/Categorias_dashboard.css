@@ -264,7 +264,8 @@
 
     display: flex;
     flex-wrap: wrap;
-    overflow-y: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
 
     width: 90%;
     height: 65%;
