@@ -19,6 +19,7 @@
     "color-namer": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
     "framer-motion": "^12.16.0",
     "jwt-decode": "^4.0.0",
