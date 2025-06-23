@@ -100,6 +100,7 @@ function Sacola_geral() {
 
         set_produto(produto_selecionado);
         navegar_tela_produto(`/produto`);
+        set_sacola_aberta(false);
     };
 
     async function diminuir_quantia_selecionada(produto_selecionado) {

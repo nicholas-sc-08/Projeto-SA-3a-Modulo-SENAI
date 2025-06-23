@@ -16,6 +16,11 @@ function Header({ tipo }) {
     const { array_clientes, set_array_clientes } = useContext(GlobalContext)
     const { array_produtos, set_array_produtos } = useContext(GlobalContext)
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+    const { sacola, set_sacola } = useContext(GlobalContext);
+    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
+    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -25,11 +30,6 @@ function Header({ tipo }) {
     const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
     const navigate = useNavigate()
 
-    const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
-    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
-    const { sacola, set_sacola } = useContext(GlobalContext);
-    const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
-    const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
     const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
 
@@ -398,7 +398,7 @@ function Header({ tipo }) {
                     </button>
                 )}
 
-                <Link to="/" className="header-link-logo">
+                <Link to="/" className="header-link-logo" onClick={() => set_sacola_aberta(false)}>
                     <img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Logo Fly" className='header-link-logo-img' />
                 </Link>
 
