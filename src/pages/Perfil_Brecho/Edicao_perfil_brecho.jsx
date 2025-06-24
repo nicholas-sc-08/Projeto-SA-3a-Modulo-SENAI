@@ -59,7 +59,8 @@ function Edicao_perfil_brecho() {
         cnpj: usuario_logado.cnpj || '',
         logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
-
+        nova_senha: usuario_logado.senha || '',
+        confirmar_senha: usuario_logado.confirmarSenha || '',
       })
     }
 
@@ -109,19 +110,19 @@ function Edicao_perfil_brecho() {
 
   function exibir_senha() {
 
-      if (visualizar_senha) {
+    if (visualizar_senha) {
 
-        set_tipo_do_inpt(`text`);
-        set_icone_senha(`./img/icons/icone_olho_fechado.svg`);
-        set_visualizar_senha(false);
+      set_tipo_do_inpt(`text`);
+      set_icone_senha(`./img/icons/icone_olho_fechado.svg`);
+      set_visualizar_senha(false);
 
-      } else {
+    } else {
 
-        set_tipo_do_inpt(`password`);
-        set_icone_senha(`./img/icons/icone_olho_aberto.svg`);
-        set_visualizar_senha(true);
-      };
+      set_tipo_do_inpt(`password`);
+      set_icone_senha(`./img/icons/icone_olho_aberto.svg`);
+      set_visualizar_senha(true);
     };
+  };
 
 
   async function atualizarBrecho() {
@@ -220,15 +221,28 @@ function Edicao_perfil_brecho() {
       console.log('Brechó atualizado com sucesso!');
 
 
-      // //atualizando as informações no front-end também, para os inputs não ficarem desatualizados
-      // const brechoAtualizado = resposta.data;
-      // setFormCadastroBrecho(brechoAtualizado)
+      // atualizando as informações no front-end também, para os inputs não ficarem desatualizados
+      const brechoAtualizado = resposta.data
+
+      
+      // nesses dois set está sendo as infromações novas estão sendo atualizadas tanto no formCadastroBrecho quanto no usuario logado
+      setFormCadastroBrecho({
+        ...formCadastroBrecho,
+        ...brechoAtualizado
+      })
+
+      set_usuario_logado({
+        ...usuario_logado,
+        ...brechoAtualizado
+      })
+
+
       // console.log('Informações do brechó atualizadas no front-end com sucesso!')
 
 
       // aqui ele atualiza as informações no array dos brechos
       const novosBrechos = array_brechos.map(brecho =>
-        brecho._id === usuario_logado._id ? { ...brecho, ...campoSenhaBackend } : brecho
+        brecho._id === usuario_logado._id ? { ...brecho, ...campoSenhaBackend, ...brechoAtualizado } : brecho
       );
       set_array_brechos(novosBrechos)
 
@@ -418,7 +432,7 @@ function Edicao_perfil_brecho() {
                     })
                   }
                 />
-                 <img src={icone_senha} alt="olho" onClick={() => exibir_senha( )}/>
+                <img src={icone_senha} alt="olho" onClick={() => exibir_senha()} />
               </div>
 
               <div className="input-nova-senha-container">
@@ -435,7 +449,7 @@ function Edicao_perfil_brecho() {
                     })
                   }
                 />
-                 <img src={icone_senha} alt="olho" onClick={() => exibir_senha()}/>
+                <img src={icone_senha} alt="olho" onClick={() => exibir_senha()} />
               </div>
             </div>
             <div className="botao-editar-content">

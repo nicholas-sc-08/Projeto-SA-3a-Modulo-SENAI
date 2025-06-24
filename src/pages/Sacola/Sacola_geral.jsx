@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
@@ -41,7 +42,7 @@ function Sacola_geral() {
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        if (usuario_logado._id) {
 
             set_sacola(usuario_logado.sacola);
         };
@@ -100,6 +101,7 @@ function Sacola_geral() {
 
         set_produto(produto_selecionado);
         navegar_tela_produto(`/produto`);
+        set_sacola_aberta(false);
     };
 
     async function diminuir_quantia_selecionada(produto_selecionado) {

@@ -8,100 +8,93 @@
 
 - **RF01 Cadastro usuário:** O sistema deve permitir que o usuário possa se cadastrar no site ao preencher as informações requeridas no cadastro.
 - **RF02 Cadastro brechó:** Ao preencher os dados no cadastro, o sistema permite que o dono do brechó consiga anunciar os seus produtos.
-- **RF03 Login:** O sistema deve permitir que as pessoas que se cadastraram possam sair da conta e recuperar as suas informações quando logar.
-- **RF04 Cadastro de produtos:** O sistema possibilita que o brechó cadastre diversos produtos, adicionando fotos dos produtos, descrições detalhadas, categorias em seus produtos, como por exemplo “Camiseta”, “Saia”, “Vestido Longo”  e informações sobre o estado de conservação.
-- **RF05 Busca de produtos:** O sistema deve possibilitar que o usuário possa buscar produtos por categorias, estilos e tamanhos.
-- **RF06 Compras:** O sistema deve permitir um sistema de compra, sendo assim poder realizar compras dentro da plataforma da Fly, toda essa ação será realizada por meio de um chat.
-- **RF07 Cadastrar Endereços:** O sistema deve permitir que o usuário e o brechó cadastrem seus endereços ao cadastrar-se na plataforma da Fly, assim podendo ser possível localizar o brechó ou realizar alguma entrega de produto de um brechó para algum cliente
-- **RF08 Gestão de Estoque:** O administrador deve ter acesso a gestão de estoque, onde ele irá conseguir alterar a quantidade de produtos no estoque de determinado brechó. Já o brechó deve conter as mesmas funcionalidades porém somente com seus produtos.
-- **RF09 Lista de Compras:** O sistema possibilita que o usuário adicione produtos a sua Winxs (sua lista de compras), dentro de sua Winxs os produtos adicionados serão separados pelo brechó no qual eles pertencem, além disso, será permitido que os itens adicionados sejam excluídos e que o usuário converse com o brechó responsável através do chat.
-- **RF10 Avaliação de Brechó:** O sistema deve permitir que o usuário possa avaliar um brechó cadastrado no site da Fly a qualquer momento.
-- **RF11 Entrar em Contato:** O sistema deve permitir o usuário a entrar em contato com a empresa Fly em caso de alguma dúvida sobre algo relacionado ao site, preenchendo um formulário.
-- **RF12 DashBoard:** O sistema deve disponibilizar um painel de controle (DashBoard) para o administrador do sistema, podendo modificar, excluir ou cadastrar: produtos, categorias, brechós, usuários e podendo realizar a gestão de estoque.
-- **RF13 Chat:** O sistema deve permitir que o usuário entrar em contato com o brechó a respeito dos itens adicionados na lista de compras, assim dando sequencia na compra e entrega desses produtos .
-- **RF14 Doações:** O sistema possibilita que o brechó cadastre diversos produtos para doações, adicionando informações sobre os itens, para que esses produtos em específico sejam doados a pessoas que não tenham condições de comprar novas roupas para uso.
-- **RF15 Perfil:** O sistema deve permitir que o usuário e brechó consigam modificar as informações pessoais ao acessar seu respectivo perfil e em qualquer momento consigam excluir a conta no site.
-- **RF16 Produto:** O sistema permite que o brechó consiga modificar as informações das peças, como tamanho, avarias e o valor e que o produto seja excluído em qualquer momento, a menos que o produto não esteja reservado em determinada compra, além disso, o brechó deve disponibilizar a vizualização de todos esses detalhes ao cliente.
-- **RF17 Excluir Avaliação:** O sistema permite que o usuário possa excluir sua avaliação se desejado, também será possível que o brechó e o dashboard consiga excluir uma avaliação caso ela tenha cunho preconceituoso ou seja má intencionada.
-- **RF18 Termos de Uso:** O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site.
-- **RF19 Políticas de Privacidade:** O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa.
+- **RF03 Login:** O sistema deve permitir que as pessoas cadastradas possam sair da conta e recuperar as suas informações quando logar.
+- **RF04 Cadastro de produtos:** O sistema possibilita que o brechó cadastre diversos produtos, adicionando fotos dos produtos, descrições detalhadas, categorias em seus produtos, como por exemplo “Camiseta”, “Saia”, “Vestido Longo” e informações sobre o estado de conservação.
+- **RF05 Busca de produtos:** O sistema deve possibilitar que o usuário possa buscar produtos por categorias, marca, estilos e tamanhos.
+- **RF06 Cadastrar Endereços:** O sistema deve permitir que o usuário e o brechó cadastrem seus endereços ao cadastrar-se na plataforma da Fly, assim podendo ser possível localizar o brechó ou realizar alguma entrega de produto de um brechó para algum cliente
+- **RF07 Gestão de Estoque:** O administrador deve ter acesso a gestão de estoque, onde ele irá conseguir alterar a quantidade de produtos no estoque de determinado brechó. Já o brechó deve conter as mesmas funcionalidades porém somente com seus produtos.
+- **RF08 Sacola de Compras:** O sistema possibilita que o usuário adicione produtos a sua sacola, dentro de sua sacola, os produtos adicionados terão a logo do brechó no qual eles pertencem, além disso, será permitido que os itens adicionados tenham sua quantidade alterada ou sejam excluídos.
+- **RF09 Entrar em Contato:** O sistema possibilita o usuário a entrar em contato com a empresa Fly em caso de alguma dúvida ou reclamação sobre algo relacionado ao site por meio de uma API de e-mail.
+- **RF10 DashBoard:** O sistema deve disponibilizar um painel de controle (DashBoard) para o administrador do sistema, podendo modificar, excluir ou visualizar: produtos, categorias, brechós, usuários e podendo realizar a gestão de estoque.
+- **RF11 Chat:** O sistema deve permitir que o usuário entrar em contato com o brechó a respeito dos itens adicionados na sacola, de algum produto especifico ou apenas para tirar uma dúvida.
+- **RF12 Perfil:** O sistema deve permitir que o usuário e brechó consigam modificar as informações pessoais ao acessar seu respectivo perfil e em qualquer momento consigam excluir a conta no site.
+- **RF13 Produto:** O sistema permite que o brechó consiga modificar as informações das peças, como tamanho, avarias e o valor e que o produto seja excluído em qualquer momento, a menos que o produto não esteja reservado em determinada compra, além disso, o brechó deve disponibilizar a visualização de todos esses detalhes ao cliente.
+- **RF14 Termos de Uso:** O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site.
+- **RF15 Políticas de Privacidade:** O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa.
 
 ## Divisão dos requisitos entre os integrantes
 
 ### [Mayara:](https://github.com/MayaraStorl)
 
 - RF03 Login;
-- RF11 Entrar em Contato;
-- RF14 Doações;
-- RF15 Perfil;
-- RF16 Produto. </br>
+- RF09 Entrar em Contato;
+- RF12 Perfil. </br>
 
 ### [Maria Eduarda Wolf:](https://github.com/dudawl18)
 
-- RF06 Compras;
-- RF09 Lista de Compras;
-- RF10 Avaliação de Brechó;
-- RF15 Perfil;
-- RF16 Produto;
-- RF17 Excluir Avaliação.</br>
+- RF01 Cadastro usuário;
+- RF02 Cadastro brechó;
+- RF03 Login;
+- RF06 Cadastrar Endereços;
+- RF12 Perfil.</br>
 
 ### [Nicholas:](https://github.com/nicholas-sc-08)
 
 - RF01 Cadastro usuário;
-- RF06 Compras;
-- RF12 DashBoard;
-- RF13 Chat;
-- RF17 Excluir Avaliação.</br>
+- RF03 Login;
+- RF05 Busca de produtos;
+- RF06 Cadastrar Endereços;
+- RF08 Sacola de Compras;
+- RF10 DashBoard;
+- RF11 Chat;
+- RF13 Produto.</br>
 
 ### [Rinmarys Alejandra:](https://github.com/rinmarys)
 
 - RF02 Cadastro brechó;
 - RF05 Busca de produtos;
-- RF10 Avaliação de Brechó;
-- RF16 Produto;
-- RF17 Excluir Avaliação;
-- RF18 Termos de Uso.</br>
+- RF10 DashBoard;
+- RF14 Termos de Uso;
+- RF15 Políticas de Privacidade.</br>
 
 ### [Gabriel Lacerda:](https://github.com/GabrielFerLacerda)
 
 - RF04 Cadastro de produtos;
-- RF07 Cadastrar Endereços;
-- RF08 Gestão de Estoque;
-- RF16 Produto;
-- RF19 Políticas de Privacidade.</br>
+- RF07 Gestão de Estoque;
+- RF13 Produto;</br>
 
 
 ## Protótipos das Telas
 ### Tela de Início do Cadastro:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Inicio_Cadastro.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Inicial.png">  <br/>
 ### Tela de Login:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Login.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Login.png">  <br/>
 ### Tela de Cadastro Brechó:
 ### Etapa Um:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Vendedores.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Brecho_E1.png">  <br/>
 
 ### Etapa Dois:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Brecho.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Brecho_E2.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Brecho_Ende.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Brecho_E3.png">  <br/>
 
 ### Tela Cadastro Cliente:
 ### Etapa Um: 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E1.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Cliente_E1.png">  <br/>
 
 ### Etapa Dois: 
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E2.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Cliente_E2.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="340" src="./public/img/prototiposTela/Tela_Cadastro_Cliente_E3.png">  <br/>
+<img width="500" height="340" src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/tree/main/public/img/prototiposTela/TelaP_Cadastro_Cliente_E3.png">  <br/>
 
 ## Instrução de Instalação
   Este aplicativo ainda está em processo de criação.

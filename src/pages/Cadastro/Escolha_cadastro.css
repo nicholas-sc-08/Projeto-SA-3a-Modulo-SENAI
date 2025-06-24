@@ -77,6 +77,8 @@
 
 .ladoDireito-container-escolha-cadastro img{
     margin-left: 595px;
+    /* border: 1px solid red; */
+    cursor: pointer;
 }
 
 .ladoDireito-container-escolha-cadastro h1{

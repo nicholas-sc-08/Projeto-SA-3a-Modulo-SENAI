@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './Sacola.css';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -17,17 +17,13 @@ function Sacola() {
 
     useEffect(() => {
 
-        if (usuario_logado) {
+        buscar_brechos();
+        buscar_clientes();
+
+        if (usuario_logado._id) {
 
             set_sacola(usuario_logado.sacola);
         };
-
-    }, [usuario_logado]);
-
-    useEffect(() => {
-
-        buscar_brechos();
-        buscar_clientes();
 
     }, []);
 

@@ -76,6 +76,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [termoBuscado, setTermoBuscado] = useState('')
     
     const [pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca] = useState(false);
+    const [ pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca ] = useState(false)
     const [ imagemLogoMarca, setImagemLogoMarca ] = useState(null)
 
 
@@ -242,6 +243,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_de_cadastrar_marca,
             imagemLogoMarca, 
             setImagemLogoMarca,
+            pop_up_notificacao_cadastro_marca,
+            set_pop_up_notificacao_cadastro_marca,
         }}>
             {children}
         </GlobalContext.Provider>

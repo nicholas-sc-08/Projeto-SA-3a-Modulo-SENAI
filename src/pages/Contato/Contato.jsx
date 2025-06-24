@@ -1,50 +1,64 @@
- import React, { useRef, useState } from 'react';
- import "./Contato.css";
- import Footer from '../../components/Footer/Footer';
- import Header from '../../components/Header/Header';
- import { Link } from 'react-router-dom';
- import emailjs from "emailjs-com";
- import { IMaskInput } from 'react-imask';
- import Pop_up_menssagem_enviada_contato from '../../components/pop_up_usuario/Pop_up_menssagem_enviada_contato';
+import React, { useRef, useState } from 'react';
+import "./Contato.css";
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import { Link } from 'react-router-dom';
+import emailjs from "emailjs-com";
+import { IMaskInput } from 'react-imask';
+import Pop_up_menssagem_enviada_contato from '../../components/pop_up_usuario/Pop_up_menssagem_enviada_contato';
 
- export default function Contato() {
-   const form = useRef();
-   const [exibirPopUp, setExibirPopUp] = useState(false);
+export default function Contato() {
+  const form = useRef();
+  const [exibirPopUp, setExibirPopUp] = useState(false);
 
-   const fecharExibirPopUp = () => {
-     setExibirPopUp(false);
-   };
+  const fecharExibirPopUp = () => {
+    setExibirPopUp(false);
+  };
 
-   const enviarEmail = (e) => {
-     e.preventDefault();
+  const enviarEmail = (e) => {
+    e.preventDefault();
 
-     emailjs.sendForm(
-       'service_Flyo0c7jha',
-       'template_z8w6r3j',
-       form.current,
-       'FuV2-NbGYGtcHk_ha'
-     )
-     .then((result) => {
-       console.log('Email enviado', result.text);
-       setExibirPopUp(true);  // Só aqui que o pop-up aparece
-       form.current.reset();  // Limpa o formulário depois do sucesso
-     })
-     .catch((error) => {
-       console.log('Erro ao enviar', error.text);
-     });
-   };
+    // 👉 Verificação do email ANTES do envio
+    const email = form.current.from_email.value;
 
-   return (
-     <div>
-       <Header tipo='usuario' />
+    // Verifica se o e-mail contém um "@" e termina com domínio válido
+    const emailValido =
+      email.includes("@") &&
+      (email.endsWith("@gmail.com") || email.endsWith("@hotmail.com"));
 
-       <div className='cabecalho-tela-contato'>
-         <Link className='link-tela-contato' to={"/."}>Início</Link>
-         <p>/Contato</p>
-       </div>
+    if (!emailValido) {
+      alert("Por favor, insira um e-mail válido (@gmail.com ou @hotmail.com)");
+      return; // Impede o envio
+    }
 
-    <div className='corpo-contato'>
-    {/* Informações de contato */}
+    // Se o email estiver ok, continua com o envio normal
+    emailjs
+      .sendForm(
+        'service_Flyo0c7jha',
+        'template_z8w6r3j',
+        form.current,
+        'FuV2-NbGYGtcHk_ha'
+      )
+      .then((result) => {
+        console.log('Email enviado', result.text);
+        setExibirPopUp(true); // Só mostra pop-up se deu tudo certo
+        form.current.reset(); // Limpa o form
+      })
+      .catch((error) => {
+        console.log('Erro ao enviar', error.text);
+      });
+  };
+
+  return (
+    <div>
+      <Header tipo='usuario' />
+
+      <div className='cabecalho-tela-contato'>
+        <Link className='link-tela-contato' to={"/."}>Início</Link>
+        <p>/Contato</p>
+      </div>
+
+      <div className='corpo-contato'>
         <div className='container-info-contato'>
           <div className='cabecario-info-contato'>
             <div className='circulo-icon-contato'><img src="./img/telefone.svg" alt="" /></div>
@@ -67,39 +81,49 @@
           </div>
         </div>
 
-       <div className='container-entre-em-contato'>
+        <div className='container-entre-em-contato'>
           <form ref={form} onSubmit={enviarEmail}>
-             <div className='info-importante-entre-em-contato'>
-                   <div className='nome-entre-em-contato'>
-                 <label>Nome Completo</label>
-                 <input type="text" name="from_name" required />
-               </div>
-               <div className='email-entre-em-contato'>
-                 <label>Email</label>
-                 <input type="email" name="from_email" required />
-               </div>
-               <div className='telefone-entre-em-contato'>
-                 <label>Telefone</label>
-                 <input type="tel" name="phone" required />
-               </div>
-             </div>
+            <div className='info-importante-entre-em-contato'>
+              <div className='nome-entre-em-contato'>
+                <label>Nome Completo</label>
+                <input type="text" name="from_name" required />
+              </div>
+              <div className='email-entre-em-contato'>
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="from_email"
+                  placeholder="exemplo@email.com"
+                  required
+                />
+              </div>
+              <div className='telefone-entre-em-contato'>
+                <label>Telefone</label>
+                <IMaskInput
+                  mask="(00) 00000-0000"
+                  unmask="typed"
+                  placeholder='(DD) 90000-0000'
+                  required
+                  name="phone"
+                />
+              </div>
+            </div>
 
-             <div className='menssagem-cliente-entre-em-contato'>
-               <input type="text" name="message" placeholder='Escreva sua Mensagem' required />
-             </div>
+            <div className='menssagem-cliente-entre-em-contato'>
+              <input type="text" name="message" placeholder='Escreva sua Mensagem' required />
+            </div>
 
-             <button onClick={() => setExibirPopUp(true)} type="submit" className='but-entre-em-contato'>Enviar Mensagem</button>
-           </form>
-         </div>
-       </div>
+            <button type="submit" className='but-entre-em-contato'>Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
 
-       <Footer />
+      <Footer />
 
-       {/* Pop-up só aparece no sucesso */}
-       {exibirPopUp && (
-         <Pop_up_menssagem_enviada_contato onClose={fecharExibirPopUp} />
-       )}
-     </div>
-   );
- }
-
+      {/* Pop-up só aparece no sucesso */}
+      {exibirPopUp && (
+        <Pop_up_menssagem_enviada_contato onClose={fecharExibirPopUp} />
+      )}
+    </div>
+  );
+}

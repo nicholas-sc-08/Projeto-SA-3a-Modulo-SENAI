@@ -1,13 +1,7 @@
 .container_pop_up_de_excluir{
-
-    position: fixed;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    
+    z-index: 1;
+    position: absolute;
+    margin-top: -6%;
 }
 
 .pop_up_de_excluir{
@@ -19,11 +13,17 @@
 
     width: 30%;
     height: 45%;
-    margin-top: 8%;
 
     border-radius: 1.5vw;
 
     background-color: var(--cor_quatro);
+    /* border: 1px solid blue; */
+}
+
+.pop_up_de_excluir img{
+    /* border: 1px solid red; */
+    margin-top: 7%;
+    margin-bottom: -5%;
 }
 
 .pop_up_de_excluir p{
@@ -35,18 +35,19 @@
     font-weight: bold;
     font-size: 1rem;
 
-    margin-top: 10%;
-    margin-bottom: 10%;
     color: var(--cor_seis);
+    /* border: 1px solid red; */
 }
 
 .pop_up_de_excluir_botoes{
 
     width: 100%;
-    height: 15%;
+    height: fit-content;
 
     display: flex;
     justify-content: center;
+
+    /* border: 1px solid red; */
 }
 
 .pop_up_de_excluir_botao_sair{
