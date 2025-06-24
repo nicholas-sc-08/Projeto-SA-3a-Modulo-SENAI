@@ -17,19 +17,22 @@ function Sacola() {
 
     useEffect(() => {
 
+        buscar_brechos();
+        buscar_clientes();
+
         if (usuario_logado) {
 
             set_sacola(usuario_logado.sacola);
         };
 
-    }, [usuario_logado]);
+    }, []);
 
     useEffect(() => {
 
-        buscar_brechos();
-        buscar_clientes();
+        console.log(sacola);
+        
 
-    }, []);
+    }, [sacola])
 
     async function buscar_brechos() {
 

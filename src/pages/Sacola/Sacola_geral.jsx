@@ -39,6 +39,12 @@ function Sacola_geral() {
 
     }, [clicou_em_excluir]);
 
+    useEffect(() => {
+
+        set_sacola(usuario_logado.sacola);
+
+    }, [usuario_logado]);
+
     async function remover_produto_sacola(produto_selecionado) {
 
         try {
