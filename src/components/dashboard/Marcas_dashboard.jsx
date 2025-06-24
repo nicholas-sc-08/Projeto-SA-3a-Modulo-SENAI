@@ -7,6 +7,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import Pop_up_cadastrar_marca from '../pop_up_marcas/Pop_up_cadastrar_marca';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import Pop_up_notificacao_cadastro_marca from '../pop_up_marcas/Pop_up_notificacao_cadastro_marca';
 
 function Marcas_dashboard() {
 
@@ -15,13 +16,15 @@ function Marcas_dashboard() {
     const { marcas_dashboard, set_marcas_dashboard } = useContext(GlobalContext)
     const { id_marca, set_id_marca } = useContext(GlobalContext);
     const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
-    
+
     const { pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca } = useContext(GlobalContext);
-    
-    const [ editar_marca, set_editar_marca ] = useState(false);
+    const { pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca } = useContext(GlobalContext);
+
+    const [editar_marca, set_editar_marca] = useState(false);
     const [array_marcas_ordenado, set_array_marcas_ordenado] = useState([]);
     const [texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa] = useState(``);
     const [array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa] = useState([]);
+    const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState(false);
 
     const referencia_input = useRef(null);
     const navegar = useNavigate(``);
@@ -50,26 +53,34 @@ function Marcas_dashboard() {
         };
     };
 
-    // function clicar_em_marca(id) {
+    function clicar_em_marca(id) {
 
-    //     set_id_marca(id);
+        set_id_marca(id);
 
-    //     if (editar_marca) {
 
-    //         set_pop_up_de_editar_marca(true);
-    //         set_editar_marca(false);
-
-    //     } else {
-
-    //         set_pop_up_de_excluir_marca(true);
-    //     };
-    // };
+    };
 
     useEffect(() => {
 
         buscar_marcas();
 
     }, []);
+
+    useEffect(() => {
+
+        for (let i = 0; i < array_da_barra_de_pesquisa.length; i++) {
+
+            if (array_da_barra_de_pesquisa[i].toUpperCase() == texto_da_barra_de_pesquisa.toUpperCase()) {
+
+                set_resultado_de_pesquisa(true);
+            };
+        };
+
+        const filtrar_marcas = array_marcas.filter(marca => marca.nome.toUpperCase().includes(texto_da_barra_de_pesquisa.toUpperCase()));
+        const marcas_ordenadas = [...filtrar_marcas].sort((primeira_marca, marca_seguinte) => primeira_marca.nome.localeCompare(marca_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
+        set_array_marcas_ordenado(marcas_ordenadas);
+
+    }, [texto_da_barra_de_pesquisa]);
 
     return (
         <div>
@@ -82,9 +93,10 @@ function Marcas_dashboard() {
                     {pop_up_de_cadastrar_marca && <div className='container_escurecer_tela'></div>}
                     {pop_up_de_cadastrar_marca && <Pop_up_cadastrar_marca />}
 
-                    {/* {pop_up_notificacao_cadastro_categoria && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_cadastro_categoria && <Pop_up_de_notificacao_cadastro_categoria />}
+                    {pop_up_notificacao_cadastro_marca && <div className='container_escurecer_tela'></div>}
+                    {pop_up_notificacao_cadastro_marca && <Pop_up_notificacao_cadastro_marca />}
 
+                    {/*
                     {pop_up_de_editar_categoria && <div className='container_escurecer_tela'></div>}
                     {pop_up_de_editar_categoria && <Pop_up_de_editar_categoria />}
 
@@ -162,7 +174,7 @@ function Marcas_dashboard() {
 
                             {array_marcas_ordenado.length > 0 ? array_marcas_ordenado.map((marca, i) => (
 
-                                <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_categoria(marca._id)}>
+                                <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_marca(marca._id)}>
 
                                     <span>{editar_marca && "· "}{marca.nome}</span>
 
