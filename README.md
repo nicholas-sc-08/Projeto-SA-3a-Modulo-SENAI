@@ -67,34 +67,34 @@
 ## Protótipos das Telas
 ### Tela de Início do Cadastro:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Inicial.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Inicial.png">  <br/>
 ### Tela de Login:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Login.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Login.png">  <br/>
 ### Tela de Cadastro Brechó:
 ### Etapa Um:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E1.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E1.png">  <br/>
 
 ### Etapa Dois:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E2.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E2.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E3.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Brecho_E3.png">  <br/>
 
 ### Tela Cadastro Cliente:
 ### Etapa Um: 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E1.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E1.png">  <br/>
 
 ### Etapa Dois: 
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E2.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E2.png">  <br/>
 
 ### Etapa Três:
 
-<img width="500" height="340" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E3.png">  <br/>
+<img width="600" height="380" src="./public/img/prototiposTela/TelaP_Cadastro_Cliente_E3.png">  <br/>
 
 ## Instrução de Instalação
   Este aplicativo ainda está em processo de criação.
