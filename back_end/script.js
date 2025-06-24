@@ -564,13 +564,12 @@ app.post(`/marcas`, async (req, res) => {
     const marca = new Marca(req.body);
 
     try {
-
-        const nova_marca = await Marca.save();
+        const nova_marca = await marca.save(); // Agora sim
         res.status(201).json(nova_marca);
 
     } catch (erro) {
-
         console.error(erro);
+        res.status(500).json({ erro: 'Erro ao cadastrar marca' });
     };
 });
 
