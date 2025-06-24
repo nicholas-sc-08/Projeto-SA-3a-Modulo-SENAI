@@ -15,9 +15,10 @@ function Marcas_dashboard() {
     const { marcas_dashboard, set_marcas_dashboard } = useContext(GlobalContext)
     const { id_marca, set_id_marca } = useContext(GlobalContext);
     const { erro_pagina, set_erro_pagina } = useContext(GlobalContext);
-
+    
     const { pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca } = useContext(GlobalContext);
-
+    
+    const [ editar_marca, set_editar_marca ] = useState(false);
     const [array_marcas_ordenado, set_array_marcas_ordenado] = useState([]);
     const [texto_da_barra_de_pesquisa, set_texto_da_barra_de_pesquisa] = useState(``);
     const [array_da_barra_de_pesquisa, set_array_da_barra_de_pesquisa] = useState([]);

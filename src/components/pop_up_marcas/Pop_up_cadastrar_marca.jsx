@@ -60,8 +60,7 @@ function Pop_up_cadastrar_marca() {
 
         // Actualizar la imagen perfil para mostrar la URL final (puedes cambiar si quieres seguir mostrando la local)
         setImagemLogoMarca(data.secure_url);
-        set_marca_a_cadastrar((prev) => ({ ...prev, logoMarca: data.secure_url }))
-
+        set_marca_a_cadastrar({ ...marca_a_cadastrar, logoMarca: data.secure_url })
         // Liberar URL local para evitar leaks
         URL.revokeObjectURL(imageUrl);
       } else {

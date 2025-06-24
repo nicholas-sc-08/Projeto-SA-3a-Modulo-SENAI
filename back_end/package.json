@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon watch script.js"
   },
   "author": "nsc",
@@ -23,5 +23,8 @@
     "nodemon": "^3.1.10",
     "pg": "^8.16.2",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.2"
   }
 }

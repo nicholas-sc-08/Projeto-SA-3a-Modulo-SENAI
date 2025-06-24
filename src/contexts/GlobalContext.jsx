@@ -243,6 +243,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_de_cadastrar_marca,
             imagemLogoMarca, 
             setImagemLogoMarca,
+            pop_up_notificacao_cadastro_marca,
+            set_pop_up_notificacao_cadastro_marca,
         }}>
             {children}
         </GlobalContext.Provider>
