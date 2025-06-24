@@ -141,12 +141,12 @@ function Perfil_Brecho() {
                   </a>
                   <p>Envie uma Mensagem</p>
                 </div>
-                <div className="ligar-content">
+                {/* <div className="ligar-content">
                   <a href={'/contato'}>
                     <img src="./public/img/icons/telefone-icon.svg" alt="Icone-Ligar" />
                   </a>
                   <p>Ligue para Nós</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="parte-inferior-div-direita-content">
