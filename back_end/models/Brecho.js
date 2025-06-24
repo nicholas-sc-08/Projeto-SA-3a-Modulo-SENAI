@@ -13,7 +13,6 @@ const brecho_schema = new mongoose.Schema({
     conversas: { type: Array, required: true },
     sacola: { type: Array, required: false }, 
     horario_funcionamento: { type: String, required: false },
-    confirmarSenha: { type: String, required: false},
 
 }, {timestamps: true});
 
