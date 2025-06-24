@@ -25,9 +25,9 @@ body {
 .perfil-brecho-content {
     /* border: 3px solid #0C35FF; */
     border-radius: 25px;
-    border: 1px solid  #fbf0ce;
-    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105);
-    background-color: var(--cor_nove);
+    border: 0.1vw solid var(--cor_quatro);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--cor_quatro);
 
     height: 85%;
     width: 81%;
@@ -307,31 +307,6 @@ body {
     height: 2rem;
 }
 
-.ligar-content {
-    /* border: 3px solid #DFE600; */
-
-    width: 28%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.ligar-content a {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--cor_um);
-    border-radius: 50%;
-}
-
-.ligar-content img {
-    width: 2rem;
-    height: 2rem;
-}
-
 .entrar-em-contato-content p {
     font-family: "Montserrat", sans serif;
     font-weight: 730;
@@ -373,7 +348,7 @@ body {
 
 .topicos-infos-subContent button {
     width: 24%;
-    background-color: var(--cor_nove);
+    background-color: var(--cor_quatro);
 
     font-family: "Montserrat", sans serif;
     font-weight: 700;
