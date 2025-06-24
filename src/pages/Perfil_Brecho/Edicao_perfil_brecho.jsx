@@ -4,8 +4,8 @@ import { IMaskInput } from 'react-imask'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import api from '../../services/api'
 
-import Footer from '../../components/Footer'
-import PopUp_mudar_Endereco from '../../components/PopUp_mudar_Endereco'
+import Footer from '../../components/Footer/Footer'
+import PopUp_mudar_Endereco from '../../components/pop_up_brechos/PopUp_mudar_Endereco'
 import '../Perfil_Brecho/Edicao_perfil_brecho.css'
 
 function Edicao_perfil_brecho() {
@@ -16,6 +16,10 @@ function Edicao_perfil_brecho() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
   const [mensagemErro, setMensagemErro] = useState(``)
+
+  const [icone_senha, set_icone_senha] = useState(`./img/icons/icone_olho_aberto.svg`);
+  const [visualizar_senha, set_visualizar_senha] = useState(false);
+  const [tipo_do_inpt, set_tipo_do_inpt] = useState(`password`);
 
   const [idade, setIdade] = useState(``)
   const diaDeHoje = new Date()
@@ -55,16 +59,17 @@ function Edicao_perfil_brecho() {
         cnpj: usuario_logado.cnpj || '',
         logo: usuario_logado.logo || '',
         horario_funcionamento: usuario_logado.horario_funcionamento || '',
-
+        nova_senha: usuario_logado.senha || '',
+        confirmar_senha: usuario_logado.confirmarSenha || '',
       })
     }
 
     // faz com que os inputs de senha e confirmar senha não venham pré preenchidos
-    setFormCadastroBrecho(prev => ({
-      ...prev,
-      nova_senha: '',
-      confirmar_senha: ''
-    }))
+    // setFormCadastroBrecho(prev => ({
+    //   ...prev,
+    //   nova_senha: '',
+    //   confirmar_senha: ''
+    // }))
 
 
   }, [usuario_logado, array_brechos])
@@ -102,6 +107,22 @@ function Edicao_perfil_brecho() {
     calcularIdade();
 
   }, [formCadastroBrecho.data_de_nascimento_vendedor])
+
+  function exibir_senha() {
+
+    if (visualizar_senha) {
+
+      set_tipo_do_inpt(`text`);
+      set_icone_senha(`./img/icons/icone_olho_fechado.svg`);
+      set_visualizar_senha(false);
+
+    } else {
+
+      set_tipo_do_inpt(`password`);
+      set_icone_senha(`./img/icons/icone_olho_aberto.svg`);
+      set_visualizar_senha(true);
+    };
+  };
 
 
   async function atualizarBrecho() {
@@ -152,13 +173,6 @@ function Edicao_perfil_brecho() {
 
 
 
-
-
-    // if (formCadastroBrecho.email == '') {  // deixa a mensagem vazia para ajudar a não ficar sempre aparecendo na tela esse erro
-    //   setMensagemErro('')
-    //   return
-    // }
-
     if (!formCadastroBrecho.email.includes('@')) {
       setMensagemErro(`O email deve conter "@"`)
       return
@@ -207,15 +221,28 @@ function Edicao_perfil_brecho() {
       console.log('Brechó atualizado com sucesso!');
 
 
-      // //atualizando as informações no front-end também, para os inputs não ficarem desatualizados
-      // const brechoAtualizado = resposta.data;
-      // setFormCadastroBrecho(brechoAtualizado)
+      // atualizando as informações no front-end também, para os inputs não ficarem desatualizados
+      const brechoAtualizado = resposta.data
+
+      
+      // nesses dois set está sendo as infromações novas estão sendo atualizadas tanto no formCadastroBrecho quanto no usuario logado
+      setFormCadastroBrecho({
+        ...formCadastroBrecho,
+        ...brechoAtualizado
+      })
+
+      set_usuario_logado({
+        ...usuario_logado,
+        ...brechoAtualizado
+      })
+
+
       // console.log('Informações do brechó atualizadas no front-end com sucesso!')
 
 
       // aqui ele atualiza as informações no array dos brechos
       const novosBrechos = array_brechos.map(brecho =>
-        brecho._id === usuario_logado._id ? { ...brecho, ...campoSenhaBackend } : brecho
+        brecho._id === usuario_logado._id ? { ...brecho, ...campoSenhaBackend, ...brechoAtualizado } : brecho
       );
       set_array_brechos(novosBrechos)
 
@@ -391,30 +418,39 @@ function Edicao_perfil_brecho() {
               <label className="titulo-do-input">Endereço</label>
               <button onClick={() => setMostrarPopUp(true)}>Clique para alterar</button>
               <label className="titulo-do-input">Mudança de Senha</label>
-              <input
-                type="password"
-                name="nova_senha"
-                placeholder="Nova Senha"
-                value={formCadastroBrecho.nova_senha}
-                onChange={(e) =>
-                  setFormCadastroBrecho({
-                    ...formCadastroBrecho,
-                    nova_senha: e.target.value
-                  })
-                }
-              />
-              <input
-                type="password"
-                name="confirmar_senha"
-                placeholder='Confirme sua senha'
-                value={formCadastroBrecho.confirmar_senha}
-                onChange={(e) =>
-                  setFormCadastroBrecho({
-                    ...formCadastroBrecho,
-                    confirmar_senha: e.target.value
-                  })
-                }
-              />
+              <div className="input-nova-senha-container">
+                <input
+                  type={tipo_do_inpt}
+                  name="nova_senha"
+                  className="inputs-senha-perfil"
+                  placeholder="Nova Senha"
+                  value={formCadastroBrecho.nova_senha}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      nova_senha: e.target.value
+                    })
+                  }
+                />
+                <img src={icone_senha} alt="olho" onClick={() => exibir_senha()} />
+              </div>
+
+              <div className="input-nova-senha-container">
+                <input
+                  type={tipo_do_inpt}
+                  name="confirmar_senha"
+                  className="inputs-senha-perfil"
+                  placeholder='Confirme sua senha'
+                  value={formCadastroBrecho.confirmar_senha}
+                  onChange={(e) =>
+                    setFormCadastroBrecho({
+                      ...formCadastroBrecho,
+                      confirmar_senha: e.target.value
+                    })
+                  }
+                />
+                <img src={icone_senha} alt="olho" onClick={() => exibir_senha()} />
+              </div>
             </div>
             <div className="botao-editar-content">
               {foiSubmetido && mensagemErro && <p>{mensagemErro}</p>}

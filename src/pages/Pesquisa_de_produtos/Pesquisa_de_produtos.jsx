@@ -6,9 +6,9 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Filtro_de_pesquisa from '../../components/Filtro_de_pesquisa';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Filtro_de_pesquisa from '../../components/filtro_de_pesquisa/Filtro_de_pesquisa';
 import api from '../../services/api';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
@@ -18,13 +18,14 @@ function Pesquisa_de_produtos() {
 
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
+    const { array_categorias, set_array_categorias } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
-    const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
-    const { exibir_produtos_filtrados, set_exibir_produtos_filtrados } = useContext(GlobalContext);
-    const [ pagina_atual, set_pagina_atual ] = useState(1);
+    const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
+    const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
     const navegar_para_produto = useNavigate(null);
     const referencia_pesquisa_produtos = useRef(null);
@@ -41,19 +42,33 @@ function Pesquisa_de_produtos() {
     useEffect(() => {
 
         buscar_produtos();
+        buscar_categorias();
         buscar_brechos();
-
+        
     }, [termoBuscado]);
 
     useEffect(() => {
 
-        const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-        set_produtos_embaralhados(embaralhar);
+        if(id_categoria_selecionada){
 
-    }, [array_produtos]);
+            const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
+            console.log(array_com_as_categorias);
+            
+            const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);
+
+        } else {
+
+            const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);  
+        };
+
+        referencia_pesquisa_produtos.current.scrollIntoView();
+
+    }, [array_produtos, id_categoria_selecionada]);
 
     const produtos_por_pagina = 12;
-    const total_de_paginas = Math.ceil(array_produtos.length / produtos_por_pagina);
+    const total_de_paginas = Math.ceil(produtos_embaralhados.length / produtos_por_pagina);
 
     useEffect(() => {
 
@@ -67,10 +82,24 @@ function Pesquisa_de_produtos() {
 
             set_tipo_de_header(`usuario`);
         };
-
-        referencia_pesquisa_produtos.current.scrollIntoView();
+        
+        set_pagina_atual(1);
+        set_sacola_aberta(false);
 
     }, []);
+
+    async function buscar_categorias() {
+      
+        try {
+
+            const categorias = await api.get(`/categorias`);
+            set_array_categorias(categorias.data);
+            
+        } catch (erro) {
+          
+            console.error(erro);
+        };
+    };
 
     async function buscar_brechos() {
 
@@ -98,6 +127,7 @@ function Pesquisa_de_produtos() {
             );
 
             set_array_produtos(filtrados);
+
         } catch (erro) {
             console.error(erro);
         };
@@ -112,7 +142,7 @@ function Pesquisa_de_produtos() {
     function preco_do_produto(preco) {
 
         const preco_final = preco.toFixed(2).replace(`.`, `,`);
-
+ 
         return `R$${preco_final}`;
     };
 
@@ -147,7 +177,7 @@ function Pesquisa_de_produtos() {
 
                         <div className="container_exibir_produtos">
 
-                            {array_produtos.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
+                            {produtos_embaralhados.length > 0 ? produtos_embaralhados.slice((pagina_atual - 1) * produtos_por_pagina, pagina_atual * produtos_por_pagina).map((produto, i) => (
 
                                 <div key={i} className='container_produto' onClick={() => ir_para_produto(produto)}>
 
@@ -179,7 +209,7 @@ function Pesquisa_de_produtos() {
 
                 </div>
 
-                {array_produtos.length > 0 ?
+                {produtos_embaralhados.length > 0 ?
 
                     <div className="container_botoes_de_paginas">
 

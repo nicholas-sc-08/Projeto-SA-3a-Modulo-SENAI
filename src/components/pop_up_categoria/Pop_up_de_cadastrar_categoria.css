@@ -1,0 +1,172 @@
+.container_pop_up_cadastro_de_categoria {
+
+    position: fixed;
+
+    display: flex;
+    width: 100%;
+    height: 100vh;
+
+    justify-content: center;
+}
+
+.container_pop_up_categoria {
+
+    display: flex;
+    justify-content: end;
+    width: 40%;
+    height: 40vh;
+
+    margin-top: 5%;
+
+    border-radius: 2vw;
+
+    background-size: 53.4%;
+    background-repeat: no-repeat;
+    background-image: url("./img/Imagem_pop_up_cadastro_categoria.svg");
+    background-color: var(--cor_quatro);
+}
+
+.container_pop_up_categoria_conteudo {
+
+    width: 55%;
+    height: 100%;
+}
+
+.container_pop_up_categoria_conteudo p {
+
+    width: 90%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+
+    color: var(--cor_seis_v_um);
+}
+
+.container_alinhamento_formulario {
+
+    display: flex;
+    flex-direction: column;
+
+    height: 40%;
+    margin-left: -15%;
+    /* border: 1px solid red; */
+}
+
+.container-alinhamento-input-cadastrar-categoria {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-alinhamento-input-cadastrar-categoria label {
+    width: fit-content;
+    color: var(--cor_seis_v_um);
+    font-size: 0.78rem;
+
+    font-family: var(--tipografia_secundaria);
+    font-weight: 550;
+
+    margin-bottom: 1%;
+}
+
+.container-alinhamento-input-cadastrar-categoria input{
+    border: 0.1vw solid var(--cor_dois);
+    outline: none;
+    background-color: var(--cor_quatro);
+
+    width: 65%;
+    height: 33px;
+    padding-left: 2%;
+
+    border-radius: 0.3vw;
+}
+
+.container_alinhamento_botao_sair {
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 93%;
+    height: 20%;
+}
+
+.botao_de_sair_categoria {
+
+    cursor: pointer;
+    border: 0px;
+
+    color: var(--cor_um);
+    background-color: transparent;
+}
+
+.alinhamento_titulo {
+
+    width: 92%;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
+
+    border-bottom: 1px solid var(--cor_oito);
+}
+
+.alinhamento_titulo h2 {
+
+    font-size: 1.5rem;
+    font-family: var(--tipografia_primaria);
+    font-weight: bold;
+    color: var(--cor_seis);
+}
+
+.container_botao_cadastrar_categoria p {
+
+    width: 60%;
+}
+
+.container_checkbox_cadastrar_categoria {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 40%;
+    height: 40%;
+}
+
+.container_checkbox_cadastrar_categoria input{
+    width: 50%;
+    height: 50%;
+}
+
+.container_checkbox_cadastrar_categoria p {
+    width: 300%;
+    padding-left: 3%;
+    
+    font-size: 0.8rem;
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_seis_v_um);
+    font-weight: 550;
+    /* border: 1px solid red; */
+}
+
+.checkbox_cadastro_de_categoria {
+
+    accent-color: var(--cor_um);
+}
+
+.container_botao_cadastrar_categoria button {
+
+    border: none;
+    width: 40%;
+    height: 35px;
+    border-radius: 2vw;
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.botao_cadastrar_categoria:hover {
+    background-color: var(--cor_um_v_dois);
+}

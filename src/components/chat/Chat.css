@@ -7,8 +7,9 @@
 
     right: 4%;
     bottom: 0%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
@@ -96,6 +97,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     width: 100%;
     height: 95%;
 }
@@ -111,9 +113,11 @@
     margin-top: 5%;
 
     text-align: center;
+
     font-size: 1.15rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 550;
+
     color: var(--cor_seis_v_um);
 }
 
@@ -131,16 +135,6 @@
     height: 85%;
 }
 
-.container_conversa_com_pessoa {
-
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 25%;
-
-    cursor: pointer;
-    transition: 0.3s;
-}
 
 .container_conversa_com_pessoa:hover {
 
@@ -155,12 +149,28 @@
     background-color: #00000041;
 }
 
+.container_conversa_com_pessoa {
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 25%;
+
+    transition: 0.3s;
+    cursor: pointer;
+}
+
 .container_conversa_imagem_de_pefil {
+
 
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30%;
+
+    flex-shrink: 0;
+
+    width: 25%;
     height: 100%;
 }
 
@@ -174,18 +184,18 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 90%;
-    height: 40%;
+    justify-content: center;
+
+    width: 75%;
 }
 
 .container_conversa_nome_e_hora {
 
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+
     width: 95%;
-    height: 25%;
 }
 
 .container_conversa_nome_e_hora h3 {
@@ -197,7 +207,7 @@
     text-overflow: ellipsis;
 
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-family: var(--tipografia_primaria);
 
     color: var(--cor_seis);
@@ -205,16 +215,20 @@
 
 .hora_da_ultima_mensagem {
 
-    font-family: var(--tipografia_primaria);
-    font-size: 1.1rem;
-    font-weight: 600;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-family: var(--tipografia_secundaria);
+
+    color: var(--cor_seis_v_um);
 }
+
 
 .container_conversa_contador_e_ultima_mensagem {
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     width: 95%;
     height: 55%;
 }
@@ -222,11 +236,12 @@
 .container_conversa_contador_e_ultima_mensagem p {
 
     width: 75%;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-    font-weight: 500;
+    font-weight: 450;
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis_v_um);
 }

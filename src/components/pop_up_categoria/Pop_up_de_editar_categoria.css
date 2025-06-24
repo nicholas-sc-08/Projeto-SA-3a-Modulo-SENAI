@@ -1,0 +1,109 @@
+.container_pop_up_cadastro_de_categoria_edicao {
+    z-index: 1;
+    position: absolute;
+    margin-top: -15%;
+
+    background-color: var(--cor_quatro);
+    border-radius: 1vw;
+    width: 45%;
+    height: 53%;
+}
+
+.container_pop_up_categoria_edicao {
+
+    border-radius: 1vw;
+    height: 100%;
+    display: flex;
+}
+
+.container_pop_up_categoria_conteudo_edicao {
+
+    width: 55%;
+    height: 100%;
+    /* margin-left: -15%; */
+    /* border: 1px solid red; */
+}
+
+.container_alinhamento_formulario_edicao {
+
+    display: flex;
+    flex-direction: column;
+
+    height: 40%;
+    margin-left: -15%;
+    /* border: 1px solid red; */
+}
+
+.container-alinhamento-input-editar-categoria {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-alinhamento-input-editar-categoria label {
+    width: fit-content;
+    color: var(--cor_seis_v_um);
+    font-size: 0.78rem;
+
+    font-family: var(--tipografia_secundaria);
+    font-weight: 550;
+
+    margin-bottom: 1%;
+}
+
+.container-alinhamento-input-editar-categoria input {
+    border: 0.1vw solid var(--cor_dois);
+    outline: none;
+    background-color: var(--cor_quatro);
+
+    width: 70%;
+    height: 33px;
+    padding-left: 2%;
+
+    border-radius: 0.3vw;
+}
+
+.container_alinhamento_botao_sair_edicao {
+
+    display: flex;
+    justify-content: end;
+
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    /* border: 1px solid red; */
+}
+
+.botao_de_sair_categoria_edicao {
+
+    cursor: pointer;
+    border: 0px;
+
+    color: var(--cor_um);
+    background-color: transparent;
+}
+
+.container_botao_categoria_edicao p {
+
+    width: 60%;
+    color: red;
+}
+
+.container_botao_categoria_edicao button {
+
+    border: none;
+    width: 40%;
+    height: 35px;
+    border-radius: 2vw;
+    background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    transition: 0.4s;
+    cursor: pointer;
+
+    margin-top: 6%;
+}
+
+.botao_categoria_edicao:hover {
+    background-color: var(--cor_um_v_dois);
+}

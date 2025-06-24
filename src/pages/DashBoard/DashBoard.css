@@ -64,6 +64,11 @@ body{
     color: var(--cor_nove);
   }
 
+  .dashboard_container_produtos:hover .quantidade_de_produtos {
+  
+    color: var(--cor_nove);
+  }
+
   .dashboard_container_brechos:hover span {
   
     color: var(--cor_nove);
@@ -173,6 +178,7 @@ body{
     align-items: center;
     justify-content: center;
 
+    transition: 0.3s;
     cursor: pointer;
     width: 17%;
 
@@ -180,6 +186,31 @@ body{
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_quatro);
+}
+
+.dashboard_container_clientes:hover{
+
+    background-color: var(--cor_um_v_dois);
+}
+
+.dashboard_container_clientes:hover .quantidade_de_clientes{
+
+    color: var(--cor_nove);
+}
+
+.dashboard_container_clientes:hover span{
+
+    color: var(--cor_nove);
+}
+
+.dashboard_container_clientes:hover .sombra_dashboard_container_clientes{
+
+    background-color: var(--cor_nove_v_um);
+}
+
+.dashboard_container_clientes:hover .dashboard_container_clientes_borda{
+
+    background-color: var(--cor_nove);
 }
 
 .sombra_dashboard_container_clientes{
@@ -409,6 +440,7 @@ body{
     align-items: center;
     justify-content: center;
 
+    transition: 0.3s;
     cursor: pointer;
     width: 17%;
 
@@ -417,6 +449,36 @@ body{
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
     background-color: var(--cor_quatro);
+}
+
+.dashboard_container_categorias:hover{
+
+    background-color: var(--cor_um_v_dois);
+}
+
+.dashboard_container_categorias:hover .quantidade_de_categorias{
+
+    color: var(--cor_nove);
+}
+
+.dashboard_container_categorias:hover span{
+
+    color: var(--cor_nove);
+}
+
+.dashboard_container_categorias:hover .sombra_dashboard_container_categorias{
+
+    background-color: var(--cor_nove_v_um);
+}
+
+.dashboard_container_categorias:hover .dashboard_container_categorias_borda{
+
+    background-color: var(--cor_nove);
+}
+
+.dashboard_container_categorias:hover .dashboard_container_categorias_img img{
+
+    width: 70%;
 }
 
 .sombra_dashboard_container_categorias{
@@ -448,6 +510,9 @@ body{
 
 .dashboard_container_categorias_img{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 65%;
 }
 

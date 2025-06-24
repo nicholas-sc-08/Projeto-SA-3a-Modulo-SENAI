@@ -1,0 +1,318 @@
+.container-alinhamento-brechos-dashboard-allPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-alinhamento-imagem-titulo-brecho-dashboard {
+    width: 80%;
+    padding-top: 2%;
+    /* border: 1px solid red; */
+}
+
+.container-alinhamento-imagem-brecho-dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-alinhamento-imagem-titulo-quantidade-brechos-dashboard {
+    display: flex;
+    align-items: center;
+    width: 13%;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+.fundo-cinza-imagem-brecho-dashboard {
+    width: 80%;
+    height: 100%;
+    border-radius: 2vw;
+    background-color: var(--cor_dezesseis);
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.fundo-verde-imagem-brecho-dashboard {
+    background-color: var(--cor_um);
+    width: 75%;
+    height: 75%;
+    border-radius: 2vw;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.fundo-verde-imagem-brecho-dashboard img {
+    width: 72%;
+}
+
+.container-alinhamento-titulo-brecho-dashboard {
+    padding-left: 12%;
+}
+
+.titulo-um-brecho-dashboard {
+    font-family: var(--tipografia_primaria);
+    font-size: 1.2rem;
+    font-weight: 650;
+    color: var(--cor_seis);
+}
+
+.numero-de-brechos-dashboard {
+    font-family: var(--tipografia_secundaria);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--cor_um);
+}
+
+.container-sair-de-brechos-dashboard {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.container-sair-de-brechos-dashboard p {
+    font-family: var(--tipografia_primaria);
+    color: var(--cor_um);
+    font-weight: 650;
+    font-size: 1rem;
+    margin-right: 7%;
+}
+
+.container-sair-de-brechos-dashboard img {
+    width: 30%;
+}
+
+/* Container informações brechos */
+.alinhamento-container-informacoes-brechos {
+    /* border: 1px solid red; */
+    padding-top: 3%;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.container-informacoes-brechos-dashboard {
+    /* border: 1px solid red; */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.container-barra-verde-pesquisa {
+    width: 100%;
+    background-color: var(--cor_um);
+    padding: 3%;
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+}
+
+.alinhamento-elementos-barra-verde-pesquisa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alinhamento-elementos-barra-verde-pesquisa input {
+    border: transparent;
+    width: 40%;
+    padding: 1.2%;
+    border-radius: 2vw;
+    background-color: var(--cor_quatro);
+
+    background-image: url('./public/img/icons/Pesquisa.svg');
+    background-repeat: no-repeat;
+    background-position: 4% center;
+    background-size: 5%;
+    padding-left: 5%; /* Colocar esto en los headers dps */
+}
+
+.alinhamento-elementos-barra-verde-pesquisa input::placeholder {
+    color: var(--cor_seis);
+    opacity: 70%;
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+}
+
+.alinhamento-elementos-barra-verde-pesquisa input:focus {
+    outline: none;
+    border: 1px solid var(--cor_dois);
+}
+
+.alinhamento-elementos-barra-verde-pesquisa button {
+    border: none;
+    width: 4%;
+    height: 6vh;
+    border-radius: 2vw;
+    background-color: var(--cor_onze);
+    transition: 0.1s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-cancelar{
+    width: 40%;
+}
+
+.alinhamento-elementos-barra-verde-pesquisa button:hover{
+    background-color: var(--cor_treze);
+}
+
+.container-barra-titulos-guias-informacoes-brecho{
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 7%;
+    padding-bottom: 1.2vw;
+    background-color: var(--cor_um);
+}
+
+.container-barra-titulos-guias-informacoes-brecho p{
+    font-family: var(--tipografia_secundaria);
+    color: var(--cor_quatro);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    /* border: 1px solid purple; */
+}
+
+.nome-do-brecho-dashboard{
+    width: 27%;
+    padding-left: 1.5%;
+}
+
+.fundo-container-dados-do-brecho{
+    /* border: 1px solid blue; */
+    width: 100%;
+    height: 405px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-bottom-left-radius: 2vw;
+    border-bottom-right-radius: 2vw;
+    padding-bottom: 1.5%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-color: var(--cor_um) var(--cor_quatro);
+}
+
+.alinhamento-container-dados-do-brecho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 4%;
+    padding-bottom: 1.5%;
+    padding-top: 1.5%;
+    border-bottom: 1px solid #0000003f;
+    /* border: 1px solid red; */
+}
+
+.alinhamento-imagem-nome-brecho{
+    display: flex;
+    align-items: center;
+
+    width: 27%;
+}
+
+.logo-brecho-dashboard{
+    width: 20%;
+    height: 55px;
+    border-radius: 2vw;
+}
+
+.alinhamento-imagem-nome-brecho p{
+    /* border: 1px solid red; */
+    padding-left: 4%;
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+}
+
+.email-do-brecho-dashboard{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.telefone-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.CNPJ-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.senha-do-brecho-dashboard{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-email-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-telefone-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-cnpj-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-senha-brechos-dashboard{
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    color: var(--cor_seis);
+    font-weight: 450;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-excluir-individual{
+    width: 1.6%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.botao-excluir-individual img{
+    width: 100%;
+}

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
-import Header from '../../components/Header'
-import Pop_up_de_excluir_perfil from '../../components/Pop_up_de_excluir_perfil'
+import Header from '../../components/Header/Header'
+import Pop_up_de_excluir_perfil from '../../components/pop_up_usuario/Pop_up_de_excluir_perfil'
 import { GlobalContext } from '../../contexts/GlobalContext'
 
 function Perfil_Brecho() {
@@ -19,16 +19,23 @@ function Perfil_Brecho() {
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
-  const [ naoEBrecho, setNaoEBrecho] = useState(false)
+  const [ naoEBrecho, setNaoEBrecho] = useState(true)
+
+
 
   useEffect(() => {
     
-    if (!usuario_logado) {
-      setNaoEBrecho(true)
-    } else {
+ const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
+
+    if (encontrar_brecho) {
       setNaoEBrecho(false)
+      return 
+
+    } else {
+      setNaoEBrecho(true)
+      return
     }
-  }, [array_brechos, usuario_logado ])
+  }, [ usuario_logado ])
 
   useEffect(() => {
     if (usuario_logado) {
@@ -99,7 +106,7 @@ function Perfil_Brecho() {
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
                   <p className="horario-cadastrado">
-                    {formCadastroBrecho.horario_funcionamento || 'Não informado'}
+                    {formCadastroBrecho.horario_funcionamento}
                   </p>
                 </div>
               </div>
@@ -134,12 +141,12 @@ function Perfil_Brecho() {
                   </a>
                   <p>Envie uma Mensagem</p>
                 </div>
-                <div className="ligar-content">
+                {/* <div className="ligar-content">
                   <a href={'/contato'}>
                     <img src="./public/img/icons/telefone-icon.svg" alt="Icone-Ligar" />
                   </a>
                   <p>Ligue para Nós</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="parte-inferior-div-direita-content">

@@ -1,9 +1,9 @@
-.container_visualizar_produto{
+.container_visualizar_produto {
 
     transition: 0.5s ease;
 }
 
-.container_voltar_para_buscar_produtos{
+.container_voltar_para_buscar_produtos {
 
     display: flex;
     align-items: end;
@@ -11,13 +11,13 @@
     height: 5vh;
 }
 
-.container_voltar_para_buscar_produtos a{
+.container_voltar_para_buscar_produtos a {
 
     display: flex;
     justify-content: space-between;
     width: 5.5%;
     transition: 0.2s;
-    
+
     text-decoration: none;
     font-family: var(--tipografia_secundaria);
     font-size: 1.2rem;
@@ -29,12 +29,12 @@
     color: var(--cor_seis);
 }
 
-.container_voltar_para_buscar_produtos a:hover{
+.container_voltar_para_buscar_produtos a:hover {
 
     border-bottom: 0.1vw solid var(--cor_seis);
 }
 
-.container_info_do_produto{
+.container_info_do_produto {
 
     display: flex;
     justify-content: space-between;
@@ -42,7 +42,7 @@
     height: 80vh;
 }
 
-.container_info_do_produto_imagens{
+.container_info_do_produto_imagens {
 
     display: flex;
     justify-content: center;
@@ -52,7 +52,7 @@
     margin-left: 2%;
 }
 
-.container_imagens_do_produto{ 
+.container_imagens_do_produto {
 
     display: flex;
     flex-direction: column;
@@ -64,8 +64,8 @@
     margin-left: 10%;
 }
 
-.container_outras_opcoes_de_imagens{
-    
+.container_outras_opcoes_de_imagens {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,18 +82,18 @@
     background-color: var(--cor_doze);
 }
 
-.container_outras_opcoes_de_imagens:hover{
+.container_outras_opcoes_de_imagens:hover {
 
     background-color: var(--cor_doze_v_um);
 }
 
 
-.container_imagens_do_produto img{
+.container_imagens_do_produto img {
 
     width: 80%;
 }
 
-.container_imagem_principal_produto{
+.container_imagem_principal_produto {
 
     display: flex;
     justify-content: center;
@@ -101,7 +101,7 @@
 
     width: 80%;
     height: 80%;
-    
+
     margin-top: 11%;
     margin-left: 2%;
 
@@ -110,19 +110,19 @@
     background-color: var(--cor_doze);
 }
 
-.container_imagem_principal_produto img:hover{
+.container_imagem_principal_produto img:hover {
 
     width: 85%;
 }
 
-.container_imagem_principal_produto img{
+.container_imagem_principal_produto img {
 
     transition: 0.3s;
 
     width: 80%;
 }
 
-.container_info_do_produto_conteudo{
+.container_info_do_produto_conteudo {
 
     display: flex;
     flex-direction: column;
@@ -131,7 +131,7 @@
     height: 100%;
 }
 
-.container_info_do_produto_titulo{
+.container_info_do_produto_titulo {
 
     display: flex;
     justify-content: space-between;
@@ -140,9 +140,9 @@
     height: 8%;
     margin-top: 4%;
     margin-bottom: 1%;
-}  
+}
 
-.container_info_brecho_logo{
+.container_info_brecho_logo {
 
     display: flex;
     align-items: center;
@@ -150,7 +150,7 @@
     height: 100%;
 }
 
-.container_info_brecho_do_produto{
+.container_info_brecho_do_produto {
 
     display: flex;
     flex-direction: column;
@@ -159,7 +159,7 @@
     height: 100%;
 }
 
-.contianer_pop_up_nome_do_brecho{
+.contianer_pop_up_nome_do_brecho {
 
     position: absolute;
     right: 14%;
@@ -169,9 +169,9 @@
     align-items: center;
     justify-content: center;
 
-    width: 12%;
+    width: 8%;
     height: 5%;
-    
+
     border-top-left-radius: 100vw;
     border-top-right-radius: 0vw;
     border-bottom-left-radius: 100vw;
@@ -181,16 +181,22 @@
 
     background-color: var(--cor_quatro);
 }
-.contianer_pop_up_nome_do_brecho span{
+
+.contianer_pop_up_nome_do_brecho span {
+
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     font-weight: 550;
     font-size: 0.8rem;
     font-family: var(--tipografia_secundaria);
-    
+
     color: var(--cor_seis);
 }
 
-.container_info_do_produto_titulo h1{
+.container_info_do_produto_titulo h1 {
 
     width: 100%;
     font-family: var(--tipografia_primaria);
@@ -199,7 +205,7 @@
     color: var(--cor_seis);
 }
 
-.container_info_do_produto_titulo img{
+.container_info_do_produto_titulo img {
 
     cursor: pointer;
 
@@ -210,7 +216,7 @@
     border-radius: 100%;
 }
 
-.container_info_do_produto_preco{
+.container_info_do_produto_preco {
 
     display: flex;
     align-items: center;
@@ -218,7 +224,7 @@
     height: 5%;
 }
 
-.container_info_do_produto_preco h2{
+.container_info_do_produto_preco h2 {
 
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
@@ -227,7 +233,7 @@
     color: var(--cor_seis);
 }
 
-.container_info_do_produto_descricao{
+.container_info_do_produto_descricao {
 
     display: flex;
     align-items: center;
@@ -235,28 +241,31 @@
     margin-bottom: 2%;
 }
 
-.container_info_do_produto_descricao p{
+.container_info_do_produto_descricao p {
 
     width: 80%;
     height: fit-content;
 
+    overflow-wrap: break-word;
+    white-space: normal;
+
     font-size: 0.9rem;
     font-family: var(--tipografia_secundaria);
     font-weight: 500;
-    
+
     padding-bottom: 2%;
     border-bottom: 0.1vw solid var(--cor_oito);
     color: var(--cor_seis_v_um);
 }
 
-.container_info_do_produto_tamanho_e_cor{
+.container_info_do_produto_tamanho_e_cor {
 
     display: flex;
     width: 100%;
     height: 13%;
 }
 
-.container_info_do_produto_tamanho{
+.container_info_do_produto_tamanho {
 
     display: flex;
     flex-direction: column;
@@ -266,7 +275,7 @@
     height: 80%;
 }
 
-.container_info_do_produto_tamanho h3{
+.container_info_do_produto_tamanho h3 {
 
     font-size: 1.4rem;
     font-family: var(--tipografia_primaria);
@@ -274,7 +283,7 @@
     color: var(--cor_seis);
 }
 
-.container_fundo_info_do_produto_tamanho{
+.container_fundo_info_do_produto_tamanho {
 
     display: flex;
     justify-content: center;
@@ -290,7 +299,7 @@
     background-color: var(--cor_doze);
 }
 
-.container_fundo_info_do_produto_tamanho span{
+.container_fundo_info_do_produto_tamanho span {
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
@@ -299,7 +308,7 @@
     color: var(--cor_oito_v_dois);
 }
 
-.container_info_do_produto_composto{
+.container_info_do_produto_composto {
 
     display: flex;
     flex-direction: column;
@@ -309,7 +318,7 @@
     height: 80%;
 }
 
-.container_info_do_produto_composto h3{
+.container_info_do_produto_composto h3 {
 
     font-size: 1.4rem;
     font-family: var(--tipografia_primaria);
@@ -317,13 +326,14 @@
     color: var(--cor_seis);
 }
 
-.container_fundo_info_do_produto_composto{
+.container_fundo_info_do_produto_composto {
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: fit-content;
+    max-width: 60%;
     height: 45%;
 
     padding: 6%;
@@ -335,7 +345,13 @@
     background-color: var(--cor_doze);
 }
 
-.container_fundo_info_do_produto_composto span{
+.container_fundo_info_do_produto_composto span {
+
+    width: 100%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     font-family: var(--tipografia_secundaria);
     font-size: 0.9rem;
@@ -344,7 +360,7 @@
     color: var(--cor_oito_v_dois);
 }
 
-.container_info_do_produto_cor{
+.container_info_do_produto_cor {
 
     display: flex;
     flex-direction: column;
@@ -353,7 +369,7 @@
     height: 80%;
 }
 
-.container_info_do_produto_cor h3{
+.container_info_do_produto_cor h3 {
 
     font-size: 1.4rem;
     font-family: var(--tipografia_primaria);
@@ -363,14 +379,14 @@
     color: var(--cor_seis);
 }
 
-.container_fundo_info_do_produto_cor{
+.container_fundo_info_do_produto_cor {
 
     display: flex;
     align-items: center;
     margin-top: 7%;
 }
 
-.cor_do_produto{
+.cor_do_produto {
 
     padding: 8%;
     border-radius: 100vw;
@@ -379,7 +395,7 @@
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
-.container_fundo_info_do_produto_cor span{
+.container_fundo_info_do_produto_cor span {
 
     font-size: 0.9rem;
     font-family: var(--tipografia_secundaria);
@@ -387,13 +403,13 @@
     color: var(--cor_seis);
 }
 
-.container_info_do_produto_botoes{
+.container_info_do_produto_botoes {
 
     width: 100%;
     height: 30%;
 }
 
-.container_info_do_produto_quantidade{
+.container_info_do_produto_quantidade {
 
     display: flex;
     flex-direction: column;
@@ -403,16 +419,20 @@
     height: 80%;
 }
 
-.container_info_do_produto_quantidade h3{
+.container_info_do_produto_quantidade h3 {
 
     font-family: var(--tipografia_primaria);
     font-weight: 600;
     font-size: 1.4rem;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     color: var(--cor_seis);
 }
 
-.container_fundo_info_do_produto_quantidade{
+.container_fundo_info_do_produto_quantidade {
 
     display: flex;
     align-items: center;
@@ -427,7 +447,7 @@
     background-color: var(--cor_doze);
 }
 
-.container_fundo_info_do_produto_quantidade span{
+.container_fundo_info_do_produto_quantidade span {
 
     font-size: 1rem;
     font-weight: 500;
@@ -436,18 +456,18 @@
     color: var(--cor_oito_v_dois);
 }
 
-.container_botoes_do_produto{
+.container_botoes_do_produto {
 
     display: flex;
     align-items: center;
     justify-content: start;
     width: 60%;
     height: 25%;
-    
+
     margin-top: 5%;
 }
 
-.botao_comprar_produto{
+.botao_comprar_produto {
 
     cursor: pointer;
     transition: 0.3s;
@@ -466,13 +486,13 @@
     background-color: var(--cor_um);
 }
 
-.botao_comprar_produto:hover{
+.botao_comprar_produto:hover {
 
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
 }
 
-.botao_conversar_com_brecho{
+.botao_conversar_com_brecho {
 
     display: flex;
     align-items: center;
@@ -495,7 +515,7 @@
     background-color: var(--cor_dois);
 }
 
-.botao_conversar_com_brecho img{
+.botao_conversar_com_brecho img {
 
     width: 15%;
     height: 60%;
@@ -503,13 +523,13 @@
     margin-left: 12%;
 }
 
-.botao_conversar_com_brecho:hover{
+.botao_conversar_com_brecho:hover {
 
     border: 0.1vw solid var(--cor_dois_v_um);
     background-color: var(--cor_dois_v_um);
 }
 
-.fundo_do_pop_up_conversa_adicionada{
+.fundo_do_pop_up_conversa_adicionada {
 
     width: 100%;
     height: 100%;
@@ -518,7 +538,7 @@
     background-color: var(--cor_oito);
 }
 
-.container_voce_tambem_pode_gostar{
+.container_voce_tambem_pode_gostar {
 
     display: flex;
     flex-direction: column;
@@ -529,7 +549,7 @@
     height: 75vh;
 }
 
-.container_voce_tambem_pode_gostar_titulo{
+.container_voce_tambem_pode_gostar_titulo {
 
     display: flex;
     justify-content: center;
@@ -538,7 +558,7 @@
     height: 15%;
 }
 
-.container_voce_tambem_pode_gostar_titulo h2{
+.container_voce_tambem_pode_gostar_titulo h2 {
 
     font-family: var(--tipografia_primaria);
     font-size: 2rem;
@@ -547,7 +567,7 @@
     color: var(--cor_seis);
 }
 
-.container_produtos_embaralhados{
+.container_produtos_embaralhados {
 
     display: flex;
     justify-content: space-around;
@@ -556,7 +576,7 @@
     height: 65%;
 }
 
-.container_produto_embaralhado{
+.container_produto_embaralhado {
 
     display: flex;
     flex-direction: column;
@@ -572,12 +592,12 @@
     background-color: transparent;
 }
 
-.container_produto_embaralhado:hover{
+.container_produto_embaralhado:hover {
 
     background-color: var(--cor_doze_v_um);
 }
 
-.container_imagem_do_produto{
+.container_imagem_do_produto {
 
     display: flex;
     align-items: center;
@@ -596,12 +616,12 @@
     background-color: var(--cor_nove_v_dois);
 }
 
-.container_imagem_do_produto img{
+.container_imagem_do_produto img {
 
     width: 65%;
 }
 
-.container_produto_embaralhado_info{
+.container_produto_embaralhado_info {
 
     display: flex;
     flex-direction: column;
@@ -610,7 +630,7 @@
     height: 25%;
 }
 
-.contianer_produto_embaralhado_titulo{
+.contianer_produto_embaralhado_titulo {
 
     display: flex;
     justify-content: space-between;
@@ -619,7 +639,7 @@
     height: 70%;
 }
 
-.contianer_produto_embaralhado_titulo h5{
+.contianer_produto_embaralhado_titulo h5 {
 
     width: 70%;
     font-family: var(--tipografia_primaria);
@@ -633,7 +653,7 @@
     color: var(--cor_seis);
 }
 
-.contianer_produto_embaralhado_titulo img{
+.contianer_produto_embaralhado_titulo img {
 
     width: 15%;
     height: 60%;
@@ -642,7 +662,7 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
-.container_produto_embaralhado_preco{
+.container_produto_embaralhado_preco {
 
     display: flex;
     align-items: end;
@@ -650,7 +670,7 @@
     height: 10%;
 }
 
-.container_produto_embaralhado_preco span{
+.container_produto_embaralhado_preco span {
 
     font-size: 1.2rem;
     font-family: var(--tipografia_primaria);

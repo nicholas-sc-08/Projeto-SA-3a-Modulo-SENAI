@@ -1,13 +1,13 @@
 // Importações de bibliotecas e componentes necessários para o funcionamento da página
 import React, { useEffect, useState, useContext } from "react";
 import "./Cadastro_Produto.css";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 
 function Cadastro_Produto() {
   // Estados globais via Context API
@@ -16,7 +16,7 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  
+
 
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
@@ -108,17 +108,15 @@ function Cadastro_Produto() {
       setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: novaQuantidade });
       return novaQuantidade;
     });
-
-
-     useEffect(() => {
-  const resultado = listaMarcas.filter((marca) =>
-    marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
-  );
-  setMarcasFiltradas(resultado);
-}, [inputMarca, listaMarcas]);
-
-
   }
+
+  useEffect(() => {
+    const resultado = listaMarcas.filter((marca) =>
+      marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
+    );
+    setMarcasFiltradas(resultado);
+  }, [inputMarca, listaMarcas]);
+
 
   function diminuirQuantidade() {
     if (quantidade > 1) {
@@ -261,13 +259,13 @@ function Cadastro_Produto() {
 
 
   async function buscar_marcas() {
-  try {
-    const res = await api.get("/marcas");
-    setListaMarcas(res.data);
-  } catch (error) {
-    console.error("Erro ao buscar marcas", error);
+    try {
+      const res = await api.get("/marcas");
+      setListaMarcas(res.data);
+    } catch (error) {
+      console.error("Erro ao buscar marcas", error);
+    }
   }
-}
 
 
   // Envia os dados do produto para o backend via POST
@@ -494,23 +492,24 @@ function Cadastro_Produto() {
                 autoComplete="off"
               />
               {inputMarca && marcasFiltradas.length > 0 && (
-                <ul className="lista-tecidos">
+                <ul className="lista-marcas">
                   {marcasFiltradas.map((marca, index) => (
                     <li
                       key={index}
                       onClick={() => {
-                        setInputMarca(marca);
+                        setInputMarca(marca.nome); 
                         setArray_cadastro_produto({
                           ...array_cadastro_produto,
-                          marca: marca,
+                          marca: marca.nome,       
                         });
                         setMarcasFiltradas([]);
                       }}
                     >
-                      {marca}
+                      {marca.nome} 
                     </li>
                   ))}
                 </ul>
+
               )}
             </div>
 

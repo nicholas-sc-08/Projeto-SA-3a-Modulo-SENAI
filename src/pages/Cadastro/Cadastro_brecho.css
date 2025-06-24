@@ -162,7 +162,7 @@
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
     padding-left: 1%;
-    border-radius: 1vw;
+    border-radius: 0.6vw;
 }
 
 .inputs-formulario-um-cadastro-brecho input::placeholder {
@@ -204,7 +204,7 @@
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
     padding-left: 1%;
-    border-radius: 1vw;
+    border-radius: 0.6vw;
 }
 
 .inputs-formulario-dois-cadastro-brecho input:focus {
@@ -274,7 +274,7 @@
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
     padding-left: 1%;
-    border-radius: 1vw;
+    border-radius: 0.6vw;
 }
 
 .container-inputs-cadastro-brecho-tres input:focus {
@@ -320,7 +320,7 @@
     border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
-    border-radius: 1vw;
+    border-radius: 0.6vw;
 }
 
 .container-estado-cidade-cadastro-tres input::placeholder {
@@ -352,7 +352,7 @@
     border: 0.1vw solid var(--cor_dois);
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
-    border-radius: 1vw;
+    border-radius: 0.6vw;
 }
 
 .input-numero-complemento-cadastro-tres input:focus {
@@ -395,6 +395,7 @@
     color: var(--cor_quatro);
     font-family: var(--tipografia_secundaria);
     font-size: 0.9em;
+    font-weight: 500;
     /* border: 1px solid red; */
     transition: 0.4s;
 }

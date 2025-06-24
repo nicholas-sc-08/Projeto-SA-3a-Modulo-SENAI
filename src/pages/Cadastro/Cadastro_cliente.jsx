@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import Secao_inputs_um from '../../components/Cadastro_cliente_secao_inputs_um.jsx';
-import Secao_inputs_dois from '../../components/Cadastro_cliente_secao_inputs_dois.jsx';
-import Secao_inputs_tres from '../../components/Cadastro_cliente_secao_inputs_tres.jsx';
+import Secao_inputs_um from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_um.jsx';
+import Secao_inputs_dois from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_dois.jsx';
+import Secao_inputs_tres from '../../components/cadastro_cliente/Cadastro_cliente_secao_inputs_tres.jsx';
 import axios from 'axios';
 import api from '../../services/api.js';
 import { Link, useNavigate } from 'react-router-dom';
@@ -364,7 +364,7 @@ function Cadastro_cliente() {
 
               {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
               {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-              <p>{mensagem_de_erro.massege}</p>
+              <p>{mensagem_de_erro}</p>
 
             </div>
           </form>

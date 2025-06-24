@@ -84,7 +84,7 @@ body {
     border-radius: 1.7rem;
     background-color: var(--cor_dezesseis);
   
-    height: 71%;
+    height: 77%;
     width: 77%;
   
     display: flex;
@@ -95,6 +95,7 @@ body {
 .perfil-brecho-logo img {
     height: 100%;
     width: 100%;
+    border-radius: 1.7rem;
 }
 
 .info-horario-perfil-brecho {
@@ -313,12 +314,23 @@ body {
     background-color: var(--cor_quatro);
 }
 
-.endereco-e-senha-infos-content input {
-    height: 18%;
-    width: 97%;
-
+.input-nova-senha-container {
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
+
+    height: 18%;
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.inputs-senha-perfil {
+    height: 100%;
+    width: 100%;
+
+    border: none;
     padding-left: 1.4%;
 
     font-family: "Poppins", sans serif;
@@ -327,8 +339,28 @@ body {
     outline: none;
 }
 
-.endereco-e-senha-infos-content input:focus {
+.inputs-senha-perfil input:focus {
     border: 1px solid var(--cor_um_v_dois);
+}
+
+.input-nova-senha-container img {
+    cursor: pointer;
+    transition: 0.3s;
+
+    width: 5.1%;
+    margin-right: 3%;
+    padding: 1%;
+
+    border-radius: 100vw;
+
+    background-color: transparent;
+}
+
+.input-nova-senha-container img:hover{
+
+    background-color: var(--cor_quatro_v_um);
+    width: 5%;
+    height: 90%;
 }
 
 .botao-editar-content {

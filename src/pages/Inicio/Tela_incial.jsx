@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import Footer from '../../components/Footer';
+import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 
@@ -18,11 +18,14 @@ function Tela_incial() {
   const { array_clientes, set_array_clientes } = useContext(GlobalContext);
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+  const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { produto, set_produto } = useContext(GlobalContext);
+  const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
   const { sacola, set_sacola } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
@@ -40,6 +43,8 @@ function Tela_incial() {
 
   const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
 
+  const { filtro_de_pesquisa, set_filtro_de_pesquisa } = useContext(GlobalContext);
+
   // const { setValorBuscado } = useSearch();
 
   useEffect(() => {
@@ -47,7 +52,8 @@ function Tela_incial() {
     informacoes_clientes();
     informacoes_brechos();
     informacoes_produtos();
-
+    set_id_categoria_selecionada(null);
+    
   }, []);
 
   useEffect(() => {
@@ -92,6 +98,19 @@ function Tela_incial() {
     } catch (erro) {
 
       console.log(erro);
+    };
+  };
+
+  async function buscar_categorias() {
+
+    try {
+
+      const categorias = await api.get(`/categorias`);
+      set_array_categorias(categorias.data);
+
+    } catch (erro) {
+
+      console.error(erro);
     };
   };
 
@@ -220,6 +239,7 @@ function Tela_incial() {
 
   const handleCategoryClick = (categoria) => {
     setTermoBuscado(categoria);
+    
     navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
     setTermoBuscado('')
   };
@@ -230,167 +250,167 @@ function Tela_incial() {
 
   return (
     <AnimatePresence>
-    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
-      <Header tipo={tipo_de_header} />
+        <Header tipo={tipo_de_header} />
 
-      {/* home page seção um */}
-      <div className="home-page-secao-um-container">
-        <div className="secao-um-texto-container-home-page">
-          <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
-          <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
-          <button onClick={() => navegar(`/buscarProdutos`)}>Compre Já</button>
+        {/* home page seção um */}
+        <div className="home-page-secao-um-container">
+          <div className="secao-um-texto-container-home-page">
+            <h1>ENCONTRE ROUPAS QUE COMBINAM COM SEU ESTILO</h1>
+            <p>Explore nossa seleção exclusiva de roupas em brechós cuidadosamente curados, onde cada peça reflete personalidade e estilo único. Encontre itens que combinam com você e expressam sua individualidade de forma autêntica.</p>
+            <button onClick={() => navegar(`/buscarProdutos`)}>Compre Já</button>
+          </div>
+
+          <div className="container-imagem-roupas-numero-um">
+          </div>
+
+          <motion.img
+            className='estrela-verde-home-page'
+            src="img/Estrela_dois_cadastro.svg"
+            home-page-secao-dois-container alt="estrela verde grande"
+            animate={controlsEstrelaVerde}
+            initial={{ scale: 1 }}
+          />
+          <motion.img
+            className='estrela-amarela-home-page'
+            src="img/Estrela_um_cadastro.svg"
+            alt="estrela amarela pequena"
+            animate={controlsEstrelaAmarela}
+            initial={{ scale: 1 }}
+          />
+
         </div>
 
-        <div className="container-imagem-roupas-numero-um">
+        <div className="line-home-page-secao-um">
         </div>
+        {/* home page seção um */}
 
-        <motion.img
-          className='estrela-verde-home-page'
-          src="img/Estrela_dois_cadastro.svg"
-          home-page-secao-dois-container alt="estrela verde grande"
-          animate={controlsEstrelaVerde}
-          initial={{ scale: 1 }}
-        />
-        <motion.img
-          className='estrela-amarela-home-page'
-          src="img/Estrela_um_cadastro.svg"
-          alt="estrela amarela pequena"
-          animate={controlsEstrelaAmarela}
-          initial={{ scale: 1 }}
-        />
+        {/* home page seção dois */}
+        <div className="">
+          <div className="container-sinalizacao-brechos-home-page">
+            <div className="icon-quadrado-brechos-home-page"></div>
+            <p>Brechós</p>
+          </div>
 
-      </div>
+          <div className="container-titulo-brechos-home-page">
+            <p>BRECHÓS</p>
+          </div>
 
-      <div className="line-home-page-secao-um">
-      </div>
-      {/* home page seção um */}
+          {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
+          <div className="buttons-anterior-proximo-container-dois">
+            <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+            <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+          </div>
+          {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
 
-      {/* home page seção dois */}
-      <div className="">
-        <div className="container-sinalizacao-brechos-home-page">
-          <div className="icon-quadrado-brechos-home-page"></div>
-          <p>Brechós</p>
+          <AnimatePresence mode="wait">
+            <div className="carousel-wrapper">
+              <motion.div
+                animate={{ x: -startIndex * 390 }} // ajuste se o card for 270px, inclua margens
+                transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                className="container-brechos-cards-home-page"
+              >
+                {array_brechos.map((brecho, i) => (
+                  <div className="card-brecho-home-page" key={i}>
+                    <div className="container-imagem-brecho-cinza">
+                      <div className="container-imagem-brecho" onClick={() => navegar(`/perfil_brecho`)}>
+                        <img src={brecho.logo} alt={brecho.nome_brecho} />
+                      </div>
+                    </div>
+                    <h2 className="nome-brecho">{brecho.nome_brecho}</h2>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </AnimatePresence>
+
+          <div className="button-ver-todos-os-brechos-home-page">
+            <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
+          </div>
         </div>
+        {/* home page seção dois */}
 
-        <div className="container-titulo-brechos-home-page">
-          <p>BRECHÓS</p>
-        </div>
+        {/* home page seção tres */}
+        <div className="home-page-secao-tres-container">
+          <div className="container-sinalizacao-destaques-home-page">
+            <div className="icon-quadrado-destaques-home-page"></div>
+            <p>Destaques</p>
+          </div>
 
-        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
-        <div className="buttons-anterior-proximo-container-dois">
-          <button className='button-anterior-carrossel' onClick={prev}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel' onClick={next}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
-        </div>
-        {/* Mudar dps para ficar verde só quando a pessoa passar o mouse encima */}
+          <div className="home-page-titulo-secao-tres">
+            <p>LANÇAMENTOS</p>
+          </div>
 
-        <AnimatePresence mode="wait">
-          <div className="carousel-wrapper">
-            <motion.div
-              animate={{ x: -startIndex * 390 }} // ajuste se o card for 270px, inclua margens
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="container-brechos-cards-home-page"
-            >
-              {array_brechos.map((brecho, i) => (
-                <div className="card-brecho-home-page" key={i}>
-                  <div className="container-imagem-brecho-cinza">
-                    <div className="container-imagem-brecho">
-                      <img src={brecho.logo} alt={brecho.nome_brecho} />
+          <div className="buttons-anterior-proximo-container-tres">
+            <button className='button-anterior-carrossel' onClick={prevLancamentos}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
+            <button className='button-proximo-carrossel' onClick={nextLancamentos}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <div className="carousel-wrapper">
+              <motion.div
+                animate={{ x: -startIndexLancamentos * 390 }}
+                transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                className="container-cards-alinhamento-lancamentos-secao-tres"
+              >
+                {[...array_produtos].reverse().map((produto, i) => (
+                  <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
+                    <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
+                      <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
+                      <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{nome_brechos(produto.fk_id_brecho)}</Link>
+                    </div>
+                    <div className="container-card-imagem-roupa-lancamentos">
+                      <img src={produto.imagem[0]} alt={produto.nome} />
+                    </div>
+                    <div className="alinhamento-preco-roupa-card-lancamento">
+                      <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
+                      <p className='preco-roupa-lancamentos-card'>{preco_produtos(produto.preco)}</p>
                     </div>
                   </div>
-                  <h2 className="nome-brecho">{brecho.nome_brecho}</h2>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </AnimatePresence>
-
-        <div className="button-ver-todos-os-brechos-home-page">
-          <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
-        </div>
-      </div>
-      {/* home page seção dois */}
-
-      {/* home page seção tres */}
-      <div className="home-page-secao-tres-container">
-        <div className="container-sinalizacao-destaques-home-page">
-          <div className="icon-quadrado-destaques-home-page"></div>
-          <p>Destaques</p>
-        </div>
-
-        <div className="home-page-titulo-secao-tres">
-          <p>LANÇAMENTOS</p>
-        </div>
-
-        <div className="buttons-anterior-proximo-container-tres">
-          <button className='button-anterior-carrossel' onClick={prevLancamentos}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel' onClick={nextLancamentos}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
-        </div>
-
-        <AnimatePresence mode="wait">
-          <div className="carousel-wrapper">
-            <motion.div
-              animate={{ x: -startIndexLancamentos * 390 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="container-cards-alinhamento-lancamentos-secao-tres"
-            >
-              {[...array_produtos].reverse().map((produto, i) => (
-                <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
-                  <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                    <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
-                    <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{nome_brechos(produto.fk_id_brecho)}</Link>
-                  </div>
-                  <div className="container-card-imagem-roupa-lancamentos">
-                    <img src={produto.imagem[0]} alt={produto.nome} />
-                  </div>
-                  <div className="alinhamento-preco-roupa-card-lancamento">
-                    <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
-                    <p className='preco-roupa-lancamentos-card'>{preco_produtos(produto.preco)}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </AnimatePresence>
-
-        <div className="alinhamento-buttons-secao-tres-lancamentos">
-          <button onClick={() => navegar(`/buscarProdutos`)}>Ver todos</button>
-        </div>
-      </div>
-      {/* home page seção tres */}
-
-      {/* home page seção quatro */}
-      <div className="home-page-container-secao-quatro">
-        <div className="container-titulo-secao-quatro">
-          <p>ENCONTRE O QUE PROCURA</p>
-        </div>
-
-        <div className="alinhamento-cards-secao-quatro">
-          <div className="container-um-cards-secao-quatro">
-            <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
-              <p>Roupas</p>
+                ))}
+              </motion.div>
             </div>
+          </AnimatePresence>
 
-            <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
-              <p>Acessórios</p>
-            </div>
+          <div className="alinhamento-buttons-secao-tres-lancamentos">
+            <button onClick={() => navegar(`/buscarProdutos`)}>Ver todos</button>
+          </div>
+        </div>
+        {/* home page seção tres */}
+
+        {/* home page seção quatro */}
+        <div className="home-page-container-secao-quatro">
+          <div className="container-titulo-secao-quatro">
+            <p>ENCONTRE O QUE PROCURA</p>
           </div>
 
-          <div className="container-dois-cards-secao-quatro">
-            <div className="card-tres-secao-quatro" onClick={() => redirecionarParaTelaEmAndamento()}>
-              <p>Doações</p>
+          <div className="alinhamento-cards-secao-quatro">
+            <div className="container-um-cards-secao-quatro">
+              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
+                <p>Roupas</p>
+              </div>
+
+              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
+                <p>Acessórios</p>
+              </div>
             </div>
 
-            <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
-              <p>Calçados</p>
+            <div className="container-dois-cards-secao-quatro">
+              <div className="card-tres-secao-quatro" onClick={() => redirecionarParaTelaEmAndamento()}>
+                <p>Doações</p>
+              </div>
+
+              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
+                <p>Calçados</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* home page seção quatro */}
+        {/* home page seção quatro */}
 
-      {/* home page seção cinco */}
-      {/* <div className="home-page-secao-cinco-container">
+        {/* home page seção cinco */}
+        {/* <div className="home-page-secao-cinco-container">
         <div className="container-sinalizacao-avalicacoes-home-page">
           <div className="icon-quadrado-avaliacoes-home-page"></div>
           <p>Avaliações</p>
@@ -428,14 +448,14 @@ function Tela_incial() {
           </div>
         </AnimatePresence>
       </div> */}
-      {/* home page seção cinco */}
+        {/* home page seção cinco */}
 
 
-      {usuario_logado != `` && !conversa_aberta && <Chat />}
-      {conversa_aberta && <Chat_conversa />}
+        {usuario_logado != `` && !conversa_aberta && <Chat />}
+        {conversa_aberta && <Chat_conversa />}
 
-      <Footer />
-    </motion.div>
+        <Footer />
+      </motion.div>
     </AnimatePresence>
   )
 }

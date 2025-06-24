@@ -1,12 +1,15 @@
+import React from 'react';
 import { useContext } from 'react';
 import { useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
 import Chat_conversa from '../../components/chat/Chat_conversa';
 import api from '../../services/api';
@@ -20,9 +23,31 @@ function Sacola_geral() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
-
+    const [ clicou_em_excluir, set_clicou_em_excluir ] = useState(false);
     const navegar_tela_produto = useNavigate(null);
     const referencia_sacola = useRef(null);
+
+    useEffect(() => {
+
+        if(clicou_em_excluir){
+        
+            setTimeout(() => {
+
+                set_clicou_em_excluir(false);
+                
+            }, 2000);
+        };
+
+    }, [clicou_em_excluir]);
+
+    useEffect(() => {
+
+        if (usuario_logado._id) {
+
+            set_sacola(usuario_logado.sacola);
+        };
+
+    }, [usuario_logado]);
 
     async function remover_produto_sacola(produto_selecionado) {
 
@@ -35,11 +60,13 @@ function Sacola_geral() {
                 const usuario_atualizado = { ...usuario_logado, sacola: array_com_produto_removido };
                 const atualizar_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                 set_usuario_logado(atualizar_usuario.data);
-
+ 
             } else {
 
                 set_sacola(array_com_produto_removido);
             };
+
+            set_clicou_em_excluir(true);
 
         } catch (erro) {
 
@@ -59,9 +86,12 @@ function Sacola_geral() {
 
         let contador = 0;
 
-        for (let i = 0; i < sacola.length; i++) {
+        if(sacola){
 
-            contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+            for (let i = 0; i < sacola.length; i++) {
+                
+                contador += (sacola[i].preco * sacola[i].quantidade_selecionada);
+            };
         };
 
         return `R$${contador.toFixed(2).replace(`.`, `,`)}`;
@@ -71,6 +101,7 @@ function Sacola_geral() {
 
         set_produto(produto_selecionado);
         navegar_tela_produto(`/produto`);
+        set_sacola_aberta(false);
     };
 
     async function diminuir_quantia_selecionada(produto_selecionado) {
@@ -127,6 +158,8 @@ function Sacola_geral() {
         <AnimatePresence>
 
             <motion.div className='container_sacola_geral' initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
+
+                {clicou_em_excluir && <Pop_up_excluir_produto_sacola/>}
 
                 <Header tipo={tipo_de_header} />
 
