@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import './Pop_up_cadastrar_marca.css'
+import api from '../../services/api';
 
 function Pop_up_cadastrar_marca() {
 
@@ -11,6 +12,7 @@ function Pop_up_cadastrar_marca() {
 
   const [marca_a_cadastrar, set_marca_a_cadastrar] = useState({ nome: ``, logoMarca: `` })
   const [erro, set_erro] = useState(false);
+  const [mensagem_de_erro, set_mensagem_de_erro] = useState(`Marca já cadastrada!`);
 
   useEffect(() => {
 
@@ -58,6 +60,7 @@ function Pop_up_cadastrar_marca() {
 
         // Actualizar la imagen perfil para mostrar la URL final (puedes cambiar si quieres seguir mostrando la local)
         setImagemLogoMarca(data.secure_url);
+        set_marca_a_cadastrar((prev) => ({ ...prev, logoMarca: data.secure_url }))
 
         // Liberar URL local para evitar leaks
         URL.revokeObjectURL(imageUrl);
@@ -93,6 +96,12 @@ function Pop_up_cadastrar_marca() {
       console.error(erro);
     };
   };
+
+  useEffect(() => {
+
+    console.log(marca_a_cadastrar)
+
+  }, []);
 
   return (
     <div className='container-alinhamento-pop-up-marcas'>
@@ -131,12 +140,17 @@ function Pop_up_cadastrar_marca() {
             <label>Nome da marca</label>
             <input type="text"
               placeholder='Insira o nome da marca'
+              value={marca_a_cadastrar.nome}
+              onChange={(e) => set_marca_a_cadastrar({ ...marca_a_cadastrar, nome: e.target.value })}
             />
           </div>
 
           <div className="conatainer-button-cadastrar-marca">
             <button onClick={cadastrar_marca}>Cadastrar</button>
+            <p>{erro && mensagem_de_erro}</p>
           </div>
+
+
         </div>
       </div>
     </div>
