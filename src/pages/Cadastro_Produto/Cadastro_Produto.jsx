@@ -16,6 +16,7 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+  
 
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
@@ -31,6 +32,10 @@ function Cadastro_Produto() {
   const [categoriasFiltradas, setCategoriasFiltradas] = useState([]);
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
+  const [listaMarcas, setListaMarcas] = useState([]);
+  const [inputMarca, setInputMarca] = useState("");
+  const [marcasFiltradas, setMarcasFiltradas] = useState([]);
+
 
   // Objeto com os dados principais do produto a ser cadastrado
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
@@ -55,6 +60,7 @@ function Cadastro_Produto() {
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
+    buscar_marcas();
 
     if (informacoes_editar_produto?.nome) {
       setArray_cadastro_produto({
@@ -102,6 +108,16 @@ function Cadastro_Produto() {
       setArray_cadastro_produto({ ...array_cadastro_produto, quantidade: novaQuantidade });
       return novaQuantidade;
     });
+
+
+     useEffect(() => {
+  const resultado = listaMarcas.filter((marca) =>
+    marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
+  );
+  setMarcasFiltradas(resultado);
+}, [inputMarca, listaMarcas]);
+
+
   }
 
   function diminuirQuantidade() {
@@ -242,6 +258,17 @@ function Cadastro_Produto() {
       console.error("Erro ao buscar produtos", error);
     }
   }
+
+
+  async function buscar_marcas() {
+  try {
+    const res = await api.get("/marcas");
+    setListaMarcas(res.data);
+  } catch (error) {
+    console.error("Erro ao buscar marcas", error);
+  }
+}
+
 
   // Envia os dados do produto para o backend via POST
   async function cadastrar_produto() {
@@ -447,19 +474,46 @@ function Cadastro_Produto() {
 
       <div className="container-detalhes-produtos">
         <div className="formulario">
-          
+
 
           <div className="input-group">
-            <div>
-            <label>Marca do produto</label>
-            <input
-              type="text"
-              placeholder="Buscar marcas"
-              className="input-group"
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value })}
-              value={array_cadastro_produto.marca}
-            />
-          </div>
+            <div style={{ position: "relative" }}>
+              <label>Marca do produto</label>
+              <input
+                type="text"
+                placeholder="Buscar marcas"
+                className="input-group"
+                value={inputMarca}
+                onChange={(e) => {
+                  setInputMarca(e.target.value);
+                  setArray_cadastro_produto({
+                    ...array_cadastro_produto,
+                    marca: e.target.value,
+                  });
+                }}
+                autoComplete="off"
+              />
+              {inputMarca && marcasFiltradas.length > 0 && (
+                <ul className="lista-tecidos">
+                  {marcasFiltradas.map((marca, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setInputMarca(marca);
+                        setArray_cadastro_produto({
+                          ...array_cadastro_produto,
+                          marca: marca,
+                        });
+                        setMarcasFiltradas([]);
+                      }}
+                    >
+                      {marca}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             <label>Estado do produto</label>
             <select
               value={array_cadastro_produto.condicao}
@@ -523,9 +577,9 @@ function Cadastro_Produto() {
       </div>
 
 
-      <Footer/>
+      <Footer />
     </div>
-    
+
 
   );
 }
