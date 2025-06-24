@@ -23,6 +23,10 @@ function Escolha_cadastro() {
         }
     };
 
+    function mudarDeTela() {
+        navegar('/')
+    }
+
     return (
         <div className='alinhamento-pagina-escolha-cadastro'>
             <div className="container-ir-para-tela-login-alinhamento">
@@ -45,7 +49,7 @@ function Escolha_cadastro() {
             </div>
 
             <div className='ladoDireito-container-escolha-cadastro'>
-                <img className='logo-ladoDireito' src="./img/logo-verdeCamadinha2.svg" alt="" />
+                <img onClick={mudarDeTela} className='logo-ladoDireito' src="./img/logo-verdeCamadinha2.svg" alt="" />
                 <h1>Crie sua conta Fly!</h1>
                 <p>Qual caminho você quer seguir?</p>
 

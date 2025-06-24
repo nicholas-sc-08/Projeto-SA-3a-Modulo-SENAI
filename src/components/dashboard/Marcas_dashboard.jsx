@@ -45,20 +45,20 @@ function Marcas_dashboard() {
         };
     };
 
-    function clicar_em_marca(id) {
+    // function clicar_em_marca(id) {
 
-        set_id_marca(id);
+    //     set_id_marca(id);
 
-        if (editar_marca) {
+    //     if (editar_marca) {
 
-            set_pop_up_de_editar_marca(true);
-            set_editar_marca(false);
+    //         set_pop_up_de_editar_marca(true);
+    //         set_editar_marca(false);
 
-        } else {
+    //     } else {
 
-            set_pop_up_de_excluir_marca(true);
-        };
-    };
+    //         set_pop_up_de_excluir_marca(true);
+    //     };
+    // };
 
     useEffect(() => {
 

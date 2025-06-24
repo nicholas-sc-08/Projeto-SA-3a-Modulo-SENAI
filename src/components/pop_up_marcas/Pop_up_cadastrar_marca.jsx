@@ -1,11 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import './Pop_up_cadastrar_marca.css'
 
 function Pop_up_cadastrar_marca() {
 
+  const { array_marcas, set_array_marcas } = useContext(GlobalContext);
   const { imagemLogoMarca, setImagemLogoMarca } = useContext(GlobalContext)
-  const {pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca} = useContext(GlobalContext)
+  const { pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca } = useContext(GlobalContext)
+  const { pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca } = useContext(GlobalContext);
+
+  const [marca_a_cadastrar, set_marca_a_cadastrar] = useState({ nome: ``, logoMarca: `` })
+  const [erro, set_erro] = useState(false);
+
+  useEffect(() => {
+
+    buscar_marcas();
+
+  }, []);
+
+  async function buscar_marcas() {
+
+    try {
+
+      const marcas = await api.get(`/marcas`);
+      set_array_marcas(marcas.data);
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -43,6 +67,31 @@ function Pop_up_cadastrar_marca() {
     } catch (error) {
       console.error("Error uploading image:", error);
     }
+  };
+
+  async function cadastrar_marca() {
+
+    try {
+
+      const encontrar_marca_cadastrada = array_marcas.findIndex(marca => marca.nome.toUpperCase() == marca_a_cadastrar.nome.toUpperCase());
+
+      if (encontrar_marca_cadastrada == -1) {
+
+        await api.post(`/marcas`, marca_a_cadastrar);
+        set_pop_up_de_cadastrar_marca(false);
+        set_erro(false);
+        buscar_marcas();
+        set_pop_up_notificacao_cadastro_marca(true);
+
+      } else {
+
+        set_erro(true);
+      };
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
   };
 
   return (
@@ -86,7 +135,7 @@ function Pop_up_cadastrar_marca() {
           </div>
 
           <div className="conatainer-button-cadastrar-marca">
-            <button>Cadastrar</button>
+            <button onClick={cadastrar_marca}>Cadastrar</button>
           </div>
         </div>
       </div>
