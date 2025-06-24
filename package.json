@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",
@@ -19,6 +20,7 @@
     "color-namer": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
     "framer-motion": "^12.16.0",
     "jwt-decode": "^4.0.0",
@@ -47,6 +49,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "jest": "^30.0.2",
     "vite": "^6.1.0"
   }
 }
