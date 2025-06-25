@@ -4,8 +4,6 @@ import "./Cadastro_Produto.css";
 import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
-import Chat from "../../components/chat/Chat";
-import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
 import Footer from '../../components/Footer/Footer';
 import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
@@ -127,6 +125,8 @@ function Cadastro_Produto() {
     setMarcasFiltradas(resultado);
   }, [inputMarca, listaMarcas]);
 
+
+
   useEffect(() => {
   if (pop_up_erro_cadastro) {
     const timer = setTimeout(() => {
@@ -136,6 +136,16 @@ function Cadastro_Produto() {
     return () => clearTimeout(timer); // Limpeza do timer
   }
 }, [pop_up_erro_cadastro]);
+
+useEffect(() => {
+  if (pop_up_notificacao_cadastro_produto) {
+    const timer = setTimeout(() => {
+      set_pop_up_notificacao_cadastro_produto(false);
+    }, 3000); // fecha após 3 segundos
+    return () => clearTimeout(timer);
+  }
+}, [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto]);
+
 
 
 

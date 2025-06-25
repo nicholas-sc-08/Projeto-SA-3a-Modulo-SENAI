@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import axios from 'axios';
+import api from '../../services/api';
 import './Pop_up_de_editar_categoria.css';
 
 
@@ -20,7 +20,7 @@ function Pop_up_de_editar_categoria({ id_da_categoria }) {
 
     try {
 
-      const categorias = await axios.get(`http://localhost:3000/categorias`);
+      const categorias = await api.get(`/categorias`);
       set_array_categorias(categorias.data);
 
     } catch (erro) {
@@ -38,7 +38,7 @@ function Pop_up_de_editar_categoria({ id_da_categoria }) {
 
       if (encontrar_categoria == -1) {
 
-        const editar = await axios.put(`http://localhost:3000/categorias/${id_categoria}`, categoria);
+        await api.put(`/categorias/${id_categoria}`, categoria);
         buscar_categorias();
         set_pop_up_notificacao_editar_categoria(true);
         set_pop_up_de_editar_categoria(false);
