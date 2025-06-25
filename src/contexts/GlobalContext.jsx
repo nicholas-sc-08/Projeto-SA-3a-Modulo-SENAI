@@ -79,6 +79,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [ pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca ] = useState(false)
     const [ imagemLogoMarca, setImagemLogoMarca ] = useState(null)
     const [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto] = useState(false);
+    const [pop_up_editar_marca, set_pop_up_editar_marca] = useState(false);
 
 
 
@@ -248,7 +249,9 @@ export const GlobalContextProvider = ({ children }) => {
             pop_up_notificacao_cadastro_marca,
             set_pop_up_notificacao_cadastro_marca,
             pop_up_notificacao_cadastro_produto,
-            set_pop_up_notificacao_cadastro_produto
+            set_pop_up_notificacao_cadastro_produto,
+            pop_up_editar_marca, 
+            set_pop_up_editar_marca,
         }}>
             {children}
         </GlobalContext.Provider>
