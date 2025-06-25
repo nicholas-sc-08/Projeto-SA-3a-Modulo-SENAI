@@ -2,7 +2,7 @@ import React from 'react';
 import './Pop_up_de_excluir_categoria.css';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 function Pop_up_de_excluir_categoria() {
@@ -16,7 +16,7 @@ function Pop_up_de_excluir_categoria() {
 
     try {
       
-      const categorias = await axios.get(`http://localhost:3000/categorias`);
+      const categorias = await api.get(`/categorias`);
       set_array_categorias(categorias.data);
 
     } catch (erro) {
@@ -29,7 +29,7 @@ function Pop_up_de_excluir_categoria() {
 
     try {
       
-      const categoria = await axios.delete(`http://localhost:3000/categorias/${id_categoria}`);
+      await api.delete(`/categorias/${id_categoria}`);
       buscar_categorias();
       set_pop_up_notificacao_excluir_categoria(true);
       set_pop_up_de_excluir_categoria(false);
