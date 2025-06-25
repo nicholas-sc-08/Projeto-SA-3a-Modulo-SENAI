@@ -1,18 +1,20 @@
-// src/components/Pop_up_erro_cadastro/Pop_up_erro_cadastro.jsx
 import React, { useEffect, useContext } from "react";
-import "../Pop_up_cadastro_produto/Pop_up_cadastro_produto.css"; // Reutiliza o CSS
+import "../Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto.css";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
- function Pop_up_erro_cadastro() {
+function Pop_up_erro_cadastro() {
   const { set_pop_up_erro_cadastro } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       set_pop_up_erro_cadastro(false);
-    }, 3000); // Tempo igual à animação
+      navigate('/gestao_estoque');
+    }, 3000);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [navigate, set_pop_up_erro_cadastro]);
 
   return (
     <div className="pop-up-notificacao erro">
@@ -28,4 +30,4 @@ import { GlobalContext } from "../../contexts/GlobalContext";
   );
 }
 
-export default Pop_up_erro_cadastro
+export default Pop_up_erro_cadastro;

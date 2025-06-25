@@ -1,43 +1,35 @@
-.pop-up-notificacao.erro {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+/* Pop_up_cadastro_produto.css */
+
+.pop-up-notificacao.sucesso {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 25%;
-  height: 40%;
-
-  border-radius: 2vw;
-  background-color: #FFFDF7 ; /* branco amarelado */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* sombra sutil */
-
-  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 128, 0, 0.2); /* Fundo esverdeado suave */
+  z-index: 999;
 }
 
-.pop-up-notificacao.erro .conteudo {
+.pop-up-notificacao.sucesso .conteudo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  width: 130%;
-  height: 100%;
-}
-
-.pop-up-notificacao.erro .icone-notificacao {
-  margin-bottom: 5%;
-  width: 80px;
-  height: 90px;
-}
-
-.pop-up-notificacao.erro p {
-  font-family: var(--tipografia_primaria);
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  color: var(--cor_seis);
+  justify-content: space-evenly;
   width: 50%;
+  height: 40%;
+  border-radius: 1vw;
+  box-shadow: rgba(0, 128, 0, 0.1) 0px 1px 3px 0px;
+  background-color: #e6f4ea; /* Verde clarinho */
+  color: #1a662a; /* Verde escuro */
+}
+
+.pop-up-notificacao.sucesso .gif-animation {
+  width: 50%;
+
+}
+.pop-up-notificacao.sucesso p {
+  font-size: 1.2rem;
+  font-family: var(--tipografia_primaria);
+  font-weight: 550;
 }
