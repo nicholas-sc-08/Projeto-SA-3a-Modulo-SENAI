@@ -8,6 +8,8 @@ import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
 import Footer from '../../components/Footer/Footer';
+import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
+import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
 
 function Cadastro_Produto() {
   // Estados globais via Context API
@@ -16,6 +18,9 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+  const {pop_up_notificacao_cadastro_produto,set_pop_up_notificacao_cadastro_produto} = useContext(GlobalContext);
+  
+
 
 
   // Tecidos sugeridos para autocomplete
@@ -35,6 +40,8 @@ function Cadastro_Produto() {
   const [listaMarcas, setListaMarcas] = useState([]);
   const [inputMarca, setInputMarca] = useState("");
   const [marcasFiltradas, setMarcasFiltradas] = useState([]);
+  const [pop_up_erro_cadastro, set_pop_up_erro_cadastro] = useState(false);
+
 
 
   // Objeto com os dados principais do produto a ser cadastrado
@@ -85,6 +92,9 @@ function Cadastro_Produto() {
     }
   }, []);
 
+
+
+
   // Filtra tecidos conforme digitação do usuário
   useEffect(() => {
     const resultado = tecidos_disponiveis.filter((tecido) =>
@@ -116,6 +126,17 @@ function Cadastro_Produto() {
     );
     setMarcasFiltradas(resultado);
   }, [inputMarca, listaMarcas]);
+
+  useEffect(() => {
+  if (pop_up_erro_cadastro) {
+    const timer = setTimeout(() => {
+      set_pop_up_erro_cadastro(false);
+    }, 3000);
+
+    return () => clearTimeout(timer); // Limpeza do timer
+  }
+}, [pop_up_erro_cadastro]);
+
 
 
   function diminuirQuantidade() {
@@ -196,6 +217,48 @@ function Cadastro_Produto() {
     }
   }
 
+
+  // Função para editar o produto existente
+  async function editar_produto() {
+    try {
+      await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
+      buscar_produtos(); // Atualiza a listagem
+      alert("Produto atualizado com sucesso!");
+
+      // Limpa o estado de edição
+      set_informacoes_editar_produto(null);
+
+      // Reset visual opcional
+      setArray_cadastro_produto({
+        nome: "",
+        descricao: "",
+        preco: "",
+        condicao: "",
+        cor: [],
+        imagem: [],
+        marca: "",
+        composicao: "",
+        fk_id_categoria: "",
+        tamanho: "",
+        quantidade: 1,
+        fk_id_brecho: usuario_logado?._id || "",
+      });
+      setQuantidade(1);
+      setTamanhoSelecionado("");
+      setImagens([]);
+      setImagemPrincipal(null);
+      setCoresSelecionadas([]);
+      setInputTecido("");
+      setInputCategoria("");
+      setInputMarca("");
+
+    } catch (error) {
+      console.error("Erro ao editar produto", error);
+      alert("Erro ao atualizar produto");
+    }
+  }
+
+
   // Seleção de cores usando EyeDropper
   async function selecionarCorEyeDropper() {
     if (window.EyeDropper) {
@@ -273,10 +336,10 @@ function Cadastro_Produto() {
     try {
       await api.post("/produtos", array_cadastro_produto);
       buscar_produtos();
-      alert("Produto cadastrado com sucesso!");
+      set_pop_up_notificacao_cadastro_produto(true);
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
-      alert("Erro ao cadastrar produto");
+      set_pop_up_erro_cadastro(true)
     }
   }
 
@@ -497,15 +560,15 @@ function Cadastro_Produto() {
                     <li
                       key={index}
                       onClick={() => {
-                        setInputMarca(marca.nome); 
+                        setInputMarca(marca.nome);
                         setArray_cadastro_produto({
                           ...array_cadastro_produto,
-                          marca: marca.nome,       
+                          marca: marca.nome,
                         });
                         setMarcasFiltradas([]);
                       }}
                     >
-                      {marca.nome} 
+                      {marca.nome}
                     </li>
                   ))}
                 </ul>
@@ -569,14 +632,22 @@ function Cadastro_Produto() {
           </div>
 
 
-          <button onClick={cadastrar_produto} className="botao-cadastrar">
-            Cadastrar Produto
+          <button
+            onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
+            className="botao-cadastrar"
+            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}}>
+            {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
           </button>
+
         </div>
       </div>
 
 
       <Footer />
+      {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
+      {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto/>}
+
+
     </div>
 
 
