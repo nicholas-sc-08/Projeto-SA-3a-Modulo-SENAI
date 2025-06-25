@@ -424,12 +424,12 @@ body {
     font-size: 20px;
     font-weight: bold;
     margin-left: 130px;
+
 }
 
 .input-categoria-label{
     font-weight: 330;
     font-family: "Poppins", sans-serif;
-    font-size: 18px;
     color: #3e2a2198;
     font-weight: bold;
     padding-bottom: 5%;
@@ -453,7 +453,7 @@ body {
 }
 
 .input-group label{
-    margin-top: 5%;
+    margin-top: 3.9%;
 }
 
 
@@ -479,7 +479,9 @@ body {
   overflow-y: auto;
   padding: 0;
   margin: 4px 0 0 0;
-  border-radius: 15%;
+  
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
   background: white;
   position: absolute;
   width:85%;
@@ -497,6 +499,35 @@ body {
 .lista-categorias li:hover {
   background-color: #eee;
 }
+
+.lista-marcas {
+  list-style: none;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0;
+  background: white;
+  position: absolute;
+  width:40%;
+  height: fit-content;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  margin-left: 27%;
+  font-family: var(--tipografia_secundaria);
+  color: var(--cor_seis);
+}
+
+.lista-marcas li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.lista-marcas li:hover {
+  background-color: #eee;
+}
+
 
 
 /* Ajustando o campo de input direita */
