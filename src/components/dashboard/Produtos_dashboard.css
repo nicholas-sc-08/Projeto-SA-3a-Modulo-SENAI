@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
 
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     background-color: var(--cor_doze);
     width: 30%;
     height: 70px;
@@ -96,7 +96,7 @@
 .alinhamento-container-um-estoque-produto-dashboard {
     width: 80%;
     margin-top: 2.5%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 2vw;
 
     /* border: 1px solid red; */

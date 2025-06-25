@@ -154,7 +154,7 @@
 }
 
 .conatainer-button-cadastrar-marca{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-left: -15%;
 }
 
@@ -176,6 +176,11 @@
 }
 
 .conatainer-button-cadastrar-marca p{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding-top: 2%;
+    color: var(--cor_vinte);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+
+    font-weight: 550;
 }

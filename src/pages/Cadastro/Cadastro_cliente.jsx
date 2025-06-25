@@ -364,7 +364,7 @@ function Cadastro_cliente() {
 
               {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
               {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-              <p>{mensagem_de_erro.massege}</p>
+              <p>{mensagem_de_erro}</p>
 
             </div>
           </form>

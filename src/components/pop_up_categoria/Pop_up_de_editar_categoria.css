@@ -1,93 +1,79 @@
-.container_pop_up_cadastro_de_categoria_edicao{
-    
-    position: fixed;
+.container_pop_up_cadastro_de_categoria_edicao {
+    z-index: 1;
+    position: absolute;
+    margin-top: -15%;
 
-    display: flex;
-    width: 100%;
-    height: 10vh;
-    
-    justify-content: center;
-}
-
-.container_pop_up_categoria_edicao{
-
-    display: flex;
-    justify-content: end;
-    width: 40%;
-    height: 40vh;
-
-    margin-top: 5%;
-
-    border-radius: 2vw;
-
-    background-size: 53.4%;
-    background-repeat: no-repeat;
-    background-image: url("./img/Imagem_pop_up_cadastro_categoria.svg");
     background-color: var(--cor_quatro);
+    border-radius: 1vw;
+    width: 45%;
+    height: 53%;
 }
 
-.container_pop_up_categoria_conteudo_edicao{
+.container_pop_up_categoria_edicao {
+
+    border-radius: 1vw;
+    height: 100%;
+    display: flex;
+}
+
+.container_pop_up_categoria_conteudo_edicao {
 
     width: 55%;
     height: 100%;
+    /* margin-left: -15%; */
+    /* border: 1px solid red; */
 }
 
-.container_pop_up_categoria_conteudo_edicao p{
-
-    width: 90%;
-    margin-top: 2%;
-    margin-bottom: 5%;
-
-    font-family: var(--tipografia_secundaria);
-    font-size: 0.9rem;
-
-    color: var(--cor_seis_v_um);
-}
-
-.container_pop_up_categoria_conteudo_edicao label{
-
-    font-weight: bold;
-    font-family: var(--tipografia_secundaria);
-    font-size: 1rem;
-
-    color: var(--cor_seis_v_um);
-}
-
-.container_pop_up_categoria_conteudo_edicao input{
-
-    width: 90%;
-    height: 25%;
-
-    outline: none;
-
-    margin-top: 2%;
-    padding-left: 2%;
-
-    font-family: var(--tipografia_secundaria);
-
-    border-radius: 0.7vw;
-    border: 1px solid var(--cor_dois);
-    background-color: transparent;
-}
-
-.container_alinhamento_formulario_edicao{
+.container_alinhamento_formulario_edicao {
 
     display: flex;
     flex-direction: column;
 
     height: 40%;
+    margin-left: -15%;
+    /* border: 1px solid red; */
 }
 
-.container_alinhamento_botao_sair_edicao{
+.container-alinhamento-input-editar-categoria {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-alinhamento-input-editar-categoria label {
+    width: fit-content;
+    color: var(--cor_seis_v_um);
+    font-size: 0.78rem;
+
+    font-family: var(--tipografia_secundaria);
+    font-weight: 550;
+
+    margin-bottom: 1%;
+}
+
+.container-alinhamento-input-editar-categoria input {
+    border: 0.1vw solid var(--cor_dois);
+    outline: none;
+    background-color: var(--cor_quatro);
+
+    width: 70%;
+    height: 33px;
+    padding-left: 2%;
+
+    border-radius: 0.3vw;
+}
+
+.container_alinhamento_botao_sair_edicao {
 
     display: flex;
     justify-content: end;
-    align-items: center;
-    width: 93%;
-    height: 20%;
+
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    /* border: 1px solid red; */
 }
 
-.botao_de_sair_categoria_edicao{
+.botao_de_sair_categoria_edicao {
 
     cursor: pointer;
     border: 0px;
@@ -96,57 +82,28 @@
     background-color: transparent;
 }
 
-.alinhamento_titulo_edicao{
-
-    width: 92%;
-    padding-top: 5%;
-    padding-bottom: 2.5%;
-
-    border-bottom: 1px solid var(--cor_oito);
-}
-
-.alinhamento_titulo_edicao h2{
-
-    font-size: 1.5rem;
-    font-family: var(--tipografia_primaria);
-    font-weight: bold;
-    color: var(--cor_seis);
-}
-
-.container_botao_categoria_edicao{
-
-    display: flex;
-    align-items: center;
-
-    height: 50%;
-}
-
-.container_botao_categoria_edicao p{
+.container_botao_categoria_edicao p {
 
     width: 60%;
     color: red;
 }
 
-.botao_categoria_edicao{
+.container_botao_categoria_edicao button {
 
-    cursor: pointer;
-    transition: 0.3s;
-
-    width: 30%;
-    height: 60%;
-
+    border: none;
+    width: 40%;
+    height: 35px;
     border-radius: 2vw;
-    border: 1px solid var(--cor_um);
-
-    font-family: var(--tipografia_secundaria);
-    font-size: 0.8rem;
-
-    color: var(--cor_quatro);
     background-color: var(--cor_um);
+    color: var(--cor_quatro);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.9rem;
+    transition: 0.4s;
+    cursor: pointer;
+
+    margin-top: 6%;
 }
 
-.botao_categoria_edicao:hover{
-
-    border: 1px solid var(--cor_um_v_dois);
+.botao_categoria_edicao:hover {
     background-color: var(--cor_um_v_dois);
 }

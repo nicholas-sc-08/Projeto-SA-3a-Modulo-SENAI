@@ -4,10 +4,10 @@ import "./Cadastro_Produto.css";
 import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
-import Chat from "../../components/chat/Chat";
-import Chat_conversa from "../../components/chat/Chat_conversa";
 import "../Produto/Produto.css";
 import Footer from '../../components/Footer/Footer';
+import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
+import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
 
 function Cadastro_Produto() {
   // Estados globais via Context API
@@ -16,6 +16,10 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
+  const {pop_up_notificacao_cadastro_produto,set_pop_up_notificacao_cadastro_produto} = useContext(GlobalContext);
+  
+
+
 
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
@@ -31,6 +35,12 @@ function Cadastro_Produto() {
   const [categoriasFiltradas, setCategoriasFiltradas] = useState([]);
   const [editandoNome, setEditandoNome] = useState(false);
   const [editandoPreco, setEditandoPreco] = useState(false);
+  const [listaMarcas, setListaMarcas] = useState([]);
+  const [inputMarca, setInputMarca] = useState("");
+  const [marcasFiltradas, setMarcasFiltradas] = useState([]);
+  const [pop_up_erro_cadastro, set_pop_up_erro_cadastro] = useState(false);
+
+
 
   // Objeto com os dados principais do produto a ser cadastrado
   const [array_cadastro_produto, setArray_cadastro_produto] = useState({
@@ -55,6 +65,7 @@ function Cadastro_Produto() {
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
+    buscar_marcas();
 
     if (informacoes_editar_produto?.nome) {
       setArray_cadastro_produto({
@@ -78,6 +89,9 @@ function Cadastro_Produto() {
       setCoresSelecionadas(informacoes_editar_produto.cor || []);
     }
   }, []);
+
+
+
 
   // Filtra tecidos conforme digitação do usuário
   useEffect(() => {
@@ -103,6 +117,37 @@ function Cadastro_Produto() {
       return novaQuantidade;
     });
   }
+
+  useEffect(() => {
+    const resultado = listaMarcas.filter((marca) =>
+      marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
+    );
+    setMarcasFiltradas(resultado);
+  }, [inputMarca, listaMarcas]);
+
+
+
+  useEffect(() => {
+  if (pop_up_erro_cadastro) {
+    const timer = setTimeout(() => {
+      set_pop_up_erro_cadastro(false);
+    }, 3000);
+
+    return () => clearTimeout(timer); // Limpeza do timer
+  }
+}, [pop_up_erro_cadastro]);
+
+useEffect(() => {
+  if (pop_up_notificacao_cadastro_produto) {
+    const timer = setTimeout(() => {
+      set_pop_up_notificacao_cadastro_produto(false);
+    }, 3000); // fecha após 3 segundos
+    return () => clearTimeout(timer);
+  }
+}, [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto]);
+
+
+
 
   function diminuirQuantidade() {
     if (quantidade > 1) {
@@ -182,6 +227,48 @@ function Cadastro_Produto() {
     }
   }
 
+
+  // Função para editar o produto existente
+  async function editar_produto() {
+    try {
+      await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
+      buscar_produtos(); // Atualiza a listagem
+      alert("Produto atualizado com sucesso!");
+
+      // Limpa o estado de edição
+      set_informacoes_editar_produto(null);
+
+      // Reset visual opcional
+      setArray_cadastro_produto({
+        nome: "",
+        descricao: "",
+        preco: "",
+        condicao: "",
+        cor: [],
+        imagem: [],
+        marca: "",
+        composicao: "",
+        fk_id_categoria: "",
+        tamanho: "",
+        quantidade: 1,
+        fk_id_brecho: usuario_logado?._id || "",
+      });
+      setQuantidade(1);
+      setTamanhoSelecionado("");
+      setImagens([]);
+      setImagemPrincipal(null);
+      setCoresSelecionadas([]);
+      setInputTecido("");
+      setInputCategoria("");
+      setInputMarca("");
+
+    } catch (error) {
+      console.error("Erro ao editar produto", error);
+      alert("Erro ao atualizar produto");
+    }
+  }
+
+
   // Seleção de cores usando EyeDropper
   async function selecionarCorEyeDropper() {
     if (window.EyeDropper) {
@@ -243,15 +330,26 @@ function Cadastro_Produto() {
     }
   }
 
+
+  async function buscar_marcas() {
+    try {
+      const res = await api.get("/marcas");
+      setListaMarcas(res.data);
+    } catch (error) {
+      console.error("Erro ao buscar marcas", error);
+    }
+  }
+
+
   // Envia os dados do produto para o backend via POST
   async function cadastrar_produto() {
     try {
       await api.post("/produtos", array_cadastro_produto);
       buscar_produtos();
-      alert("Produto cadastrado com sucesso!");
+      set_pop_up_notificacao_cadastro_produto(true);
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
-      alert("Erro ao cadastrar produto");
+      set_pop_up_erro_cadastro(true)
     }
   }
 
@@ -447,19 +545,47 @@ function Cadastro_Produto() {
 
       <div className="container-detalhes-produtos">
         <div className="formulario">
-          
+
 
           <div className="input-group">
-            <div>
-            <label>Marca do produto</label>
-            <input
-              type="text"
-              placeholder="Buscar marcas"
-              className="input-group"
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value })}
-              value={array_cadastro_produto.marca}
-            />
-          </div>
+            <div style={{ position: "relative" }}>
+              <label>Marca do produto</label>
+              <input
+                type="text"
+                placeholder="Buscar marcas"
+                className="input-group"
+                value={inputMarca}
+                onChange={(e) => {
+                  setInputMarca(e.target.value);
+                  setArray_cadastro_produto({
+                    ...array_cadastro_produto,
+                    marca: e.target.value,
+                  });
+                }}
+                autoComplete="off"
+              />
+              {inputMarca && marcasFiltradas.length > 0 && (
+                <ul className="lista-marcas">
+                  {marcasFiltradas.map((marca, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setInputMarca(marca.nome);
+                        setArray_cadastro_produto({
+                          ...array_cadastro_produto,
+                          marca: marca.nome,
+                        });
+                        setMarcasFiltradas([]);
+                      }}
+                    >
+                      {marca.nome}
+                    </li>
+                  ))}
+                </ul>
+
+              )}
+            </div>
+
             <label>Estado do produto</label>
             <select
               value={array_cadastro_produto.condicao}
@@ -516,16 +642,24 @@ function Cadastro_Produto() {
           </div>
 
 
-          <button onClick={cadastrar_produto} className="botao-cadastrar">
-            Cadastrar Produto
+          <button
+            onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
+            className="botao-cadastrar"
+            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}}>
+            {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
           </button>
+
         </div>
       </div>
 
 
-      <Footer/>
+      <Footer />
+      {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
+      {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto/>}
+
+
     </div>
-    
+
 
   );
 }

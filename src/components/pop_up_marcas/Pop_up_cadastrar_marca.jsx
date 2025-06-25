@@ -37,14 +37,15 @@ function Pop_up_cadastrar_marca() {
     const file = event.target.files[0];
     if (!file) return;
 
-    // Mostrar imagen local inmediatamente:
-    const imageUrl = URL.createObjectURL(file);
-    setImagemLogoMarca(imageUrl);
 
-    // Crear formData para enviar a Cloudinary
+    // Pré-visualizar (opcional)
+    const imageUrlTemp = URL.createObjectURL(file);
+    setImagemLogoMarca(imageUrlTemp); // mostra imagem local temporária
+    console.log(imagemLogoMarca)
+
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "Fly_Brecho"); // Pon tu upload_preset real aquí
+    formData.append("upload_preset", "Fly_Brecho"); // nome correto do preset no Cloudinary
 
     try {
       const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
@@ -55,19 +56,24 @@ function Pop_up_cadastrar_marca() {
       const data = await response.json();
 
       if (data.secure_url) {
-        // Guardar la URL pública en el estado global
-        // setFormCadastroBrecho({ ...formCadastroBrecho, logo: data.secure_url });
+        console.log("Imagem carregada com sucesso:", data.secure_url);
 
-        // Actualizar la imagen perfil para mostrar la URL final (puedes cambiar si quieres seguir mostrando la local)
+        // Mostra imagem final da URL do Cloudinary
         setImagemLogoMarca(data.secure_url);
-        set_marca_a_cadastrar({ ...marca_a_cadastrar, logoMarca: data.secure_url })
-        // Liberar URL local para evitar leaks
-        URL.revokeObjectURL(imageUrl);
+
+        // Atualiza logoMarca no estado da marca
+        set_marca_a_cadastrar(prev => ({
+          ...prev,
+          logoMarca: data.secure_url,
+        }));
+
+        // Libera a URL local da imagem
+        URL.revokeObjectURL(imageUrlTemp);
       } else {
-        console.error("Upload failed", data);
+        console.error("Erro ao subir imagem:", data);
       }
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error("Erro ao fazer upload:", error);
     }
   };
 
@@ -75,14 +81,17 @@ function Pop_up_cadastrar_marca() {
 
     try {
 
-      const encontrar_marca_cadastrada = array_marcas.findIndex(marca => marca.nome.toUpperCase() == marca_a_cadastrar.nome.toUpperCase());
+      const encontrar_marca_cadastrada = array_marcas.findIndex(marca => marca.nome.toUpperCase() === marca_a_cadastrar.nome.toUpperCase());
+
+      console.log("Marca a cadastrar:", marca_a_cadastrar);
 
       if (encontrar_marca_cadastrada == -1) {
 
         await api.post(`/marcas`, marca_a_cadastrar);
+        buscar_marcas();
+
         set_pop_up_de_cadastrar_marca(false);
         set_erro(false);
-        buscar_marcas();
         set_pop_up_notificacao_cadastro_marca(true);
 
       } else {
@@ -95,12 +104,6 @@ function Pop_up_cadastrar_marca() {
       console.error(erro);
     };
   };
-
-  useEffect(() => {
-
-    console.log(marca_a_cadastrar)
-
-  }, []);
 
   return (
     <div className='container-alinhamento-pop-up-marcas'>

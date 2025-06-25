@@ -23,6 +23,7 @@ function Produto() {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
+    const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { nome_do_brecho, set_nome_do_brecho } = useContext(GlobalContext);
     const { exibir_nome_brecho, set_exibir_nome_brecho } = useContext(GlobalContext);
@@ -50,6 +51,7 @@ function Produto() {
     useEffect(() => {
 
         sortear_produtos();
+        set_sacola_aberta(false);
         refencia_do_produto.current.scrollIntoView();
 
     }, []);
