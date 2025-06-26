@@ -26,7 +26,8 @@ function Pesquisa_de_produtos() {
     const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
-    const [ produtos_embaralhados, set_produtos_embaralhados ] = useState([]);
+    const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
+    const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const navegar_para_produto = useNavigate(null);
     const referencia_pesquisa_produtos = useRef(null);
 
@@ -41,26 +42,32 @@ function Pesquisa_de_produtos() {
 
     useEffect(() => {
 
+        set_sacola_ou_produto(`/buscarProdutos`);
+
+    }, []);
+
+    useEffect(() => {
+
         buscar_produtos();
         buscar_categorias();
         buscar_brechos();
-        
+
     }, [termoBuscado]);
 
     useEffect(() => {
 
-        if(id_categoria_selecionada){
+        if (id_categoria_selecionada) {
 
             const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
             console.log(array_com_as_categorias);
-            
+
             const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
             set_produtos_embaralhados(embaralhar);
 
         } else {
 
             const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-            set_produtos_embaralhados(embaralhar);  
+            set_produtos_embaralhados(embaralhar);
         };
 
         referencia_pesquisa_produtos.current.scrollIntoView();
@@ -82,21 +89,21 @@ function Pesquisa_de_produtos() {
 
             set_tipo_de_header(`usuario`);
         };
-        
+
         set_pagina_atual(1);
         set_sacola_aberta(false);
 
     }, []);
 
     async function buscar_categorias() {
-      
+
         try {
 
             const categorias = await api.get(`/categorias`);
             set_array_categorias(categorias.data);
-            
+
         } catch (erro) {
-          
+
             console.error(erro);
         };
     };
@@ -142,7 +149,7 @@ function Pesquisa_de_produtos() {
     function preco_do_produto(preco) {
 
         const preco_final = preco.toFixed(2).replace(`.`, `,`);
- 
+
         return `R$${preco_final}`;
     };
 

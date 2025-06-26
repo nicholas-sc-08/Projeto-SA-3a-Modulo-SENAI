@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import api from "../../services/api";
 import "../Produto/Produto.css";
+import { useNavigate } from "react-router-dom";
 import Footer from '../../components/Footer/Footer';
 import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
 import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
@@ -16,8 +17,11 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  const {pop_up_notificacao_cadastro_produto,set_pop_up_notificacao_cadastro_produto} = useContext(GlobalContext);
-  
+  const { pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+
+
 
 
 
@@ -39,6 +43,10 @@ function Cadastro_Produto() {
   const [inputMarca, setInputMarca] = useState("");
   const [marcasFiltradas, setMarcasFiltradas] = useState([]);
   const [pop_up_erro_cadastro, set_pop_up_erro_cadastro] = useState(false);
+  const [marcaEmFoco, setMarcaEmFoco] = useState(false);
+  const [tecidoEmFoco, setTecidoEmFoco] = useState(false);
+  const [categoriaEmFoco, setCategoriaEmFoco] = useState(false);
+
 
 
 
@@ -81,16 +89,30 @@ function Cadastro_Produto() {
         tamanho: informacoes_editar_produto.tamanho,
         quantidade: informacoes_editar_produto.quantidade || 1,
         fk_id_brecho: usuario_logado?._id || "",
+
       });
       setQuantidade(informacoes_editar_produto.quantidade || 1);
       setTamanhoSelecionado(informacoes_editar_produto.tamanho || "");
       setImagens(informacoes_editar_produto.imagem || []);
       setImagemPrincipal(informacoes_editar_produto.imagem?.[0] || null);
       setCoresSelecionadas(informacoes_editar_produto.cor || []);
+      setInputMarca(informacoes_editar_produto.marca || "");
+      setInputTecido(informacoes_editar_produto.composicao || "");
+
     }
   }, []);
 
 
+  useEffect(() => {
+    if (informacoes_editar_produto && categorias.length > 0) {
+      const categoriaSelecionada = categorias.find(
+        (cat) => cat._id === informacoes_editar_produto.fk_id_categoria
+      );
+      if (categoriaSelecionada) {
+        setInputCategoria(categoriaSelecionada.nome);
+      }
+    }
+  }, [categorias, informacoes_editar_produto]);
 
 
   // Filtra tecidos conforme digitação do usuário
@@ -128,23 +150,23 @@ function Cadastro_Produto() {
 
 
   useEffect(() => {
-  if (pop_up_erro_cadastro) {
-    const timer = setTimeout(() => {
-      set_pop_up_erro_cadastro(false);
-    }, 3000);
+    if (pop_up_erro_cadastro) {
+      const timer = setTimeout(() => {
+        set_pop_up_erro_cadastro(false);
+      }, 1500);
 
-    return () => clearTimeout(timer); // Limpeza do timer
-  }
-}, [pop_up_erro_cadastro]);
+      return () => clearTimeout(timer); // Limpeza do timer
+    }
+  }, [pop_up_erro_cadastro]);
 
-useEffect(() => {
-  if (pop_up_notificacao_cadastro_produto) {
-    const timer = setTimeout(() => {
-      set_pop_up_notificacao_cadastro_produto(false);
-    }, 3000); // fecha após 3 segundos
-    return () => clearTimeout(timer);
-  }
-}, [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto]);
+  useEffect(() => {
+    if (pop_up_notificacao_cadastro_produto) {
+      const timer = setTimeout(() => {
+        set_pop_up_notificacao_cadastro_produto(false);
+      }, 1700);
+      return () => clearTimeout(timer);
+    }
+  }, [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto]);
 
 
 
@@ -234,6 +256,7 @@ useEffect(() => {
       await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
       buscar_produtos(); // Atualiza a listagem
       alert("Produto atualizado com sucesso!");
+      navigate("/gestao_estoque");
 
       // Limpa o estado de edição
       set_informacoes_editar_produto(null);
@@ -347,6 +370,7 @@ useEffect(() => {
       await api.post("/produtos", array_cadastro_produto);
       buscar_produtos();
       set_pop_up_notificacao_cadastro_produto(true);
+      setTimeout(() => navigate("/gestao_estoque"), 1650);
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
       set_pop_up_erro_cadastro(true)
@@ -358,7 +382,12 @@ useEffect(() => {
   return (
     <div>
       <Header tipo="brecho" />
-      <h2 className="titulo">Cadastro Produto</h2>
+      <div className="cabecalho-titulo">
+        <button className="botao-seta-voltar" onClick={() => navigate(-1)}>
+          <img src="/img/seta-esquerda.png" alt="Voltar" />
+        </button>
+        <h2 className="titulo">Cadastro Produto</h2>
+      </div>
       <div className="container-cadastro-produto">
         <div className="galeria">
           {[0, 1, 2].map((_, index) => {
@@ -453,8 +482,7 @@ useEffect(() => {
                 maxlength="2"
                 value={array_cadastro_produto.tamanho}
                 onChange={(e) => {
-                  setTamanhoSelecionado(e.target.value); // opcional, se ainda quiser manter esse estado
-                  setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value });
+                  setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value.toUpperCase() });
                 }}
               />
             </div>
@@ -485,26 +513,23 @@ useEffect(() => {
                 value={inputTecido}
                 onChange={(e) => {
                   setInputTecido(e.target.value);
-                  setArray_cadastro_produto({
-                    ...array_cadastro_produto,
-                    composicao: e.target.value,
-                  });
+                  setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value });
                 }}
+                onFocus={() => setTecidoEmFoco(true)}
+                onBlur={() => setTimeout(() => setTecidoEmFoco(false), 200)}
                 placeholder="Digite o tecido"
                 autoComplete="off"
               />
-              {inputTecido && tecidosFiltrados.length > 0 && (
+
+              {tecidoEmFoco && tecidosFiltrados.length > 0 && (
                 <ul className="lista-tecidos">
                   {tecidosFiltrados.map((tecido, index) => (
                     <li
                       key={index}
                       onClick={() => {
                         setInputTecido(tecido);
-                        setArray_cadastro_produto({
-                          ...array_cadastro_produto,
-                          composicao: tecido,
-                        });
-                        setTecidosFiltrados([]);
+                        setArray_cadastro_produto({ ...array_cadastro_produto, composicao: tecido });
+                        setTecidoEmFoco(false);
                       }}
                     >
                       {tecido}
@@ -512,6 +537,7 @@ useEffect(() => {
                   ))}
                 </ul>
               )}
+
             </div>
 
 
@@ -557,33 +583,30 @@ useEffect(() => {
                 value={inputMarca}
                 onChange={(e) => {
                   setInputMarca(e.target.value);
-                  setArray_cadastro_produto({
-                    ...array_cadastro_produto,
-                    marca: e.target.value,
-                  });
+                  setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value });
                 }}
+                onFocus={() => setMarcaEmFoco(true)}
+                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)} // atraso evita fechar antes do clique no item
                 autoComplete="off"
               />
-              {inputMarca && marcasFiltradas.length > 0 && (
+
+              {marcaEmFoco && marcasFiltradas.length > 0 && (
                 <ul className="lista-marcas">
                   {marcasFiltradas.map((marca, index) => (
                     <li
                       key={index}
                       onClick={() => {
                         setInputMarca(marca.nome);
-                        setArray_cadastro_produto({
-                          ...array_cadastro_produto,
-                          marca: marca.nome,
-                        });
-                        setMarcasFiltradas([]);
+                        setArray_cadastro_produto({ ...array_cadastro_produto, marca: marca.nome });
+                        setMarcaEmFoco(false);
                       }}
                     >
                       {marca.nome}
                     </li>
                   ))}
                 </ul>
-
               )}
+
             </div>
 
             <label>Estado do produto</label>
@@ -613,25 +636,22 @@ useEffect(() => {
               value={inputCategoria}
               onChange={(e) => {
                 setInputCategoria(e.target.value);
-                setArray_cadastro_produto({
-                  ...array_cadastro_produto,
-                  fk_id_categoria: "", // limpa o valor antigo
-                });
+                setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: "" });
               }}
+              onFocus={() => setCategoriaEmFoco(true)}
+              onBlur={() => setTimeout(() => setCategoriaEmFoco(false), 200)}
               autoComplete="off"
             />
-            {inputCategoria && categoriasFiltradas.length > 0 && (
+
+            {categoriaEmFoco && categoriasFiltradas.length > 0 && (
               <ul className="lista-categorias">
                 {categoriasFiltradas.map((cat) => (
                   <li
                     key={cat._id}
                     onClick={() => {
                       setInputCategoria(cat.nome);
-                      setArray_cadastro_produto({
-                        ...array_cadastro_produto,
-                        fk_id_categoria: cat._id,
-                      });
-                      setCategoriasFiltradas([]);
+                      setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: cat._id });
+                      setCategoriaEmFoco(false);
                     }}
                   >
                     {cat.nome}
@@ -639,6 +659,7 @@ useEffect(() => {
                 ))}
               </ul>
             )}
+
           </div>
 
 
@@ -655,7 +676,7 @@ useEffect(() => {
 
       <Footer />
       {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
-      {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto/>}
+      {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto />}
 
 
     </div>

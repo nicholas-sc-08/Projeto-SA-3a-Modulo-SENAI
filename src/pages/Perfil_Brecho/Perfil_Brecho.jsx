@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Footer from '../../components/Footer/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
@@ -16,26 +16,27 @@ function Perfil_Brecho() {
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
-
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
-  const [ naoEBrecho, setNaoEBrecho] = useState(true)
+  const navegar = useNavigate(``)
+
+  const [naoEBrecho, setNaoEBrecho] = useState(true)
 
 
 
   useEffect(() => {
-    
- const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
 
     if (encontrar_brecho) {
       setNaoEBrecho(false)
-      return 
+      return
 
     } else {
       setNaoEBrecho(true)
       return
     }
-  }, [ usuario_logado ])
+  }, [usuario_logado])
 
   useEffect(() => {
     if (usuario_logado) {
@@ -53,9 +54,9 @@ function Perfil_Brecho() {
 
   useEffect(() => {
 
-    if(brecho_selecionado){
+    if (brecho_selecionado) {
 
-      setFormCadastroBrecho({nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento});
+      setFormCadastroBrecho({ nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento });
     };
 
   }, [brecho_selecionado]);
@@ -101,7 +102,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro }${ enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro}${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
@@ -110,9 +111,9 @@ function Perfil_Brecho() {
                   </p>
                 </div>
               </div>
-              <div className="data-cadastrouSe-content">
+              {/* <div className="data-cadastrouSe-content">
                 <p>Cadastrou-se em </p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="parte-direita-content">
@@ -141,20 +142,14 @@ function Perfil_Brecho() {
                   </a>
                   <p>Envie uma Mensagem</p>
                 </div>
-                {/* <div className="ligar-content">
-                  <a href={'/contato'}>
-                    <img src="./public/img/icons/telefone-icon.svg" alt="Icone-Ligar" />
-                  </a>
-                  <p>Ligue para Nós</p>
-                </div> */}
               </div>
             </div>
             <div className="parte-inferior-div-direita-content">
               <div className="topicos-infos-grandeContent">
                 <div className="topicos-infos-subContent">
                   <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
-                  <button onClick={() => setDivAtiva("sobre")}>Sobre</button>
-                  <button onClick={() => setDivAtiva("produtos")}>Produtos</button>
+                  {/* <button onClick={() => setDivAtiva("sobre")}>Sobre</button> */}
+                  {!naoEBrecho && <button onClick={() => setDivAtiva("produtos")}>Produtos</button>}
                 </div>
               </div>
               <div className="infos-exibidas-content">
@@ -197,21 +192,23 @@ function Perfil_Brecho() {
                   </>
                 )}
 
-                {divAtiva === "sobre" && (
+                {/* {divAtiva === "sobre" && (
                   <>
-                    {/* <div className="titulo-topico-exibido">
-                      <p>Sobre o Brechó</p>
-                    </div> */}
                     <div className="infos-cadastradas-descricao-sub-div">
                       <span className="descricao-brecho-cadastrado">Brechó focado em moda sustentável, com peças selecionadas e de qualidade.</span>
                     </div>
                   </>
-                )}
+                )} */}
 
-                {divAtiva === "produtos" && (
+                {divAtiva === "produtos" &&  !naoEBrecho && (
                   <>
                     <div className="infos-cadastradas-sub-div">
-                      <p>Produtos disponíveis do brechó</p>
+                      <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
+                        <a href="">
+                          <img src="./public/img/icons/bx--box.svg" alt="Icone-Estoque" />
+                        </a>
+                        <p>Estoque</p>
+                      </div>
                     </div>
                   </>
                 )}

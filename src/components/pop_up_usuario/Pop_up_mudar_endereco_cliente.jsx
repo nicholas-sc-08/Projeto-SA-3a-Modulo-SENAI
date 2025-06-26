@@ -105,7 +105,7 @@ function Pop_up_mudar_endereco_cliente({ onClose }) {
                   placeholder='00000-000'
                   value={enderecoDoCliente.cep} 
                   onAccept={(value) => setEnderecoDoCliente({ ...enderecoDoCliente, cep: value })} // o onAccept é o método recomendado pela documentação do react-imask
-                // onChange={(event) => setEnderecoDoCliente({ ...enderecoDoCliente, cep: event.target.value })} 
+                
                 />
               </div>
 

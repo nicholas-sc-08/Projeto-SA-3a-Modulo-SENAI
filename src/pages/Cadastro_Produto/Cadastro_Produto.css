@@ -22,7 +22,7 @@ body {
 =========================== */
 .titulo, .titulo2 {
     padding-top: 2%;
-    padding-left: 2%;
+    
     font-family: "Montserrat", sans-serif;
     font-weight: 550;
 }
@@ -38,6 +38,7 @@ body {
     transform: scale(1);
     transform-origin: center center; 
     font-weight: 600;
+    padding-left: 2%;
     
 }
 
@@ -679,6 +680,43 @@ body {
     font-size: 14px;
     cursor: pointer;
 }
+
+
+
+.cabecalho-titulo {
+  display: flex;
+  align-items: center;
+  
+
+}
+
+.botao-seta-voltar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5%;
+  z-index: 999;
+  
+}
+
+.botao-seta-voltar img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+  
+}
+
+.botao-seta-voltar:hover img {
+  transform: scale(1.1);
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+ 
+}
+
+
 
 /* ========================
    RESPONSIVIDADE

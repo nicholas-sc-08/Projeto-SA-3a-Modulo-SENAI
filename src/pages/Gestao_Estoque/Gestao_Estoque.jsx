@@ -1,3 +1,4 @@
+// Importações principais de bibliotecas e arquivos
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
@@ -8,28 +9,34 @@ import Chat from "../../components/chat/Chat";
 import Chat_conversa from "../../components/chat/Chat_conversa";
 
 function Gestao_Estoque() {
+  // Importação de dados globais via contexto
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
-  const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
+  const { usuario_logado } = useContext(GlobalContext);
   const { conversa_aberta } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
   const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Navegação entre páginas
 
-  const [filtrar_produto_brecho_id, set_filtrar_produto_brecho_id] = useState([]);
+  // Estados locais
+  const [filtrar_produto_brecho_id, set_filtrar_produto_brecho_id] = useState([]); // Produtos do brechó atual
+  const [termoBusca, setTermoBusca] = useState(""); // Input de busca
 
+  // Ao montar o componente, busca os dados iniciais do sistema
   useEffect(() => {
     buscar_produtos();
     buscar_categorias();
     buscar_brechos();
   }, []);
 
+  // Define o tipo do header com base no usuário logado
   useEffect(() => {
     const encontrar_brecho = array_brechos.find(brecho => brecho._id === usuario_logado?._id);
     set_tipo_de_header(encontrar_brecho ? "brecho" : "usuario");
   }, [array_brechos, usuario_logado]);
 
+  // Filtra produtos apenas do brechó logado
   useEffect(() => {
     if (array_produtos.length > 0 && usuario_logado?._id) {
       const produtosDoBrecho = array_produtos.filter(
@@ -39,6 +46,7 @@ function Gestao_Estoque() {
     }
   }, [array_produtos, usuario_logado]);
 
+  // Funções para buscar dados do backend
   async function buscar_brechos() {
     try {
       const brechos = await api.get(`/brechos`);
@@ -66,6 +74,7 @@ function Gestao_Estoque() {
     }
   }
 
+  // Exclui um produto e atualiza a lista
   async function excluirProduto(id) {
     try {
       await api.delete(`/produtos/${id}`);
@@ -75,12 +84,7 @@ function Gestao_Estoque() {
     }
   }
 
-  function procurar_produtos(e) {
-    if (e.key === "Enter") {
-      // lógica de pesquisa aqui
-    }
-  }
-
+  // Lista de cores padrão utilizadas para identificar cor próxima
   const coresSimplificadas = [
     { nome: "Preto", hex: "#000000" },
     { nome: "Branco", hex: "#FFFFFF" },
@@ -104,13 +108,12 @@ function Gestao_Estoque() {
     { nome: "Lavanda", hex: "#E6E6FA" },
   ];
 
+  // Converte hexadecimal para RGB
   function hexParaRGB(hex) {
     if (typeof hex !== "string") return null;
     if (!hex.startsWith("#")) hex = "#" + hex;
-
     const match = hex.match(/^#([0-9a-fA-F]{6})$/);
     if (!match) return null;
-
     const bigint = parseInt(match[1], 16);
     return {
       r: (bigint >> 16) & 255,
@@ -119,22 +122,24 @@ function Gestao_Estoque() {
     };
   }
 
+  // Calcula qual cor está mais próxima no espaço RGB usando distância euclidiana
   function corMaisProxima(hex) {
     const rgb = hexParaRGB(hex);
-      if (!rgb) return "Cor desconhecida";
+    if (!rgb) return "Cor desconhecida";
 
     let corMaisPerto = null;
-    let menorDiferenca = Infinity;
+    let menorDistancia = Infinity;
 
     coresSimplificadas.forEach((cor) => {
       const corRGB = hexParaRGB(cor.hex);
-      const diferenca =
-        Math.abs(rgb.r - corRGB.r) +
-        Math.abs(rgb.g - corRGB.g) +
-        Math.abs(rgb.b - corRGB.b);
+      const distancia = Math.sqrt(
+        Math.pow(rgb.r - corRGB.r, 2) +
+        Math.pow(rgb.g - corRGB.g, 2) +
+        Math.pow(rgb.b - corRGB.b, 2)
+      );
 
-      if (diferenca < menorDiferenca) {
-        menorDiferenca = diferenca;
+      if (distancia < menorDistancia) {
+        menorDistancia = distancia;
         corMaisPerto = cor.nome;
       }
     });
@@ -142,6 +147,23 @@ function Gestao_Estoque() {
     return corMaisPerto || "Cor desconhecida";
   }
 
+  // Traduz cor (nome ou hex) para nome mais próximo
+  function nomeDaCorSimplificada(corProduto) {
+    if (!corProduto) return "Cor desconhecida";
+    if (Array.isArray(corProduto)) {
+      return corProduto.map((cor) => nomeDaCorSimplificada(cor)).join(", ");
+    }
+    if (typeof corProduto === "string") {
+      const corPorNome = coresSimplificadas.find(
+        (c) => c.nome.toLowerCase() === corProduto.toLowerCase()
+      );
+      if (corPorNome) return corPorNome.nome;
+      return corMaisProxima(corProduto);
+    }
+    return "Cor desconhecida";
+  }
+
+  // Abre página de edição com dados do produto
   function vizualizar_produto(_id) {
     const produtoSelecionado = array_produtos.find(
       (produto) => produto._id === _id
@@ -150,17 +172,30 @@ function Gestao_Estoque() {
     navigate("/cadastro_produto");
   }
 
+  // Reseta a edição e vai para cadastro de novo produto
   const ResetNovoProduto = () => {
     set_informacoes_editar_produto(null);
     navigate("/cadastro_produto");
   };
 
+  // Filtra produtos para exibir na tabela
+  const produtosFiltrados = filtrar_produto_brecho_id.filter((produto) => {
+    const nomeCategoria = array_categorias.find(cat => cat._id === produto.fk_id_categoria)?.nome || "";
+    const nomeCor = nomeDaCorSimplificada(produto.cor);
+    const termo = termoBusca.toLowerCase();
+    return (
+      produto.nome.toLowerCase().includes(termo) ||
+      nomeCategoria.toLowerCase().includes(termo) ||
+      nomeCor.toLowerCase().includes(termo)
+    );
+  });
+
+  // Renderização da tela
   return (
     <div>
       <Header tipo={tipo_de_header} />
       <div className="estoque-container">
         <h2>Estoque Produto</h2>
-
         <div className="container-tabela-estoque">
           <div className="estoque-header">
             <div className="search-box">
@@ -169,9 +204,10 @@ function Gestao_Estoque() {
               </span>
               <input
                 type="text"
-                placeholder="Procurar produto"
+                placeholder="Procurar por nome, categoria ou cor"
                 className="search-input"
-                onKeyDown={procurar_produtos}
+                value={termoBusca}
+                onChange={(e) => setTermoBusca(e.target.value)}
               />
             </div>
             <button onClick={ResetNovoProduto} className="novo-produto">
@@ -188,7 +224,7 @@ function Gestao_Estoque() {
               <span>Tamanho</span>
             </div>
 
-            {filtrar_produto_brecho_id.map((produto, index) => (
+            {produtosFiltrados.map((produto, index) => (
               <div
                 className="produto-linha"
                 key={index}
@@ -201,10 +237,11 @@ function Gestao_Estoque() {
                   <div>
                     <p className="produto-nome">{produto.nome}</p>
                     <p className="produto-categoria">
-                      {array_categorias.find(
-                        (categoria) => categoria._id === produto.fk_id_categoria
-                      )?.nome || "Sem categoria"}{" "}
-                      - {corMaisProxima(produto.cor)}
+                      {
+                        array_categorias.find(
+                          (categoria) => categoria._id === produto.fk_id_categoria
+                        )?.nome || "Sem categoria"
+                      } - {nomeDaCorSimplificada(produto.cor)}
                     </p>
                   </div>
                 </div>
@@ -226,13 +263,10 @@ function Gestao_Estoque() {
           </div>
         </div>
       </div>
-            {usuario_logado !== "" && !conversa_aberta && <Chat />}
+      {usuario_logado !== "" && !conversa_aberta && <Chat />}
       {conversa_aberta && <Chat_conversa />}
     </div>
   );
 }
 
 export default Gestao_Estoque;
-
-
-      

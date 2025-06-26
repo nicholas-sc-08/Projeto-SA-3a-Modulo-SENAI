@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: column;
 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     z-index: 100;
 
     margin-right: 25%;
@@ -151,7 +151,7 @@
     margin-top: 2%;
 }
 
-.container_input_senha{
+.container_input_senha {
 
     display: flex;
     align-items: center;
@@ -161,13 +161,13 @@
     border-radius: 0.6vw;
 }
 
-.container_input_senha input{
+.container_input_senha input {
 
     width: 85%;
     border: none;
 }
 
-.container_input_senha img{
+.container_input_senha img {
 
     cursor: pointer;
     transition: 0.3s;
@@ -181,7 +181,7 @@
     background-color: transparent;
 }
 
-.container_input_senha img:hover{
+.container_input_senha img:hover {
 
     background-color: var(--cor_quatro_v_um);
 }
@@ -199,12 +199,12 @@
     transition: 0.3s;
 }
 
-.fazer_login_butao button:hover{
+.fazer_login_butao button:hover {
 
     border: 0.1vw solid var(--cor_um_v_dois);
     background-color: var(--cor_um_v_dois);
 }
-    
+
 .botao-google-custom {
     display: flex;
     align-items: center;

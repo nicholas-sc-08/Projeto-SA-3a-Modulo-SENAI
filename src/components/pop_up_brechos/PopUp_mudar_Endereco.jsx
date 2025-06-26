@@ -40,7 +40,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     } else {
       setEnderecoDoBrecho({
         cep: '',
-        bairro: 'a',
+        bairro: '',
         logradouro: '',
         cidade: '',
         estado: '',
