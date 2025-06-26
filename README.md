@@ -100,7 +100,16 @@
   Este aplicativo ainda está em processo de criação.
 
 ## Intrução de Uso
-  Este aplicativo ainda está em processo de criação.
+
+###API's e Bibliotecas para instalação:
+  
+- Front-End
+
+npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com
+
+- Back-End:
+
+npm i cors express cloudinary socket.io nodemon mongoose dotenv
 
 ## Tecnologias Utilizadas
   Front-end: React<br>
