@@ -27,6 +27,7 @@ function Tela_incial() {
   const { produto, set_produto } = useContext(GlobalContext);
   const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
   const { sacola, set_sacola } = useContext(GlobalContext);
+  const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
@@ -55,7 +56,7 @@ function Tela_incial() {
     informacoes_brechos();
     informacoes_produtos();
     set_id_categoria_selecionada(null);
-    
+
   }, []);
 
   useEffect(() => {
@@ -237,10 +238,11 @@ function Tela_incial() {
 
     set_produto(produto_selecionado);
     navegar(`/produto`);
+    set_sacola_ou_produto(`/`);
   };
 
   function ir_ate_perfil_brecho(brecho) {
-    
+
     setFormCadastroBrecho(brecho)
 
     navegar(`/perfil_brecho`);
@@ -249,7 +251,7 @@ function Tela_incial() {
 
   const handleCategoryClick = (categoria) => {
     setTermoBuscado(categoria);
-    
+
     navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
     setTermoBuscado('')
   };
@@ -366,15 +368,15 @@ function Tela_incial() {
               >
                 {[...array_produtos].reverse().map((produto, i) => (
                   <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
-                    <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
-                      <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
-                      <Link to={'/perfil_brecho'} className='nome-brech-card-lancamento'>{nome_brechos(produto.fk_id_brecho)}</Link>
-                    </div>
+
                     <div className="container-card-imagem-roupa-lancamentos">
                       <img src={produto.imagem[0]} alt={produto.nome} />
                     </div>
                     <div className="alinhamento-preco-roupa-card-lancamento">
-                      <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
+                      <div className="alinhamento-img-perfil-nome-usuario-secao-tres">
+                        <p className='nome-roupa-lancamentos-card'>{produto.nome}</p>
+                        <img src={imagem_brechos(produto.fk_id_brecho)} alt="" />
+                      </div>
                       <p className='preco-roupa-lancamentos-card'>{preco_produtos(produto.preco)}</p>
                     </div>
                   </div>

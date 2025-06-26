@@ -27,6 +27,15 @@ function Sacola() {
 
     }, []);
 
+    useEffect(() => {
+
+        if (usuario_logado._id) {
+
+            set_sacola(usuario_logado.sacola);
+        };
+
+    }, [usuario_logado]);
+
     async function buscar_brechos() {
 
         try {

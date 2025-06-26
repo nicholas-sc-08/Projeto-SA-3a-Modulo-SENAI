@@ -6,14 +6,6 @@ import { GlobalContext } from "../../contexts/GlobalContext";
  function Pop_up_cadastro_produto() {
   const { set_pop_up_cadastro } = useContext(GlobalContext);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      set_pop_up_cadastro(false);
-    }, 3000); // Tempo igual à animação
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <div className="pop-up-notificacao erro">
       <div className="conteudo">

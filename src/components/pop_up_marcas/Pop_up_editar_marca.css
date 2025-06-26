@@ -1,0 +1,12 @@
+.container_pop_up_cadastro_de_marca_edicao{
+    z-index: 1;
+    position: absolute;
+
+    margin-left: -22.5%;
+    margin-top: 2%;
+
+    background-color: var(--cor_quatro);
+    border-radius: 1vw;
+    width: 45%;
+    height: 53%;
+}

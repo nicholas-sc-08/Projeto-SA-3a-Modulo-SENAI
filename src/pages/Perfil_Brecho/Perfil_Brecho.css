@@ -61,6 +61,7 @@ body {
 .logo-brecho-perfil-content {
     /* border: 3px solid #00E69D;  */
     border-radius: 20px;
+
     background-color: var(--cor_dezesseis);
 
     height: 42%;

@@ -23,9 +23,16 @@ function Sacola_geral() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+    const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
     const [ clicou_em_excluir, set_clicou_em_excluir ] = useState(false);
-    const navegar_tela_produto = useNavigate(null);
+    const navegar_tela = useNavigate(null);
     const referencia_sacola = useRef(null);
+
+    useEffect(() => {
+
+        set_sacola_ou_produto(`/sacola`);
+
+    }, []);
 
     useEffect(() => {
 
@@ -100,7 +107,7 @@ function Sacola_geral() {
     function ir_para_produto(produto_selecionado) {
 
         set_produto(produto_selecionado);
-        navegar_tela_produto(`/produto`);
+        navegar_tela(`/produto`);
         set_sacola_aberta(false);
     };
 
@@ -255,7 +262,7 @@ function Sacola_geral() {
 
                                 <div className="container_botao_de_finalizar_compra">
 
-                                    <button>Finalizar Compra <img src='./img/icons/icone_botao_finalizar_compra.svg' /></button>
+                                    <button onClick={() => navegar_tela(`/detalhe_pagamento`)}>Finalizar Compra <img src='./img/icons/icone_botao_finalizar_compra.svg' /></button>
 
                                 </div>
 
