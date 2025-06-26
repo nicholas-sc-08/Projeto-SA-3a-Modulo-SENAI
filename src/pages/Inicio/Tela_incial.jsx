@@ -29,6 +29,8 @@ function Tela_incial() {
   const { sacola, set_sacola } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
+  const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
+
   const [startIndex, setStartIndex] = useState(0);
   const itemsToShow = 4;
 
@@ -237,6 +239,14 @@ function Tela_incial() {
     navegar(`/produto`);
   };
 
+  function ir_ate_perfil_brecho(brecho) {
+    
+    setFormCadastroBrecho(brecho)
+
+    navegar(`/perfil_brecho`);
+  }
+
+
   const handleCategoryClick = (categoria) => {
     setTermoBuscado(categoria);
     
@@ -314,7 +324,7 @@ function Tela_incial() {
                 {array_brechos.map((brecho, i) => (
                   <div className="card-brecho-home-page" key={i}>
                     <div className="container-imagem-brecho-cinza">
-                      <div className="container-imagem-brecho" onClick={() => navegar(`/perfil_brecho`)}>
+                      <div className="container-imagem-brecho" onClick={() => ir_ate_perfil_brecho(brecho)}>
                         <img src={brecho.logo} alt={brecho.nome_brecho} />
                       </div>
                     </div>

@@ -24,9 +24,9 @@ body {
 .edicao-perfil-brecho-content {
     /* border: 3px solid #0C35FF; */
     border-radius: 25px;
-    border: 1px solid  #fbf0ce;
-    box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
-    background-color: var(--cor_nove);
+    border: 0.1vw solid var(--cor_quatro);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--cor_quatro);
 
     height: 94%;
     width: 80%;
@@ -120,6 +120,7 @@ body {
     border-radius: 0.3rem;
     resize: none;
 
+    background-color: var(--cor_quatro);
     font-family: "Poppins", sans serif;
     font-size: 1rem;
     color: var(--cor_dezoito);
@@ -199,6 +200,7 @@ body {
 
     display: flex;
     justify-content: space-between;
+    background-color: var(--cor_quatro);
 }
 
 .input-info-vendedor-subDiv {
@@ -227,6 +229,7 @@ body {
     border-radius: 0.3rem;
     border: 1px solid var(--cor_dois);
     padding-left: 3%;
+    background-color: var(--cor_quatro);
 
     font-family: "Poppins", sans serif;
     font-size: 1rem;
@@ -277,12 +280,12 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     padding-left: 1%;
+    background-color: var(--cor_quatro);
 }
 
 .endereco-e-senha-infos-content {
     /* border: 3px solid #026002; */
    
-
     height: 40%;
     width: 99%;
 
@@ -302,7 +305,7 @@ body {
 
     cursor: pointer;
 
-    background-color: var(--cor_nove);
+    background-color: var(--cor_quatro);
     font-family: "Poppins", sans serif;
     font-size: 1rem;
     color: var(--cor_dezoito);
@@ -332,6 +335,7 @@ body {
 
     border: none;
     padding-left: 1.4%;
+    background-color: var(--cor_quatro);
 
     font-family: "Poppins", sans serif;
     font-size: 1rem;

@@ -22,6 +22,8 @@ function Header({ tipo }) {
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
+    const [ perfil_usuario, set_perfil_usuario] = useState(null)
+
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
     const containerRef = useRef(null)
@@ -38,6 +40,9 @@ function Header({ tipo }) {
         informacoes_categorias()
         informacoes_brechos()
         informacoes_produtos()
+
+        const encontrar_cliente = array_clientes.find ( cliente => cliente._id == usuario_logado._id)
+        encontrar_cliente ? set_perfil_usuario (`/perfil_cliente`) : set_perfil_usuario (`/perfil_brecho`)
 
     }, []);
 
@@ -182,6 +187,8 @@ function Header({ tipo }) {
         }
     };
 
+    
+
     function fechar_chat() {
 
         if (altura_inicial_chat == `10%`) {
@@ -311,7 +318,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to='/perfil_brecho' className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <Link to={perfil_usuario} className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
                                             <button onClick={() => deslogar_usuario()} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>
