@@ -3,3 +3,45 @@
     width: 148%;
     /* border: 1px solid red; */
 }
+
+.container_conteudo_marca {
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+
+    font-family: var(--tipografia_primaria);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cor_um_v_tres);
+
+    padding: 1.5%;
+    margin: 0.5%;
+    border-radius: 100vw;
+    border: 0.1vw solid var(--cor_um_v_tres);
+
+    /* border: 1px solid red; */
+}
+
+.container_conteudo_marca:hover {
+    border: 0.1vw solid var(--cor_um);
+    background-color: var(--cor_doze);
+}
+
+.container_conteudo_marca span{
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.container_conteudo_marca img {
+    /* border: 1px solid red; */
+    width: 40%;
+    height: 30px;
+
+    margin-right: 10%;
+}

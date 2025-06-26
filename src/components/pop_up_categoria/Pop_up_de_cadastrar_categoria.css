@@ -153,6 +153,13 @@
     accent-color: var(--cor_um);
 }
 
+.container_botao_cadastrar_categoria p{
+    width: 50%;
+    color: var(--cor_sete);
+    font-family: var(--tipografia_secundaria);
+    font-size: 0.8rem;
+}
+
 .container_botao_cadastrar_categoria button {
 
     border: none;

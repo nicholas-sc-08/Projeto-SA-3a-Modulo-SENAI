@@ -70,7 +70,7 @@ function Pop_up_de_editar_categoria({ id_da_categoria }) {
           </div>
 
           <div className="container-titulo-cadastrar-marca">
-            <h2>Editar Categoria</h2>
+            <h2>Editar categoria</h2>
 
             <div className="titulo-line-cadastrar-marca"></div>
 
@@ -81,7 +81,7 @@ function Pop_up_de_editar_categoria({ id_da_categoria }) {
           <div className="container_alinhamento_formulario">
 
             <div className="container-alinhamento-input-editar-categoria">
-              <label> Novo Nome da Categoria</label>
+              <label> Novo nome da categoria</label>
               <input type="text" placeholder="Insira o novo nome para a categoria" value={categoria.nome} onChange={e => set_categoria({ ...categoria, nome: e.target.value })} />
             </div>
 
