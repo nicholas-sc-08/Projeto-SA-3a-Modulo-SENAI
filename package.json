@@ -15,21 +15,21 @@
     "@react-input/mask": "^2.0.4",
     "@react-oauth/google": "^0.12.2",
     "axios": "^1.9.0",
-    "cloudinary": "^2.6.1",
+    "cloudinary": "^2.7.0",
     "color-name": "^2.0.0",
     "color-namer": "^1.4.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
     "framer-motion": "^12.16.0",
     "jwt-decode": "^4.0.0",
-    "mongoose": "^8.14.0",
+    "mongoose": "^8.16.0",
     "motion": "^12.15.0",
     "multer": "^1.4.5-lts.2",
     "ngrok": "^5.0.0-beta.2",
     "node": "^20.19.3",
-    "nodemon": "^3.1.9",
+    "nodemon": "^3.1.10",
     "notion": "^0.0.1",
     "pg": "^8.14.1",
     "react": "^19.0.0",
@@ -61,5 +61,4 @@
     "util": "^0.12.5",
     "vite": "^6.1.0"
   }
-
 }
