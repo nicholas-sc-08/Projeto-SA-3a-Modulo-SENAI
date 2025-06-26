@@ -8,6 +8,7 @@ import Pop_up_cadastrar_marca from '../pop_up_marcas/Pop_up_cadastrar_marca';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Pop_up_notificacao_cadastro_marca from '../pop_up_marcas/Pop_up_notificacao_cadastro_marca';
+import Pop_up_editar_marca from '../pop_up_marcas/Pop_up_editar_marca';
 
 function Marcas_dashboard() {
 
@@ -19,6 +20,7 @@ function Marcas_dashboard() {
 
     const { pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca } = useContext(GlobalContext);
     const { pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca } = useContext(GlobalContext);
+    const { pop_up_editar_marca, set_pop_up_editar_marca } = useContext(GlobalContext);
 
     const [editar_marca, set_editar_marca] = useState(false);
     const [array_marcas_ordenado, set_array_marcas_ordenado] = useState([]);
@@ -96,10 +98,11 @@ function Marcas_dashboard() {
                     {pop_up_notificacao_cadastro_marca && <div className='container_escurecer_tela'></div>}
                     {pop_up_notificacao_cadastro_marca && <Pop_up_notificacao_cadastro_marca />}
 
-                    {/*
-                    {pop_up_de_editar_categoria && <div className='container_escurecer_tela'></div>}
-                    {pop_up_de_editar_categoria && <Pop_up_de_editar_categoria />}
 
+                    {pop_up_editar_marca && <div className='container_escurecer_tela'></div>}
+                    {pop_up_editar_marca && <Pop_up_editar_marca />}
+
+                    {/*
                     {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
                     {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria />}
 

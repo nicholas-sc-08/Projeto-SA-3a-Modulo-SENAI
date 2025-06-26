@@ -63,16 +63,15 @@ describe('Sacola_geral - preço total', () => {
 
     renderComContexto(produtosMock);
 
-    // Preço total esperado = 50*2 + 25*3 = 100 + 75 = 175
     const subtotal = screen.getByText('Subtotal').parentElement;
     expect(subtotal).toHaveTextContent('R$175,00');
-
+    
     const total = screen.getByText('Total').parentElement;
     expect(total).toHaveTextContent('R$175,00');
   });
 
   it('deve exibir mensagem de sacola vazia quando não há produtos', () => {
-    renderComContexto([]); // sacola vazia
+    renderComContexto([]);
 
     expect(screen.getByText(/ainda não adicionou um item/i)).toBeInTheDocument();
 
@@ -84,3 +83,4 @@ describe('Sacola_geral - preço total', () => {
   });
 });
 
+// Preço total esperado = 50*2 + 25*3 = 100 + 75 = 175

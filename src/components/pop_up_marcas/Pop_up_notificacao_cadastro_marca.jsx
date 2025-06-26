@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+<<<<<<< HEAD
 // import './Pop_up_notificacao_cadastro_marca.css';
+=======
+>>>>>>> d9de359c6be80116f1e19c01444d9ff08146aed0
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 function Pop_up_notificacao_cadastro_marca() {
