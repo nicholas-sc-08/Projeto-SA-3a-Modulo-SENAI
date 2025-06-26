@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const GlobalContext = createContext();
 
@@ -60,6 +60,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [brecho_selecionado, set_brecho_selecionado] = useState(null);
     const [id_categoria_selecionada, set_id_categoria_selecionada] = useState(null);
     const [pagina_atual, set_pagina_atual] = useState(1);
+    const [sacola_ou_produto, set_sacola_ou_produto] = useState(null);
 
     const [formCadastroBrecho, setFormCadastroBrecho] = useState({ nome_vendedor: ``, data_de_nascimento_vendedor: ``, nome_brecho: ``, email: ``, telefone: ``, cnpj: ``, logo: ``, conversas: [], senha: ``, confirmarSenha: ``, horario_funcionamento: `` });
     const [enderecoDoBrecho, setEnderecoDoBrecho] = useState({ cep: ``, bairro: ``, logradouro: ``, cidade: ``, estado: ``, numero: ``, complemento: `` })
@@ -209,6 +210,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_id_categoria_selecionada,
             pagina_atual,
             set_pagina_atual,
+            sacola_ou_produto,
+            set_sacola_ou_produto,
 
             id_do_produto_a_excluir,
             set_id_do_produto_a_excluir,

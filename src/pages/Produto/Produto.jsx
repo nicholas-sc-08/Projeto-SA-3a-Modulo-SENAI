@@ -30,6 +30,7 @@ function Produto() {
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
+    const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
     const [imagem_selecionada, set_imagem_selecionada] = useState(0);
     const [produto_visualiazado, set_produto_visualizado] = useState(`0.1vw solid var(--cor_um)`);
     const [pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado] = useState(false);
@@ -351,7 +352,7 @@ function Produto() {
 
                 <div className="container_voltar_para_buscar_produtos">
 
-                    <Link to={`/buscarProdutos`}><img src='./img/icons/icone_seta_esquerda.svg' />Voltar</Link>
+                    <Link to={sacola_ou_produto}><img src='./img/icons/icone_seta_esquerda.svg' />Voltar</Link>
 
                 </div>
 
