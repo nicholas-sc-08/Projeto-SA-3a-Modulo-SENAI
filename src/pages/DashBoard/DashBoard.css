@@ -481,6 +481,10 @@ body{
     width: 70%;
 }
 
+.dashboard_container_marcas_img{
+    width: 59%;
+}
+
 .sombra_dashboard_container_categorias{
 
     display: flex;

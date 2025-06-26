@@ -36,7 +36,7 @@ function Categorias_dashboard() {
   const [array_categorias_ordenado, set_array_categorias_ordenado] = useState([]);
   const [resultado_de_pesquisa, set_resultado_de_pesquisa] = useState(false);
   const [categorias_filtradas, set_categorias_filtradas] = useState(``);
-  
+
   const referencia_input = useRef(null);
   const navegar = useNavigate(``);
 
@@ -52,9 +52,6 @@ function Categorias_dashboard() {
 
       const categorias = await api(`/categorias`);
       set_categorias_dashboard(categorias.data);
-      
-      const categorias_ordenadas = [...categorias.data].sort((primeira_categoria, categoria_seguinte) => primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
-      set_array_categorias_ordenado(categorias_ordenadas);
 
     } catch (erro) {
 
@@ -63,6 +60,15 @@ function Categorias_dashboard() {
       navegar(`/erro`);
     };
   };
+
+  useEffect(() => {
+    const categorias_ordenadas = [...array_categorias].sort((primeira_categoria, categoria_seguinte) =>
+      primeira_categoria.nome.localeCompare(categoria_seguinte.nome, 'pt-BR', { sensitivity: 'base' })
+    );
+
+    set_array_categorias_ordenado(categorias_ordenadas);
+
+  }, [array_categorias])
 
   function clicar_em_categoria(id) {
 
@@ -82,7 +88,7 @@ function Categorias_dashboard() {
   useEffect(() => {
 
     buscar_categorias();
-  
+
   }, []);
 
   useEffect(() => {

@@ -13,6 +13,7 @@
     justify-content: center;
     align-items: center;
     height: 10%;
+    max-width: 15%;
 
     font-family: var(--tipografia_primaria);
     font-size: 0.8rem;
@@ -40,7 +41,7 @@
 
 .container_conteudo_marca img {
     /* border: 1px solid red; */
-    width: 40%;
+    max-width: 25%;
     height: 30px;
 
     margin-right: 10%;
