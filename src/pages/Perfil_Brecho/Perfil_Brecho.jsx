@@ -136,7 +136,7 @@ function Perfil_Brecho() {
               </div>
 
               <div className="entrar-em-contato-content">
-                <div className="mensagem-content">
+                <div className="mensagem-content" onClick={() => navegar(`/contato`)}>
                   <a href="">
                     <img src="./public/img/icons/envelope-mensagem-icon.svg" alt="Icone-Email" />
                   </a>
