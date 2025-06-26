@@ -20,11 +20,6 @@ function Cadastro_Produto() {
   const { pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-
-
-
-
-
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
 
@@ -188,42 +183,50 @@ function Cadastro_Produto() {
   }
 
   // Adiciona imagem localmente e faz upload para Cloudinary
-  async function adicionar_imagem(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+async function adicionar_imagem(e) {
+  const file = e.target.files[0];
+  if (!file) return;
 
-    const urlLocal = URL.createObjectURL(file);
-    const novaListaTemporaria = [...imagens, urlLocal];
-    setImagens(novaListaTemporaria);
-    setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaListaTemporaria });
-    if (!imagemPrincipal) setImagemPrincipal(urlLocal);
+  const urlLocal = URL.createObjectURL(file);
+  setImagens((prev) => [...prev, urlLocal]);
+  if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "Fly_Brecho");
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "Fly_Brecho"); // esse nome deve bater com o preset criado no Cloudinary
 
-    try {
-      const response = await fetch("https://api.cloudinary.com/v1_1/SEU_CLOUD_NAME/image/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
+  try {
+    const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-      if (data.secure_url) {
-        const novaLista = novaListaTemporaria.map((img) => (img === urlLocal ? data.secure_url : img));
-        setImagens(novaLista);
-        setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
+    const data = await response.json();
+    console.log("✅ Imagem enviada para Cloudinary:", data);
 
-        if (imagemPrincipal === urlLocal) {
-          setImagemPrincipal(data.secure_url);
-        }
+    if (data.secure_url) {
+      const novaLista = [...array_cadastro_produto.imagem, data.secure_url];
+      setImagens(novaLista);
+      setArray_cadastro_produto((prev) => ({
+        ...prev,
+        imagem: novaLista,
+      }));
 
-        URL.revokeObjectURL(urlLocal);
+      if (imagemPrincipal === urlLocal || !imagemPrincipal) {
+        setImagemPrincipal(data.secure_url);
       }
-    } catch (error) {
-      console.error("Erro ao fazer upload da imagem:", error);
+
+      URL.revokeObjectURL(urlLocal);
+    } else {
+      alert("Erro ao subir imagem: URL não retornada.");
     }
+  } catch (error) {
+    console.error(" Erro ao fazer upload da imagem:", error);
+    alert("Erro ao enviar imagem. Verifique o console.");
   }
+}
+
+
 
   // Remove imagem selecionada
   function removerImagem(index) {
@@ -255,7 +258,6 @@ function Cadastro_Produto() {
     try {
       await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
       buscar_produtos(); // Atualiza a listagem
-      alert("Produto atualizado com sucesso!");
       navigate("/gestao_estoque");
 
       // Limpa o estado de edição
@@ -290,7 +292,6 @@ function Cadastro_Produto() {
       alert("Erro ao atualizar produto");
     }
   }
-
 
   // Seleção de cores usando EyeDropper
   async function selecionarCorEyeDropper() {
@@ -363,14 +364,13 @@ function Cadastro_Produto() {
     }
   }
 
-
   // Envia os dados do produto para o backend via POST
   async function cadastrar_produto() {
     try {
       await api.post("/produtos", array_cadastro_produto);
       buscar_produtos();
       set_pop_up_notificacao_cadastro_produto(true);
-      setTimeout(() => navigate("/gestao_estoque"), 1650);
+      setTimeout(() => navigate("/gestao_estoque"), 2000);
     } catch (error) {
       console.error("Erro ao cadastrar produto", error);
       set_pop_up_erro_cadastro(true)
@@ -586,7 +586,7 @@ function Cadastro_Produto() {
                   setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value });
                 }}
                 onFocus={() => setMarcaEmFoco(true)}
-                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)} // atraso evita fechar antes do clique no item
+                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)} 
                 autoComplete="off"
               />
 
