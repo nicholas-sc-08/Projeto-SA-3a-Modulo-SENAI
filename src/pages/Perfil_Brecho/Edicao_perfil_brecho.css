@@ -367,6 +367,15 @@ body {
     height: 90%;
 }
 
+.mensagem-sucesso {
+    height: fit-content;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1em;
+    font-weight: 550;
+    letter-spacing: 0.5px;
+    color: var(--cor_dois);
+}
+
 .botao-editar-content {
     /* border: 3px solid #026002; */
 
@@ -380,7 +389,7 @@ body {
     gap: 1%;
 }
 
-.botao-editar-content p {
+.mensagem-erro-perfil-brecho {
     font-family: var(--tipografia_secundaria);
     font-size: 1em;
     font-weight: 550;

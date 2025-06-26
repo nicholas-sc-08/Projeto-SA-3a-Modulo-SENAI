@@ -15,7 +15,9 @@ function Edicao_perfil_brecho() {
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
   const [mensagemErro, setMensagemErro] = useState(``)
+  const [mensagemSucesso, setMensagemSucesso] = useState(``)
 
   const [icone_senha, set_icone_senha] = useState(`./img/icons/icone_olho_aberto.svg`);
   const [visualizar_senha, set_visualizar_senha] = useState(false);
@@ -64,14 +66,6 @@ function Edicao_perfil_brecho() {
       })
     }
 
-    // faz com que os inputs de senha e confirmar senha não venham pré preenchidos
-    // setFormCadastroBrecho(prev => ({
-    //   ...prev,
-    //   nova_senha: '',
-    //   confirmar_senha: ''
-    // }))
-
-
   }, [usuario_logado, array_brechos])
 
   async function pegarInfoBrecho() {  // pega as informações do backend
@@ -87,7 +81,7 @@ function Edicao_perfil_brecho() {
   }
 
 
-  // ---- resolve o problema do valor da data de nascimento do vendedor vir com horario e fuso horario -----
+  // ---- resolve o problema do valor da data de nascimento do vendedor vir com horario e fuso horario ----- //
 
   function formatarDataParaInput(dataISO) {
     if (!dataISO)   // aqui ele tá verificando se o dataISO não veio um valor ou se ele é undefined (indefinido), ou null etc
@@ -219,13 +213,16 @@ function Edicao_perfil_brecho() {
       const resposta = await api.put(`/brechos/${usuario_logado._id}`, campoSenhaBackend) // faz com que as informações sejam atualizadas no backend
 
       console.log('Brechó atualizado com sucesso!');
+      setMensagemSucesso(`Informação atualizada com sucesso!`)
+      setMensagemErro(``)
+
 
 
       // atualizando as informações no front-end também, para os inputs não ficarem desatualizados
       const brechoAtualizado = resposta.data
 
       
-      // nesses dois set está sendo as infromações novas estão sendo atualizadas tanto no formCadastroBrecho quanto no usuario logado
+      // nesses dois Sets as informações novas estão sendo atualizadas tanto no formCadastroBrecho quanto no usuario_logado
       setFormCadastroBrecho({
         ...formCadastroBrecho,
         ...brechoAtualizado
@@ -235,9 +232,6 @@ function Edicao_perfil_brecho() {
         ...usuario_logado,
         ...brechoAtualizado
       })
-
-
-      // console.log('Informações do brechó atualizadas no front-end com sucesso!')
 
 
       // aqui ele atualiza as informações no array dos brechos
@@ -272,7 +266,7 @@ function Edicao_perfil_brecho() {
               <div className="perfil-brecho-logo">
                 <img
                   src={formCadastroBrecho.logo}
-                  alt="" />
+                  alt="logo do brecho" />
               </div>
             </div>
 
@@ -286,9 +280,10 @@ function Edicao_perfil_brecho() {
                   setFormCadastroBrecho({
                     ...formCadastroBrecho,
                     horario_funcionamento: e.target.value
+
                   })
                 }
-                rows={4}>
+                >
               </textarea>
             </div>
 
@@ -453,7 +448,8 @@ function Edicao_perfil_brecho() {
               </div>
             </div>
             <div className="botao-editar-content">
-              {foiSubmetido && mensagemErro && <p>{mensagemErro}</p>}
+              {foiSubmetido && mensagemSucesso && <p className='mensagem-sucesso'>{mensagemSucesso}</p>}
+              {foiSubmetido && mensagemErro && <p className='mensagem-erro-perfil-brecho'>{mensagemErro}</p>}
               <button onClick={atualizarBrecho}>Editar</button>
             </div>
           </div>
