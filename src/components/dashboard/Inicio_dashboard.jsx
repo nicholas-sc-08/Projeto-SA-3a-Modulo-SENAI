@@ -25,6 +25,7 @@ function Inicio_dashboard() {
 
     const [caminho_imagem_clientes, set_caminho_imagem_clientes] = useState(`./img/icons/icone_dashboard_clientes_v_um.svg`);
     const [caminho_imagem_categorias, set_caminho_imagem_categorias] = useState(`./img/icons/icone_dashboard_etiqueta_v_um.svg`);
+    const [caminho_imagem_marca, set_caminho_imagem_marca] = useState(`./img/icons/marcas-icon-branco.svg`);
     const [cor_icone_brecho, set_cor_icone_brecho] = useState(`#FFFFFF`);
     const [mudar_icone_brecho, set_mudar_icone_brecho] = useState(false);
     const [cor_icone_produtos, set_cor_icone_produtos] = useState(`#FFFFFF`);
@@ -86,7 +87,7 @@ function Inicio_dashboard() {
     
         return () => controle.stop();
     
-    }, []);
+    }, [array_marcas]);
 
     function ir_para_clientes() {
 
@@ -95,6 +96,7 @@ function Inicio_dashboard() {
         set_produtos_dashboard(false);
         set_categorias_dashboard(false);
         set_inicio_dashboard(false);
+        set_marcas_dashboard(false);
 
     };
 
@@ -105,6 +107,7 @@ function Inicio_dashboard() {
         set_produtos_dashboard(false);
         set_categorias_dashboard(false);
         set_inicio_dashboard(false);
+        set_marcas_dashboard(false);
     };
 
     function ir_para_produtos() {
@@ -114,6 +117,7 @@ function Inicio_dashboard() {
         set_produtos_dashboard(true);
         set_categorias_dashboard(false);
         set_inicio_dashboard(false);
+        set_marcas_dashboard(false);
 
     };
 
@@ -124,6 +128,7 @@ function Inicio_dashboard() {
         set_produtos_dashboard(false);
         set_categorias_dashboard(true);
         set_inicio_dashboard(false);
+        set_marcas_dashboard(false);
     };
 
     function ir_para_marcas() {
@@ -288,13 +293,13 @@ function Inicio_dashboard() {
 
                 </div>
 
-                <div className="dashboard_container_categorias" onClick={ir_para_marcas}>
+                <div className="dashboard_container_categorias" onClick={ir_para_marcas} onMouseEnter={() => set_caminho_imagem_marca(`./img/icons/marcas-icon-verde.svg`)} onMouseLeave={() => set_caminho_imagem_marca(`./img/icons/marcas-icon-branco.svg`)}>
 
                     <div className="sombra_dashboard_container_categorias">
 
                         <div className='dashboard_container_categorias_borda'>
-                            <div className='dashboard_container_categorias_img'>
-                                <img src="./img/icons/icon-marcas-branco.svg" alt="marcas" />
+                            <div className='dashboard_container_marcas_img'>
+                                <img src={caminho_imagem_marca} alt="marcas" />
                             </div>
                         </div>
 

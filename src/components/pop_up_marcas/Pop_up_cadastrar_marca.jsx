@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import api from '../../services/api';
+import './Pop_up_cadastrar_marca.css'
 
 function Pop_up_cadastrar_marca() {
 
@@ -12,12 +13,6 @@ function Pop_up_cadastrar_marca() {
   const [marca_a_cadastrar, set_marca_a_cadastrar] = useState({ nome: ``, logoMarca: `` })
   const [erro, set_erro] = useState(false);
   const [mensagem_de_erro, set_mensagem_de_erro] = useState(`Marca já cadastrada!`);
-
-  useEffect(() => {
-
-    buscar_marcas();
-
-  }, []);
 
   async function buscar_marcas() {
 
