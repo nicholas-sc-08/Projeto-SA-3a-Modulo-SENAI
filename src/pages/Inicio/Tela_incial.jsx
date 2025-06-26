@@ -27,6 +27,7 @@ function Tela_incial() {
   const { produto, set_produto } = useContext(GlobalContext);
   const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
   const { sacola, set_sacola } = useContext(GlobalContext);
+  const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
   const navegar = useNavigate(``);
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
@@ -237,6 +238,7 @@ function Tela_incial() {
 
     set_produto(produto_selecionado);
     navegar(`/produto`);
+    set_sacola_ou_produto(`/`);
   };
 
   function ir_ate_perfil_brecho(brecho) {
