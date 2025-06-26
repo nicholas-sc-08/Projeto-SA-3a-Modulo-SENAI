@@ -84,8 +84,11 @@
 
 .container_botao_categoria_edicao p {
 
-    width: 60%;
-    color: red;
+    width: 50%;
+    color: var(--cor_sete);
+    font-family: var(--tipografia_secundaria);
+    /* border: 1px solid red; */
+    font-size: 0.8rem;
 }
 
 .container_botao_categoria_edicao button {

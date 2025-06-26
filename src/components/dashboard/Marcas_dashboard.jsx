@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Pop_up_notificacao_cadastro_marca from '../pop_up_marcas/Pop_up_notificacao_cadastro_marca';
 import Pop_up_editar_marca from '../pop_up_marcas/Pop_up_editar_marca';
+import Pop_up_notificacao_editar_marca from '../pop_up_marcas/Pop_up_notificacao_editar_marca';
+import Pop_up_excluir_marca from '../pop_up_marcas/Pop_up_excluir_marca';
+import Pop_up_notificacao_excluir_marca from '../pop_up_marcas/Pop_up_notificacao_excluir_marca';
 
 function Marcas_dashboard() {
 
@@ -21,6 +24,9 @@ function Marcas_dashboard() {
     const { pop_up_de_cadastrar_marca, set_pop_up_de_cadastrar_marca } = useContext(GlobalContext);
     const { pop_up_notificacao_cadastro_marca, set_pop_up_notificacao_cadastro_marca } = useContext(GlobalContext);
     const { pop_up_editar_marca, set_pop_up_editar_marca } = useContext(GlobalContext);
+    const { pop_up_notificacao_editar_marca, set_pop_up_notificacao_editar_marca } = useContext(GlobalContext)
+    const { pop_up_excluir_marca, set_pop_up_excluir_marca } = useContext(GlobalContext)
+    const { pop_up_notificacao_excluir_marca, set_pop_up_notificacao_excluir_marca } = useContext(GlobalContext)
 
     const [editar_marca, set_editar_marca] = useState(false);
     const [array_marcas_ordenado, set_array_marcas_ordenado] = useState([]);
@@ -43,6 +49,7 @@ function Marcas_dashboard() {
 
             const marcas = await api(`/marcas`);
             set_marcas_dashboard(marcas.data);
+            buscar_marcas()
 
             const marcas_ordenadas = [...marcas.data].sort((primeira_marca, marca_seguinte) => primeira_marca.nome.localeCompare(marca_seguinte.nome, 'pt-BR', { sensitivity: 'base' }));
             set_array_marcas_ordenado(marcas_ordenadas);
@@ -59,6 +66,15 @@ function Marcas_dashboard() {
 
         set_id_marca(id);
 
+        if (editar_marca) {
+
+            set_pop_up_editar_marca(true);
+            set_editar_marca(false);
+
+        } else {
+
+            set_pop_up_excluir_marca(true);
+        };
 
     };
 
@@ -102,15 +118,16 @@ function Marcas_dashboard() {
                     {pop_up_editar_marca && <div className='container_escurecer_tela'></div>}
                     {pop_up_editar_marca && <Pop_up_editar_marca />}
 
-                    {/*
-                    {pop_up_notificacao_editar_categoria && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_editar_categoria && <Pop_up_de_notificacao_editar_categoria />}
 
-                    {pop_up_de_excluir_categoria && <div className='container_escurecer_tela'></div>}
-                    {pop_up_de_excluir_categoria && <Pop_up_de_excluir_categoria />}
+                    {pop_up_notificacao_editar_marca && <div className='container_escurecer_tela'></div>}
+                    {pop_up_notificacao_editar_marca && <Pop_up_notificacao_editar_marca />}
 
-                    {pop_up_notificacao_excluir_categoria && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_excluir_categoria && <Pop_up_de_notificacao_excluir_categoria />} */}
+
+                    {pop_up_excluir_marca && <div className='container_escurecer_tela'></div>}
+                    {pop_up_excluir_marca && <Pop_up_excluir_marca />}
+
+                    {pop_up_notificacao_excluir_marca && <div className='container_escurecer_tela'></div>}
+                    {pop_up_notificacao_excluir_marca && <Pop_up_notificacao_excluir_marca />}
 
 
                     <div className="container-alinhamento-imagem-titulo-categorias-dashboard">
@@ -159,7 +176,7 @@ function Marcas_dashboard() {
 
                                 <div className="container_tabela_categorias_header_editar_categoria">
 
-                                    <button onClick={() => set_editar_marca(!editar_categoria)}>Editar Marca</button>
+                                    <button onClick={() => set_editar_marca(!editar_marca)}>Editar Marca</button>
 
                                 </div>
 
@@ -177,9 +194,9 @@ function Marcas_dashboard() {
 
                             {array_marcas_ordenado.length > 0 ? array_marcas_ordenado.map((marca, i) => (
 
-                                <div className='container_conteudo_categoria' key={i} onClick={() => clicar_em_marca(marca._id)}>
+                                <div className='container_conteudo_marca' key={i} onClick={() => clicar_em_marca(marca._id)}>
 
-                                    <span>{editar_marca && "· "}{marca.nome}</span>
+                                    <span>{editar_marca && "· "} <img src={marca.logoMarca} alt="" /> {marca.nome}</span>
 
                                 </div>
                             )) : <div className='container_nenhuma_categoria'>
