@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import './Pop_up_cadastrar_marca.css'
 import api from '../../services/api';
 
 function Pop_up_cadastrar_marca() {

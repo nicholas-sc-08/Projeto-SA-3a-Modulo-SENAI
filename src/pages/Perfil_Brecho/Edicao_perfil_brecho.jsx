@@ -243,7 +243,7 @@ function Edicao_perfil_brecho() {
       // aqui ele atualiza as informações no array dos brechos
       const novosBrechos = array_brechos.map(brecho =>
         brecho._id === usuario_logado._id ? { ...brecho, ...campoSenhaBackend, ...brechoAtualizado } : brecho
-      );
+      )
       set_array_brechos(novosBrechos)
 
     } catch (error) {
