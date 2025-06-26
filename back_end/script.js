@@ -433,7 +433,7 @@ app.post(`/brechos`, async (req, res) => {
 
 app.put(`/brechos/:id`, async (req, res) => {
 
-    const { id } = req.params;
+    const { id } = req.body;
     delete req.body._id;
 
     try {
