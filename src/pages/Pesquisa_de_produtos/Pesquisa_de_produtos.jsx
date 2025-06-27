@@ -19,12 +19,14 @@ function Pesquisa_de_produtos() {
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+    const { array_marcas, set_array_marcas } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { id_marca_selecionada, set_id_marca_selecionada } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
@@ -51,6 +53,7 @@ function Pesquisa_de_produtos() {
         buscar_produtos();
         buscar_categorias();
         buscar_brechos();
+        buscar_marcas()
 
     }, [termoBuscado]);
 
@@ -62,6 +65,26 @@ function Pesquisa_de_produtos() {
             console.log(array_com_as_categorias);
 
             const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);
+
+        } else {
+
+            const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+            set_produtos_embaralhados(embaralhar);
+        };
+
+        referencia_pesquisa_produtos.current.scrollIntoView();
+
+    }, [array_produtos, id_categoria_selecionada]);
+
+    useEffect(() => {
+
+        if (id_marca_selecionada) {
+
+            const array_com_as_marcas = array_produtos.filter(p => p.fk_id_marca == id_marca_selecionada);
+            console.log(array_com_as_marcas);
+
+            const embaralhar = array_com_as_marcas.sort(() => Math.random() - 0.5);
             set_produtos_embaralhados(embaralhar);
 
         } else {
@@ -114,6 +137,19 @@ function Pesquisa_de_produtos() {
 
             const brechos = await api.get(`/brechos`);
             set_array_brechos(brechos.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
+    async function buscar_marcas() {
+
+        try {
+
+            const marcas = await api.get(`/marcas`);
+            set_array_marcas(marcas.data);
 
         } catch (erro) {
 

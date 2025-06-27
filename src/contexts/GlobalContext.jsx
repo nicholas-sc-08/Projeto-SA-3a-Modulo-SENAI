@@ -59,6 +59,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [sacola, set_sacola] = useState([]);
     const [brecho_selecionado, set_brecho_selecionado] = useState(null);
     const [id_categoria_selecionada, set_id_categoria_selecionada] = useState(null);
+    const [id_marca_selecionada, set_id_marca_selecionada] = useState(null);
     const [pagina_atual, set_pagina_atual] = useState(1);
     const [sacola_ou_produto, set_sacola_ou_produto] = useState(null);
 
@@ -263,6 +264,8 @@ export const GlobalContextProvider = ({ children }) => {
             set_pop_up_excluir_marca,
             pop_up_notificacao_excluir_marca,
             set_pop_up_notificacao_excluir_marca,
+            id_marca_selecionada,
+            set_id_marca_selecionada,
         }}>
             {children}
         </GlobalContext.Provider>

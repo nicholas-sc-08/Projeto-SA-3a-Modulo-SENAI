@@ -17,10 +17,14 @@
 }
 
 .foto-perfil-cliente{
-    width: 20%;
-    margin-left: 9%;
-    margin-top: 15%;
+    margin-left: 10%;
+    margin-top: 10%;
 
+}
+
+.foto-perfil-cliente img{
+    width: 20%;
+    border-radius: 19px;
 }
 
 .container-perfil-cliente{
@@ -43,7 +47,7 @@
 
 .info-cliente{
     position: relative;
-    bottom: 65%;
+    bottom: 50%;
     left: 22%;
     width: 70%;
 }
@@ -168,7 +172,7 @@
     background-color: #f8f0da;
 }
 
-.mudanca-senha button{
+.botao-editar-container button{
     font-family: var(--tipografia_secundaria);
     background-color: var(--cor_um);
     color: var(--cor_quatro);
