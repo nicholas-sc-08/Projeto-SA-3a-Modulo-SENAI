@@ -79,10 +79,7 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
       console.error("Erro ao excluir o endereco do brechó", erro)
     }
 
-
   }
-
-
 
 
   return (

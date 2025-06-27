@@ -23,7 +23,6 @@ function Perfil_Brecho() {
   const [naoEBrecho, setNaoEBrecho] = useState(true)
 
 
-
   useEffect(() => {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
@@ -203,12 +202,12 @@ function Perfil_Brecho() {
                 {divAtiva === "produtos" &&  !naoEBrecho && (
                   <>
                     <div className="infos-cadastradas-sub-div">
-                      <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
+                     {/* <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
                         <a href="">
                           <img src="./public/img/icons/bx--box.svg" alt="Icone-Estoque" />
                         </a>
                         <p>Estoque</p>
-                      </div>
+                      </div>*/}
                     </div>
                   </>
                 )}

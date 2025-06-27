@@ -127,18 +127,6 @@ function Edicao_perfil_brecho() {
     const oTextoAntesDoArroba = formCadastroBrecho.email.indexOf('@') > 0   /* se tiver algo antes do @, vai retornar como errado, porque o index do @ tem q ser igual a 0 */
 
 
-    // validação se a senha é igual a confirmar_senha
-    if (formCadastroBrecho.nova_senha == formCadastroBrecho.confirmar_senha) {
-      senhasIguais = true
-
-    } else {
-      senhasIguais = false
-      setMensagemErro(`As senhas devem ser iguais!`)
-      return
-
-    }
-
-
     // ----- EM ANDAMENTO -----
     // validação se a senha é igual a confirmar_senha e se a data de nascimento do vendedor é igual ou maior que dezoito
     // switch (true) {
@@ -196,7 +184,16 @@ function Edicao_perfil_brecho() {
     if (formCadastroBrecho.cnpj && formCadastroBrecho.cnpj.length !== 18) {
       setMensagemErro('Número de cnpj é inválido!')
       return
+    }
 
+    // validação se a senha é igual a confirmar_senha
+    if (formCadastroBrecho.nova_senha == formCadastroBrecho.confirmar_senha) {
+      senhasIguais = true
+
+    } else {
+      senhasIguais = false
+      setMensagemErro(`As senhas devem ser iguais!`)
+      return
     }
 
     const { nova_senha, ...dadosSemNovaSenha } = formCadastroBrecho
@@ -208,11 +205,17 @@ function Edicao_perfil_brecho() {
     }
 
 
+
+
+    // --- O Problema provavemente está aqui
+
     // Aqui ele vai enviar as informações e atualizar no banco de dados
     try {
       const resposta = await api.put(`/brechos/${usuario_logado._id}`, campoSenhaBackend) // faz com que as informações sejam atualizadas no backend
+      console.log(" sucesso =========>>>>>>> ",  resposta);
+      
 
-      console.log('Brechó atualizado com sucesso!');
+      console.log('Brechó atualizado com sucesso!')
       setMensagemSucesso(`Informação atualizada com sucesso!`)
       setMensagemErro(``)
 

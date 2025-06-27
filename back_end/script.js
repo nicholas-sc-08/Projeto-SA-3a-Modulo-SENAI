@@ -432,9 +432,10 @@ app.post(`/brechos`, async (req, res) => {
 });
 
 app.put(`/brechos/:id`, async (req, res) => {
+    console.log("req =========>>>>>>> ", req.body);
+    
 
-    const { id } = req.body;
-    delete req.body._id;
+    const { id } = req.params;
 
     try {
 

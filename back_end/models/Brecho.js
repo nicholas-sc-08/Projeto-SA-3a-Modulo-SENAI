@@ -11,7 +11,6 @@ const brecho_schema = new mongoose.Schema({
     cnpj: { type: String, required: false },
     logo: { type: String, required: true },
     conversas: { type: Array, required: true },
-    sacola: { type: Array, required: false }, 
     horario_funcionamento: { type: String, required: false },
 
 }, {timestamps: true});
