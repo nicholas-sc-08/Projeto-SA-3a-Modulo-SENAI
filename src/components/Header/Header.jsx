@@ -15,14 +15,16 @@ function Header({ tipo }) {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext)
     const { array_clientes, set_array_clientes } = useContext(GlobalContext)
     const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+    const { array_marcas, set_array_marcas } = useContext(GlobalContext)
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { id_marca_selecionada, set_id_marca_selecionada } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
-    const [ perfil_usuario, set_perfil_usuario] = useState(null)
+    const [perfil_usuario, set_perfil_usuario] = useState(null)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -40,9 +42,10 @@ function Header({ tipo }) {
         informacoes_categorias()
         informacoes_brechos()
         informacoes_produtos()
+        informacoes_marcas()
 
-        const encontrar_cliente = array_clientes.find ( cliente => cliente._id == usuario_logado._id)
-        encontrar_cliente ? set_perfil_usuario (`/perfil_cliente`) : set_perfil_usuario (`/perfil_brecho`)
+        const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id)
+        encontrar_cliente ? set_perfil_usuario(`/perfil_cliente`) : set_perfil_usuario(`/perfil_brecho`)
 
     }, []);
 
@@ -98,6 +101,19 @@ function Header({ tipo }) {
         };
     };
 
+    async function informacoes_marcas() {
+
+        try {
+
+            const marcas = await api.get(`/marcas`);
+            set_array_marcas(marcas.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
     async function informacoes_chats() {
 
         try {
@@ -133,8 +149,6 @@ function Header({ tipo }) {
         }
 
     }, [])
-
-    // testando uns negocios aqui
 
     useEffect(() => {
 
@@ -187,7 +201,7 @@ function Header({ tipo }) {
         }
     };
 
-    
+
 
     function fechar_chat() {
 
@@ -375,10 +389,10 @@ function Header({ tipo }) {
 
     // buscar por marcas
     const buscarMarcas = (marca) => {
-        navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
-        setContainerAberto(false);
+        setTermoBuscado(marca.nome);
+        set_id_marca_selecionada(marca._id);
+        navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
     };
-
 
     function ir_para_perfil_brecho(idBrecho) {
         navigate(`/perfil_brecho?id=${idBrecho}`);
@@ -458,36 +472,17 @@ function Header({ tipo }) {
                                             <div className="alinhamento-container-de-marcas">
                                                 <h2>Marcas populares entre o público</h2>
 
-                                                <div className="alinahamento-container-marcas-aclamadas">
-                                                    <div className="container-um-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('farm' || 'farm rio')}>
-                                                            <img src="./img/logo/logo_farm_rio.svg" alt="Farm Rio" />
+                                                <div className="alinhamento-container-marcas-aclamadas">
+                                                    {[...array_marcas].slice(0, 6).map((marca, i) => (
+                                                        <div className="container-um-marcas-aclamadas">
+                                                            <div className="fundo-cinza-marcas" key={i} onClick={() => buscarMarcas(marca._id)}>
+                                                                <img src={marca.logoMarca} />
+                                                            </div>
                                                         </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('zara')}>
-                                                            <img src="./img/logo/logo_zara.svg" alt="Zara" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('Le lis')}>
-                                                            <img src="./img/logo/logo_le_lis.svg" alt="Le Lis" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="container-dois-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('animale')}>
-                                                            <img src="./img/logo/logo_animale.svg" alt="Animale" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('converse' || 'all star')}>
-                                                            <img src="./img/logo/logo_converse.svg" alt="Converse" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('adidas')}>
-                                                            <img src="./img/logo/logo_adidas.svg" alt="Adidas" />
-                                                        </div>
-                                                    </div>
+                                                    ))}
                                                 </div>
                                             </div>
+
 
                                             <div className="alinhamento-container-de-categorias-especiais">
                                                 <h2>Categorias especiais</h2>
