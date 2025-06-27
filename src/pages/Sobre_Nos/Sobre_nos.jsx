@@ -11,7 +11,7 @@ function Sobre_nos() {
         <div className="alinhamento-sobre-a-fly-sobrenos">
           <div className="alinhamento-container-um-sobre-a-fly">
             <h2>Sobre a Fly</h2>
-
+            
             <p>A Fly é uma plataforma criada para conectar brechós a um público maior, tornando a experiência de compra mais prática, acessível e consciente. A ideia surgiu da vivência de um dos nossos membros, cuja mãe, dona de brechó, enfrentava dificuldades para alcançar novos clientes.</p>
 
             <p>Inspirados por essa realidade, desenvolvemos uma solução que apoia pequenos empreendedores e promove a moda sustentável. Nossa missão é transformar a forma como as pessoas descobrem e consomem moda, valorizando peças únicas, cheias de história e com impacto positivo.</p>
