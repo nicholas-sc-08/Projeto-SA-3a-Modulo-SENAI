@@ -17,7 +17,7 @@
     "google-auth-library": "^9.15.1",
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.16.0",
+    "mongoose": "^8.16.1",
     "multer": "^2.0.1",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemon": "^3.1.10",
