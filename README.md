@@ -22,12 +22,23 @@
 - **RF14 Termos de Uso:** O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site.
 - **RF15 Políticas de Privacidade:** O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa.
 
-| Requisitos Funcionais (RF) | Descrição                                                                                                             |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| RF 01 Cadastro de Cliente  | O sistema deve permitir que o usuário possa se cadastrar no site ao preencher as informações requiridas no cadastro.  |
-| RF 02 Cadastro de Brechó   | Ao preencher os dados no cadastro, o sistema permite que o dono do brechó consiga anunciar os seus produtos.          |
-| RF 03 Login                | O sistema deve permitir que as pessoas cadastradas possam sair da conta e recuperar as suas informações quando logar. |
-| RF 04 Cadastro de Produtos | O sistema possibilita que o brechó cadastre diversos produtos, adicionando fotos dos produtos, descrições detalhadas, categorias em seus produtos, como por exemplo “Camiseta”, “Saia”, “Vestido Longo” e informações sobre o estado de conservação. |
+| Requisitos Funcionais (RF)    | Descrição                                                                                                             |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| RF 01 Cadastro de Cliente     | O sistema deve permitir que o usuário possa se cadastrar no site ao preencher as informações requiridas no cadastro.  |
+| RF 02 Cadastro de Brechó      | Ao preencher os dados no cadastro, o sistema permite que o dono do brechó consiga anunciar os seus produtos.          |
+| RF 03 Login                   | O sistema deve permitir que as pessoas cadastradas possam sair da conta e recuperar as suas informações quando logar. |
+| RF 04 Cadastro de Produtos    | O sistema possibilita que o brechó cadastre diversos produtos, adicionando fotos dos produtos, descrições detalhadas, categorias em seus produtos, como por exemplo “Camiseta”, “Saia”, “Vestido Longo” e informações sobre o estado de conservação. |
+| RF 05 Busca de Produtos       | O sistema deve possibilitar que o usuário possa buscar produtos por categorias, marca, estilos e tamanhos.            |
+| RF 06 Cadastrar Endereços     | O sistema deve permitir que o usuário e o brechó cadastrem seus endereços ao cadastrar-se na plataforma da Fly, assim podendo ser possível localizar o brechó ou realizar alguma entrega de produto de um brechó para algum cliente. |
+| RF 07 Gestão de Estoque       | O administrador deve ter acesso a gestão de estoque, onde ele irá conseguir alterar a quantidade de produtos no estoque de determinado brechó. Já o brechó deve conter as mesmas funcionalidades porém somente com seus produtos. |
+| RF 08 Sacola de Compras       | O sistema possibilita que o usuário adicione produtos a sua sacola e dentro do pop up, os produtos adicionados terão a logo do brechó no qual eles pertencem, além disso, será permitido que os itens adicionados tenham sua quantidade alterada ou sejam excluídos. |
+| RF 09 Entrar em Contato       | O sistema possibilita o usuário a entrar em contato com a empresa Fly em caso de alguma dúvida ou reclamação sobre algo relacionado ao site por meio de uma API de e-mail. |
+| RF 10 Dashboard               | O sistema deve disponibilizar um painel de controle (DashBoard) para o administrador do sistema, podendo modificar, excluir ou visualizar: produtos, categorias, brechós, usuários e podendo realizar a gestão de estoque. |
+| RF 11 Chat                    | O sistema deve permitir que o usuário entrar em contato com o brechó a respeito dos itens adicionados na sacola, de algum produto especifico ou apenas para tirar uma dúvida. |
+| RF 12 Perfil                  | O sistema deve permitir que o usuário e brechó consigam modificar as informações pessoais ao acessar seu respectivo perfil e em qualquer momento consigam excluir a conta no site.|
+| RF 13 Produto                 | O sistema permite que o brechó consiga modificar as informações das peças, como tamanho, avarias e o valor e que o produto seja excluído em qualquer momento, a menos que o produto não esteja reservado em determinada compra, além disso, o brechó deve disponibilizar a visualização de todos esses detalhes ao cliente. |
+| RF 14 Termos de Uso           | O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site. |
+| RF 15 Política de Privacidade | O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa. |
 
 ## Divisão dos requisitos entre os integrantes
 
