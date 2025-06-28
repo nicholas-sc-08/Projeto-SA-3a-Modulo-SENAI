@@ -53,7 +53,7 @@ function Cadastro_Produto() {
     condicao: "",
     cor: [],
     imagem: [],
-    marca: "",
+    fk_id_marca: "",
     composicao: "",
     fk_id_categoria: "",
     tamanho: "",
@@ -78,7 +78,7 @@ function Cadastro_Produto() {
         condicao: informacoes_editar_produto.condicao,
         cor: informacoes_editar_produto.cor,
         imagem: informacoes_editar_produto.imagem,
-        marca: informacoes_editar_produto.marca,
+        fk_id_marca: informacoes_editar_produto.fk_id_marca,
         composicao: informacoes_editar_produto.composicao,
         fk_id_categoria: informacoes_editar_produto.fk_id_categoria,
         tamanho: informacoes_editar_produto.tamanho,
@@ -99,15 +99,28 @@ function Cadastro_Produto() {
 
 
   useEffect(() => {
-    if (informacoes_editar_produto && categorias.length > 0) {
-      const categoriaSelecionada = categorias.find(
-        (cat) => cat._id === informacoes_editar_produto.fk_id_categoria
-      );
-      if (categoriaSelecionada) {
-        setInputCategoria(categoriaSelecionada.nome);
-      }
+    if (informacoes_editar_produto) {
+      const marcaSelecionada = listaMarcas.find(m => m._id === informacoes_editar_produto.fk_id_marca);
+      setInputMarca(marcaSelecionada?.nome || ""); // Mostra o nome no input
+      setArray_cadastro_produto(prev => ({
+        ...prev,
+        fk_id_marca: informacoes_editar_produto.fk_id_marca // Salva o ID
+      }));
     }
-  }, [categorias, informacoes_editar_produto]);
+  }, [informacoes_editar_produto, listaMarcas]);
+
+  
+  useEffect(() => {
+  if (informacoes_editar_produto) {
+    const categoriaSelecionada = categorias.find(c => c._id === informacoes_editar_produto.fk_id_categoria);
+    setInputCategoria(categoriaSelecionada?.nome || "");
+    setArray_cadastro_produto(prev => ({
+      ...prev,
+      fk_id_categoria: informacoes_editar_produto.fk_id_categoria
+    }));
+  }
+}, [informacoes_editar_produto, categorias]);
+
 
 
   // Filtra tecidos conforme digitação do usuário
@@ -136,8 +149,8 @@ function Cadastro_Produto() {
   }
 
   useEffect(() => {
-    const resultado = listaMarcas.filter((marca) =>
-      marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
+    const resultado = listaMarcas.filter((fk_id_marca) =>
+      fk_id_marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
     );
     setMarcasFiltradas(resultado);
   }, [inputMarca, listaMarcas]);
@@ -183,48 +196,48 @@ function Cadastro_Produto() {
   }
 
   // Adiciona imagem localmente e faz upload para Cloudinary
-async function adicionar_imagem(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  async function adicionar_imagem(e) {
+    const file = e.target.files[0];
+    if (!file) return;
 
-  const urlLocal = URL.createObjectURL(file);
-  setImagens((prev) => [...prev, urlLocal]);
-  if (!imagemPrincipal) setImagemPrincipal(urlLocal);
+    const urlLocal = URL.createObjectURL(file);
+    setImagens((prev) => [...prev, urlLocal]);
+    if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", "Fly_Brecho"); // esse nome deve bater com o preset criado no Cloudinary
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "Fly_Brecho"); // esse nome deve bater com o preset criado no Cloudinary
 
-  try {
-    const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await response.json();
-    console.log("✅ Imagem enviada para Cloudinary:", data);
+      const data = await response.json();
+      console.log("✅ Imagem enviada para Cloudinary:", data);
 
-    if (data.secure_url) {
-      const novaLista = [...array_cadastro_produto.imagem, data.secure_url];
-      setImagens(novaLista);
-      setArray_cadastro_produto((prev) => ({
-        ...prev,
-        imagem: novaLista,
-      }));
+      if (data.secure_url) {
+        const novaLista = [...array_cadastro_produto.imagem, data.secure_url];
+        setImagens(novaLista);
+        setArray_cadastro_produto((prev) => ({
+          ...prev,
+          imagem: novaLista,
+        }));
 
-      if (imagemPrincipal === urlLocal || !imagemPrincipal) {
-        setImagemPrincipal(data.secure_url);
+        if (imagemPrincipal === urlLocal || !imagemPrincipal) {
+          setImagemPrincipal(data.secure_url);
+        }
+
+        URL.revokeObjectURL(urlLocal);
+      } else {
+        alert("Erro ao subir imagem: URL não retornada.");
       }
-
-      URL.revokeObjectURL(urlLocal);
-    } else {
-      alert("Erro ao subir imagem: URL não retornada.");
+    } catch (error) {
+      console.error(" Erro ao fazer upload da imagem:", error);
+      alert("Erro ao enviar imagem. Verifique o console.");
     }
-  } catch (error) {
-    console.error(" Erro ao fazer upload da imagem:", error);
-    alert("Erro ao enviar imagem. Verifique o console.");
   }
-}
 
 
 
@@ -271,7 +284,7 @@ async function adicionar_imagem(e) {
         condicao: "",
         cor: [],
         imagem: [],
-        marca: "",
+        fk_id_marca: "",
         composicao: "",
         fk_id_categoria: "",
         tamanho: "",
@@ -364,18 +377,66 @@ async function adicionar_imagem(e) {
     }
   }
 
-  // Envia os dados do produto para o backend via POST
-  async function cadastrar_produto() {
-    try {
-      await api.post("/produtos", array_cadastro_produto);
-      buscar_produtos();
-      set_pop_up_notificacao_cadastro_produto(true);
-      setTimeout(() => navigate("/gestao_estoque"), 2000);
-    } catch (error) {
-      console.error("Erro ao cadastrar produto", error);
-      set_pop_up_erro_cadastro(true)
-    }
+
+function validarCampos() {
+  if (!array_cadastro_produto.nome.trim()) {
+    alert("Informe o nome do produto.");
+    return false;
   }
+  if (!array_cadastro_produto.preco || isNaN(Number(array_cadastro_produto.preco))) {
+    alert("Informe um preço válido.");
+    return false;
+  }
+  if (!array_cadastro_produto.condicao) {
+    alert("Informe a condição do produto.");
+    return false;
+  }
+  if (!array_cadastro_produto.fk_id_marca) {
+    alert("Informe a marca do produto.");
+    return false;
+  }
+  if (!array_cadastro_produto.fk_id_categoria) {
+    alert("Informe a categoria do produto.");
+    return false;
+  }
+  if (!array_cadastro_produto.tamanho.trim()) {
+    alert("Informe o tamanho do produto.");
+    return false;
+  }
+  if (!array_cadastro_produto.quantidade || array_cadastro_produto.quantidade < 1) {
+    alert("Informe a quantidade correta.");
+    return false;
+  }
+  return true;
+}
+
+
+
+ async function cadastrar_produto() {
+  if (!validarCampos()) return;
+
+  try {
+    const produtoParaEnviar = {
+      ...array_cadastro_produto,
+      preco: Number(array_cadastro_produto.preco),
+      quantidade: Number(array_cadastro_produto.quantidade),
+      cor: array_cadastro_produto.cor || [],
+      imagem: array_cadastro_produto.imagem || [],
+    };
+
+    console.log("Dados a enviar:", produtoParaEnviar);
+
+    await api.post("/produtos", produtoParaEnviar);
+    buscar_produtos();
+    set_pop_up_notificacao_cadastro_produto(true);
+    setTimeout(() => navigate("/gestao_estoque"), 2000);
+  } catch (error) {
+    console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
+    set_pop_up_erro_cadastro(true);
+  }
+}
+
+
 
   // Nome exibido do produto (fallback caso não digitado)
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
@@ -583,21 +644,23 @@ async function adicionar_imagem(e) {
                 value={inputMarca}
                 onChange={(e) => {
                   setInputMarca(e.target.value);
-                  setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value });
+                  setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_marca: "" });
                 }}
                 onFocus={() => setMarcaEmFoco(true)}
-                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)} 
+                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)}
                 autoComplete="off"
               />
-
               {marcaEmFoco && marcasFiltradas.length > 0 && (
                 <ul className="lista-marcas">
                   {marcasFiltradas.map((marca, index) => (
                     <li
                       key={index}
                       onClick={() => {
-                        setInputMarca(marca.nome);
-                        setArray_cadastro_produto({ ...array_cadastro_produto, marca: marca.nome });
+                        setInputMarca(marca.nome); // Exibe o nome no input
+                        setArray_cadastro_produto(prev => ({
+                          ...prev,
+                          fk_id_marca: marca._id,  // Salva o ID da marca no objeto do produto
+                        }));
                         setMarcaEmFoco(false);
                       }}
                     >
@@ -608,6 +671,7 @@ async function adicionar_imagem(e) {
               )}
 
             </div>
+
 
             <label>Estado do produto</label>
             <select
@@ -649,8 +713,11 @@ async function adicionar_imagem(e) {
                   <li
                     key={cat._id}
                     onClick={() => {
-                      setInputCategoria(cat.nome);
-                      setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: cat._id });
+                      setInputCategoria(cat.nome); // Exibe o nome no input
+                      setArray_cadastro_produto(prev => ({
+                        ...prev,
+                        fk_id_categoria: cat._id, // Salva o ID da categoria no objeto do produto
+                      }));
                       setCategoriaEmFoco(false);
                     }}
                   >
@@ -660,13 +727,15 @@ async function adicionar_imagem(e) {
               </ul>
             )}
 
+
           </div>
 
 
           <button
+
             onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
             className="botao-cadastrar"
-            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}}>
+            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}} >
             {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
           </button>
 
