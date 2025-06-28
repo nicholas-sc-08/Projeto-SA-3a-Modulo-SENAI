@@ -105,7 +105,7 @@
   
 - Front-End
 
-```js
+```nodejs
 npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com
 ```
 
