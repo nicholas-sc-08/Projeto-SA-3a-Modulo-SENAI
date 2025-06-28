@@ -1,6 +1,6 @@
 const express = require(`express`);
 const cors = require(`cors`);
-const stripe = require("stripe")("***REMOVED***");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const http = require(`http`);
 const app = express();
 const { Server } = require(`socket.io`);
@@ -481,7 +481,7 @@ app.post(`/brechos`, async (req, res) => {
 
 app.put(`/brechos/:id`, async (req, res) => {
     console.log("req =========>>>>>>> ", req.body);
-    
+
 
     const { id } = req.params;
 
@@ -654,3 +654,74 @@ app.delete(`/marcas/:id`, async (req, res) => {
 });
 
 // Marcas
+
+// Buscas recentes
+// POST /usuarios/:id/buscas
+// router.post('/:id/buscas', async (req, res) => {
+//     const { termo } = req.body;
+
+//     if (!termo) {
+//         return res.status(400).json({ error: 'Termo é obrigatório' });
+//     }
+
+//     try {
+//         const cliente = await Cliente.findById(req.params.id);
+
+//         if (!cliente) {
+//             return res.status(404).json({ error: 'Usuário não encontrado' });
+//         }
+
+//         // Eliminar duplicados
+//         cliente.buscasRecentes = cliente.buscasRecentes.filter(t => t !== termo);
+
+//         // Insertar al inicio
+//         cliente.buscasRecentes.unshift(termo);
+
+//         // Limitar a 10 términos
+//         cliente.buscasRecentes = cliente.buscasRecentes.slice(0, 10);
+
+//         await cliente.save();
+
+//         res.json({ success: true, buscasRecentes: cliente.buscasRecentes });
+
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ error: 'Erro interno do servidor' });
+//     }
+// });
+
+// GET /usuarios/:id/buscas
+// router.get('/:id/buscas', async (req, res) => {
+//     try {
+//         const cliente = await Cliente.findById(req.params.id);
+
+//         if (!cliente) {
+//             return res.status(404).json({ error: 'Usuário não encontrado' });
+//         }
+
+//         res.json({ buscasRecentes: cliente.buscasRecentes });
+
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ error: 'Erro interno do servidor' });
+//     }
+// });
+
+// DELETE /usuarios/:id/buscas
+// router.delete('/:id/buscas', async (req, res) => {
+//     try {
+//         const cliente = await Cliente.findById(req.params.id);
+//         if (!cliente) {
+//             return res.status(404).json({ error: 'Usuário não encontrado' });
+//         }
+
+//         cliente.buscasRecentes = [];
+//         await cliente.save();
+
+//         res.json({ success: true });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ error: 'Erro interno do servidor' });
+//     }
+// });
+

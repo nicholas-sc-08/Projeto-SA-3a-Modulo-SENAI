@@ -1,4 +1,4 @@
-.alinhamento-pagina-escolha-cadastro{
+.alinhamento-pagina-escolha-cadastro {
     /* border: 1px solid red; */
     display: flex;
 }
@@ -70,60 +70,73 @@
    padding-top: 10%;
 } */
 
-.ladoDireito-container-escolha-cadastro{
+.ladoDireito-container-escolha-cadastro {
     margin-top: 1%;
     font-family: var(--tipografia_secundaria);
+    /* border: 1px solid red; */
 }
 
-.ladoDireito-container-escolha-cadastro img{
+.ladoDireito-container-escolha-cadastro img {
     margin-left: 595px;
     /* border: 1px solid red; */
     cursor: pointer;
 }
 
-.ladoDireito-container-escolha-cadastro h1{
+.ladoDireito-container-escolha-cadastro h1 {
     color: var(--cor_seis);
     font-size: 40px;
+    /* border: 1px solid red; */
 }
-.ladoDireito-container-escolha-cadastro p{
+
+.ladoDireito-container-escolha-cadastro p {
     color: var(--cor_seis_v_um);
     font-size: 19px;
 }
 
-.escolha-container{
-    padding-top: 10%;
+.escolha-container {
+    padding-top: 6%;
+    /* border: 1px solid red; */
 }
 
-.quero-comprar, .quero-vender{
+.quero-comprar,
+.quero-vender {
     display: flex;
+    /* border: 1px solid red; */
 }
 
-.info-quero-comprar{
+.info-quero-comprar {
     display: block;
-    padding-bottom: 4%;
-    padding-left: 3%;
-    color: var(--cor_seis);
-
+    padding-bottom: 2%;
+    padding-left: 1%;
 }
 
-.info-quero-comprar p{
+.info-quero-comprar h3 {
+    font-weight: 550;
+    color: var(--cor_seis_v_um);
+}
+
+.info-quero-comprar p {
     font-size: 14px;
+    /* border: 1px solid red; */
 }
 
-.info-quero-vender{
+.info-quero-vender {
     display: block;
     padding-top: 0.3%;
-    padding-left: 3%;
-    color: var(--cor_seis);
-
+    padding-left: 1%;
 }
 
-.info-quero-vender p{
+.info-quero-vender h3 {
+    font-weight: 550;
+    color: var(--cor_seis_v_um);
+}
+
+.info-quero-vender p {
     font-size: 14px;
 }
 
-.but-continuar-escolha-cadastro{
-    width: 45%;
+.but-continuar-escolha-cadastro {
+    width: 32%;
     height: 7%;
     cursor: pointer;
     transition: 0.3s;
@@ -134,36 +147,37 @@
 
     color: var(--cor_quatro);
     background-color: var(--cor_um);
-    margin-top: 15%;
+    margin-top: 6%;
+    /* border: 1px solid red; */
 }
 
 input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: #EADCB0;
-  border: none;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  position: relative;
-  margin-top: 6px;
-  margin-right: 10px;
-  transition: 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #EADCB0;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 6px;
+    margin-right: 10px;
+    transition: 0.2s ease;
 }
 
 input[type="radio"]:checked::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 14px;
-  height: 14px;
-  background-color: #9DA650;
-  border-radius: 50%;
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #9DA650;
+    border-radius: 50%;
 }
 
 input[type="radio"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(85, 107, 47, 0.3);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(85, 107, 47, 0.3);
 }
