@@ -1,5 +1,6 @@
 const express = require(`express`);
 const cors = require(`cors`);
+const stripe = require("stripe")("***REMOVED***");
 const http = require(`http`);
 const app = express();
 const { Server } = require(`socket.io`);
@@ -35,6 +36,53 @@ app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
     next();
 });
+
+
+//Stripe
+app.post("/criar-checkout", async (req, res) => {
+  console.log('Body recebido no /criar-checkout:', req.body);
+
+  const { itens } = req.body;
+
+  if (!itens || !Array.isArray(itens)) {
+    return res.status(400).json({ error: "Itens inválidos ou ausentes" });
+  }
+  console.log("Itens recebidos no backend:", itens);
+
+  try {
+    const line_items = itens.map((item) => ({
+      price_data: {
+        currency: "brl",
+        product_data: {
+          name: item.nome,
+          images: [item.imagem[0]],
+        },
+        unit_amount: Math.round(item.preco * 100), // Valor em centavos
+      },
+      quantity: item.quantidade_selecionada,
+    }));
+    console.log("line_items para Stripe:", line_items);
+
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items,
+      success_url: "http://localhost:5173/?status=sucesso",
+      cancel_url: "http://localhost:5173/?status=cancelado",
+    });
+    console.log("Sessão Stripe criada:", session);
+
+
+    res.json({ url: session.url });
+
+  } catch (error) {
+  console.error("Erro ao criar checkout Stripe:", error);
+  res.status(500).json({ error: error.message || "Erro ao criar checkout" });
+}
+
+});
+
 
 server.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
