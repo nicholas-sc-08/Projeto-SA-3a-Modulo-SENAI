@@ -34,7 +34,6 @@ function Header({ tipo }) {
     const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
     const navigate = useNavigate()
 
-
     const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
 
     useEffect(() => {
