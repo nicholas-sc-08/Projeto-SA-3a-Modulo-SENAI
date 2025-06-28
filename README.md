@@ -22,6 +22,13 @@
 - **RF14 Termos de Uso:** O sistema vai contar com termos de uso, para que quando o usuário criar uma conta ele esteja ciente de seus atos durante o uso do site.
 - **RF15 Políticas de Privacidade:** O sistema permite uma política de privacidade robusta e clara, de maneira que o cliente esteja ciente das normas da empresa.
 
+| Requisitos Funcionais (RF) | Descrição                                                                                                             |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| RF 01 Cadastro de Cliente  | O sistema deve permitir que o usuário possa se cadastrar no site ao preencher as informações requiridas no cadastro.  |
+| RF 02 Cadastro de Brechó   | Ao preencher os dados no cadastro, o sistema permite que o dono do brechó consiga anunciar os seus produtos.          |
+| RF 03 Login                | O sistema deve permitir que as pessoas cadastradas possam sair da conta e recuperar as suas informações quando logar. |
+| RF 04 Cadastro de Produtos | O sistema possibilita que o brechó cadastre diversos produtos, adicionando fotos dos produtos, descrições detalhadas, categorias em seus produtos, como por exemplo “Camiseta”, “Saia”, “Vestido Longo” e informações sobre o estado de conservação. |
+
 ## Divisão dos requisitos entre os integrantes
 
 | Integrantes da equipe | Requisitos Funcionais (RF)                                             |
