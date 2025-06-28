@@ -26,14 +26,14 @@
 
 | Integrantes da equipe | Requisitos Funcionais (RF)                                             |
 |-----------------------|------------------------------------------------------------------------|
-| Mayara Storl          | [RF 03], [RF 09], [RF 12]                                              |
+| [Mayara:](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                              |
 | Maria Wolf            | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12]                            |
 | Nicholas Serencovich  | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13] |
 | Rinmarys              | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]          |
 | Gabriel Lacerda       | [RF 04], [RF 07], [RF 11]                                              |
 
 
-### [Mayara:](https://github.com/MayaraStorl)
+### 
 
 - RF03 Login;
 - RF09 Entrar em Contato;
