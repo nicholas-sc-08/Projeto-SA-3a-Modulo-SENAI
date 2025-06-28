@@ -26,51 +26,11 @@
 
 | Integrantes da equipe | Requisitos Funcionais (RF)                                             |
 |-----------------------|------------------------------------------------------------------------|
-| [Mayara:](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                              |
-| Maria Wolf            | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12]                            |
-| Nicholas Serencovich  | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13] |
-| Rinmarys              | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]          |
-| Gabriel Lacerda       | [RF 04], [RF 07], [RF 11]                                              |
-
-
-### 
-
-- RF03 Login;
-- RF09 Entrar em Contato;
-- RF12 Perfil. </br>
-
-### [Maria Eduarda Wolf:](https://github.com/dudawl18)
-
-- RF01 Cadastro usuário;
-- RF02 Cadastro brechó;
-- RF03 Login;
-- RF06 Cadastrar Endereços;
-- RF12 Perfil.</br>
-
-### [Nicholas:](https://github.com/nicholas-sc-08)
-
-- RF01 Cadastro usuário;
-- RF03 Login;
-- RF05 Busca de produtos;
-- RF06 Cadastrar Endereços;
-- RF08 Sacola de Compras;
-- RF10 DashBoard;
-- RF11 Chat;
-- RF13 Produto.</br>
-
-### [Rinmarys Alejandra:](https://github.com/rinmarys)
-
-- RF02 Cadastro brechó;
-- RF05 Busca de produtos;
-- RF10 DashBoard;
-- RF14 Termos de Uso;
-- RF15 Políticas de Privacidade.</br>
-
-### [Gabriel Lacerda:](https://github.com/GabrielFerLacerda)
-
-- RF04 Cadastro de produtos;
-- RF07 Gestão de Estoque;
-- RF13 Produto;</br>
+| [Mayara](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                              |
+| [Maria Eduarda Wolf](https://github.com/dudawl18)           | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12]                            |
+| [Nicholas](https://github.com/nicholas-sc-08  | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13] |
+| [Rinmarys Alejandra](https://github.com/rinmarys)             | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]          |
+| [Gabriel Lacerda](https://github.com/GabrielFerLacerda)       | [RF 04], [RF 07], [RF 11]                                              |
 
 
 ## Protótipos das Telas
