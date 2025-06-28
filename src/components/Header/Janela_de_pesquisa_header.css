@@ -91,6 +91,8 @@
     flex-wrap: wrap;
     gap: 1rem;
     width: 100%;
+    /* border: 1px solid red; */
+    margin-top: -7%;
 }
 
 .container-um-marcas-aclamadas {
@@ -126,7 +128,7 @@
 
 .fundo-cinza-marcas img {
     /* border: 1px solid red; */
-    width: 82%;
+    width: 75%;
 }
 
 .alinhamento-container-de-categorias-especiais ul {
