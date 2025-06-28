@@ -111,7 +111,7 @@ npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.i
 
 - Back-End:
 
-```js
+```nodejs
 npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe
 ```
 
