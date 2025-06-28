@@ -105,11 +105,15 @@
   
 - Front-End
 
+```js
 npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com
+```
 
 - Back-End:
 
-npm i cors express cloudinary socket.io nodemon mongoose dotenv
+```js
+npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe
+```
 
 ## Tecnologias Utilizadas
   Front-end: React<br>
