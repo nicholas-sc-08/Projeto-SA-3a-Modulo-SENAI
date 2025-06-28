@@ -26,7 +26,7 @@
 
 | Integrantes da equipe | Requisitos Funcionais (RF)                                             |
 |-----------------------|------------------------------------------------------------------------|
-| [Mayara](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                              |
+| [Mayara Storl](https://github.com/MayaraStorl)          | [RF 03], [RF 09], [RF 12]                                              |
 | [Maria Eduarda Wolf](https://github.com/dudawl18)           | [RF 01], [RF 02], [RF 03], [RF 06], [RF 12]                            |
 | [Nicholas Serencovich](https://github.com/nicholas-sc-08)  | [RF 01], [RF 03], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13] |
 | [Rinmarys Alejandra](https://github.com/rinmarys)             | [RF 02], [RF 05], [RF 06], [RF 08], [RF 10], [RF 11], [RF 13]          |
