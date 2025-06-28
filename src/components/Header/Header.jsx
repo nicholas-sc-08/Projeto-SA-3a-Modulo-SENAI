@@ -200,8 +200,6 @@ function Header({ tipo }) {
         }
     };
 
-
-
     function fechar_chat() {
 
         if (altura_inicial_chat == `10%`) {
