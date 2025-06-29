@@ -55,6 +55,7 @@ function Tela_incial() {
     informacoes_clientes();
     informacoes_brechos();
     informacoes_produtos();
+    buscar_categorias()
     set_id_categoria_selecionada(null);
 
   }, []);
@@ -105,17 +106,14 @@ function Tela_incial() {
   };
 
   async function buscar_categorias() {
-
     try {
-
       const categorias = await api.get(`/categorias`);
       set_array_categorias(categorias.data);
-
     } catch (erro) {
-
       console.error(erro);
     };
   };
+
 
   function quantidade_de_produtos_sacola() {
 
@@ -248,13 +246,19 @@ function Tela_incial() {
     navegar(`/perfil_brecho`);
   }
 
+  const handleCategoryClick = (nome_categoria) => {
+    const categoria_encontrada = array_categorias.find(
+      (c) => c.nome.toLowerCase() === nome_categoria.toLowerCase()
+    );
 
-  const handleCategoryClick = (categoria) => {
-    setTermoBuscado(categoria);
-
-    navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
-    setTermoBuscado('')
+    if (categoria_encontrada) {
+      set_id_categoria_selecionada(categoria_encontrada._id);
+      navegar(`/buscarProdutos?categoria=${encodeURIComponent(categoria_encontrada._id)}`);
+    } else {
+      console.log("Categoria não encontrada!");
+    }
   };
+
 
   const redirecionarParaTelaEmAndamento = () => {
     navegar(`/estamosChegando`);
@@ -399,11 +403,11 @@ function Tela_incial() {
 
           <div className="alinhamento-cards-secao-quatro">
             <div className="container-um-cards-secao-quatro">
-              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
+              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('Roupas')}>
                 <p>Roupas</p>
               </div>
 
-              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
+              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('Acessórios')}>
                 <p>Acessórios</p>
               </div>
             </div>
@@ -413,7 +417,7 @@ function Tela_incial() {
                 <p>Doações</p>
               </div>
 
-              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
+              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('Calçados')}>
                 <p>Calçados</p>
               </div>
             </div>

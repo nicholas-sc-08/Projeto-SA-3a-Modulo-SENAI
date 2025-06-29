@@ -11,7 +11,15 @@ const cliente_schema = new mongoose.Schema({
     imagem_de_perfil: { type: String, required: true },
     conversas: { type: Array, required: false },
     sacola: { type: Array, required: false },
-    // buscasRecentes: {type: [String], default: []}
+    buscasRecentes: {
+        type: [
+            {
+                termo: String,
+                data: Date
+            }
+        ],
+        default: []
+    }
 }, { timestamps: true });
 
 const Cliente = mongoose.model(`Clientes`, cliente_schema);
