@@ -168,6 +168,24 @@ function Cadastro_brecho() {
 
   }, [cadastroParteUmBrecho, cadastroParteDoisBrecho, cadastroParteTresBrecho]);
 
+  function etapaAnterior() {
+    if (cadastroParteUmBrecho && !cadastroParteDoisBrecho && !cadastroParteTresBrecho) {
+      // Estou na etapa 1, Volta para tela inicial de escolha de cadastro
+      navegar_para_outra_tela('/escolha_cadastro')
+
+    } else if (!cadastroParteUmBrecho && cadastroParteDoisBrecho && !cadastroParteTresBrecho) {
+      // Estou na etapa 2, volta para etapa 1
+      setCadastroParteUmBrecho(true)
+      setCadastroParteDoisBrecho(false)
+      setTituloCadastroBrecho("Crie a sua conta Fly!")
+      setSubTituloCadastroBrecho('Complete os dados abaixo e comece a compartilhar seus produtos com o mundo!')
+
+    } else if (!cadastroParteUmBrecho && !cadastroParteDoisBrecho && cadastroParteTresBrecho) {
+      // Estou na etapa 3, volta para etapa 2
+      setCadastroParteDoisBrecho(true)
+      setCadastroParteTresBrecho(false)
+    }
+  }
 
   function seguinteEtapa() {
 
@@ -407,12 +425,16 @@ function Cadastro_brecho() {
             {cadastroParteDoisBrecho && <SecaoInputsDoisBrecho />}
             {cadastroParteTresBrecho && <SecaoInputsTresBrecho />}
 
-            <div className="formulario-cadastro-brecho-buttons">
+            <div className="alinhamento-buttons-cadastro">
 
-              {!exibirBotaoCadastro && <button type='button' onClick={seguinteEtapa}>Continuar</button>}
-              {exibirBotaoCadastro && <button type='submit'>Cadastrar-se</button>}
-              <p>{mensagemErro}</p>
+              {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
 
+              <div className="formulario-cadastro-brecho-buttons">
+                {!exibirBotaoCadastro && <button type='button' onClick={seguinteEtapa}>Continuar</button>}
+                {exibirBotaoCadastro && <button type='submit'>Cadastrar-se</button>}
+                <p>{mensagemErro}</p>
+
+              </div>
             </div>
 
           </form>

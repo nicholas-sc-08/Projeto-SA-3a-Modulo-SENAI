@@ -46,7 +46,7 @@ function Cadastro_cliente_secao_inputs_tres() {
     };
 
     return (
-    <div>
+    <div className='container-alinhamento-inputs-secao-tres'>
 
         <div className="secao_inputs_tres_p_um">
 
