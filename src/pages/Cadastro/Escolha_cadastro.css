@@ -135,22 +135,6 @@
     font-size: 14px;
 }
 
-.but-continuar-escolha-cadastro {
-    width: 32%;
-    height: 7%;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10vw;
-    border: none;
-    font-family: var(--tipografia_secundaria);
-    font-size: 1rem;
-
-    color: var(--cor_quatro);
-    background-color: var(--cor_um);
-    margin-top: 6%;
-    /* border: 1px solid red; */
-}
-
 input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
@@ -180,4 +164,33 @@ input[type="radio"]:checked::before {
 input[type="radio"]:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(85, 107, 47, 0.3);
+}
+
+.container-button-mensagem-escolha-cadastro button{
+    width: 27%;
+    height: 48px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10vw;
+    border: none;
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+
+    color: var(--cor_quatro);
+    background-color: var(--cor_um);
+    margin-top: 6%;
+    /* border: 1px solid red; */
+}
+
+.container-button-mensagem-escolha-cadastro button:hover{
+    background-color: var(--cor_um_v_dois);
+}
+
+.container-button-mensagem-escolha-cadastro p{
+    /* border: 1px solid red; */
+    font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
+    color: var(--cor_sete);
+
+    margin-top: 2%;
 }

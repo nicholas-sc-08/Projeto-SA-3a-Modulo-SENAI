@@ -104,15 +104,14 @@
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
-    height: 150%;
-    /* border: 1px solid red; */
+    height: fit-content;
+    /* border: 1px solid blue; */
 }
 
 .container-sinalizacao-brechos-home-page {
     display: flex;
     align-items: center;
     /* border: 1px solid red; */
-    margin-left: 5%;
     margin-top: 4%;
 }
 
@@ -148,16 +147,12 @@
     justify-content: flex-end;
     align-items: center;
     gap: 0.5%;
-    padding-right: 5%;
     /* border: 1px solid red; */
 }
 
 .container-brechos-cards-home-page {
     padding-top: 2%;
     display: flex;
-
-    padding-left: 5%;
-    margin-right: 5%;
 
     gap: 0.8%;
     /* border: 1px solid black; */
@@ -168,6 +163,7 @@
     height: 350px;
     flex: none;
     margin-right: 16px;
+    /* border: 1px solid red; */
 }
 
 .container-imagem-brecho-cinza {
@@ -213,7 +209,8 @@
     align-items: center;
     display: flex;
     padding-top: 3%;
-
+    /* border: 1px solid red; */
+    margin-bottom: -5%;
 }
 
 .button-ver-todos-os-brechos-home-page button {
@@ -298,8 +295,9 @@
     padding-top: 2%;
     padding-bottom: 2%;
     display: flex;
-    gap: 3%;
     /* border: 1px solid red; */
+
+    width: 116.9%;
 }
 
 .card-lancamento-secao-tres {
@@ -320,12 +318,12 @@
     background-color: var(--cor_quatro);
 }
 
-.card-lancamento-secao-tres:hover{
+.card-lancamento-secao-tres:hover {
 
     background-color: var(--cor_quatro_v_dois);
 }
 
-.card-lancamento-secao-tres:hover .container-card-imagem-roupa-lancamentos{
+.card-lancamento-secao-tres:hover .container-card-imagem-roupa-lancamentos {
 
     background-color: var(--cor_doze_v_um);
 }
@@ -418,7 +416,7 @@
     cursor: pointer;
 }
 
-.alinhamento-preco-roupa-card-lancamento{
+.alinhamento-preco-roupa-card-lancamento {
 
     display: flex;
     flex-direction: column;
@@ -828,7 +826,7 @@
     .card-lancamento-secao-tres {
         width: 80%;
         height: auto;
-        /* border: 1px solid black; */
+        /* border: 1px solid black;; */
     }
 
     .alinhamento-buttons-secao-tres-lancamentos button,

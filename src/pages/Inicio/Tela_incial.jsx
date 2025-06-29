@@ -299,7 +299,7 @@ function Tela_incial() {
         {/* home page seção um */}
 
         {/* home page seção dois */}
-        <div className="">
+        <div className="home-page-secao-dois-container">
           <div className="container-sinalizacao-brechos-home-page">
             <div className="icon-quadrado-brechos-home-page"></div>
             <p>Brechós</p>
@@ -366,7 +366,7 @@ function Tela_incial() {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 className="container-cards-alinhamento-lancamentos-secao-tres"
               >
-                {[...array_produtos].reverse().map((produto, i) => (
+                {[...array_produtos].slice(-8).reverse().map((produto, i) => (
                   <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
 
                     <div className="container-card-imagem-roupa-lancamentos">
