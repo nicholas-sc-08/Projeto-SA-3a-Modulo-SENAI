@@ -408,7 +408,7 @@ function Produto() {
                         </div>
 
                         <div className="container_imagem_principal_produto">
-
+                            
                             <img src={produto.imagem[imagem_selecionada]} alt="" />
 
                         </div>
