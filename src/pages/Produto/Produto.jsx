@@ -61,16 +61,30 @@ function Produto() {
 
     useEffect(() => {
 
-        if(produto_adicionado_na_sacola){
+        if (pop_up_de_usuario_nao_logado) {
+
 
             setTimeout(() => {
-                
+
+                set_pop_up_de_usuario_nao_logado(false);
+
+            }, 3000);
+        };
+
+    }, [pop_up_de_usuario_nao_logado]);
+
+    useEffect(() => {
+
+        if (produto_adicionado_na_sacola) {
+
+            setTimeout(() => {
+
                 set_produto_adicionado_na_sacola(false);
 
             }, 2000);
         };
 
-    }, [usuario_logado]);
+    }, [produto_adicionado_na_sacola]);
 
     useEffect(() => {
 
@@ -151,7 +165,7 @@ function Produto() {
 
         try {
 
-            if (usuario_logado) {
+            if (usuario_logado._id) {
 
                 const brecho_selecionado = array_brechos.find(brecho => brecho._id == produto.fk_id_brecho);
 
@@ -178,6 +192,9 @@ function Produto() {
                     };
                 };
 
+            } else {
+
+                set_pop_up_de_usuario_nao_logado(true);
             };
 
         } catch (erro) {
@@ -277,7 +294,7 @@ function Produto() {
 
             } else {
 
-                if (sacola){
+                if (sacola) {
 
                     const encontrar_produto_sacola = sacola.find(p => p._id == produto._id);
 
@@ -286,9 +303,10 @@ function Produto() {
                         const produto_na_sacola = { ...encontrar_produto, quantidade_selecionada: 1 };
 
                         set_sacola([...sacola, produto_na_sacola]);
+                        set_produto_adicionado_na_sacola(true);
 
                     };
-                    
+
                 } else {
 
                     set_sacola([{ ...produto, quantidade_selecionada: 1 }]);
@@ -362,9 +380,8 @@ function Produto() {
                 {pop_de_chat_ja_adicionado && <Pop_up_conversa_adicionada />}
                 {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
                 {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
-                {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
-                {produto_adicionado_na_sacola && <Pop_up_produto_adicionado/>}
-                
+                {produto_adicionado_na_sacola && <Pop_up_produto_adicionado />}
+
                 <Header tipo={tipo_de_header} />
 
                 <div className="container_voltar_para_buscar_produtos">

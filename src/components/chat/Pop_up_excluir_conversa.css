@@ -1,12 +1,14 @@
 .container_pop_up_excluir_conversa_notificacao{
 
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 
     position: fixed;
     width: 26%;
-    height: 55%;
+    height: 75%;
+
+    background-color: var(--cor_oito);
 }
 
 .container_pop_up_de_notificacao_de_conversa_excluida{
@@ -15,23 +17,23 @@
     align-items: center;
     flex-direction: column;
 
-    width: 60%;
-    height: 55%;
+    width: 80%;
+    height: 40%;
 
-    border-radius: 2vw;
+    margin-top: 15%;
+
+    border-radius: 1vw;
     background-color: var(--cor_quatro);
 }
 
 .container_pop_up_de_notificacao_de_conversa_excluida img{
 
-    margin-top: 15%;
-    margin-bottom: 15%;
-    width: 30%;
+    width: 75%;
 }
 
 .container_pop_up_de_notificacao_de_conversa_excluida span{
 
-    width: 70%;
+    width: 90%;
 
     text-align: center;
     font-family: var(--tipografia_primaria);

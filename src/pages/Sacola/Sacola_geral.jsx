@@ -9,6 +9,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
 import Pop_up_notificacao_comprado from '../../components/Pop_up_notificacao_comprado/Pop_up_notificacao_comprado';
+import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.jsx';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
@@ -27,6 +28,7 @@ function Sacola_geral() {
     const { produto, set_produto } = useContext(GlobalContext);
     const [clicou_em_excluir, set_clicou_em_excluir] = useState(false);
     const [mostrarPopupCompra, setMostrarPopupCompra] = useState(false);
+    const [pop_up_usuario_nao_logado, set_pop_up_usuario_nao_logado] = useState(false);
     const navegar_tela = useNavigate();
     const referencia_sacola = useRef(null);
 
@@ -44,6 +46,19 @@ function Sacola_geral() {
         };
 
     }, [usuario_logado, set_sacola]);
+
+    useEffect(() => {
+
+        if(pop_up_usuario_nao_logado){
+
+            setTimeout(() => {
+                
+                set_pop_up_usuario_nao_logado(false);
+
+            }, 2000);
+        };
+
+    }, [pop_up_usuario_nao_logado]);
 
     useEffect(() => {
 
@@ -206,7 +221,7 @@ function Sacola_geral() {
                 
             } else {
             
-                alert(`faça login`)
+                set_pop_up_usuario_nao_logado(true);
             };
         } catch (error) {
 
@@ -233,6 +248,7 @@ function Sacola_geral() {
                 transition={{ duration: 0.4 }}
                 ref={referencia_sacola}
             >
+                {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
                 {clicou_em_excluir && <Pop_up_excluir_produto_sacola />}
                 {mostrarPopupCompra && <Pop_up_notificacao_comprado fechar={fecharPopupSucesso} />}
 
