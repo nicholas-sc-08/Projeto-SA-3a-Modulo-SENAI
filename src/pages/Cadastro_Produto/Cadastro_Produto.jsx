@@ -109,17 +109,17 @@ function Cadastro_Produto() {
     }
   }, [informacoes_editar_produto, listaMarcas]);
 
-  
+
   useEffect(() => {
-  if (informacoes_editar_produto) {
-    const categoriaSelecionada = categorias.find(c => c._id === informacoes_editar_produto.fk_id_categoria);
-    setInputCategoria(categoriaSelecionada?.nome || "");
-    setArray_cadastro_produto(prev => ({
-      ...prev,
-      fk_id_categoria: informacoes_editar_produto.fk_id_categoria
-    }));
-  }
-}, [informacoes_editar_produto, categorias]);
+    if (informacoes_editar_produto) {
+      const categoriaSelecionada = categorias.find(c => c._id === informacoes_editar_produto.fk_id_categoria);
+      setInputCategoria(categoriaSelecionada?.nome || "");
+      setArray_cadastro_produto(prev => ({
+        ...prev,
+        fk_id_categoria: informacoes_editar_produto.fk_id_categoria
+      }));
+    }
+  }, [informacoes_editar_produto, categorias]);
 
 
 
@@ -378,65 +378,29 @@ function Cadastro_Produto() {
   }
 
 
-function validarCampos() {
-  if (!array_cadastro_produto.nome.trim()) {
-    alert("Informe o nome do produto.");
-    return false;
-  }
-  if (!array_cadastro_produto.preco || isNaN(Number(array_cadastro_produto.preco))) {
-    alert("Informe um preço válido.");
-    return false;
-  }
-  if (!array_cadastro_produto.condicao) {
-    alert("Informe a condição do produto.");
-    return false;
-  }
-  if (!array_cadastro_produto.fk_id_marca) {
-    alert("Informe a marca do produto.");
-    return false;
-  }
-  if (!array_cadastro_produto.fk_id_categoria) {
-    alert("Informe a categoria do produto.");
-    return false;
-  }
-  if (!array_cadastro_produto.tamanho.trim()) {
-    alert("Informe o tamanho do produto.");
-    return false;
-  }
-  if (!array_cadastro_produto.quantidade || array_cadastro_produto.quantidade < 1) {
-    alert("Informe a quantidade correta.");
-    return false;
-  }
-  return true;
-}
 
 
+  async function cadastrar_produto() {
+    try {
+      const produtoParaEnviar = {
+        ...array_cadastro_produto,
+        preco: Number(array_cadastro_produto.preco),
+        quantidade: Number(array_cadastro_produto.quantidade),
+        cor: array_cadastro_produto.cor || [],
+        imagem: array_cadastro_produto.imagem || [],
+      };
 
- async function cadastrar_produto() {
-  if (!validarCampos()) return;
+      console.log("Dados a enviar:", produtoParaEnviar);
 
-  try {
-    const produtoParaEnviar = {
-      ...array_cadastro_produto,
-      preco: Number(array_cadastro_produto.preco),
-      quantidade: Number(array_cadastro_produto.quantidade),
-      cor: array_cadastro_produto.cor || [],
-      imagem: array_cadastro_produto.imagem || [],
-    };
-
-    console.log("Dados a enviar:", produtoParaEnviar);
-
-    await api.post("/produtos", produtoParaEnviar);
-    buscar_produtos();
-    set_pop_up_notificacao_cadastro_produto(true);
-    setTimeout(() => navigate("/gestao_estoque"), 2000);
-  } catch (error) {
-    console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
-    set_pop_up_erro_cadastro(true);
+      await api.post("/produtos", produtoParaEnviar);
+      buscar_produtos();
+      set_pop_up_notificacao_cadastro_produto(true);
+      setTimeout(() => navigate("/gestao_estoque"), 2000);
+    } catch (error) {
+      console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
+      set_pop_up_erro_cadastro(true);
+    }
   }
-}
-
-
 
   // Nome exibido do produto (fallback caso não digitado)
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
@@ -640,7 +604,7 @@ function validarCampos() {
               <input
                 type="text"
                 placeholder="Buscar marcas"
-                className="input-group"
+                className="input-group-marcas"
                 value={inputMarca}
                 onChange={(e) => {
                   setInputMarca(e.target.value);
@@ -675,8 +639,12 @@ function validarCampos() {
 
             <label>Estado do produto</label>
             <select
+              required
               value={array_cadastro_produto.condicao}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })}
+              onChange={(e) =>
+                setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })
+              }
+              className="input-group-estado"
             >
               <option value="">Selecione o estado</option>
               {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
@@ -685,6 +653,7 @@ function validarCampos() {
                 </option>
               ))}
             </select>
+
           </div>
 
 
