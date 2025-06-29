@@ -340,10 +340,6 @@ function Tela_incial() {
               </motion.div>
             </div>
           </AnimatePresence>
-
-          <div className="button-ver-todos-os-brechos-home-page">
-            <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
-          </div>
         </div>
         {/* home page seção dois */}
 

@@ -132,6 +132,7 @@
 }
 
 .container-titulo-brechos-home-page {
+   
     justify-content: center;
     align-items: center;
     display: flex;
@@ -244,7 +245,7 @@
 /* home page secao tres */
 
 .home-page-secao-tres-container {
-    padding-top: 3%;
+    padding-top: 8%;
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
