@@ -292,7 +292,7 @@ function Chat() {
 
       <div className="container_conversas_chat" style={{ opacity: altura_inicial_chat == `70%` ? 1 : 0 }}>
 
-        {conversas_entre_usuarios.length > 0 ? conversas_entre_usuarios.map((conversa, i) => (
+        { conversas_entre_usuarios && conversas_entre_usuarios.length > 0 ? conversas_entre_usuarios.map((conversa, i) => (
 
           <div key={i} className='container_conversa_com_pessoa' onClick={() => ir_para_conversa(conversa._id)}>
 

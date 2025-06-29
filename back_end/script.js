@@ -41,8 +41,6 @@ app.use((req, res, next) => {
 
 //Stripe
 app.post("/criar-checkout", async (req, res) => {
-  console.log('Body recebido no /criar-checkout:', req.body);
-
   const { itens } = req.body;
 
   if (!itens || !Array.isArray(itens)) {

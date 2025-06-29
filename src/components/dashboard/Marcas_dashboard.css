@@ -41,8 +41,7 @@
 
 .container_conteudo_marca img {
     /* border: 1px solid red; */
-    max-width: 25%;
-    height: 30px;
 
-    margin-right: 10%;
+    width: 23%;
+    margin-right: 5%;
 }

@@ -399,11 +399,11 @@ function Tela_incial() {
 
           <div className="alinhamento-cards-secao-quatro">
             <div className="container-um-cards-secao-quatro">
-              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
+              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('Roupas')}>
                 <p>Roupas</p>
               </div>
 
-              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
+              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('Acessórios')}>
                 <p>Acessórios</p>
               </div>
             </div>
@@ -413,7 +413,7 @@ function Tela_incial() {
                 <p>Doações</p>
               </div>
 
-              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
+              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('Calçados')}>
                 <p>Calçados</p>
               </div>
             </div>

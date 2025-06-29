@@ -260,7 +260,7 @@ function Pesquisa_de_produtos() {
 
                             <div className="container_botao_voltar_pagina_esquerdo">
 
-                                <button onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
+                                <button disabled={pagina_atual == 1} onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
 
                             </div>
 
@@ -272,7 +272,7 @@ function Pesquisa_de_produtos() {
 
                             <div className="container_botao_voltar_pagina_direito">
 
-                                <button onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
+                                <button disabled={pagina_atual == total_de_paginas} onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
 
                             </div>
 
