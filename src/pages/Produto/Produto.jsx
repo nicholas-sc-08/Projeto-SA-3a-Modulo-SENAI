@@ -14,6 +14,7 @@ import Chat from '../../components/chat/Chat';
 import Footer from '../../components/Footer/Footer';
 import Pop_up_conversa_adicionada from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado';
+import Pop_up_produto_adicionado from '../../components/Pop_produto_adicionado/Pop_up_produto_adicionado.jsx'
 import './Produto.css';
 
 function Produto() {
@@ -36,6 +37,7 @@ function Produto() {
     const [pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado] = useState(false);
     const [pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado] = useState(false);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
+    const [produto_adicionado_na_sacola, set_produto_adicionado_na_sacola] = useState(false);
     const refencia_do_produto = useRef(null);
     const ir_para_perfil = useNavigate(null);
 
@@ -56,6 +58,19 @@ function Produto() {
         refencia_do_produto.current.scrollIntoView();
 
     }, []);
+
+    useEffect(() => {
+
+        if(produto_adicionado_na_sacola){
+
+            setTimeout(() => {
+                
+                set_produto_adicionado_na_sacola(false);
+
+            }, 2000);
+        };
+
+    }, [usuario_logado]);
 
     useEffect(() => {
 
@@ -250,10 +265,11 @@ function Produto() {
 
                             const cliente = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
                             set_usuario_logado(cliente.data);
-
+                            set_produto_adicionado_na_sacola(true);
                         } else {
 
                             set_sacola([...sacola, produto_na_sacola]);
+                            set_produto_adicionado_na_sacola(true);
                         };
 
                     };
@@ -347,7 +363,8 @@ function Produto() {
                 {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
                 {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {pop_up_de_usuario_nao_logado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
-
+                {produto_adicionado_na_sacola && <Pop_up_produto_adicionado/>}
+                
                 <Header tipo={tipo_de_header} />
 
                 <div className="container_voltar_para_buscar_produtos">

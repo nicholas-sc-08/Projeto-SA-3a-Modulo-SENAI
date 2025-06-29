@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import './Sacola.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalContext } from '../../contexts/GlobalContext';
-import api from "../../services/api";
 import { useNavigate } from 'react-router-dom';
+import Pop_up_excluir_produto_sacola  from '../Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';'../Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola.jsx'
+import api from "../../services/api";
+import './Sacola.css';
 
 function Sacola() {
 
@@ -155,6 +156,7 @@ function Sacola() {
 
     return (
         <AnimatePresence mode="wait">
+
             <motion.div
                 className='container_sacola'
                 initial={{ opacity: 0, y: -10 }}

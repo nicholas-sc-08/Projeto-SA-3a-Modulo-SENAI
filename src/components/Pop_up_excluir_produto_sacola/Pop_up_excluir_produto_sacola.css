@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: start;
     width: 30%;
     height: 40%;
 
@@ -25,7 +25,8 @@
 }
 
 .container_fundo_pop_up_excluir_poduto_sacola img{
-    width: 30%;
+    
+    width: 80%;
 }
 
 .container_pop_up_excluir_produto_sacola p{
