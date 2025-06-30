@@ -240,10 +240,10 @@ function Tela_incial() {
   };
 
   function ir_ate_perfil_brecho(brecho) {
-
+    
     setFormCadastroBrecho(brecho)
-
-    navegar(`/perfil_brecho`);
+    navegar(`/perfil_brecho`)
+    
   }
 
   const handleCategoryClick = (nome_categoria) => {

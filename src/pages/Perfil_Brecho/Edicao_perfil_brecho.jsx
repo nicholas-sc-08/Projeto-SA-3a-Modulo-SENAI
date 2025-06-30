@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IMaskInput } from 'react-imask'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import api from '../../services/api'
@@ -18,6 +18,7 @@ function Edicao_perfil_brecho() {
 
   const [mensagemErro, setMensagemErro] = useState(``)
   const [mensagemSucesso, setMensagemSucesso] = useState(``)
+  const navigate = useNavigate()
 
   const [icone_senha, set_icone_senha] = useState(`./img/icons/icone_olho_aberto.svg`);
   const [visualizar_senha, set_visualizar_senha] = useState(false);
@@ -246,6 +247,8 @@ function Edicao_perfil_brecho() {
     } catch (error) {
       console.error('Erro ao atualizar o brechó:', error)
     }
+
+    navigate(`/perfil_brecho`)
   }
 
   return (

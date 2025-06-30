@@ -11,7 +11,9 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   const { enderecoDoBrecho, setEnderecoDoBrecho } = useContext(GlobalContext)
   const { erro_pagina, set_erro_pagina } = useContext(GlobalContext)
   const [mensagemErro, setMensagemErro] = useState(``)
+
   const navegar = useNavigate(``)
+  const [mostrarPopUp, setMostrarPopUp] = useState(false)
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
@@ -98,7 +100,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
 
   // atualiza o endereço do brecho enviando as informações ao backend
-  async function atualizarEnderecoBrecho() {
+  async function atualizarEnderecoBrecho({}) {
 
     const enderecoAtual = array_enderecos.find(endereco => endereco.id_brecho === brecho_logado._id)
 
@@ -116,6 +118,8 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
     } catch (error) {
       console.error('Erro ao atualizar o endereço do brechó:', error)
     }
+
+    navegar(`/perfil_brecho`)
   }
 
   return (

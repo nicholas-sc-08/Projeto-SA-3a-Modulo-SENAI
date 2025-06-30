@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const http = require(`http`);
 const app = express();
 const { Server } = require(`socket.io`);
-const porta = 3000;
+const porta = 3001;
 const server = http.createServer(app);
 const conectar_com_mongo = require(`./mongo/mongo.js`);
 const Cliente = require(`./models/Cliente.js`);
@@ -479,8 +479,6 @@ app.post(`/brechos`, async (req, res) => {
 });
 
 app.put(`/brechos/:id`, async (req, res) => {
-    console.log("req =========>>>>>>> ", req.body);
-
 
     const { id } = req.params;
 

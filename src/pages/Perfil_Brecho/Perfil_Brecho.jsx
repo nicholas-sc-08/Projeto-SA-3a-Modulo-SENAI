@@ -6,6 +6,7 @@ import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header/Header'
 import Pop_up_de_excluir_perfil from '../../components/pop_up_usuario/Pop_up_de_excluir_perfil'
 import { GlobalContext } from '../../contexts/GlobalContext'
+import api from '../../services/api';
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
@@ -19,9 +20,22 @@ function Perfil_Brecho() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
 
+  const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+  const [produtos_embaralhados, set_produtos_embaralhados] = useState([])
+
+
   const navegar = useNavigate(``)
 
   const [naoEBrecho, setNaoEBrecho] = useState(true)
+
+  useEffect(() => {
+
+    pegarEnderecoBrecho()
+
+    buscar_produtos()
+    buscar_brechos()
+
+  }, [ brecho_selecionado ])
 
 
   useEffect(() => {
@@ -38,41 +52,42 @@ function Perfil_Brecho() {
     }
   }, [usuario_logado])
 
-  useEffect(() => {
+// aqui a função pega os dados dos endereços no backend
+  async function pegarEnderecoBrecho() {
 
-    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
+    try {
+      const resultado = await api.get('/enderecos')
 
-    if (encontrar_brecho) {
-      setEnderecoDoBrecho({
-        bairro: usuario_logado.bairro || '',
-        cidade: usuario_logado.cidade || '',
-        estado: usuario_logado.estado || '',
-      })
+      set_array_enderecos(resultado.data);
+      console.log('As informações do endereço do brechó foram encontradas!')
+
+    } catch (erro) {
+      console.log('Erro ao tentar achar as informações do endereço do brechó:', erro)
     }
-  }, [usuario_logado])
+  }
 
   useEffect(() => {
 
     if (brecho_selecionado) {
 
       setFormCadastroBrecho({ nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento });
+      setEnderecoDoBrecho({ bairro: brecho_selecionado.bairro, cidade: brecho_selecionado.cidade, estado: brecho_selecionado.estado})
     };
 
   }, [brecho_selecionado]);
 
   
-  useEffect(() => { 
+ useEffect(() => {
 
-  if (usuario_logado && array_brechos.length > 0 && array_enderecos.length > 0) { // essa parte verifica se é um brechó logado e se o array_brechos e o array_enderecos não estao vazios
+  if (usuario_logado && usuario_logado._id && array_enderecos.length > 0) {
 
-    const brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id)
-    const endereco = array_enderecos.find(endereco => endereco.id_brecho === brecho?._id) // aqui encontra o endereço do brecho comparando se o id_brecho q esta no model do backend for igual ao id do brecho_logado
+    const endereco = array_enderecos.find(endereco => endereco.id_brecho === usuario_logado._id)
 
-    if (endereco) { // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
+    if (endereco) {
       setEnderecoDoBrecho(endereco)
     }
   }
-}, [usuario_logado, array_brechos, array_enderecos])
+}, [usuario_logado, array_enderecos])
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -81,6 +96,34 @@ function Perfil_Brecho() {
   const fecharPopUpExcluir = () => {
     setMostrarPopUpExcluir(false)
   }
+
+
+  async function buscar_brechos() {
+  
+          try {
+  
+              const brechos = await api.get(`/brechos`);
+              set_array_brechos(brechos.data);
+  
+          } catch (erro) {
+  
+              console.error(erro);
+          };
+      };
+  
+      async function buscar_produtos() {
+  
+          try {
+  
+              const produtos = await api.get(`/produtos`);
+              set_array_produtos(produtos.data);
+  
+          } catch (erro) {
+  
+              console.error(erro);
+          };
+      }
+
 
   return (
 
@@ -143,7 +186,7 @@ function Perfil_Brecho() {
                 <div className="topicos-infos-subContent">
                   <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
                   {/* <button onClick={() => setDivAtiva("sobre")}>Sobre</button> */}
-                  {!naoEBrecho && <button onClick={() => setDivAtiva("produtos")}>Produtos</button>}
+                  {/* {!naoEBrecho && <button onClick={() => setDivAtiva("produtos")}>Produtos</button>} */}
                 </div>
               </div>
               <div className="infos-exibidas-content">
@@ -194,23 +237,69 @@ function Perfil_Brecho() {
                   </>
                 )} */}
 
-                {divAtiva === "produtos" &&  !naoEBrecho && (
+                {/* {divAtiva === "produtos" &&  !naoEBrecho && (
                   <>
                     <div className="infos-cadastradas-sub-div">
-                     {/* <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
+                     <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
                         <a href="">
                           <img src="./public/img/icons/bx--box.svg" alt="Icone-Estoque" />
                         </a>
                         <p>Estoque</p>
-                      </div>*/}
+                      </div>
                     </div>
                   </>
-                )}
+                )} */}
 
               </div>
             </div>
           </div>
         </div>
+
+
+ <div className="container_voce_tambem_pode_gostar">
+
+                    <div className="container_voce_tambem_pode_gostar_titulo">
+
+                        <h2>Produtos</h2>
+
+                    </div>
+
+                    <div className="container_produtos_embaralhados">
+
+                        {produtos_embaralhados.map((produto_embaralhado, i) => (
+
+                            <div key={i} className='container_produto_embaralhado' onClick={() => ir_para_produto_selecionado(produto_embaralhado)}>
+
+                                <div className="container_imagem_do_produto">
+
+                                    <img src={produto_embaralhado.imagem[0]} alt="" />
+
+                                </div>
+
+                                <div className="container_produto_embaralhado_info">
+
+                                    <div className="contianer_produto_embaralhado_titulo">
+
+                                        <h5>{produto_embaralhado.nome}</h5>
+                                        <img src={imagem_do_brecho(produto_embaralhado.fk_id_brecho)} alt="" />
+
+                                    </div>
+
+                                    <div className="container_produto_embaralhado_preco">
+
+                                        <span>{exibir_preco(produto_embaralhado.preco)}</span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
       </div>
 
       {mostrarPopUpExcluir && (
