@@ -55,6 +55,7 @@ function Tela_incial() {
     informacoes_clientes();
     informacoes_brechos();
     informacoes_produtos();
+    buscar_categorias()
     set_id_categoria_selecionada(null);
 
   }, []);
@@ -105,17 +106,14 @@ function Tela_incial() {
   };
 
   async function buscar_categorias() {
-
     try {
-
       const categorias = await api.get(`/categorias`);
       set_array_categorias(categorias.data);
-
     } catch (erro) {
-
       console.error(erro);
     };
   };
+
 
   function quantidade_de_produtos_sacola() {
 
@@ -242,19 +240,25 @@ function Tela_incial() {
   };
 
   function ir_ate_perfil_brecho(brecho) {
-
+    
     setFormCadastroBrecho(brecho)
-
-    navegar(`/perfil_brecho`);
+    navegar(`/perfil_brecho`)
+    
   }
 
+  const handleCategoryClick = (nome_categoria) => {
+    const categoria_encontrada = array_categorias.find(
+      (c) => c.nome.toLowerCase() === nome_categoria.toLowerCase()
+    );
 
-  const handleCategoryClick = (categoria) => {
-    setTermoBuscado(categoria);
-
-    navegar(`/buscarProdutos?query=${encodeURIComponent(categoria.trim())}`);
-    setTermoBuscado('')
+    if (categoria_encontrada) {
+      set_id_categoria_selecionada(categoria_encontrada._id);
+      navegar(`/buscarProdutos?categoria=${encodeURIComponent(categoria_encontrada._id)}`);
+    } else {
+      console.log("Categoria não encontrada!");
+    }
   };
+
 
   const redirecionarParaTelaEmAndamento = () => {
     navegar(`/estamosChegando`);
@@ -299,7 +303,7 @@ function Tela_incial() {
         {/* home page seção um */}
 
         {/* home page seção dois */}
-        <div className="">
+        <div className="home-page-secao-dois-container">
           <div className="container-sinalizacao-brechos-home-page">
             <div className="icon-quadrado-brechos-home-page"></div>
             <p>Brechós</p>
@@ -336,10 +340,6 @@ function Tela_incial() {
               </motion.div>
             </div>
           </AnimatePresence>
-
-          <div className="button-ver-todos-os-brechos-home-page">
-            <button onClick={() => navegar(`/buscarProdutos`)} >Ver todos</button>
-          </div>
         </div>
         {/* home page seção dois */}
 
@@ -366,7 +366,7 @@ function Tela_incial() {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                 className="container-cards-alinhamento-lancamentos-secao-tres"
               >
-                {[...array_produtos].reverse().map((produto, i) => (
+                {[...array_produtos].slice(-8).reverse().map((produto, i) => (
                   <div className="card-lancamento-secao-tres" key={i} onClick={() => ir_ate_produto(produto)}>
 
                     <div className="container-card-imagem-roupa-lancamentos">
@@ -399,11 +399,11 @@ function Tela_incial() {
 
           <div className="alinhamento-cards-secao-quatro">
             <div className="container-um-cards-secao-quatro">
-              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('roupas')}>
+              <div className="card-um-secao-quatro" onClick={() => handleCategoryClick('Roupas')}>
                 <p>Roupas</p>
               </div>
 
-              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('acessorios')}>
+              <div className="card-dois-secao-quatro" onClick={() => handleCategoryClick('Acessórios')}>
                 <p>Acessórios</p>
               </div>
             </div>
@@ -413,7 +413,7 @@ function Tela_incial() {
                 <p>Doações</p>
               </div>
 
-              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('calçados')}>
+              <div className="card-quatro-secao-quatro" onClick={() => handleCategoryClick('Calçados')}>
                 <p>Calçados</p>
               </div>
             </div>

@@ -1,5 +1,7 @@
 const express = require(`express`);
 const cors = require(`cors`);
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const http = require(`http`);
 const app = express();
 const { Server } = require(`socket.io`);
@@ -35,6 +37,51 @@ app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
     next();
 });
+
+
+//Stripe
+app.post("/criar-checkout", async (req, res) => {
+  const { itens } = req.body;
+
+    if (!itens || !Array.isArray(itens)) {
+        return res.status(400).json({ error: "Itens inválidos ou ausentes" });
+    }
+    console.log("Itens recebidos no backend:", itens);
+
+    try {
+        const line_items = itens.map((item) => ({
+            price_data: {
+                currency: "brl",
+                product_data: {
+                    name: item.nome,
+                    images: [item.imagem[0]],
+                },
+                unit_amount: Math.round(item.preco * 100), // Valor em centavos
+            },
+            quantity: item.quantidade_selecionada,
+        }));
+        console.log("line_items para Stripe:", line_items);
+
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            mode: "payment",
+            line_items,
+            success_url: "http://localhost:5173/?status=sucesso",
+            cancel_url: "http://localhost:5173/?status=cancelado",
+        });
+        console.log("Sessão Stripe criada:", session);
+
+
+        res.json({ url: session.url });
+
+    } catch (error) {
+        console.error("Erro ao criar checkout Stripe:", error);
+        res.status(500).json({ error: error.message || "Erro ao criar checkout" });
+    }
+
+});
+
 
 server.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
@@ -433,8 +480,7 @@ app.post(`/brechos`, async (req, res) => {
 
 app.put(`/brechos/:id`, async (req, res) => {
 
-    const { id } = req.body;
-    delete req.body._id;
+    const { id } = req.params;
 
     try {
 
@@ -605,3 +651,167 @@ app.delete(`/marcas/:id`, async (req, res) => {
 });
 
 // Marcas
+
+// Buscas recentes - clientes
+
+app.get(`/clientes/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const cliente = await Cliente.findById(id);
+
+        if (!cliente) {
+            return res.status(404).json({ message: "Cliente não encontrado." });
+        }
+
+        res.status(200).json(cliente.buscasRecentes);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao buscar histórico." });
+    }
+});
+
+app.post(`/clientes/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+    const { termo } = req.body;
+
+    if (!termo || termo.trim() === "") {
+        return res.status(400).json({ message: "Termo de busca inválido." });
+    }
+
+    try {
+        const cliente = await Cliente.findById(id);
+
+        if (!cliente) {
+            return res.status(404).json({ message: "Cliente não encontrado." });
+        }
+
+        // Remover duplicados
+        cliente.buscasRecentes = cliente.buscasRecentes.filter(
+            item => item.termo !== termo
+        );
+
+        // Inserir nova busca no início do array
+        cliente.buscasRecentes.unshift({
+            termo,
+            data: new Date()
+        });
+
+        // Limitar a 10 buscas recentes
+        if (cliente.buscasRecentes.length > 10) {
+            cliente.buscasRecentes = cliente.buscasRecentes.slice(0, 10);
+        }
+
+        await cliente.save();
+
+        res.status(200).json(cliente.buscasRecentes);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao salvar busca recente." });
+    }
+});
+
+app.delete(`/clientes/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const cliente = await Cliente.findById(id);
+
+        if (!cliente) {
+            return res.status(404).json({ message: "Cliente não encontrado." });
+        }
+
+        cliente.buscasRecentes = [];
+        await cliente.save();
+
+        res.status(200).json({ message: "Histórico de buscas limpo com sucesso." });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao limpar histórico de buscas." });
+    }
+});
+
+// Buscas recentes - brechos
+
+app.get(`/brechos/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const brecho = await Brecho.findById(id);
+
+        if (!brecho) {
+            return res.status(404).json({ message: "Brechó não encontrado." });
+        }
+
+        res.status(200).json(brecho.buscasRecentes);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao buscar histórico." });
+    }
+});
+
+app.post(`/brechos/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+    const { termo } = req.body;
+
+    if (!termo || termo.trim() === "") {
+        return res.status(400).json({ message: "Termo de busca inválido." });
+    }
+
+    try {
+        const brecho = await Brecho.findById(id);
+
+        if (!brecho) {
+            return res.status(404).json({ message: "Brechó não encontrado." });
+        }
+
+        // Remover duplicados
+        brecho.buscasRecentes = brecho.buscasRecentes.filter(
+            item => item.termo !== termo
+        );
+
+        // Inserir nova busca no início do array
+        brecho.buscasRecentes.unshift({
+            termo,
+            data: new Date()
+        });
+
+        // Limitar a 10 buscas recentes
+        if (brecho.buscasRecentes.length > 10) {
+            brecho.buscasRecentes = brecho.buscasRecentes.slice(0, 10);
+        }
+
+        await brecho.save();
+
+        res.status(200).json(brecho.buscasRecentes);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao salvar busca recente." });
+    }
+});
+
+app.delete(`/brechos/:id/buscasRecentes`, async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const brecho = await Brecho.findById(id);
+
+        if (!brecho) {
+            return res.status(404).json({ message: "Brechó não encontrado." });
+        }
+
+        brecho.buscasRecentes = [];
+        await brecho.save();
+
+        res.status(200).json({ message: "Histórico de buscas limpo com sucesso." });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erro ao limpar histórico de buscas." });
+    }
+});

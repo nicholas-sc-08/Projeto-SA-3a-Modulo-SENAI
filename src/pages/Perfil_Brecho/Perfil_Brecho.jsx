@@ -6,6 +6,7 @@ import '../Perfil_Brecho/Perfil_Brecho.css'
 import Header from '../../components/Header/Header'
 import Pop_up_de_excluir_perfil from '../../components/pop_up_usuario/Pop_up_de_excluir_perfil'
 import { GlobalContext } from '../../contexts/GlobalContext'
+import api from '../../services/api';
 
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
@@ -17,11 +18,24 @@ function Perfil_Brecho() {
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+  const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
+
+  const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+  const [produtos_embaralhados, set_produtos_embaralhados] = useState([])
+
 
   const navegar = useNavigate(``)
 
   const [naoEBrecho, setNaoEBrecho] = useState(true)
 
+  useEffect(() => {
+
+    pegarEnderecoBrecho()
+
+    buscar_produtos()
+    buscar_brechos()
+
+  }, [ brecho_selecionado ])
 
 
   useEffect(() => {
@@ -38,51 +52,42 @@ function Perfil_Brecho() {
     }
   }, [usuario_logado])
 
-  useEffect(() => {
-    if (usuario_logado) {
-      setEnderecoDoBrecho({
-        cep: usuario_logado.cep || '',
-        bairro: usuario_logado.bairro || '',
-        logradouro: usuario_logado.logradouro || '',
-        cidade: usuario_logado.cidade || '',
-        estado: usuario_logado.estado || '',
-        numero: usuario_logado.numero || '',
-        complemento: usuario_logado.complemento || '',
-      })
+// aqui a função pega os dados dos endereços no backend
+  async function pegarEnderecoBrecho() {
+
+    try {
+      const resultado = await api.get('/enderecos')
+
+      set_array_enderecos(resultado.data);
+      console.log('As informações do endereço do brechó foram encontradas!')
+
+    } catch (erro) {
+      console.log('Erro ao tentar achar as informações do endereço do brechó:', erro)
     }
-  }, [usuario_logado])
+  }
 
   useEffect(() => {
 
     if (brecho_selecionado) {
 
       setFormCadastroBrecho({ nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento });
+      setEnderecoDoBrecho({ bairro: brecho_selecionado.bairro, cidade: brecho_selecionado.cidade, estado: brecho_selecionado.estado})
     };
 
-  }, [brecho_selecionado]);  
+  }, [brecho_selecionado]);
 
-  useEffect(() => {
+  
+ useEffect(() => {
 
-    console.log(formCadastroBrecho);
-    
+  if (usuario_logado && usuario_logado._id && array_enderecos.length > 0) {
 
-  }, [formCadastroBrecho])
+    const endereco = array_enderecos.find(endereco => endereco.id_brecho === usuario_logado._id)
 
-  // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
-  useEffect(() => {
-
-    setFormCadastroBrecho({
-      nome_vendedor: usuario_logado.nome_vendedor || '',
-      data_de_nascimento_vendedor: usuario_logado.data_de_nascimento_vendedor || '',
-      nome_brecho: usuario_logado.nome_brecho || '',
-      telefone: usuario_logado.telefone || '',
-      email: usuario_logado.email || '',
-      cnpj: usuario_logado.cnpj || '',
-      logo: usuario_logado.logo || '',
-      horario_funcionamento: usuario_logado.horario_funcionamento || '',
-    })
-
-  }, [usuario_logado])
+    if (endereco) {
+      setEnderecoDoBrecho(endereco)
+    }
+  }
+}, [usuario_logado, array_enderecos])
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -91,6 +96,34 @@ function Perfil_Brecho() {
   const fecharPopUpExcluir = () => {
     setMostrarPopUpExcluir(false)
   }
+
+
+  async function buscar_brechos() {
+  
+          try {
+  
+              const brechos = await api.get(`/brechos`);
+              set_array_brechos(brechos.data);
+  
+          } catch (erro) {
+  
+              console.error(erro);
+          };
+      };
+  
+      async function buscar_produtos() {
+  
+          try {
+  
+              const produtos = await api.get(`/produtos`);
+              set_array_produtos(produtos.data);
+  
+          } catch (erro) {
+  
+              console.error(erro);
+          };
+      }
+
 
   return (
 
@@ -106,7 +139,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro}${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>
@@ -153,7 +186,7 @@ function Perfil_Brecho() {
                 <div className="topicos-infos-subContent">
                   <button onClick={() => setDivAtiva("informacoes")}>Informações</button>
                   {/* <button onClick={() => setDivAtiva("sobre")}>Sobre</button> */}
-                  {!naoEBrecho && <button onClick={() => setDivAtiva("produtos")}>Produtos</button>}
+                  {/* {!naoEBrecho && <button onClick={() => setDivAtiva("produtos")}>Produtos</button>} */}
                 </div>
               </div>
               <div className="infos-exibidas-content">
@@ -204,10 +237,10 @@ function Perfil_Brecho() {
                   </>
                 )} */}
 
-                {divAtiva === "produtos" &&  !naoEBrecho && (
+                {/* {divAtiva === "produtos" &&  !naoEBrecho && (
                   <>
                     <div className="infos-cadastradas-sub-div">
-                      <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
+                     <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
                         <a href="">
                           <img src="./public/img/icons/bx--box.svg" alt="Icone-Estoque" />
                         </a>
@@ -215,12 +248,58 @@ function Perfil_Brecho() {
                       </div>
                     </div>
                   </>
-                )}
+                )} */}
 
               </div>
             </div>
           </div>
         </div>
+
+
+ <div className="container_voce_tambem_pode_gostar">
+
+                    <div className="container_voce_tambem_pode_gostar_titulo">
+
+                        <h2>Produtos</h2>
+
+                    </div>
+
+                    <div className="container_produtos_embaralhados">
+
+                        {produtos_embaralhados.map((produto_embaralhado, i) => (
+
+                            <div key={i} className='container_produto_embaralhado' onClick={() => ir_para_produto_selecionado(produto_embaralhado)}>
+
+                                <div className="container_imagem_do_produto">
+
+                                    <img src={produto_embaralhado.imagem[0]} alt="" />
+
+                                </div>
+
+                                <div className="container_produto_embaralhado_info">
+
+                                    <div className="contianer_produto_embaralhado_titulo">
+
+                                        <h5>{produto_embaralhado.nome}</h5>
+                                        <img src={imagem_do_brecho(produto_embaralhado.fk_id_brecho)} alt="" />
+
+                                    </div>
+
+                                    <div className="container_produto_embaralhado_preco">
+
+                                        <span>{exibir_preco(produto_embaralhado.preco)}</span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
       </div>
 
       {mostrarPopUpExcluir && (

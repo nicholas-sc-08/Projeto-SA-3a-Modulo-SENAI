@@ -5,24 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon watch script.js"
+    "start": "nodemon script.js"
   },
   "author": "nsc",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "google-auth-library": "^9.15.1",
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.16.0",
+    "mongoose": "^8.16.1",
     "multer": "^2.0.1",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemon": "^3.1.10",
     "pg": "^8.16.2",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "stripe": "^18.2.1"
   },
   "devDependencies": {
     "jest": "^30.0.2"

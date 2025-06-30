@@ -15,14 +15,16 @@ function Header({ tipo }) {
     const { array_brechos, set_array_brechos } = useContext(GlobalContext)
     const { array_clientes, set_array_clientes } = useContext(GlobalContext)
     const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+    const { array_marcas, set_array_marcas } = useContext(GlobalContext)
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { id_marca_selecionada, set_id_marca_selecionada } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
 
-    const [ perfil_usuario, set_perfil_usuario] = useState(null)
+    const [perfil_usuario, set_perfil_usuario] = useState(null)
 
     const [containerAberto, setContainerAberto] = useState(false)
     const [buttonPerfilAberto, setButtonPefilAberto] = useState(false)
@@ -32,17 +34,19 @@ function Header({ tipo }) {
     const { termoBuscado, setTermoBuscado } = useContext(GlobalContext)
     const navigate = useNavigate()
 
-
     const [queridinhos_flyers, set_queridinhos_flyers] = useState([]);
+
+    const [buscasRecentes, setBuscasRecentes] = useState([]);
 
     useEffect(() => {
 
         informacoes_categorias()
         informacoes_brechos()
         informacoes_produtos()
+        informacoes_marcas()
 
-        const encontrar_cliente = array_clientes.find ( cliente => cliente._id == usuario_logado._id)
-        encontrar_cliente ? set_perfil_usuario (`/perfil_cliente`) : set_perfil_usuario (`/perfil_brecho`)
+        const encontrar_cliente = array_clientes.find(cliente => cliente._id == usuario_logado._id)
+        encontrar_cliente ? set_perfil_usuario(`/perfil_cliente`) : set_perfil_usuario(`/perfil_brecho`)
 
     }, []);
 
@@ -98,6 +102,19 @@ function Header({ tipo }) {
         };
     };
 
+    async function informacoes_marcas() {
+
+        try {
+
+            const marcas = await api.get(`/marcas`);
+            set_array_marcas(marcas.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
     async function informacoes_chats() {
 
         try {
@@ -133,8 +150,6 @@ function Header({ tipo }) {
         }
 
     }, [])
-
-    // testando uns negocios aqui
 
     useEffect(() => {
 
@@ -186,8 +201,6 @@ function Header({ tipo }) {
             );
         }
     };
-
-    
 
     function fechar_chat() {
 
@@ -344,21 +357,61 @@ function Header({ tipo }) {
         );
     };
 
-    // const filteredProducts = array_produtos.filter((produto) => {
-    //     const term = termoBuscado.toLowerCase();
-    //     return (
-    //         produto.nombre?.toLowerCase().includes(term) ||
-    //         produto.marca?.toLowerCase().includes(term) ||
-    //         produto.categoria?.toLowerCase().includes(term)
-    //     );
-    // });
+    // const handleSearch = async () => {
+    //     const termo = termoBuscado.trim();
 
-    const handleSearch = () => {
-        if (termoBuscado.trim() !== '') {
-            navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
-            setTermoBuscado('');
-            setContainerAberto(false);
+    //     if (termo !== '') {
+    //         // Grava no backend
+    //         if (usuario_logado && usuario_logado._id) {
+    //             try {
+    //                 await api.post(`/clientes/${usuario_logado._id}/buscasRecentes`, {
+    //                     termo
+    //                 });
+    //             } catch (error) {
+    //                 console.error("Erro ao salvar busca recente:", error);
+    //             }
+    //         }
+
+    //         navigate(`/buscarProdutos?query=${encodeURIComponent(termo)}`);
+    //         setTermoBuscado('');
+    //         setContainerAberto(false);
+    //     }
+    // };
+
+    function getBuscaRecenteUrl() {
+        if (!usuario_logado || !usuario_logado._id) return null;
+
+        // Verifica se o usuário está no array_clientes
+        const isCliente = array_clientes.some(c => c._id === usuario_logado._id);
+        if (isCliente) {
+            return `/clientes/${usuario_logado._id}/buscasRecentes`;
         }
+
+        // Verifica se o usuário está no array_brechos
+        const isBrecho = array_brechos.some(b => b._id === usuario_logado._id);
+        if (isBrecho) {
+            return `/brechos/${usuario_logado._id}/buscasRecentes`;
+        }
+
+        return null; // Não encontrou, ou outro tipo
+    }
+
+    const handleSearch = async () => {
+        const termo = termoBuscado.trim();
+        if (termo === '') return;
+
+        const url = getBuscaRecenteUrl();
+        if (url) {
+            try {
+                await api.post(url, { termo });
+            } catch (error) {
+                console.error("Erro ao salvar busca recente:", error);
+            }
+        }
+
+        navigate(`/buscarProdutos?query=${encodeURIComponent(termo)}`);
+        setTermoBuscado('');
+        setContainerAberto(false);
     };
 
     const handleKeyDown = (e) => {
@@ -368,21 +421,63 @@ function Header({ tipo }) {
     }
 
     const buscarCategoria = (categoria) => {
-        setTermoBuscado(categoria.nome);
         set_id_categoria_selecionada(categoria._id);
-        navigate(`/buscarProdutos?query=${encodeURIComponent(termoBuscado.trim())}`);
+        setTermoBuscado(categoria.nome);
+
+        navigate(`/buscarProdutos?categoria=${categoria._id}`);
     };
+
 
     // buscar por marcas
     const buscarMarcas = (marca) => {
-        navigate(`/buscarProdutos?query=${encodeURIComponent(marca.trim())}`);
-        setContainerAberto(false);
+        set_id_marca_selecionada(marca._id);
+        setTermoBuscado(marca.nome);
+
+        navigate(`/buscarProdutos?marca=${marca._id}`);
     };
 
 
     function ir_para_perfil_brecho(idBrecho) {
         navigate(`/perfil_brecho?id=${idBrecho}`);
     }
+
+    // historico de busquedas recentes
+    async function carregarBuscasRecentes() {
+        const url = getBuscaRecenteUrl();
+        if (!url) return;
+
+        try {
+            const res = await api.get(url);
+            setBuscasRecentes(res.data || []);
+        } catch (error) {
+            console.error("Erro ao carregar buscas recentes:", error);
+        }
+    }
+
+    // const deletarBusca = async (termo) => {
+    //     const url = getBuscaRecenteUrl();
+    //     if (!url) return;
+
+    //     try {
+    //         await api.delete(url, { data: { termo } });
+    //         carregarBuscasRecentes();
+    //     } catch (error) {
+    //         console.error("Erro ao deletar busca recente:", error);
+    //     }
+    // };
+
+    const deletarHistorico = async () => {
+        const url = getBuscaRecenteUrl();
+        if (!url) return;
+
+        try {
+            await api.delete(url);
+            setBuscasRecentes([]); // limpa o estado local direto
+        } catch (error) {
+            console.error("Erro ao deletar histórico de buscas:", error);
+        }
+    };
+
 
     return (
         <div className="alinhamento-navbar-usuario">
@@ -418,7 +513,10 @@ function Header({ tipo }) {
                         type="text"
                         className="input-pesquisa-navbar"
                         placeholder="O que você está procurando?"
-                        onFocus={() => sacola_perfil(`container`)} // Abre quando clica no input
+                        onFocus={() => {
+                            sacola_perfil(`container`);
+                            carregarBuscasRecentes();
+                        }} // Abre quando clica no input
 
                         value={termoBuscado}
                         onChange={(e) => setTermoBuscado(e.target.value)}
@@ -446,11 +544,39 @@ function Header({ tipo }) {
                                             <h2>Buscas recentes</h2>
 
                                             <div className="container-historico-de-busquedas-recentes">
-                                                <div className="busquedas-recentes-individual">
-                                                    <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
+                                                {buscasRecentes.length > 0 ? (
+                                                    <>
+                                                        <div className="alinhamento-buscas-recentes-individuais">
+                                                            {buscasRecentes.map((busca, i) => (
+                                                                <div
+                                                                    key={i}
+                                                                    className="busquedas-recentes-individual"
+                                                                    onClick={() => {
+                                                                        setTermoBuscado(busca.termo);
+                                                                        navigate(`/buscarProdutos?query=${encodeURIComponent(busca.termo)}`);
+                                                                        setContainerAberto(false);
+                                                                    }}
+                                                                >
+                                                                    <div className='alinhamento-imagem-busca'> 
+                                                                        <img src="./img/icons/Historico_de_busquedas.svg" alt="Historico" />
+                                                                        <p>{busca.termo}</p>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
 
-                                                    <p>Camiseta legal</p>
-                                                </div>
+                                                        <button
+                                                            className="botao-deletar-historico"
+                                                            onClick={() => {
+                                                                deletarHistorico();
+                                                            }}
+                                                        >
+                                                            Apagar histórico
+                                                        </button>
+                                                    </>
+                                                ) : (
+                                                    <p className='nenhuma-busca-recente'>Parece vazio por enquanto… que tal começar o garimpo?</p>
+                                                )}
                                             </div>
                                         </div>
 
@@ -458,36 +584,17 @@ function Header({ tipo }) {
                                             <div className="alinhamento-container-de-marcas">
                                                 <h2>Marcas populares entre o público</h2>
 
-                                                <div className="alinahamento-container-marcas-aclamadas">
-                                                    <div className="container-um-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('farm' || 'farm rio')}>
-                                                            <img src="./img/logo/logo_farm_rio.svg" alt="Farm Rio" />
+                                                <div className="alinhamento-container-marcas-aclamadas">
+                                                    {[...array_marcas].slice(0, 6).map((marca, i) => (
+                                                        <div className="container-um-marcas-aclamadas">
+                                                            <div className="fundo-cinza-marcas" key={i} onClick={() => buscarMarcas(marca)}>
+                                                                <img src={marca.logoMarca} />
+                                                            </div>
                                                         </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('zara')}>
-                                                            <img src="./img/logo/logo_zara.svg" alt="Zara" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('Le lis')}>
-                                                            <img src="./img/logo/logo_le_lis.svg" alt="Le Lis" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="container-dois-marcas-aclamadas">
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('animale')}>
-                                                            <img src="./img/logo/logo_animale.svg" alt="Animale" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('converse' || 'all star')}>
-                                                            <img src="./img/logo/logo_converse.svg" alt="Converse" />
-                                                        </div>
-
-                                                        <div className="fundo-cinza-marcas" onClick={() => buscarMarcas('adidas')}>
-                                                            <img src="./img/logo/logo_adidas.svg" alt="Adidas" />
-                                                        </div>
-                                                    </div>
+                                                    ))}
                                                 </div>
                                             </div>
+
 
                                             <div className="alinhamento-container-de-categorias-especiais">
                                                 <h2>Categorias especiais</h2>

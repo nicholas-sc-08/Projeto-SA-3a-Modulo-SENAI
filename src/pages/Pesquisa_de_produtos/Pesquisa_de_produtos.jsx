@@ -19,12 +19,14 @@ function Pesquisa_de_produtos() {
     const { array_produtos, set_array_produtos } = useContext(GlobalContext);
     const { array_brechos, set_array_brechos } = useContext(GlobalContext);
     const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+    const { array_marcas, set_array_marcas } = useContext(GlobalContext);
     const { usuario_logado, set_usuario_logado } = useContext(GlobalContext);
     const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
     const { produto, set_produto } = useContext(GlobalContext);
     const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
     const { pagina_atual, set_pagina_atual } = useContext(GlobalContext);
     const { id_categoria_selecionada, set_id_categoria_selecionada } = useContext(GlobalContext);
+    const { id_marca_selecionada, set_id_marca_selecionada } = useContext(GlobalContext);
     const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
     const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
@@ -35,10 +37,15 @@ function Pesquisa_de_produtos() {
 
     function obterQueryDaUrl() {
         const params = new URLSearchParams(location.search);
-        return params.get('query') || '';
+        return {
+            query: params.get('query') || '',
+            categoria: params.get('categoria') || '',
+            marca: params.get('marca') || ''
+        };
     }
 
-    const termoBuscado = obterQueryDaUrl().toLowerCase();
+    const { query, categoria, marca } = obterQueryDaUrl();
+    const termoBuscado = query.toLowerCase();
 
     useEffect(() => {
 
@@ -51,28 +58,80 @@ function Pesquisa_de_produtos() {
         buscar_produtos();
         buscar_categorias();
         buscar_brechos();
+        buscar_marcas()
 
     }, [termoBuscado]);
 
+    // useEffect(() => {
+
+    //     if (id_categoria_selecionada) {
+
+    //         const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
+    //         console.log(array_com_as_categorias);
+
+    //         const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
+    //         set_produtos_embaralhados(embaralhar);
+
+    //     } else {
+
+    //         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+    //         set_produtos_embaralhados(embaralhar);
+    //     };
+
+    //     referencia_pesquisa_produtos.current.scrollIntoView();
+
+    // }, [array_produtos, id_categoria_selecionada]);
+
+    // useEffect(() => {
+
+    //     if (id_marca_selecionada) {
+
+    //         const array_com_as_marcas = array_produtos.filter(p => p.fk_id_marca == id_marca_selecionada);
+    //         console.log(array_com_as_marcas);
+
+    //         const embaralhar = array_com_as_marcas.sort(() => Math.random() - 0.5);
+    //         set_produtos_embaralhados(embaralhar);
+
+    //     } else {
+
+    //         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
+    //         set_produtos_embaralhados(embaralhar);
+    //     };
+
+    //     referencia_pesquisa_produtos.current.scrollIntoView();
+
+    // }, [array_produtos, id_categoria_selecionada]);
+
     useEffect(() => {
+        let produtos_filtrados = [...array_produtos];
 
-        if (id_categoria_selecionada) {
+        if (categoria) {
+            produtos_filtrados = produtos_filtrados.filter(
+                (p) => p.fk_id_categoria === categoria
+            );
+        }
 
-            const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
-            console.log(array_com_as_categorias);
+        if (marca) {
+            produtos_filtrados = produtos_filtrados.filter(
+                (p) => p.fk_id_marca === marca
+            );
+        }
 
-            const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
-            set_produtos_embaralhados(embaralhar);
+        if (query) {
+            produtos_filtrados = produtos_filtrados.filter(
+                (p) =>
+                    p.nome?.toLowerCase().includes(termoBuscado) ||
+                    p.descricao?.toLowerCase().includes(termoBuscado)
+            );
+        }
 
-        } else {
+        const embaralhados = produtos_filtrados.sort(() => Math.random() - 0.5);
+        set_produtos_embaralhados(embaralhados);
 
-            const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-            set_produtos_embaralhados(embaralhar);
-        };
+        referencia_pesquisa_produtos.current?.scrollIntoView();
+    }, [array_produtos, categoria, marca, query]);
 
-        referencia_pesquisa_produtos.current.scrollIntoView();
 
-    }, [array_produtos, id_categoria_selecionada]);
 
     const produtos_por_pagina = 12;
     const total_de_paginas = Math.ceil(produtos_embaralhados.length / produtos_por_pagina);
@@ -121,24 +180,67 @@ function Pesquisa_de_produtos() {
         };
     };
 
-    async function buscar_produtos() {
+    async function buscar_marcas() {
 
         try {
-            const produtos = await api.get(`/produtos`);
-            const todos = produtos.data;
 
-            // Aplica o filtro pelo termo de busca
-            const filtrados = todos.filter(produto =>
-                produto.nome.toLowerCase().includes(termoBuscado) ||
-                produto.descricao?.toLowerCase().includes(termoBuscado)
-            );
+            const marcas = await api.get(`/marcas`);
+            set_array_marcas(marcas.data);
+
+        } catch (erro) {
+
+            console.error(erro);
+        };
+    };
+
+    // async function buscar_produtos() {
+
+    //     try {
+    //         const produtos = await api.get(`/produtos`);
+    //         const todos = produtos.data;
+
+    //         // Aplica o filtro pelo termo de busca
+    //         const filtrados = todos.filter(produto =>
+    //             produto.nome.toLowerCase().includes(termoBuscado) ||
+    //             produto.descricao?.toLowerCase().includes(termoBuscado)
+    //         );
+
+    //         set_array_produtos(filtrados);
+
+    //     } catch (erro) {
+    //         console.error(erro);
+    //     };
+    // };
+
+    async function buscar_produtos() {
+        try {
+            const res = await api.get(`/produtos`);
+            const todos = res.data;
+
+            let filtrados = [...todos];
+
+            if (query) {
+                filtrados = filtrados.filter(produto =>
+                    produto.nome?.toLowerCase().includes(termoBuscado) ||
+                    produto.descricao?.toLowerCase().includes(termoBuscado)
+                );
+            }
+
+            if (categoria) {
+                filtrados = filtrados.filter(produto => produto.fk_id_categoria === categoria);
+            }
+
+            if (marca) {
+                filtrados = filtrados.filter(produto => produto.fk_id_marca === marca);
+            }
 
             set_array_produtos(filtrados);
 
         } catch (erro) {
             console.error(erro);
-        };
-    };
+        }
+    }
+
 
     function ir_para_produto(produto) {
 
@@ -179,7 +281,14 @@ function Pesquisa_de_produtos() {
                     <div className="alinhamento-resultados-pesquisa">
 
                         <div className="alinhamento-resultados-de-pesquisa-texto">
-                            <h3 className='resultados-de-pesquisa'>Resultados para: <span>"{termoBuscado}"</span></h3>
+                            <h3 className='resultados-de-pesquisa'>Resultados para: <span>
+                                "
+                                {query ||
+                                    (categoria && array_categorias.find(c => c._id === categoria)?.nome) ||
+                                    (marca && array_marcas.find(m => m._id === marca)?.nome) ||
+                                    'Todos os produtos'}
+                                "
+                            </span></h3>
                         </div>
 
                         <div className="container_exibir_produtos">
@@ -224,7 +333,7 @@ function Pesquisa_de_produtos() {
 
                             <div className="container_botao_voltar_pagina_esquerdo">
 
-                                <button onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
+                                <button disabled={pagina_atual == 1} onClick={() => { set_pagina_atual(pagina => Math.max(pagina - 1, 1)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_esquerda.svg' /></button>
 
                             </div>
 
@@ -236,7 +345,7 @@ function Pesquisa_de_produtos() {
 
                             <div className="container_botao_voltar_pagina_direito">
 
-                                <button onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
+                                <button disabled={pagina_atual == total_de_paginas} onClick={() => { set_pagina_atual(pagina => Math.min(pagina + 1, total_de_paginas)); referencia_pesquisa_produtos.current.scrollIntoView() }}><img src='./img/icons/icone_seta_direita.svg' /></button>
 
                             </div>
 

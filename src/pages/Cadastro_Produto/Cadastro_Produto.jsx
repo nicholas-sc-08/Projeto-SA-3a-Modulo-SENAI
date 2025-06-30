@@ -20,11 +20,6 @@ function Cadastro_Produto() {
   const { pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-
-
-
-
-
   // Tecidos sugeridos para autocomplete
   const tecidos_disponiveis = ["Algodão", "Poliéster", "Linho", "Seda", "Jeans", "Sarja", "Couro", "Malha", "Viscose", "Veludo", "Moletom", "Crepe", "Tricoline", "La", "Nylon", "Oxford", "Organza", "Chiffon", "Tule", "Elastano", "Lycra", "Canvas", "Suede", "Vinil", "Sintético", "Cânhamo", "Mesh", "Denim", "Jacquard", "Renda", "PVC", "EVA", "Neoprene"];
 
@@ -58,7 +53,7 @@ function Cadastro_Produto() {
     condicao: "",
     cor: [],
     imagem: [],
-    marca: "",
+    fk_id_marca: "",
     composicao: "",
     fk_id_categoria: "",
     tamanho: "",
@@ -83,7 +78,7 @@ function Cadastro_Produto() {
         condicao: informacoes_editar_produto.condicao,
         cor: informacoes_editar_produto.cor,
         imagem: informacoes_editar_produto.imagem,
-        marca: informacoes_editar_produto.marca,
+        fk_id_marca: informacoes_editar_produto.fk_id_marca,
         composicao: informacoes_editar_produto.composicao,
         fk_id_categoria: informacoes_editar_produto.fk_id_categoria,
         tamanho: informacoes_editar_produto.tamanho,
@@ -104,15 +99,28 @@ function Cadastro_Produto() {
 
 
   useEffect(() => {
-    if (informacoes_editar_produto && categorias.length > 0) {
-      const categoriaSelecionada = categorias.find(
-        (cat) => cat._id === informacoes_editar_produto.fk_id_categoria
-      );
-      if (categoriaSelecionada) {
-        setInputCategoria(categoriaSelecionada.nome);
-      }
+    if (informacoes_editar_produto) {
+      const marcaSelecionada = listaMarcas.find(m => m._id === informacoes_editar_produto.fk_id_marca);
+      setInputMarca(marcaSelecionada?.nome || ""); // Mostra o nome no input
+      setArray_cadastro_produto(prev => ({
+        ...prev,
+        fk_id_marca: informacoes_editar_produto.fk_id_marca // Salva o ID
+      }));
     }
-  }, [categorias, informacoes_editar_produto]);
+  }, [informacoes_editar_produto, listaMarcas]);
+
+
+  useEffect(() => {
+    if (informacoes_editar_produto) {
+      const categoriaSelecionada = categorias.find(c => c._id === informacoes_editar_produto.fk_id_categoria);
+      setInputCategoria(categoriaSelecionada?.nome || "");
+      setArray_cadastro_produto(prev => ({
+        ...prev,
+        fk_id_categoria: informacoes_editar_produto.fk_id_categoria
+      }));
+    }
+  }, [informacoes_editar_produto, categorias]);
+
 
 
   // Filtra tecidos conforme digitação do usuário
@@ -141,8 +149,8 @@ function Cadastro_Produto() {
   }
 
   useEffect(() => {
-    const resultado = listaMarcas.filter((marca) =>
-      marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
+    const resultado = listaMarcas.filter((fk_id_marca) =>
+      fk_id_marca.nome.toLowerCase().includes(inputMarca.toLowerCase())
     );
     setMarcasFiltradas(resultado);
   }, [inputMarca, listaMarcas]);
@@ -193,37 +201,45 @@ function Cadastro_Produto() {
     if (!file) return;
 
     const urlLocal = URL.createObjectURL(file);
-    const novaListaTemporaria = [...imagens, urlLocal];
-    setImagens(novaListaTemporaria);
-    setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaListaTemporaria });
+    setImagens((prev) => [...prev, urlLocal]);
     if (!imagemPrincipal) setImagemPrincipal(urlLocal);
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "Fly_Brecho");
+    formData.append("upload_preset", "Fly_Brecho"); // esse nome deve bater com o preset criado no Cloudinary
 
     try {
-      const response = await fetch("https://api.cloudinary.com/v1_1/SEU_CLOUD_NAME/image/upload", {
+      const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
         method: "POST",
         body: formData,
       });
+
       const data = await response.json();
+      console.log("✅ Imagem enviada para Cloudinary:", data);
 
       if (data.secure_url) {
-        const novaLista = novaListaTemporaria.map((img) => (img === urlLocal ? data.secure_url : img));
+        const novaLista = [...array_cadastro_produto.imagem, data.secure_url];
         setImagens(novaLista);
-        setArray_cadastro_produto({ ...array_cadastro_produto, imagem: novaLista });
+        setArray_cadastro_produto((prev) => ({
+          ...prev,
+          imagem: novaLista,
+        }));
 
-        if (imagemPrincipal === urlLocal) {
+        if (imagemPrincipal === urlLocal || !imagemPrincipal) {
           setImagemPrincipal(data.secure_url);
         }
 
         URL.revokeObjectURL(urlLocal);
+      } else {
+        alert("Erro ao subir imagem: URL não retornada.");
       }
     } catch (error) {
-      console.error("Erro ao fazer upload da imagem:", error);
+      console.error(" Erro ao fazer upload da imagem:", error);
+      alert("Erro ao enviar imagem. Verifique o console.");
     }
   }
+
+
 
   // Remove imagem selecionada
   function removerImagem(index) {
@@ -255,7 +271,6 @@ function Cadastro_Produto() {
     try {
       await api.put(`/produtos/${informacoes_editar_produto._id}`, array_cadastro_produto);
       buscar_produtos(); // Atualiza a listagem
-      alert("Produto atualizado com sucesso!");
       navigate("/gestao_estoque");
 
       // Limpa o estado de edição
@@ -269,7 +284,7 @@ function Cadastro_Produto() {
         condicao: "",
         cor: [],
         imagem: [],
-        marca: "",
+        fk_id_marca: "",
         composicao: "",
         fk_id_categoria: "",
         tamanho: "",
@@ -290,7 +305,6 @@ function Cadastro_Produto() {
       alert("Erro ao atualizar produto");
     }
   }
-
 
   // Seleção de cores usando EyeDropper
   async function selecionarCorEyeDropper() {
@@ -364,16 +378,27 @@ function Cadastro_Produto() {
   }
 
 
-  // Envia os dados do produto para o backend via POST
+
+
   async function cadastrar_produto() {
     try {
-      await api.post("/produtos", array_cadastro_produto);
+      const produtoParaEnviar = {
+        ...array_cadastro_produto,
+        preco: Number(array_cadastro_produto.preco),
+        quantidade: Number(array_cadastro_produto.quantidade),
+        cor: array_cadastro_produto.cor || [],
+        imagem: array_cadastro_produto.imagem || [],
+      };
+
+      console.log("Dados a enviar:", produtoParaEnviar);
+
+      await api.post("/produtos", produtoParaEnviar);
       buscar_produtos();
       set_pop_up_notificacao_cadastro_produto(true);
-      setTimeout(() => navigate("/gestao_estoque"), 1650);
+      setTimeout(() => navigate("/gestao_estoque"), 2000);
     } catch (error) {
-      console.error("Erro ao cadastrar produto", error);
-      set_pop_up_erro_cadastro(true)
+      console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
+      set_pop_up_erro_cadastro(true);
     }
   }
 
@@ -579,25 +604,27 @@ function Cadastro_Produto() {
               <input
                 type="text"
                 placeholder="Buscar marcas"
-                className="input-group"
+                className="input-group-marcas"
                 value={inputMarca}
                 onChange={(e) => {
                   setInputMarca(e.target.value);
-                  setArray_cadastro_produto({ ...array_cadastro_produto, marca: e.target.value });
+                  setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_marca: "" });
                 }}
                 onFocus={() => setMarcaEmFoco(true)}
-                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)} // atraso evita fechar antes do clique no item
+                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)}
                 autoComplete="off"
               />
-
               {marcaEmFoco && marcasFiltradas.length > 0 && (
                 <ul className="lista-marcas">
                   {marcasFiltradas.map((marca, index) => (
                     <li
                       key={index}
                       onClick={() => {
-                        setInputMarca(marca.nome);
-                        setArray_cadastro_produto({ ...array_cadastro_produto, marca: marca.nome });
+                        setInputMarca(marca.nome); // Exibe o nome no input
+                        setArray_cadastro_produto(prev => ({
+                          ...prev,
+                          fk_id_marca: marca._id,  // Salva o ID da marca no objeto do produto
+                        }));
                         setMarcaEmFoco(false);
                       }}
                     >
@@ -609,10 +636,15 @@ function Cadastro_Produto() {
 
             </div>
 
+
             <label>Estado do produto</label>
             <select
+              required
               value={array_cadastro_produto.condicao}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })}
+              onChange={(e) =>
+                setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })
+              }
+              className="input-group-estado"
             >
               <option value="">Selecione o estado</option>
               {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
@@ -621,6 +653,7 @@ function Cadastro_Produto() {
                 </option>
               ))}
             </select>
+
           </div>
 
 
@@ -649,8 +682,11 @@ function Cadastro_Produto() {
                   <li
                     key={cat._id}
                     onClick={() => {
-                      setInputCategoria(cat.nome);
-                      setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: cat._id });
+                      setInputCategoria(cat.nome); // Exibe o nome no input
+                      setArray_cadastro_produto(prev => ({
+                        ...prev,
+                        fk_id_categoria: cat._id, // Salva o ID da categoria no objeto do produto
+                      }));
                       setCategoriaEmFoco(false);
                     }}
                   >
@@ -660,13 +696,15 @@ function Cadastro_Produto() {
               </ul>
             )}
 
+
           </div>
 
 
           <button
+
             onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
             className="botao-cadastrar"
-            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}}>
+            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}} >
             {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
           </button>
 

@@ -78,6 +78,11 @@
     background-color: var(--cor_dois_v_um);
 }
 
+.container-alinhamento-inputs-secao-tres{
+    /* border: 1px solid red; */
+    margin-top: -4%;
+}
+
 @media only screen and (min-width: 1201px) {
 
     .container_cadastro_cliente {
@@ -311,7 +316,6 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-top: 4%;
     }
 
     .dv_frm_cadastro_cliente_botoes p {

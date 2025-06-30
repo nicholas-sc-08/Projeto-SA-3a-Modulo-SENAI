@@ -18,10 +18,17 @@
 
 .foto-edicao-perfil-cliente{
     position: relative;
-    width: 20%;
-    margin-left: 9%;
-    margin-top: 15%;
+    width: 10%;
+    left: 11%;
+    top: 35%;
 
+}
+
+.foto-base-perfil-cliente{
+    position: relative;
+    width: 70%;
+    left: 9%;
+    bottom: 64px;
 }
 
 .busca-img-galeria{
@@ -78,7 +85,7 @@
 
 .info-edicao-cliente{
     position: relative;
-    bottom: 65%;
+    bottom: 15%;
     left: 22%;
     width: 70%;
 }

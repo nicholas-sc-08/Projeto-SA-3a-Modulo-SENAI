@@ -8,7 +8,7 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 
 function Perfil_cliente() {
   const navegar = useNavigate();
-  const { usuario_logado } = useContext(GlobalContext);
+  const { usuario_logado, endereco_do_cliente } = useContext(GlobalContext); // 👈 puxando o endereço
 
   const [mostrarPopUp, setMostrarPopUp] = useState(false);
   const [form, setForm] = useState({
@@ -22,18 +22,18 @@ function Perfil_cliente() {
   });
 
   useEffect(() => {
-    if (usuario_logado) {
+    if (usuario_logado && Object.keys(usuario_logado).length > 0) {
       setForm({
         nome: usuario_logado.nome || '',
         telefone: usuario_logado.telefone || '',
         email: usuario_logado.email || '',
-        logradouro: usuario_logado.logradouro || '',
+        logradouro: endereco_do_cliente?.logradouro || '', // 👈 agora puxa certinho
         senhaAtual: '',
         novaSenha: '',
         confirmarSenha: ''
       });
     }
-  }, [usuario_logado]);
+  }, [usuario_logado, endereco_do_cliente]); // 👈 adiciona o endereço como dependência também
 
   const abrirPopUp = () => setMostrarPopUp(true);
   const fecharPopUp = () => setMostrarPopUp(false);
@@ -56,7 +56,10 @@ function Perfil_cliente() {
 
       <div className='container-perfil-cliente'>
         <div className='foto-perfil-cliente'>
-          <img src={usuario_logado?.imagem_de_perfil || "./img/fotoPerfil.png"} alt="Foto de perfil" />
+          <img
+            src={usuario_logado?.imagem_de_perfil || "./img/fotoPerfil.png"}
+            alt="Foto de perfil"
+          />
         </div>
 
         <div className='info-cliente'>

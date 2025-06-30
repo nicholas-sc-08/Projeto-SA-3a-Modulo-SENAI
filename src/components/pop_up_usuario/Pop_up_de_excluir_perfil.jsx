@@ -38,20 +38,13 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
 
   useEffect(() => {
 
-    buscar_brechos();
-    buscar_enderecos();
+    buscar_brechos()
+    buscar_enderecos()
 
   }, [])
 
-  useEffect(() => {
-
-    const produtosAExcluir = array_produtos.filter(
-      produto => produto._fk_id_brecho !== usuario_logado._id)
-
-  }, [])
 
   async function excluir_todo_o_brecho() {
-
 
     try {
       await api.delete(`/brechos/${usuario_logado._id}`)
@@ -63,14 +56,18 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
       console.error("Erro ao excluir o brechó", erro)
     }
 
-
-
     try {
-      const endereco = array_enderecos.find(endereco => endereco.fk_id === usuario_logado._id)
 
-      if (endereco) {
+      const endereco_brecho = array_enderecos.find(
+      endereco => endereco._fk_id_brecho === usuario_logado._id)
 
-        await api.delete(`/Enderecos/${endereco._id}`)
+      console.log("passou por aquiii", endereco_brecho);
+
+      if (endereco_brecho) {
+        
+        console.log("passou por aqui");
+
+        await api.delete(`/enderecos/${endereco._fk_id_brecho}`)
 
         console.log("Endereço do brecho excluído com sucesso!")
       }
@@ -79,10 +76,24 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
       console.error("Erro ao excluir o endereco do brechó", erro)
     }
 
+    // try {
+
+    //   const produtosAExcluir = array_produtos.filter(
+    //   produto => produto._fk_id_brecho !== usuario_logado._id)
+
+    //   if (produtosAExcluir){
+    //     await api.delete(`/produtos/${}`)
+    //   }
+
+    // } catch (erro) {
+
+    //   console.error("Erro ao excluir os produtos do brechó", erro)
+    // }
+
+    set_usuario_logado([])
+    navigate(`/`)
 
   }
-
-
 
 
   return (

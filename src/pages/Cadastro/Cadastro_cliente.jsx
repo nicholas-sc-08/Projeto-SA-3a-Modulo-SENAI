@@ -120,8 +120,25 @@ function Cadastro_cliente() {
 
   }, [cadastro_parte_um_cliente, cadastro_parte_dois_cliente, cadastro_parte_tres_cliente]);
 
-  function etapa_seguinte() {
+  function etapaAnterior() {
+    if (cadastro_parte_um_cliente && !cadastro_parte_dois_cliente && !cadastro_parte_tres_cliente) {
+      // Estou na etapa 1, Volta para tela inicial de escolha de cadastro
+      mudar_de_pagina('/escolha_cadastro')
 
+    } else if (!cadastro_parte_um_cliente && cadastro_parte_dois_cliente && !cadastro_parte_tres_cliente) {
+      // Estou na etapa 2, volta para etapa 1
+      set_cadastro_parte_um_cliente(true)
+      set_cadastro_parte_dois_cliente(false)
+
+    } else if (!cadastro_parte_um_cliente && !cadastro_parte_dois_cliente && cadastro_parte_tres_cliente) {
+      // Estou na etapa 3, volta para etapa 2
+      set_cadastro_parte_dois_cliente(true)
+      set_cadastro_parte_tres_cliente(false)
+      set_sub_titulo_cadastro_cliente('Seu estilo está quase no ar!')
+    }
+  }
+
+  function etapa_seguinte() {
 
     if (cadastro_parte_um_cliente == true && cadastro_parte_dois_cliente == false) {
 
@@ -360,12 +377,17 @@ function Cadastro_cliente() {
             {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
             {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
 
-            <div className="dv_frm_cadastro_cliente_botoes">
+            <div className="alinhamento-buttons-cadastro">
 
-              {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
-              {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-              <p>{mensagem_de_erro}</p>
+              {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
 
+              <div className="dv_frm_cadastro_cliente_botoes">
+
+                {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
+                {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
+                <p>{mensagem_de_erro}</p>
+
+              </div>
             </div>
           </form>
         </div>

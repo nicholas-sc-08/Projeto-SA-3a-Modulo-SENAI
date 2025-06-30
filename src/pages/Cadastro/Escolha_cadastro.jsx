@@ -8,6 +8,8 @@ function Escolha_cadastro() {
     const [escolha, setEscolha] = useState(""); // novo estado pra controlar a escolha
     const navegar = useNavigate();
 
+    const [mensagem_erro, set_mensagem_erro] = useState('')
+
     const LoginCadastro = () => {
         setAnimandoCadastro(true);
         setTimeout(() => {
@@ -16,10 +18,16 @@ function Escolha_cadastro() {
     };
 
     const continuar = () => {
+
+        if (!escolha) {
+            set_mensagem_erro('Por favor, escolha o tipo de cadastro antes de continuar.');
+            return;
+        }
+
         if (escolha === "comprar") {
-            navegar('/cadastro_cliente'); 
+            navegar('/cadastro_cliente');
         } else if (escolha === "vender") {
-            navegar('/cadastro_brecho'); 
+            navegar('/cadastro_brecho');
         }
     };
 
@@ -85,13 +93,20 @@ function Escolha_cadastro() {
                     </div>
                 </div>
 
-                <button
-                    className='but-continuar-escolha-cadastro'
-                    onClick={continuar}
-                    disabled={!escolha}
-                >
-                    Continuar
-                </button>
+                <div className="container-button-mensagem-escolha-cadastro">
+                    <button
+                        className='but-continuar-escolha-cadastro'
+                        onClick={continuar}
+
+                    >
+                        Continuar
+                    </button>
+
+                    {mensagem_erro && (
+                        <p className="mensagem-erro-escolha-cadastro">{mensagem_erro}</p>
+                    )}
+                </div>
+
             </div>
         </div>
     )

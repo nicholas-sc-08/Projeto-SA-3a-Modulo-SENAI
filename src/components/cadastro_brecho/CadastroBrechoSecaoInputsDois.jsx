@@ -20,7 +20,7 @@ function CadastroBrechoSecaoInputsDois() {
     // Crear formData para enviar a Cloudinary
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "Fly_Brecho"); // Pon tu upload_preset real aquí
+    formData.append("upload_preset", "Fly_Brecho"); // esse nome deve bater com o preset criado no Cloudinary
 
     try {
       const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
@@ -29,7 +29,8 @@ function CadastroBrechoSecaoInputsDois() {
       });
 
       const data = await response.json();
-
+      console.log("✅ Imagem enviada para Cloudinary:", data);
+      
       if (data.secure_url) {
         // Guardar la URL pública en el estado global
         setFormCadastroBrecho({ ...formCadastroBrecho, logo: data.secure_url });
