@@ -17,6 +17,7 @@ function Perfil_Brecho() {
   const { imagemPerfilCadastroBrecho, setImagemPerfilCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
+  const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
 
   const navegar = useNavigate(``)
 
@@ -38,15 +39,14 @@ function Perfil_Brecho() {
   }, [usuario_logado])
 
   useEffect(() => {
-    if (usuario_logado) {
+
+    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
+
+    if (encontrar_brecho) {
       setEnderecoDoBrecho({
-        cep: usuario_logado.cep || '',
         bairro: usuario_logado.bairro || '',
-        logradouro: usuario_logado.logradouro || '',
         cidade: usuario_logado.cidade || '',
         estado: usuario_logado.estado || '',
-        numero: usuario_logado.numero || '',
-        complemento: usuario_logado.complemento || '',
       })
     }
   }, [usuario_logado])
@@ -60,24 +60,19 @@ function Perfil_Brecho() {
 
   }, [brecho_selecionado]);
 
-  // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
-  useEffect(() => {
+  
+  useEffect(() => { 
 
-    const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id);
+  if (usuario_logado && array_brechos.length > 0 && array_enderecos.length > 0) { // essa parte verifica se é um brechó logado e se o array_brechos e o array_enderecos não estao vazios
 
-    if (encontrar_brecho) {
-      setFormCadastroBrecho({
-        nome_vendedor: usuario_logado.nome_vendedor || '',
-        data_de_nascimento_vendedor: usuario_logado.data_de_nascimento_vendedor || '',
-        nome_brecho: usuario_logado.nome_brecho || '',
-        telefone: usuario_logado.telefone || '',
-        email: usuario_logado.email || '',
-        cnpj: usuario_logado.cnpj || '',
-        logo: usuario_logado.logo || '',
-        horario_funcionamento: usuario_logado.horario_funcionamento || '',
-      })
+    const brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id)
+    const endereco = array_enderecos.find(endereco => endereco.id_brecho === brecho?._id) // aqui encontra o endereço do brecho comparando se o id_brecho q esta no model do backend for igual ao id do brecho_logado
+
+    if (endereco) { // assim que logar e entrar na tela do perfil as informações vao estar sendo exibidas
+      setEnderecoDoBrecho(endereco)
     }
-  }, [usuario_logado])
+  }
+}, [usuario_logado, array_brechos, array_enderecos])
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -101,7 +96,7 @@ function Perfil_Brecho() {
               <div className="endereco-e-horarios-contents">
                 <div className="endereco-brecho-content">
                   <p className="titulo-endereco">Endereço:</p>
-                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.logradouro}${enderecoDoBrecho.numero}/${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
+                  <span className="endereco-cadastrado">{`${enderecoDoBrecho.bairro}/${enderecoDoBrecho.cidade}/${enderecoDoBrecho.estado}`}</span>
                 </div>
                 <div className="horario-brecho-content">
                   <p className="titulo-horario">Horário de Funcionamento:</p>

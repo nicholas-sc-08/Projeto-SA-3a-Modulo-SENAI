@@ -15,78 +15,68 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
-  const [naoEBrecho, setNaoEBrecho] = useState(false)
 
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
 
+  const brecho_logado = array_brechos.find(brecho => brecho._id == usuario_logado._id) // aqui verifica se o usuario logado é um brecho, comparando o id do brecho no array de brecho com o do usuario_logado
 
+
+
+  // junto com a const acima, é verificado se é um brecho que está logado, caso seja, a função pegarEnderecoBrecho entra em ação.
   useEffect(() => {
 
-    if (!usuario_logado) {
-      setNaoEBrecho(true)
-    } else {
-      setNaoEBrecho(false)
+    if (brecho_logado) {
+
+      pegarEnderecoBrecho()
     }
-  }, [usuario_logado])
 
-  const enderecoEDoBrecho = array_enderecos.find(
-    (endereco) => endereco.id_brecho === usuario_logado?._id
-  )
+  }, [brecho_logado])
 
-  useEffect(() => {
-    
-    if (enderecoEDoBrecho) {
-      setEnderecoDoBrecho(enderecoEDoBrecho);
-    } else {
-      setEnderecoDoBrecho({
-        cep: '',
-        bairro: '',
-        logradouro: '',
-        cidade: '',
-        estado: '',
-        numero: '',
-        complemento: '',
-      });
-    }
-  }, [enderecoEDoBrecho])
+  // aqui a função pega os dados dos endereços no backend
+  async function pegarEnderecoBrecho() {
 
-  // essa parte ocorre somente uma vez, ela verifica se o array_brechos esta vazio, se ele estiver vazio, a função pegarInfoBrecho entra em ação.
-  useEffect(() => {
-    if (!array_brechos.length) {
-      pegarInfoBrecho();
-    }
-  }, [])
-
-  async function pegarInfoBrecho() {
     try {
-      const resultado = await api.get('/Enderecos');
+      const resultado = await api.get('/enderecos')
 
-      set_array_brechos(resultado.data);
-      console.log('As informações do endereço do brechó foram encontradas!');
+      set_array_enderecos(resultado.data);
+      console.log('As informações do endereço do brechó foram encontradas!')
 
     } catch (erro) {
-      console.log('Erro ao tentar achar as informações do endereço do brechó:', erro);
+      console.log('Erro ao tentar achar as informações do endereço do brechó:', erro)
     }
   }
 
-
-  // -- não mexer nessa parte de buscar o cep --
-  
+  // essa parte encontra o endereço do brecho comparando se o id_brecho q esta no model do backend for igual ao id do brecho_logado
   useEffect(() => {
-  const cepLimpo = enderecoDoBrecho.cep.replace(/\D/g, '') // remove tudo que não for número
 
-  if (cepLimpo.length === 8) {
-    buscar_cep(cepLimpo)
-  }
-}, [enderecoDoBrecho.cep])
-  
+    if (brecho_logado && array_enderecos.length > 0) {    // mas só realiza isso se for um brechó logado e o array_enderecos não estiver vazio
+
+      const enderecoEncontrado = array_enderecos.find(endereco => endereco.id_brecho === brecho_logado._id)
+
+      if (enderecoEncontrado) {
+        setEnderecoDoBrecho(enderecoEncontrado)
+      }
+    }
+
+  }, [brecho_logado, array_enderecos])
+
+
+  // -- não mexer nessa parte de buscar o cep -- //
+  useEffect(() => {
+    const cepLimpo = enderecoDoBrecho.cep.replace(/\D/g, '') // remove tudo que não for número
+
+    if (cepLimpo.length === 8) {
+      buscar_cep(cepLimpo)
+    }
+  }, [enderecoDoBrecho.cep])
+
   async function buscar_cep() {
-    
+
     try {
-      
+
       const resposta = await fetch(`https://viacep.com.br/ws/${enderecoDoBrecho.cep}/json/`);
       const dados_do_endereco = await resposta.json();
-      
+
       setEnderecoDoBrecho((prev) => ({
         ...prev,
         bairro: dados_do_endereco.bairro,
@@ -96,9 +86,9 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
         numero: dados_do_endereco.numero,
         complemento: dados_do_endereco.complemento
       }))
-      
+
     } catch (erro) {
-      
+
       console.error(erro);
       setMensagemErro('Erro ao buscar o CEP digitado. Verifique se ele está correto.');
       set_erro_pagina(erro);
@@ -107,40 +97,27 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   }
 
 
-  
-  useEffect(() => {
-    if (usuario_logado) {  // talvez tenha q mudar a variavel para enderecoEDoBrecho
-      setEnderecoDoBrecho({
-        cep: usuario_logado.cep || '',
-        bairro: usuario_logado.bairro || '',
-        logradouro: usuario_logado.logradouro || '',
-        cidade: usuario_logado.cidade || '',
-        estado: usuario_logado.estado || '',
-        numero: usuario_logado.numero || '',
-        complemento: usuario_logado.complemento || '',
-      })
-    }
-  }, [usuario_logado])
-
-  
+  // atualiza o endereço do brecho enviando as informações ao backend
   async function atualizarEnderecoBrecho() {
-    
-    try {
-      await api.put(`/Enderecos/${usuario_logado._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
 
-      console.log('Endereço do brechó atualizado com sucesso!');
+    const enderecoAtual = array_enderecos.find(endereco => endereco.id_brecho === brecho_logado._id)
+
+    try {
+      await api.put(`/enderecos/${enderecoAtual._id}`, enderecoDoBrecho) // faz com que as informações sejam atualizadas no backend
+
+      console.log('Endereço do brechó atualizado com sucesso!')
 
       // aqui ele atualiza as informações no array dos brechos
       const novosEnderecos = array_enderecos.map(endereco =>
-        endereco.id_brecho === usuario_logado._id ? { ...endereco, ...enderecoDoBrecho } : endereco
-      );
-      set_array_brechos(novosEnderecos)
+        endereco._id === enderecoAtual._id ? { ...endereco, ...enderecoDoBrecho } : endereco
+      )
+      set_array_enderecos(novosEnderecos)
 
     } catch (error) {
       console.error('Erro ao atualizar o endereço do brechó:', error)
     }
   }
-  
+
   return (
     <div className="tela-inteira-content">
       <div className="divs-centrais-content">

@@ -24,7 +24,7 @@ function CadastroBrechoSecaoInputsDois() {
 
     try {
       const response = await fetch("https://api.cloudinary.com/v1_1/fly-cloud-name/image/upload", {
-        method: "POST",
+        methods: "POST",
         body: formData,
       });
 
