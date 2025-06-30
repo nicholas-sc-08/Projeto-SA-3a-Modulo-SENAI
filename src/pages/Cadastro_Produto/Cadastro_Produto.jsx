@@ -155,8 +155,6 @@ function Cadastro_Produto() {
     setMarcasFiltradas(resultado);
   }, [inputMarca, listaMarcas]);
 
-
-
   useEffect(() => {
     if (pop_up_erro_cadastro) {
       const timer = setTimeout(() => {
@@ -175,8 +173,6 @@ function Cadastro_Produto() {
       return () => clearTimeout(timer);
     }
   }, [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto]);
-
-
 
 
   function diminuirQuantidade() {
@@ -238,8 +234,6 @@ function Cadastro_Produto() {
       alert("Erro ao enviar imagem. Verifique o console.");
     }
   }
-
-
 
   // Remove imagem selecionada
   function removerImagem(index) {
@@ -376,8 +370,6 @@ function Cadastro_Produto() {
       console.error("Erro ao buscar marcas", error);
     }
   }
-
-
 
 
   async function cadastrar_produto() {
