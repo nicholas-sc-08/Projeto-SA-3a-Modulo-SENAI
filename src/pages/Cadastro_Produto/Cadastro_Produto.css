@@ -20,7 +20,8 @@ body {
 /* ========================
    TÍTULOS
 =========================== */
-.titulo, .titulo2 {
+.titulo,
+.titulo2 {
     padding-top: 2%;
     padding-left: -20%;
     font-family: "Montserrat", sans-serif;
@@ -37,7 +38,7 @@ body {
     margin-left: 3.8%;
     font-size: 1.8rem;
     transform: scale(1);
-    transform-origin: center center; 
+    transform-origin: center center;
     font-weight: 600;
     padding-left: 2%;
 }
@@ -80,7 +81,8 @@ body {
     justify-content: center;
 }
 
-.miniatura, .imagem-principal {
+.miniatura,
+.imagem-principal {
     border-radius: 20px;
     overflow: hidden;
     background: #F3F1EF;
@@ -89,7 +91,7 @@ body {
     justify-content: center;
     position: relative;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .miniatura {
@@ -147,7 +149,8 @@ body {
     gap: 20px;
 }
 
-.inpt-edit, .inpt-edit-preco {
+.inpt-edit,
+.inpt-edit-preco {
     background-color: transparent;
     outline: none;
     border: 0;
@@ -262,21 +265,25 @@ body {
     border: 1px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
+    scrollbar-width: none;
     padding: 0;
     margin: 4px 0 0 0;
-    border-radius: 15%;
+    border-radius: 0.8vw;
     background: white;
     position: absolute;
-    width: 120%;
+    width: 150%;
     z-index: 999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    margin-top: 50%;
-    margin-right: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 53%;
+    /* margin-right: %; */
+    /* border: 1px solid red; */
 }
 
 .lista-tecidos li {
     padding: 8px;
     cursor: pointer;
+    font-size: 0.9rem;
+    /* border: 1px solid red; */
 }
 
 .lista-tecidos li:hover {
@@ -441,8 +448,15 @@ body {
     outline: none;
     margin-left: 130px;
     font-family: var(--tipografia_secundaria);
+<<<<<<< HEAD
     font-size: 1rem;
     
+=======
+    font-size: 0.9rem;
+    /* border: 1px solid red; */
+    color: #A67C52;
+    /* marrom claro padrão */
+>>>>>>> 0419fb7ba2b3fb4e95bd8efbc41ee145fe25e627
 }
 
 /* ======= Mudança da cor do texto após seleção ======= */
@@ -456,12 +470,16 @@ select.input-group-estado {
     outline: none;
     padding-left: 4px;
     border: 0.1vw solid var(--cor_dois);
-    color: #3e2a216f; /* marrom claro padrão */
+    color: #3e2a216f;
+    /* border: 1px solid red; */
+    /* marrom claro padrão */
 }
 
 select.input-group-estado:focus,
 select.input-group-estado:valid {
-    color: #3E2A21; /* marrom escuro após seleção */
+    color: #3E2A21;
+    /* border: 1px solid red; */
+    /* marrom escuro após seleção */
 }
 
 /* ========================
@@ -483,13 +501,17 @@ select.input-group-estado:valid {
     font-size: 16px;
     color: var(--cor_seis);
     background-color: transparent;
+    /* border: 1px solid red; */
 }
 
 .input-categoria {
     margin-top: 5.6px;
     border: 0.1vw solid var(--cor_dois);
     border-radius: 15px;
+<<<<<<< HEAD
     font-size: 15px;
+=======
+>>>>>>> 0419fb7ba2b3fb4e95bd8efbc41ee145fe25e627
     width: 200%;
     height: 50px;
     background-color: transparent;
@@ -498,27 +520,30 @@ select.input-group-estado:valid {
     outline: none;
     padding-left: 3%;
     font-family: var(--tipografia_secundaria);
-    color: #3E2A21;
+    font-size: 0.9rem;
+    color: var(--cor_seis);
 }
 
 .lista-categorias {
     list-style: none;
     border: 1px solid #ccc;
     max-height: 150px;
+    scrollbar-width: none;
     overflow-y: auto;
     padding: 0;
     margin: 4px 0 0 0;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
+    border-radius: 0.8vw;
     background: white;
     position: absolute;
-    width: 85%;
+    width: 90%;
     z-index: 999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-right: 50%;
+    margin-top: -0.1%;
 }
 
 .lista-categorias li {
+    font-size: 0.9rem;
     padding: 8px;
     cursor: pointer;
 }
@@ -531,22 +556,24 @@ select.input-group-estado:valid {
     list-style: none;
     border: 1px solid #ccc;
     max-height: 150px;
+    scrollbar-width: none;
     overflow-y: auto;
     padding: 0;
     background: white;
     position: absolute;
-    width: 40%;
+    width: 50%;
     height: fit-content;
     z-index: 999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0.8vw;
     margin-left: 27%;
+    margin-top: -3%;
     font-family: var(--tipografia_secundaria);
     color: var(--cor_seis);
 }
 
 .lista-marcas li {
+    font-size: 0.9rem;
     padding: 8px;
     cursor: pointer;
 }

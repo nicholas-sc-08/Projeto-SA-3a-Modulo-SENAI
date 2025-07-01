@@ -31,6 +31,14 @@ body {
   margin-bottom: 10%;
 }
 
+.estoque-container h2{
+  /* border: 1px solid red; */
+  font-family: var(--tipografia_primaria);
+  color: var(--cor_seis);
+  font-weight: 700;
+  margin-bottom: 2%;
+}
+
 
 .estoque-header {
   display: flex;
@@ -141,8 +149,8 @@ body {
 }
 
 .produto-preco {
-  color: green;
-  font-weight: bold;
+  color: var(--cor_um);
+  font-weight: 550;
 }
 
 .delete-button {
