@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 import { IMaskInput } from 'react-imask'
+import { AnimatePresence, motion } from 'framer-motion';
 import api from '../../services/api'
 
 function PopUp_mudar_Endereco({ fecharPopUp }) {
@@ -100,7 +101,7 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
 
 
   // atualiza o endereço do brecho enviando as informações ao backend
-  async function atualizarEnderecoBrecho({}) {
+  async function atualizarEnderecoBrecho({ }) {
 
     const enderecoAtual = array_enderecos.find(endereco => endereco.id_brecho === brecho_logado._id)
 
@@ -123,106 +124,120 @@ function PopUp_mudar_Endereco({ fecharPopUp }) {
   }
 
   return (
+
     <div className="tela-inteira-content">
-      <div className="divs-centrais-content">
 
-        <div className="voltar-e-menu-content">
-          <img src="./img/icons/Voltar-icone-verde.svg" alt="Voltar" onClick={fecharPopUp} />
-          {/* <img src="./img/icons/Menu-hamburguer-verde-escuro.svg" alt="Menu" /> */}
-        </div>
 
-        <div className="popUp-mudar-endereco-content">
+      <AnimatePresence>
 
-          <div className="titulo-e-subtitulo-content">
-            <p className="titulo-endereco-brecho-popUp">Modificar meu endereço</p>
-            <p className="subtitulo-endereco-brecho-popUp">De onde você deseja enviar os seus produtos?</p>
+        <motion.div initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.3,
+            scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+          }} className="divs-centrais-content">
+
+
+          <div className="voltar-e-menu-content">
+            <img src="./img/icons/Voltar-icone-verde.svg" alt="Voltar" onClick={fecharPopUp} />
+            {/* <img src="./img/icons/Menu-hamburguer-verde-escuro.svg" alt="Menu" /> */}
           </div>
 
-          <div className="inputs-do-popUp-content">
-            <div className="juncao-rua-logra-e-numero-content">
-              <div className="rua-logra-input-content">
-                <label className="topicos-input-endereco">Rua/Logradouro</label>
-                <input
-                  type="text"
-                  placeholder='Rua das Flores'
-                  value={enderecoDoBrecho.logradouro}
-                  onChange={(event) =>
-                    setEnderecoDoBrecho({
-                      ...enderecoDoBrecho,
-                      logradouro: event.target.value
-                    })
-                  }
-                />
-              </div>
+          <div className="popUp-mudar-endereco-content">
 
-              <div className="numero-input-content">
-                <label className="topicos-input-endereco">Número</label>
-                <input type="text"
-                  placeholder='200'
-                  value={enderecoDoBrecho.numero}
-                  onChange={(event) =>
-                    setEnderecoDoBrecho({
-                      ...enderecoDoBrecho,
-                      numero: event.target.value
-                    })
-                  }
-                />
-              </div>
+            <div className="titulo-e-subtitulo-content">
+              <p className="titulo-endereco-brecho-popUp">Modificar meu endereço</p>
+              <p className="subtitulo-endereco-brecho-popUp">De onde você deseja enviar os seus produtos?</p>
             </div>
 
-            <div className="complemento-input-content">
-              <label className="topicos-input-endereco">Complemento</label>
-              <input type="text"
-                placeholder='Apartamento 02'
-                value={enderecoDoBrecho.complemento}
-                onChange={(event) => setEnderecoDoBrecho({
-                  ...enderecoDoBrecho,
-                  complemento: event.target.value
-                })
-                }
-              />
-            </div>
+            <div className="inputs-do-popUp-content">
+              <div className="juncao-rua-logra-e-numero-content">
+                <div className="rua-logra-input-content">
+                  <label className="topicos-input-endereco">Rua/Logradouro</label>
+                  <input
+                    type="text"
+                    placeholder='Rua das Flores'
+                    value={enderecoDoBrecho.logradouro}
+                    onChange={(event) =>
+                      setEnderecoDoBrecho({
+                        ...enderecoDoBrecho,
+                        logradouro: event.target.value
+                      })
+                    }
+                  />
+                </div>
 
-            <div className="juncao-cep-e-bairro-content">
-              <div className="cep-input-content">
-                <label className="topicos-input-endereco">CEP</label>
-                <IMaskInput
-                  mask="00000-000"
-                  // unmask="typed"
-                  placeholder='00000-000'
-                  value={enderecoDoBrecho.cep}
-                  onAccept={(value) => setEnderecoDoBrecho({  // o onAccept é o método recomendado pela documentação do react-imask
-                    ...enderecoDoBrecho,
-                    cep: value
-                  })
-                  }
-                // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
-                />
+                <div className="numero-input-content">
+                  <label className="topicos-input-endereco">Número</label>
+                  <input type="text"
+                    placeholder='200'
+                    value={enderecoDoBrecho.numero}
+                    onChange={(event) =>
+                      setEnderecoDoBrecho({
+                        ...enderecoDoBrecho,
+                        numero: event.target.value
+                      })
+                    }
+                  />
+                </div>
               </div>
 
-              <div className="bairro-input-content">
-                <label className="topicos-input-endereco">Bairro</label>
+              <div className="complemento-input-content">
+                <label className="topicos-input-endereco">Complemento</label>
                 <input type="text"
-                  placeholder='Rio Vermelho'
-                  value={enderecoDoBrecho.bairro}
+                  placeholder='Apartamento 02'
+                  value={enderecoDoBrecho.complemento}
                   onChange={(event) => setEnderecoDoBrecho({
                     ...enderecoDoBrecho,
-                    bairro: event.target.value
+                    complemento: event.target.value
                   })
                   }
                 />
               </div>
+
+              <div className="juncao-cep-e-bairro-content">
+                <div className="cep-input-content">
+                  <label className="topicos-input-endereco">CEP</label>
+                  <IMaskInput
+                    mask="00000-000"
+                    // unmask="typed"
+                    placeholder='00000-000'
+                    value={enderecoDoBrecho.cep}
+                    onAccept={(value) => setEnderecoDoBrecho({  // o onAccept é o método recomendado pela documentação do react-imask
+                      ...enderecoDoBrecho,
+                      cep: value
+                    })
+                    }
+                  // onChange={(e) => setEnderecoDoBrecho({ ...enderecoDoBrecho, cep: event.target.value })}
+                  />
+                </div>
+
+                <div className="bairro-input-content">
+                  <label className="topicos-input-endereco">Bairro</label>
+                  <input type="text"
+                    placeholder='Rio Vermelho'
+                    value={enderecoDoBrecho.bairro}
+                    onChange={(event) => setEnderecoDoBrecho({
+                      ...enderecoDoBrecho,
+                      bairro: event.target.value
+                    })
+                    }
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <div className="salvar-endereco-content">
+              {mensagemErro && <p>{mensagemErro}</p>}
+              <button onClick={atualizarEnderecoBrecho}>Salvar Endereço</button>
             </div>
 
           </div>
 
-          <div className="salvar-endereco-content">
-            {mensagemErro && <p>{mensagemErro}</p>}
-            <button onClick={atualizarEnderecoBrecho}>Salvar Endereço</button>
-          </div>
 
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
