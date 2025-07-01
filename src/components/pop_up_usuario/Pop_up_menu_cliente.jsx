@@ -19,7 +19,7 @@ function Pop_up_menu_cliente({ onClose }) {
 
         <div className='popUp-sacola'>
           <img src="./img/Sacola.svg" alt="" />
-          <Link className='link-popUp-cliente' to={"./pages/#"}>Sacola</Link>
+          <Link className='link-popUp-cliente' to={"./Components/Sacola_geral"}>Sacola</Link>
         </div>
 
         <div className='popUp-sairConta'>

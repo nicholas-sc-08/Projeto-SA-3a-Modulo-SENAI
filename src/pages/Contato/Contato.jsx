@@ -10,6 +10,7 @@ import Pop_up_menssagem_enviada_contato from '../../components/pop_up_usuario/Po
 export default function Contato() {
   const form = useRef();
   const [exibirPopUp, setExibirPopUp] = useState(false);
+   const [mensagemErro, setMensagemErro] = useState(``)
 
   const fecharExibirPopUp = () => {
     setExibirPopUp(false);
@@ -18,7 +19,7 @@ export default function Contato() {
   const enviarEmail = (e) => {
     e.preventDefault();
 
-    // 👉 Verificação do email ANTES do envio
+    //Verificação do email feita ANTES do envio
     const email = form.current.from_email.value;
 
     // Verifica se o e-mail contém um "@" e termina com domínio válido
@@ -27,7 +28,7 @@ export default function Contato() {
       (email.endsWith("@gmail.com") || email.endsWith("@hotmail.com"));
 
     if (!emailValido) {
-      alert("Por favor, insira um e-mail válido (@gmail.com ou @hotmail.com)");
+      setMensagemErro(`O email deve conter "gmail.com" ou "hotmail.com"`);
       return; // Impede o envio
     }
 
@@ -62,17 +63,17 @@ export default function Contato() {
         <div className='container-info-contato'>
           <div className='cabecario-info-contato'>
             <div className='circulo-icon-contato'><img src="./img/telefone.svg" alt="" /></div>
-            <h3>Ligue Para Nós</h3>
+            <h3 className='ligue-contato'>Ligue Para Nós</h3>
           </div>
           <p>Estamos disponíveis 24 horas por dia, 7 dias por semana.</p>
           <div className='detalhe-entre-em-contato'>
             <h3>Telefone:</h3>
-            <h4>+55 (48) 9999-9999</h4>
+            <h4>+55 (48) 9974-9819</h4>
           </div>
           <hr />
           <div className='cabecario-info-contato'>
             <div className='circulo-icon-contato'><img src="./img/icons/envelope-mensagem-icon.svg" alt="" /></div>
-            <h3>Envie um Email</h3>
+            <h3 className='ligue-contato'>Envie um Email</h3>
           </div>
           <p>Preencha nosso formulário e entraremos em contato com você em até 24 horas.</p>
           <div className='detalhe-entre-em-contato'>
@@ -86,7 +87,11 @@ export default function Contato() {
             <div className='info-importante-entre-em-contato'>
               <div className='nome-entre-em-contato'>
                 <label>Nome Completo</label>
-                <input type="text" name="from_name" required />
+                <input 
+                type="text" 
+                name="from_name" 
+                placeholder='Mariazinha da Silva'
+                required />
               </div>
               <div className='email-entre-em-contato'>
                 <label>Email</label>

@@ -18,15 +18,16 @@
 
 .foto-edicao-perfil-cliente{
     position: relative;
-    width: 10%;
-    left: 11%;
-    top: 35%;
+    width: 27%;
+    left: 7%;
+    top: 26%;
 
 }
 
 .foto-base-perfil-cliente{
     position: relative;
     width: 70%;
+    border-radius: 19px;
     left: 9%;
     bottom: 64px;
 }
@@ -42,8 +43,8 @@
     position: absolute;
     width: 242px;
     height: 242px;
-    bottom: 3%;
-    left: 48%;
+    bottom: 27%;
+    left: 44%;
     transform: translateX(-50%); /* Centraliza o balão em relação à imagem */
     background-color: rgba(0, 0, 0, 0.466);
     color: white;
@@ -85,7 +86,7 @@
 
 .info-edicao-cliente{
     position: relative;
-    bottom: 15%;
+    bottom: 37%;
     left: 22%;
     width: 70%;
 }
@@ -114,7 +115,7 @@
 }
 
 .edicao-nome-cliente input{
-    height: 2.9vw;
+    height: 2.4vw;
     width: 310px;
     padding-left: 4%;
     outline: none;
@@ -217,9 +218,9 @@
 .edicao-mudanca-senha button{
     font-family: var(--tipografia_secundaria);
     border: none;
-    border-radius: 19px;
+    border-radius: 23px;
     width: 41%;
-    height: 40px;
+    height: 50px;
     margin-top: 5%;
     margin-left: 7%;
 

@@ -47,8 +47,12 @@
     padding: 15px;
 }
 
-.cabecalho-info-contato h3 {
-    color: var(--cor_seis_v_um);
+.ligue-contato{
+    color: var(--cor_seis);
+    padding-left: 5%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .circulo-icon-contato{
@@ -66,9 +70,12 @@
 
 .container-entre-em-contato{
     position: relative;
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
     border-radius: 19px;
     box-shadow: 1px 1px 6px 6px rgba(63, 64, 50, 0.105) ;
-    left:  670px;
+    left:  600px;
     width: 55%;
     height: 465px;
     bottom: 470px;
@@ -104,23 +111,22 @@
     font-size: 1rem;
 
     background-color: #fcf7e900;
-    border-radius: 0.8rem;
+    border-radius: 0.4rem;
     border: 2px solid var(--cor_dois);
 }
 
 .menssagem-cliente-entre-em-contato{
     height: 9.8vw;
-    width: 910px;
-    padding-left: 1%;
+    width: 785px;
     margin-top: 3%;
-    margin-left: 7%;
+    margin-left: 5%;
 
 
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
 
     background-color: #fcf7e900;
-    border-radius: 0.8rem;
+    border-radius: 0.4rem;
     border: 2px solid var(--cor_dois);
 }
 
@@ -139,6 +145,7 @@
 
 .but-entre-em-contato{
     font-family: var(--tipografia_secundaria);
+    font-size: 1rem;
     background-color: var(--cor_um);
     color: var(--cor_quatro);
     border: none;
@@ -158,7 +165,7 @@
     font-weight: 300;
 }
 .detalhe-entre-em-contato h4{
-    color: var(--cor_um_v_dois);
+    color: var(--cor_um);
     font-weight: 800;
     padding-left: 5%;
     padding-top: 0.9%;
