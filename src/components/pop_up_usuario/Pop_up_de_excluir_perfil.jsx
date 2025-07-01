@@ -1,8 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './Pop_up_de_excluir_perfil.css'
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import Pop_up_noticacao_exclusao_perfil from './Pop_up_noticacao_exclusao_perfil';
 
 function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
 
@@ -10,7 +12,9 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
   const { array_produtos, set_array_produtos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+
   const navigate = useNavigate()
+  const [mostrarPopUpSucesso, setMostrarPopUpSucesso] = useState(false)
 
   async function buscar_brechos() {
 
@@ -61,7 +65,7 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
     try {
 
       const endereco_brecho = array_enderecos.find(
-      endereco => endereco._id_brecho === usuario_logado._id)
+        endereco => endereco._id_brecho === usuario_logado._id)
 
       if (endereco_brecho) {
 
@@ -88,8 +92,15 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
     //   console.error("Erro ao excluir os produtos do brechó", erro)
     // }
 
+
     set_usuario_logado([])
-    navigate(`/`)
+    setMostrarPopUpSucesso(true)
+
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)    // espera 2 segundos antes de levar para a tela inicial (Home)
+
+
 
   }
 
@@ -98,18 +109,29 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
 
     <div className="toda-a-tela-inteira">
 
-      <div className="pop-up-excluir-perfil-content">
+      <AnimatePresence>
 
-        <img src="./img/Ponto_de_interrogacao.svg" alt="Bolinha com um ponto de interrogação dentro" />
-        <p>Tem certeza que deseja excluir essa conta?</p>
+        <motion.div initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.3,
+            scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+          }} className="pop-up-excluir-perfil-content">
 
-        <div className="botoes-pop-up-exluir-perfil-content">
+          <img src="./img/Ponto_de_interrogacao.svg" alt="Bolinha com um ponto de interrogação dentro" />
+          <p>Tem certeza que deseja excluir essa conta?</p>
 
-          <button onClick={fecharPopUpExcluir} className="sair-button-excluir-perfil">Sair</button>
-          <button onClick={excluir_todo_o_brecho} className="excluir-button-excluir-perfil">Excluir</button>
+          <div className="botoes-pop-up-exluir-perfil-content">
 
-        </div>
-      </div>
+            <button onClick={fecharPopUpExcluir} className="sair-button-excluir-perfil">Sair</button>
+            <button onClick={excluir_todo_o_brecho} className="excluir-button-excluir-perfil">Excluir</button>
+
+          </div>
+        </motion.div>
+
+      </AnimatePresence>
+
+      {mostrarPopUpSucesso && <Pop_up_noticacao_exclusao_perfil />}
 
     </div>
   )

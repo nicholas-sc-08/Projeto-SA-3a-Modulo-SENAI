@@ -23,8 +23,8 @@ function Perfil_Brecho() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext)
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
 
-  const { array_produtos, set_array_produtos } = useContext(GlobalContext)
-  const [produtos_embaralhados, set_produtos_embaralhados] = useState([])
+  // const { array_produtos, set_array_produtos } = useContext(GlobalContext)
+  // const [produtos_embaralhados, set_produtos_embaralhados] = useState([])
 
 
   const navegar = useNavigate(``)
@@ -40,7 +40,7 @@ function Perfil_Brecho() {
     buscar_produtos()
     buscar_brechos()
 
-  }, [ brecho_selecionado ])
+  }, [brecho_selecionado])
 
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function Perfil_Brecho() {
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
 
     if (encontrar_brecho && brecho_selecionado._id == encontrar_brecho._id) {
-      
+
       setNaoEBrecho(false)
       return
 
@@ -58,7 +58,7 @@ function Perfil_Brecho() {
     }
   }, [usuario_logado])
 
-// aqui a função pega os dados dos endereços no backend
+  // aqui a função pega os dados dos endereços no backend
   async function pegarEnderecoBrecho() {
 
     try {
@@ -77,23 +77,23 @@ function Perfil_Brecho() {
     if (brecho_selecionado) {
 
       setFormCadastroBrecho({ nome_vendedor: brecho_selecionado.nome_vendedor, data_de_nascimento_vendedor: brecho_selecionado.data_de_nascimento_vendedor, nome_brecho: brecho_selecionado.nome_brecho, telefone: brecho_selecionado.telefone, email: brecho_selecionado.email, cnpj: brecho_selecionado.cnpj, logo: brecho_selecionado.logo, horario_funcionamento: brecho_selecionado.horario_funcionamento });
-      setEnderecoDoBrecho({ bairro: brecho_selecionado.bairro, cidade: brecho_selecionado.cidade, estado: brecho_selecionado.estado})
+      setEnderecoDoBrecho({ bairro: brecho_selecionado.bairro, cidade: brecho_selecionado.cidade, estado: brecho_selecionado.estado })
     };
 
   }, [brecho_selecionado]);
 
-  
- useEffect(() => {
 
-  if (usuario_logado && usuario_logado._id && array_enderecos.length > 0) {
+  useEffect(() => {
 
-    const endereco = array_enderecos.find(endereco => endereco.id_brecho === usuario_logado._id)
+    if (usuario_logado && usuario_logado._id && array_enderecos.length > 0) {
 
-    if (endereco) {
-      setEnderecoDoBrecho(endereco)
+      const endereco = array_enderecos.find(endereco => endereco.id_brecho === usuario_logado._id)
+
+      if (endereco) {
+        setEnderecoDoBrecho(endereco)
+      }
     }
-  }
-}, [usuario_logado, array_enderecos])
+  }, [usuario_logado, array_enderecos])
 
   const abrirPopUpExcluir = () => {
     setMostrarPopUpExcluir(true)
@@ -105,30 +105,30 @@ function Perfil_Brecho() {
 
 
   async function buscar_brechos() {
-  
-          try {
-  
-              const brechos = await api.get(`/brechos`);
-              set_array_brechos(brechos.data);
-  
-          } catch (erro) {
-  
-              console.error(erro);
-          };
-      };
-  
-      async function buscar_produtos() {
-  
-          try {
-  
-              const produtos = await api.get(`/produtos`);
-              set_array_produtos(produtos.data);
-  
-          } catch (erro) {
-  
-              console.error(erro);
-          };
-      }
+
+    try {
+
+      const brechos = await api.get(`/brechos`);
+      set_array_brechos(brechos.data);
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
+
+  async function buscar_produtos() {
+
+    try {
+
+      const produtos = await api.get(`/produtos`);
+      set_array_produtos(produtos.data);
+
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  }
 
 
   return (
@@ -262,7 +262,7 @@ function Perfil_Brecho() {
         </div>
 
 
- <div className="container_voce_tambem_pode_gostar">
+       {/* <div className="container_voce_tambem_pode_gostar">
 
                     <div className="container_voce_tambem_pode_gostar_titulo">
 
@@ -304,7 +304,7 @@ function Perfil_Brecho() {
 
                     </div>
 
-                </div>
+            </div>*/}
 
       </div>
 

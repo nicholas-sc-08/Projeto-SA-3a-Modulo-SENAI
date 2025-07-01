@@ -286,6 +286,7 @@ function Header({ tipo }) {
 
         set_usuario_logado([]);
         set_sacola([]);
+        navigate('/');
     };
 
     function ir_ate_perfil(){
