@@ -17,7 +17,7 @@ function Cadastro_Produto() {
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  const { pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto } = useContext(GlobalContext);
+  const [ pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto ] = useState(false);
   const navigate = useNavigate();
 
   // Tecidos sugeridos para autocomplete
@@ -63,6 +63,19 @@ function Cadastro_Produto() {
 
   const [inputTecido, setInputTecido] = useState("");
   const [tecidosFiltrados, setTecidosFiltrados] = useState(tecidos_disponiveis);
+
+  useEffect(() => {
+
+    if(pop_up_notificacao_cadastro_produto){
+
+      setTimeout(() => {
+        
+        set_pop_up_notificacao_cadastro_produto(false);
+
+      }, 2000);
+    }
+
+  }, [pop_up_notificacao_cadastro_produto]);
 
   // Carrega categorias, produtos e informações do produto (caso esteja editando)
   useEffect(() => {
@@ -396,6 +409,7 @@ function Cadastro_Produto() {
       buscar_produtos();
       set_pop_up_notificacao_cadastro_produto(true);
       setTimeout(() => navigate("/gestao_estoque"), 2000);
+
     } catch (error) {
       console.error("Erro ao cadastrar produto", error.response?.data || error.message || error);
       set_pop_up_erro_cadastro(true);
@@ -406,8 +420,11 @@ function Cadastro_Produto() {
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
   return (
     <div>
+        {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
       <Header tipo="brecho" />
       <div className="cabecalho-titulo">
+
+
         <button className="botao-seta-voltar" onClick={() => navigate(-1)}>
           <img src="/img/seta-esquerda.png" alt="Voltar" />
         </button>
@@ -704,7 +721,7 @@ function Cadastro_Produto() {
 
             onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
             className="botao-cadastrar"
-            style={informacoes_editar_produto ? { backgroundColor: "#4CAF50" } : {}} >
+            style={informacoes_editar_produto ? { backgroundColor: "var(--cor_um)" } : {}} >
             {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
           </button>
 

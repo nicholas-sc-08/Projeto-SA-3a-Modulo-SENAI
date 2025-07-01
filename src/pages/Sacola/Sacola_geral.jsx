@@ -10,6 +10,7 @@ import api from '../../services/api';
 import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
 import Pop_up_notificacao_comprado from '../../components/Pop_up_notificacao_comprado/Pop_up_notificacao_comprado';
 import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.jsx';
+import Pop_up_sacola_vazia from '../../components/pop_up_sacola_vazia/Pop_up_sacola_vazia.jsx';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Chat from '../../components/chat/Chat';
@@ -29,6 +30,7 @@ function Sacola_geral() {
     const [clicou_em_excluir, set_clicou_em_excluir] = useState(false);
     const [mostrarPopupCompra, setMostrarPopupCompra] = useState(false);
     const [pop_up_usuario_nao_logado, set_pop_up_usuario_nao_logado] = useState(false);
+    const [pop_up_sacola_vazia, set_pop_up_sacola_vazia] = useState(false);
     const navegar_tela = useNavigate();
     const referencia_sacola = useRef(null);
 
@@ -60,6 +62,19 @@ function Sacola_geral() {
 
     }, [pop_up_usuario_nao_logado]);
 
+        useEffect(() => {
+
+        if(pop_up_sacola_vazia){
+
+            setTimeout(() => {
+                
+                set_pop_up_sacola_vazia(false);
+
+            }, 2000);
+        };
+
+    }, [pop_up_sacola_vazia]);
+
     useEffect(() => {
 
         if (clicou_em_excluir) {
@@ -68,30 +83,6 @@ function Sacola_geral() {
         };
 
     }, [clicou_em_excluir]);
-
-    useEffect(() => {
-
-        const params = new URLSearchParams(window.location.search);
-
-        if (params.get("status") == "sucesso") {
-
-            setMostrarPopupCompra(true);
-            set_sacola_aberta(false);
-        }
-    }, [sacola_aberta]);
-
-    async function atualizar_usuario_pos_compra() {
-
-        try {
-
-            const usuario_atualizado = { ...usuario_logado, sacola: [] };
-            const dados_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
-            set_usuario_logado(dados_usuario.data);
-        } catch (erro) {
-
-            console.error(erro);
-        };
-    };
 
     async function remover_produto_sacola(produto_selecionado) {
 
@@ -205,9 +196,9 @@ function Sacola_geral() {
         try {
             if (!sacola || sacola.length == 0) {
 
-                alert("Sua sacola está vazia!");
+                set_pop_up_sacola_vazia(true);
                 return;
-            }
+            };
 
             if(usuario_logado._id){
                 
@@ -226,8 +217,7 @@ function Sacola_geral() {
         } catch (error) {
 
             console.error("Erro ao iniciar pagamento:", error);
-            alert("Erro ao iniciar pagamento. Tente novamente.");
-        }
+        };
     };
 
     // Fecha o popup de sucesso e volta para home
@@ -248,6 +238,7 @@ function Sacola_geral() {
                 transition={{ duration: 0.4 }}
                 ref={referencia_sacola}
             >
+                {pop_up_sacola_vazia && <Pop_up_sacola_vazia/>}
                 {pop_up_usuario_nao_logado && <Pop_up_usuario_nao_logado/>}
                 {clicou_em_excluir && <Pop_up_excluir_produto_sacola />}
                 {mostrarPopupCompra && <Pop_up_notificacao_comprado fechar={fecharPopupSucesso} />}

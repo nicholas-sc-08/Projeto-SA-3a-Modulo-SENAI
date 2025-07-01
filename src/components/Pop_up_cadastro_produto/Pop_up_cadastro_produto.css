@@ -21,7 +21,7 @@
   border-radius: 1vw;
   box-shadow: rgba(0, 128, 0, 0.1) 0px 1px 3px 0px;
   background-color: #e6f4ea; /* Verde clarinho */
-  color: #1a662a; /* Verde escuro */
+  color: var(--cor_um); /* Verde escuro */
 }
 
 .pop-up-notificacao.sucesso .gif-animation {

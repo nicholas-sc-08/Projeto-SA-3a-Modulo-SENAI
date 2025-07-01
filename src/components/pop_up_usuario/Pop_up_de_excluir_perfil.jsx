@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import './Pop_up_de_excluir_perfil.css'
 import { GlobalContext } from '../../contexts/GlobalContext';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
 
@@ -9,6 +10,7 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
   const { array_enderecos, set_array_enderecos } = useContext(GlobalContext)
   const { array_produtos, set_array_produtos } = useContext(GlobalContext)
   const { usuario_logado, set_usuario_logado } = useContext(GlobalContext)
+  const navigate = useNavigate()
 
   async function buscar_brechos() {
 
@@ -59,15 +61,11 @@ function Pop_up_de_excluir_perfil({ fecharPopUpExcluir }) {
     try {
 
       const endereco_brecho = array_enderecos.find(
-      endereco => endereco._fk_id_brecho === usuario_logado._id)
-
-      console.log("passou por aquiii", endereco_brecho);
+      endereco => endereco._id_brecho === usuario_logado._id)
 
       if (endereco_brecho) {
-        
-        console.log("passou por aqui");
 
-        await api.delete(`/enderecos/${endereco._fk_id_brecho}`)
+        await api.delete(`/enderecos/${endereco_brecho._id_brecho}`)
 
         console.log("Endereço do brecho excluído com sucesso!")
       }

@@ -110,9 +110,8 @@ body {
     padding: 0;
 }
 
-.AddImage img {
-    width: 70%;
-    height: auto;
+.AddImage img    {
+    width: 100%;
     object-fit: contain;
 }
 
@@ -122,13 +121,12 @@ body {
 }
 
 .miniatura img {
-    height: 100%;
+    height: 60%;
     object-fit: cover;
 }
 
 .imagem-principal img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
     object-fit: cover;
 }
 
@@ -367,6 +365,7 @@ body {
     gap: 20%;
     margin-top: 10px;
     padding-left: 9.5%;
+    font-size: 16px;
 }
 
 .formulario-direito {
@@ -443,7 +442,7 @@ body {
     margin-left: 130px;
     font-family: var(--tipografia_secundaria);
     font-size: 1rem;
-    color: #A67C52;  /* marrom claro padrão */
+    
 }
 
 /* ======= Mudança da cor do texto após seleção ======= */
@@ -475,13 +474,13 @@ select.input-group-estado:valid {
     margin-top: 0.3rem;
     border: 1px solid #ccc;
     background-color: #fffefb;
-    padding-left: 1%;
+    padding-left: 4%;
     margin-bottom: 3%;
     outline: none;
     border: 0.1vw solid var(--cor_dois);
     border-radius: 1vw;
     font-family: var(--tipografia_secundaria);
-    font-size: 1rem;
+    font-size: 16px;
     color: var(--cor_seis);
     background-color: transparent;
 }
@@ -490,7 +489,7 @@ select.input-group-estado:valid {
     margin-top: 5.6px;
     border: 0.1vw solid var(--cor_dois);
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 15px;
     width: 200%;
     height: 50px;
     background-color: transparent;

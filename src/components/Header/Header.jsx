@@ -23,6 +23,7 @@ function Header({ tipo }) {
     const { sacola, set_sacola } = useContext(GlobalContext);
     const { altura_inicial_chat, set_altura_inicial_chat } = useContext(GlobalContext);
     const { altura_inicial_header_chat, set_altura_inicial_header_chat } = useContext(GlobalContext);
+    const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
 
     const [perfil_usuario, set_perfil_usuario] = useState(null)
 
@@ -287,6 +288,20 @@ function Header({ tipo }) {
         set_sacola([]);
     };
 
+    function ir_ate_perfil(){
+
+        const encontrar_brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id);
+        set_brecho_selecionado(usuario_logado);
+        navigate(`/perfil_brecho`);
+        
+        if(encontrar_brecho) {
+            
+        } else {
+
+            navigate(`/perfil_cliente`);
+        };
+    };
+
     function renderIcons() {
 
         const estaLogado = usuario_logado && Object.keys(usuario_logado).length > 0;
@@ -331,7 +346,7 @@ function Header({ tipo }) {
                                 {estaLogado ? (
                                     <>
                                         <div className='janela_button_perfil_logout'>
-                                            <Link to={perfil_usuario} className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</Link>
+                                            <button onClick={() => ir_ate_perfil()} className='container-imagem-pefil-usuario-header'><img referrerPolicy="no-referrer" crossOrigin="anonymous" src={usuario_logado._id ? usuario_logado.imagem_de_perfil || usuario_logado.logo : `./img/icons/IconePerfil.svg`} alt="" /> Olá! {usuario_logado.nome}</button>
                                             <button onClick={() => deslogar_usuario()} className='img-sair-da-conta'> <img src="./img/icons/Logout.svg" alt="Sair da minha conta" /> </button>
                                         </div>
                                     </>

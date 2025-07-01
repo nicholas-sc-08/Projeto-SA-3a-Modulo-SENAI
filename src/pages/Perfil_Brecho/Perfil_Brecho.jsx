@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
 
 import Footer from '../../components/Footer/Footer'
 import '../Perfil_Brecho/Perfil_Brecho.css'
@@ -11,6 +12,8 @@ import api from '../../services/api';
 function Perfil_Brecho() {
   const [divAtiva, setDivAtiva] = useState("informacoes")
   const [mostrarPopUpExcluir, setMostrarPopUpExcluir] = useState(false)
+
+  const referencia_perfil = useRef(null);
 
   const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
@@ -30,6 +33,8 @@ function Perfil_Brecho() {
 
   useEffect(() => {
 
+    referencia_perfil.current.scrollIntoView();
+
     pegarEnderecoBrecho()
 
     buscar_produtos()
@@ -42,7 +47,8 @@ function Perfil_Brecho() {
 
     const encontrar_brecho = array_brechos.find(brecho => brecho._id == usuario_logado._id)
 
-    if (encontrar_brecho) {
+    if (encontrar_brecho && brecho_selecionado._id == encontrar_brecho._id) {
+      
       setNaoEBrecho(false)
       return
 
@@ -127,7 +133,7 @@ function Perfil_Brecho() {
 
   return (
 
-    <div className="toda-tela-content">
+    <div className="toda-tela-content" ref={referencia_perfil}>
       <Header tipo='brecho' />
       <div className="depois-da-navbar-content">
         <div className="perfil-brecho-content">

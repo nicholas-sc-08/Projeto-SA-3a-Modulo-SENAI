@@ -9,6 +9,7 @@ import './Tela_inicial.css'
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Header from '../../components/Header/Header';
+import Compra_realizada from '../../components/Pop_up_compra_realizada/Compra_realizada';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { useSearch } from '@/contexts/SearchContext';
 
@@ -19,6 +20,7 @@ function Tela_incial() {
   const { array_brechos, set_array_brechos } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
   const { array_categorias, set_array_categorias } = useContext(GlobalContext);
+  const { brecho_selecionado, set_brecho_selecionado } = useContext(GlobalContext);
 
   const { chat_aberto, set_chato_aberto } = useContext(GlobalContext);
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
@@ -29,6 +31,8 @@ function Tela_incial() {
   const { sacola, set_sacola } = useContext(GlobalContext);
   const { sacola_ou_produto, set_sacola_ou_produto } = useContext(GlobalContext);
   const navegar = useNavigate(``);
+  const { sacola_aberta, set_sacola_aberta } = useContext(GlobalContext);
+  const [compra_realizada, set_compra_realizada] = useState(false);
 
   const { formCadastroBrecho, setFormCadastroBrecho } = useContext(GlobalContext)
 
@@ -175,6 +179,30 @@ function Tela_incial() {
   };
 
   useEffect(() => {
+
+    if (compra_realizada) {
+
+      setTimeout(() => {
+
+        set_compra_realizada(false);
+      }, 2000);
+    };
+
+  }, [compra_realizada])
+
+  useEffect(() => {
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("status") == "sucesso") {
+
+      atualizar_usuario_pos_compra();
+      set_compra_realizada(true)
+      set_sacola_aberta(false);
+    }
+  }, [sacola_aberta]);
+
+  useEffect(() => {
     const animateEstrela = async (controls) => {
       while (true) {
         const escala = Math.random() * 0.6 + 0.7 // entre 0.9 e 1.2
@@ -204,6 +232,19 @@ function Tela_incial() {
     };
 
   }, []);
+
+  async function atualizar_usuario_pos_compra() {
+
+    try {
+
+      const usuario_atualizado = { ...usuario_logado, sacola: [] };
+      const dados_usuario = await api.put(`/clientes/${usuario_atualizado._id}`, usuario_atualizado);
+      set_usuario_logado(dados_usuario.data);
+    } catch (erro) {
+
+      console.error(erro);
+    };
+  };
 
   function nome_brechos(fk_id) {
 
@@ -240,10 +281,11 @@ function Tela_incial() {
   };
 
   function ir_ate_perfil_brecho(brecho) {
-    
+
+    set_brecho_selecionado(brecho);
     setFormCadastroBrecho(brecho)
     navegar(`/perfil_brecho`)
-    
+
   }
 
   const handleCategoryClick = (nome_categoria) => {
@@ -266,6 +308,9 @@ function Tela_incial() {
 
   return (
     <AnimatePresence>
+
+      {compra_realizada && <Compra_realizada />}
+
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
 
         <Header tipo={tipo_de_header} />

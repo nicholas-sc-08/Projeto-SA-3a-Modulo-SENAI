@@ -1,9 +1,7 @@
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
-import './Pop_up_produto_adicionado.css';
+import { AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
-function Pop_up_notificacao_comprado() {
-
+function Compra_realizada() {
   return (
     <div className='container_fundo_pop_up_excluir_poduto_sacola'>
 
@@ -17,7 +15,7 @@ function Pop_up_notificacao_comprado() {
           }} className="container_pop_up_excluir_produto_sacola">
 
           <img src="./img/gif/checkAnimation.gif" alt="" className='gif-animation' />
-          <p>Produto Adicionado a Sacola!</p>
+          <p>Compra realizada com sucesso!</p>
 
         </motion.div>
 
@@ -27,4 +25,4 @@ function Pop_up_notificacao_comprado() {
   )
 }
 
-export default Pop_up_notificacao_comprado;
+export default Compra_realizada
