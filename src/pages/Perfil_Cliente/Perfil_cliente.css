@@ -28,6 +28,9 @@
 }
 
 .container-perfil-cliente{
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
     margin-left: 10%;
     margin-top: 3%;
     margin-bottom: 77px;
@@ -47,7 +50,7 @@
 
 .info-cliente{
     position: relative;
-    bottom: 50%;
+    bottom: 52%;
     left: 22%;
     width: 70%;
 }
