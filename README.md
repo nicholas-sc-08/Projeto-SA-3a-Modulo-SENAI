@@ -1,4 +1,6 @@
-# Fly
+
+<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Banner%20Fly.png" alt="Banner Fly"/>
+
 ## Descrição
   O Fly é um aplicativo inovador que nasceu com o propósito de dar mais visibilidade aos brechós e facilitar a vida dos consumidores apaixonados pela moda sustentável. A plataforma permite que os usuários encontre brechós e através deles descubram peças únicas, tornando possível fazer compras de forma prática e eficiente.
   A ideia do Fly surgiu da experiência pessoal de um dos membros do nosso grupo de desenvolvedores. Sua mãe é dona de um brechó e, diariamente, enfrenta o desafio de alcançar novos clientes e tornar seu negócio mais conhecido. Essa realidade nos motivou a criar uma solução tecnológica que beneficie tanto pequenos empreendedores quanto consumidores que buscam alternativas mais acessíveis e ecológicas no mundo da moda.
