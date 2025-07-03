@@ -366,7 +366,7 @@ function Sacola_geral() {
 
                 <Footer />
 
-                {usuario_logado !== "" && !conversa_aberta && <Chat />}
+                {usuario_logado != `` && !conversa_aberta && <Chat />}
                 {conversa_aberta && <Chat_conversa />}
 
             </motion.div>
