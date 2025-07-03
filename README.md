@@ -28,8 +28,6 @@
 ![Windows Terminal](https://img.shields.io/badge/windows%20terminal-4D4D4D?style=for-the-badge&logo=windows%20terminal&logoColor=white)
 ![Whatsapp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)
 
-## Requisitos Funcionais
-
 | Requisitos Funcionais (RF)    | Descrição                                                                                                             |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | RF 01 Cadastro de Cliente     | O sistema deve permitir que o usuário possa se cadastrar no site ao preencher as informações requiridas no cadastro.  |
