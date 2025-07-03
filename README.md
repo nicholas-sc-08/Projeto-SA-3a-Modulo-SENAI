@@ -75,11 +75,13 @@
 | A tela de busca de produtos permite ao usuário explorar o catálogo de forma rápida e eficiente, exibindo os itens disponíveis em um layout em grade com imagens, nomes, preços e o nome do brechó responsável por cada produto. No topo da interface, há um campo de pesquisa onde o usuário pode digitar termos específicos para encontrar peças desejadas. Os resultados são exibidos dinamicamente conforme a busca, facilitando a navegação e a descoberta de novos itens. O design prioriza a clareza visual, destacando as imagens dos produtos e permitindo uma experiência fluida na navegação entre diferentes opções de compra. |
 
 | Sacola |
+|--------|
 |<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20162303.png" width="100%"/>|
 | A tela da sacola exibe os produtos que o usuário adicionou para compra, organizados em uma lista clara e objetiva. Cada item apresenta uma imagem do produto, nome, preço unitário, tamanho selecionado, quantidade e subtotal correspondente. Há a opção de alterar a quantidade ou remover itens diretamente da sacola, proporcionando controle total antes da finalização da compra. No final da lista, é exibido o valor total da compra, acompanhado de um botão de “Finalizar pedido”, que direciona o usuário para a próxima etapa do processo de compra. A interface é intuitiva e responsiva, garantindo praticidade na revisão dos itens escolhidos. |
 
 
 | Escolha de Cadastro |
+|---------------------|
 |<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20163412.png" width="100%"/>|
 | A tela de escolha de cadastro permite que o usuário selecione o tipo de conta que deseja criar: como cliente ou como brechó. Com um layout simples e direto, a interface apresenta dois botões bem destacados, cada um representando uma das opções de cadastro. Essa separação facilita a navegação e direciona o usuário ao formulário adequado de acordo com seu perfil, garantindo uma experiência inicial mais organizada e personalizada dentro da plataforma. |
 
