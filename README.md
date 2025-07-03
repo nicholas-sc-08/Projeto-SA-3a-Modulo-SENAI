@@ -60,6 +60,7 @@
 ## Protótipos das Telas
 
 | Página Inícial |
+|----------------|
 |<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20163453.png" width="100%"/>|
 | A tela inicial serve como ponto de entrada para a plataforma, oferecendo uma navegação rápida e uma visão geral das principais funcionalidades. O topo da página apresenta um menu fixo com links para categorias, login e acesso à sacola. Logo abaixo, há um banner visualmente chamativo que destaca a proposta do brechó online, seguido por uma vitrine de produtos em destaque, exibidos em cards com imagem, nome, preço e brechó correspondente. Essa tela tem como objetivo atrair o usuário logo no primeiro contato, incentivando a navegação pelos produtos disponíveis de forma intuitiva e agradável. |
 
