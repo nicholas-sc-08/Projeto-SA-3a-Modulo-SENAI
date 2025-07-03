@@ -64,6 +64,11 @@
 |<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20162653.png" width="100%"/>
 | A tela de exibição de produto apresenta ao usuário todas as informações essenciais sobre um item disponível para compra, organizadas de forma clara e atrativa. Nela, destaca-se uma imagem principal do produto, acompanhada de imagens secundárias, seguidas pelo nome, preço, condição, cor, tamanho, quantidade em estoque, marca e uma descrição detalhada que ressalta as principais características do item. Também estão disponíveis botões de ação, como "adicionar ao carrinho" e, quando aplicável, sugestões de produtos relacionados e informações do brechó vendedor. A interface é projetada para oferecer uma experiência visual e informativa que facilite a decisão de compra. |
 
+| Buscar Produtos |
+|-----------------|
+|<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20165304.png" width="100%"/>|
+| A tela de busca de produtos permite ao usuário explorar o catálogo de forma rápida e eficiente, exibindo os itens disponíveis em um layout em grade com imagens, nomes, preços e o nome do brechó responsável por cada produto. No topo da interface, há um campo de pesquisa onde o usuário pode digitar termos específicos para encontrar peças desejadas. Os resultados são exibidos dinamicamente conforme a busca, facilitando a navegação e a descoberta de novos itens. O design prioriza a clareza visual, destacando as imagens dos produtos e permitindo uma experiência fluida na navegação entre diferentes opções de compra. |
+
 ## Instrução de Instalação
   Este aplicativo ainda está em processo de criação.
 
