@@ -2,7 +2,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import "./Gestao_estoque.css";
+import "./Gestao_Estoque.css";
 import Header from "../../components/Header/Header";
 import api from "../../services/api";
 import Chat from "../../components/chat/Chat";
