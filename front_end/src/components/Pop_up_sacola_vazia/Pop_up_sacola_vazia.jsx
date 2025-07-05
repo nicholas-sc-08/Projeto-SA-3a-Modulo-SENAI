@@ -5,7 +5,7 @@ import './Pop_up_sacola_vazia.css'
 function Pop_up_sacola_vazia() {
 
   return (
-    <div className='container_fundo_pop_up_compra_realizada'>
+    <div className='container_fundo_pop_up_sacola_vazia'>
 
       <AnimatePresence>
 
@@ -14,7 +14,7 @@ function Pop_up_sacola_vazia() {
           transition={{
             duration: 0.4,
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-          }} className="container_pop_up_compra_realizada">
+          }} className="container_pop_up_sacola_vazia">
 
           <img src="./img/icons/icone_de_erro.svg" alt="" className='gif-animation' />
           <p>A sua Sacola está Vazia!</p>
