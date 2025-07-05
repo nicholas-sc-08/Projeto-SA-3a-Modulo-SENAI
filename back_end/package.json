@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon script.js"
+    "start": "node script.js"
   },
   "author": "nsc",
   "license": "ISC",
@@ -23,7 +23,7 @@
     "nodemon": "^3.1.10",
     "pg": "^8.16.2",
     "socket.io": "^4.8.1",
-    "stripe": "^18.2.1"
+    "stripe": "^18.3.0"
   },
   "devDependencies": {
     "jest": "^30.0.2"

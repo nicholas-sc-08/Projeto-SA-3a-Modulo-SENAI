@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "react-scripts build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest"
@@ -22,7 +22,7 @@
     "dotenv": "^16.5.0",
     "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
-    "framer-motion": "^12.19.2",
+    "framer-motion": "^12.23.0",
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.16.0",
     "motion": "^12.15.0",
