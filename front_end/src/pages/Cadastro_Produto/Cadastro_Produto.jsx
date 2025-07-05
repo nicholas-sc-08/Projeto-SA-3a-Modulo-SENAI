@@ -533,13 +533,13 @@ function Cadastro_Produto() {
                 <div className="quantidade-titulo">Quantidade</div>
                 <div className="quantidade">
                   <button className="botao-quantidade" onClick={diminuirQuantidade}>
-                    <img src="./public/img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
+                    <img src="./img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
                   </button>
 
                   <div className="quantidade-numero">{quantidade}</div>
 
                   <button className="botao-quantidade" onClick={aumentarQuantidade}>
-                    <img src="./public/img/icons/seta-direita.png" alt="Aumentar" className="icone-quantidade" />
+                    <img src="./img/icons/seta-direita.png" alt="Aumentar" className="icone-quantidade" />
                   </button>
 
                 </div>
