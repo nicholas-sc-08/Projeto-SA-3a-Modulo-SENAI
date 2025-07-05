@@ -83,7 +83,7 @@ app.post("/criar-checkout", async (req, res) => {
 });
 
 
-server.listen(porta, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
+server.listen(porta, `0.0.0.0`, () => console.log(`Servidor HTTP rodando na porta ${porta}`));
 
 
 // o io.on vai escuta novas conexões de clientes ou seja quando um usuário conectar, é criado um socket exclusivo para ele
