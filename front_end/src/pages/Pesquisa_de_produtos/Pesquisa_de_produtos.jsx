@@ -62,46 +62,6 @@ function Pesquisa_de_produtos() {
 
     }, [termoBuscado]);
 
-    // useEffect(() => {
-
-    //     if (id_categoria_selecionada) {
-
-    //         const array_com_as_categorias = array_produtos.filter(p => p.fk_id_categoria == id_categoria_selecionada);
-    //         console.log(array_com_as_categorias);
-
-    //         const embaralhar = array_com_as_categorias.sort(() => Math.random() - 0.5);
-    //         set_produtos_embaralhados(embaralhar);
-
-    //     } else {
-
-    //         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-    //         set_produtos_embaralhados(embaralhar);
-    //     };
-
-    //     referencia_pesquisa_produtos.current.scrollIntoView();
-
-    // }, [array_produtos, id_categoria_selecionada]);
-
-    // useEffect(() => {
-
-    //     if (id_marca_selecionada) {
-
-    //         const array_com_as_marcas = array_produtos.filter(p => p.fk_id_marca == id_marca_selecionada);
-    //         console.log(array_com_as_marcas);
-
-    //         const embaralhar = array_com_as_marcas.sort(() => Math.random() - 0.5);
-    //         set_produtos_embaralhados(embaralhar);
-
-    //     } else {
-
-    //         const embaralhar = [...array_produtos].sort(() => Math.random() - 0.5);
-    //         set_produtos_embaralhados(embaralhar);
-    //     };
-
-    //     referencia_pesquisa_produtos.current.scrollIntoView();
-
-    // }, [array_produtos, id_categoria_selecionada]);
-
     useEffect(() => {
         let produtos_filtrados = [...array_produtos];
 
@@ -192,25 +152,6 @@ function Pesquisa_de_produtos() {
             console.error(erro);
         };
     };
-
-    // async function buscar_produtos() {
-
-    //     try {
-    //         const produtos = await api.get(`/produtos`);
-    //         const todos = produtos.data;
-
-    //         // Aplica o filtro pelo termo de busca
-    //         const filtrados = todos.filter(produto =>
-    //             produto.nome.toLowerCase().includes(termoBuscado) ||
-    //             produto.descricao?.toLowerCase().includes(termoBuscado)
-    //         );
-
-    //         set_array_produtos(filtrados);
-
-    //     } catch (erro) {
-    //         console.error(erro);
-    //     };
-    // };
 
     async function buscar_produtos() {
         try {

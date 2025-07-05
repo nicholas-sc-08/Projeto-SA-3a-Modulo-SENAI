@@ -79,7 +79,7 @@ function Tela_incial() {
 
     } catch (erro) {
 
-      console.log(erro);
+      console.error(erro);
     };
   };
 
@@ -92,7 +92,7 @@ function Tela_incial() {
 
     } catch (erro) {
 
-      console.log(erro);
+      console.error(erro);
     };
   };
 
@@ -105,7 +105,7 @@ function Tela_incial() {
 
     } catch (erro) {
 
-      console.log(erro);
+      console.error(erro);
     };
   };
 
@@ -464,49 +464,6 @@ function Tela_incial() {
             </div>
           </div>
         </div>
-        {/* home page seção quatro */}
-
-        {/* home page seção cinco */}
-        {/* <div className="home-page-secao-cinco-container">
-        <div className="container-sinalizacao-avalicacoes-home-page">
-          <div className="icon-quadrado-avaliacoes-home-page"></div>
-          <p>Avaliações</p>
-        </div>
-
-        <div className="container-titulo-secao-cinco">
-          <p>NOSSOS FEEDBACKS</p>
-        </div>
-
-        <div className="alinhamento-buttons-anterior-proximo">
-          <button className='button-anterior-carrossel' onClick={prevFeedBack}><img src="./img/icons/CarrosselAnteriorMarrom.svg" alt="Anterior" /></button>
-          <button className='button-proximo-carrossel' onClick={nextFeedBack}><img src="./img/icons/CarrosselProximoMarrom.svg" alt="Anterior" /></button>
-        </div>
-
-        <AnimatePresence mode="wait">
-          <div className="carousel-wrapper">
-            <motion.div
-              animate={{ x: -startIndexFeedBack * 355 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="container-alinhamento-avaliacoes"
-            >
-              {comentarios.map((c, i) => (
-                <div className="container-cards-alinhamento">
-                  <div className="home-page-card-avaliacoes" key={i}>
-                    <div className="alinhamento-imagem-perfil-usuario-nome-usuario">
-                      <img src="./img/img_perfil_provisorio.svg" alt="" />
-                      <p className="nome-pessoa-avaliacoes">{c.nome}</p>
-                    </div>
-
-                    <p className="comentario-avaliacao">{c.texto}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </AnimatePresence>
-      </div> */}
-        {/* home page seção cinco */}
-
 
         {usuario_logado != `` && !conversa_aberta && <Chat />}
         {conversa_aberta && <Chat_conversa />}

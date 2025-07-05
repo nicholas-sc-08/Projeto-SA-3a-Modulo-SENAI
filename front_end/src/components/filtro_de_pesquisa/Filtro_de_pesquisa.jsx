@@ -48,8 +48,6 @@ function Filtro_de_pesquisa() {
             const preco_total = parseFloat(filtro_de_pesquisa.preco).toFixed(2).replace(`.`, `,`);
             set_preco_exibido(`R$${preco_total}`);
         };
-        console.log(filtro_de_pesquisa);
-
 
     }, [filtro_de_pesquisa]);
 

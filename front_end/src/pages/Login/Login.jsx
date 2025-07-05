@@ -93,8 +93,6 @@ function Login() {
 
     const cliente_a_encontrar = array_clientes.find(cliente => formulario.email == cliente.email && formulario.senha == cliente.senha);
     const brecho_a_encontrar = array_brechos.find(brecho => formulario.email == brecho.email && formulario.senha == brecho.senha);
-    console.log();
-
 
     if (cliente_a_encontrar) {
 
@@ -138,7 +136,7 @@ function Login() {
         const novo_cliente = {
           nome: data.name,
           email: data.email,
-          senha: `123`,
+          senha: Date.now(),
           telefone: ``,
           cpf: ``,
           data_de_nascimento: `2000-01-01`,

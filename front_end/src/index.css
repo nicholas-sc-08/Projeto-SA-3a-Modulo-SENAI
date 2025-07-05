@@ -39,4 +39,8 @@ html {
 
     --tipografia_primaria: "Montserrat", serif;
     --tipografia_secundaria: "Poppins", serif;
+
+    
+    outline: none !important;
+    user-select: none !important;
 }
