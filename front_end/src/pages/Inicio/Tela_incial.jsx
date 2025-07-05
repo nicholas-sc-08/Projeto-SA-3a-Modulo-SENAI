@@ -328,14 +328,14 @@ function Tela_incial() {
 
           <motion.img
             className='estrela-verde-home-page'
-            src="img/Estrela_dois_cadastro.svg"
+            src="./img/Estrela_dois_cadastro.svg"
             home-page-secao-dois-container alt="estrela verde grande"
             animate={controlsEstrelaVerde}
             initial={{ scale: 1 }}
           />
           <motion.img
             className='estrela-amarela-home-page'
-            src="img/Estrela_um_cadastro.svg"
+            src="./img/Estrela_um_cadastro.svg"
             alt="estrela amarela pequena"
             animate={controlsEstrelaAmarela}
             initial={{ scale: 1 }}

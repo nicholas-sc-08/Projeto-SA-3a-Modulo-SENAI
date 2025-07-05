@@ -56,7 +56,7 @@
 .container-imagem-roupas-numero-um {
     width: 75%;
     height: 70vh;
-    background-image: url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
+    background-image: url('./img/imagens_telaInicial/ImagemRoupaUm.svg');
     background-size: cover;
 }
 
@@ -473,7 +473,7 @@
 
     background-image:
         linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-        url('./public/img/imagens_telaInicial/ImagemRoupaUm.svg');
+        url('./img/imagens_telaInicial/ImagemRoupaUm.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -502,7 +502,7 @@
 
     background-image:
         linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-        url('./public/img/imagens_telaInicial/CardImagemDoisTelaInicial.svg');
+        url('./img/imagens_telaInicial/CardImagemDoisTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -538,7 +538,7 @@
 
     background-image:
         linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-        url('./public/img/imagens_telaInicial/CardImagemTresTelaInicial.svg');
+        url('./img/imagens_telaInicial/CardImagemTresTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -567,7 +567,7 @@
 
     background-image:
         linear-gradient(to bottom, var(--cor_quatro) 10%, transparent 45%),
-        url('./public/img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg');
+        url('./img/imagens_telaInicial/CardImagemQuatroTelaInicial.svg');
     background-size: cover;
     background-position: center;
     display: flex;

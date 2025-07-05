@@ -315,7 +315,7 @@ function Header({ tipo }) {
                     {tipo == 'usuario' && (
 
                         <button className="button-sacola-navbar" onClick={() => sacola_perfil(`sacola`)}>
-                            <img src="/img/icons/IconeSacola.svg" alt="Sacola" />
+                            <img src="./img/icons/IconeSacola.svg" alt="Sacola" />
                             <span>{quantidade_de_produtos_sacola()}</span>
                         </button>
 
@@ -324,7 +324,7 @@ function Header({ tipo }) {
 
                     {tipo === 'brecho' && (
                         <button className="button-chat-navbar" onClick={() => fechar_chat()}>
-                            <img src="/img/icons/chat.svg" alt="Chat" />
+                            <img src="./img/icons/chat.svg" alt="Chat" />
                         </button>
                     )}
 
@@ -500,24 +500,24 @@ function Header({ tipo }) {
             <nav className="navbar-usuario">
                 {tipo === 'usuario' && (
                     <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-                        <img src="./public/img/icons/MenuHamburger.svg" alt="Menu" />
+                        <img src="./img/icons/MenuHamburger.svg" alt="Menu" />
                     </button>
                 )}
 
                 {tipo === 'brecho' && (
                     <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-                        <img src="./public/img/icons/MenuHamburger.svg" alt="Menu" />
+                        <img src="./img/icons/MenuHamburger.svg" alt="Menu" />
                     </button>
                 )}
 
                 {tipo === 'admin' && (
                     <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-                        <img src="./public/img/icons/MenuHamburger.svg" alt="Menu" />
+                        <img src="./img/icons/MenuHamburger.svg" alt="Menu" />
                     </button>
                 )}
 
                 <Link to="/" className="header-link-logo" onClick={() => set_sacola_aberta(false)}>
-                    <img src="./public/img/logo/logo-verdeCamadinha.svg" alt="Logo Fly" className='header-link-logo-img' />
+                    <img src="./img/logo/logo-verdeCamadinha.svg" alt="Logo Fly" className='header-link-logo-img' />
                 </Link>
 
                 <div className="nav-links">
