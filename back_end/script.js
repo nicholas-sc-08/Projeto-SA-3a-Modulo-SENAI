@@ -67,8 +67,8 @@ app.post("/criar-checkout", async (req, res) => {
             payment_method_types: ["card"],
             mode: "payment",
             line_items,
-            success_url: "http://localhost:5173/?status=sucesso",
-            cancel_url: "http://localhost:5173/?status=cancelado",
+            success_url: "https://projeto-sa-3a-modulo-senai.vercel.app/?status=sucesso",
+            cancel_url: "https://projeto-sa-3a-modulo-senai.vercel.app/?status=cancelado",
         });
         console.log("Sessão Stripe criada:", session);
 
