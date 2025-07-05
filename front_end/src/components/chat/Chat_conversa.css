@@ -13,7 +13,7 @@
     border-top-right-radius: 1vw;
 
     background-size: cover;
-    background-image: url('./img/fundo_conversa_chat.png');
+    background-image: url('/img/fundo_conversa_chat.png');
     background-color: var(--cor_quatro);
     z-index: 4;
 }

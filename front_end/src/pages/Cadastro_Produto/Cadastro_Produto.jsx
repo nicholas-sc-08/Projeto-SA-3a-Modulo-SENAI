@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer';
 import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
 import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
 import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Cadastro_Produto() {
   // Estados globais via Context API

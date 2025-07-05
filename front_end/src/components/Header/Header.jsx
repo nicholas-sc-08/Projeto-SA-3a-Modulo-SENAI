@@ -188,7 +188,7 @@ function Header({ tipo }) {
             return (
                 <>
                     <Link to="/gestao_estoque" className="link-texto-navbar-usuario">Estoque</Link>
-                    <Link to="/informacoes" className="link-texto-navbar-usuario">Informações</Link>
+                    <Link to="/EsramosChegando" className="link-texto-navbar-usuario">Informações</Link>
                     <Link to="/sobre_nos" className="link-texto-navbar-usuario">Sobre Nós</Link>
                 </>
             );
