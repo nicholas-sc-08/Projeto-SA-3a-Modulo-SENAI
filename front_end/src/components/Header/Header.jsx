@@ -681,7 +681,7 @@ function Header({ tipo }) {
             {tipo === 'usuario' && (
                 <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
                     <button className="close-btn" onClick={() => setMenuOpen(false)}>
-                        <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
+                        <img src="./img/icons/CloseButton.svg" alt="Fechar janela" />
                     </button>
                     {renderLinks()}
                 </div>
@@ -690,7 +690,7 @@ function Header({ tipo }) {
             {tipo === 'brecho' && (
                 <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
                     <button className="close-btn" onClick={() => setMenuOpen(false)}>
-                        <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
+                        <img src="./img/icons/CloseButton.svg" alt="Fechar janela" />
                     </button>
                     {renderLinks()}
                 </div>
@@ -699,7 +699,7 @@ function Header({ tipo }) {
             {tipo === 'admin' && (
                 <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
                     <button className="close-btn" onClick={() => setMenuOpen(false)}>
-                        <img src="./public/img/icons/CloseButton.svg" alt="Fechar janela" />
+                        <img src="./img/icons/CloseButton.svg" alt="Fechar janela" />
                     </button>
                     {renderLinks()}
                 </div>

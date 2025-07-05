@@ -66,7 +66,7 @@
     color: var(--cor_seis);
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     font-family: var(--tipografia_secundaria);
-    background-image: url('./public/img/icons/Pesquisa.svg');
+    background-image: url('/img/icons/Pesquisa.svg');
     background-repeat: no-repeat;
     background-position: 1rem center;
     background-size: 1.5rem;
