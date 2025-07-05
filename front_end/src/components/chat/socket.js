@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-const socket = io(`https://2909-179-167-31-111.ngrok-free.app`, {
+const socket = io(import.meta.env.VITE_API_URL, {
   transports: ['websocket'],
   extraHeaders: { 'ngrok-skip-browser-warning': 'true' }
 });
