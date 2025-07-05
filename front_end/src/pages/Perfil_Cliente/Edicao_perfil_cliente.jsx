@@ -60,7 +60,7 @@ function Edicao_perfil_cliente() {
         dadosAtualizados.novaSenha = form.novaSenha;
       }
 
-      const response = await fetch(`http://localhost:3000/clientes/${usuario_logado._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/clientes/${usuario_logado._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosAtualizados)

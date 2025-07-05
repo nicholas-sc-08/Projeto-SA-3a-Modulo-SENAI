@@ -264,7 +264,7 @@ function Edicao_perfil_brecho() {
 
             <div className="icone-voltar-verde-content">
               <Link to={'/perfil_brecho'}>
-                <img src="./public/img/icons/Voltar-icone-verde.svg" className="icone-voltar-edicao-brecho" alt="Voltar" />
+                <img src="./img/icons/Voltar-icone-verde.svg" className="icone-voltar-edicao-brecho" alt="Voltar" />
               </Link>
             </div>
 

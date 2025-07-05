@@ -167,12 +167,12 @@ function Perfil_Brecho() {
                 {!naoEBrecho && <div className="icons-edicao-excluir-content">
 
                   <Link to={"/Edicao_perfil_brecho"} className="editar-content">
-                    <img src="./public/img/icons/lapis-editar-icon.svg" alt="" />
+                    <img src="./img/icons/lapis-editar-icon.svg" alt="" />
                     <span className="editar-opcao-palavra">Editar</span>
                   </Link>
 
                   <Link onClick={() => setMostrarPopUpExcluir(true)} className="excluir-content">
-                    <img src="./public/img/icons/lixeira-vermelha-icon.svg" alt="" />
+                    <img src="./img/icons/lixeira-vermelha-icon.svg" alt="" />
                     <span className="excluir-opcao-palavra">Excluir</span>
                   </Link>
                 </div>}
@@ -181,7 +181,7 @@ function Perfil_Brecho() {
               <div className="entrar-em-contato-content">
                 <div className="mensagem-content" onClick={() => navegar(`/contato`)}>
                   <a href="">
-                    <img src="./public/img/icons/envelope-mensagem-icon.svg" alt="Icone-Email" />
+                    <img src="./img/icons/envelope-mensagem-icon.svg" alt="Icone-Email" />
                   </a>
                   <p>Envie uma Mensagem</p>
                 </div>
@@ -248,7 +248,7 @@ function Perfil_Brecho() {
                     <div className="infos-cadastradas-sub-div">
                      <div className="gestao-estoque-button-content" onClick={() => navegar(`/gestao_estoque`)}>
                         <a href="">
-                          <img src="./public/img/icons/bx--box.svg" alt="Icone-Estoque" />
+                          <img src="./img/icons/bx--box.svg" alt="Icone-Estoque" />
                         </a>
                         <p>Estoque</p>
                       </div>
