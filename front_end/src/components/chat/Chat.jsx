@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Chat.css';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import axios from 'axios';
-import Pop_up_excluir_conversa from './Pop_up_excluir_conversa';
-import api from '../../services/api';
+import { GlobalContext } from '../../contexts/GlobalContext.jsx';
+import Pop_up_excluir_conversa from './Pop_up_excluir_conversa.jsx';
+import api from '../../services/api.js';
 
 function Chat() {
 
@@ -28,7 +27,6 @@ function Chat() {
     buscar_clientes();
     buscar_chat();
     buscar_brechos();
-    console.log(usuario_logado);
 
   }, []);
 

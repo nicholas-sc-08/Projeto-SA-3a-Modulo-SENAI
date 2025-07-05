@@ -3,10 +3,10 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import "./Gestao_Estoque.css";
-import Header from "../../components/Header/Header";
-import api from "../../services/api";
-import Chat from "../../components/chat/Chat";
-import Chat_conversa from "../../components/chat/Chat_conversa";
+import Header from "../../components/Header/Header.jsx";
+import api from "../../services/api.js";
+import Chat from "../../components/chat/Chat.jsx";
+import Chat_conversa from "../../components/chat/Chat_conversa.jsx";
 import { AnimatePresence } from "framer-motion";
 
 function Gestao_Estoque() {
