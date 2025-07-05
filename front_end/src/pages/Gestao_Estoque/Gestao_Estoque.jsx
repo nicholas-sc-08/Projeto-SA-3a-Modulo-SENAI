@@ -8,6 +8,7 @@ import api from "../../services/api.js";
 import Chat from "../../components/chat/Chat.jsx";
 import Chat_conversa from "../../components/chat/Chat_conversa.jsx";
 import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Gestao_Estoque() {
   // Importação de dados globais via contexto
