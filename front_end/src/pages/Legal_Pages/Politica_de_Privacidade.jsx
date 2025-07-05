@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import './Politica_de_privacidade.css';
+import './Politica_de_Privacidade.css';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
 import { useContext } from 'react';
