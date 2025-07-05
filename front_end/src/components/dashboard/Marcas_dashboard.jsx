@@ -114,111 +114,116 @@ function Marcas_dashboard() {
     }, [texto_da_barra_de_pesquisa])
 
     return (
-        <div>
-            <AnimatePresence>
+        <AnimatePresence>
+            <motion.div initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}>
+                <AnimatePresence>
 
-                {/* Animação de entrada do container principal */}
-                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className='container_categorias_dashboard'>
+                    {/* Animação de entrada do container principal */}
+                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className='container_categorias_dashboard'>
 
-                    <Header tipo='admin' />
+                        <Header tipo='admin' />
 
-                    {/* Condicional para exibir os popups */}
-                    {pop_up_de_cadastrar_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_de_cadastrar_marca && <Pop_up_cadastrar_marca />}
+                        {/* Condicional para exibir os popups */}
+                        {pop_up_de_cadastrar_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_de_cadastrar_marca && <Pop_up_cadastrar_marca />}
 
-                    {pop_up_notificacao_cadastro_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_cadastro_marca && <Pop_up_notificacao_cadastro_marca />}
-
-
-                    {pop_up_editar_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_editar_marca && <Pop_up_editar_marca />}
-
-
-                    {pop_up_notificacao_editar_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_editar_marca && <Pop_up_notificacao_editar_marca />}
+                        {pop_up_notificacao_cadastro_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_notificacao_cadastro_marca && <Pop_up_notificacao_cadastro_marca />}
 
 
-                    {pop_up_excluir_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_excluir_marca && <Pop_up_excluir_marca />}
+                        {pop_up_editar_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_editar_marca && <Pop_up_editar_marca />}
 
-                    {pop_up_notificacao_excluir_marca && <div className='container_escurecer_tela'></div>}
-                    {pop_up_notificacao_excluir_marca && <Pop_up_notificacao_excluir_marca />}
 
-                    {/* Cabeçalho com ícone e título */}
-                    <div className="container-alinhamento-imagem-titulo-categorias-dashboard">
-                        <div className="container-alinhamento-imagem-categorias-dashboard">
-                            <div className="container-alinhamento-imagem-titulo-quantidade-categorias-dashboard">
-                                <div className="fundo-cinza-imagem-categorias-dashboard">
-                                    <div className="fundo-verde-imagem-categorias-dashboard">
-                                        <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="Icone categorias dashboard" />
+                        {pop_up_notificacao_editar_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_notificacao_editar_marca && <Pop_up_notificacao_editar_marca />}
+
+
+                        {pop_up_excluir_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_excluir_marca && <Pop_up_excluir_marca />}
+
+                        {pop_up_notificacao_excluir_marca && <div className='container_escurecer_tela'></div>}
+                        {pop_up_notificacao_excluir_marca && <Pop_up_notificacao_excluir_marca />}
+
+                        {/* Cabeçalho com ícone e título */}
+                        <div className="container-alinhamento-imagem-titulo-categorias-dashboard">
+                            <div className="container-alinhamento-imagem-categorias-dashboard">
+                                <div className="container-alinhamento-imagem-titulo-quantidade-categorias-dashboard">
+                                    <div className="fundo-cinza-imagem-categorias-dashboard">
+                                        <div className="fundo-verde-imagem-categorias-dashboard">
+                                            <img src="./img/icons/icone_dashboard_etiqueta_v_um.svg" alt="Icone categorias dashboard" />
+                                        </div>
+                                    </div>
+
+                                    <div className="container-alinhamento-titulo-marcas-dashboard">
+                                        <p className='titulo-um-categorias-dashboard'>Marcas</p>
+                                        <p className='numero-de-categorias-dashboard'>{array_marcas.length}</p>
                                     </div>
                                 </div>
 
-                                <div className="container-alinhamento-titulo-marcas-dashboard">
-                                    <p className='titulo-um-categorias-dashboard'>Marcas</p>
-                                    <p className='numero-de-categorias-dashboard'>{array_marcas.length}</p>
+                                <div className="container-sair-de-categorias-dashboard" onClick={voltar_para_o_inicio}>
+                                    <p>Voltar</p>
+
+                                    <img src="./img/icone_dashboard_sair.svg" alt="ir para a tela inicial" />
                                 </div>
                             </div>
-
-                            <div className="container-sair-de-categorias-dashboard" onClick={voltar_para_o_inicio}>
-                                <p>Voltar</p>
-
-                                <img src="./img/icone_dashboard_sair.svg" alt="ir para a tela inicial" />
-                            </div>
                         </div>
-                    </div>
 
-                    {/* Container principal da tabela */}
-                    <div className="container_tabela_categorias">
+                        {/* Container principal da tabela */}
+                        <div className="container_tabela_categorias">
 
-                        <div className="container_tabela_categorias_header">
+                            <div className="container_tabela_categorias_header">
 
-                            {/* Campo de busca */}
-                            <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
-                                <img src="./img/LupaIcon.svg" alt="Lupa" />
-                                <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)} />
+                                {/* Campo de busca */}
+                                <div className="container_tabela_categorias_header_barra_de_pesquisa" onClick={() => referencia_input.current.focus()}>
+                                    <img src="./img/LupaIcon.svg" alt="Lupa" />
+                                    <input type="text" placeholder='Procurar Categoria' ref={referencia_input} value={texto_da_barra_de_pesquisa} onChange={e => set_texto_da_barra_de_pesquisa(e.target.value)} />
 
-                            </div>
-
-                            {/* Botões de ação */}
-                            <div className="container_botoes_header_categorias">
-                                <div className="container_tabela_categorias_header_cadastrar_categoria">
-                                    <button onClick={() => set_pop_up_de_cadastrar_marca(true)}>Nova Marca</button>
                                 </div>
 
-                                <div className="container_tabela_categorias_header_editar_categoria">
-                                    <button onClick={() => set_editar_marca(!editar_marca)}>Editar Marca</button>
+                                {/* Botões de ação */}
+                                <div className="container_botoes_header_categorias">
+                                    <div className="container_tabela_categorias_header_cadastrar_categoria">
+                                        <button onClick={() => set_pop_up_de_cadastrar_marca(true)}>Nova Marca</button>
+                                    </div>
+
+                                    <div className="container_tabela_categorias_header_editar_categoria">
+                                        <button onClick={() => set_editar_marca(!editar_marca)}>Editar Marca</button>
+                                    </div>
                                 </div>
+
+                            </div>
+
+                            <div className="container_subtitulo_tabela_categorias">
+
+                                <h2>Marcas</h2>
+
+                            </div>
+
+                            {/* Renderização das marcas */}
+                            <div className="container_de_categorias_da_tabela">
+                                {array_marcas_ordenado.length > 0 ? array_marcas_ordenado.map((marca, i) => (
+
+                                    <div className='container_conteudo_marca' key={i} onClick={() => clicar_em_marca(marca._id)}>
+                                        <span>{editar_marca && "· "} <img src={marca.logoMarca} alt="" /> {marca.nome}</span>
+                                    </div>
+
+                                )) : <div className='container_nenhuma_categoria'>
+                                    <img src="./img/LupaIcon.svg" alt="" />
+                                    <p>Nenhuma marca encontrada</p>
+                                </div>}
                             </div>
 
                         </div>
 
-                        <div className="container_subtitulo_tabela_categorias">
+                    </motion.div>
 
-                            <h2>Marcas</h2>
-
-                        </div>
-
-                        {/* Renderização das marcas */}
-                        <div className="container_de_categorias_da_tabela">
-                            {array_marcas_ordenado.length > 0 ? array_marcas_ordenado.map((marca, i) => (
-
-                                <div className='container_conteudo_marca' key={i} onClick={() => clicar_em_marca(marca._id)}>
-                                    <span>{editar_marca && "· "} <img src={marca.logoMarca} alt="" /> {marca.nome}</span>
-                                </div>
-
-                            )) : <div className='container_nenhuma_categoria'>
-                                <img src="./img/LupaIcon.svg" alt="" />
-                                <p>Nenhuma marca encontrada</p>
-                            </div>}
-                        </div>
-
-                    </div>
-
-                </motion.div>
-
-            </AnimatePresence>
-        </div>
+                </AnimatePresence>
+            </motion.div>
+        </AnimatePresence>
     )
 }
 

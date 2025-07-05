@@ -73,7 +73,7 @@ function Footer() {
             {(divAberta === 'ajuda' || !isMobile) && (
               <>
                 <Link to={"/sobre_nos"}>Quem somos nós?</Link>
-                <Link to={"/contato"}>Contato</Link>
+                <Link to={"/estamosChegando"}>Contato</Link>
                 <Link to={'/termosDeUso'}>Termos & Condições </Link>
                 <Link to={'/PoliticaDePrivacidade'}>Política de Privacidade</Link>
               </>

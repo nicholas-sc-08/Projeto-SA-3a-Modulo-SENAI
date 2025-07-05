@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from '../../components/Footer/Footer';
 import Pop_up_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_cadastro_produto";
 import Pop_up_erro_cadastro_produto from "../../components/Pop_up_cadastro_produto/Pop_up_erro_cadastro_produto";
+import { AnimatePresence } from "framer-motion";
 
 function Cadastro_Produto() {
   // Estados globais via Context API
@@ -16,8 +17,9 @@ function Cadastro_Produto() {
   const { conversa_aberta, set_conversa_aberta } = useContext(GlobalContext);
   const { array_estoques, set_array_estoques } = useContext(GlobalContext);
   const { array_produtos, set_array_produtos } = useContext(GlobalContext);
+  const { tipo_de_header, set_tipo_de_header } = useContext(GlobalContext);
   const { informacoes_editar_produto, set_informacoes_editar_produto } = useContext(GlobalContext);
-  const [ pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto ] = useState(false);
+  const [pop_up_notificacao_cadastro_produto, set_pop_up_notificacao_cadastro_produto] = useState(false);
   const navigate = useNavigate();
 
   // Tecidos sugeridos para autocomplete
@@ -66,10 +68,10 @@ function Cadastro_Produto() {
 
   useEffect(() => {
 
-    if(pop_up_notificacao_cadastro_produto){
+    if (pop_up_notificacao_cadastro_produto) {
 
       setTimeout(() => {
-        
+
         set_pop_up_notificacao_cadastro_produto(false);
 
       }, 2000);
@@ -411,324 +413,327 @@ function Cadastro_Produto() {
   // Nome exibido do produto (fallback caso não digitado)
   const nomeExibido = array_cadastro_produto.nome?.trim() || "Nome do Produto";
   return (
-    <div>
+    <AnimatePresence>
+      <motion.div initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.4 }}>
         {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
-      <Header tipo="brecho" />
-      <div className="cabecalho-titulo">
+        <Header tipo={tipo_de_header} />
+        <div className="cabecalho-titulo">
 
 
-        <button className="botao-seta-voltar" onClick={() => navigate(-1)}>
-          <img src="/img/seta-esquerda.png" alt="Voltar" />
-        </button>
-        <h2 className="titulo">Cadastro Produto</h2>
-      </div>
-      <div className="container-cadastro-produto">
-        <div className="galeria">
-          {[0, 1, 2].map((_, index) => {
-            const imagem = imagens[index];
-
-            return imagem ? (
-              <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
-                <img src={imagem} alt={`Imagem ${index}`} />
-                <button
-                  type="button"
-                  className="botao-remover-imagem"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Para não disparar o onClick do pai que seleciona a imagem principal
-                    removerImagem(index);
-                  }}
-                  aria-label={`Remover imagem ${index + 1}`}
-                >
-                  &times;
-                </button>
-              </div>
-            ) : (
-              <label key={index} className="miniatura">
-                <input type="file" onChange={adicionar_imagem} hidden />
-                <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
-              </label>
-            );
-          })}
+          <button className="botao-seta-voltar" onClick={() => navigate(-1)}>
+            <img src="/img/seta-esquerda.png" alt="Voltar" />
+          </button>
+          <h2 className="titulo">Cadastro Produto</h2>
         </div>
+        <div className="container-cadastro-produto">
+          <div className="galeria">
+            {[0, 1, 2].map((_, index) => {
+              const imagem = imagens[index];
 
-        <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
-          {imagemPrincipal ? (
-            <img src={imagemPrincipal} alt="Imagem Principal" />
-          ) : (
-            <label className="botao-adicionar-imagem">
-              <input type="file" onChange={adicionar_imagem} hidden />
-              <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
-            </label>
-          )}
-        </div>
-
-        <div className="detalhes-produto">
-          {editandoNome ? (
-            <input
-              type="text"
-              value={array_cadastro_produto.nome}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, nome: e.target.value })}
-              onBlur={() => setEditandoNome(false)}
-              autoFocus
-              className="inpt-edit"
-            />
-          ) : (
-            <span className="nome-produto" onClick={() => setEditandoNome(true)}>
-              {nomeExibido}
-            </span>
-          )}
-
-          {editandoPreco ? (
-            <input
-              type="number"
-              value={array_cadastro_produto.preco}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, preco: e.target.value })}
-              onBlur={() => setEditandoPreco(false)}
-              autoFocus
-              className="inpt-edit-preco"
-            />
-          ) : (
-            <span className="preco-produto" onClick={() => setEditandoPreco(true)}>
-              R$ {array_cadastro_produto.preco || "Preço"}
-            </span>
-          )}
-
-          <div className="input-group-descricao">
-            <textarea
-              placeholder="Descrição do produto"
-              value={array_cadastro_produto.descricao}
-              onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, descricao: e.target.value })}
-            ></textarea>
-
-
-          </div>
-          <hr />
-
-          <div className="input-group-alinhados">
-
-
-            <div className="input-tamanho">
-              <label>Tamanho</label>
-              <input
-                type="text"
-                className="tamanho"
-                placeholder=""
-                maxlength="2"
-                value={array_cadastro_produto.tamanho}
-                onChange={(e) => {
-                  setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value.toUpperCase() });
-                }}
-              />
-            </div>
-
-
-            <div className="quantidade-container">
-              <div className="quantidade-titulo">Quantidade</div>
-              <div className="quantidade">
-                <button className="botao-quantidade" onClick={diminuirQuantidade}>
-                  <img src="./public/img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
-                </button>
-
-                <div className="quantidade-numero">{quantidade}</div>
-
-                <button className="botao-quantidade" onClick={aumentarQuantidade}>
-                  <img src="./public/img/icons/seta-direita.png" alt="Aumentar" className="icone-quantidade" />
-                </button>
-
-              </div>
-
-            </div>
-
-            <div className="input-tecido" style={{ position: "relative" }}>
-              <label className="titulo-tecido">Tecido</label>
-              <input
-                type="text"
-                className="tecido"
-                value={inputTecido}
-                onChange={(e) => {
-                  setInputTecido(e.target.value);
-                  setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value });
-                }}
-                onFocus={() => setTecidoEmFoco(true)}
-                onBlur={() => setTimeout(() => setTecidoEmFoco(false), 200)}
-                placeholder="Digite o tecido"
-                autoComplete="off"
-              />
-
-              {tecidoEmFoco && tecidosFiltrados.length > 0 && (
-                <ul className="lista-tecidos">
-                  {tecidosFiltrados.map((tecido, index) => (
-                    <li
-                      key={index}
-                      onClick={() => {
-                        setInputTecido(tecido);
-                        setArray_cadastro_produto({ ...array_cadastro_produto, composicao: tecido });
-                        setTecidoEmFoco(false);
-                      }}
-                    >
-                      {tecido}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-            </div>
-
-
-            <div className="cores">
-              <label>Seleção de Cores</label>
-              <div className="divisao-cores">
-                <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
-                  <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
-                </button>
-                <div className="cores-selecionadas">
-                  {coresSelecionadas.map((cor, index) => (
-                    <div
-                      key={index}
-                      className="cor-selecionada"
-                      style={{ backgroundColor: cor }}
-                      onClick={() => substituirCor(index)}
-                      title="Clique para substituir essa cor"
-                    ></div>
-
-                  ))}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <h2 className="titulo2">Detalhes do Produto</h2>
-      <hr className="linha-titulo-2" />
-
-      <div className="container-detalhes-produtos">
-        <div className="formulario">
-
-
-          <div className="input-group">
-            <div style={{ position: "relative" }}>
-              <label>Marca do produto</label>
-              <input
-                type="text"
-                placeholder="Buscar marcas"
-                className="input-group-marcas"
-                value={inputMarca}
-                onChange={(e) => {
-                  setInputMarca(e.target.value);
-                  setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_marca: "" });
-                }}
-                onFocus={() => setMarcaEmFoco(true)}
-                onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)}
-                autoComplete="off"
-              />
-              {marcaEmFoco && marcasFiltradas.length > 0 && (
-                <ul className="lista-marcas">
-                  {marcasFiltradas.map((marca, index) => (
-                    <li
-                      key={index}
-                      onClick={() => {
-                        setInputMarca(marca.nome); // Exibe o nome no input
-                        setArray_cadastro_produto(prev => ({
-                          ...prev,
-                          fk_id_marca: marca._id,  // Salva o ID da marca no objeto do produto
-                        }));
-                        setMarcaEmFoco(false);
-                      }}
-                    >
-                      {marca.nome}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-            </div>
-
-
-            <label>Estado do produto</label>
-            <select
-              required
-              value={array_cadastro_produto.condicao}
-              onChange={(e) =>
-                setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })
-              }
-              className="input-group-estado"
-            >
-              <option value="">Selecione o estado</option>
-              {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
-                <option key={index} value={estado}>
-                  {estado}
-                </option>
-              ))}
-            </select>
-
-          </div>
-
-
-        </div>
-
-        <div className="formulario-direito">
-          <div style={{ position: "relative" }}>
-            <label className="input-categoria-label">Categoria</label>
-            <input
-              type="text"
-              className="input-categoria"
-              placeholder="Digite para buscar categoria"
-              value={inputCategoria}
-              onChange={(e) => {
-                setInputCategoria(e.target.value);
-                setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: "" });
-              }}
-              onFocus={() => setCategoriaEmFoco(true)}
-              onBlur={() => setTimeout(() => setCategoriaEmFoco(false), 200)}
-              autoComplete="off"
-            />
-
-            {categoriaEmFoco && categoriasFiltradas.length > 0 && (
-              <ul className="lista-categorias">
-                {categoriasFiltradas.map((cat) => (
-                  <li
-                    key={cat._id}
-                    onClick={() => {
-                      setInputCategoria(cat.nome); // Exibe o nome no input
-                      setArray_cadastro_produto(prev => ({
-                        ...prev,
-                        fk_id_categoria: cat._id, // Salva o ID da categoria no objeto do produto
-                      }));
-                      setCategoriaEmFoco(false);
+              return imagem ? (
+                <div key={index} className="miniatura" onClick={() => selecionarImagemPrincipal(imagem)}>
+                  <img src={imagem} alt={`Imagem ${index}`} />
+                  <button
+                    type="button"
+                    className="botao-remover-imagem"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Para não disparar o onClick do pai que seleciona a imagem principal
+                      removerImagem(index);
                     }}
+                    aria-label={`Remover imagem ${index + 1}`}
                   >
-                    {cat.nome}
-                  </li>
-                ))}
-              </ul>
+                    &times;
+                  </button>
+                </div>
+              ) : (
+                <label key={index} className="miniatura">
+                  <input type="file" onChange={adicionar_imagem} hidden />
+                  <img className="AddImage" src="./img/ImagemAdd.svg" alt="Adicionar" />
+                </label>
+              );
+            })}
+          </div>
+
+          <div className={`imagem-principal ${imagemPrincipal ? "has-image" : ""}`}>
+            {imagemPrincipal ? (
+              <img src={imagemPrincipal} alt="Imagem Principal" />
+            ) : (
+              <label className="botao-adicionar-imagem">
+                <input type="file" onChange={adicionar_imagem} hidden />
+                <img src="./img/ImagemAdd.svg" alt="Adicionar Imagem" className="AddImage" />
+              </label>
+            )}
+          </div>
+
+          <div className="detalhes-produto">
+            {editandoNome ? (
+              <input
+                type="text"
+                value={array_cadastro_produto.nome}
+                onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, nome: e.target.value })}
+                onBlur={() => setEditandoNome(false)}
+                autoFocus
+                className="inpt-edit"
+              />
+            ) : (
+              <span className="nome-produto" onClick={() => setEditandoNome(true)}>
+                {nomeExibido}
+              </span>
             )}
 
+            {editandoPreco ? (
+              <input
+                type="number"
+                value={array_cadastro_produto.preco}
+                onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, preco: e.target.value })}
+                onBlur={() => setEditandoPreco(false)}
+                autoFocus
+                className="inpt-edit-preco"
+              />
+            ) : (
+              <span className="preco-produto" onClick={() => setEditandoPreco(true)}>
+                R$ {array_cadastro_produto.preco || "Preço"}
+              </span>
+            )}
+
+            <div className="input-group-descricao">
+              <textarea
+                placeholder="Descrição do produto"
+                value={array_cadastro_produto.descricao}
+                onChange={(e) => setArray_cadastro_produto({ ...array_cadastro_produto, descricao: e.target.value })}
+              ></textarea>
+
+
+            </div>
+            <hr />
+
+            <div className="input-group-alinhados">
+
+
+              <div className="input-tamanho">
+                <label>Tamanho</label>
+                <input
+                  type="text"
+                  className="tamanho"
+                  placeholder=""
+                  maxlength="2"
+                  value={array_cadastro_produto.tamanho}
+                  onChange={(e) => {
+                    setArray_cadastro_produto({ ...array_cadastro_produto, tamanho: e.target.value.toUpperCase() });
+                  }}
+                />
+              </div>
+
+
+              <div className="quantidade-container">
+                <div className="quantidade-titulo">Quantidade</div>
+                <div className="quantidade">
+                  <button className="botao-quantidade" onClick={diminuirQuantidade}>
+                    <img src="./public/img/icons/seta-esquerda.png" alt="Diminuir" className="icone-quantidade" />
+                  </button>
+
+                  <div className="quantidade-numero">{quantidade}</div>
+
+                  <button className="botao-quantidade" onClick={aumentarQuantidade}>
+                    <img src="./public/img/icons/seta-direita.png" alt="Aumentar" className="icone-quantidade" />
+                  </button>
+
+                </div>
+
+              </div>
+
+              <div className="input-tecido" style={{ position: "relative" }}>
+                <label className="titulo-tecido">Tecido</label>
+                <input
+                  type="text"
+                  className="tecido"
+                  value={inputTecido}
+                  onChange={(e) => {
+                    setInputTecido(e.target.value);
+                    setArray_cadastro_produto({ ...array_cadastro_produto, composicao: e.target.value });
+                  }}
+                  onFocus={() => setTecidoEmFoco(true)}
+                  onBlur={() => setTimeout(() => setTecidoEmFoco(false), 200)}
+                  placeholder="Digite o tecido"
+                  autoComplete="off"
+                />
+
+                {tecidoEmFoco && tecidosFiltrados.length > 0 && (
+                  <ul className="lista-tecidos">
+                    {tecidosFiltrados.map((tecido, index) => (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setInputTecido(tecido);
+                          setArray_cadastro_produto({ ...array_cadastro_produto, composicao: tecido });
+                          setTecidoEmFoco(false);
+                        }}
+                      >
+                        {tecido}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+              </div>
+
+
+              <div className="cores">
+                <label>Seleção de Cores</label>
+                <div className="divisao-cores">
+                  <button className="cor-seletor" onClick={selecionarCorEyeDropper}>
+                    <img className="rodaDeCores" src="./img/roda-de-cores.svg" alt="Selecionar Cor" />
+                  </button>
+                  <div className="cores-selecionadas">
+                    {coresSelecionadas.map((cor, index) => (
+                      <div
+                        key={index}
+                        className="cor-selecionada"
+                        style={{ backgroundColor: cor }}
+                        onClick={() => substituirCor(index)}
+                        title="Clique para substituir essa cor"
+                      ></div>
+
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <h2 className="titulo2">Detalhes do Produto</h2>
+        <hr className="linha-titulo-2" />
+
+        <div className="container-detalhes-produtos">
+          <div className="formulario">
+
+
+            <div className="input-group">
+              <div style={{ position: "relative" }}>
+                <label>Marca do produto</label>
+                <input
+                  type="text"
+                  placeholder="Buscar marcas"
+                  className="input-group-marcas"
+                  value={inputMarca}
+                  onChange={(e) => {
+                    setInputMarca(e.target.value);
+                    setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_marca: "" });
+                  }}
+                  onFocus={() => setMarcaEmFoco(true)}
+                  onBlur={() => setTimeout(() => setMarcaEmFoco(false), 200)}
+                  autoComplete="off"
+                />
+                {marcaEmFoco && marcasFiltradas.length > 0 && (
+                  <ul className="lista-marcas">
+                    {marcasFiltradas.map((marca, index) => (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setInputMarca(marca.nome); // Exibe o nome no input
+                          setArray_cadastro_produto(prev => ({
+                            ...prev,
+                            fk_id_marca: marca._id,  // Salva o ID da marca no objeto do produto
+                          }));
+                          setMarcaEmFoco(false);
+                        }}
+                      >
+                        {marca.nome}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+              </div>
+
+
+              <label>Estado do produto</label>
+              <select
+                required
+                value={array_cadastro_produto.condicao}
+                onChange={(e) =>
+                  setArray_cadastro_produto({ ...array_cadastro_produto, condicao: e.target.value })
+                }
+                className="input-group-estado"
+              >
+                <option value="">Selecione o estado</option>
+                {["Novo", "Semi-Novo", "Usado", "Velho"].map((estado, index) => (
+                  <option key={index} value={estado}>
+                    {estado}
+                  </option>
+                ))}
+              </select>
+
+            </div>
+
 
           </div>
 
+          <div className="formulario-direito">
+            <div style={{ position: "relative" }}>
+              <label className="input-categoria-label">Categoria</label>
+              <input
+                type="text"
+                className="input-categoria"
+                placeholder="Digite para buscar categoria"
+                value={inputCategoria}
+                onChange={(e) => {
+                  setInputCategoria(e.target.value);
+                  setArray_cadastro_produto({ ...array_cadastro_produto, fk_id_categoria: "" });
+                }}
+                onFocus={() => setCategoriaEmFoco(true)}
+                onBlur={() => setTimeout(() => setCategoriaEmFoco(false), 200)}
+                autoComplete="off"
+              />
 
-          <button
+              {categoriaEmFoco && categoriasFiltradas.length > 0 && (
+                <ul className="lista-categorias">
+                  {categoriasFiltradas.map((cat) => (
+                    <li
+                      key={cat._id}
+                      onClick={() => {
+                        setInputCategoria(cat.nome); // Exibe o nome no input
+                        setArray_cadastro_produto(prev => ({
+                          ...prev,
+                          fk_id_categoria: cat._id, // Salva o ID da categoria no objeto do produto
+                        }));
+                        setCategoriaEmFoco(false);
+                      }}
+                    >
+                      {cat.nome}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-            onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
-            className="botao-cadastrar"
-            style={informacoes_editar_produto ? { backgroundColor: "var(--cor_um)" } : {}} >
-            {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
-          </button>
 
+            </div>
+
+
+            <button
+
+              onClick={informacoes_editar_produto ? editar_produto : cadastrar_produto}
+              className="botao-cadastrar"
+              style={informacoes_editar_produto ? { backgroundColor: "var(--cor_um)" } : {}} >
+              {informacoes_editar_produto ? "Salvar Alterações" : "Cadastrar Produto"}
+            </button>
+
+          </div>
         </div>
-      </div>
 
 
-      <Footer />
-      {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
-      {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto />}
+        <Footer />
+        {pop_up_notificacao_cadastro_produto && <Pop_up_cadastro_produto />}
+        {pop_up_erro_cadastro && <Pop_up_erro_cadastro_produto />}
 
 
-    </div>
-
-
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

@@ -300,10 +300,15 @@ function Cadastro_cliente() {
   };
 
   return (
-    <div>
-      <div className='container_cadastro_cliente'>
+    <AnimatePresence>
 
-        {/* <div className="container_ir_para_login_cliente">
+      <motion.div initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.4 }}>
+        <div className='container_cadastro_cliente'>
+
+          {/* <div className="container_ir_para_login_cliente">
 
         <img src="./img/Estrela_um_cadastro.svg" alt="estrela" className='estrela_um_cadastro' />
 
@@ -319,80 +324,81 @@ function Cadastro_cliente() {
 
       </div> */}
 
-        <div className="container-ir-para-tela-login-alinhamento">
-          <AnimatePresence>
-            {!animandoCadastro && (
-              <motion.div
-                className="container-informacoes-login-cadastro-cliente"
-                initial={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 10, x: 755 }} // Se mueve a la derecha
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
+          <div className="container-ir-para-tela-login-alinhamento">
+            <AnimatePresence>
+              {!animandoCadastro && (
+                <motion.div
+                  className="container-informacoes-login-cadastro-cliente"
+                  initial={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 10, x: 755 }} // Se mueve a la derecha
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
 
-                <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
-                <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível.</p>
-                <button onClick={LoginCadastro} type='button'>Entrar</button>
+                  <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
+                  <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível.</p>
+                  <button onClick={LoginCadastro} type='button'>Entrar</button>
 
-                <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                  <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
-        <div className="container_formulario_cliente">
+          <div className="container_formulario_cliente">
 
-          <form onSubmit={lidar_com_formulario}>
+            <form onSubmit={lidar_com_formulario}>
 
-            <div className="container_logo_etapa_cliente">
+              <div className="container_logo_etapa_cliente">
 
-              <div className="container_etapa_cliente_alinhamento">
+                <div className="container_etapa_cliente_alinhamento">
 
-                <div className="container_etapa_cliente">
+                  <div className="container_etapa_cliente">
 
-                  <img src='./img/Elipse_verde.svg' />
+                    <img src='./img/Elipse_verde.svg' />
 
-                  {cadastro_parte_dois_cliente || cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
-                  {cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                    {cadastro_parte_dois_cliente || cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                    {cadastro_parte_tres_cliente ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
 
-                </div>
+                  </div>
 
-                <div className="container_logo_fly_cliente">
+                  <div className="container_logo_fly_cliente">
 
-                  <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" /></Link>
+                    <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" /></Link>
+
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
+              <div className="container_cadastro_cliente_titulo">
 
-            <div className="container_cadastro_cliente_titulo">
-
-              <h1>Cadastro de usuário</h1>
-              <p>{sub_titulo_cadastro_cliente}</p>
-            </div>
-
-            {cadastro_parte_um_cliente && <Secao_inputs_um />}
-            {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
-            {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
-
-            <div className="alinhamento-buttons-cadastro">
-
-              {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
-
-              <div className="dv_frm_cadastro_cliente_botoes">
-
-                {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
-                {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
-                <p>{mensagem_de_erro}</p>
-
+                <h1>Cadastro de usuário</h1>
+                <p>{sub_titulo_cadastro_cliente}</p>
               </div>
-            </div>
-          </form>
+
+              {cadastro_parte_um_cliente && <Secao_inputs_um />}
+              {cadastro_parte_dois_cliente && <Secao_inputs_dois />}
+              {cadastro_parte_tres_cliente && <Secao_inputs_tres />}
+
+              <div className="alinhamento-buttons-cadastro">
+
+                {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
+
+                <div className="dv_frm_cadastro_cliente_botoes">
+
+                  {!exibir_botao_de_cadastro && <button type='button' onClick={etapa_seguinte}>Continuar</button>}
+                  {exibir_botao_de_cadastro && <button type='submit'>Cadastrar-se</button>}
+                  <p>{mensagem_de_erro}</p>
+
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

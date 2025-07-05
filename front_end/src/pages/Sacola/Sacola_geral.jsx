@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 import api from '../../services/api';
-import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola';
-import Pop_up_notificacao_comprado from '../../components/Pop_up_notificacao_comprado/Pop_up_notificacao_comprado';
+import Pop_up_excluir_produto_sacola from '../../components/Pop_up_excluir_produto_sacola/Pop_up_excluir_produto_sacola.jsx';
+import Pop_up_notificacao_comprado from '../../components/Pop_up_notificacao_comprado/Pop_up_notificacao_comprado.jsx';
 import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado.jsx';
-import Pop_up_sacola_vazia from '../../components/pop_up_sacola_vazia/Pop_up_sacola_vazia.jsx';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import Chat from '../../components/chat/Chat';
-import Chat_conversa from '../../components/chat/Chat_conversa';
+import Pop_up_sacola_vazia from '../../components/pop_up_sacola_vazia/Pop_up_sacola_vazia';
+import Header from '../../components/Header/Header.jsx';
+import Footer from '../../components/Footer/Footer.jsx';
+import Chat from '../../components/chat/Chat.jsx';
+import Chat_conversa from '../../components/chat/Chat_conversa.jsx';
 
 import './Sacola_geral.css';
 

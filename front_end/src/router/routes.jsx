@@ -22,7 +22,7 @@ import Detalhe_Pagamento from "../pages/CheckOut/Detalhe_Pagamento"
 import Detalhe_Pagamento_etapa_dois from "../pages/CheckOut/Detalhe_Pagamento_etapa_dois";
 import Detalhe_Pagamento_etapa_tres from "../pages/CheckOut/Detalhe_Pagamento_etapa_tres";
 import Edicao_perfil_cliente from "../pages/Perfil_Cliente/Edicao_perfil_cliente";
-import Escolha_cadastro from "../pages/Cadastro/Escolha_cadastro.jsx";
+import Escolha_cadastro from "../pages/Escolha_cadastro/Escolha_cadastro.jsx";
 import TelaEmAndamento from "../pages/Em_andamento/TelaEmAndamento.jsx";
 import Sacola_geral from "../pages/Sacola/Sacola_geral.jsx";
 

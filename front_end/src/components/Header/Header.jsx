@@ -293,13 +293,13 @@ function Header({ tipo }) {
 
         const encontrar_brecho = array_brechos.find(brecho => brecho._id === usuario_logado._id);
         set_brecho_selecionado(usuario_logado);
-        navigate(`/perfil_brecho`);
+        navigate(`/EstamosChegando`);
         
         if(encontrar_brecho) {
             
         } else {
 
-            navigate(`/perfil_cliente`);
+            navigate(`/EstamosChegando`);
         };
     };
 

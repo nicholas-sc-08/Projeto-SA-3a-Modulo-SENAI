@@ -373,74 +373,80 @@ function Cadastro_brecho() {
   };
 
   return (
-    <div>
-      <div className="alinhamento-fases-container-cadastro">
+    <AnimatePresence>
 
-        <div className="container-ir-para-tela-login-alinhamento">
-          <AnimatePresence>
-            {!animandoCadastro && (
-              <motion.div
-                className="container-informacoes-login-cadastro-brecho"
-                initial={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 10, x: 755 }} // Se mueve a la derecha
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
+      <motion.div initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.4 }}>
+        <div className="alinhamento-fases-container-cadastro">
 
-                <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
-                <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível.</p>
-                <button onClick={LoginCadastro} type='button'>Entrar</button>
+          <div className="container-ir-para-tela-login-alinhamento">
+            <AnimatePresence>
+              {!animandoCadastro && (
+                <motion.div
+                  className="container-informacoes-login-cadastro-brecho"
+                  initial={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 10, x: 755 }} // Se mueve a la derecha
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <img className='estrela-um-cadastro' src="./img/estrelaMenor.png" alt="" />
 
-                <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                  <h1>Bem-vindo de volta! Sentimos sua falta.</h1>
+                  <p>A moda circular nunca para! Entre na sua conta e continue fazendo parte desse movimento incrível.</p>
+                  <button onClick={LoginCadastro} type='button'>Entrar</button>
 
-        <div className="alinhamento-elipses-com-container-inputs">
+                  <img className='estrela-dois-cadastro' src="./img/estrelaGrande.png" alt="" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
-          <form onSubmit={lidarComFormulario}>
+          <div className="alinhamento-elipses-com-container-inputs">
 
-            <div className="alinhamento-elipses-logo">
+            <form onSubmit={lidarComFormulario}>
 
-              <div className='elipse-container'>
+              <div className="alinhamento-elipses-logo">
 
-                <img src='./img/Elipse_verde.svg' />
+                <div className='elipse-container'>
 
-                {cadastroParteDoisBrecho || cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
-                {cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                  <img src='./img/Elipse_verde.svg' />
+
+                  {cadastroParteDoisBrecho || cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                  {cadastroParteTresBrecho ? <img src='./img/Elipse_verde.svg' /> : <img src='./img/Elipse_amarela.svg' />}
+                </div>
+
+                <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" className='logo-cadastro-brecho' /></Link>
               </div>
 
-              <Link to={`/`}><img src="./img/logo/logo-verdeCamadinha.svg" alt="" className='logo-cadastro-brecho' /></Link>
-            </div>
+              <div className="container-formulario-um-cadastro-brecho">
 
-            <div className="container-formulario-um-cadastro-brecho">
-
-              <h1>{tituloCadastroBrecho}</h1>
-              <p>{subTituloCadastroBrecho}</p>
-
-            </div>
-
-            {cadastroParteUmBrecho && <SecaoInputsUmBrecho />}
-            {cadastroParteDoisBrecho && <SecaoInputsDoisBrecho />}
-            {cadastroParteTresBrecho && <SecaoInputsTresBrecho />}
-
-            <div className="alinhamento-buttons-cadastro">
-
-              {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
-
-              <div className="formulario-cadastro-brecho-buttons">
-                {!exibirBotaoCadastro && <button type='button' onClick={seguinteEtapa}>Continuar</button>}
-                {exibirBotaoCadastro && <button type='submit'>Cadastrar-se</button>}
-                <p>{mensagemErro}</p>
+                <h1>{tituloCadastroBrecho}</h1>
+                <p>{subTituloCadastroBrecho}</p>
 
               </div>
-            </div>
 
-          </form>
+              {cadastroParteUmBrecho && <SecaoInputsUmBrecho />}
+              {cadastroParteDoisBrecho && <SecaoInputsDoisBrecho />}
+              {cadastroParteTresBrecho && <SecaoInputsTresBrecho />}
+
+              <div className="alinhamento-buttons-cadastro">
+
+                {<button type='button' className='button-etapa-anterior-cadastro' onClick={etapaAnterior}>Voltar</button>}
+
+                <div className="formulario-cadastro-brecho-buttons">
+                  {!exibirBotaoCadastro && <button type='button' onClick={seguinteEtapa}>Continuar</button>}
+                  {exibirBotaoCadastro && <button type='submit'>Cadastrar-se</button>}
+                  <p>{mensagemErro}</p>
+
+                </div>
+              </div>
+
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
