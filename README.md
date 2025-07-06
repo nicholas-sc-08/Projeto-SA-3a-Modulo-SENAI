@@ -104,15 +104,12 @@
 | Front-End |
 |-----------|
 | A interface do usuário foi desenvolvida com React, utilizando o React Router para navegação entre páginas, Framer Motion para animações suaves e interativas, e IMask para formatação de inputs como CPF, telefone e datas. As requisições HTTP são tratadas com Axios, enquanto a autenticação é feita via Google OAuth2 com @react-oauth/google e decodificação de tokens com jwt-decode. Além disso, o sistema conta com integração de websockets em tempo real usando socket.io-client, envio de e-mails via EmailJS, e identificação de cores com color-namer. |
-| ```nodejs
-npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com
-``` |
+| ```npm i axios react-router-dom jwt-decode color-namer @react-oauth/google socket.io-client react-imask framer-motion ngrok emailjs-com``` |
 
-- Back-End:
-
-```nodejs
-npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe
-```
+| Back-End |
+|----------|
+| O back-end foi construído com Node.js e Express, fornecendo uma API RESTful robusta para comunicação com o front-end. A persistência de dados é feita com MongoDB, utilizando o ODM Mongoose. A aplicação lida com variáveis de ambiente com dotenv, faz upload de imagens via Cloudinary, gerencia pagamentos com Stripe e permite comunicação em tempo real com Socket.IO. O middleware CORS garante a integração segura entre domínios, e o Nodemon facilita o desenvolvimento com recarregamento automático do servidor. |
+| ```npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe ```|
 
 ## Contas Profissionais
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/fly.circular/)
