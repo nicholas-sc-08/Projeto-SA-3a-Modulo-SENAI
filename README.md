@@ -1,10 +1,19 @@
 
 <img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Banner%20Fly.png" alt="Banner Fly" width="100%"/>
 
+<div style="margin-top: 10px"></div>
+
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/fly.circular/)
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
+
+<div style="margin-top: 10px"></div>
+
 ## Descrição
   O Fly é um aplicativo inovador que nasceu com o propósito de dar mais visibilidade aos brechós e facilitar a vida dos consumidores apaixonados pela moda sustentável. A plataforma permite que os usuários encontre brechós e através deles descubram peças únicas, tornando possível fazer compras de forma prática e eficiente.
   A ideia do Fly surgiu da experiência pessoal de um dos membros do nosso grupo de desenvolvedores. Sua mãe é dona de um brechó e, diariamente, enfrenta o desafio de alcançar novos clientes e tornar seu negócio mais conhecido. Essa realidade nos motivou a criar uma solução tecnológica que beneficie tanto pequenos empreendedores quanto consumidores que buscam alternativas mais acessíveis e ecológicas no mundo da moda.
   Com isso, estamos desenvolvendo o Fly, um aplicativo pensado para conectar brechós a um público maior, incentivando o consumo consciente e valorizando peças cheias de história. Acreditamos que, com essa iniciativa, poderemos transformar a forma como as pessoas descobrem e interagem com o universo dos brechós.
+
+<div style="margin-top: 20px"></div>
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -34,6 +43,8 @@
 ![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
 ![BabelConfig](https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+
+<div style="margin-top: 20px"></div>
 
 | Requisitos Funcionais (RF)    | Descrição                                                                                                             |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -110,8 +121,3 @@
 |----------|
 | O back-end foi construído com Node.js e Express, fornecendo uma API RESTful robusta para comunicação com o front-end. A persistência de dados é feita com MongoDB, utilizando o ODM Mongoose. A aplicação lida com variáveis de ambiente com dotenv, faz upload de imagens via Cloudinary, gerencia pagamentos com Stripe e permite comunicação em tempo real com Socket.IO. O middleware CORS garante a integração segura entre domínios, e o Nodemon facilita o desenvolvimento com recarregamento automático do servidor. |
 | ```npm i cors express cloudinary socket.io nodemon mongoose dotenv stripe ```|
-
-## Contas Profissionais
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/fly.circular/)
-[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
-
