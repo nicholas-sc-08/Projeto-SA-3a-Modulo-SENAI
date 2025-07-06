@@ -18,6 +18,7 @@
 ![jwt](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=Cloudinary&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
 ![ngrok](https://img.shields.io/badge/ngrok-140648?style=for-the-badge&logo=Ngrok&logoColor=white)
 ![socketio](https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62)
@@ -82,9 +83,6 @@
 |--------|
 |<img src="https://github.com/nicholas-sc-08/Projeto-SA-3a-Modulo-SENAI/blob/main/Imagens%20do%20README/Captura%20de%20tela%202025-07-03%20162303.png" width="100%"/>|
 | A tela da sacola exibe os produtos que o usuário adicionou para compra, organizados em uma lista clara e objetiva. Cada item apresenta uma imagem do produto, nome, preço unitário, tamanho selecionado, quantidade e subtotal correspondente. Há a opção de alterar a quantidade ou remover itens diretamente da sacola, proporcionando controle total antes da finalização da compra. No final da lista, é exibido o valor total da compra, acompanhado de um botão de “Finalizar pedido”, que direciona o usuário para a próxima etapa do processo de compra. A interface é intuitiva e responsiva, garantindo praticidade na revisão dos itens escolhidos. |
-
-## Instrução de Instalação
-  Este aplicativo ainda está em processo de criação.
 
 ## Intrução de Uso
 
