@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer';
 import Pop_up_conversa_adicionada from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada';
 import Pop_up_usuario_nao_logado from '../../components/pop_up_usuario_nao_logado/Pop_up_usuario_nao_logado';
 import Pop_up_produto_adicionado from '../../components/Pop_produto_adicionado/Pop_up_produto_adicionado.jsx'
+import Pop_up_conversa_adicionada_sucesso from '../../components/pop_up_conversa_adicionada/Pop_up_conversa_adicionada_sucesso.jsx';
 import './Produto.css';
 
 function Produto() {
@@ -35,6 +36,7 @@ function Produto() {
     const [imagem_selecionada, set_imagem_selecionada] = useState(0);
     const [produto_visualiazado, set_produto_visualizado] = useState(`0.1vw solid var(--cor_um)`);
     const [pop_de_chat_ja_adicionado, set_pop_de_chat_ja_adicionado] = useState(false);
+    const [pop_de_chat_adicionado, set_pop_de_chat_adicionado] = useState(false);
     const [pop_up_de_usuario_nao_logado, set_pop_up_de_usuario_nao_logado] = useState(false);
     const [produtos_embaralhados, set_produtos_embaralhados] = useState([]);
     const [produto_adicionado_na_sacola, set_produto_adicionado_na_sacola] = useState(false);
@@ -111,6 +113,15 @@ function Produto() {
             }, 2000);
         };
 
+        if (pop_de_chat_adicionado) {
+
+            setTimeout(() => {
+
+                set_pop_de_chat_adicionado(false);
+
+            }, 2000);
+        };
+
         if (pop_up_de_usuario_nao_logado) {
 
             setTimeout(() => {
@@ -120,7 +131,7 @@ function Produto() {
             }, 2000);
         };
 
-    }, [pop_de_chat_ja_adicionado, pop_up_de_usuario_nao_logado]);
+    }, [pop_de_chat_ja_adicionado, pop_up_de_usuario_nao_logado, pop_de_chat_adicionado]);
 
     async function buscar_brechos() {
 
@@ -189,6 +200,7 @@ function Produto() {
                         const nova_conversa_com_cliente = [...brecho_selecionado.conversas, info_do_cliente];
 
                         await api.put(`/brechos/${brecho_selecionado._id}`, { conversas: nova_conversa_com_cliente });
+                        set_pop_de_chat_adicionado(true);
                     };
                 };
 
@@ -381,6 +393,7 @@ function Produto() {
                 {pop_de_chat_ja_adicionado && <div className='fundo_do_pop_up_conversa_adicionada'></div>}
                 {pop_up_de_usuario_nao_logado && <Pop_up_usuario_nao_logado />}
                 {produto_adicionado_na_sacola && <Pop_up_produto_adicionado />}
+                {pop_de_chat_adicionado && <Pop_up_conversa_adicionada_sucesso />}
 
                 <Header tipo={tipo_de_header} />
 
@@ -408,7 +421,7 @@ function Produto() {
                         </div>
 
                         <div className="container_imagem_principal_produto">
-                            
+
                             <img src={produto.imagem[imagem_selecionada]} alt="" />
 
                         </div>

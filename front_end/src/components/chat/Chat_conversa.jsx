@@ -49,7 +49,7 @@ function Chat_conversa() {
       };
     
       //aqui ele vai conecta com o servidor socket
-      socket.on(`connect`, () => console.log(`Conectado com o servidor socket:`, socket.id));
+      // socket.on(`connect`, () => console.log(`Conectado com o servidor socket:`, socket.id));
       socket.on(`receber_mensagem`, lidar_com_a_nova_mensagem);
     
       // Limpa o listener quando o componente desmonta ou o useEffect for roda de novo, eu fiz esse return para ele não repetir as mensagens mais de uma vez
@@ -184,9 +184,7 @@ function Chat_conversa() {
           };          
           
           const mensagem_postada = await api.post(`/chats`, mensagem);
-          socket.emit(`nova_mensagem`, mensagem_postada.data);
-          console.log(mensagem_postada.data);
-          
+          socket.emit(`nova_mensagem`, mensagem_postada.data);          
 
           set_conversa_atual([...conversa_atual, mensagem_postada.data]);
           buscar_conversas();
