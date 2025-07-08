@@ -16,7 +16,7 @@ function Pop_up_conversa_adicionada_sucesso() {
                         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
                     }} className="container_pop_up_conversa_adicionada">
 
-                    <img src="./img/icons/icone_de_erro.svg" alt="" className='gif-animation' />
+                    <img src="./img/gif/checkAnimation.gif" alt="" className='gif-animation' />
                     <span>Conversa Adicionada com Sucesso!</span>
 
                 </motion.div>
