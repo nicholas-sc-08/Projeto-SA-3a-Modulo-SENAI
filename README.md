@@ -4,8 +4,8 @@
 
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/fly.circular/)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fly-circular-76a172352/?locale=pt_BR)
-![profile-views](https://komarev.com/ghpvc/?username=nicholas-sc-08&color=green)
-
+<div style="margin-top: 10px"></div>
+![profile-views](https://komarev.com/ghpvc/?username=Projeto-SA-3a-Modulo-SENAI&color=green)
 <div style="margin-top: 10px"></div>
 
 ## Descrição
